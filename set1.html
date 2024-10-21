@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engineering MCQ Quiz</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>SET-1 Engineering MCQ Quiz</h1>
+    <div class="timer" id="timer">Time Left: <span id="time">100:00</span></div>
+
+    <form id="quiz-form">
+        <div class="question-card">
+            <p>The maximum percentage of water absorption of 2 class bricks in 24 hrs should be limited to:</p>
+            <label><input type="radio" name="q1" value="10%"> 10%</label>
+            <label><input type="radio" name="q1" value="15%"> 15%</label>
+            <label><input type="radio" name="q1" value="20%" required> 20%</label>
+            <label><input type="radio" name="q1" value="25%"> 25%</label>
+        </div>
+        
+        <div class="question-card">
+            <p>Question 61: Example question here?</p>
+            <label><input type="radio" name="q61" value="Correct Answer" required> Correct Answer</label>
+            <label><input type="radio" name="q61" value="Wrong Answer 1"> Wrong Answer 1</label>
+        </div>
+
+        <button type="submit" class="submit">Submit</button>
+    </form>
+
+    <div class="results" id="results"></div>
+    <button id="view-answers" class="view-answers" style="display:none;">View Answers</button>
+    <div class="answers" id="answers"></div>
+</div>
+
+<script>
+    let timeLeft = 100 * 60; // 100 minutes in seconds
+    const timerElement = document.getElementById('time');
+    const quizForm = document.getElementById('quiz-form');
+    const resultsDiv = document.getElementById('results');
+    const viewAnswersButton = document.getElementById('view-answers');
+    const answersDiv = document.getElementById('answers');
+
+    const questions = {
+        q1: "The maximum percentage of water absorption of 2 class bricks in 24 hrs should be limited to:",
+        q61: "Question 61: Example question here?"
+    };
+
+    const correctAnswers = {
+        q1: "20%",
+        q61: "Correct Answer"
+    };
+
+    const countdown = setInterval(() => {
+        const minutes = Math.floor(timeLeft / 60);
+        const seconds = timeLeft % 60;
+
+        timerElement.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+
+        if (timeLeft <= 0) {
+            clearInterval(countdown);
+            submitQuiz();
+        } else {
+            timeLeft--;
+        }
+    }, 1000);
+
+    quizForm.onsubmit = function(event) {
+        event.preventDefault();
+        submitQuiz();
+    };
+
+    function submitQuiz() {
+        clearInterval(countdown);
+        quizForm.style.display = 'none';
+        document.querySelector('.timer').style.display = 'none';
+
+        let score = 0;
+        const formData = new FormData(quizForm);
+
+        for (let [question, answer] of formData.entries()) {
+            if (correctAnswers[question] === answer) {
+                score += (parseInt(question.replace('q', '')) <= 60) ? 1 : 2;
+            }
+        }
+
+        resultsDiv.textContent = `Quiz submitted! Your score: ${score} out of 160.`;
+        
+        if (score >= 50) {
+            resultsDiv.textContent += " Congratulations! Your obtained marks are " + score + ". Best wishes for your upcoming NEC License exam.";
+        } else {
+            resultsDiv.textContent += " You can review the correct answers.";
+        }
+        
+        resultsDiv.style.display = 'block';
+        viewAnswersButton.style.display = 'block';
+    }
+
+    viewAnswersButton.onclick = function() {
+        answersDiv.innerHTML = "<h2>Correct Answers</h2><ul>";
+        for (const [questionKey, questionText] of Object.entries(questions)) {
+            answersDiv.innerHTML += `<li>${questionText} <strong>Correct Answer:</strong> ${correctAnswers[questionKey]}</li>`;
+        }
+        answersDiv.innerHTML += "</ul>";
+        answersDiv.style.display = 'block';
+    };
+</script>
+
+</body>
+</html>

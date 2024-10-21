@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes by Semester</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #e8f5e9; /* Light green background */
+            color: #333;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #388E3C; /* Dark green header */
+            padding: 15px 0;
+            color: white;
+        }
+
+        .navbar {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            background-color: #2E7D32; /* Darker green navbar */
+            padding: 10px 0;
+        }
+
+        .navbar a {
+            color: #fff; /* Link color */
+            padding: 8px 10px; /* Reduced padding for compactness */
+            text-decoration: none; /* Remove underline */
+            font-size: 14px; /* Smaller font size */
+            transition: background-color 0.3s; /* Animation */
+        }
+
+        .navbar a:hover {
+            background-color: #1B5E20; /* Even darker green on hover */
+        }
+
+        .about-container {
+            background: linear-gradient(135deg, #4CAF50, #2E7D32);
+            color: #fff;
+            padding: 50px 20px;
+            text-align: center;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1s ease-in-out;
+            max-width: 800px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .about-container h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .about-container p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .team-photo {
+            border-radius: 50%;
+            max-width: 300px;
+            height: auto;
+            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+        }
+
+        .team-photo:hover {
+            transform: scale(1.1);
+        }
+
+        .cta-button {
+            background-color: #fff;
+            color: #28a745;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 18px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #ddd;
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .about-container {
+                padding: 30px;
+            }
+            .about-container h1 {
+                font-size: 28px;
+            }
+            .about-container p {
+                font-size: 16px;
+            }
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        ul li {
+            background-color: #e0f7fa;
+            margin: 10px;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: justify;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        ul li:hover {
+            transform: translateX(5px);
+        }
+
+        ul li strong {
+            color: #00796b;
+        }
+
+        ul li span {
+            color: #4CAF50;
+        }
+
+        .social-media {
+            background: linear-gradient(135deg, #4CAF50, #2E7D32);
+            color: white;
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .social-media h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .social-media p {
+            font-size: 18px;
+            margin-bottom: 40px;
+        }
+
+        .social-media .icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .social-media .icons a {
+            color: #fff;
+            font-size: 36px;
+            transition: transform 0.3s;
+        }
+
+        .social-media .icons a:hover {
+            transform: scale(1.2);
+        }
+
+        footer {
+            background-color: #4CAF50;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        footer a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="navbar">
+        <a href="Home"><i class="fas fa-home"></i> Home</a>
+        <a href="resources"><i class="fas fa-book"></i> Resources</a>
+        <a href="license-preparation"><i class="fas fa-certificate"></i> License Prep</a>
+        <a href="psc-preparation"><i class="fas fa-graduation-cap"></i> PSC Prep</a>
+        <a href="aboutus"><i class="fas fa-info-circle"></i> About Us</a>
+        <a href="contactus"><i class="fas fa-envelope"></i> Contact Us</a>
+    </div>
+
+    <div class="about-container">
+        <h1>About Us</h1>
+        <p>Welcome to CivPrepMaster, your ultimate resource hub for civil engineering students and professionals in Nepal! Our mission is to make your academic and professional journey smoother by providing easy access to essential study materials, comprehensive notes, and solutions tailored specifically for civil engineering courses.</p>
+        
+        <p>At CivPrepMaster, we understand the challenges faced by students and aspiring engineers. That’s why we’ve curated a vast collection of resources, including textbooks, lecture notes, and exam solutions, all in one convenient place.</p>
+
+        <p style="text-align:center; font-size:24px; font-weight:bold;">Why Choose Us?</p>
+        
+        <ul>
+            <li><strong>Extensive Resources:</strong> <span>From fundamental textbooks to advanced study guides, our library supports every stage of your learning journey.</span></li>
+            <li><strong>Expert Solutions:</strong> <span>Our materials are crafted and reviewed by experienced professionals and educators.</span></li>
+            <li><strong>User-Friendly Interface:</strong> <span>Our website is designed with you in mind.</span></li>
+            <li><strong>Community Support:</strong> <span>Join a community of like-minded individuals who share your passion for civil engineering.</span></li>
+        </ul>
+
+        <p style="font-weight:bold;">Our Vision</p>
+        <p>We aim to be the leading platform for civil engineering education in Nepal.</p>
+
+        <p style="font-weight:bold;">Join Us</p>
+        <p>Become a part of the CivPrepMaster community today!</p>
+
+        <div class="author-info">
+            <h2><i class="fas fa-user"></i> About the Author</h2>
+            <p><strong>Name:</strong> Er. Arun Panthi</p>
+            <p><strong>Bachelor's Degree:</strong> Graduated from Mid-West University</p>
+            <p><strong>Location:</strong> Tamghas, Gulmi</p>
+            <p><strong>Facebook ID:</strong> <a href="https://www.facebook.com/profile.php?id=61566247450701" target="_blank">Er. Arun Panthi</a></p>
+        </div>
+
+        <img src="Er.Arunpanthi.jpg" alt="Our Team" class="team-photo">
+       
+        <p>Join us on our journey to success and excellence in civil engineering.</p>
+        <a href="contactus" class="cta-button">Contact Us</a>
+    </div>
+
+    <div class="social-media">
+        <h2><i class="fab fa-connectdevelop"></i> Connect with Us</h2>
+        <p>Follow us on social media to stay updated with the latest resources and news.</p>
+        <div class="icons">
+            <a href="https://www.facebook.com/arun.panthi27" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.tiktok.com/@er.arunpanthi" target="_blank"><i class="fab fa-tiktok"></i></a>
+            <a href="https://www.youtube.com/@Arunpanthisblog" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="mailto:erarunpanthi@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>
+        </div>
+    </div>
+
+    <footer>
+        <p>©2024 CivPrepMaster. All rights reserved. | 
+        <a href="PrivacyPolicy">Privacy Policy</a> | 
+        <a href="TermsofService">Terms of Service</a></p>
+    </footer>
+
+</body>
+</html>

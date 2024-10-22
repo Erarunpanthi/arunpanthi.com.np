@@ -46,15 +46,22 @@ header {
     background-color: #1B5E20; /* Even darker green on hover */
 }
 
+.section {
+    background-color: #fff; /* Background color for sections */
+    border-radius: 25px; /* Rounded edges */
+    padding: 20px; /* Inner padding */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    margin: 20px auto; /* Gap above and below the section */
+    max-width: 800px; /* Max width for sections */
+}
+
 .about-container {
     background: linear-gradient(135deg, var(--primary-color), var(--dark-green));
     color: #fff;
     padding: 50px 20px;
-    margin: 20px auto;
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     animation: fadeIn 1s ease-in-out;
-    max-width: 800px;
     margin-bottom: 20px; /* Gap below about section */
 }
 
@@ -153,6 +160,7 @@ ul li span {
     text-align: center;
     border-radius: 25px; /* Rounded edges */
     margin-bottom: 20px; /* Gap below social media section */
+    height: auto; /* Set height to auto for compactness */
 }
 
 .social-media h2 {

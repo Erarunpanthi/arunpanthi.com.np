@@ -249,22 +249,28 @@ footer a:hover {
     font-size: 14px; /* Smaller font size */
 }
  }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            color: #333;
-        }
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #4caf50; /* Green border */
-            border-radius: 5px;
-        }
+      .form-group {
+    margin-bottom: 15px;
+    text-align: left; /* Aligns text to the left */
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+    text-align: left; /* Ensures label is aligned left */
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #4caf50; /* Green border */
+    border-radius: 5px;
+    box-sizing: border-box; /* Ensures padding is included in the width */
+}
+
 .thank-you-message {
             display: none;
             text-align: center;

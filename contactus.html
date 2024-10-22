@@ -6,6 +6,9 @@
     <title>Contact Us - CivPrepMaster</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+  
+    </style>
 </head>
 <body>
     <div class="navbar">
@@ -19,7 +22,7 @@
 
     <div class="container">
         <h1>Contact Us</h1>
-        <form id="contact-form">
+        <form id="contact-form" action="https://script.google.com/macros/s/AKfycbxrs6bbqt-5TP17f4F7hMtWUJLEH6lUwVvcyTJZ05-DAsgq_nMfi1rNDv_cTUmkmoopuw/exec" method="POST" onsubmit="return showThankYouMessage();">
             <div class="form-group">
                 <label for="first-name"><i class="fas fa-user"></i> First Name<span style="color:red;">*</span>:</label>
                 <input type="text" id="first-name" name="first-name" placeholder="Enter your first name" required>
@@ -31,6 +34,29 @@
             <div class="form-group">
                 <label for="last-name"><i class="fas fa-user"></i> Last Name<span style="color:red;">*</span>:</label>
                 <input type="text" id="last-name" name="last-name" placeholder="Enter your last name" required>
+            </div>
+            <div class="form-group">
+                <label for="father-name"><i class="fas fa-user"></i> Father's Name<span style="color:red;">*</span>:</label>
+                <input type="text" id="father-name" name="father-name" placeholder="Enter your father's name" required>
+            </div>
+            <div class="form-group">
+                <label for="mother-name"><i class="fas fa-user"></i> Mother's Name<span style="color:red;">*</span>:</label>
+                <input type="text" id="mother-name" name="mother-name" placeholder="Enter your mother's name" required>
+            </div>
+            <div class="form-group">
+                <label for="mobile"><i class="fas fa-phone"></i> Mobile Number<span style="color:red;">*</span>:</label>
+                <div class="phone-number">
+                    <div class="country-code">
+                        <select id="country-code" name="country-code">
+                            <option value="+977">+977</option>
+                        </select>
+                    </div>
+                    <input type="tel" id="mobile" name="mobile" placeholder="XXXXXXXXXX" pattern="[0-9]{10}" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="email"><i class="fas fa-envelope"></i> Email ID<span style="color:red;">*</span>:</label>
+                <input type="email" id="email" name="email" placeholder="example@gmail.com" required pattern="^[a-zA-Z0-9._%+-]+@gmail\.com$">
             </div>
             <div class="form-group">
                 <label for="address"><i class="fas fa-map-marker-alt"></i> Address<span style="color:red;">*</span>:</label>
@@ -53,55 +79,30 @@
                     <option value="Advanced College of Engineering and Management">Advanced College of Engineering and Management</option>
                     <option value="Pulchowk Campus, Institute of Engineering">Pulchowk Campus, Institute of Engineering</option>
                     <option value="Khwopa College of Engineering">Khwopa College of Engineering</option>
-                    <option value="Cosmos College of Management and Technology">Cosmos College of Management and Technology</option>
-                    <option value="Gandaki College of Engineering and Science">Gandaki College of Engineering and Science</option>
-                    <option value="Madan Bhandari Memorial Academy">Madan Bhandari Memorial Academy</option>
-                    <option value="Pokhara Engineering College">Pokhara Engineering College</option>
-                    <option value="Rapti Engineering College">Rapti Engineering College</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="semester"><i class="fas fa-calendar-alt"></i> Semester<span style="color:red;">*</span>:</label>
-                <select id="semester" name="semester" required>
-                    <option value="" disabled selected>Select your semester</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
+                    <option value="Madan Bhandari Memorial College of Engineering">Madan Bhandari Memorial College of Engineering</option>
+                    <option value="Nepal College of Information Technology">Nepal College of Information Technology</option>
+                    <option value="Thapathali Campus, Institute of Engineering">Thapathali Campus, Institute of Engineering</option>
+                    <option value="Nepal College of Computer Science">Nepal College of Computer Science</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="district"><i class="fas fa-map"></i> District<span style="color:red;">*</span>:</label>
                 <select id="district" name="district" required>
                     <option value="" disabled selected>Select your district</option>
-                    <option value="Achham">Achham</option>
-                    <option value="Arghakhanchi">Arghakhanchi</option>
                     <option value="Baglung">Baglung</option>
                     <option value="Baitadi">Baitadi</option>
-                    <option value="Bajhang">Bajhang</option>
-                    <option value="Bajura">Bajura</option>
-                    <option value="Banke">Banke</option>
-                    <option value="Bara">Bara</option>
+                    <option value="Bardiya">Bardiya</option>
+                    <option value="Bhairahawa">Bhairahawa</option>
                     <option value="Bhaktapur">Bhaktapur</option>
-                    <option value="Bhojpur">Bhojpur</option>
                     <option value="Chitwan">Chitwan</option>
-                    <option value="Dadeldhura">Dadeldhura</option>
-                    <option value="Darchula">Darchula</option>
-                    <option value="Dailekh">Dailekh</option>
-                    <option value="Dang Deukhuri">Dang Deukhuri</option>
                     <option value="Dhanusa">Dhanusa</option>
-                    <option value="Dolakha">Dolakha</option>
-                    <option value="Dolpa">Dolpa</option>
-                    <option value="Eastern Rukum">Eastern Rukum</option>
-                    <option value="Western Rukum">Western Rukum</option>
+                    <option value="Dhulikhel">Dhulikhel</option>
+                    <option value="Doti">Doti</option>
                     <option value="Gorkha">Gorkha</option>
                     <option value="Gulmi">Gulmi</option>
-                    <option value="Humla">Humla</option>
-                    <option value="Ilam">Ilam</option>
+                    <option value="Hamro Janga">Hamro Janga</option>
+                    <option value="Hanuman Nagar">Hanuman Nagar</option>
+                    <option value="Illam">Illam</option>
                     <option value="Jajarkot">Jajarkot</option>
                     <option value="Janjanpur">Janjanpur</option>
                     <option value="Kailali">Kailali</option>
@@ -142,38 +143,39 @@
             </div>
             <button type="submit">Send Message</button>
         </form>
+        
+        <div class="thank-you-message" id="thank-you-message">
+            <h2>Thank You for Your Time!</h2>
+            <p>Your message has been delivered to ER. Arun Panthi. He will contact you as soon as possible.</p>
+            <a href="Home" class="cta-button">Go to Home</a>
+        </div>
     </div>
 
-     <div class="social-media">
-            <h2><i class="fab fa-connectdevelop"></i> Connect with Us</h2>
-            <p>Follow us on social media to stay updated with the latest resources and news.</p>
-            <div class="icons">
-                <a href="https://www.facebook.com/profile.php?id=61566247450701" target="_blank"><i class="fab fa-facebook"></i></a>
-                <a href="https://www.tiktok.com/@er.arunpanthi" target="_blank"><i class="fab fa-tiktok"></i></a>
-                <a href="https://www.youtube.com/@Arunpanthisblog" target="_blank"><i class="fab fa-youtube"></i></a>
-                <a href="mailto:erarunpanthi@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>
-            </div>
+    <div class="social-media">
+        <h2><i class="fab fa-connectdevelop"></i> Connect with Us</h2>
+        <p>Follow us on social media to stay updated with the latest resources and news.</p>
+        <div class="icons">
+            <a href="https://www.facebook.com/profile.php?id=61566247450701" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.tiktok.com/@er.arunpanthi" target="_blank"><i class="fab fa-tiktok"></i></a>
+            <a href="https://www.youtube.com/@Arunpanthisblog" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="mailto:erarunpanthi@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>
         </div>
-    </main>
+    </div>
+    
     <footer>
         <p>© 2024 CivPrepMaster. All rights reserved. | 
-        <a href="PrivacyPolicy">Privacy Policy</a> | 
-        <a href="TermsofService">Terms of Service</a></p>
+        <a href="PrivacyPolicy" style="color:white;">Privacy Policy</a> | 
+        <a href="TermsofService" style="color:white;">Terms of Service</a></p>
     </footer>
 
     <script>
-        document.getElementById('contact-form').addEventListener('submit', function(event) {
+        function showThankYouMessage() {
             event.preventDefault();
-            const firstName = document.getElementById('first-name').value;
-            const middleName = document.getElementById('middle-name').value;
-            const lastName = document.getElementById('last-name').value;
-            const address = document.getElementById('address').value;
-            const university = document.getElementById('university').value;
-            const semester = document.getElementById('semester').value;
-            const district = document.getElementById('district').value;
-            const message = document.getElementById('message').value;
-            // Further processing can be added here (e.g., sending data to a server)
-        });
+            document.getElementById("contact-form").style.display = "none";
+            document.getElementById("thank-you-message").style.display = "block";
+            document.getElementById("contact-form").submit();
+            return false;
+        }
     </script>
 </body>
 </html>

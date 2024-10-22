@@ -8,200 +8,152 @@
 
 body {
     font-family: 'Arial', sans-serif;
-    background-color: var(--light-green-bg);
+    background-color: var(--light-green-bg); /* Light green background */
     color: #333;
+    text-align: center;
     margin: 0;
     padding: 0;
     line-height: 1.6;
 }
 
-h1, h2 {
-    color: #388E3C; /* Dark green headings */
+/* Header Styles */
+header {
+    background-color: #388E3C; /* Dark green header */
+    padding: 15px 0;
+    color: white;
 }
 
+/* Navbar Styles */
 .navbar {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            background-color: #2E7D32; /* Darker green navbar */
-            padding: 10px 0;
-        }
-
-        .navbar a {
-            color: #fff; /* Link color */
-            padding: 8px 10px; /* Reduced padding for compactness */
-            text-decoration: none; /* Remove underline */
-            font-size: 14px; /* Smaller font size */
-            transition: background-color 0.3s; /* Animation */
-        }
-
-        .navbar a:hover {
-            background-color: #1B5E20; /* Even darker green on hover */
-        }
-/* Container Styles */
-.container {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: var(--dark-green); /* Darker green navbar */
+    padding: 10px 0;
 }
 
-/* Form Styles */
-.form-group {
-    margin-bottom: 1.5rem;
+.navbar a {
+    color: #fff; /* Link color */
+    padding: 8px 10px; /* Reduced padding for compactness */
+    text-decoration: none; /* Remove underline */
+    font-size: 14px; /* Smaller font size */
+    transition: background-color 0.3s; /* Animation */
 }
 
-label {
-    display: flex; /* Change to flex to align items */
-    align-items: center; /* Center items vertically */
-    margin-bottom: 0.5rem;
-    color: var(--dark-green);
-    font-weight: bold;
+.navbar a:hover {
+    background-color: #1B5E20; /* Even darker green on hover */
 }
 
-input, select, textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    transition: border-color 0.3s;
-    box-sizing: border-box;
-}
-
-input:focus, select:focus, textarea:focus {
-    border-color: var(--dark-green);
-    outline: none;
-}
-
-input[type="radio"] {
-    margin-right: 10px; /* Space between radio button and text */
-}
-
-/* Button Styles */
-button {
-    width: 100%;
-    padding: 12px;
-    background: var(--dark-green);
+/* About Container Styles */
+.about-container {
+    background: linear-gradient(135deg, var(--primary-color), var(--dark-green));
     color: #fff;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background 0.3s, transform 0.3s;
+    padding: 50px 20px;
+    margin: 20px auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 1s ease-in-out;
+    max-width: 800px;
 }
 
-button:hover {
-    background: var(--hover-green);
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
-button:focus {
-    outline: 2px solid var(--primary-color); /* Focus outline */
+.about-container h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-/* Timer Styles */
-.timer {
-    font-size: 36px; /* Larger font size for the timer */
-    color: #388E3C; /* Dark green color for the timer */
-    margin: 20px 0; /* Space around the timer */
-    background-color: var(--light-green-bg); /* Light green background for timer */
-    padding: 10px; /* Padding around the timer */
-    border-radius: 10px; /* Rounded corners for timer */
+.about-container p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    text-align: justify;
 }
 
-/* Hero Section Styles */
-.hero {
-    background-color: var(--primary-color);
-    color: white; /* White text for hero section */
-    padding: 20px 20px; /* Reduced padding */
-    text-align: center;
-    border-radius: 10px; /* Rounded corners */
-    margin: 30px auto; /* Increased margin */
-    max-width: 800px; /* Centered with max width */
+/* Team Photo Styles */
+.team-photo {
+    border-radius: 50%;
+    max-width: 300px;
+    height: auto;
+    margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s;
 }
 
-.hero h1 {
-    font-size: 36px; /* Heading size */
-    color: white; /* White color for heading */
-    margin: 10px 0; /* Reduced margin */
-}
-
-.hero p {
-    margin: 10px 0; /* Reduced margin for paragraph */
+.team-photo:hover {
+    transform: scale(1.1);
 }
 
 /* Call-to-Action Button Styles */
 .cta-button {
-    background-color: #28a745; /* Green button background */
-    color: white; /* White text for button */
-    padding: 10px 20px; /* Reduced padding */
+    background-color: #fff;
+    color: #28a745;
+    padding: 12px 25px;
     text-decoration: none;
-    border-radius: 25px; /* Rounded button */
+    border-radius: 5px;
     font-size: 18px;
     transition: background-color 0.3s ease, transform 0.3s ease;
-    margin-top: 10px; /* Space above button */
-    display: inline-block; /* Ensure proper spacing */
 }
 
 .cta-button:hover {
-    background-color: #218838; /* Darker green on hover */
+    background-color: #ddd;
     transform: scale(1.05);
 }
 
-/* Secondary Button Styles */
-.secondary-button {
-    background-color: #6c757d; /* Grey button background */
-    color: white; /* White text for button */
-    padding: 10px 20px; /* Padding */
-    text-decoration: none;
-    border-radius: 25px; /* Rounded button */
-    font-size: 18px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    margin-top: 15px; /* Increased space above secondary button */
-    display: inline-block; /* Ensure proper spacing */
+/* List Styles */
+ul {
+    list-style-type: none;
+    padding: 0;
 }
 
-.secondary-button:hover {
-    background-color: #5a6268; /* Darker grey on hover */
-    transform: scale(1.05);
+ul li {
+    background-color: #e0f7fa;
+    margin: 10px;
+    padding: 15px;
+    border-radius: 5px;
+    text-align: justify;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
 }
 
-/* Section Styles */
-.section {
-    margin: 30px auto; /* Increased margin */
-    padding: 20px;
-    border-radius: 20px; /* Increased border radius for more rounded edges */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    background-color: white; /* Section background */
-    width: 90%; /* Width for sections */
-    max-width: 800px; /* Max width for sections */
-    text-align: center; /* Center text */
+ul li:hover {
+    transform: translateX(5px);
+}
+
+ul li strong {
+    color: #00796b;
+}
+
+ul li span {
+    color: var(--primary-color);
 }
 
 /* Social Media Styles */
 .social-media {
     background: linear-gradient(135deg, var(--primary-color), var(--dark-green));
-    color: white; /* White text for social media section */
-    padding: 30px 20px; /* Reduced padding */
+    color: white;
+    padding: 50px 20px;
     text-align: center;
-    border-radius: 20px; /* Increased border radius */
-    margin: 30px auto; /* Increased margin */
 }
 
 .social-media h2 {
-    color: white; /* White color for heading */
-    margin: 10px 0; /* Reduced margin */
+    font-size: 36px;
+    margin-bottom: 20px;
 }
 
 .social-media p {
-    margin: 10px 0; /* Reduced margin for paragraph */
+    font-size: 18px;
+    margin-bottom: 40px;
 }
 
 .social-media .icons {
     display: flex;
     justify-content: center;
-    gap: 20px; /* Space between icons */
+    gap: 20px;
 }
 
 .social-media .icons a {
@@ -235,63 +187,18 @@ footer a:hover {
 
 /* Media Queries */
 @media (max-width: 768px) {
-    .hero {
-        padding: 15px; /* Further reduce padding for smaller screens */
+    .about-container {
+        padding: 30px;
     }
-    .section {
-        padding: 15px; /* Adjust section padding */
+    .about-container h1 {
+        font-size: 28px;
     }
-    .social-media {
-        padding: 20px; /* Further reduce padding */
+    .about-container p {
+        font-size: 16px;
     }
 }
 
-/* Book List Styles */
-.book-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 30px; /* Increased gap between books */
-}
-
-.book {
-    background: #ffffff;
-    border-radius: 15px; /* Rounded edges for book items */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    padding: 15px;
-    text-align: center;
-    transition: transform 0.3s, box-shadow 0.3s;
-    position: relative;
-    overflow: hidden;
-}
-
-.book:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-}
-
-.book img {
-    max-width: 100%;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    transition: transform 0.3s;
-}
-
-.book img:hover {
-    transform: scale(1.05);
-}
-
-.book h2 {
-    font-size: 20px;
-    margin: 10px 0;
-    color: #4CAF50;
-    font-weight: bold;
-}
-
-.book p {
-    font-size: 16px;
-    color: #666;
-}
-
+/* Additional Styles for Mobile Responsiveness */
 @media (max-width: 600px) {
     .hero h1 {
         font-size: 28px;

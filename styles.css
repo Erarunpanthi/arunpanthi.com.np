@@ -1,9 +1,10 @@
 /* General Styles */
 :root {
-    --primary-color: #4CAF50;
-    --dark-green: #2E7D32;
-    --hover-green: #1B5E20;
-    --light-green-bg: #e8f5e9;
+    --primary-color: #4CAF50; /* Green */
+    --dark-green: #2E7D32; /* Darker green */
+    --hover-green: #1B5E20; /* Even darker green */
+    --light-green-bg: #e8f5e9; /* Light green background */
+    --orange: #FF5722; /* Orange */
 }
 
 body {
@@ -21,6 +22,7 @@ header {
     background-color: #388E3C; /* Dark green header */
     padding: 15px 0;
     color: white;
+    border-radius: 10px; /* Rounded edges */
 }
 
 /* Navbar Styles */
@@ -30,6 +32,7 @@ header {
     justify-content: center;
     background-color: var(--dark-green); /* Darker green navbar */
     padding: 10px 0;
+    border-radius: 10px; /* Rounded edges */
 }
 
 .navbar a {
@@ -90,17 +93,33 @@ header {
 
 /* Call-to-Action Button Styles */
 .cta-button {
-    background-color: #fff;
-    color: #28a745;
+    background-color: var(--primary-color); /* Green */
+    color: white; /* White text */
     padding: 12px 25px;
     text-decoration: none;
-    border-radius: 5px;
+    border-radius: 5px; /* Rounded edges */
     font-size: 18px;
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .cta-button:hover {
-    background-color: #ddd;
+    background-color: var(--hover-green); /* Darker green on hover */
+    transform: scale(1.05);
+}
+
+/* Secondary Button Styles */
+.secondary-button {
+    background-color: var(--orange); /* Orange */
+    color: white; /* White text */
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 5px; /* Rounded edges */
+    font-size: 18px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.secondary-button:hover {
+    background-color: #e64a19; /* Darker orange on hover */
     transform: scale(1.05);
 }
 
@@ -138,6 +157,7 @@ ul li span {
     color: white;
     padding: 50px 20px;
     text-align: center;
+    border-radius: 10px; /* Rounded edges */
 }
 
 .social-media h2 {
@@ -173,6 +193,7 @@ footer {
     text-align: center;
     padding: 20px;
     margin-top: 20px;
+    border-radius: 10px; /* Rounded edges */
 }
 
 footer a {

@@ -1,11 +1,18 @@
 /* General Styles */
+:root {
+    --primary-color: #4CAF50;
+    --dark-green: #2E7D32;
+    --hover-green: #1B5E20;
+    --light-green-bg: #e8f5e9;
+}
+
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #e8f5e9; /* Light green background */
+    background-color: var(--light-green-bg);
     color: #333;
     margin: 0;
     padding: 0;
-    line-height: 1.6; /* Improved readability */
+    line-height: 1.6;
 }
 
 h1, h2 {
@@ -15,9 +22,8 @@ h1, h2 {
 /* Navbar Styles */
 .navbar {
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
-    background-color: #2E7D32; /* Darker green navbar */
+    background-color: var(--dark-green);
     padding: 10px 0;
 }
 
@@ -30,7 +36,7 @@ h1, h2 {
 }
 
 .navbar a:hover {
-    background-color: #1B5E20; /* Even darker green on hover */
+    background-color: var(--hover-green);
 }
 
 /* Container Styles */
@@ -52,7 +58,7 @@ label {
     display: flex; /* Change to flex to align items */
     align-items: center; /* Center items vertically */
     margin-bottom: 0.5rem;
-    color: #2E7D32;
+    color: var(--dark-green);
     font-weight: bold;
 }
 
@@ -66,7 +72,7 @@ input, select, textarea {
 }
 
 input:focus, select:focus, textarea:focus {
-    border-color: #2E7D32;
+    border-color: var(--dark-green);
     outline: none;
 }
 
@@ -78,17 +84,21 @@ input[type="radio"] {
 button {
     width: 100%;
     padding: 12px;
-    background: #2E7D32;
+    background: var(--dark-green);
     color: #fff;
     border: none;
     border-radius: 5px;
     font-size: 1rem;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: background 0.3s, transform 0.3s;
 }
 
 button:hover {
-    background: #1B5E20;
+    background: var(--hover-green);
+}
+
+button:focus {
+    outline: 2px solid var(--primary-color); /* Focus outline */
 }
 
 /* Timer Styles */
@@ -96,14 +106,14 @@ button:hover {
     font-size: 36px; /* Larger font size for the timer */
     color: #388E3C; /* Dark green color for the timer */
     margin: 20px 0; /* Space around the timer */
-    background-color: #e8f5e9; /* Light green background for timer */
+    background-color: var(--light-green-bg); /* Light green background for timer */
     padding: 10px; /* Padding around the timer */
     border-radius: 10px; /* Rounded corners for timer */
 }
 
 /* Hero Section Styles */
 .hero {
-    background-color: #4CAF50; /* Green background for hero section */
+    background-color: var(--primary-color);
     color: white; /* White text for hero section */
     padding: 20px 20px; /* Reduced padding */
     text-align: center;
@@ -172,7 +182,7 @@ button:hover {
 
 /* Social Media Styles */
 .social-media {
-    background: linear-gradient(135deg, #4CAF50, #2E7D32);
+    background: linear-gradient(135deg, var(--primary-color), var(--dark-green));
     color: white; /* White text for social media section */
     padding: 30px 20px; /* Reduced padding */
     text-align: center;
@@ -207,7 +217,7 @@ button:hover {
 
 /* Footer Styles */
 footer {
-    background-color: #4CAF50;
+    background-color: var(--primary-color);
     color: #fff;
     text-align: center;
     padding: 20px;

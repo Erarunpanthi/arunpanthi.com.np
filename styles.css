@@ -19,26 +19,25 @@ h1, h2 {
     color: #388E3C; /* Dark green headings */
 }
 
-/* Navbar Styles */
 .navbar {
-    display: flex;
-    justify-content: center;
-    background-color: var(--dark-green);
-    padding: 10px 0;
-}
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            background-color: #2E7D32; /* Darker green navbar */
+            padding: 10px 0;
+        }
 
-.navbar a {
-    color: #fff; /* Link color */
-    padding: 8px 10px; /* Reduced padding for compactness */
-    text-decoration: none; /* Remove underline */
-    font-size: 14px; /* Smaller font size */
-    transition: background-color 0.3s; /* Animation */
-}
+        .navbar a {
+            color: #fff; /* Link color */
+            padding: 8px 10px; /* Reduced padding for compactness */
+            text-decoration: none; /* Remove underline */
+            font-size: 14px; /* Smaller font size */
+            transition: background-color 0.3s; /* Animation */
+        }
 
-.navbar a:hover {
-    background-color: var(--hover-green);
-}
-
+        .navbar a:hover {
+            background-color: #1B5E20; /* Even darker green on hover */
+        }
 /* Container Styles */
 .container {
     max-width: 800px;

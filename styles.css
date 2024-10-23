@@ -39,11 +39,12 @@ header {
     padding: 8px 10px; /* Reduced padding for compactness */
     text-decoration: none; /* Remove underline */
     font-size: 14px; /* Smaller font size */
-    transition: background-color 0.3s; /* Animation */
+    transition: background-color 0.3s, transform 0.3s; /* Animation for hover effect */
 }
 
 .navbar a:hover {
     background-color: #1B5E20; /* Even darker green on hover */
+    transform: scale(1.05); /* Slightly enlarge on hover */
 }
 
 .section {
@@ -62,7 +63,6 @@ header {
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     animation: fadeIn 1s ease-in-out;
-    margin-bottom: 20px; /* Gap below about section */
 }
 
 @keyframes fadeIn {
@@ -79,230 +79,163 @@ header {
 .about-container p {
     font-size: 18px;
     line-height: 1.6;
-    margin-bottom: 20px;
-    text-align: justify;
 }
 
 .team-photo {
     border-radius: 50%;
     max-width: 300px;
-    height: auto;
-    margin-top: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s;
 }
-
 .team-photo:hover {
-    transform: scale(1.1);
+   transform: scale(1.1);
 }
 
-.cta-button {
-    background-color: var(--primary-color); /* Green */
-    color: white; /* White text */
-    padding: 12px 25px;
-    text-decoration: none;
-    border-radius: 5px; /* Rounded edges */
-    font-size: 18px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    margin-bottom: 20px; /* Space below the CTA button */
-}
-
-.cta-button:hover {
-    background-color: var(--hover-green); /* Darker green on hover */
-    transform: scale(1.05);
-}
-
+.cta-button,
 .secondary-button {
-    background-color: var(--orange); /* Orange */
-    color: white; /* White text */
-    padding: 12px 25px;
-    text-decoration: none;
-    border-radius: 5px; /* Rounded edges */
-    font-size: 18px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+   display:inline-block; 
+   margin-bottom:15px; 
+   transition-duration:.3s;
+   border:none;
+   cursor:pointer;
+   text-align:center;
+   font-weight:bold;
+   border-radius:.5rem;
+   box-shadow:.2rem .2rem .5rem rgba(0,0,0,.2);
 }
-
+.cta-button {
+   background-color: var(--primary-color); 
+   color:white; 
+   padding:.75rem 1.5rem;
+}
+.cta-button:hover {
+   background-color: var(--hover-green); 
+   transform:.95s scale(1.05);
+}
+.secondary-button {
+   background-color: var(--orange); 
+   color:white; 
+   padding:.75rem .75rem .75rem .75rem ;
+}
 .secondary-button:hover {
-    background-color: #e64a19; /* Darker orange on hover */
-    transform: scale(1.05);
-    margin-top: 20px; /* Space above the Secondary button */
+   background-color:#e64a19; 
+   transform:.95s scale(1.05);
 }
 
 ul {
-    list-style-type: none;
-    padding: 0;
+   list-style-type:none; 
 }
-
 ul li {
-    background-color: #e0f7fa;
-    margin: 10px;
-    padding: 15px;
-    border-radius: 5px;
-    text-align: justify;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease-in-out;
+   background-color:#e0f7fa; 
+   margin:.5rem ; 
+   padding:.75rem ; 
+   border-radius:.25rem ; 
 }
-
-ul li:hover {
-    transform: translateX(5px);
+ul li:hover { 
+   transform:.95s translateX(5px); 
 }
-
-ul li strong {
-    color: #00796b;
+ul li strong { 
+   color:#00796b; 
 }
-
-ul li span {
-    color: var(--primary-color);
+ul li span { 
+   color:variables(--primary-color); 
 }
-
 .social-media {
-    background: linear-gradient(135deg, var(--primary-color), var(--dark-green));
-    color: white;
-    padding: 20px 10px; /* Reduced padding for compactness */
-    text-align: center;
-    border-radius: 25px; /* Rounded edges */
-    margin-bottom: 20px; /* Gap below social media section */
-    height: auto; /* Set height to auto for compactness */
+   background-image:url('path/to/your/image.jpg');/* Add a subtle image or gradient for attractiveness*/
+   background-size:auto cover ;
+   color:white ; 
+   padding:.75rem ; 
+   text-align:center ; 
 }
+.social-media h2 { 
+   font-size :24 px ;
+}
+.social-media p { 
+   font-size :14 px ;  
+}
+.social-media .icons { 
+   display:flex ;  
+}
+.social-media .icons a { 
+     color:#fff ;  
+     font-size :24 px ;
+     transition :transform .3s ;
+}
+.social-media .icons a:hover {  
+     transform :scale(1.2) ;  
+}
+footer {  
+     background-color:variables(--primary-color) ;  
+     color:#fff ;  
+     text-align:center ;  
+     padding :15 px ;  
+     margin-top :15 px ;  
+     border-radius :10 px ;  
+}
+footer a {  
+     color:#fff ;  
+     text-decoration:none ;  
+     margin :0 .5 rem ;
+}
+footer a:hover {  
+     text-decoration :underline ;
+}
+@media (max-width :768 px) {  
+     .about-container {  
+          padding :30 px ;
+     }  
+     .about-container h1 {  
+          font-size :28 px ;
+     }  
+     .about-container p {  
+          font-size :16 px ;
+     }  
+}  
 
-.social-media h2 {
-    font-size: 28px; /* Smaller heading size */
-    margin-bottom: 10px; /* Reduced margin */
-}
+.phone-number {   
+      display:flex ;
+}  
 
-.social-media p {
-    font-size: 16px; /* Smaller paragraph size */
-    margin-bottom: 20px; /* Reduced margin */
-}
+.phone-number input {   
+      flex :1 ;   
+      padding :10 px ;   
+}  
 
-.social-media .icons {
-    display: flex;
-    justify-content: center;
-    gap: 30px; /* Increased spacing between icons */
-}
+.country-code {   
+      width :80 px ;   
+      margin-right :10 px ;   
+}  
 
-.social-media .icons a {
-    color: #fff;
-    font-size: 30px; /* Smaller icon size */
-    transition: transform 0.3s;
-}
+.country-code select {   
+      padding :10 px ;   
+}  
 
-.social-media .icons a:hover {
-    transform: scale(1.2);
-}
+.form-group {   
+      margin-bottom :15 px ;   
+      text-align:left ;
+}  
 
-footer {
-    background-color: var(--primary-color);
-    color: #fff;
-    text-align: center;
-    padding: 20px;
-    margin-top: 20px;
-    border-radius: 10px; /* Rounded edges */
-}
-
-footer a {
-    color: #fff;
-    text-decoration: none;
-    margin: 0 10px;
-}
-
-footer a:hover {
-    text-decoration: underline;
-}
-
-@media (max-width: 768px) {
-    .about-container {
-        padding: 30px;
-    }
-    .about-container h1 {
-        font-size: 28px;
-    }
-    .about-container p {
-        font-size: 16px;
-    }
-}
-
-@media (max-width: 600px) {
-    .hero h1 {
-        font-size: 28px;
-    }
-}
-
-.phone-number {
-    display: flex;
-    align-items: center;
-}
-
-.phone-number input {
-    flex: 1; /* Grow to fill remaining space */
-    padding: 10px;
-    border: 1px solid #4caf50; /* Green border */
-    border-radius: 5px; /* Rounded corners */
-}
-
-.country-code {
-    width: 80px; /* Fixed width for the country code box */
-    margin-right: 10px; /* Space between the country code and mobile number input */
-}
-
-.country-code select {
-    padding: 10px;
-    border: 1px solid #4caf50; /* Green border */
-    border-radius: 5px; /* Rounded corners */
-    font-size: 14px; /* Smaller font size */
-}
-
-.form-group {
-    margin-bottom: 15px;
-    text-align: left; /* Aligns text to the left */
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
-    color: #333;
-    text-align: left; /* Ensures label is aligned left */
-}
+.form-group label {   
+      display:block ;   
+      margin-bottom :5 px ;
+}  
 
 .form-group input,
 .form-group select,
-.form-group textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #4caf50; /* Green border */
-    border-radius: 5px;
-    box-sizing: border-box; /* Ensures padding is included in the width */
-}
+.form-group textarea {   
+      width :100 % ;   
+}  
 
-.thank-you-message {
-    display: none;
-    text-align: center;
-    margin-top: 20px;
-    padding: 20px;
-    background: #e7f3fe; /* Light background */
-    border: 1px solid #a4c8e1;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
+.thank-you-message {   
+      display:none ;
+}  
 
-.thank-you-message h2 {
-    color: #4caf50; /* Green color */
-}
+.thank-you-message h2 {   
+      color:#4caf50 ;
+}  
 
-.thank-you-message p {
-    margin: 10px 0;
-}
+button {   
+      background:#4caf50 ;
+}  
 
-button {
-    background: #4caf50; /* Green color */
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-button:hover {
-    background: #45a049; /* Darker green */
-}
+button:hover {   
+      background:#45a049 ;
+}  

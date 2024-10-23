@@ -139,45 +139,58 @@ ul li span {
    color:variables(--primary-color); 
 }
 .social-media {
-   background-image:url('path/to/your/image.jpg');/* Add a subtle image or gradient for attractiveness*/
-   background-size:auto cover ;
-   color:white ; 
-   padding:.75rem ; 
-   text-align:center ; 
+    background: linear-gradient(135deg, #4CAF50, #2E7D32);
+    color: white; /* White text for social media section */
+    padding: 30px 20px; /* Reduced padding */
+    text-align: center;
+    border-radius: 20px; /* Increased border radius */
+    margin: 30px auto; /* Increased margin */
 }
-.social-media h2 { 
-   font-size :24 px ;
+
+.social-media h2 {
+    color: white; /* White color for heading */
+    margin: 10px 0; /* Reduced margin */
 }
-.social-media p { 
-   font-size :14 px ;  
+
+.social-media p {
+    margin: 10px 0; /* Reduced margin for paragraph */
 }
-.social-media .icons { 
-   display:flex ;  
+
+.social-media .icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Space between icons */
 }
-.social-media .icons a { 
-     color:#fff ;  
-     font-size :24 px ;
-     transition :transform .3s ;
+
+.social-media .icons a {
+    color: #fff;
+    font-size: 36px;
+    transition: transform 0.3s;
 }
-.social-media .icons a:hover {  
-     transform :scale(1.2) ;  
+
+.social-media .icons a:hover {
+    transform: scale(1.2);
 }
-footer {  
-     background-color:variables(--primary-color) ;  
-     color:#fff ;  
-     text-align:center ;  
-     padding :15 px ;  
-     margin-top :15 px ;  
-     border-radius :10 px ;  
+
+/* Footer Styles */
+footer {
+    background-color: #4CAF50;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
 }
-footer a {  
-     color:#fff ;  
-     text-decoration:none ;  
-     margin :0 .5 rem ;
+
+footer a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
 }
-footer a:hover {  
-     text-decoration :underline ;
+
+footer a:hover {
+    text-decoration: underline;
 }
+
 @media (max-width :768 px) {  
      .about-container {  
           padding :30 px ;
@@ -239,3 +252,4 @@ button {
 button:hover {   
       background:#45a049 ;
 }  
+

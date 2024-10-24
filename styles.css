@@ -1,3 +1,4 @@
+
 :root {
     --primary-color: #4CAF50; /* Green */
     --dark-green: #2E7D32; /* Darker green */
@@ -9,7 +10,7 @@
 body {
     font-family: 'Arial', sans-serif;
     background-color: var(--light-green-bg); /* Light green background */
-    color: #333;
+    color: #1B5E20; /* Even darker green */
     text-align: center;
     margin: 0;
     padding: 0;
@@ -18,10 +19,10 @@ body {
 
 header {
     background-color: #388E3C; /* Dark green header */
-    padding: 15px 0;
+    padding: 1px 0;
     color: white;
-    border-radius: 10px; /* Rounded edges */
-    margin-bottom: 20px; /* Gap below header */
+    border-radius: 15px; /* Rounded edges */
+    margin-bottom: 25px; /* Gap below header */
 }
 
 .navbar {
@@ -29,7 +30,7 @@ header {
     flex-wrap: wrap;
     justify-content: center;
     background-color: var(--dark-green); /* Darker green navbar */
-    padding: 10px 0;
+    padding: 5px 0;
     border-radius: 10px; /* Rounded edges */
     margin-bottom: 20px; /* Gap below navbar */
 }
@@ -48,7 +49,7 @@ header {
 }
 
 .section {
-    background-color: #fff; /* Background color for sections */
+    background-color: #1B5E20; /* Even darker green */
     border-radius: 25px; /* Rounded edges */
     padding: 20px; /* Inner padding */
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow */
@@ -71,7 +72,7 @@ header {
 }
 
 .about-container h1 {
-    font-size: 36px;
+    font-size: 45px;
     margin-bottom: 20px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
@@ -151,58 +152,49 @@ ul li span {
 
 .social-media {
     background: linear-gradient(135deg, #4CAF50, #2E7D32);
-    color: white; /* White text for social media section */
-    padding: 30px 20px; /* Reduced padding */
+    color: white; 
+    padding: 3px 2px; 
     text-align: center;
-    border-radius: 20px; /* Increased border radius */
-    margin: 30px auto; /* Increased margin */
+    border-radius: 20px; 
+    margin: 10px auto; /* Increased margin */
 }
-
 .social-media h2 {
     color: white; /* White color for heading */
-    margin: 10px 0; /* Reduced margin */
+    margin: 1px 0; /* Reduced margin */
 }
-
 .social-media p {
-    margin: 10px 0; /* Reduced margin for paragraph */
+    margin: 7px 0; /* Reduced margin for paragraph */
 }
-
 .social-media .icons {
     display: flex;
     justify-content: center;
     gap: 20px; /* Space between icons */
 }
-
 .social-media .icons a {
     color: #fff;
     font-size: 36px;
     transition: transform 0.3s;
 }
-
 .social-media .icons a:hover {
     transform: scale(1.2);
 }
-
 /* Footer Styles */
 footer {
     background-color: #4CAF50;
     color: #fff;
     text-align: center;
-    padding: 20px;
-    margin-top: 20px;
+    padding: 2px;
+    margin-top: 5px;
      border-radius: 20px; 
 }
-
 footer a {
     color: #fff;
     text-decoration: none; /* No underline */
     margin: 0 10px;
 }
-
 footer a:hover {
     text-decoration: underline;
 }
-
 @media (max-width: 768px) {  
     .about-container {  
         padding: 30px;
@@ -256,34 +248,27 @@ footer a:hover {
 .thank-you-message h2 {   
     color: #4caf50;
 }  
-
-
-
 .container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
-
 .hero h1 {
     font-size: 2.5em;
     margin: 0;
 }
-
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px;
 }
-
 .book-list {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
 }
-
 .book {
     background: white;
     border-radius: 10px;
@@ -293,22 +278,18 @@ footer a:hover {
     width: 200px;
     transition: transform 0.3s;
 }
-
 .book:hover {
     transform: translateY(-5px);
 }
-
 .book img {
     width: 100%;
     height: 300px;
     border-radius: 15px; /* Increased radius for rounded edges */
     object-fit: cover;
 }
-
 .book h2, .book p {
     margin: 10px 0;
 }
-
 .book h2 {
     font-weight: bold; /* Bold book title */
     font-size: 1.2em; /* Adjust size as needed */
@@ -325,23 +306,21 @@ footer a:hover {
 
         .form-group label {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 2px;
             font-weight: bold;
         }
 
         .name-row, .phone-number {
             display: flex;
             justify-content: space-between;
-            gap: 10px; /* Reduced gap between inputs */
+            gap: 3px; /* Reduced gap between inputs */
         }
-
         .name-row input, .phone-number input, .phone-number select {
             flex: 1;
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 4px;
         }
-
         .phone-number select {
             width: auto; /* Allow country code to adjust automatically */
             margin-right: 10px; /* Add a small margin to the right */
@@ -387,13 +366,14 @@ footer a:hover {
 
 /* Hover effect */
 .submit-button:hover {
-    background-color: #218838; /* Darker green on hover */
+  background-color: #28a745;
+    
     transform: translateY(-2px); /* Slight lift effect on hover */
 }
 
 
 /* Focus effect */
 .submit-button:focus {
-    outline: none; /* Remove outline */
+    outline: blue; /* Remove outline */
     box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5); /* Blue outline on focus */
 }

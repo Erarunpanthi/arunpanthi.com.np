@@ -325,3 +325,53 @@ button:hover {
     font-weight: bold; /* Bold author name */
     color: green; /* Change author name color to green */
 }
+.form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .name-row, .phone-number {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px; /* Reduced gap between inputs */
+        }
+
+        .name-row input, .phone-number input, .phone-number select {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .phone-number select {
+            width: auto; /* Allow country code to adjust automatically */
+            margin-right: 10px; /* Add a small margin to the right */
+        }
+
+        input[type="text"], input[type="tel"], input[type="email"], select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus, input[type="tel"]:focus, input[type="email"]:focus, select:focus, textarea:focus {
+            border-color: #007BFF;
+            outline: none;
+        }
+
+       
+        .thank-you-message {
+            text-align: center;
+            padding: 20px;
+            background-color: #e9ffe9;
+            border-radius: 4px;
+            margin-top: 20px;
+        }

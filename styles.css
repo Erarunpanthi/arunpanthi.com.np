@@ -376,23 +376,27 @@ button:hover {
             margin-top: 20px;
         }
 .submit-button {
-    background-color: #007BFF; /* Bootstrap primary blue */
+    background-color: #28a745; /* Green background */
     color: white; /* White text */
     border: none; /* No border */
-    padding: 15px 30px; /* Increased padding for a larger button */
+    padding: 10px 15px; /* Adjusted padding */
     font-size: 16px; /* Font size */
     font-weight: bold; /* Bold text */
-    border-radius: 5px; /* Rounded corners */
+    border-radius: 25px; /* Rounded corners with 25px radius */
     cursor: pointer; /* Pointer cursor on hover */
     transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    width: 40%; /* Set width to 40% of the screen */
+    margin: 0 auto; /* Center the button horizontally */
+    display: block; /* Ensure it's a block-level element for margin to work */
 }
 
 /* Hover effect */
 .submit-button:hover {
-    background-color: #0056b3; /* Darker blue on hover */
+    background-color: #218838; /* Darker green on hover */
     transform: translateY(-2px); /* Slight lift effect on hover */
 }
+
 
 /* Focus effect */
 .submit-button:focus {

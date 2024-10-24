@@ -375,3 +375,29 @@ button:hover {
             border-radius: 4px;
             margin-top: 20px;
         }
+button {
+    background-color: #4CAF50; /* Green background */
+    color: white; /* White text */
+    border: none; /* Remove border */
+    padding: 12px 20px; /* Add some padding */
+    text-align: center; /* Center text */
+    text-decoration: none; /* No underline */
+    display: inline-block; /* Get it to behave like an inline element */
+    font-size: 16px; /* Increase font size */
+    margin: 10px 2px; /* Add some margin */
+    cursor: pointer; /* Pointer/hand icon on hover */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s, transform 0.2s; /* Smooth transition */
+}
+
+/* Hover effect */
+button:hover {
+    background-color: #45a049; /* Darker green on hover */
+    transform: scale(1.05); /* Slightly enlarge button on hover */
+}
+
+/* Focus effect */
+button:focus {
+    outline: none; /* Remove the outline */
+    box-shadow: 0 0 5px rgba(0, 255, 0, 0.5); /* Add glow effect */
+}

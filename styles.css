@@ -252,4 +252,21 @@ button {
 button:hover {   
       background:#45a049 ;
 }  
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.book {
+    margin: 15px;
+    text-align: center;
+}
+
+.book img {
+    width: 200px; /* Set desired width */
+    height: 300px; /* Set desired height */
+    border-radius: 35px; /* Apply border radius */
+    object-fit: cover; /* Ensures the image covers the area without distortion */
+}
 

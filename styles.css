@@ -256,14 +256,7 @@ footer a:hover {
     color: #4caf50;
 }  
 
-button {   
-    background: #4caf50;
-    text-decoration: none; /* No underline */
-}  
 
-button:hover {   
-    background: #45a049;
-}  
 
 .container {
     display: flex;

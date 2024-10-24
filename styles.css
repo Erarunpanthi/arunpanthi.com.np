@@ -6,11 +6,10 @@
     --light-green-bg: #e8f5e9; /* Light green background */
     --orange: #FF5722; /* Orange */
 }
-
 body {
     font-family: 'Arial', sans-serif;
-    background-color: var(--light-green-bg); /* Light green background */
-    color: #1B5E20; /* Even darker green */
+    background-color: var(--light-green-bg);
+    color: #fff; /* Set body text color to white */
     text-align: center;
     margin: 0;
     padding: 0;

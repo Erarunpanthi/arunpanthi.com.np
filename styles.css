@@ -463,3 +463,74 @@ textarea:focus {
 .subject-box:hover {
     background-color: #0056b3; /* Darker blue on hover */
 }
+/* General styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern font style */
+    background: linear-gradient(to bottom right, #4CAF50, #81C784); /* Gradient green background */
+    margin: 0; /* Remove default margin */
+    color: #333; /* Dark text color for better contrast */
+}
+
+/* Container for semesters */
+.container {
+    max-width: 800px; /* Limit max width for larger screens */
+    margin: 20px auto; /* Centered container */
+    padding: 0 20px; /* Side padding */
+}
+
+/* Semester styles */
+.semester {
+    cursor: pointer; /* Change cursor to pointer */
+    margin-bottom: 20px; /* Space between semesters */
+    padding: 20px; /* Increased padding */
+    border-radius: 10px; /* Rounded corners */
+    background-color: #a5d6a7; /* Light green background color for semester */
+    transition: background-color 0.3s, box-shadow 0.3s; /* Smooth background change */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+}
+
+.semester h2 {
+    margin: 0; /* Remove default margin */
+    font-size: 1.5em; /* Increased font size */
+    font-weight: bold; /* Bold font */
+}
+
+/* Hover effect for semester */
+.semester:hover {
+    background-color: #81c784; /* Darker green on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Increased shadow on hover */
+}
+
+/* Styles for the subjects */
+.subjects {
+    display: none; /* Initially hide subjects */
+    padding-left: 0; /* Remove indentation for subjects */
+    margin-top: 10px; /* Space above subjects */
+}
+
+.subject-box {
+    display: flex; /* Flex display to align items */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    margin: 5px 0; /* Margin around each subject box */
+    padding: 15px; /* Padding inside the box */
+    background-color: #007BFF; /* Background color for subject box */
+    color: white; /* Text color */
+    border-radius: 8px; /* Rounded corners */
+    transition: background-color 0.3s, transform 0.2s; /* Smooth background change */
+    white-space: nowrap; /* Prevent text wrapping */
+    overflow: hidden; /* Hide overflow */
+    text-overflow: ellipsis; /* Add ellipsis for overflow text */
+}
+
+.subject-box a {
+    color: white; /* Link color */
+    text-decoration: none; /* Remove underline */
+    display: block; /* Make the link block level for full clickable area */
+    width: 100%; /* Full width for the link */
+}
+
+.subject-box:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    transform: translateY(-2px); /* Lift effect on hover */
+}

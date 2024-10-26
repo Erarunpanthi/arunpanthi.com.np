@@ -1,60 +1,375 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CivPrepMaster</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-</head>
-<body>
+:root {
+    --primary-color: #4CAF50; /* Green */
+    --dark-green: #2E7D32; /* Darker green */
+    --hover-green: #1B5E20; /* Even darker green */
+    --light-green-bg: #e8f5e9; /* Light green background */
+    --orange: #FF5722; /* Orange */
+    --shadow-color: rgba(0, 0, 0, 0.2); /* Default shadow color */
+    --white: #ffffff; /* White color for text */
+}
 
-    <div class="navbar">
-        <a href="Home"><i class="fas fa-home"></i> Home</a>
-        <a href="resources"><i class="fas fa-book"></i> Resources</a>
-        <a href="license-preparation"><i class="fas fa-certificate"></i> License Prep</a>
-        <a href="psc-preparation"><i class="fas fa-graduation-cap"></i> PSC Prep</a>
-        <a href="aboutus"><i class="fas fa-info-circle"></i> About Us</a>
-        <a href="contactus"><i class="fas fa-envelope"></i> Contact Us</a>
-    </div>
-            <header class="hero">
-        <h1>Welcome to CivPrepMaster</h1>
-        <p>Your ultimate resource hub for civil engineering students and professionals in Nepal!</p>
-            </header>
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--light-green-bg);
+    color: var(--white); /* Set body text color to white */
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
 
-    <div class="section" id="nec-license-notes">
-        <h2>BE Civil Notes</h2>
-        <p>Access comprehensive notes tailored for the BE Civil NEC License exam.</p>
-        <a href="BE-notes" class="cta-button">View BE Civil Notes</a>
-    </div>
+header {
+    background-color: #388E3C;
+    padding: 1px 0;
+    color: var(--white);
+    border-radius: 15px;
+    margin-bottom: 25px;
+}
 
-    <div class="section" id="nec-license-notes">
-        <h2>NEC License Notes</h2>
-        <p>Access comprehensive notes tailored for the BE Civil NEC License exam.</p>
-        <a href="NEC-Notes" class="cta-button">View NEC License Notes</a>
-    </div>
+.navbar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: var(--dark-green);
+    padding: 5px 0;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
 
-    <div class="section" id="psc-notes">
-        <h2>PSC Notes</h2>
-        <p>Explore detailed PSC notes to aid your exam preparation.</p>
-        <a href="PSc-Note" class="cta-button">View PSC Notes</a>
-    </div>
+.navbar a {
+    color: var(--white);
+    padding: 8px 10px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background-color 0.3s, transform 0.3s;
+}
 
-    <div class="social-media">
-        <h2><i class="fab fa-connectdevelop"></i> Connect with Us</h2>
-        <p>Follow us on social media to stay updated with the latest resources and news.</p>
-        <div class="icons">
-            <a href="https://www.facebook.com/profile.php?id=61566247450701" target="_blank"><i class="fab fa-facebook"></i></a>
-            <a href="https://www.tiktok.com/@er.arunpanthi" target="_blank"><i class="fab fa-tiktok"></i></a>
-            <a href="https://www.youtube.com/@Arunpanthisblog" target="_blank"><i class="fab fa-youtube"></i></a>
-            <a href="mailto:erarunpanthi@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>
-        </div>
-    </div>
+.navbar a:hover {
+    background-color: #1B5E20;
+    transform: scale(1.05);
+}
 
-    <footer>
-        <p>© 2024 CivPrepMaster. All rights reserved. | 
-        <a href="PrivacyPolicy">Privacy Policy</a> | 
-        <a href="TermsofService">Terms of Service</a></p>
-    </footer>
-</body>
-</html>
+.section {
+    background-color: #1B5E20;
+    border-radius: 25px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+}
+
+.about-container {
+    background: linear-gradient(135deg, var(--primary-color), var(--dark-green));
+    color: var(--white);
+    padding: 50px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.about-container h1 {
+    font-size: 45px;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.about-container p {
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.team-photo {
+    border-radius: 50%;
+    max-width: 300px;
+}
+
+.team-photo:hover {
+    transform: scale(1.1);
+}
+
+.cta-button,
+.secondary-button {
+    display: inline-block;
+    margin-bottom: 15px;
+    transition-duration: 0.3s;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 1.5rem; /* Increased radius for rounded corners */
+    box-shadow: 0 4px 10px var(--shadow-color); /* Added shadow for depth */
+    padding: 12px 20px; /* Consistent padding */
+    text-decoration: none; /* Removed underline from button text */
+}
+
+.cta-button {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+.cta-button:hover {
+    background-color: var(--hover-green);
+    transform: scale(1.05);
+}
+
+.secondary-button {
+    background-color: var(--orange);
+    color: var(--white);
+    padding: 0.75rem;
+}
+
+.secondary-button:hover {
+    background-color: #e64a19;
+    transform: scale(1.05);
+}
+
+ul {
+    list-style-type: none;
+}
+
+ul li {
+    background-color: #e0f7fa;
+    margin: 0.5rem;
+    padding: 0.75rem;
+    border-radius: 0.25rem;
+}
+
+ul li:hover {
+    transform: translateX(5px);
+}
+
+ul li strong {
+    color: #00796b;
+}
+
+ul li span {
+    color: var(--primary-color);
+}
+
+.social-media {
+    background: linear-gradient(135deg, #4CAF50, #2E7D32);
+    color: var(--white);
+    padding: 3px 2px;
+    text-align: center;
+    border-radius: 20px;
+    margin: 10px auto;
+}
+
+.social-media h2 {
+    color: var(--white);
+    margin: 1px 0;
+}
+
+.social-media p {
+    margin: 7px 0;
+}
+
+.social-media .icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.social-media .icons a {
+    color: var(--white);
+    font-size: 36px;
+    transition: transform 0.3s;
+}
+
+.social-media .icons a:hover {
+    transform: scale(1.2);
+}
+
+footer {
+    background-color: #4CAF50;
+    color: var(--white);
+    text-align: center;
+    padding: 2px;
+    margin-top: 5px;
+    border-radius: 20px;
+}
+
+footer a {
+    color: var(--white);
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .about-container {
+        padding: 30px;
+    }
+    .about-container h1 {
+        font-size: 28px;
+    }
+    .about-container p {
+        font-size: 16px;
+    }
+}
+
+.phone-number {
+    display: flex;
+}
+
+.phone-number input {
+    flex: 1;
+    padding: 10px;
+}
+
+.country-code {
+    width: 80px;
+    margin-right: 10px;
+}
+
+.country-code select {
+    padding: 10px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--dark-green); /* Dark green color */
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+}
+
+.thank-you-message {
+    display: none;
+}
+
+.thank-you-message h2 {
+    color: #4caf50;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.hero h1 {
+    font-size: 2.5em;
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.book-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.book {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 200px;
+    transition: transform 0.3s;
+}
+
+.book:hover {
+    transform: translateY(-5px);
+}
+
+.book img {
+    width: 100%;
+    height: 300px;
+    border-radius: 15px;
+    object-fit: cover;
+}
+
+.book h2,
+.book p {
+    font-weight: bold;
+    font-size: 1.2em;
+    color: #fff; /* Set book title and author color to white */
+    text-align: justify;
+}
+
+.name-row,
+.phone-number {
+    display: flex;
+    justify-content: space-between;
+    gap: 3px;
+}
+
+.name-row input,
+.phone-number input,
+.phone-number select {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.phone-number select {
+    width: auto;
+    margin-right: 10px;
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="tel"]:focus,
+input[type="email"]:focus,
+select:focus,
+textarea:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+
+.submit-button {
+    background-color: #28a745;
+    color: var(--white);
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 40px; /* Increased radius for a softer edge */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-decoration: none; /* Removed underline from button text */
+}
+
+.submit-button:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}

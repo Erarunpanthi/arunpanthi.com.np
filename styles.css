@@ -10,7 +10,7 @@
 
 body {
     font-family: 'Arial', sans-serif;
-    background-color: var(--light-green-bg);
+   background-color: var(--white);
     color: var(--white); /* Set body text color to white */
     text-align: center;
     margin: 0;

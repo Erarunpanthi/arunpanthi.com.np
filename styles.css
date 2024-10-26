@@ -4,12 +4,14 @@
     --hover-green: #1B5E20; /* Even darker green */
     --light-green-bg: #e8f5e9; /* Light green background */
     --orange: #FF5722; /* Orange */
+    --shadow-color: rgba(0, 0, 0, 0.2); /* Default shadow color */
+    --white: #ffffff; /* White color for text */
 }
 
 body {
     font-family: 'Arial', sans-serif;
     background-color: var(--light-green-bg);
-    color: #fff; /* Set body text color to white */
+    color: var(--white); /* Set body text color to white */
     text-align: center;
     margin: 0;
     padding: 0;
@@ -19,7 +21,7 @@ body {
 header {
     background-color: #388E3C;
     padding: 1px 0;
-    color: white;
+    color: var(--white);
     border-radius: 15px;
     margin-bottom: 25px;
 }
@@ -35,7 +37,7 @@ header {
 }
 
 .navbar a {
-    color: #fff;
+    color: var(--white);
     padding: 8px 10px;
     text-decoration: none;
     font-size: 14px;
@@ -57,7 +59,7 @@ header {
 
 .about-container {
     background: linear-gradient(135deg, var(--primary-color), var(--dark-green));
-    color: #fff;
+    color: var(--white);
     padding: 50px 20px;
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
@@ -93,20 +95,20 @@ header {
 .secondary-button {
     display: inline-block;
     margin-bottom: 15px;
-    transition-duration: .3s;
+    transition-duration: 0.3s;
     border: none;
     cursor: pointer;
     text-align: center;
     font-weight: bold;
-    border-radius: .5rem;
-    box-shadow: .2rem .2rem .5rem rgba(0, 0, 0, .2);
-    text-decoration: none;
+    border-radius: 1.5rem; /* Increased radius for rounded corners */
+    box-shadow: 0 4px 10px var(--shadow-color); /* Added shadow for depth */
+    padding: 12px 20px; /* Consistent padding */
+    text-decoration: none; /* Removed underline from button text */
 }
 
 .cta-button {
     background-color: var(--primary-color);
-    color: white;
-    padding: .75rem 1.5rem;
+    color: var(--white);
 }
 
 .cta-button:hover {
@@ -116,8 +118,8 @@ header {
 
 .secondary-button {
     background-color: var(--orange);
-    color: white;
-    padding: .75rem;
+    color: var(--white);
+    padding: 0.75rem;
 }
 
 .secondary-button:hover {
@@ -131,9 +133,9 @@ ul {
 
 ul li {
     background-color: #e0f7fa;
-    margin: .5rem;
-    padding: .75rem;
-    border-radius: .25rem;
+    margin: 0.5rem;
+    padding: 0.75rem;
+    border-radius: 0.25rem;
 }
 
 ul li:hover {
@@ -150,7 +152,7 @@ ul li span {
 
 .social-media {
     background: linear-gradient(135deg, #4CAF50, #2E7D32);
-    color: white;
+    color: var(--white);
     padding: 3px 2px;
     text-align: center;
     border-radius: 20px;
@@ -158,7 +160,7 @@ ul li span {
 }
 
 .social-media h2 {
-    color: white;
+    color: var(--white);
     margin: 1px 0;
 }
 
@@ -173,7 +175,7 @@ ul li span {
 }
 
 .social-media .icons a {
-    color: #fff;
+    color: var(--white);
     font-size: 36px;
     transition: transform 0.3s;
 }
@@ -184,7 +186,7 @@ ul li span {
 
 footer {
     background-color: #4CAF50;
-    color: #fff;
+    color: var(--white);
     text-align: center;
     padding: 2px;
     margin-top: 5px;
@@ -192,7 +194,7 @@ footer {
 }
 
 footer a {
-    color: #fff;
+    color: var(--white);
     text-decoration: none;
     margin: 0 10px;
 }
@@ -355,87 +357,19 @@ textarea:focus {
 
 .submit-button {
     background-color: #28a745;
-    color: white;
+    color: var(--white);
     border: none;
     padding: 10px 15px;
     font-size: 16px;
     font-weight: bold;
-    border-radius: 25px;
+    border-radius: 40px; /* Increased radius for a softer edge */
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 40%;
-    margin: 0 auto;
-    display: block;
+    text-decoration: none; /* Removed underline from button text */
 }
 
 .submit-button:hover {
-    background-color: #28a745;
-    transform: translateY(-2px);
-}
-
-.submit-button:focus {
-    outline: blue;
-    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5);
-}
-
-.semester {
-    background-color: #FFC107; /* Set semester color to yellow */
-    color: #000; /* Set semester text color to black */
-    border-radius: 5px;
-    padding: 10px;
-    margin: 5px;
-    display: inline-block;
-    font-weight: bold;
-}
-.Binitacontainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center; /* Center content vertically */
-    padding: 40px; /* Increased padding for more breathing room */
-    background: linear-gradient(135deg, #ffe082, #ffcc80); /* Soft yellow gradient background */
-    border-radius: 20px; /* Rounded corners */
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Softer shadow for depth */
-    margin: 30px auto; /* Increased margin for better spacing */
-    max-width: 1200px; /* Limit max width for larger screens */
-    transition: transform 0.3s, box-shadow 0.3s, background 0.3s; /* Smooth transitions */
-    overflow: hidden; /* Prevent content overflow */
-}
-
-.Binitacontainer:hover {
-    transform: scale(1.05); /* Slight scaling effect on hover */
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5); /* Darker shadow on hover */
-    background: linear-gradient(135deg, #ffcc80, #ffe082); /* Reverse gradient on hover for a dynamic effect */
-}
-
-.Binitacontainer h1 {
-    font-size: 2.5em; /* Increase font size for prominence */
-    color: #4a4a4a; /* Darker text color for contrast */
-    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8); /* Light text shadow for depth */
-    margin-bottom: 20px; /* Space below heading */
-}
-
-.Binitacontainer p {
-    font-size: 1.2em; /* Increase font size for readability */
-    color: #333; /* Dark text color for better legibility */
-    text-align: center; /* Center-align text */
-    line-height: 1.5; /* Improved line spacing */
-    margin-bottom: 20px; /* Space below paragraph */
-}
-
-.Binitacontainer button {
-    padding: 10px 20px; /* Adjust padding for button */
-    background-color: #388E3C; /* Dark green button */
-    color: white; /* White text */
-    border: none; /* Remove border */
-    border-radius: 30px; /* Rounded button edges */
-    font-weight: bold; /* Bold button text */
-    cursor: pointer; /* Pointer cursor */
-    transition: background-color 0.3s, transform 0.2s; /* Smooth transition effects */
-}
-
-.Binitacontainer button:hover {
-    background-color: #2E7D32; /* Darker green on hover */
-    transform: translateY(-2px); /* Lift effect on hover */
+    background-color: #218838;
+    transform: scale(1.05);
 }

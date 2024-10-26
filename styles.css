@@ -388,3 +388,54 @@ textarea:focus {
     display: inline-block;
     font-weight: bold;
 }
+.Binitacontainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Center content vertically */
+    padding: 40px; /* Increased padding for more breathing room */
+    background: linear-gradient(135deg, #ffe082, #ffcc80); /* Soft yellow gradient background */
+    border-radius: 20px; /* Rounded corners */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Softer shadow for depth */
+    margin: 30px auto; /* Increased margin for better spacing */
+    max-width: 1200px; /* Limit max width for larger screens */
+    transition: transform 0.3s, box-shadow 0.3s, background 0.3s; /* Smooth transitions */
+    overflow: hidden; /* Prevent content overflow */
+}
+
+.Binitacontainer:hover {
+    transform: scale(1.05); /* Slight scaling effect on hover */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5); /* Darker shadow on hover */
+    background: linear-gradient(135deg, #ffcc80, #ffe082); /* Reverse gradient on hover for a dynamic effect */
+}
+
+.Binitacontainer h1 {
+    font-size: 2.5em; /* Increase font size for prominence */
+    color: #4a4a4a; /* Darker text color for contrast */
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8); /* Light text shadow for depth */
+    margin-bottom: 20px; /* Space below heading */
+}
+
+.Binitacontainer p {
+    font-size: 1.2em; /* Increase font size for readability */
+    color: #333; /* Dark text color for better legibility */
+    text-align: center; /* Center-align text */
+    line-height: 1.5; /* Improved line spacing */
+    margin-bottom: 20px; /* Space below paragraph */
+}
+
+.Binitacontainer button {
+    padding: 10px 20px; /* Adjust padding for button */
+    background-color: #388E3C; /* Dark green button */
+    color: white; /* White text */
+    border: none; /* Remove border */
+    border-radius: 30px; /* Rounded button edges */
+    font-weight: bold; /* Bold button text */
+    cursor: pointer; /* Pointer cursor */
+    transition: background-color 0.3s, transform 0.2s; /* Smooth transition effects */
+}
+
+.Binitacontainer button:hover {
+    background-color: #2E7D32; /* Darker green on hover */
+    transform: translateY(-2px); /* Lift effect on hover */
+}

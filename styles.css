@@ -1,4 +1,3 @@
-
 :root {
     --primary-color: #4CAF50; /* Green */
     --dark-green: #2E7D32; /* Darker green */
@@ -6,6 +5,7 @@
     --light-green-bg: #e8f5e9; /* Light green background */
     --orange: #FF5722; /* Orange */
 }
+
 body {
     font-family: 'Arial', sans-serif;
     background-color: var(--light-green-bg);
@@ -17,43 +17,42 @@ body {
 }
 
 header {
-    background-color: #388E3C; /* Dark green header */
+    background-color: #388E3C;
     padding: 1px 0;
     color: white;
-    border-radius: 15px; /* Rounded edges */
-    margin-bottom: 25px; /* Gap below header */
+    border-radius: 15px;
+    margin-bottom: 25px;
 }
 
 .navbar {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    background-color: var(--dark-green); /* Darker green navbar */
+    background-color: var(--dark-green);
     padding: 5px 0;
-    border-radius: 10px; /* Rounded edges */
-    margin-bottom: 20px; /* Gap below navbar */
+    border-radius: 10px;
+    margin-bottom: 20px;
 }
 
 .navbar a {
-    color: #fff; /* Link color */
-    padding: 8px 10px; /* Reduced padding for compactness */
-    text-decoration: none; /* Remove underline */
-    font-size: 14px; /* Smaller font size */
-    transition: background-color 0.3s, transform 0.3s; /* Animation for hover effect */
+    color: #fff;
+    padding: 8px 10px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
 .navbar a:hover {
-    background-color: #1B5E20; /* Even darker green on hover */
-    transform: scale(1.05); /* Slightly enlarge on hover */
+    background-color: #1B5E20;
+    transform: scale(1.05);
 }
 
 .section {
-    background-color: #1B5E20; /* Even darker green */
-    border-radius: 25px; /* Rounded edges */
-    padding: 20px; /* Inner padding */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    margin: 20px auto; /* Gap above and below the section */
-    max-width: 800px; /* Max width for sections */
+    background-color: #1B5E20;
+    border-radius: 25px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
 }
 
 .about-container {
@@ -92,8 +91,8 @@ header {
 
 .cta-button,
 .secondary-button {
-    display: inline-block; 
-    margin-bottom: 15px; 
+    display: inline-block;
+    margin-bottom: 15px;
     transition-duration: .3s;
     border: none;
     cursor: pointer;
@@ -101,173 +100,187 @@ header {
     font-weight: bold;
     border-radius: .5rem;
     box-shadow: .2rem .2rem .5rem rgba(0, 0, 0, .2);
-    text-decoration: none; /* Remove underline */
+    text-decoration: none;
 }
 
 .cta-button {
-    background-color: var(--primary-color); 
-    color: white; 
+    background-color: var(--primary-color);
+    color: white;
     padding: .75rem 1.5rem;
 }
 
 .cta-button:hover {
-    background-color: var(--hover-green); 
+    background-color: var(--hover-green);
     transform: scale(1.05);
 }
 
 .secondary-button {
-    background-color: var(--orange); 
-    color: white; 
+    background-color: var(--orange);
+    color: white;
     padding: .75rem;
 }
 
 .secondary-button:hover {
-    background-color: #e64a19; 
+    background-color: #e64a19;
     transform: scale(1.05);
 }
 
 ul {
-    list-style-type: none; 
+    list-style-type: none;
 }
 
 ul li {
-    background-color: #e0f7fa; 
-    margin: .5rem; 
-    padding: .75rem; 
-    border-radius: .25rem; 
+    background-color: #e0f7fa;
+    margin: .5rem;
+    padding: .75rem;
+    border-radius: .25rem;
 }
 
-ul li:hover { 
-    transform: translateX(5px); 
+ul li:hover {
+    transform: translateX(5px);
 }
 
-ul li strong { 
-    color: #00796b; 
+ul li strong {
+    color: #00796b;
 }
 
-ul li span { 
-    color: var(--primary-color); 
+ul li span {
+    color: var(--primary-color);
 }
 
 .social-media {
     background: linear-gradient(135deg, #4CAF50, #2E7D32);
-    color: white; 
-    padding: 3px 2px; 
+    color: white;
+    padding: 3px 2px;
     text-align: center;
-    border-radius: 20px; 
-    margin: 10px auto; /* Increased margin */
+    border-radius: 20px;
+    margin: 10px auto;
 }
+
 .social-media h2 {
-    color: white; /* White color for heading */
-    margin: 1px 0; /* Reduced margin */
+    color: white;
+    margin: 1px 0;
 }
+
 .social-media p {
-    margin: 7px 0; /* Reduced margin for paragraph */
+    margin: 7px 0;
 }
+
 .social-media .icons {
     display: flex;
     justify-content: center;
-    gap: 20px; /* Space between icons */
+    gap: 20px;
 }
+
 .social-media .icons a {
     color: #fff;
     font-size: 36px;
     transition: transform 0.3s;
 }
+
 .social-media .icons a:hover {
     transform: scale(1.2);
 }
-/* Footer Styles */
+
 footer {
     background-color: #4CAF50;
     color: #fff;
     text-align: center;
     padding: 2px;
     margin-top: 5px;
-     border-radius: 20px; 
+    border-radius: 20px;
 }
+
 footer a {
     color: #fff;
-    text-decoration: none; /* No underline */
+    text-decoration: none;
     margin: 0 10px;
 }
+
 footer a:hover {
     text-decoration: underline;
 }
-@media (max-width: 768px) {  
-    .about-container {  
+
+@media (max-width: 768px) {
+    .about-container {
         padding: 30px;
-    }  
-    .about-container h1 {  
+    }
+    .about-container h1 {
         font-size: 28px;
-    }  
-    .about-container p {  
+    }
+    .about-container p {
         font-size: 16px;
-    }  
-}  
+    }
+}
 
-.phone-number {   
+.phone-number {
     display: flex;
-}  
+}
 
-.phone-number input {   
-    flex: 1;   
-    padding: 10px;   
-}  
+.phone-number input {
+    flex: 1;
+    padding: 10px;
+}
 
-.country-code {   
-    width: 80px;   
-    margin-right: 10px;   
-}  
+.country-code {
+    width: 80px;
+    margin-right: 10px;
+}
 
-.country-code select {   
-    padding: 10px;   
-}  
+.country-code select {
+    padding: 10px;
+}
 
-.form-group {   
-    margin-bottom: 15px;   
+.form-group {
+    margin-bottom: 15px;
     text-align: left;
-}  
+}
 
-.form-group label {   
-    display: block;   
+.form-group label {
+    display: block;
     margin-bottom: 5px;
-}  
+    color: var(--dark-green); /* Dark green color */
+}
 
 .form-group input,
 .form-group select,
-.form-group textarea {   
-    width: 100%;   
-}  
+.form-group textarea {
+    width: 100%;
+}
 
-.thank-you-message {   
+.thank-you-message {
     display: none;
-}  
+}
 
-.thank-you-message h2 {   
+.thank-you-message h2 {
     color: #4caf50;
-}  
+}
+
 .container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
+
 .hero h1 {
     font-size: 2.5em;
     margin: 0;
 }
+
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px;
 }
+
 .book-list {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
 }
+
 .book {
     background: white;
     border-radius: 10px;
@@ -277,181 +290,101 @@ footer a:hover {
     width: 200px;
     transition: transform 0.3s;
 }
+
 .book:hover {
     transform: translateY(-5px);
 }
+
 .book img {
     width: 100%;
     height: 300px;
-    border-radius: 15px; /* Increased radius for rounded edges */
+    border-radius: 15px;
     object-fit: cover;
 }
-.book h2, .book p {
-    margin: 10px 0;
-}
-.book h2 {
-    font-weight: bold; /* Bold book title */
-    font-size: 1.2em; /* Adjust size as needed */
-    color: green; /* Change book title color to green */
-}
 
+.book h2,
 .book p {
-    font-weight: bold; /* Bold author name */
-    color: green; /* Change author name color to green */
-}
-.form-group {
-            margin-bottom: 15px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 2px;
-            font-weight: bold;
-        }
-
-        .name-row, .phone-number {
-            display: flex;
-            justify-content: space-between;
-            gap: 3px; /* Reduced gap between inputs */
-        }
-        .name-row input, .phone-number input, .phone-number select {
-            flex: 1;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        .phone-number select {
-            width: auto; /* Allow country code to adjust automatically */
-            margin-right: 10px; /* Add a small margin to the right */
-        }
-
-        input[type="text"], input[type="tel"], input[type="email"], select, textarea {
-            width: 100%;
-            padding: 10px;
-            margin: 5px 0 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            transition: border-color 0.3s;
-        }
-
-        input[type="text"]:focus, input[type="tel"]:focus, input[type="email"]:focus, select:focus, textarea:focus {
-            border-color: #007BFF;
-            outline: none;
-        }
-
-       
-        .thank-you-message {
-            text-align: center;
-            padding: 20px;
-            background-color: #e9ffe9;
-            border-radius: 4px;
-            margin-top: 20px;
-        }
-.submit-button {
-    background-color: #28a745; /* Green background */
-    color: white; /* White text */
-    border: none; /* No border */
-    padding: 10px 15px; /* Adjusted padding */
-    font-size: 16px; /* Font size */
-    font-weight: bold; /* Bold text */
-    border-radius: 25px; /* Rounded corners with 25px radius */
-    cursor: pointer; /* Pointer cursor on hover */
-    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    width: 40%; /* Set width to 40% of the screen */
-    margin: 0 auto; /* Center the button horizontally */
-    display: block; /* Ensure it's a block-level element for margin to work */
+    font-weight: bold;
+    font-size: 1.2em;
+    color: #fff; /* Set book title and author color to white */
+    text-align: justify;
 }
 
-/* Hover effect */
-.submit-button:hover {
-  background-color: #28a745;
-    
-    transform: translateY(-2px); /* Slight lift effect on hover */
-}
-
-
-/* Focus effect */
-.submit-button:focus {
-    outline: blue; /* Remove outline */
-    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5); /* Blue outline on focus */
-}
-.semester {
-    background-color: #fff;
-    border-radius: 10px;
-    margin: 15px auto;
-    padding: 10px;
-    width: 90%;
-    max-width: 600px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
-
-.semester:hover {
-    background-color: #d0f0c0;
-    transform: scale(1.02);
-}
-
-.semester h2 {
+.name-row,
+.phone-number {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    font-size: 22px;
-    color: #388E3C;
+    justify-content: space-between;
+    gap: 3px;
 }
 
-.subjects {
-    display: none;
-    margin-top: 5px;
-    text-align: left;
+.name-row input,
+.phone-number input,
+.phone-number select {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
-.subjects p {
-    margin: 4px 0;
-    color: #555;
+.phone-number select {
+    width: auto;
+    margin-right: 10px;
 }
 
-.subjects p a {
-    text-decoration: none;
-    color: #388E3C;
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.3s;
 }
 
-.subjects p a:hover {
-    text-decoration: underline;
-}
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: var(--light-green-bg);
-    color: var(--dark-green);
-    text-align: center;
-    margin: 0;
-    padding: 0;
-    line-height: 1.6;
+input[type="text"]:focus,
+input[type="tel"]:focus,
+input[type="email"]:focus,
+select:focus,
+textarea:focus {
+    border-color: #007BFF;
+    outline: none;
 }
 
-.about-container p,
-.section p,
-footer p,
-ul li {
-    text-align: justify; /* Justify text in these sections */
+.submit-button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 40%;
+    margin: 0 auto;
+    display: block;
 }
 
-.about-container h1,
-footer h1,
-.navbar a,
-.semester h2 {
-    text-align: center; /* Keep headers and navbar links centered */
+.submit-button:hover {
+    background-color: #28a745;
+    transform: translateY(-2px);
 }
 
-.book h2, .book p {
-    text-align: justify;
+.submit-button:focus {
+    outline: blue;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5);
 }
 
-/* Additional Justified Text Styles */
-.form-group label,
-.submit-button,
-.subjects p {
-    text-align: justify;
+.semester {
+    background-color: #FFC107; /* Set semester color to yellow */
+    color: #000; /* Set semester text color to black */
+    border-radius: 5px;
+    padding: 10px;
+    margin: 5px;
+    display: inline-block;
+    font-weight: bold;
 }

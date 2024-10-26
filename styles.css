@@ -421,3 +421,37 @@ footer a:hover {
 .subjects p a:hover {
     text-decoration: underline;
 }
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--light-green-bg);
+    color: var(--dark-green);
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+.about-container p,
+.section p,
+footer p,
+ul li {
+    text-align: justify; /* Justify text in these sections */
+}
+
+.about-container h1,
+footer h1,
+.navbar a,
+.semester h2 {
+    text-align: center; /* Keep headers and navbar links centered */
+}
+
+.book h2, .book p {
+    text-align: justify;
+}
+
+/* Additional Justified Text Styles */
+.form-group label,
+.submit-button,
+.subjects p {
+    text-align: justify;
+}

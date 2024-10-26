@@ -373,3 +373,21 @@ textarea:focus {
     background-color: #218838;
     transform: scale(1.05);
 }
+.Binitacontainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Center content vertically */
+    padding: 30px;
+    background: linear-gradient(135deg, #ffe082, #ffcc80); /* Soft yellow gradient background */
+    border-radius: 20px; /* Rounded corners */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* More pronounced shadow */
+    margin: 20px auto; /* Center the container with margin */
+    max-width: 1200px; /* Limit max width for larger screens */
+    transition: transform 0.3s, box-shadow 0.3s; /* Smooth transitions */
+}
+
+.Binitacontainer:hover {
+    transform: scale(1.03); /* Slight scaling effect on hover */
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4); /* Darker shadow on hover */
+}

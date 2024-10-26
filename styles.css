@@ -1,70 +1,95 @@
+/* Root Variables */
 :root {
-    --primary-color: #4CAF50; /* Green */
-    --dark-green: #2E7D32; /* Darker green */
-    --hover-green: #1B5E20; /* Even darker green */
-    --light-green-bg: #e8f5e9; /* Light green background */
-    --orange: #FF5722; /* Orange */
+    --primary-color: #4CAF50;       /* Primary green */
+    --dark-green: #2E7D32;          /* Darker green */
+    --hover-green: #1B5E20;         /* Even darker green */
+    --light-green-bg: #e8f5e9;      /* Light green background */
+    --orange: #FF5722;              /* Orange */
     --shadow-color: rgba(0, 0, 0, 0.2); /* Default shadow color */
-    --white: #ffffff; /* White color for text */
+    --white: #ffffff;               /* White color */
+    --dark-gray: #333333;           /* Dark gray for text */
+    --light-gray: #ccc;             /* Light gray for borders */
+    --hover-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); /* Stronger shadow */
+}
+
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-    font-family: 'Arial', sans-serif;
-   background-color: var(--white);
-    color: var(--white); /* Set body text color to white */
+    font-family: 'Segoe UI', Tahoma, Geneva, sans-serif;
+    background: linear-gradient(to bottom right, var(--primary-color), #81C784);
+    color: var(--dark-gray);
     text-align: center;
-    margin: 0;
-    padding: 0;
     line-height: 1.6;
 }
 
-header {
+/* Layout Containers */
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header {
     background-color: #388E3C;
-    padding: 1px 0;
+    padding: 10px;
     color: var(--white);
     border-radius: 15px;
     margin-bottom: 25px;
+    box-shadow: var(--shadow-color);
+    text-align: center;
 }
 
+/* Navbar */
 .navbar {
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
     background-color: var(--dark-green);
-    padding: 5px 0;
+    padding: 10px;
     border-radius: 10px;
     margin-bottom: 20px;
 }
 
 .navbar a {
     color: var(--white);
-    padding: 8px 10px;
+    padding: 8px 15px;
     text-decoration: none;
-    font-size: 14px;
+    font-size: 1rem;
     transition: background-color 0.3s, transform 0.3s;
 }
 
 .navbar a:hover {
-    background-color: #1B5E20;
+    background-color: var(--hover-green);
     transform: scale(1.05);
 }
 
+/* Section Styling */
 .section {
-    background-color: #1B5E20;
+    background-color: var(--hover-green);
     border-radius: 25px;
-    color: var(--white); /* Set body text color to white */
+    color: var(--white);
     padding: 20px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-color);
     margin: 20px auto;
 }
 
+/* About Container */
 .about-container {
     background: linear-gradient(135deg, var(--primary-color), var(--dark-green));
     color: var(--white);
     padding: 50px 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--shadow-color);
     animation: fadeIn 1s ease-in-out;
+    max-width: 1000px;
+    text-align: center;
 }
 
 @keyframes fadeIn {
@@ -73,43 +98,45 @@ header {
 }
 
 .about-container h1 {
-    font-size: 45px;
+    font-size: 2.5em;
     margin-bottom: 20px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .about-container p {
-    font-size: 18px;
-    line-height: 1.6;
+    font-size: 1.125em;
+    line-height: 1.75;
 }
 
+/* Team Photo */
 .team-photo {
     border-radius: 50%;
     max-width: 300px;
+    transition: transform 0.3s;
 }
 
 .team-photo:hover {
     transform: scale(1.1);
 }
 
-.cta-button,
-.secondary-button {
+/* Buttons */
+.button {
     display: inline-block;
     margin-bottom: 15px;
-    transition-duration: 0.3s;
+    padding: 12px 20px;
     border: none;
+    border-radius: 1.5rem;
+    font-weight: bold;
+    color: var(--white);
     cursor: pointer;
     text-align: center;
-    font-weight: bold;
-    border-radius: 1.5rem; /* Increased radius for rounded corners */
-    box-shadow: 0 4px 10px var(--shadow-color); /* Added shadow for depth */
-    padding: 12px 20px; /* Consistent padding */
-    text-decoration: none; /* Removed underline from button text */
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: var(--shadow-color);
+    text-decoration: none;
 }
 
 .cta-button {
     background-color: var(--primary-color);
-    color: var(--white);
 }
 
 .cta-button:hover {
@@ -119,8 +146,6 @@ header {
 
 .secondary-button {
     background-color: var(--orange);
-    color: var(--white);
-    padding: 0.75rem;
 }
 
 .secondary-button:hover {
@@ -128,6 +153,53 @@ header {
     transform: scale(1.05);
 }
 
+/* Form Elements */
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--dark-green);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--light-gray);
+    border-radius: 4px;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+.submit-button {
+    background-color: #28a745;
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 40px;
+    color: var(--white);
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: var(--shadow-color);
+}
+
+.submit-button:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
+
+/* Lists */
 ul {
     list-style-type: none;
 }
@@ -137,6 +209,7 @@ ul li {
     margin: 0.5rem;
     padding: 0.75rem;
     border-radius: 0.25rem;
+    transition: transform 0.3s;
 }
 
 ul li:hover {
@@ -151,22 +224,17 @@ ul li span {
     color: var(--primary-color);
 }
 
+/* Social Media */
 .social-media {
-    background: linear-gradient(135deg, #4CAF50, #2E7D32);
+    background: linear-gradient(135deg, var(--primary-color), var(--dark-green));
     color: var(--white);
-    padding: 3px 2px;
-    text-align: center;
+    padding: 10px;
     border-radius: 20px;
     margin: 10px auto;
 }
 
 .social-media h2 {
     color: var(--white);
-    margin: 1px 0;
-}
-
-.social-media p {
-    margin: 7px 0;
 }
 
 .social-media .icons {
@@ -185,12 +253,13 @@ ul li span {
     transform: scale(1.2);
 }
 
+/* Footer */
 footer {
-    background-color: #4CAF50;
+    background-color: var(--primary-color);
     color: var(--white);
     text-align: center;
-    padding: 2px;
-    margin-top: 5px;
+    padding: 10px;
+    margin-top: 20px;
     border-radius: 20px;
 }
 
@@ -204,325 +273,49 @@ footer a:hover {
     text-decoration: underline;
 }
 
+/* Responsive Design */
 @media (max-width: 768px) {
     .about-container {
         padding: 30px;
     }
+
     .about-container h1 {
-        font-size: 28px;
+        font-size: 1.75em;
     }
+
     .about-container p {
-        font-size: 16px;
+        font-size: 1em;
     }
 }
 
-.phone-number {
-    display: flex;
-}
-
-.phone-number input {
-    flex: 1;
-    padding: 10px;
-}
-
-.country-code {
-    width: 80px;
-    margin-right: 10px;
-}
-
-.country-code select {
-    padding: 10px;
-}
-
-.form-group {
+/* Semester and Subject Boxes */
+.semester,
+.subject-box {
+    padding: 15px;
     margin-bottom: 15px;
-    text-align: left;
+    border-radius: 8px;
+    background-color: var(--white);
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: var(--shadow-color);
 }
 
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
-    color: var(--dark-green); /* Dark green color */
+.semester:hover,
+.subject-box:hover {
+    background-color: #e0f7fa;
+    transform: translateY(-2px);
 }
 
-.form-group input,
-.form-group select,
-.form-group textarea {
-    width: 100%;
-}
-
-.thank-you-message {
-    display: none;
-}
-
-.thank-you-message h2 {
-    color: #4caf50;
-}
-
-.container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.hero h1 {
-    font-size: 2.5em;
-    margin: 0;
-}
-
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-}
-
-.book-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-}
-
-.book {
-    background: white;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    width: 200px;
-    transition: transform 0.3s;
-}
-
-.book:hover {
-    transform: translateY(-5px);
-}
-
-.book img {
-    width: 100%;
-    height: 300px;
-    border-radius: 15px;
-    object-fit: cover;
-}
-
-.book h2,
-.book p {
-    font-weight: bold;
-    font-size: 1.2em;
-    color: #fff; /* Set book title and author color to white */
-    text-align: justify;
-}
-
-.name-row,
-.phone-number {
-    display: flex;
-    justify-content: space-between;
-    gap: 3px;
-}
-
-.name-row input,
-.phone-number input,
-.phone-number select {
-    flex: 1;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-.phone-number select {
-    width: auto;
-    margin-right: 10px;
-}
-
-input[type="text"],
-input[type="tel"],
-input[type="email"],
-select,
-textarea {
-    width: 100%;
-    padding: 10px;
-    margin: 5px 0 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    transition: border-color 0.3s;
-}
-
-input[type="text"]:focus,
-input[type="tel"]:focus,
-input[type="email"]:focus,
-select:focus,
-textarea:focus {
-    border-color: #007BFF;
-    outline: none;
-}
-
-.submit-button {
-    background-color: #28a745;
+/* Interactive Subject Links */
+.subject-box a {
     color: var(--white);
-    border: none;
-    padding: 10px 15px;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 40px; /* Increased radius for a softer edge */
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    text-decoration: none; /* Removed underline from button text */
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background-color: #007BFF;
+    border-radius: 8px;
 }
 
-.submit-button:hover {
-    background-color: #218838;
-    transform: scale(1.05);
-}
-
-.Binitacontainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center; /* Center content vertically */
-    padding: 40px; /* Increased padding for more breathing room */
-    background: linear-gradient(135deg, #ffe082, #ffcc80); /* Soft yellow gradient background */
-    border-radius: 20px; /* Rounded corners */
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Softer shadow for depth */
-    margin: 30px auto; /* Increased margin for better spacing */
-    max-width: 1200px; /* Limit max width for larger screens */
-    transition: transform 0.3s, box-shadow 0.3s, background 0.3s; /* Smooth transitions */
-    overflow: hidden; /* Prevent content overflow */
-}
-
-.Binitacontainer:hover {
-    transform: scale(1.05); /* Slight scaling effect on hover */
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5); /* Darker shadow on hover */
-    background: linear-gradient(135deg, #ffcc80, #ffe082); /* Reverse gradient on hover for a dynamic effect */
-}
-
-.Binitacontainer h1 {
-    font-size: 2.5em; /* Increase font size for prominence */
-    color: #4a4a4a; /* Darker text color for contrast */
-    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8); /* Light text shadow for depth */
-    margin-bottom: 20px; /* Space below heading */
-}
-
-.Binitacontainer p {
-    font-size: 1.2em; /* Increase font size for readability */
-    color: #333; /* Dark text color for better legibility */
-    text-align: center; /* Center-align text */
-    line-height: 1.5; /* Improved line spacing */
-    margin-bottom: 20px; /* Space below paragraph */
-}
-
-.Binitacontainer button {
-    padding: 10px 20px; /* Adjust padding for button */
-    background-color: #388E3C; /* Dark green button */
-    color: white; /* White text */
-    border: none; /* Remove border */
-    border-radius: 30px; /* Rounded button edges */
-    font-weight: bold; /* Bold button text */
-    cursor: pointer; /* Pointer cursor */
-    transition: background-color 0.3s, transform 0.2s; /* Smooth transition effects */
-}
-
-.Binitacontainer button:hover {
-    background-color: #2E7D32; /* Darker green on hover */
-    transform: translateY(-2px); /* Lift effect on hover */
-} 
-.semester {
-    cursor: pointer; /* Change cursor to pointer */
-    margin-bottom: 15px; /* Space between semesters */
-    padding: 15px; /* Add padding inside each semester */
-    border: 1px solid #ccc; /* Light gray border */
-    border-radius: 5px; /* Rounded corners */
-    background-color: #ffffff; /* White background color */
-    transition: background-color 0.3s; /* Smooth background change */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-}
-
-.semester:hover {
-    background-color: #e0f7fa; /* Light blue on hover */
-}
-
-/* Styles for the subjects */
-.subjects {
-    padding-left: 20px; /* Indentation for subjects */
-}
-
-.subject-box {
-    display: block; /* Make subjects block elements */
-    margin: 5px 0; /* Margin around each subject box */
-    padding: 10px; /* Padding inside the box */
-    background-color: #007BFF; /* Background color for subject box */
-    color: white; /* Text color */
-    border-radius: 5px; /* Rounded corners */
-    transition: background-color 0.3s; /* Smooth background change */
-}
-
-.subject-box a {
-    color: white; /* Link color */
-    text-decoration: none; /* Remove underline */
-}
-
-.subject-box:hover {
-    background-color: #0056b3; /* Darker blue on hover */
-}
-/* General styles */
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern font style */
-    background: linear-gradient(to bottom right, #4CAF50, #81C784); /* Gradient green background */
-    margin: 0; /* Remove default margin */
-    color: #333; /* Dark text color for better contrast */
-}
-
-/* Container for semesters */
-.container {
-    max-width: 800px; /* Limit max width for larger screens */
-    margin: 20px auto; /* Centered container */
-    padding: 0 20px; /* Side padding */
-}
-
-/* Semester styles */
-.semester {
-    cursor: pointer; /* Change cursor to pointer */
-    margin-bottom: 15px; /* Space between semesters */
-    padding: 15px; /* Add padding inside each semester */
-    border: 1px solid #ccc; /* Light gray border */
-    border-radius: 5px; /* Rounded corners */
-    background-color: #ffffff; /* White background color */
-    transition: background-color 0.3s; /* Smooth background change */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-}
-
-.semester:hover {
-    background-color: #e0f7fa; /* Light blue on hover */
-}/* Styles for the subjects */
-.subjects {
-    display: none; /* Initially hide subjects */
-    padding-left: 0; /* Remove indentation for subjects */
-    margin-top: 10px; /* Space above subjects */
-}
-
-.subject-box {
-    display: flex; /* Flex display to align items */
-    justify-content: center; /* Center content horizontally */
-    align-items: center; /* Center content vertically */
-    margin: 5px 0; /* Margin around each subject box */
-    padding: 15px; /* Padding inside the box */
-    background-color: #007BFF; /* Background color for subject box */
-    color: white; /* Text color */
-    border-radius: 8px; /* Rounded corners */
-    transition: background-color 0.3s, transform 0.2s; /* Smooth background change */
-    white-space: nowrap; /* Prevent text wrapping */
-    overflow: hidden; /* Hide overflow */
-    text-overflow: ellipsis; /* Add ellipsis for overflow text */
-}
-
-.subject-box a {
-    color: white; /* Link color */
-    text-decoration: none; /* Remove underline */
-    display: block; /* Make the link block level for full clickable area */
-    width: 100%; /* Full width for the link */
-}
-
-.subject-box:hover {
-    background-color: #0056b3; /* Darker blue on hover */
-    transform: translateY(-2px); /* Lift effect on hover */
+.subject-box a:hover {
+    background-color: #0056b3;
 }

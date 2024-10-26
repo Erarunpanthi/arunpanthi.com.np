@@ -52,6 +52,7 @@ header {
 .section {
     background-color: #1B5E20;
     border-radius: 25px;
+    color: var(--white); /* Set body text color to white */
     padding: 20px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     margin: 20px auto;

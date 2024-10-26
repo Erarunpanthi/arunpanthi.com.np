@@ -482,27 +482,18 @@ body {
 /* Semester styles */
 .semester {
     cursor: pointer; /* Change cursor to pointer */
-    margin-bottom: 20px; /* Space between semesters */
-    padding: 20px; /* Increased padding */
-    border-radius: 10px; /* Rounded corners */
-    background-color: #a5d6a7; /* Light green background color for semester */
-    transition: background-color 0.3s, box-shadow 0.3s; /* Smooth background change */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+    margin-bottom: 15px; /* Space between semesters */
+    padding: 15px; /* Add padding inside each semester */
+    border: 1px solid #ccc; /* Light gray border */
+    border-radius: 5px; /* Rounded corners */
+    background-color: #ffffff; /* White background color */
+    transition: background-color 0.3s; /* Smooth background change */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
-.semester h2 {
-    margin: 0; /* Remove default margin */
-    font-size: 1.5em; /* Increased font size */
-    font-weight: bold; /* Bold font */
-}
-
-/* Hover effect for semester */
 .semester:hover {
-    background-color: #81c784; /* Darker green on hover */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Increased shadow on hover */
-}
-
-/* Styles for the subjects */
+    background-color: #e0f7fa; /* Light blue on hover */
+}/* Styles for the subjects */
 .subjects {
     display: none; /* Initially hide subjects */
     padding-left: 0; /* Remove indentation for subjects */

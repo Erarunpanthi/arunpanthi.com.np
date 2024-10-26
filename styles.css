@@ -11,7 +11,7 @@
 /* Global Styles */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(to bottom right, #4CAF50, #81C784); /* Green gradient background */
+    background: var(--white); /* Set background to white */
     color: #333; /* Dark text color */
     margin: 0;
     text-align: center;
@@ -22,8 +22,8 @@ header {
     background-color: #388E3C;
     padding: 10px;
     color: var(--white);
-    border-radius: 15px;
-    margin-bottom: 25px;
+    border-radius: 30px;
+    margin-bottom: 20px;
 }
 
 .navbar {
@@ -53,6 +53,18 @@ header {
     max-width: 800px;
     margin: 20px auto;
     padding: 0 20px;
+}
+
+/* Hero Section */
+.hero-section {
+    height: 300px; /* Reduced height for the hero section */
+    background: linear-gradient(135deg, var(--primary-color), var(--dark-green));
+    color: var(--white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 10px; /* Added border radius to hero section */
 }
 
 /* Section and About Container */
@@ -92,37 +104,50 @@ header {
 }
 
 /* CTA and Secondary Buttons */
-.button {
+.cta-button,
+.secondary-button {
     display: inline-block;
     margin-bottom: 15px;
     padding: 12px 20px;
     border: none;
-    border-radius: 1.5rem;
+    border-radius: 35px; /* Rounded edges */
     font-weight: bold;
-    color: var(--white);
     cursor: pointer;
     text-align: center;
-    transition: background-color 0.3s, transform 0.3s;
-    box-shadow: var(--shadow-color);
-    text-decoration: none;
+    color: var(--white);
+    text-decoration: none; /* Remove underline from text */
+    transition: background 0.3s, box-shadow 0.3s, transform 0.2s;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
 }
 
 .cta-button {
-    background-color: var(--primary-color);
+    background: linear-gradient(135deg, #4CAF50, #2E7D32);
 }
 
 .cta-button:hover {
-    background-color: var(--hover-green);
+    background: linear-gradient(135deg, #66BB6A, #388E3C);
     transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.cta-button:active {
+    transform: scale(0.97);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
 }
 
 .secondary-button {
-    background-color: var(--orange);
+    background: linear-gradient(135deg, #FF5722, #E64A19);
 }
 
 .secondary-button:hover {
-    background-color: #e64a19;
+    background: linear-gradient(135deg, #FF7043, #D84315);
     transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.secondary-button:active {
+    transform: scale(0.97);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
 }
 
 /* Semester and Subject Styles */
@@ -171,6 +196,48 @@ header {
 .subject-box:hover {
     background-color: #0056b3;
     transform: translateY(-2px);
+}
+
+/* Social Media Section */
+.social-media {
+    background-color: var(--dark-green); /* Dark green background */
+    padding: 20px; /* Reduced padding */
+    border-radius: 15px; /* Added border radius */
+    margin: 20px auto;
+    max-width: 800px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.social-media h2 {
+    font-size: 24px; /* Reduced font size */
+    color: var(--white); /* White text color */
+    margin-bottom: 10px; /* Reduced margin */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.social-media p {
+    font-size: 16px; /* Reduced font size */
+    color: var(--white); /* White text color */
+    margin-bottom: 15px; /* Reduced margin */
+}
+
+/* Icons */
+.icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Space between icons */
+}
+
+.icons a {
+    color: var(--white); /* White icon color */
+    font-size: 30px; /* Icon size */
+    transition: color 0.3s, transform 0.3s;
+}
+
+.icons a:hover {
+    color: #e0f7fa; /* Light color on hover */
+    transform: scale(1.2); /* Slightly enlarge on hover */
 }
 
 /* Binitacontainer */
@@ -224,6 +291,15 @@ header {
     transform: translateY(-2px);
 }
 
+/* Footer */
+footer {
+    margin-top: 30px;
+    padding: 10px;
+    background-color: #388E3C;
+    color: var(--white);
+    border-radius: 10px; /* Added border radius to footer */
+}
+
 /* Media Queries */
 @media (max-width: 768px) {
     .about-container {
@@ -234,5 +310,8 @@ header {
     }
     .about-container p {
         font-size: 16px;
+    }
+    header{
+        height: 225px; /* Further reduce height for mobile */
     }
 }

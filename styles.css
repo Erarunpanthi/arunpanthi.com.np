@@ -300,3 +300,76 @@ footer a:hover {
         font-size: 28px;
     }
 }
+body {
+    font-family: Arial, sans-serif;
+    color: #333;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+}
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+}
+h1, h2, h3 {
+    color: #005f99;
+    font-weight: bold;
+}
+h1 {
+    font-size: 36px;
+    text-align: center;
+}
+h2 {
+    font-size: 28px;
+    border-bottom: 2px solid #005f99;
+    padding-bottom: 5px;
+    margin-top: 20px;
+}
+h3 {
+    font-size: 24px;
+    color: #007acc;
+    margin-top: 15px;
+}
+p, li {
+    font-size: 18px;
+    line-height: 1.6;
+}
+ul {
+    list-style: none;
+    padding: 0;
+}
+ul li {
+    padding-left: 20px;
+    position: relative;
+    margin: 5px 0;
+}
+ul li::before {
+    content: "•";
+    color: #005f99;
+    position: absolute;
+    left: 0;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    font-size: 16px;
+}
+table, th, td {
+    border: 1px solid #ddd;
+}
+th {
+    background-color: #007acc;
+    color: white;
+}
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+/* Responsive Design */
+@media (max-width: 600px) {
+    h1 { font-size: 28px; }
+    h2 { font-size: 24px; }
+    p, ul li { font-size: 16px; }
+}

@@ -5,11 +5,15 @@
     --white: #FFFFFF; /* White color for text */
     --light-gray: #f4f4f4; /* Light gray background for cards */
     --card-border: #ddd; /* Card border color */
+    --card-padding: 20px; /* Padding inside cards */
     --border-radius: 12px; /* General border radius for rounded edges */
     --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
     --hover-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Shadow effect on hover */
     --transition-speed: 0.3s; /* Smooth transition speed */
     --max-width: 1200px; /* Max width for content */
+    --section-padding: 60px 20px; /* Padding for each section */
+    --navbar-padding: 20px; /* Padding for navbar */
+    --social-media-spacing: 20px; /* Spacing between social media icons */
 }
 
 /* Global Styling */
@@ -31,10 +35,10 @@ h1, h2, h3, h4, h5, h6 {
 /* Navbar Styling */
 .navbar {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     background-color: var(--dark-green);
-    padding: 15px 20px;
+    padding: var(--navbar-padding);
     border-radius: var(--border-radius); /* Rounded edges */
     box-shadow: var(--box-shadow); /* Add a light shadow */
 }
@@ -62,6 +66,7 @@ h1, h2, h3, h4, h5, h6 {
     padding: 100px 20px;
     text-align: center;
     border-bottom: 5px solid var(--dark-green);
+    margin-bottom: 50px; /* Added margin for space below the hero */
 }
 
 .hero h1 {
@@ -72,10 +77,11 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Section Styling */
 .section {
-    padding: 60px 20px;
+    padding: var(--section-padding);
     text-align: center;
     max-width: var(--max-width);
     margin: 0 auto;
+    margin-bottom: 50px; /* Added margin between sections */
 }
 
 .section h2 {
@@ -95,8 +101,9 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;
+    gap: 30px; /* Increased gap between cards */
     padding: 20px;
+    margin-bottom: 40px; /* Space below card container */
 }
 
 /* Card Styling */
@@ -107,7 +114,7 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: var(--border-radius); /* Rounded corners */
     box-shadow: var(--box-shadow);
     width: 300px;
-    padding: 20px;
+    padding: var(--card-padding);
     text-align: center;
     transition: transform var(--transition-speed), box-shadow var(--transition-speed);
 }
@@ -147,8 +154,9 @@ h1, h2, h3, h4, h5, h6 {
 .social-media {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: var(--social-media-spacing); /* Adjusted spacing between icons */
     margin-top: 50px;
+    margin-bottom: 50px; /* Space below social media section */
 }
 
 .social-media a {
@@ -185,7 +193,7 @@ footer a:hover {
 
 /* Form Group Styling */
 .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 20px; /* Added more space between form elements */
     display: flex;
     flex-direction: column;
     align-items: center;

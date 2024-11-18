@@ -1,10 +1,12 @@
 /* Global Variables */
 :root {
-    --dark-green: #2E7D32; /* Navbar background */
+    --dark-green: #2E7D32; /* Navbar and hero background */
     --hover-green: #1B5E20; /* Navbar hover effect */
     --white: #FFFFFF; /* White color for text */
-    --card-bg: #f4f4f4; /* Light gray background for cards */
-    --card-border: #ddd; /* Card border color */
+    --gray: #f4f4f4; /* Light gray background */
+    --warning-yellow: #FFEB3B; /* Bright yellow for maintenance message */
+    --warning-border: #FBC02D; /* Darker yellow for border */
+    --shadow-color: rgba(0, 0, 0, 0.1); /* Card shadow color */
 }
 
 /* Global Styling */
@@ -15,87 +17,186 @@ body {
     background-color: #121212; /* Dark background for contrast */
 }
 
-/* Navbar Styling */
-.navbar {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    background-color: var(--dark-green); /* Darker green navbar */
-    padding: 10px 0;
-}
-
-.navbar a {
-    color: var(--white); /* Link color */
-    padding: 8px 10px; /* Reduced padding for compactness */
-    text-decoration: none; /* Remove underline */
-    font-size: 14px; /* Smaller font size */
-    transition: background-color 0.3s; /* Smooth hover effect */
-}
-
-.navbar a:hover {
-    background-color: var(--hover-green); /* Darker green on hover */
-}
-
-/* Card Container */
-.card-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
+/* Maintenance Message Section */
+#maintenance-messag {
+    background-color: var(--warning-yellow);
+    border: 1px solid var(--warning-border);
+    border-radius: 10px;
     padding: 20px;
-}
-
-/* Card Styling */
-.card {
-    background-color: var(--card-bg); /* Light card background */
-    color: #000; /* Black text for contrast */
-    border: 1px solid var(--card-border); /* Subtle border */
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
-    width: 300px;
-    padding: 20px;
+    margin: 20px auto;
+    max-width: 800px;
     text-align: center;
-    transition: transform 0.3s, box-shadow 0.3s; /* Smooth hover effects */
+    color: #000; /* Black text for readability */
+    box-shadow: 0 4px 8px var(--shadow-color);
+    animation: pulse 1.5s infinite; /* Subtle pulse effect */
 }
 
-.card:hover {
-    transform: translateY(-5px); /* Lift effect */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Darker shadow */
+#maintenance-messag h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #000; /* Bold black for the title */
 }
 
-/* Card Elements */
-.card h3 {
-    margin: 10px 0;
+#maintenance-messag p {
+    font-size: 16px;
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+#maintenance-messag a {
+    color: var(--hover-green); /* Green for actionable links */
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+#maintenance-messag a:hover {
+    color: var(--dark-green);
+}
+
+/* Pulse Animation */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 10px rgba(255, 235, 59, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(255, 235, 59, 0.8);
+    }
+    100% {
+        box-shadow: 0 0 10px rgba(255, 235, 59, 0.5);
+    }
+}
+
+/* Hero Section */
+.hero {
+    background-color: var(--dark-green);
+    color: var(--white);
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.hero h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.hero p {
     font-size: 18px;
-    color: var(--dark-green); /* Card title in dark green */
+    margin-top: 0;
 }
 
-.card p {
-    font-size: 14px;
+/* Section Styling */
+.section {
+    padding: 40px 20px;
+    text-align: center;
+    background-color: var(--gray);
+    color: #000;
+}
+
+.section h2 {
+    font-size: 28px;
+    color: var(--dark-green);
+    margin-bottom: 20px;
+}
+
+.section p {
+    font-size: 16px;
+    margin-bottom: 30px;
+}
+
+/* Social Media Icons */
+.social-media {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding: 20px 0;
+}
+
+.social-media a {
+    color: var(--white);
+    font-size: 20px;
+    text-decoration: none;
+    transition: transform 0.3s, color 0.3s;
+}
+
+.social-media a:hover {
+    transform: scale(1.2);
+    color: var(--hover-green);
+}
+
+/* Custom Container Styling */
+.Binitacontainer {
+    margin: 20px auto;
+    max-width: 1200px;
+    padding: 20px;
+    background-color: var(--gray);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px var(--shadow-color);
+}
+
+.Binitacontainer h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: var(--dark-green);
+}
+
+.Binitacontainer p {
+    font-size: 16px;
     margin-bottom: 15px;
-    color: #000; /* Ensure contrast with card background */
+    color: #000;
 }
 
-.card button {
+/* Form Group Styling */
+.form-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.form-group label {
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: var(--white);
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid var(--card-border);
+    border-radius: 5px;
+    box-shadow: inset 0 1px 3px var(--shadow-color);
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--dark-green);
+    box-shadow: 0 0 5px var(--hover-green);
+}
+
+/* Buttons */
+button {
     background-color: var(--dark-green);
     color: var(--white);
     border: none;
     padding: 10px 20px;
-    font-size: 14px;
+    font-size: 16px;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
-.card button:hover {
+button:hover {
     background-color: var(--hover-green);
+    transform: scale(1.05);
 }
 
-/* Additional Global Adjustments */
-h1, h2, h3, h4, h5, h6, p, span {
-    color: var(--white); /* Ensures text is white unless overridden */
-}
-
+/* Footer Styling */
 footer {
     background-color: var(--dark-green);
     padding: 20px;
@@ -110,4 +211,21 @@ footer a {
 
 footer a:hover {
     text-decoration: none;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .card-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .Binitacontainer {
+        padding: 15px;
+    }
 }

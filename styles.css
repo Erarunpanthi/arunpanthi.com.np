@@ -11,30 +11,30 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    color: var(--white); /* White text globally */
+    color: var(--white); /* Default global text color */
     background-color: #121212; /* Dark background for contrast */
 }
 
+/* Navbar Styling */
 .navbar {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            background-color: #2E7D32; /* Darker green navbar */
-            padding: 10px 0;
-        }
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: var(--dark-green); /* Darker green navbar */
+    padding: 10px 0;
+}
 
-        .navbar a {
-            color: #fff; /* Link color */
-            padding: 8px 10px; /* Reduced padding for compactness */
-            text-decoration: none; /* Remove underline */
-            font-size: 14px; /* Smaller font size */
-            transition: background-color 0.3s; /* Animation */
-        }
+.navbar a {
+    color: var(--white); /* Link color */
+    padding: 8px 10px; /* Reduced padding for compactness */
+    text-decoration: none; /* Remove underline */
+    font-size: 14px; /* Smaller font size */
+    transition: background-color 0.3s; /* Smooth hover effect */
+}
 
-        .navbar a:hover {
-            background-color: #1B5E20; /* Even darker green on hover */
-        }
-
+.navbar a:hover {
+    background-color: var(--hover-green); /* Darker green on hover */
+}
 
 /* Card Container */
 .card-container {
@@ -73,6 +73,7 @@ body {
 .card p {
     font-size: 14px;
     margin-bottom: 15px;
+    color: #000; /* Ensure contrast with card background */
 }
 
 .card button {
@@ -91,8 +92,8 @@ body {
 }
 
 /* Additional Global Adjustments */
-h1, h2, h3, h4, h5, h6, p, a, span {
-    color: var(--white); /* Ensures all text is white unless overridden */
+h1, h2, h3, h4, h5, h6, p, span {
+    color: var(--white); /* Ensures text is white unless overridden */
 }
 
 footer {

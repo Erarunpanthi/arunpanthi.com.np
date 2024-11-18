@@ -1,238 +1,137 @@
-/* Global Variables */
-:root {
-    --dark-green: #2E7D32; /* Navbar background */
-    --hover-green: #1B5E20; /* Navbar hover effect */
-    --white: #FFFFFF; /* White color for text */
-    --light-gray: #f4f4f4; /* Light gray background for cards */
-    --card-border: #ddd; /* Card border color */
-    --card-padding: 20px; /* Padding inside cards */
-    --border-radius: 12px; /* General border radius for rounded edges */
-    --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
-    --hover-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Shadow effect on hover */
-    --transition-speed: 0.3s; /* Smooth transition speed */
-    --max-width: 1200px; /* Max width for content */
-    --section-padding: 60px 20px; /* Padding for each section */
-    --navbar-padding: 20px; /* Padding for navbar */
-    --social-media-spacing: 20px; /* Spacing between social media icons */
-}
-
-/* Global Styling */
-body {
+/* General reset for margin and padding */
+* {
     margin: 0;
     padding: 0;
-    font-family: 'Roboto', sans-serif;
-    color: var(--white); /* White text globally */
-    background-color: #121212; /* Dark background for contrast */
-    line-height: 1.6;
+    box-sizing: border-box;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Arial', sans-serif;
-    color: var(--white);
-    margin-bottom: 10px;
-}
-
-/* Navbar Styling */
+/* Navbar styling */
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: var(--dark-green);
-    padding: var(--navbar-padding);
-    border-radius: var(--border-radius); /* Rounded edges */
-    box-shadow: var(--box-shadow); /* Add a light shadow */
-}
-
-.navbar a {
-    color: var(--white);
-    padding: 10px 20px;
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: background-color var(--transition-speed), transform var(--transition-speed);
-}
-
-.navbar a:hover {
-    background-color: var(--hover-green);
-    transform: translateY(-2px); /* Slight lift effect */
-}
-
-/* Hero Section */
-.hero {
-    background: linear-gradient(45deg, #2E7D32, #1B5E20);
-    color: var(--white);
-    padding: 100px 20px;
-    text-align: center;
-    border-bottom: 5px solid var(--dark-green);
-    margin-bottom: 50px; /* Added margin for space below the hero */
-}
-
-.hero h1 {
-    font-size: 36px;
-    margin: 0;
-    font-weight: 700;
-}
-
-/* Section Styling */
-.section {
-    padding: var(--section-padding);
-    text-align: center;
-    max-width: var(--max-width);
-    margin: 0 auto;
-    margin-bottom: 50px; /* Added margin between sections */
-}
-
-.section h2 {
-    font-size: 28px;
-    font-weight: 600;
-    margin-bottom: 20px;
-}
-
-.section p {
-    font-size: 16px;
-    line-height: 1.8;
-    color: var(--light-gray);
-}
-
-/* Card Container */
-.card-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 30px; /* Increased gap between cards */
+    background-color: #2E7D32; /* Darker green navbar */
+    padding: 10px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Navbar links */
+.navbar a {
+    color: #fff; /* Link color */
+    padding: 8px 10px; /* Reduced padding for compactness */
+    text-decoration: none; /* Remove underline */
+    font-size: 14px; /* Smaller font size */
+    transition: background-color 0.3s; /* Animation */
+    margin: 5px 10px; /* Space between links */
+    border-radius: 5px; /* Rounded corners for links */
+}
+
+/* Navbar links on hover */
+.navbar a:hover {
+    background-color: #1B5E20; /* Even darker green on hover */
+}
+
+/* Main section container */
+.section {
+    width: 100%;
+    padding: 40px 20px;
+    background-color: #f4f4f4;
+}
+
+/* Container to center content */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 20px;
-    margin-bottom: 40px; /* Space below card container */
 }
 
-/* Card Styling */
-.card {
-    background-color: var(--light-gray);
-    color: #000;
-    border: 1px solid var(--card-border);
-    border-radius: var(--border-radius); /* Rounded corners */
-    box-shadow: var(--box-shadow);
-    width: 300px;
-    padding: var(--card-padding);
-    text-align: center;
-    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
-}
-
-.card:hover {
-    transform: translateY(-10px); /* Lift effect */
-    box-shadow: var(--hover-shadow); /* Darker shadow on hover */
-}
-
-.card h3 {
-    margin: 10px 0;
-    font-size: 22px;
-    color: var(--dark-green);
-}
-
-.card p {
-    font-size: 16px;
-    margin-bottom: 20px;
-}
-
-.card button {
-    background-color: var(--dark-green);
-    color: var(--white);
-    border: none;
-    padding: 12px 24px;
-    font-size: 16px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color var(--transition-speed);
-}
-
-.card button:hover {
-    background-color: var(--hover-green);
-}
-
-/* Social Media Section */
+/* Styling for the Social Media section */
 .social-media {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    margin-bottom: 30px;
+    transition: all 0.3s ease;
+}
+
+/* Add hover effect on social media container */
+.social-media:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
+}
+
+/* Header styling */
+.social-media h2 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 10px;
+    font-weight: 600;
     display: flex;
-    justify-content: center;
-    gap: var(--social-media-spacing); /* Adjusted spacing between icons */
-    margin-top: 50px;
-    margin-bottom: 50px; /* Space below social media section */
-}
-
-.social-media a {
-    color: var(--white);
-    font-size: 24px;
-    transition: color var(--transition-speed);
-}
-
-.social-media a:hover {
-    color: var(--hover-green);
-}
-
-/* Footer Styling */
-footer {
-    background-color: var(--dark-green);
-    padding: 30px 20px;
-    text-align: center;
-    color: var(--white);
-    margin-top: 60px;
-    border-radius: var(--border-radius); /* Rounded edges */
-    box-shadow: var(--box-shadow); /* Light shadow */
-}
-
-footer a {
-    color: var(--white);
-    text-decoration: underline;
-    transition: color var(--transition-speed);
-}
-
-footer a:hover {
-    color: var(--hover-green);
-    text-decoration: none;
-}
-
-/* Form Group Styling */
-.form-group {
-    margin-bottom: 20px; /* Added more space between form elements */
-    display: flex;
-    flex-direction: column;
     align-items: center;
 }
 
-.form-group label {
+.social-media h2 i {
+    margin-right: 10px;
+    color: #007bff; /* Blue icon color */
+}
+
+/* Paragraph styling */
+.social-media p {
     font-size: 16px;
-    margin-bottom: 8px;
-    color: var(--white);
+    color: #555;
+    margin-bottom: 20px;
+    line-height: 1.6;
 }
 
-.form-group input, .form-group textarea {
-    width: 100%;
-    padding: 12px 16px;
-    border-radius: 8px;
-    border: 1px solid var(--card-border);
-    margin-bottom: 15px;
-    font-size: 16px;
-    color: #333;
-    background-color: var(--light-gray);
-    transition: border-color var(--transition-speed);
+/* Social media icon container */
+.icons {
+    display: flex;
+    gap: 15px;
 }
 
-.form-group input:focus, .form-group textarea:focus {
-    border-color: var(--dark-green);
-    outline: none;
-}
-
-/* Maintenance Message Section */
-#maintenance-message {
-    background-color: var(--hover-green);
-    color: var(--white);
-    padding: 20px;
-    border-radius: var(--border-radius);
+/* Social media icon styles */
+.icons a {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
     text-align: center;
-    margin-top: 40px;
+    line-height: 40px;
+    background-color: #f0f0f0;
+    border-radius: 50%;
+    color: #333;
+    transition: all 0.3s ease;
+    font-size: 20px;
 }
 
-#maintenance-message p {
-    font-size: 18px;
-    margin: 0;
+.icons a:hover {
+    background-color: #007bff; /* Hover effect with blue background */
+    color: white;
+    transform: scale(1.1); /* Slightly enlarge the icon on hover */
+}
+
+/* Styling for mobile devices */
+@media screen and (max-width: 768px) {
+    .navbar a {
+        font-size: 12px; /* Adjust font size for smaller screens */
+    }
+
+    .social-media h2 {
+        font-size: 24px;
+    }
+    
+    .social-media p {
+        font-size: 14px;
+    }
+    
+    .icons {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .icons a {
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+    }
 }

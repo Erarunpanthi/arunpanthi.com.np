@@ -15,26 +15,26 @@ body {
     background-color: #121212; /* Dark background for contrast */
 }
 
-/* Navbar Styling */
 .navbar {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    background-color: var(--dark-green); /* Darker green navbar */
-    padding: 10px 0;
-}
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            background-color: #2E7D32; /* Darker green navbar */
+            padding: 10px 0;
+        }
 
-.navbar a {
-    color: var(--white); /* White text for navbar links */
-    padding: 8px 10px; /* Reduced padding for compactness */
-    text-decoration: none; /* Remove underline */
-    font-size: 14px; /* Smaller font size */
-    transition: background-color 0.3s; /* Smooth hover effect */
-}
+        .navbar a {
+            color: #fff; /* Link color */
+            padding: 8px 10px; /* Reduced padding for compactness */
+            text-decoration: none; /* Remove underline */
+            font-size: 14px; /* Smaller font size */
+            transition: background-color 0.3s; /* Animation */
+        }
 
-.navbar a:hover {
-    background-color: var(--hover-green); /* Darker green on hover */
-}
+        .navbar a:hover {
+            background-color: #1B5E20; /* Even darker green on hover */
+        }
+
 
 /* Card Container */
 .card-container {

@@ -1,66 +1,156 @@
 :root {
-    --primary-color: #4CAF50; /* Green */
-    --dark-green: #2E7D32; /* Darker green */
-    --hover-green: #1B5E20; /* Even darker green */
-    --light-green-bg: #e8f5e9; /* Light green background */
-    --orange: #FF5722; /* Orange */
-    --shadow-color: rgba(0, 0, 0, 0.2); /* Default shadow color */
-    --white: #ffffff; /* White color */
+    --primary-color: #4CAF50; /* Main green */
+    --secondary-color: #FF5722; /* Orange */
+    --dark-green: #2E7D32; /* Dark green */
+    --hover-green: #1B5E20; /* Darker green for hover */
+    --light-green-bg: #e8f5e9; /* Light green */
+    --white: #ffffff; /* White */
+    --gray: #666666; /* Neutral text gray */
+    --shadow-color: rgba(0, 0, 0, 0.1); /* Soft shadow */
+    --font-family: 'Arial', sans-serif; /* Default font */
 }
 
-/* General Styles */
+/* Base Styles */
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: var(--light-green-bg); /* Light green background */
+    font-family: var(--font-family);
+    background-color: var(--light-green-bg);
     color: #333;
     margin: 0;
     padding: 0;
-    line-height: 1.6; /* Improved readability */
+    line-height: 1.8;
 }
 
-h1, h2 {
-    color: ;#fff;  /* Dark green headings */
+h1, h2, h3 {
+    color: var(--dark-green);
+    font-weight: bold;
+    margin: 15px 0;
 }
 
-/* Navbar Styles */
+h1 {
+    font-size: 2.5rem;
+    text-align: center;
+    color: var(--primary-color);
+}
+
+h2 {
+    font-size: 2rem;
+    border-bottom: 2px solid var(--dark-green);
+    padding-bottom: 5px;
+}
+
+p, li {
+    font-size: 1rem;
+    color: var(--gray);
+    margin: 10px 0;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: var(--hover-green);
+}
+
+/* Navbar */
 .navbar {
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
-    background-color: var(--dark-green); /* Darker green navbar */
-    padding: 10px 0;
+    background-color: var(--dark-green);
+    padding: 10px 20px;
+    box-shadow: 0 2px 5px var(--shadow-color);
 }
 
 .navbar a {
-    color: #fff; /* Link color */
-    padding: 8px 10px; /* Reduced padding for compactness */
-    text-decoration: none; /* Remove underline */
-    font-size: 14px; /* Smaller font size */
-    transition: background-color 0.3s; /* Animation */
+    color: var(--white);
+    font-size: 1rem;
+    padding: 10px 15px;
+    transition: background-color 0.3s;
 }
 
 .navbar a:hover {
-    background-color: #1B5E20; /* Even darker green on hover */
+    background-color: var(--hover-green);
+    border-radius: 5px;
 }
 
-/* Container Styles */
+/* Buttons */
+button, .cta-button, .secondary-button {
+    padding: 12px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+button {
+    background: var(--primary-color);
+    color: var(--white);
+}
+
+button:hover {
+    background: var(--hover-green);
+}
+
+.cta-button {
+    background: var(--secondary-color);
+    color: var(--white);
+    text-align: center;
+    display: inline-block;
+}
+
+.cta-button:hover {
+    background: darken(var(--secondary-color), 10%);
+    transform: scale(1.05);
+}
+
+.secondary-button {
+    background: var(--gray);
+    color: var(--white);
+}
+
+.secondary-button:hover {
+    background: darken(var(--gray), 10%);
+}
+
+/* Containers */
 .container {
-    max-width: 800px;
+    max-width: 900px;
     margin: 20px auto;
     padding: 20px;
     background: var(--white);
     border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 15px var(--shadow-color);
 }
 
-/* Form Styles */
+/* Hero Section */
+.hero {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 30px 20px;
+    text-align: center;
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+.hero h1 {
+    margin-bottom: 15px;
+    font-size: 2.5rem;
+}
+
+.hero p {
+    font-size: 1.2rem;
+}
+
+/* Forms */
 .form-group {
     margin-bottom: 1.5rem;
 }
 
 label {
-    display: flex; /* Change to flex to align items */
-    align-items: center; /* Center items vertically */
+    display: block;
     margin-bottom: 0.5rem;
     color: var(--dark-green);
     font-weight: bold;
@@ -72,143 +162,75 @@ input, select, textarea {
     border: 1px solid #ccc;
     border-radius: 5px;
     transition: border-color 0.3s;
-    box-sizing: border-box;
 }
 
 input:focus, select:focus, textarea:focus {
-    border-color: var(--dark-green);
+    border-color: var(--primary-color);
     outline: none;
 }
 
-input[type="radio"] {
-    margin-right: 10px; /* Space between radio button and text */
+/* Lists */
+ul {
+    list-style: none;
+    padding: 0;
 }
 
-/* Button Styles */
-button {
+ul li {
+    padding-left: 20px;
+    position: relative;
+    margin: 5px 0;
+}
+
+ul li::before {
+    content: "•";
+    color: var(--primary-color);
+    position: absolute;
+    left: 0;
+}
+
+/* Tables */
+table {
     width: 100%;
-    padding: 12px;
-    background: var(--dark-green);
-    color: #fff;
-    border: none;
-    border-radius: 5px;
+    border-collapse: collapse;
+    margin: 15px 0;
     font-size: 1rem;
-    cursor: pointer;
-    transition: background 0.3s;
 }
 
-button:hover {
-    background: #1B5E20;
+table, th, td {
+    border: 1px solid #ddd;
 }
 
-/* Timer Styles */
-.timer {
-    font-size: 36px; /* Larger font size for the timer */
-    color: #388E3C; /* Dark green color for the timer */
-    margin: 20px 0; /* Space around the timer */
-    background-color: var(--light-green-bg); /* Light green background for timer */
-    padding: 10px; /* Padding around the timer */
-    border-radius: 10px; /* Rounded corners for timer */
+th {
+    background-color: var(--dark-green);
+    color: var(--white);
+    padding: 10px;
 }
 
-/* Hero Section Styles */
-.hero {
-    background-color: var(--primary-color); /* Green background for hero section */
-    color: white; /* White text for hero section */
-    padding: 20px 20px; /* Reduced padding */
-    text-align: center;
-    border-radius: 10px; /* Rounded corners */
-    margin: 30px auto; /* Increased margin */
-    max-width: 800px; /* Centered with max width */
+td {
+    padding: 10px;
 }
 
-.hero h1 {
-    font-size: 36px; /* Heading size */
-    color: white; /* White color for heading */
-    margin: 10px 0; /* Reduced margin */
+tr:nth-child(even) {
+    background-color: var(--light-green-bg);
 }
 
-.hero p {
-    margin: 10px 0; /* Reduced margin for paragraph */
+tr:hover {
+    background-color: rgba(76, 175, 80, 0.2);
 }
 
-/* Call-to-Action Button Styles */
-.cta-button {
-    background-color: #28a745; /* Green button background */
-    color: white; /* White text for button */
-    padding: 10px 20px; /* Reduced padding */
-    text-decoration: none;
-    border-radius: 25px; /* Rounded button */
-    font-size: 18px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    margin-top: 10px; /* Space above button */
-    display: inline-block; /* Ensure proper spacing */
-}
-
-.cta-button:hover {
-    background-color: #218838; /* Darker green on hover */
-    transform: scale(1.05);
-}
-
-/* Secondary Button Styles */
-.secondary-button {
-    background-color: #6c757d; /* Grey button background */
-    color: white; /* White text for button */
-    padding: 10px 20px; /* Padding */
-    text-decoration: none;
-    border-radius: 25px; /* Rounded button */
-    font-size: 18px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    margin-top: 15px; /* Increased space above secondary button */
-    display: inline-block; /* Ensure proper spacing */
-}
-
-.secondary-button:hover {
-    background-color: #5a6268; /* Darker grey on hover */
-    transform: scale(1.05);
-}
-
-/* Section Styles */
-.section {
-    margin: 30px auto; /* Increased margin */
-    padding: 20px;
-    border-radius: 20px; /* Increased border radius for more rounded edges */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-     background-color: #218838; /* Darker green on hover */
-    width: 90%; /* Width for sections */
-    max-width: 800px; /* Max width for sections */
-    text-align: center; /* Center text */
-    color: white; /* White text for button */
-}
-
-/* Social Media Styles */
+/* Social Media */
 .social-media {
     background: linear-gradient(135deg, var(--primary-color), var(--dark-green));
-    color: white; /* White text for social media section */
-    padding: 30px 20px; /* Reduced padding */
+    padding: 20px;
+    color: var(--white);
     text-align: center;
-    border-radius: 20px; /* Increased border radius */
-    margin: 30px auto; /* Increased margin */
-}
-
-.social-media h2 {
-    color: white; /* White color for heading */
-    margin: 10px 0; /* Reduced margin */
-}
-
-.social-media p {
-    margin: 10px 0; /* Reduced margin for paragraph */
-}
-
-.social-media .icons {
-    display: flex;
-    justify-content: center;
-    gap: 20px; /* Space between icons */
+    border-radius: 10px;
+    margin: 20px 0;
 }
 
 .social-media .icons a {
-    color: #fff;
-    font-size: 36px;
+    font-size: 2rem;
+    margin: 0 10px;
     transition: transform 0.3s;
 }
 
@@ -216,243 +238,40 @@ button:hover {
     transform: scale(1.2);
 }
 
-/* Footer Styles */
+/* Footer */
 footer {
-    background-color: var(--primary-color);
-    color: #fff;
+    background-color: var(--dark-green);
+    color: var(--white);
     text-align: center;
     padding: 20px;
+    border-radius: 10px;
     margin-top: 20px;
-    border-radius: 10px; /* Added border radius to footer */
 }
 
 footer a {
-    color: #fff;
-    text-decoration: none;
-    margin: 0 10px;
-}
-
-footer a:hover {
+    color: var(--white);
     text-decoration: underline;
 }
 
-/* Media Queries */
-@media (max-width: 768px) {
-    .hero {
-        padding: 15px; /* Further reduce padding for smaller screens */
-    }
-    .section {
-        padding: 15px; /* Adjust section padding */
-    }
-    .social-media {
-        padding: 20px; /* Further reduce padding */
-    }
+footer a:hover {
+    color: var(--hover-green);
 }
 
-/* Book List Styles */
-.book-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 30px; /* Increased gap between books */
-}
-
-.book {
-    background: var(--white);
-    border-radius: 15px; /* Rounded edges for book items */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    padding: 15px;
-    text-align: center;
-    transition: transform 0.3s, box-shadow 0.3s;
-    position: relative;
-    overflow: hidden;
-}
-
-.book:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-}
-
-.book img {
-    max-width: 100%;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    transition: transform 0.3s;
-}
-
-.book img:hover {
-    transform: scale(1.05);
-}
-
-.book h2 {
-    font-size: 20px;
-    margin: 10px 0;
-    color: #4CAF50;
-    font-weight: bold;
-}
-
-.book p {
-    font-size: 16px;
-    color: #666;
-}
-
-@media (max-width: 600px) {
-    .hero h1 {
-        font-size: 28px;
-    }
-}
-body {
-    font-family: Arial, sans-serif;
-    color: #333;
-    background-color: #f4f4f9;
-    margin: 0;
-    padding: 0;
-}
-.container {
-    max-width: 900px;
-    margin: auto;
-    padding: 20px;
-}
-h1, h2, h3 {
-
-    color: #ffffff;
-    font-weight: bold;
-}
-h1 {
-    font-size: 36px;
-    text-align: center;
-}
-h2 {
-    font-size: 28px;
-    border-bottom: 2px solid #005f99;
-    padding-bottom: 5px;
-    margin-top: 20px;
-}
-h3 {
-    font-size: 24px;
-    color: #005f99;
-    margin-top: 15px;
-}
-p, li {
-    font-size: 18px;
-    line-height: 1.6;
-}
-ul {
-    list-style: none;
-    padding: 0;
-}
-ul li {
-    padding-left: 20px;
-    position: relative;
-    margin: 5px 0;
-}
-ul li::before {
-    content: "•";
-    color: #005f99;
-    position: absolute;
-    left: 0;
-}
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 15px;
-    font-size: 16px;
-}
-table, th, td {
-    border: 1px solid #ddd;
-}
-th {
-    background-color: #007acc;
-    color: white;
-}
-th, td {
-    padding: 10px;
-    text-align: left;
-}
 /* Responsive Design */
-@media (max-width: 600px) {
-    h1 { font-size: 28px; }
-    h2 { font-size: 24px; }
-    p, ul li { font-size: 16px; }
-}
-body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    margin: 20px;
-    color: #333;
-    background-color: #f8f8f8;
-}
+@media (max-width: 768px) {
+    .container, .hero {
+        padding: 15px;
+    }
 
-h1 {
-    font-size: 2.5em;
-    text-align: center;
-    color: #007BFF;
-    margin-bottom: 20px;
-}
+    h1 {
+        font-size: 2rem;
+    }
 
-h2 {
-    font-size: 2em;
-    color: #0056b3;
-    margin-top: 30px;
-    border-bottom: 2px solid #ccc;
-    padding-bottom: 5px;
-}
+    h2 {
+        font-size: 1.5rem;
+    }
 
-p {
-    margin: 15px 0;
-}
-
-ul {
-    margin: 15px 0;
-    padding-left: 20px;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-    background-color: #fff;
-}
-
-th, td {
-    padding: 10px;
-    text-align: left;
-    border: 1px solid #ccc;
-}
-
-th {
-    background-color: #e7f1ff;
-}
-
-tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-
-tr:hover {
-    background-color: #d1e7dd;
-}
-
-.angTable {
-    margin: 20px 0;
-    width: 100%;
-}
-
-.angTh {
-    background-color: #007BFF;
-    color: #fff;
-    padding: 10px;
-}
-
-.angTd {
-    padding: 10px;
-    border: 1px solid #ccc;
-}
-
-strong {
-    color: #000;
-}
-.unselectable {
-    -webkit-user-select: none; /* Safari */
-    -moz-user-select: none; /* Firefox */
-    -ms-user-select: none; /* Internet Explorer */
-    user-select: none; /* Standard syntax */
+    p, li {
+        font-size: 0.9rem;
+    }
 }

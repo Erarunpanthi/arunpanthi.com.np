@@ -288,3 +288,47 @@ footer a:hover {
         font-size: 28px;
     }
 }
+.semester {
+    background: linear-gradient(135deg, #4CAF50, #2E7D32); /* Professional green gradient */
+    color: #fff;
+    padding: 20px;
+    margin: 15px 0;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.semester:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Styling for the heading */
+.semester h2 {
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+/* Icon styling */
+.semester h2 i {
+    margin-right: 10px;
+    font-size: 1.8rem;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .semester {
+        padding: 15px;
+    }
+
+    .semester h2 {
+        font-size: 1.2rem;
+    }
+
+    .semester h2 i {
+        font-size: 1.5rem;
+    }
+}

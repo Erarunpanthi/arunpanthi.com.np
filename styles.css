@@ -392,3 +392,70 @@ footer a:hover {
     background-color: #0056b3;
     transform: scale(1.05);
 }
+/* CSS for a professional card-container class */
+.card-container {
+    display: flex; /* Allows for multiple cards to align in a row */
+    flex-wrap: wrap; /* Ensures cards wrap to the next line if needed */
+    gap: 20px; /* Adds spacing between cards */
+    justify-content: center; /* Centers the cards horizontally */
+    padding: 20px; /* Adds padding around the container */
+    background-color: #f8f9fa; /* Light background for contrast */
+}
+
+.card-container .card {
+    background-color: #ffffff; /* White background for the card */
+    border: 1px solid #e0e0e0; /* Subtle border */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for a 3D effect */
+    overflow: hidden; /* Ensures content stays inside the card */
+    width: 300px; /* Fixed width for uniformity */
+    max-width: 100%; /* Responsive design for smaller screens */
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth hover effects */
+}
+
+.card-container .card:hover {
+    transform: translateY(-5px); /* Slight lift on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+}
+
+.card-container .card img {
+    width: 100%; /* Ensures image spans the full card width */
+    height: auto; /* Maintains image aspect ratio */
+    border-bottom: 1px solid #e0e0e0; /* Divider between image and content */
+}
+
+.card-container .card .card-content {
+    padding: 15px; /* Inner padding for content */
+    text-align: center; /* Center-aligns the text */
+}
+
+.card-container .card .card-content h3 {
+    font-size: 1.5rem; /* Larger heading font size */
+    font-weight: bold; /* Bold text for emphasis */
+    color: #333333; /* Dark text for readability */
+    margin: 0 0 10px; /* Spacing below the heading */
+}
+
+.card-container .card .card-content p {
+    font-size: 1rem; /* Standard paragraph font size */
+    color: #666666; /* Subtle gray text for descriptions */
+    margin: 0; /* Removes default margins */
+    line-height: 1.6; /* Improves readability */
+}
+
+.card-container .card .card-actions {
+    padding: 15px;
+    border-top: 1px solid #e0e0e0; /* Divider above actions */
+    text-align: center; /* Center-aligns the actions */
+}
+
+.card-container .card .card-actions a {
+    text-decoration: none; /* Removes underline */
+    color: #007bff; /* Blue link for visibility */
+    font-weight: bold; /* Makes links stand out */
+    transition: color 0.2s ease; /* Smooth color transition */
+}
+
+.card-container .card .card-actions a:hover {
+    color: #0056b3; /* Darker blue on hover */
+}

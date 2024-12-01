@@ -459,3 +459,66 @@ footer a:hover {
 .card-container .card .card-actions a:hover {
     color: #0056b3; /* Darker blue on hover */
 }
+.semester {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    padding: 20px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.semester:hover {
+    transform: scale(1.02);
+}
+
+.semester h2 {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    color: #2980b9;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.semester i {
+    margin-right: 10px;
+}
+
+/* Subject Box */
+.subjects {
+    display: none;
+    padding: 10px 0;
+}
+
+.subject-box {
+    background-color: #ecf0f1;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 6px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.subject-box:hover {
+    background-color: #3498db;
+    color: white;
+    transform: translateX(5px);
+}
+
+.subject-box a {
+    text-decoration: none;
+    color: #2980b9;
+    font-size: 18px;
+    display: block;
+    transition: color 0.3s ease;
+}
+
+.subject-box a:hover {
+    color: #ffffff;
+}
+
+.subject-box i {
+    margin-right: 8px;
+}
+

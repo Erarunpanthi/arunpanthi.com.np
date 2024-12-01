@@ -1,10 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6D2MGHYT8W"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6D2MGHYT8W');
+</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- Title Tag -->
+    <!-- Title Tag (Important for SEO) -->
     <title>CivPrepMaster - Best Civil Engineering Study Materials, PSC and NEC Preparation in Nepal</title>
 
     <!-- Meta Description -->
@@ -26,6 +35,9 @@
     <meta name="twitter:title" content="CivPrepMaster | Best Civil Engineering Study Materials for Nepalese Students">
     <meta name="twitter:description" content="Find Civil Engineering study resources, PSC exam prep materials, and NEC license practice materials to boost your career in engineering.">
     <meta name="twitter:image" content="https://arunpanthi.com.np/images/logo.png">
+
+    <!-- Google Site Verification (for Google Search Console) -->
+    <meta name="google-site-verification" content="your-google-verification-code">
 
     <!-- Canonical URL -->
     <link rel="canonical" href="https://arunpanthi.com.np">
@@ -61,8 +73,33 @@
     <!-- Favicon -->
     <link rel="icon" href="https://arunpanthi.com.np/favicon.ico">
 
-    <!-- CSS Styles -->
+    <!-- Load CSS and JavaScript -->
     <link rel="stylesheet" href="styles.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-G-6D2MGHYT8W"></script> <!-- Google Analytics Script -->
+    
+    <script>
+        // Google Analytics Setup
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-G-6D2MGHYT8W'); // Replace with your Google Analytics ID
+    </script>
+
+    <!-- Lazy Load Images (for faster page load) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var lazyImages = document.querySelectorAll('img.lazy');
+            lazyImages.forEach(function(img) {
+                img.src = img.dataset.src;
+                img.onload = function() {
+                    img.classList.remove('lazy');
+                };
+            });
+        });
+    </script>
+
+    <!-- Enable Gzip Compression on Server -->
+    <meta http-equiv="Content-Encoding" content="gzip">
 </head>
 <body>
 

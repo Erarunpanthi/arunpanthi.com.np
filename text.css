@@ -1,4 +1,38 @@
-/* Basic Styling */
+/* Input Fields */
+input {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+input:focus {
+    border-color: #4CAF50;
+    background-color: #e8f8e8;
+    outline: none;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.7);
+}
+
+/* Placeholder Text */
+input::placeholder {
+    color: #888;
+    font-style: italic;
+}
+
+/* Focus effect on input */
+input:focus::placeholder {
+    color: transparent; /* Makes the placeholder disappear on focus */
+}
+
+/* Input Hover Effect */
+input:hover {
+    border-color: #45a049;
+}
+/* Reset styles */
 * {
     margin: 0;
     padding: 0;
@@ -15,30 +49,80 @@ h1, h2, p {
     font-family: 'Roboto', sans-serif;
 }
 
+/* Form Container */
 #user-form, #test-page, #result-page {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #fff;
-    flex-direction: column;
+    background-color: #ffffff;
     padding: 20px;
+    text-align: center;
+    flex-direction: column;
 }
 
 .form-container {
-    max-width: 400px;
-    text-align: center;
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 10px;
+    max-width: 500px;
+    width: 100%;
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
-    font-size: 2rem;
-    color: #3a3a3a;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #2d2d2d;
 }
 
+p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: #555;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+label {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    display: block;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    margin-bottom: 20px;
+}
+
+input:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Animations */
 .fade-in {
     animation: fadeIn 1s ease-out;
 }
@@ -65,61 +149,42 @@ h1 {
     }
 }
 
-.form-group {
-    margin-bottom: 15px;
-}
-
-label {
-    font-size: 1.1rem;
-    margin-bottom: 5px;
-    display: block;
-}
-
-input {
-    width: 100%;
-    padding: 10px;
-    margin: 5px 0 15px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1rem;
-}
-
-button {
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    font-size: 1.2rem;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #45a049;
-}
-
+/* Test Page */
 #test-page {
-    max-width: 600px;
+    max-width: 800px;
     width: 100%;
+}
+
+#question-text {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
 }
 
 .option-container {
-    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .option-btn {
-    padding: 15px;
-    background-color: #f0f0f0;
-    border: none;
-    width: 100%;
-    margin: 5px 0;
-    border-radius: 5px;
+    padding: 12px;
+    background-color: #f9f9f9;
+    border: 2px solid #ccc;
+    border-radius: 6px;
     cursor: pointer;
     font-size: 1.1rem;
+    transition: background-color 0.3s ease;
 }
 
 .option-btn:hover {
     background-color: #e0e0e0;
+}
+
+/* Timer & Status */
+.timer-container {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
 }
 
 #status {
@@ -128,10 +193,7 @@ button:hover {
 
 #end-test {
     background-color: #e74c3c;
-    color: white;
-    border-radius: 5px;
-    margin-top: 20px;
-    padding: 10px 20px;
+    margin-top: 30px;
     font-size: 1.2rem;
 }
 
@@ -144,6 +206,10 @@ button:hover {
     max-width: 600px;
     width: 100%;
     text-align: center;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 #correct-answers {
@@ -153,6 +219,7 @@ button:hover {
 }
 
 #correct-answers li {
-    font-size: 1.1rem;
-    margin: 5px 0;
+    font-size: 1.2rem;
+    margin: 10px 0;
+    color: #333;
 }

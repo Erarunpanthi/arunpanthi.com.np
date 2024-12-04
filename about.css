@@ -1,0 +1,191 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #e8f5e9; /* Light green background */
+    color: #333;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #388E3C; /* Dark green header */
+    padding: 15px 0;
+    color: white;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: #2E7D32; /* Darker green navbar */
+    padding: 10px 0;
+}
+
+.navbar a {
+    color: #fff; /* Link color */
+    padding: 8px 10px; /* Reduced padding for compactness */
+    text-decoration: none; /* Remove underline */
+    font-size: 14px; /* Smaller font size */
+    transition: background-color 0.3s; /* Animation */
+}
+
+.navbar a:hover {
+    background-color: #1B5E20; /* Even darker green on hover */
+}
+
+/* About Section */
+.about-container {
+    background: linear-gradient(135deg, #4CAF50, #2E7D32);
+    color: #fff;
+    padding: 50px 20px;
+    text-align: center;
+    margin: 20px auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 1s ease-in-out;
+    max-width: 800px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.about-container h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.about-container p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+/* List */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    background-color: #e0f7fa;
+    margin: 10px;
+    padding: 15px;
+    border-radius: 5px;
+    text-align: justify;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+ul li:hover {
+    transform: translateX(5px);
+}
+
+ul li strong {
+    color: #00796b;
+}
+
+ul li span {
+    color: #4CAF50;
+}
+
+/* Team Photo */
+.team-photo {
+    border-radius: 50%;
+    max-width: 300px;
+    height: auto;
+    margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s;
+}
+
+.team-photo:hover {
+    transform: scale(1.1);
+}
+
+/* Call-to-Action Button */
+.cta-button {
+    background-color: #fff;
+    color: #28a745;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 18px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #ddd;
+    transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .about-container {
+        padding: 30px;
+    }
+    .about-container h1 {
+        font-size: 28px;
+    }
+    .about-container p {
+        font-size: 16px;
+    }
+}
+
+/* Social Media Section */
+.social-media {
+    background: linear-gradient(135deg, #4CAF50, #2E7D32);
+    color: white;
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.social-media h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.social-media p {
+    font-size: 18px;
+    margin-bottom: 40px;
+}
+
+.social-media .icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.social-media .icons a {
+    color: #fff;
+    font-size: 36px;
+    transition: transform 0.3s;
+}
+
+.social-media .icons a:hover {
+    transform: scale(1.2);
+}
+
+/* Footer */
+footer {
+    background-color: #4CAF50;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+footer a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}

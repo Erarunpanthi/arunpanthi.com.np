@@ -1,5 +1,3 @@
-document.getElementById("detailsForm").addEventListener("submit", function(e) {
-    e.preventDefault();
     
 // Form and Page Handling
 const form = document.getElementById("detailsForm");

@@ -257,22 +257,37 @@ footer a:hover {
     display: none; /* Hide the body during print */
   }
 }
+/* General Table Styling */
+table {
+  border-collapse: collapse; /* Merge borders between cells */
+  width: auto; /* Table width fits content */
+  table-layout: auto; /* Let the table resize based on content */
+  margin: 20px auto; /* Center the table on the page */
+  font-family: Arial, sans-serif; /* Choose a comfortable font */
+}
+
 th, td {
-  padding: 8px; /* Add padding inside the cells */
-  text-align: left; /* Align text to the left */
-  border: 1px solid #ccc; /* Border color for cells */
-  font-size: 16px; /* Font size for the text */
+  padding: 8px; /* Add padding inside cells for better spacing */
+  text-align: left; /* Left-align the text inside cells */
+  border: 1px solid #ccc; /* Light border for the table cells */
+  font-size: 16px; /* Set the font size for the text */
+  vertical-align: top; /* Align text to the top of the cell */
 }
 
 th {
   background-color: #f2f2f2; /* Light grey background for table headers */
-  font-weight: bold; /* Bold text for headers */
+  font-weight: bold; /* Make header text bold */
 }
 
 tr:nth-child(even) {
-  background-color: #f9f9f9; /* Zebra-striping effect for rows */
+  background-color: #f9f9f9; /* Zebra-striping effect for alternate rows */
 }
 
 tr:hover {
-  background-color: #f1f1f1; /* Highlight row on hover */
+  background-color: #f1f1f1; /* Highlight the row when hovered */
+}
+
+/* Optional: Add a little space around the table for better presentation */
+body {
+  margin: 10px;
 }

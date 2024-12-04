@@ -138,28 +138,28 @@ ul li span {
     }
 }
 
-/* Social Media Section */
 .social-media {
     background: linear-gradient(135deg, #4CAF50, #2E7D32);
-    color: white;
-    padding: 50px 20px;
+    color: white; /* White text for social media section */
+    padding: 30px 20px; /* Reduced padding */
     text-align: center;
+    border-radius: 20px; /* Increased border radius */
+    margin: 30px auto; /* Increased margin */
 }
 
 .social-media h2 {
-    font-size: 36px;
-    margin-bottom: 20px;
+    color: white; /* White color for heading */
+    margin: 10px 0; /* Reduced margin */
 }
 
 .social-media p {
-    font-size: 18px;
-    margin-bottom: 40px;
+    margin: 10px 0; /* Reduced margin for paragraph */
 }
 
 .social-media .icons {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 20px; /* Space between icons */
 }
 
 .social-media .icons a {
@@ -172,7 +172,7 @@ ul li span {
     transform: scale(1.2);
 }
 
-/* Footer */
+/* Footer Styles */
 footer {
     background-color: #4CAF50;
     color: #fff;
@@ -189,6 +189,19 @@ footer a {
 
 footer a:hover {
     text-decoration: underline;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .hero {
+        padding: 15px; /* Further reduce padding for smaller screens */
+    }
+    .section {
+        padding: 15px; /* Adjust section padding */
+    }
+    .social-media {
+        padding: 20px; /* Further reduce padding */
+    }
 }
 .secondary-button {
     background-color: #6c757d; /* Grey button background */

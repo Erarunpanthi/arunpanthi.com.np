@@ -1,0 +1,122 @@
+/* General styling for the section */
+.section {
+  background-color: #f7f9fc;
+  padding: 20px;
+  border-radius: 10px;
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling for ordered and unordered lists */
+.section ol, .section ul {
+  padding-left: 20px;
+  margin: 10px 0;
+}
+
+.section ol li, .section ul li {
+  margin: 10px 0;
+  text-align: justify; /* Left-justify the text */
+  color: #2c3e50;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+/* Add numbering style for <li> with animations */
+.section ol li::marker, 
+.section ul li::marker {
+  content: attr(value) ". ";
+  color: #e74c3c;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+/* Bold styling for highlighted list items */
+.section li strong {
+  color: #3498db;
+  font-weight: bold;
+}
+
+/* Animated typing effect */
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}
+
+.typing-effect {
+  overflow: hidden;
+  border-right: 2px solid #34495e;
+  white-space: nowrap;
+  width: 100%; /* Adjust width for animation */
+  display: inline-block;
+  animation: typing 3s steps(50, end), blink 0.75s step-end infinite;
+}
+
+/* Styling for the table */
+.section table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.section table, 
+.section table th, 
+.section table td {
+  border: 2px solid #e74c3c;
+}
+
+.section table th, 
+.section table td {
+  padding: 10px;
+  text-align: center;
+  font-size: 16px;
+}
+
+.section table th {
+  background-color: #e74c3c;
+  color: white;
+  font-weight: bold;
+}
+
+.section table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.section table tr:hover {
+  background-color: #dff9fb;
+}
+
+/* Styling for headers */
+.section p strong:first-of-type {
+  font-size: 20px;
+  color: #1abc9c;
+  border-bottom: 2px solid #1abc9c;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+/* Highlight specific list items */
+.section ul li:nth-child(1), 
+.section ul li:nth-child(3) {
+  background-color: #f9ecec;
+  border-radius: 5px;
+  padding: 8px;
+}
+
+/* Hover effects for interactive components */
+.section ol li:hover, 
+.section ul li:hover {
+  color: #1abc9c;
+  cursor: pointer;
+}

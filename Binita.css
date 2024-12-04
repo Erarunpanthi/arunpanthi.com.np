@@ -1,5 +1,11 @@
 /* General styling for the section in card view */
 .section {
+  user-select: none;
+    -webkit-user-select: none; /* Chrome, Safari, Opera */
+    -moz-user-select: none;    /* Firefox */
+    -ms-user-select: none;     /* Internet Explorer/Edge */
+   pointer-events: none; /* Disable interaction */
+    user-select: none;    /* Disable text selection */
   background-color: #ffffff;
   padding: 20px;
   margin: 10px auto;

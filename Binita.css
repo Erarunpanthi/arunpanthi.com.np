@@ -129,3 +129,237 @@
   display: inline-block;
   animation: typing 3s steps(50, end), blink 0.75s step-end infinite;
 }
+/* General styling for the section in card view */
+.section {
+  background-color: #ffffff;
+  padding: 20px;
+  margin: 10px auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+  width: 96%; /* Card width as 96% of screen width */
+  max-width: 1200px; /* Limit max width on larger screens */
+  text-align: justify;
+}
+
+/* Add 2cm gaps on the sides */
+.section-container {
+  padding: 0 2cm;
+}
+
+/* Styling for ordered and unordered lists */
+.section ol, .section ul {
+  padding-left: 20px;
+  margin: 10px 0;
+}
+
+.section ol li, .section ul li {
+  margin: 10px 0;
+  text-align: justify;
+  color: #2c3e50;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+/* Add custom numbering style for <li> */
+.section ol li::marker, 
+.section ul li::marker {
+  content: attr(value) ". ";
+  color: #e74c3c;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+/* Highlight specific list items */
+.section li strong {
+  color: #3498db;
+  font-weight: bold;
+}
+
+/* Table styling */
+.section table {
+  border-collapse: collapse;
+  margin: 20px auto;
+  border: 2px solid #e74c3c;
+  text-align: center;
+  width: auto; /* Make table width fit content */
+}
+
+.section table th, 
+.section table td {
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 1px solid #e74c3c;
+}
+
+.section table th {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.section table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.section table tr:hover {
+  background-color: #fcecec;
+}
+
+/* Responsive design for mobile and laptop */
+@media (max-width: 768px) {
+  .section {
+    padding: 15px;
+  }
+
+  .section-container {
+    padding: 0 1cm; /* Adjust padding for smaller screens */
+  }
+
+  .section ol li, .section ul li {
+    font-size: 14px; /* Slightly smaller font size */
+  }
+
+  .section table th, 
+  .section table td {
+    font-size: 14px; /* Adjust table font size */
+    padding: 8px 10px; /* Adjust padding */
+  }
+}
+
+/* Header styling */
+.section p strong:first-of-type {
+  font-size: 20px;
+  color: #1abc9c;
+  border-bottom: 2px solid #1abc9c;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+/* Animated typing effect */
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}
+
+.typing-effect {
+  overflow: hidden;
+  border-right: 2px solid #34495e;
+  white-space: nowrap;
+  width: 100%;
+  display: inline-block;
+  animation: typing 3s steps(50, end), blink 0.75s step-end infinite;
+}
+.navbar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: #2E7D32; /* Darker green navbar */
+    padding: 10px 0;
+}
+
+.navbar a {
+    color: #fff; /* Link color */
+    padding: 8px 10px; /* Reduced padding for compactness */
+    text-decoration: none; /* Remove underline */
+    font-size: 14px; /* Smaller font size */
+    transition: background-color 0.3s; /* Animation */
+}
+
+.navbar a:hover {
+    background-color: #1B5E20; /* Even darker green on hover */
+}
+.hero {
+    background-color: #4CAF50; /* Green background for hero section */
+    color: white; /* White text for hero section */
+    padding: 20px 20px; /* Reduced padding */
+    text-align: center;
+    border-radius: 10px; /* Rounded corners */
+    margin: 30px auto; /* Increased margin */
+    max-width: 800px; /* Centered with max width */
+}
+
+.hero h1 {
+    font-size: 36px; /* Heading size */
+    color: white; /* White color for heading */
+    margin: 10px 0; /* Reduced margin */
+}
+
+.hero p {
+    margin: 10px 0; /* Reduced margin for paragraph */
+}
+.social-media {
+    background: linear-gradient(135deg, #4CAF50, #2E7D32);
+    color: white; /* White text for social media section */
+    padding: 30px 20px; /* Reduced padding */
+    text-align: center;
+    border-radius: 20px; /* Increased border radius */
+    margin: 30px auto; /* Increased margin */
+}
+
+.social-media h2 {
+    color: white; /* White color for heading */
+    margin: 10px 0; /* Reduced margin */
+}
+
+.social-media p {
+    margin: 10px 0; /* Reduced margin for paragraph */
+}
+
+.social-media .icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Space between icons */
+}
+
+.social-media .icons a {
+    color: #fff;
+    font-size: 36px;
+    transition: transform 0.3s;
+}
+
+.social-media .icons a:hover {
+    transform: scale(1.2);
+}
+
+/* Footer Styles */
+footer {
+    background-color: #4CAF50;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+footer a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .hero {
+        padding: 15px; /* Further reduce padding for smaller screens */
+    }
+    .section {
+        padding: 15px; /* Adjust section padding */
+    }
+    .social-media {
+        padding: 20px; /* Further reduce padding */
+    }
+}

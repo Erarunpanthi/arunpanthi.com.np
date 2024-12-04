@@ -10,20 +10,23 @@ body, h1, h2, p, a {
 /* Navbar */
 .navbar {
     display: flex;
-    justify-content: space-around;
-    background: #004d40;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: #2E7D32; /* Darker green navbar */
     padding: 10px 0;
 }
+
 .navbar a {
-    color: white;
-    text-decoration: none;
-    font-size: 16px;
-    transition: color 0.3s;
-}
-.navbar a:hover {
-    color: #00e676;
+    color: #fff; /* Link color */
+    padding: 8px 10px; /* Reduced padding for compactness */
+    text-decoration: none; /* Remove underline */
+    font-size: 14px; /* Smaller font size */
+    transition: background-color 0.3s; /* Animation */
 }
 
+.navbar a:hover {
+    background-color: #1B5E20; /* Even darker green on hover */
+}
 /* Container */
 .Binitacontainer {
     max-width: 800px;
@@ -128,16 +131,19 @@ button:hover {
 
 /* Footer */
 footer {
+    background-color: #4CAF50;
+    color: #fff;
     text-align: center;
-    padding: 15px;
-    background: #004d40;
-    color: white;
-    margin-top: 30px;
+    padding: 20px;
+    margin-top: 20px;
 }
+
 footer a {
-    color: #00e676;
+    color: #fff;
     text-decoration: none;
+    margin: 0 10px;
 }
+
 footer a:hover {
     text-decoration: underline;
 }

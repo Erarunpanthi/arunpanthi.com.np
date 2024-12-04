@@ -1,0 +1,67 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+.content-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    font-size: 36px;
+    color: #2d3e50;
+    margin-top: 20px;
+    text-transform: uppercase;
+}
+
+p {
+    font-size: 18px;
+    margin: 15px 0;
+    padding: 0 20px;
+}
+
+strong {
+    color: #2c3e50;
+}
+
+ol {
+    margin-left: 40px;
+    padding-left: 40px; /* Adding 1 inch (about 40px) left indentation */
+    font-size: 18px;
+}
+
+ol li {
+    margin: 8px 0;
+}
+
+table {
+    width: 100%;
+    margin: 20px 0;
+    border-collapse: collapse;
+    border: 2px solid #3498db;
+}
+
+table th, table td {
+    padding: 12px 15px; /* Adjust padding to fit the content */
+    text-align: left;
+    border: 1px solid #3498db;
+}
+
+table th {
+    background-color: #3498db;
+    color: white;
+}
+
+table td {
+    background-color: #ecf0f1;
+}

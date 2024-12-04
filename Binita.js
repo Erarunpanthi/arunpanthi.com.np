@@ -7,7 +7,7 @@ document.addEventListener('contextmenu', function(e) {
 // Disable text selection
 document.addEventListener('selectstart', function(e) {
     e.preventDefault();
-    alert("Text selection is disabled on this page.");
+    
 });
 
 // Disable copying

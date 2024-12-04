@@ -12,7 +12,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   font-family: 'Arial', sans-serif;
   line-height: 1.6;
-  width: 96%; /* Card width as 96% of screen width */
+  width: 94%; /* Card width as 96% of screen width */
   max-width: 1200px; /* Limit max width on larger screens */
   text-align: justify;
   color: #555; /* Comfortable text color */
@@ -20,7 +20,7 @@
 
 /* Add 2cm gaps on the sides */
 .section-container {
-  padding: 0 2cm;
+  padding: 0 3cm;
 }
 
 /* Styling for ordered and unordered lists */
@@ -55,13 +55,16 @@
 
 /* Table styling */
 .section table {
+  
   border-collapse: collapse;
   margin: 20px auto;
   border: 2px solid #e74c3c;
-  text-align: center;
+   text-align: left; 
   width: 100%; /* Make table fit the content */
   height: auto; /* Ensure table height adjusts to fit content */
+  table-layout: auto; 
 }
+
 
 .section table th, 
 .section table td {
@@ -254,4 +257,22 @@ footer a:hover {
     display: none; /* Hide the body during print */
   }
 }
+th, td {
+  padding: 8px; /* Add padding inside the cells */
+  text-align: left; /* Align text to the left */
+  border: 1px solid #ccc; /* Border color for cells */
+  font-size: 16px; /* Font size for the text */
+}
 
+th {
+  background-color: #f2f2f2; /* Light grey background for table headers */
+  font-weight: bold; /* Bold text for headers */
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9; /* Zebra-striping effect for rows */
+}
+
+tr:hover {
+  background-color: #f1f1f1; /* Highlight row on hover */
+}

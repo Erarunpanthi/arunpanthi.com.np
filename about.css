@@ -200,11 +200,11 @@ footer a:hover {
         padding: 15px; /* Adjust section padding */
     }
     .social-media {
-        padding: 20px; /* Further reduce padding */
+        padding: 15px; /* Further reduce padding */
     }
 }
 .secondary-button {
-    background-color: #6c757d; /* Grey button background */
+    background-color: #ffa500; /* Grey button background */
     color: white; /* White text for button */
     padding: 10px 20px; /* Padding */
     text-decoration: none;

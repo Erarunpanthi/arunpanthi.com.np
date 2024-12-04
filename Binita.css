@@ -55,23 +55,24 @@
 
 /* Table styling */
 .section table {
-  
-  border-collapse: collapse;
-  margin: 20px auto;
-  border: 2px solid #e74c3c;
-   text-align: left; 
-  width: 100%; /* Make table fit the content */
-  height: auto; /* Ensure table height adjusts to fit content */
-  table-layout: auto; 
+  table-layout: auto;
+    border-collapse: collapse; /* Merge borders for a clean look */
+  width: auto; /* Table width adjusts to content */
+  table-layout: auto; /* Allow table to resize based on content */
+  margin: 10px auto; /* Center table with some margin */
+  font-family: Arial, sans-serif; /* Comfortable font for readability */
+  font-size: 14px;  
 }
 
 
 .section table th, 
 .section table td {
-  padding: 8px 12px; /* Adjust padding for content fit */
-  font-size: 14px;
-  border: 1px solid #e74c3c;
-  word-wrap: break-word; /* Ensure text doesn't overflow */
+  padding: 6px; /* Match cellpadding with consistent spacing */
+  text-align: left; /* Align content to the left */
+  border: 1px solid #ccc; /* Light border for clarity */
+  vertical-align: top; /* Align text at the top of the cell */
+  white-space: nowrap; /* Prevent content from wrapping */
+table-layout: auto;
 }
 
 .section table th {
@@ -264,6 +265,7 @@ table {
   table-layout: auto; /* Let the table resize based on content */
   margin: 20px auto; /* Center the table on the page */
   font-family: Arial, sans-serif; /* Choose a comfortable font */
+  table-layout: auto;
 }
 
 th, td {

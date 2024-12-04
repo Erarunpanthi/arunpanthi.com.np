@@ -369,3 +369,14 @@ footer a:hover {
         padding: 20px; /* Further reduce padding */
     }
 }
+@media print {
+    section {
+        display: none; /* Hide the body during print */
+    }
+}
+
+@media print {
+    body {
+        display: none; /* Hide the body during print */
+    }
+}

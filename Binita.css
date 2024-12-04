@@ -1,11 +1,20 @@
-/* General styling for the section */
+/* General styling for the section in card view */
 .section {
-  background-color: #f7f9fc;
+  background-color: #ffffff;
   padding: 20px;
+  margin: 10px auto;
   border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   font-family: 'Arial', sans-serif;
   line-height: 1.6;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 96%; /* Card width as 96% of screen width */
+  max-width: 1200px; /* Limit max width on larger screens */
+  text-align: justify;
+}
+
+/* Add 2cm gaps on the sides */
+.section-container {
+  padding: 0 2cm;
 }
 
 /* Styling for ordered and unordered lists */
@@ -16,13 +25,13 @@
 
 .section ol li, .section ul li {
   margin: 10px 0;
-  text-align: justify; /* Left-justify the text */
+  text-align: justify;
   color: #2c3e50;
   font-size: 16px;
   line-height: 1.8;
 }
 
-/* Add numbering style for <li> with animations */
+/* Add custom numbering style for <li> */
 .section ol li::marker, 
 .section ul li::marker {
   content: attr(value) ". ";
@@ -31,10 +40,69 @@
   font-size: 18px;
 }
 
-/* Bold styling for highlighted list items */
+/* Highlight specific list items */
 .section li strong {
   color: #3498db;
   font-weight: bold;
+}
+
+/* Table styling */
+.section table {
+  border-collapse: collapse;
+  margin: 20px auto;
+  border: 2px solid #e74c3c;
+  text-align: center;
+  width: auto; /* Make table width fit content */
+}
+
+.section table th, 
+.section table td {
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 1px solid #e74c3c;
+}
+
+.section table th {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.section table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.section table tr:hover {
+  background-color: #fcecec;
+}
+
+/* Responsive design for mobile and laptop */
+@media (max-width: 768px) {
+  .section {
+    padding: 15px;
+  }
+
+  .section-container {
+    padding: 0 1cm; /* Adjust padding for smaller screens */
+  }
+
+  .section ol li, .section ul li {
+    font-size: 14px; /* Slightly smaller font size */
+  }
+
+  .section table th, 
+  .section table td {
+    font-size: 14px; /* Adjust table font size */
+    padding: 8px 10px; /* Adjust padding */
+  }
+}
+
+/* Header styling */
+.section p strong:first-of-type {
+  font-size: 20px;
+  color: #1abc9c;
+  border-bottom: 2px solid #1abc9c;
+  display: inline-block;
+  margin-bottom: 10px;
 }
 
 /* Animated typing effect */
@@ -57,66 +125,7 @@
   overflow: hidden;
   border-right: 2px solid #34495e;
   white-space: nowrap;
-  width: 100%; /* Adjust width for animation */
+  width: 100%;
   display: inline-block;
   animation: typing 3s steps(50, end), blink 0.75s step-end infinite;
-}
-
-/* Styling for the table */
-.section table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 20px 0;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.section table, 
-.section table th, 
-.section table td {
-  border: 2px solid #e74c3c;
-}
-
-.section table th, 
-.section table td {
-  padding: 10px;
-  text-align: center;
-  font-size: 16px;
-}
-
-.section table th {
-  background-color: #e74c3c;
-  color: white;
-  font-weight: bold;
-}
-
-.section table tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-
-.section table tr:hover {
-  background-color: #dff9fb;
-}
-
-/* Styling for headers */
-.section p strong:first-of-type {
-  font-size: 20px;
-  color: #1abc9c;
-  border-bottom: 2px solid #1abc9c;
-  display: inline-block;
-  margin-bottom: 10px;
-}
-
-/* Highlight specific list items */
-.section ul li:nth-child(1), 
-.section ul li:nth-child(3) {
-  background-color: #f9ecec;
-  border-radius: 5px;
-  padding: 8px;
-}
-
-/* Hover effects for interactive components */
-.section ol li:hover, 
-.section ul li:hover {
-  color: #1abc9c;
-  cursor: pointer;
 }

@@ -145,7 +145,7 @@
 <body>
 
     <!-- User Info Form -->
-    <form id="detailsForm" class="slide-in">
+    <form id="detailsForm">
         <div class="form-group">
             <h1 class="fade-in">Welcome to the MCQ Test</h1>
             <p class="fade-in">Enter your details to begin.</p>
@@ -168,7 +168,7 @@
     </form>
 
     <!-- MCQ Test Page -->
-    <section id="test-page" style="display:none;">
+    <section id="test-page">
         <header>
             <div class="header-container">
                 <div class="user-info fade-in">
@@ -206,7 +206,7 @@
     </section>
 
     <!-- Results Page -->
-    <section id="result-page" style="display:none;">
+    <section id="result-page">
         <div class="results-container slide-in">
             <h1>Your Test Results</h1>
             <div id="result-message" class="fade-in"></div>
@@ -218,7 +218,6 @@
     <script>
         // Form and Page Handling
         const form = document.getElementById("detailsForm");
-        const userForm = document.getElementById("user-form");
         const testPage = document.getElementById("test-page");
         const resultPage = document.getElementById("result-page");
 
@@ -240,7 +239,7 @@
             document.getElementById("display-phone").innerText = form.phone.value;
             document.getElementById("display-university").innerText = form.university.value;
 
-            userForm.style.display = "none";
+            form.style.display = "none";
             testPage.style.display = "block";
             startTest();
         });
@@ -256,23 +255,25 @@
             const optionButtons = document.querySelectorAll(".option-btn");
             optionButtons.forEach((btn, index) => {
                 btn.innerText = question.options[index];
-                btn.onclick = () => selectAnswer(index + 1);
+                btn.onclick = () => selectAnswer(index);
             });
-            updateStatus();
         }
 
-        function selectAnswer(option) {
-            if (!answers[currentQuestion]) attempted++;
-            answers[currentQuestion] = option;
-            if (questions[currentQuestion].correct === option) {
-                score += questions[currentQuestion].marks;
-            }
+        function selectAnswer(selectedIndex) {
+            answers[currentQuestion] = selectedIndex;
+            attempted++;
+            updateStatus();
             currentQuestion++;
             if (currentQuestion < questions.length) {
                 loadQuestion();
             } else {
                 endTest();
             }
+        }
+
+        function updateStatus() {
+            document.getElementById("attempted").innerText = attempted;
+            document.getElementById("left").innerText = questions.length - attempted;
         }
 
         function startTimer() {
@@ -289,11 +290,6 @@
                     endTest();
                 }
             }, 1000);
-        }
-
-        function updateStatus() {
-            document.getElementById("attempted").innerText = attempted;
-            document.getElementById("left").innerText = questions.length - attempted;
         }
 
         function endTest() {
@@ -317,3 +313,4 @@
 
 </body>
 </html>
+

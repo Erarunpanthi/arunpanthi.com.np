@@ -78,7 +78,7 @@ let isBlurred = false;
 window.addEventListener('focus', () => {
     if (isBlurred) {
         alert("Screenshots may have been taken! Content is protected.");
-        isBlurred = false;
+        isBlurred = true;
     }
 });
 window.addEventListener('blur', () => {

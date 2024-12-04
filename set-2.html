@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SET-1 NEC_MOCK</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Form Styles */
+        #detailsForm {
+            width: 100%;
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        h1, p {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input[type="text"], input[type="email"] {
+            width: 100%;
+            padding: 12px;
+            font-size: 1rem;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus, input[type="email"]:focus {
+            border-color: #4CAF50;
+            background-color: #e8f8e8;
+            outline: none;
+            box-shadow: 0 0 5px rgba(76, 175, 80, 0.7);
+        }
+
+        button.btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button.btn:hover {
+            background-color: #45a049;
+        }
+
+        /* MCQ Test Styles */
+        #test-page {
+            display: none;
+            padding: 20px;
+        }
+
+        .option-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .option-btn {
+            padding: 12px;
+            font-size: 1rem;
+            background-color: #fff;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .option-btn:hover {
+            background-color: #f1f1f1;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease-in-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Timer and Status Styles */
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .timer-container {
+            font-size: 1.2rem;
+        }
+
+        #result-page {
+            display: none;
+            padding: 20px;
+        }
+
+        .results-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- User Info Form -->
+    <form id="detailsForm" class="slide-in">
+        <div class="form-group">
+            <h1 class="fade-in">Welcome to the MCQ Test</h1>
+            <p class="fade-in">Enter your details to begin.</p>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" placeholder="Enter your name" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email ID:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone Number:</label>
+            <input type="text" id="phone" name="phone" placeholder="Enter your phone number" required>
+        </div>
+        <div class="form-group">
+            <label for="university">University:</label>
+            <input type="text" id="university" name="university" placeholder="Enter your university" required>
+        </div>
+        <button type="submit" class="btn">Start Test</button>
+    </form>
+
+    <!-- MCQ Test Page -->
+    <section id="test-page" style="display:none;">
+        <header>
+            <div class="header-container">
+                <div class="user-info fade-in">
+                    <img src="logo.png" alt="Logo" class="logo">
+                    <div id="user-info-card">
+                        <h2 id="display-username"></h2>
+                        <p id="display-email"></p>
+                        <p id="display-phone"></p>
+                        <p id="display-university"></p>
+                    </div>
+                </div>
+                <div class="timer-container slide-in">
+                    <span>⏳ Time Left:</span>
+                    <span id="timer">100:00</span>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div id="question-section" class="fade-in">
+                <h2 id="question-text"></h2>
+                <div id="options" class="option-container">
+                    <button class="option-btn">Option 1</button>
+                    <button class="option-btn">Option 2</button>
+                    <button class="option-btn">Option 3</button>
+                    <button class="option-btn">Option 4</button>
+                </div>
+            </div>
+            <div id="status" class="fade-in">
+                <p>Attempted: <span id="attempted">0</span></p>
+                <p>Left: <span id="left"></span></p>
+            </div>
+            <button id="end-test" class="btn fade-in">End Test</button>
+        </main>
+    </section>
+
+    <!-- Results Page -->
+    <section id="result-page" style="display:none;">
+        <div class="results-container slide-in">
+            <h1>Your Test Results</h1>
+            <div id="result-message" class="fade-in"></div>
+            <h2>Correct Answers:</h2>
+            <ul id="correct-answers" class="fade-in"></ul>
+        </div>
+    </section>
+
+    <script>
+        // Form and Page Handling
+        const form = document.getElementById("detailsForm");
+        const userForm = document.getElementById("user-form");
+        const testPage = document.getElementById("test-page");
+        const resultPage = document.getElementById("result-page");
+
+        let currentQuestion = 0;
+        let attempted = 0;
+        let score = 0;
+        const questions = [
+            { text: "What is 2+2?", options: ["2", "3", "4", "5"], correct: 3, marks: 1 },
+            { text: "What is 5*5?", options: ["10", "15", "25", "30"], correct: 3, marks: 2 },
+            // Add more questions here
+        ];
+        const answers = [];
+
+        // Form Submit Event
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            document.getElementById("display-username").innerText = form.username.value;
+            document.getElementById("display-email").innerText = form.email.value;
+            document.getElementById("display-phone").innerText = form.phone.value;
+            document.getElementById("display-university").innerText = form.university.value;
+
+            userForm.style.display = "none";
+            testPage.style.display = "block";
+            startTest();
+        });
+
+        function startTest() {
+            loadQuestion();
+            startTimer();
+        }
+
+        function loadQuestion() {
+            const question = questions[currentQuestion];
+            document.getElementById("question-text").innerText = question.text;
+            const optionButtons = document.querySelectorAll(".option-btn");
+            optionButtons.forEach((btn, index) => {
+                btn.innerText = question.options[index];
+                btn.onclick = () => selectAnswer(index + 1);
+            });
+            updateStatus();
+        }
+
+        function selectAnswer(option) {
+            if (!answers[currentQuestion]) attempted++;
+            answers[currentQuestion] = option;
+            if (questions[currentQuestion].correct === option) {
+                score += questions[currentQuestion].marks;
+            }
+            currentQuestion++;
+            if (currentQuestion < questions.length) {
+                loadQuestion();
+            } else {
+                endTest();
+            }
+        }
+
+        function startTimer() {
+            let time = 100 * 60;
+            const timerDisplay = document.getElementById("timer");
+            const timerInterval = setInterval(() => {
+                time--;
+                let minutes = Math.floor(time / 60);
+                let seconds = time % 60;
+                timerDisplay.innerText = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+
+                if (time <= 0) {
+                    clearInterval(timerInterval);
+                    endTest();
+                }
+            }, 1000);
+        }
+
+        function updateStatus() {
+            document.getElementById("attempted").innerText = attempted;
+            document.getElementById("left").innerText = questions.length - attempted;
+        }
+
+        function endTest() {
+            testPage.style.display = "none";
+            resultPage.style.display = "block";
+            showResults();
+        }
+
+        function showResults() {
+            document.getElementById("result-message").innerText = `You answered ${score} out of ${questions.length * 2} marks.`;
+            const correctAnswersList = document.getElementById("correct-answers");
+            questions.forEach((question, index) => {
+                if (answers[index] === question.correct) {
+                    const listItem = document.createElement("li");
+                    listItem.innerText = `${question.text}: Correct`;
+                    correctAnswersList.appendChild(listItem);
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>

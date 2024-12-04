@@ -7,26 +7,38 @@
     <link rel="stylesheet" href="text.css">
 </head>
 <body>
-    <!-- User Info Form -->
-    <section id="user-form">
-        <div class="form-container">
-            <h1 class="fade-in">Welcome to the MCQ Test</h1>
-            <p class="fade-in">Enter your details to begin.</p>
-            <form id="detailsForm" class="slide-in">
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" required>
-                <label for="email">Email ID:</label>
-                <input type="email" id="email" name="email" required>
-                <label for="phone">Phone Number:</label>
-                <input type="text" id="phone" name="phone" required>
-                <label for="university">University:</label>
-                <input type="text" id="university" name="university" required>
-                <button type="submit" class="btn">Next</button>
+    <section id="welcome-screen">
+        <div class="welcome-banner">
+            <h1>📘 Welcome to the Ultimate MCQ Test!</h1>
+            <p>Challenge your knowledge and test your skills. Upload the question file to begin!</p>
+        </div>
+        <div class="form-card">
+            <form id="detailsForm">
+                <div class="form-group">
+                    <label for="username"><i class="fas fa-user"></i> Username</label>
+                    <input type="text" id="username" placeholder="Enter your name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email"><i class="fas fa-envelope"></i> Email ID</label>
+                    <input type="email" id="email" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone"><i class="fas fa-phone"></i> Phone Number</label>
+                    <input type="text" id="phone" placeholder="Enter your phone number" required>
+                </div>
+                <div class="form-group">
+                    <label for="university"><i class="fas fa-school"></i> University</label>
+                    <input type="text" id="university" placeholder="Enter your university" required>
+                </div>
+                <div class="form-group">
+                    <label for="questionFile"><i class="fas fa-file-upload"></i> Upload Question File</label>
+                    <input type="file" id="questionFile" accept=".docx" required>
+                </div>
+                <button type="submit" class="btn">Start Test 🚀</button>
             </form>
         </div>
     </section>
-
-    <!-- MCQ Test Page -->
+            <!-- MCQ Test Page -->
     <section id="test-page" style="display:none;">
         <header>
             <div class="header-container">

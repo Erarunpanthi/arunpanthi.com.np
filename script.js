@@ -1,13 +1,18 @@
+// Form and Page Handling
 const form = document.getElementById("detailsForm");
-const userForm = document.getElementById("welcome-screen");
+const userForm = document.getElementById("user-form");
 const testPage = document.getElementById("test-page");
+const resultPage = document.getElementById("result-page");
+
 let currentQuestion = 0;
+let attempted = 0;
 let score = 0;
 const questions = [
     { text: "What is 2+2?", options: ["2", "3", "4", "5"], correct: 3, marks: 1 },
     { text: "What is 5*5?", options: ["10", "15", "25", "30"], correct: 3, marks: 2 },
     // Add more questions here
 ];
+const answers = [];
 
 // Form Submit Event
 form.addEventListener("submit", (e) => {
@@ -17,8 +22,8 @@ form.addEventListener("submit", (e) => {
     document.getElementById("display-phone").innerText = form.phone.value;
     document.getElementById("display-university").innerText = form.university.value;
 
-    userForm.style.display = "none";  // Hide the welcome screen
-    testPage.style.display = "block"; // Show the test page
+    userForm.style.display = "none";
+    testPage.style.display = "block";
     startTest();
 });
 
@@ -33,11 +38,14 @@ function loadQuestion() {
     const optionButtons = document.querySelectorAll(".option-btn");
     optionButtons.forEach((btn, index) => {
         btn.innerText = question.options[index];
-        btn.onclick = () => selectAnswer(index + 1); // options are 1-based
+        btn.onclick = () => selectAnswer(index + 1);
     });
+    updateStatus();
 }
 
 function selectAnswer(option) {
+    if (!answers[currentQuestion]) attempted++;
+    answers[currentQuestion] = option;
     if (questions[currentQuestion].correct === option) {
         score += questions[currentQuestion].marks;
     }
@@ -65,9 +73,20 @@ function startTimer() {
 
 function endTest() {
     testPage.style.display = "none";
-    const resultPage = document.getElementById("result-page");
     resultPage.style.display = "block";
 
-    const message = score > 50 ? "🎉 Congratulations! You passed." : `You scored ${score}. Keep trying!`;
+    const message =
+        score > 50
+            ? "🎉 Congratulations! You passed."
+            : `You scored ${score}. Keep trying!`;
+
     document.getElementById("result-message").innerHTML = `<p>${message}</p>`;
+    const answersList = document.getElementById("correct-answers");
+    questions.forEach((q, index) => {
+        const li = document.createElement("li");
+        li.textContent = `${q.text} - Correct Answer: ${
+            q.options[q.correct - 1]
+        }`;
+        answersList.appendChild(li);
+    });
 }

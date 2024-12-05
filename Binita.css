@@ -293,30 +293,41 @@ tr:hover {
 body {
   margin: 10px;
 }
-/* Ensure the body and html elements take up the full viewport height and width */
+/* Ensure the body and html elements take up the full viewport width */
 html, body {
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100%;
-    
+    overflow-x: hidden; /* Prevent horizontal scrolling, allow vertical */
 }
 
-/* Ensure no zooming is possible */
+/* Ensure content can scroll vertically */
 body {
     touch-action: manipulation;
     -ms-touch-action: manipulation; /* For older IE/Edge */
     user-select: none; /* Disable text selection for consistency */
 }
 
-/* Example of a full-screen container */
+/* Example of a full-screen container with scrolling content */
 .container {
+    min-height: 100vh; /* Ensure container is at least the height of the viewport */
     width: 100%;
-    height: 100%;
-    display: flex; /* Optional: center content */
-    justify-content: center; /* Optional: center content horizontally */
-    align-items: center; /* Optional: center content vertically */
-    background-color: #f0f0f0; /* Example background color */
+    display: flex; /* Optional: styles for centering */
+    flex-direction: column;
+    align-items: center; /* Optional: center horizontally */
+    justify-content: flex-start; /* Content starts at the top */
+    background-color: #f9f9f9; /* Example background color */
     font-family: Arial, sans-serif;
 }
 
+/* Optional: Example content styles for testing scrolling */
+.content {
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}

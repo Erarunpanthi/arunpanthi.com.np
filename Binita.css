@@ -55,29 +55,57 @@
 
 /* Table styling */
 .section table {
-  table-layout: auto;
-    border-collapse: collapse; /* Merge borders for a clean look */
-  width: auto; /* Table width adjusts to content */
-  table-layout: auto; /* Allow table to resize based on content */
-  margin: 10px auto; /* Center table with some margin */
-  font-family: Arial, sans-serif; /* Comfortable font for readability */
-  font-size: 14px;  
+   width: 100%; /* Ensure table width matches the section width */
+  max-width: 100%; /* Prevent table from overflowing the section */
+  margin: 0 auto; /* Center the table horizontally */
+  border-collapse: collapse; /* Merge cell borders */
+  background-color: #ffffff; /* White background for the table */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for professional look */
+  border-radius: 8px; /* Rounded corners for the table */
+  overflow: hidden; /* Clip rounded corners */
+}
 }
 
-
-.section table th, 
-.section table td {
-  padding: 6px; /* Match cellpadding with consistent spacing */
-  text-align: left; /* Align content to the left */
-  border: 1px solid #ccc; /* Light border for clarity */
-  vertical-align: top; /* Align text at the top of the cell */
-  white-space: nowrap; /* Prevent content from wrapping */
-table-layout: auto;
-}
 
 .section table th {
-  background-color: #e74c3c;
-  color: white;
+  background-color: #4CAF50; /* Professional green color */
+  color: #fff; /* White text for contrast */
+  font-size: 16px; /* Slightly larger text for emphasis */
+  text-transform: uppercase; /* Make headers stand out */
+  padding: 12px; /* Increase padding for better spacing */
+  text-align: center; /* Center align header text */
+  border-bottom: 3px solid #2E7D32; /* Slightly darker green border */
+table-layout: auto;
+}
+.section table td {
+  padding: 10px; /* Comfortable padding */
+  text-align: left; /* Align content to the left */
+  font-size: 14px; /* Standard text size */
+  border: 1px solid #ccc; /* Light grey border for cells */
+  background-color: #f9f9f9; /* Light grey background for readability */
+}
+
+.section table tr:nth-child(even) td {
+  background-color: #f2f2f2; /* Alternate row background */
+}
+
+/* Row hover effect */
+.section table tr:hover td {
+  background-color: #e8f5e9; /* Subtle green highlight on hover */
+}
+
+/* Center-align the first row (headers) */
+.section table tr:first-child th {
+  text-align: center;
+}
+
+/* Responsive styling for smaller screens */
+@media (max-width: 768px) {
+  .section table th, 
+  .section table td {
+    font-size: 13px; /* Adjust font size for smaller screens */
+    padding: 8px; /* Reduce padding */
+  }
 }
 
 .section table tr:nth-child(even) {
@@ -87,12 +115,6 @@ table-layout: auto;
 .section table tr:hover {
   background-color: #fcecec;
 }
-
-/* Responsive design for mobile and laptop */
-@media (max-width: 768px) {
-  .section {
-    padding: 15px;
-  }
 
   .section-container {
     padding: 0 1cm; /* Adjust padding for smaller screens */

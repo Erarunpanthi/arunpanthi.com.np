@@ -249,3 +249,132 @@ footer a:hover {
     bottom: -0.4em;
     font-size: 0.8em;
 }
+
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: "Calibri", sans-serif;
+    line-height: 1.6;
+    background-color: #f5f5f5;
+    color: #333;
+    padding: 20px;
+}
+
+/* Header Styling */
+p.MsoNormal {
+    text-align: center;
+    font-size: 24px;
+    font-family: "Times New Roman", serif;
+    color: #2c3e50;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #2c3e50;
+}
+
+/* Section Titles */
+p.MsoListParagraphCxSpFirst {
+    margin-left: 0;
+    font-size: 20px;
+    font-family: "Times New Roman", serif;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #34495e;
+}
+
+p.MsoListParagraphCxSpLast {
+    margin-left: 10px;
+    font-size: 18px;
+    font-family: "Times New Roman", serif;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+/* Text Content */
+p.MsoNormal, li.MsoNormal, div.MsoNormal {
+    margin: 0;
+    text-align: justify;
+    font-size: 16px;
+    font-family: "Calibri", sans-serif;
+    line-height: 1.8;
+    color: #555;
+    padding: 10px 0;
+}
+
+/* List Styling */
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph {
+    margin-left: 20px;
+    font-size: 16px;
+    font-family: "Calibri", sans-serif;
+    list-style-type: decimal;
+    color: #555;
+}
+
+p.MsoListBulletCxSpFirst, li.MsoListBulletCxSpFirst, div.MsoListBulletCxSpFirst,
+p.MsoListBulletCxSpMiddle, li.MsoListBulletCxSpMiddle, div.MsoListBulletCxSpMiddle,
+p.MsoListBulletCxSpLast, li.MsoListBulletCxSpLast, div.MsoListBulletCxSpLast {
+    margin-left: 20px;
+    text-indent: -20px;
+    font-size: 16px;
+    font-family: "Calibri", sans-serif;
+    color: #555;
+}
+
+/* Placeholder Text */
+span.MsoPlaceholderText {
+    color: gray;
+    font-style: italic;
+}
+
+/* Header and Footer Styling */
+p.MsoHeader, li.MsoHeader, div.MsoHeader,
+p.MsoFooter, li.MsoFooter, div.MsoFooter {
+    text-align: center;
+    font-size: 12px;
+    font-family: "Calibri", sans-serif;
+    color: #888;
+}
+
+/* Page Layout */
+div.WordSection1 {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    p.MsoNormal {
+        font-size: 20px;
+    }
+
+    p.MsoListParagraphCxSpFirst {
+        font-size: 18px;
+    }
+
+    p.MsoNormal, li.MsoNormal, div.MsoNormal,
+    p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph {
+        font-size: 14px;
+    }
+
+    div.WordSection1 {
+        padding: 15px;
+    }
+}
+
+

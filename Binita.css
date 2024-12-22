@@ -376,5 +376,13 @@ div.WordSection1 {
         padding: 15px;
     }
 }
+#page-container {
+    width: 96%; /* Occupy 96% of the viewport width */
+    margin: 2% auto; /* Center the container horizontally and add some vertical margin */
+    padding: 1%; /* Add padding inside the container */
+    background-color: #f9f9f9; /* Optional: Light background for the page container */
+    border-radius: 8px; /* Optional: Rounded corners for the container */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Subtle shadow */
+}
 
 

@@ -63,6 +63,11 @@
             color: #721c24;
             border: 1px solid #f5c6cb;
         }
+        .warning {
+            background-color: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeeba;
+        }
     </style>
 </head>
 <body>
@@ -75,8 +80,8 @@
             <label for="pageName">Page Name (URL)</label>
             <input type="text" id="pageName" placeholder="Enter page name (e.g., about-us)" required>
 
-            <label for="content">Page Content</label>
-            <textarea id="content" rows="10" placeholder="Enter your content here" required></textarea>
+            <label for="content">Page Content (Max: 2MB)</label>
+            <textarea id="content" rows="10" placeholder="Enter your content here (up to 2MB)" required></textarea>
 
             <button type="submit">Submit</button>
         </form>
@@ -84,6 +89,8 @@
     </div>
 
     <script>
+        const MAX_CONTENT_SIZE = 2 * 1024 * 1024; // 2MB content limit
+
         document.getElementById('postForm').addEventListener('submit', async (e) => {
             e.preventDefault();
 
@@ -93,6 +100,14 @@
 
             if (!pageTitle || !pageName || !content) {
                 alert('Please fill out all fields.');
+                return;
+            }
+
+            const contentSize = new Blob([content]).size;
+            if (contentSize > MAX_CONTENT_SIZE) {
+                const messageDiv = document.getElementById('message');
+                messageDiv.className = 'message warning';
+                messageDiv.innerText = 'Content size is too large! Please keep it under 2MB.';
                 return;
             }
 
@@ -136,10 +151,11 @@
 
             const base64Content = btoa(unescape(encodeURIComponent(styledContent)));
 
-           const repoOwner = 'Erarunpanthi';
+            const repoOwner = 'Erarunpanthi';
             const repoName = 'arunpanthi.com.np';
             const filePath = `${pageName}.html`;
             const apiToken = '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';
+
             const apiURL = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`;
 
             try {

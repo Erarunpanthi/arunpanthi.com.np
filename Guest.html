@@ -68,6 +68,10 @@
             color: #856404;
             border: 1px solid #ffeeba;
         }
+        .processing {
+            background-color: #f0ad4e;
+            color: #fff;
+        }
     </style>
 </head>
 <body>
@@ -83,7 +87,7 @@
             <label for="content">Page Content (Max: 2MB)</label>
             <textarea id="content" rows="10" placeholder="Enter your content here (up to 2MB)" required></textarea>
 
-            <button type="submit">Submit</button>
+            <button type="submit" id="submitBtn">Submit</button>
         </form>
         <div class="message" id="message"></div>
     </div>
@@ -110,6 +114,11 @@
                 messageDiv.innerText = 'Content size is too large! Please keep it under 2MB.';
                 return;
             }
+
+            // Hide the button and show the processing text
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.innerText = 'Post is being processed...';
+            submitBtn.disabled = true;
 
             // Style the content dynamically with the page title
             const styledContent = `<!DOCTYPE html>
@@ -151,7 +160,7 @@
 
             const base64Content = btoa(unescape(encodeURIComponent(styledContent)));
 
-            const repoOwner = 'Erarunpanthi';
+           const repoOwner = 'Erarunpanthi';
             const repoName = 'arunpanthi.com.np';
             const filePath = `${pageName}.html`;
             const apiToken = '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';
@@ -222,6 +231,10 @@
                 const messageDiv = document.getElementById('message');
                 messageDiv.className = 'message error';
                 messageDiv.innerText = 'An error occurred while processing the request.';
+            } finally {
+                // Re-enable the submit button after processing
+                submitBtn.innerText = 'Submit';
+                submitBtn.disabled = false;
             }
         });
     </script>

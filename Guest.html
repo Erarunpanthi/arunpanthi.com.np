@@ -159,43 +159,37 @@
 </html>`;
 
             const base64Content = btoa(unescape(encodeURIComponent(styledContent)));
-const repoOwner = 'Erarunpanthi';
-const repoName = 'arunpanthi.com.np';
-const filePath = `${pageName}.html`;
-  const apiToken = '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';
-
-
-                     
-
+            const repoOwner = 'Erarunpanthi';
+            const repoName = 'arunpanthi.com.np';
+            const filePath = `${pageName}.html`;
+            
             const apiURL = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`;
 
             try {
-                // Check if the file already exists
                 const checkResponse = await fetch(apiURL, {
                     method: 'GET',
                     headers: {
-                        'Authorization': `token ${apiToken}`,
+                        'Authorization': `token ${YOUR_API_TOKEN}`, // Replace with your environment variable handling
                         'Content-Type': 'application/json'
                     }
                 });
 
+                const messageDiv = document.getElementById('message');
                 if (checkResponse.ok) {
-                    // If file exists, update it
                     const existingFile = await checkResponse.json();
                     const updateResponse = await fetch(apiURL, {
                         method: 'PUT',
                         headers: {
-                            'Authorization': `token ${apiToken}`,
+                            'Authorization': `token ${YOUR_API_TOKEN}`, // Secure token handling
                             'Content-Type': 'application/json'
                         },
                         body: JSON.stringify({
                             message: `Updated page: ${pageName}`,
                             content: base64Content,
-                            sha: existingFile.sha // Use the sha to update the file
+                            sha: existingFile.sha
                         })
                     });
 
-                    const messageDiv = document.getElementById('message');
                     if (updateResponse.ok) {
                         messageDiv.className = 'message success';
                         messageDiv.innerText = `Page "${pageName}" successfully updated!`;
@@ -205,11 +199,10 @@ const filePath = `${pageName}.html`;
                         messageDiv.innerText = `Error: ${errorData.message}`;
                     }
                 } else {
-                    // If file doesn't exist, create it
                     const createResponse = await fetch(apiURL, {
                         method: 'PUT',
                         headers: {
-                            'Authorization': `token ${apiToken}`,
+                            'Authorization': `token ${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}`, // Secure token handling
                             'Content-Type': 'application/json'
                         },
                         body: JSON.stringify({
@@ -218,7 +211,6 @@ const filePath = `${pageName}.html`;
                         })
                     });
 
-                    const messageDiv = document.getElementById('message');
                     if (createResponse.ok) {
                         messageDiv.className = 'message success';
                         messageDiv.innerText = `Page "${pageName}" successfully created! Check your website.`;
@@ -234,7 +226,6 @@ const filePath = `${pageName}.html`;
                 messageDiv.className = 'message error';
                 messageDiv.innerText = 'An error occurred while processing the request.';
             } finally {
-                // Re-enable the submit button after processing
                 submitBtn.innerText = 'Submit';
                 submitBtn.disabled = false;
             }

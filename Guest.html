@@ -159,11 +159,13 @@
 </html>`;
 
             const base64Content = btoa(unescape(encodeURIComponent(styledContent)));
+const repoOwner = 'Erarunpanthi';
+const repoName = 'arunpanthi.com.np';
+const filePath = `${pageName}.html`;
+  const apiToken = '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';
 
-           const repoOwner = 'Erarunpanthi';
-            const repoName = 'arunpanthi.com.np';
-            const filePath = `${pageName}.html`;
-            const apiToken = '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';
+
+                     
 
             const apiURL = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`;
 

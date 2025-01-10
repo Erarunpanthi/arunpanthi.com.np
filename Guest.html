@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guest Post to GitHub</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background: #5cb85c;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        button:hover {
+            background: #4cae4c;
+        }
+        .message {
+            margin-top: 20px;
+            text-align: center;
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Guest Post Submission</h1>
+        <form id="postForm">
+            <label for="pageTitle">Page Title</label>
+            <input type="text" id="pageTitle" placeholder="Enter page title (e.g., 'About Us')" required>
+
+            <label for="pageName">Page Name (URL)</label>
+            <input type="text" id="pageName" placeholder="Enter page name (e.g., about-us)" required>
+
+            <label for="content">Page Content</label>
+            <textarea id="content" rows="10" placeholder="Enter your content here" required></textarea>
+
+            <button type="submit">Submit</button>
+        </form>
+        <div class="message" id="message"></div>
+    </div>
+
+    <script>
+        document.getElementById('postForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const pageTitle = document.getElementById('pageTitle').value;
+            const pageName = document.getElementById('pageName').value;
+            const content = document.getElementById('content').value;
+
+            if (!pageTitle || !pageName || !content) {
+                alert('Please fill out all fields.');
+                return;
+            }
+
+            // Style the content dynamically with the page title
+            const styledContent = `<!DOCTYPE html>
+<html>
+<head>
+    <title>${pageTitle}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        p {
+            line-height: 1.6;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h1>${pageTitle}</h1>
+        <p>${content.replace(/\n/g, '<br>')}</p>
+    </div>
+</body>
+</html>`;
+
+            const base64Content = btoa(unescape(encodeURIComponent(styledContent)));
+
+           const repoOwner = 'Erarunpanthi';
+            const repoName = 'arunpanthi.com.np';
+            const filePath = `${pageName}.html`;
+            const apiToken = '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';
+            const apiURL = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`;
+
+            try {
+                // Check if the file already exists
+                const checkResponse = await fetch(apiURL, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `token ${apiToken}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                if (checkResponse.ok) {
+                    // If file exists, update it
+                    const existingFile = await checkResponse.json();
+                    const updateResponse = await fetch(apiURL, {
+                        method: 'PUT',
+                        headers: {
+                            'Authorization': `token ${apiToken}`,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            message: `Updated page: ${pageName}`,
+                            content: base64Content,
+                            sha: existingFile.sha // Use the sha to update the file
+                        })
+                    });
+
+                    const messageDiv = document.getElementById('message');
+                    if (updateResponse.ok) {
+                        messageDiv.className = 'message success';
+                        messageDiv.innerText = `Page "${pageName}" successfully updated!`;
+                    } else {
+                        const errorData = await updateResponse.json();
+                        messageDiv.className = 'message error';
+                        messageDiv.innerText = `Error: ${errorData.message}`;
+                    }
+                } else {
+                    // If file doesn't exist, create it
+                    const createResponse = await fetch(apiURL, {
+                        method: 'PUT',
+                        headers: {
+                            'Authorization': `token ${apiToken}`,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            message: `Create new page: ${pageName}`,
+                            content: base64Content
+                        })
+                    });
+
+                    const messageDiv = document.getElementById('message');
+                    if (createResponse.ok) {
+                        messageDiv.className = 'message success';
+                        messageDiv.innerText = `Page "${pageName}" successfully created! Check your website.`;
+                    } else {
+                        const errorData = await createResponse.json();
+                        messageDiv.className = 'message error';
+                        messageDiv.innerText = `Error: ${errorData.message}`;
+                    }
+                }
+            } catch (error) {
+                console.error(error);
+                const messageDiv = document.getElementById('message');
+                messageDiv.className = 'message error';
+                messageDiv.innerText = 'An error occurred while processing the request.';
+            }
+        });
+    </script>
+</body>
+</html>

@@ -18,11 +18,11 @@
     <meta name="twitter:description" content="Your one-stop hub for civil engineering resources in Nepal.">
     <meta name="twitter:image" content="https://arunpanthi.com.np/assets/preview.jpg">
     <link rel="canonical" href="https://arunpanthi.com.np/MCQ-SOM">
-<title>MCQ Chapter Wise SOM </title>
+<title>CivPrepMaster: Your Ultimate Resource Hub for Civil Engineering in Nepal</title>
     <!-- External CSS and Fonts -->
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  
+    <title>Notes for Subjective and Objective </title>
     
     
 </head>
@@ -42,6 +42,223 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Strength of Materials Questions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+.Binitagauatm .chapter-title {
+    font-family: "Times New Roman", serif; /* Set font to Times New Roman */
+    font-size: 25px; /* Set font size to 18px */
+    font-weight: normal; /* You can change this to bold if you prefer */
+    margin-bottom: 15px; /* Adds some space below the chapter title */
+    color: #333; /* Set text color to dark gray (you can adjust the color) */
+}
+
+.Binitagauatm {
+    padding: 15px; /* Adds padding inside the card */
+    background-color: #f9f9f9; /* Light background color */
+    border: 1px solid #ddd; /* Border color */
+    border-radius: 5px; /* Slight rounding of corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+    margin: 10px; /* Margin for spacing between cards */
+}
+
+
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Menu Styles */
+        .menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: 100%;
+            background: #2C3E50;
+            color: #fff;
+            padding-top: 20px;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .menu.open {
+            transform: translateX(0);
+        }
+
+        .menu ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .menu ul li {
+            padding: 15px;
+            border-bottom: 1px solid #34495E;
+        }
+
+        .menu ul li a {
+            color: #ecf0f1;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            display: block;
+        }
+
+        .menu ul li a:hover {
+            color: #3498db;
+        }
+
+        /* Toggle Button */
+        .menu-toggle {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            padding: 12px 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            z-index: 1000;
+        }
+
+        /* Content Area */
+        .content {
+            margin-left: 250px;
+            padding: 40px;
+            transition: margin-left 0.3s ease;
+        }
+
+        /* Header */
+        h1 {
+            font-size: 30px;
+            color: #2C3E50;
+            margin-bottom: 20px;
+        }
+
+        /* Card View Styles */
+        .card {
+            background: #fff;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .card h2 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #2C3E50;
+            font-weight: 600;
+        }
+
+        /* Button for showing answer */
+        .options button {
+            background: #3498db;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .options button:hover {
+            background: #2980b9;
+        }
+
+        /* Answer Box */
+        .answer {
+            display: none;
+            background: #ecf0f1;
+            padding: 15px;
+            margin-top: 15px;
+            border-left: 4px solid #3498db;
+            border-radius: 5px;
+            font-size: 16px;
+            color: #34495E;
+        }
+.cardBinita {
+    width: 90%; /* Adjust the width to suit your layout */
+    margin: 20px auto; /* Center the cards with automatic left/right margins */
+    padding: 20px; /* Add some inner spacing */
+    border: 1px solid #ccc; /* Light border for separation */
+    border-radius: 8px; /* Rounded corners for a softer look */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    background-color: #f9f9f9; /* Light background color */
+    transition: transform 0.3s, box-shadow 0.3s; /* Smooth animations */
+}
+
+.cardBinita:hover {
+    transform: translateY(-5px); /* Slight upward motion on hover */
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+}
+
+.cardBinita h2 {
+    font-size: 1.5rem; /* Slightly larger heading font */
+    margin-bottom: 10px; /* Space below the heading */
+    color: #333; /* Darker text for headings */
+    text-align: center; /* Center align the heading */
+}
+
+.cardBinita p {
+    font-size: 1rem; /* Standard font size for paragraphs */
+    line-height: 1.6; /* Improve readability */
+    color: #555; /* Medium gray for body text */
+    text-align: justify; /* Align text for a neat appearance */
+}
+
+.cardBinita button {
+    display: block; /* Ensure button takes up its own line */
+    margin: 10px auto; /* Center button horizontally */
+    padding: 10px 20px; /* Add spacing inside the button */
+    font-size: 1rem; /* Standard button text size */
+    color: #fff; /* White text color */
+    background-color: #007BFF; /* Blue background color */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded button corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Smooth color transition */
+}
+
+.cardBinita button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+
+        /* Responsive Menu Toggle */
+        @media (max-width: 768px) {
+            .menu {
+                width: 200px;
+            }
+
+            .content {
+                margin-left: 0;
+            }
+
+            .menu-toggle {
+                top: 15px;
+                left: 15px;
+            }
+
+            .content {
+                padding: 20px;
+            }
+        }
+    </style>
     <script>
     let questionCounter = 0;
     let answerCounter = 0;
@@ -1877,7 +2094,7 @@ Strain energy = W/2 x WL / AE = W<sup>2</sup>L / 2AE.</div></div>
 
 
 
-<script src="Binita.js"></script>
+
 </div>
 <div class="social-media">
             <h2><i class="fab fa-connectdevelop"></i> Connect with Us</h2>

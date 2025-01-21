@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter Navigation</title>
+    <link rel="stylesheet" href="Note.css">
+</head>
+
+<body>
+<div class="navbar">
+        <a href="Home"><i class="fas fa-home"></i> Home</a>
+        <a href="resources"><i class="fas fa-book"></i> Resources</a>
+        <a href="license-preparation"><i class="fas fa-certificate"></i> License Prep</a>
+        <a href="psc-preparation"><i class="fas fa-graduation-cap"></i> PSC Prep</a>
+        <a href="aboutus"><i class="fas fa-info-circle"></i> About Us</a>
+        <a href="contactus"><i class="fas fa-envelope"></i> Contact Us</a>
+    </div>
+    <!-- Navigation Button on Left Side -->
+    <div class="nav-button-container">
+        <button class="nav-button" onclick="toggleMenu()">&#9776;</button>
+    </div>
+
+    <!-- Navigation Menu (Initially Hidden) -->
+    <div class="menu" id="menu">
+        <ul>
+            <li><a href="#chapter1">Fluid and their Properties</a></li>
+            <li><a href="#chapter2">Stresses in Members</a></li>
+            <li><a href="#chapter3">Strain Energy & Resilience</a></li>
+            <li><a href="#chapter4">Center of Gravity & Moment of Inertia</a></li>
+            <li><a href="#chapter5">Shear Force & Bending Moment</a></li>
+            <li><a href="#chapter6">Pure Bending</a></li>
+        </ul>
+    </div>
+
+    
+ <div class="content">
+        <h1>Fluid Mechanics Note</h1>
+
+        <!-- Chapter 1 -->
+        <div class="cardBinita" id="chapter1" style="text-align: justify;">
+<div class="card Binitagauatm">
+    <h2 class="chapter-title">Fluid and their Properties</h2>
+  </div>
+<div class="card">
+<strong>Fluid </strong><br>
+ <p style="margin-left: 35px;">
+   A fluid is a substance which deforms continuously or flows under the application of shearing
+forces, however small they may be.
+For a fluid at rest, there are no shearing forces acting on it, and any force must be acting
+perpendicular to the fluid. Fluid does not have tensile stress and has very little compressive
+stress when kept in container.
+  </p>
+<p style="margin-left: 0px;"><strong>Fluids statics</strong>: It is the mechanism of fluids at rest or non-motion, and the pressure in fluids exerted by fluids on anybody.</p>
+<p style="margin-left: 0px;"><strong>Fluids dynamics</strong> – It involves the study of the flow of fluids in motion. Popular branches like aerodynamics and hydrodynamics are part of fluid dynamics.</p>
+                    
+<h3 style="">Classification of Fluids</h3>
+<p style="margin-left: 35px;">Fluids are classified into four types depending on their flow, they are:</p>
+<ol style="">
+<li style="">Steady or unsteady</li>
+<li style="">Compressible or incompressible</li>
+<li style="">Viscous or non-viscous</li>
+<li style="">Rotational or irrotational</li>
+</ol>
+<p style="margin-left: 35px;"><strong>Steady fluid:</strong> It is the fluid whose density remains constant at each and every point while flowing.</p>
+<p style="margin-left: 35px;"><strong>Unsteady fluid:</strong> It is the fluid whose velocity differs between any two points while flowing.</p>
+<p style="margin-left: 35px;"><strong>Compressible fluid and incompressible fluids: </strong>These are classified based on the Mach Number. The incompressible fluid has Mach Number&lt;0.3 and the compressible fluid has Mach Number between 0.3 and 1.</p>
+<p style="margin-left: 35px;"><strong>Viscous or Non-viscous</strong>
+</p>
+<p style="margin-left: 35px;">Fluids with more thickness or viscosity are known as viscous fluids, they are generally very gloppy fluids. Examples: shampoo and motor oil.</p>
+<p style="margin-left: 35px;">Fluids with comparatively less thickness or viscosity are known as non-viscous fluids. These are the fluids with no resistance or negligible resistance to internal friction. Non-viscous fluids flow without any loss of kinetic energy.</p>
+<p style="margin-left: 35px;">Example: Superfluid liquid helium</p>
+<p style="margin-left: 35px;"><strong style="">Rotational or irrotational</strong>
+</p>
+
+<p style="margin-left: 35px;">If the angle between the two intersecting lines of the boundary of the fluid element changes while moving in the flow, the flow is a rotational flow. Depending on the angular motion of the fluid, it is classified into rotational fluid or irrotational fluid.</p>
+<p style="margin-left: 35px;">If the fluid rotates as a whole with no change in angles between the boundary lines, the flow of the fluid is classified as irrotational flow.</p><br>
+<h3 style="">Properties of Fluids</h3>
+<p style="margin-left: 35px;">1. Density</p>
+<p style="margin-left: 35px;">2. Viscosity</p>
+<p style="margin-left: 35px;">3. Temperature</p>
+<p style="margin-left: 35px;">4. Pressure</p>
+<p style="margin-left: 35px;">5. Specific Volume</p>
+<p style="margin-left: 35px;">6. Specific Weight</p>
+<p style="margin-left: 35px;">7. Specific Gravity</p>
+<p style="margin-left: 35px;">8. Surface Tension</p>
+<p style="margin-left: 35px;">9. Vapour Pressure</p>
+<p style="margin-left: 35px;">10. Capillarity</p>
+<p style="margin-left: 35px;">11. Cavitation</p>
+
+<p style="margin-left: 35px;"><strong style="">Density</strong></p>
+<p style="margin-left: 35px;">Density is defined as the mass per unit volume of a fluid. The density of a substance varies as per the volume of a substance. The SI unit of density is kg.m<sup>-3</sup>.</p>
+<div class="mathjax-scroll" bis_skin_checked="1" style="margin-left: 55px;"><mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" tabindex="0" ctxtmenu_counter="0" style="font-size: 123.9%; position: relative;"><mjx-math class="MJX-TEX" aria-hidden="true" style=""><mjx-mtable style="min-width: 6.89em;"><mjx-table><mjx-itable><mjx-mtr><mjx-mtd style="text-align: center;"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D70C TEX-I" style=""></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D" style=""></mjx-c></mjx-mo><mjx-mfrac space="4"><mjx-frac style=""><mjx-num style=""><mjx-nstrut></mjx-nstrut><mjx-mrow size="s" style=""><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45A TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D44E TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D460 TEX-I" style=""></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D460 TEX-I" style=""></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45C TEX-I" style=""></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D453 TEX-I" style=""></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D453 TEX-I" style=""></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D459 TEX-I" style=""></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D462 TEX-I" style=""></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D456 TEX-I" style=""></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D451 TEX-I" style=""></mjx-c></mjx-mi></mjx-mrow></mjx-num><mjx-dbox><mjx-dtable style=""><mjx-line style=""></mjx-line><mjx-row><mjx-den><mjx-dstrut></mjx-dstrut><mjx-mrow size="s" style=""><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D463 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45C TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D459 TEX-I" style=""></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D462 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45A TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D452 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45C TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D453 TEX-I" style=""></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D453 TEX-I" style=""></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D459 TEX-I" style=""></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D462 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D456 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D451 TEX-I"></mjx-c></mjx-mi></mjx-mrow></mjx-den></mjx-row></mjx-dtable></mjx-dbox></mjx-frac></mjx-mfrac><mjx-tstrut></mjx-tstrut></mjx-mtd></mjx-mtr></mjx-itable></mjx-table></mjx-mtable></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mtable columnalign="left" columnspacing="1em" rowspacing="4pt"><mtr><mtd><mi>ρ</mi><mo>=</mo><mfrac><mrow><mi>m</mi><mi>a</mi><mi>s</mi><mi>s</mi><mi>o</mi><mi>f</mi><mi>f</mi><mi>l</mi><mi>u</mi><mi>i</mi><mi>d</mi></mrow><mrow><mi>v</mi><mi>o</mi><mi>l</mi><mi>u</mi><mi>m</mi><mi>e</mi><mi>o</mi><mi>f</mi><mi>f</mi><mi>l</mi><mi>u</mi><mi>i</mi><mi>d</mi></mrow></mfrac></mtd></mtr></mtable></math></mjx-assistive-mml></mjx-container></div>
+<p style="margin-left: 35px;"><strong>Viscosity</strong>
+</p>
+<p style="margin-left: 35px;">Viscosity determines the amount of resistance offered by the fluid to shear stress. A fluid that offers no resistance to shear stress is called an inviscid fluid.</p>
+<p style="margin-left: 35px;"><strong>Temperature</strong>
+</p>
+<p style="margin-left: 35px;">The degree of hotness or coldness of the body is determined by the temperature. The temperature of the fluid is measured using Kelvin or Celsius or Fahrenheit. According to the International System of Units, the Kelvin scale is used.</p>
+<p style="margin-left: 35px;"><strong>Pressure </strong>
+</p>
+<p style="margin-left: 35px;">The pressure of a fluid is the force applied by it per unit area. Fluid pressure takes place in two conditions: open condition and closed condition. The pressure at any given point of a static fluid is called hydrostatic pressure.</p>
+<div class="mathjax-scroll" bis_skin_checked="1" style="margin-left: 55px;"><mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" tabindex="0" ctxtmenu_counter="1" style="font-size: 123.9%; position: center;"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-mtable style="min-width: 12.419em;"><mjx-table><mjx-itable><mjx-mtr><mjx-mtd style="text-align: left;"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D443 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45F TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D452 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D460 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D460 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D462 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45F TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D452 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45C TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D453 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D461 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c210E TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D452 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D453 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D459 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D462 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D456 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D451 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mfrac space="4"><mjx-frac><mjx-num><mjx-nstrut></mjx-nstrut><mjx-mrow size="s"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D439 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45C TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45F TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D450 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D452 TEX-I"></mjx-c></mjx-mi></mjx-mrow></mjx-num><mjx-dbox><mjx-dtable><mjx-line></mjx-line><mjx-row><mjx-den><mjx-dstrut></mjx-dstrut><mjx-mrow size="s"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D434 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45F TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D452 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D44E TEX-I"></mjx-c></mjx-mi></mjx-mrow></mjx-den></mjx-row></mjx-dtable></mjx-dbox></mjx-frac></mjx-mfrac><mjx-tstrut></mjx-tstrut></mjx-mtd></mjx-mtr></mjx-itable></mjx-table></mjx-mtable></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mtable columnalign="left" columnspacing="1em" rowspacing="4pt"><mtr><mtd><mi>P</mi><mi>r</mi><mi>e</mi><mi>s</mi><mi>s</mi><mi>u</mi><mi>r</mi><mi>e</mi><mi>o</mi><mi>f</mi><mi>t</mi><mi>h</mi><mi>e</mi><mi>f</mi><mi>l</mi><mi>u</mi><mi>i</mi><mi>d</mi><mo>=</mo><mfrac><mrow><mi>F</mi><mi>o</mi><mi>r</mi><mi>c</mi><mi>e</mi></mrow><mrow><mi>A</mi><mi>r</mi><mi>e</mi><mi>a</mi></mrow></mfrac></mtd></mtr></mtable></math></mjx-assistive-mml></mjx-container></div>
+<p style="margin-left: 35px;"><strong>Specific Volume</strong>
+</p>
+<p style="margin-left: 35px;">It is defined as the ratio of the volume of the material to its mass. Specific volume is the reciprocal of the density of the material. Specific volume is inversely proportional to density.</p>
+<p style="margin-left: 35px;">The SI unit of specific volume is m<sup>3</sup>.kg<sup>-1</sup>.</p>
+<p style="margin-left: 35px;"><strong>Specific Weight</strong>
+</p>
+<p style="margin-left: 35px;">The specific weight (γ) of a fluid is defined as the weight per unit volume. The SI unit of specific weight is N/m<sup>3</sup>.</p>
+<p style="margin-left: 35px;">Specific weight is related to density as γ = ρg. The specific weight of fluid varies with temperature.</p>
+<p style="margin-left: 35px;"><strong>Specific Gravity</strong>
+</p>
+<p style="margin-left: 35px;">It is the ratio of the specific weight of the given fluid to the specific weight of standard fluid. Specific Gravity is also known as relative density. It is represented by the letter ‘S’ and has no unit.</p>
+<p style="margin-left: 35px;"><strong>Surface Tension</strong>
+</p>
+<p style="margin-left: 35px;">It is the tendency of liquid surfaces to shrink in minimum surface area. Surface tension is caused by cohesive forces between the liquid molecules.</p>
+<p style="margin-left: 35px;">Note: Surface tension is the main reason for most insects to float on the water despite being denser than water.</p>
+<p style="margin-left: 35px;"><strong>Vapour Pressure</strong>
+</p>
+<p style="margin-left: 35px;">The vapour pressure of a liquid is the equilibrium pressure of a vapour above its liquid. The vapour pressure of a liquid varies with temperature. As the temperature increases, the vapour pressure also increases.</p>
+<p style="margin-left: 35px;"><strong>Cavitation</strong>
+</p>
+<p style="margin-left: 35px;">The process of cavitation happens when bubbles or voids form within a fluid. This process takes place when the pressure drops instantaneously below the vapour pressure.</p><br>
+<h3>Types of Fluids</h3>
+<ul>
+<li>Ideal fluid</li>
+<li>Real fluid</li>
+<li>Newtonian fluid</li>
+<li>Non-Newtonian fluid</li>
+<li>Ideal plastic fluid</li>
+<li>Incompressible fluid</li>
+<li>Compressible fluid</li>
+</ul>
+<p style="margin-left: 35px;"><strong>Ideal fluid: </strong>It is a fluid that does not have viscosity and cannot be compressed. This type of fluid cannot exist practically.</p>
+<p style="margin-left: 35px;"><strong>Real fluid:</strong> All types of fluids that possess viscosity are classified as real fluids. Examples: Kerosene and castor oil.</p>
+<p style="margin-left: 35px;"><strong>Newtonian fluid: </strong>A real fluid that abides by Newton’s law of viscosity is known as a Newtonian fluid. Example: Hydrogen and water</p>
+<p style="margin-left: 35px;"><strong>Non-Newtonian fluid:</strong> Fluids that do not abide by Newton’s law of viscosity are known as Non-Newtonian fluid. Example: Oobleck and flubber</p>
+<p style="margin-left: 35px;"><strong>Ideal plastic fluid: </strong>If the shear stress is directly proportional to the velocity gradient, and if the value of shear stress is greater than the resultant, it is referred to as ideal plastic fluid.</p>
+<p style="margin-left: 35px;"><strong>Incompressible fluid:</strong> If a fluid’s density does not vary with the application of force, it is known as an incompressible fluid. Example: The stream of water flowing at high speed from a garden hose pipe.</p>
+<p style="margin-left: 35px;"><strong>Compressible fluid: </strong>If a fluid’s density varies with the application of force, it is called a compressible fluid. Example: gas, vapour, and steam.</p>
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+   <!-- Chapter 2 -->
+    <div class="cardBinita" id="chapter2">
+        <div class="card Binitagauatm">
+            <h2 class="chapter-title">Stresses in Members</h2>
+        </div>
+    </div>
+
+    <!-- Chapter 3 -->
+    <div class="cardBinita" id="chapter3">
+        <div class="card Binitagauatm">
+            <h2 class="chapter-title">Strain Energy & Resilience</h2>
+        </div>
+    </div>
+
+    <!-- Example Question Card -->
+    <div class="card">
+        <p>The maximum shear stress distribution is _____________ percentage more than average shear stress in circular section.<br>
+        a) 54 %<br>
+        b) 60 %<br>
+        c) 33 %<br>
+        d) 50 %<br>
+        </p>
+        <div class="options">
+            <button>Show Answer</button>
+        </div>
+        <div class="answer">
+            Answer: c<br>
+            Explanation: Maximum shear stress occurs at neutral axis; y = 0<br>
+            Maximum shear stress = 16/3 × average shear stress<br>
+            But 4F / A is the average shear stress.<br>
+            So, the maximum shear stress = 4/3 times the average shear stress.<br>
+            Hence the maximum shear stress is 33% more than the average shear stress in a circular section.
+        </div>
+    </div>
+
+    <script>
+        let answerCounter = 0;
+        document.querySelectorAll(".answer").forEach((answer, index) => {
+            answerCounter++;
+            answer.id = `answer${answerCounter}`;
+            const button = answer.previousElementSibling.querySelector("button");
+            if (button) {
+                button.setAttribute("onclick", `toggleAnswer('answer${answerCounter}')`);
+            }
+        });
+
+        function toggleAnswer(answerId) {
+            const answer = document.getElementById(answerId);
+            answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function toggleMenu() {
+            const menu = document.getElementById("menu");
+            menu.style.display = menu.style.display === "block" ? "none" : "block";
+        }
+    </script>
+<div class="social-media">
+            <h2><i class="fab fa-connectdevelop"></i> Connect with Us</h2>
+            <p>Follow us on social media to stay updated with the latest resources and news.</p>
+            <div class="icons">
+                 <a href="https://www.facebook.com/arun.panthi27" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.tiktok.com/@er.arunpanthi" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                <a href="https://www.youtube.com/@erarunpanthi" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="mailto:erarunpanthi@gmail.com" target="_blank" aria-label="Email"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <p>© 2024 CivPrepMaster. All rights reserved. | 
+        <a href="PrivacyPolicy">Privacy Policy</a> | 
+        <a href="TermsofService">Terms of Service</a></p>
+    </footer>
+</body>
+</html>

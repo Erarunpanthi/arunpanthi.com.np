@@ -1,0 +1,267 @@
+/* General Body and Layout */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+/* Navigation Button on the Left */
+.nav-button-container {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 10;
+}
+
+.nav-button {
+    background-color: #3498db;
+    color: #fff;
+    padding: 12px 25px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.nav-button:hover {
+    background-color: #2980b9;
+}
+ /* Answer Box */
+        .answer {
+            display: none;
+            background: #ecf0f1;
+            padding: 15px;
+            margin-top: 15px;
+            border-left: 4px solid #3498db;
+            border-radius: 5px;
+            font-size: 16px;
+            color: #34495E;
+        }
+ /* Button for showing answer */
+        .options button {
+            background: #3498db;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .options button:hover {
+            background: #2980b9;
+        }
+
+
+/* Navigation Menu (Initially Hidden) */
+.menu {
+    display: none;
+    background-color: #fff;
+    padding: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 80px;
+    left: 20px;
+    width: 200px;
+    z-index: 9;
+}
+
+.menu ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.menu li {
+    margin-bottom: 10px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #3498db;
+    font-size: 18px;
+}
+
+.menu a:hover {
+    color: #2980b9;
+}
+
+/* Chapter Card Styling */
+.cardBinita {
+    width: 90%;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.cardBinita:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+.cardBinita h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #333;
+    text-align: center;
+}
+
+.Binitagauatm .chapter-title {
+    font-family: "Times New Roman", serif;
+    font-size: 25px;
+    font-weight: normal;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.card {
+    background: #fff;
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #2C3E50;
+    font-weight: 600;
+}
+
+/* Disable Click and Drag on Images */
+.image-container img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    pointer-events: none; /* Disable clicking */
+    user-select: none; /* Prevent text selection */
+    -webkit-user-drag: none; /* Prevent dragging */
+}
+
+/* Content Section Styling */
+.content {
+    padding-left: 60px; /* Added padding to accommodate the fixed nav button */
+    padding: 20px;
+    margin-top: 20px; /* Ensures the content is properly spaced from the nav button */
+}
+
+/* Optional: To avoid layout break due to large screen sizes, you could add some media queries */
+@media (max-width: 768px) {
+    .nav-button-container {
+        top: 10px;
+        left: 10px;
+    }
+
+    .menu {
+        top: 60px; /* Adjust top position for small screen */
+        left: 10px;
+        width: 180px;
+    }
+
+    .content {
+        padding-left: 20px; /* Reduced padding on small screens */
+    }
+}
+.navbar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: #2E7D32; /* Darker green navbar */
+    padding: 10px 0;
+}
+
+.navbar a {
+    color: #fff; /* Link color */
+    padding: 8px 10px; /* Reduced padding for compactness */
+    text-decoration: none; /* Remove underline */
+    font-size: 14px; /* Smaller font size */
+    transition: background-color 0.3s; /* Animation */
+}
+
+.navbar a:hover {
+    background-color: #1B5E20; /* Even darker green on hover */
+}
+/* Social Media Section */
+.social-media {
+    background: linear-gradient(135deg, #4CAF50, #2E7D32);
+    color: white;
+    padding: 30px 20px;
+    text-align: center;
+    border-radius: 20px;
+    margin: 30px auto;
+}
+
+.social-media h2 {
+    margin: 10px 0;
+}
+
+.social-media .icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.social-media .icons a {
+    color: #fff;
+    font-size: 36px;
+    transition: transform 0.3s;
+}
+
+.social-media .icons a:hover {
+    transform: scale(1.2);
+}
+
+/* Footer Styling */
+footer {
+    background-color: #4CAF50;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+footer a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero {
+        padding: 15px;
+    }
+
+    .section {
+        padding: 15px;
+    }
+
+    .social-media {
+        padding: 20px;
+    }
+
+    body {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 12px;
+    }
+}

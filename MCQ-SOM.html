@@ -1,31 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Language" content="en">
-    <meta name="description" content="CivPrepMaster: The ultimate resource hub for civil engineering students and professionals in Nepal. Find notes, past exam questions, books, and solutions for your academic success.">
-    <meta name="keywords" content="CivPrepMaster, Civil Engineering, Nepal, Notes, Exam Questions, Engineering Books, Solutions, PSC Preparation, License Preparation">
-    <meta name="author" content="Arun Panthi">
-    <meta name="robots" content="index, follow">
-    <meta property="og:title" content="CivPrepMaster: Your Ultimate Resource Hub for Civil Engineering in Nepal">
-    <meta property="og:description" content="Access comprehensive notes, past exam questions, and engineering books to excel in your civil engineering journey.">
-    <meta property="og:url" content="https://arunpanthi.com.np/">
-    <meta property="og:image" content="https://arunpanthi.com.np/assets/preview.jpg">
-    <meta property="og:type" content="website">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="CivPrepMaster">
-    <meta name="twitter:description" content="Your one-stop hub for civil engineering resources in Nepal.">
-    <meta name="twitter:image" content="https://arunpanthi.com.np/assets/preview.jpg">
-    <link rel="canonical" href="https://arunpanthi.com.np/MCQ-SOM">
-<title>MCQ Chapter Wise SOM </title>
-    <!-- External CSS and Fonts -->
-    <link rel="stylesheet" href="styles.css">
+    <title>Chapter Navigation</title>
+    <link rel="stylesheet" href="Note.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
-    
-    
-    <div class="navbar">
+
+</head>
+<body>
+<div class="navbar">
         <a href="Home"><i class="fas fa-home"></i> Home</a>
         <a href="resources"><i class="fas fa-book"></i> Resources</a>
         <a href="license-preparation"><i class="fas fa-certificate"></i> License Prep</a>
@@ -33,380 +17,24 @@
         <a href="aboutus"><i class="fas fa-info-circle"></i> About Us</a>
         <a href="contactus"><i class="fas fa-envelope"></i> Contact Us</a>
     </div>
+    <!-- Navigation Button on Left Side -->
+    <div class="nav-button-container">
+        <button class="nav-button" onclick="toggleMenu()">&#9776;</button>
+    </div>
 
-    <header class="hero">
-       <h1>Notes for Subjective and Objective </h1>
-        
-            </header>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Strength of Materials Questions</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-.Binitagauatm .chapter-title {
-    font-family: "Times New Roman", serif; /* Set font to Times New Roman */
-    font-size: 25px; /* Set font size to 18px */
-    font-weight: normal; /* You can change this to bold if you prefer */
-    margin-bottom: 15px; /* Adds some space below the chapter title */
-    color: #333; /* Set text color to dark gray (you can adjust the color) */
-}
-
-.Binitagauatm {
-    padding: 15px; /* Adds padding inside the card */
-    background-color: #f9f9f9; /* Light background color */
-    border: 1px solid #ddd; /* Border color */
-    border-radius: 5px; /* Slight rounding of corners */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
-    margin: 10px; /* Margin for spacing between cards */
-}
-
-
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f7f9;
-            color: #333;
-            line-height: 1.6;
-        }
-
-        /* Menu Styles */
-        .menu {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 250px;
-            height: 100%;
-            background: #2C3E50;
-            color: #fff;
-            padding-top: 20px;
-            transform: translateX(-100%);
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .menu.open {
-            transform: translateX(0);
-        }
-
-        .menu ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .menu ul li {
-            padding: 15px;
-            border-bottom: 1px solid #34495E;
-        }
-
-        .menu ul li a {
-            color: #ecf0f1;
-            text-decoration: none;
-            font-size: 16px;
-            font-weight: 600;
-            display: block;
-        }
-
-        .menu ul li a:hover {
-            color: #3498db;
-        }
-
-        /* Toggle Button */
-        .menu-toggle {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            background-color: #3498db;
-            color: #fff;
-            border: none;
-            padding: 12px 18px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 18px;
-            z-index: 1000;
-        }
-
-        /* Content Area */
-        .content {
-            margin-left: 250px;
-            padding: 40px;
-            transition: margin-left 0.3s ease;
-        }
-
-        /* Header */
-        h1 {
-            font-size: 30px;
-            color: #2C3E50;
-            margin-bottom: 20px;
-        }
-
-        /* Card View Styles */
-        .card {
-            background: #fff;
-            border-radius: 8px;
-            padding: 25px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .card:hover {
-            transform: scale(1.05);
-        }
-
-        .card h2 {
-            font-size: 20px;
-            margin-bottom: 15px;
-            color: #2C3E50;
-            font-weight: 600;
-        }
-
-        /* Button for showing answer */
-        .options button {
-            background: #3498db;
-            color: #fff;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s;
-        }
-
-        .options button:hover {
-            background: #2980b9;
-        }
-
-        /* Answer Box */
-        .answer {
-            display: none;
-            background: #ecf0f1;
-            padding: 15px;
-            margin-top: 15px;
-            border-left: 4px solid #3498db;
-            border-radius: 5px;
-            font-size: 16px;
-            color: #34495E;
-        }
-.cardBinita {
-    width: 90%; /* Adjust the width to suit your layout */
-    margin: 20px auto; /* Center the cards with automatic left/right margins */
-    padding: 20px; /* Add some inner spacing */
-    border: 1px solid #ccc; /* Light border for separation */
-    border-radius: 8px; /* Rounded corners for a softer look */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    background-color: #f9f9f9; /* Light background color */
-    transition: transform 0.3s, box-shadow 0.3s; /* Smooth animations */
-}
-
-.cardBinita:hover {
-    transform: translateY(-5px); /* Slight upward motion on hover */
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
-}
-
-.cardBinita h2 {
-    font-size: 1.5rem; /* Slightly larger heading font */
-    margin-bottom: 10px; /* Space below the heading */
-    color: #333; /* Darker text for headings */
-    text-align: center; /* Center align the heading */
-}
-
-.cardBinita p {
-    font-size: 1rem; /* Standard font size for paragraphs */
-    line-height: 1.6; /* Improve readability */
-    color: #555; /* Medium gray for body text */
-    text-align: justify; /* Align text for a neat appearance */
-}
-
-.cardBinita button {
-    display: block; /* Ensure button takes up its own line */
-    margin: 10px auto; /* Center button horizontally */
-    padding: 10px 20px; /* Add spacing inside the button */
-    font-size: 1rem; /* Standard button text size */
-    color: #fff; /* White text color */
-    background-color: #007BFF; /* Blue background color */
-    border: none; /* Remove default border */
-    border-radius: 5px; /* Rounded button corners */
-    cursor: pointer; /* Pointer cursor on hover */
-    transition: background-color 0.3s; /* Smooth color transition */
-}
-
-.cardBinita button:hover {
-    background-color: #0056b3; /* Darker blue on hover */
-}
-
-
-        /* Responsive Menu Toggle */
-        @media (max-width: 768px) {
-            .menu {
-                width: 200px;
-            }
-
-            .content {
-                margin-left: 0;
-            }
-
-            .menu-toggle {
-                top: 15px;
-                left: 15px;
-            }
-
-            .content {
-                padding: 20px;
-            }
-        }
-    </style>
-    <script>
-    let questionCounter = 0;
-    let answerCounter = 0;
-
-    document.addEventListener("DOMContentLoaded", () => {
-        // Define chapter names
-        const chapterNames = [
-            "Simple Stress & Strain",
-            "Stresses in Members",
-            "Strain Energy & Resilience",
-            "Center of Gravity & Moment of Inertia",
-            "Shear Force & Bending Moment",
-            "Pure Bending",
-            "Shear Stress",
-            "Direct & Bending Stress",
-            "Dams Analysis",
-            "Slope & Deflection",
-            "Indeterminate Beams",
-            "Torsion",
-            "Frames",
-            "Thin Cylinders",
-            "Thick Cylinder",
-            "Columns & Struts",
-            "Simple Connections"
-        ];
-
-        // Assign unique IDs to chapters in <div class="cardBinita">
-        document.querySelectorAll(".cardBinita").forEach((card, index) => {
-            questionCounter++;
-            card.id = `chapter${index + 1}`;
-        });
-
-        // Assign unique IDs to answers
-        document.querySelectorAll(".answer").forEach((answer, index) => {
-            answerCounter++;
-            answer.id = `answer${answerCounter}`;
-            const button = answer.previousElementSibling.querySelector("button");
-            if (button) {
-                button.setAttribute("onclick", `toggleAnswer('answer${answerCounter}')`);
-            }
-        });
-
-        // Populate the menu with chapter names (e.g., "Simple Stress & Strain")
-        const menuList = document.querySelector(".menu ul");
-        chapterNames.forEach((name, index) => {
-            const menuItem = document.createElement("li");
-            const menuLink = document.createElement("a");
-            menuLink.href = `#chapter${index + 1}`;
-            menuLink.textContent = name;  // Set chapter name
-
-            // Add smooth scrolling behavior
-            menuLink.addEventListener("click", (e) => {
-                e.preventDefault(); // Prevent default anchor behavior
-                const targetCard = document.getElementById(`chapter${index + 1}`);
-                if (targetCard) {
-                    targetCard.scrollIntoView({
-                        behavior: "smooth",
-                        block: "start"
-                    });
-                }
-            });
-
-            menuItem.appendChild(menuLink);
-            menuList.appendChild(menuItem);
-        });
-
-        const menuToggle = document.querySelector(".menu-toggle");
-        const menu = document.querySelector(".menu");
-        const content = document.querySelector(".content");
-        menuToggle.addEventListener("click", () => {
-            menu.classList.toggle("open");
-            content.style.marginLeft = menu.classList.contains("open") ? "250px" : "0";
-        });
-    });
-
-    function toggleAnswer(id) {
-        const answerDiv = document.getElementById(id);
-        const isVisible = answerDiv.style.display === "block";
-        answerDiv.style.display = isVisible ? "none" : "block";
-    }
-
-    document.addEventListener("DOMContentLoaded", () => {
-        // Lazy load images
-        const lazyImages = document.querySelectorAll("img[data-src]");
-        const imageObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    img.src = img.dataset.src; // Set the actual image source
-                    img.removeAttribute("data-src"); // Remove the lazy-loading attribute
-                    observer.unobserve(img); // Stop observing this image
-                }
-            });
-        });
-
-        lazyImages.forEach(img => {
-            imageObserver.observe(img);
-        });
-
-        // Lazy load content sections (cards)
-        const lazyCards = document.querySelectorAll(".cardBinita");
-        const cardObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add("visible"); // Add a visible class to trigger animations or load data
-                    observer.unobserve(entry.target); // Stop observing this card
-                }
-            });
-        });
-
-        lazyCards.forEach(card => {
-            cardObserver.observe(card);
-        });
-
-        // Add event listeners for toggle menu dynamically
-        const menuToggle = document.querySelector(".menu-toggle");
-        const menu = document.querySelector(".menu");
-        const content = document.querySelector(".content");
-
-        if (menuToggle) {
-            menuToggle.addEventListener("click", () => {
-                menu.classList.toggle("open");
-                content.style.marginLeft = menu.classList.contains("open") ? "250px" : "0";
-            });
-        }
-
-        // Lazy load scripts (if needed)
-        const lazyScripts = document.querySelectorAll("script[data-src]");
-        lazyScripts.forEach(script => {
-            const newScript = document.createElement("script");
-            newScript.src = script.dataset.src;
-            document.body.appendChild(newScript);
-            script.remove(); // Clean up
-        });
-    });
-
-
-</script>
-
-</head>
-<body>
-    <button class="menu-toggle">☰ </button>
-    <div class="menu">
+    <!-- Navigation Menu (Initially Hidden) -->
+    <div class="menu" id="menu">
         <ul>
-            <!-- Dynamic menu items will be added here -->
+            <li><a href="#chapter1">Simple Stress & Strain</a></li>
+            <li><a href="#chapter2">Stresses in Members</a></li>
+            <li><a href="#chapter3">Strain Energy & Resilience</a></li>
+            <li><a href="#chapter4">Center of Gravity & Moment of Inertia</a></li>
+            <li><a href="#chapter5">Shear Force & Bending Moment</a></li>
+            <li><a href="#chapter6">Pure Bending</a></li>
         </ul>
     </div>
 
-    <div class="content">
+ <div class="content">
         <h1>Strength of Materials Questions and Answers</h1>
 
         <!-- Chapter 1 -->
@@ -2027,7 +1655,1407 @@ Strain energy = W/2 x WL / AE = W<sup>2</sup>L / 2AE.</div></div>
 
 
 
+</div>
+ <!--------------------------------------------------------------------------4---------------------------------------------------------------------------------------------->
+ <!-- Chapter 4 -->
+        <div class="cardBinita" id="chapter4">
+<div class="card Binitagauatm">
+    <h2 class="chapter-title">Shear Force & Bending Moment</h2>
+  </div>
+<div class="card">
+<p style=""> _______ is a horizontal structural member subjected to transverse loads perpendicular to its axis.<br>
+a) Strut<br>
+b) Column<br>
+c) Beam<br>
+d) Truss<br>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: c<br>
+Explanation: A beam is a horizontal structural member subjected to a transverse load perpendicular to its own axis. Beams are used to support weights of roof slabs, walls and staircases. The type of beam usually depends upon the span, type of load elasticity and type of structure.</div></div>
+<div class="card">
+<p style=""> Fixed beam is also known as __________<br>
+a) Encastered beam<br>
+b) Built on beam<br>
+c) Rigid beam<br>
+d) Tye beam<br>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: a<br>
+Explanation: A beam which is fixed at both supports is called fixed beam or encastered beam. All framed structures are examples of fixed beams.</div></div>
+<div class="card">
+<p style=""> Continuous beams are _________<br>
+a) Statically determinate beams<br>
+b) Statically indeterminate beams<br>
+c) Statically gravity beams<br>
+d) Framed beams<br>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: b<br>
+Explanation: Fixed beams and continuous beams are statically indeterminate beams which cannot be analyzed only by using static equations.</div></div>
 
+<div class="card">
+<p style=""> A beam which extends beyond it supports can be termed as __________<br>
+a) Over hang beam<br>
+b) Over span beam<br>
+c) Isolated beams<br>
+d) Tee beams<br>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: a<br>
+Explanation: A Beam extended beyond its support. And the position of extension is called as over hung portion.<br>
+</div></div>
+<div class="card">
+<p style=""> Shear force is unbalanced _____ to the left or right of the section.<br>
+a) Horizontal force<br>
+b) Vertical force<br>
+c) Inclined force<br>
+d) Conditional force<br>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: b<br>
+Explanation: The shear force at the cross section of a beam may also be defined as the unbalanced vertical force to the left or right of the section. It is also the algebraic sum of all the forces I get to the left to the right of the section.</div></div>
+<div class="card">
+<p style=""> Shear force is diagram is _______ representation of shear force plotted as ordinate.<br>
+a) Scalar<br>
+b) Aerial<br>
+c) Graphical<br>
+d) Statically<br>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: c<br>
+Explanation: Shear Force diagram is a graphical representation of the shear force plotted as ordinate on baseline representing the axis of the Beam.</div></div>
+<div class="card">
+<p style=""> Hogging is________<br>
+a) Negative bending moment<br>
+b) Positive shear force<br>
+c) Positive bending moment<br>
+d) Negative shear force<br>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: a<br>
+Explanation: The bending moment at a section is considered to be negative when it causes convexity upwards or concavity at bottom, such bending moment is called hogging bending moment or negative bending moment.</div></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+</div>
+ <!--------------------------------------------------------------------------6---------------------------------------------------------------------------------------------->
+ <!-- Chapter 56-->
+        <div class="cardBinita" id="chapter6">
+<div class="card Binitagauatm">
+    <h2 class="chapter-title">Pure Bending</h2>
+  </div>
+<div class="card">
+<p style=""> In simple bending, ______ is constant.<br>
+a) Shear force<br>
+b) Loading<br>
+c) Deformation<br>
+d) Bending moment<br>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: d<br>
+Explanation: If a beam is undergone with simple bending, the beam deforms under the action of bending moment. If this bending moment is constant and does not affect by any shear force, then the beam is in state of simple bending.</div></div>
+
+
+
+
+<div class="card">
+<p style=""> In simple bending, ______ is constant.<br>
+a) Shear force<br>
+b) Loading<br>
+c) Deformation<br>
+d) Bending moment<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: d<br>
+Explanation: If a beam is undergone with simple bending, the beam deforms under the action of bending moment.  If this bending moment is constant and does not affect by any shear force, then the beam is in state of simple bending.</div>
+</div>
+<div class="card">
+<p style=""> If a beam is subjected to pure bending, then the deformation of the beam is_____<br>
+a) Arc of circle<br>
+b) Triangular<br>
+c) Trapezoidal<br>
+d) Rectangular<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: a<br>
+Explanation: The beam being subjected to pure bending, there will be only bending moment and no shear force it results in the formation of an arc of circle with some radius known as radius of curvature.</div>
+</div>
+<div class="card">
+<p style=""> When a beam is subjected to simple bending, ____________ is the same in both tension and compression for the material.<br>
+a) Modulus of rigidity<br>
+b) Modulus of elasticity<br>
+c) Poisson’s ratio<br>
+d) Modulus of section<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: b<br>
+Explanation: It is one of the most important assumptions made in the theory of simple bending that is the modulus of elasticity that is Young’s modulus [E]  is same in both tension and compression for the material and the stress in a beam do not exceed the elastic limit.</div>
+</div>
+<div class="card">
+<p style=""> Maximum Shearing stress in a beam is at _____<br>
+a) Neutral axis<br>
+b) Extreme fibres<br>
+c) Mid span<br>
+d) Action of loading<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: a<br>
+Explanation: Shearing stress is defined as the resistance offered by the internal stress to the shear force. Shearing stress in a beam is maximum at a neutral axis.</div>
+</div>
+<div class="card">
+<p style=""> At the neutral axis, bending stress is _____<br>
+a) Minimum<br>
+b) Maximum<br>
+c) Zero<br>
+d) Constant<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer"> Answer: c<br>
+Explanation: Neutral axis is defined as a line of intersection of neutral plane or neutral layer on a cross section at the neutral axis of that section.  At the NA, bending stress or bending strain is zero. The first moment of area of a beam section about neutral axis is also zero. The layer of neutral axis neither contracts nor extends.</div>
+</div>
+<div class="card">
+<p style=""> Curvature of the beam is __________ to bending moment.<br>
+a) Equal<br>
+b) Directly proportion<br>
+c) Inversely proportion<br>
+d) Coincides<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: b<br>
+Explanation: From the flexural equation, we have 1/R is called as the “curvature of the beam”.<br>
+        1 / R = M / EI<br>
+Hence the curvature of the beam is directly proportional to bending moment and inversely proportional to flexural rigidity (EI).</div>
+</div>
+<div class="card">
+<p style=""> What are the units of flexural rigidity?<br>
+a) Nm<sup>2</sup><br>
+b) Nm<br>
+c) N/m<br>
+d) m/N<sup>3</sup><br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: a<br>
+Explanation: The product of young’s modulus (E) of the material and moment of inertia (I) of the beam section about its neutral axis is called flexural rigidity.<br>
+Units for E are N/m<sup>2</sup><br>
+Units for I are m<sup>4</sup><br>
+Their product is Nm<sup>2</sup>.</div>
+</div>
+<div class="card">
+<p style=""> Determine section modulus for beam of 100mm diameter.<br>
+<a href="https://www.sanfoundry.com/wp-content/uploads/2017/12/strength-materials-questions-answers-bending-equation-q13.png"><noscript><img src="https://www.sanfoundry.com/wp-content/uploads/2017/12/strength-materials-questions-answers-bending-equation-q13.png" alt="Find section modulus for beam of 100mm diameter" width="145" height="108" class="alignnone size-full wp-image-187722" /></noscript><img src="https://www.sanfoundry.com/wp-content/uploads/2017/12/strength-materials-questions-answers-bending-equation-q13.png" data-src="https://www.sanfoundry.com/wp-content/uploads/2017/12/strength-materials-questions-answers-bending-equation-q13.png" alt="Find section modulus for beam of 100mm diameter" width="145" height="108" class="alignnone size-full wp-image-187722 lazyloaded"></a><br>
+a) 785 × 10<sup>3</sup> mm<sup>3</sup><br>
+b) 456  × 10<sup>3</sup> mm<sup>3</sup><br>
+c) 87 × 10<sup>3</sup> mm<sup>3</sup><br>
+d) 98 × 10<sup>3</sup> mm<sup>3</sup><br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: d<br>
+Explanation:  d = 300mm<br>
+ For circular sections;  I =  π / 64 × d<sup>4</sup><br>
+                                       y= d/2<br>
+                                        Z =  π/32 ×  d<sup>3</sup> (d = 100 mm)<br>
+                                         Z = 98.17 × 10<sup>3</sup>mm<sup>3</sup>.</div>
+</div>
+<div class="card">
+<p style=""> In simply supported beams, the _____ stress distribution is not uniform.<br>
+a) Bending<br>
+b) Shearing<br>
+c) Tensile<br>
+d) Compressive<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: a<br>
+Explanation: In a simply supported beam, there is compressive stress above the neutral axis and tensile stress below it. It bends with concavity upwards. Hence the bending stress distribution is not uniform over the section.</div>
+</div>
+<div class="card">
+<p style=""> The stress is directly proportional to _______<br>
+a) E<br>
+b) u<br>
+c) y<br>
+d) R<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: c<br>
+Explanation: By two equations; we have  e = y/R      &amp;      e = f/E<br>
+Equating both equations; we get e = f/E  = y/R<br>
+Hence stress (f) is directly proportional to the distance from neutral axis(y).</div>
+</div>
+<div class="card">
+<p style=""> At the extreme fibre, bending stress is______<br>
+a) Minimum<br>
+b) Zero<br>
+c) Constant<br>
+d) Maximum<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: d<br>
+Explanation: Bending stress is defined as the resistance offered by internal stress to bending. In beams, stresses occurs above or below the neutral axis i.e at the extreme fibres. Hence bending stress is maximum at the extreme fibres.</div>
+</div>
+<div class="card">
+<p style=""> Skin stress is also called as ______<br>
+a) Shear stress<br>
+b) Bending stress<br>
+c) Lateral stress<br>
+d) Temperature stress<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: b<br>
+Explanation: The bending moment leads to deform or deflect the beam and internal stress resists bending. The resistance offered by internal stress to bending is called bending stress or “fibre stress” or “skin stress” or “longitudinal stress”.</div>
+</div>
+<div class="card">
+<p style=""> _________ is the total Strain energy stored in a body.<br>
+a) modulus of resilience<br>
+b) impact energy<br>
+c) resilience<br>
+d) proof resilience<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: c<br>
+Explanation: When a load acts on a body, there is deformation of the body which causes movement of the applied load. Thus work is done is stored in the body as energy and the load is removed this stored energy which is by virtue of strain is called resilience.</div>
+</div>
+<div class="card">
+<p style=""> In cantilever beams, there is _______ stress above neutral axis.<br>
+a) Compressive<br>
+b) Tensile<br>
+c) Temperature<br>
+d) Shear<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: b<br>
+Explanation: In a cantilever beam maximum compressive stress occurs at bottom most fibre and maximum tensile stress occurs at the top most fibre and zero at neutral axis hence the tensile stresses lies above the neutral axis.</div>
+</div>
+<div class="card">
+<p style=""> The strength of beams depend merely on________<br>
+a) Modulus section<br>
+b) Moment of inertia<br>
+c) Flexural rigidity<br>
+d) Moment of resistance<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: a<br>
+Explanation:  The ratio of moment of inertia to the distance to the extreme fibre is called modulus of section. The Beam is stronger when section modulus is more. The strength of beam depends on section modulus. The beams of same strength mean section modulus is same for the beams.</div>
+</div>
+<div class="card">
+<p style=""> What is the section modulus (Z) for a rectangular section?<br>
+a) bd<sup>2</sup>/6<br>
+b) a<sup>3</sup>/6<br>
+c) BD<sup>3</sup>-bd<sup>3</sup><br>
+d) D<sup>4</sup>-d<sup>4</sup><br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: a<br>
+Explanation: The modulus of section may be defined as the ratio of moment of inertia to the distance to the extreme fibre. It is denoted by Z.<br>
+Z= I/y ;   For rectangular section, I = bd<sup>3</sup>/12    &amp;    y = d/2.<br>
+Z= bd<sup>2</sup>/6.</div>
+</div>
+<div class="card">
+<p style=""> Find the modulus of section of square beam of size 300×300 mm.<br>
+ <a href="https://www.sanfoundry.com/wp-content/uploads/2017/12/strength-materials-questions-answers-section-modulus-q2.png"><noscript><img src="https://www.sanfoundry.com/wp-content/uploads/2017/12/strength-materials-questions-answers-section-modulus-q2.png" alt="Find the modulus of section of square beam of size 300×300 mm" width="128" height="115" class="alignnone size-full wp-image-187758" /></noscript><img src="https://www.sanfoundry.com/wp-content/uploads/2017/12/strength-materials-questions-answers-section-modulus-q2.png" data-src="https://www.sanfoundry.com/wp-content/uploads/2017/12/strength-materials-questions-answers-section-modulus-q2.png" alt="Find the modulus of section of square beam of size 300×300 mm" width="128" height="115" class="alignnone size-full wp-image-187758 lazyloaded"></a><br>
+a) 4.8 × 10<sup>6</sup> mm<sup>3</sup><br>
+b) 4.5 × 10<sup>6</sup> mm<sup>3</sup><br>
+c) 5.6  × 10<sup>6</sup> mm<sup>3</sup><br>
+d) 4.2  × 10<sup>6</sup> mm<sup>3</sup><br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: b<br>
+Explanation: Here, a = side of square section = 300 mm.<br>
+I = a<sup>4</sup>/12.      y= a/2.<br>
+Z = I/y = a<sup>3</sup>/6<br>
+            = 300<sup>3</sup>/6<br>
+            = 4.5 × 10<sup>6</sup> mm<sup>3</sup>.</div>
+</div>
+<div class="card">
+<p style=""> _________ of a beam is a measure of its resistance against deflection.<br>
+a) Strength<br>
+b) Stiffness<br>
+c) Deflection<br>
+d) Slope<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: b<br>
+Explanation: A beam is said to be a strength when the maximum induced bending and shear stresses are within the safe permissible stresses stiffness of a beam is a measure of its resistance against deflection.</div>
+</div>
+<div class="card">
+<p style=""> To what radius an Aluminium strip 300 mm wide and 40mm thick can be bent, if the maximum stress in a strip is not to exceed 40 N/mm<sup>2</sup>. Take young’s modulus for Aluminium is 7×105 N/mm<sup>2</sup>.<br>
+a) 45m<br>
+b) 52m<br>
+c) 35m<br>
+d) 65m<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: c<br>
+Explanation: Here, b = 300mm<br>
+d= 40mm.   y= 20mm.<br>
+From the relation; E/R = f/y<br>
+R= E×y/f<br>
+   =70×10<sup>3</sup> × 20 / 40<br>
+   = 35m.</div>
+</div>
+<div class="card">
+<p style=""> The bending stress in a beam is ______ to bending moment.<br>
+a) Less than<br>
+b) Directly proportionate<br>
+c) More than<br>
+d) Equal<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: b<br>
+Explanation: As we know, the bending stress is equal to bending moment per area. Hence, as the bending (flexure) moment increases/decreases the same is noticed in the bending stress too.</div>
+</div>
+<div class="card">
+<p style=""> The term “Tenacity” means __________<br>
+a) Working stress<br>
+b) Ultimate stress<br>
+c) Bulk modulus<br>
+d) Shear modulus<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: b<br>
+Explanation:  The ultimate stress of a material is the greatest load required to fracture the material divided by the area of the original cross section in the point of fracture  The ultimate stress is also known as tenacity.</div>
+</div>
+<div class="card">
+<p style=""> A steel rod of 25 mm diameter and 600 mm long is subjected to an axial pull of 40000. The intensity of stress is?<br>
+a) 34.64 N/mm<sup>2</sup><br>
+b) 46.22 N/mm<sup>2</sup><br>
+c) 76.54 N/mm<sup>2</sup><br>
+d) 81.49  N/mm<sup>2</sup><br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: d<br>
+Explanation: Cross sectional area of steel rod [Circular]be 490.87 mm<sup>2</sup>.<br>
+The intensity of stress = P/A = 40000/490.87<br>
+                                                   = 81.49 N/mm<sup>2</sup>.</div>
+</div>
+<div class="card">
+<p style=""> The bending strain is zero at _______<br>
+a) Point of contraflexure<br>
+b) Neutral axis<br>
+c) Curvature<br>
+d) Line of action of loading<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: b<br>
+Explanation:  The neutral axis is a line of intersection of neutral plane or neutral layer on a cross section. The neutral axis of a beam passes through the centroid of the section. At the neutral axis bending stress and bending strain is zero.</div>
+</div>
+<div class="card">
+<p style=""> The moment which resists the external bending is called ______<br>
+a) Moment of shear<br>
+b) Tolerating moment<br>
+c) Moment of resistance<br>
+d) Maximum bending moment<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: c<br>
+Explanation: The tensile and compressive stresses developed in the beam section from a couple whose moment is equal to the external bending moment. The moment of this couple which resists the external bending is known as moment of resistance [MR].</div>
+</div>
+<div class="card">
+<p style=""> ______ strength is caused by a moment of resistance offered by a section.<br>
+a) Shear<br>
+b) Flexural<br>
+c) Axial<br>
+d) Longitudinal<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: b<br>
+Explanation: The moment of couple with resists action of bending moment is a moment of resistance and the flexural strength possessed by section is the moment of resistance offered by it.</div>
+</div>
+<div class="card">
+<p style=""> The hoop stress is also known as ______<br>
+a) Parametrical stress<br>
+b) Surface stress<br>
+c) Circumferential stress<br>
+d) Lateral stress<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: c<br>
+Explanation: The stress which is developed in the walls of the cylinder due to internal fluid pressure and which acts tangential to the circumference is called hoop stress or circumferential stress.<br>
+Total pressure = p × A.</div>
+</div>
+<div class="card">
+<p style=""> The ____ of strongest beam that can be cut out of a circular section of diameter D.<br>
+a) Load<br>
+b) Size<br>
+c) material<br>
+d) cross section<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: b<br>
+Explanation: The size of the strongest Beam that can be cut out of a circular section of diameter D is<br>
+Depth;      <a href="https://www.sanfoundry.com/wp-content/uploads/2017/12/strength-materials-questions-answers-experienced-q5.png"><noscript><img src="https://www.sanfoundry.com/wp-content/uploads/2017/12/strength-materials-questions-answers-experienced-q5.png" alt="The Size of strongest beam that can be cut out of a circular section of diameter D" width="145" height="139" class="alignnone size-full wp-image-187764" /></noscript><img src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20145%20139%22%3E%3C/svg%3E" data-src="https://www.sanfoundry.com/wp-content/uploads/2017/12/strength-materials-questions-answers-experienced-q5.png" alt="The Size of strongest beam that can be cut out of a circular section of diameter D" width="145" height="139" class="lazyload alignnone size-full wp-image-187764"></a> d = Square root of 2/3<br>
+                    b = D / square root of 3.<br>
+Among the given sections for the same depth I section gives maximum strength.</div>
+</div>
+<div class="card">
+<p style=""> A rectangular beam 100 mm wide is subjected to a maximum shear force and 50 kN. Find the depth of the beam.<br>
+a) 350 mm<br>
+b) 185 mm<br>
+c) 200 mm<br>
+d) 250 mm<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: d<br>
+Explanation: Let the depth of the beam be d<br>
+Maximum shear stress = 3/2 (Average Shear stress)<br>
+ d= 3×5000/ 3×2×100.</div>
+</div>
+<div class="card">
+<p style=""> What is the approximate value of coefficient of linear expansion for steel?<br>
+a) 13 × 10<sup>-6</sup>6 /°C<br>
+b) 11.5 × 10<sup>-6</sup> /°C<br>
+c) 12 × 10<sup>-6</sup> /°C<br>
+d) 16 × 10<sup>-6</sup>  /°C<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: b<br>
+Explanation: The increase in length of body per unit rise of temperature in original name is termed as coefficient of linear expansion and it is denoted by Greek letter alpha. Coefficient of linear expansion for steel is 11.5 × 10<sup>-6</sup> /°C.  For copper it is 17 × 10<sup>-6</sup> /°C.</div>
+</div>
+<div class="card">
+<p style=""> A hollow shaft has outside diameter 120 mm and thickness 20 mm. Find the polar moment of inertia (J).<br>
+a) 16.36 × 10<sup>6</sup> mm<sup>4</sup><br>
+b) 14.65 × 10<sup>6</sup> mm<sup>4</sup><br>
+c) 10.32 × 10<sup>6</sup> mm<sup>4</sup><br>
+d) 23.18 × 10<sup>6</sup> mm<sup>4</sup><br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: a<br>
+Explanation: D = 120mm<br>
+                        t= 20mm &amp; d = D – 2t = 80mm.<br>
+Polar moment of inertia (J) is     π/32 ×[ D<sup>4</sup>– d<sup>4</sup>].<br>
+                                                          π/32 × [ 120<sup>4</sup>– 80<sup>4</sup> ].<br>
+                                                          16.36 × 10<sup>6</sup> mm<sup>4</sup>.</div>
+</div>
+<div class="card">
+<p style=""> In simply supported beams, the _____ stress distribution is not uniform.<br>
+a) Bending<br>
+b) Shearing<br>
+c) Tensile<br>
+d) Compressive<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: a<br>
+Explanation: In a simply supported beam, there is compressive stress above the neutral axis and tensile stress below it. It bends with concavity upwards. Hence the bending stress distribution is not uniform over the section.</div>
+</div>
+<div class="card">
+<p style=""> The maximum _________ stresses occur at top most fibre of a simply supported beam.<br>
+a) Tensile<br>
+b) Compressive<br>
+c) Shear<br>
+d) Bending<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: b<br>
+Explanation:  As bending stress distribution is not uniform over the section in simply supported beams, the maximum compressive stress lies above the neutral axis. Obviously, top most fibre of beam. The maximum tensile stress occurs at bottom most fibre.</div>
+</div>
+<div class="card">
+<p style=""> The stress is directly proportional to _______<br>
+a) E<br>
+b) u<br>
+c) y<br>
+d) R<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: c<br>
+Explanation: By two equations; we have  e = y/R      &amp;      e = f/E<br>
+Equating both equations; we get e = f/E  = y/R<br>
+Hence stress (f) is directly proportional to the distance from neutral axis(y).</div>
+</div>
+<div class="card">
+<p style=""> At the extreme fibre, bending stress is______<br>
+a) Minimum<br>
+b) Zero<br>
+c) Constant<br>
+d) Maximum<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: d<br>
+Explanation: Bending stress is defined as the resistance offered by internal stress to bending. In beams, stresses occurs above or below the neutral axis i.e at the extreme fibres. Hence bending stress is maximum at the extreme fibres.</div>
+</div>
+<div class="card">
+<p style=""> The curvature of a beam is equal to _____<br>
+a) EI/M<br>
+b) M/E<br>
+c) M/EI<br>
+d) E/MI<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: c<br>
+Explanation: From the bending equation, E/R = M/I = f/y.<br>
+Where R is called “radius of curvature “<br>
+ 1/R is called “curvature of the beam “.<br>
+So, 1/R = M/EI.<br>
+So curvature of the beam is directly proportional to bending moment.</div>
+</div>
+<div class="card">
+<p style=""> _________ is the total Strain energy stored in a body.<br>
+a) modulus of resilience<br>
+b) impact energy<br>
+c) resilience<br>
+d) proof resilience<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: c<br>
+Explanation: When a load acts on a body, there is deformation of the body which causes movement of the applied load. Thus work is done is stored in the body as energy and the load is removed this stored energy which is by virtue of strain is called resilience.</div>
+</div>
+
+<div class="card">
+<p style=""> Calculate the maximum stress due to Bending in a steel strip of 30 mm thick and 60 mm wide is bent around a circular drum of 3.6 m diameter   [Take Young’s modulus = 200kN/m<sup>2</sup>].<br>
+<a href="https://www.sanfoundry.com/wp-content/uploads/2017/12/strength-materials-questions-answers-pure-bending-stress-q10.png"><noscript><img src="https://www.sanfoundry.com/wp-content/uploads/2017/12/strength-materials-questions-answers-pure-bending-stress-q10.png" alt="Find maximum stress due to Bending in a steel strip of 30 mm thick &#038; 60 mm wide" width="289" height="118" class="alignnone size-full wp-image-187729" /></noscript><img src="https://www.sanfoundry.com/wp-content/uploads/2017/12/strength-materials-questions-answers-pure-bending-stress-q10.png" data-src="https://www.sanfoundry.com/wp-content/uploads/2017/12/strength-materials-questions-answers-pure-bending-stress-q10.png" alt="Find maximum stress due to Bending in a steel strip of 30 mm thick &amp; 60 mm wide" width="289" height="118" class="alignnone size-full wp-image-187729 ls-is-cached lazyloaded" style=""></a><br>
+a) 2341.76 N/mm<sup>2</sup><br>
+b) 1666.67 N/mm<sup>2</sup><br>
+c) 5411.76 N/mm<sup>2</sup><br>
+d) 4666.67 N/mm<sup>2</sup><br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: b<br>
+Explanation: Thickness of steel strip = 30 mm; b = 60 mm; d = 3.6m<br>
+R = 3.6/2  = 1.8 m<br>
+E = 200 kN/m<sup>2</sup><br>
+y = 30/2 = 15 mm<br>
+E/R = f/y ;        f = 200000×15/1800<br>
+= 1666.67 N/mm<sup>2</sup>.</div>
+</div>
+<div class="card">
+<p style=""> The strength of beams depend merely on________<br>
+a) Modulus section<br>
+b) Moment of inertia<br>
+c) Flexural rigidity<br>
+d) Moment of resistance<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: a<br>
+Explanation:  The ratio of moment of inertia to the distance to the extreme fibre is called modulus of section. The Beam is stronger when section modulus is more. The strength of beam depends on section modulus. The beams of same strength mean section modulus is same for the beams.</div>
+</div>
+<div class="card">
+<p style=""> The steel plate is bent into a circular path of radius 10 metres. If the plate section be 120 mm wide and 20 mm thick, then calculate the maximum bending stress.  [Consider Young’s modulus = 200000 N/mm<sup>2</sup>].<br>
+a) 350 N/mm<sup>2</sup><br>
+b) 400 N/mm<sup>2</sup><br>
+c) 200 N/mm<sup>2</sup><br>
+d) 500 N/mm<sup>2</sup><br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: c<br>
+Explanation: R = 10000 mm;    y = 20/2 = 10 mm; E = 200000 N/mm<sup>2</sup><br>
+By bending equation we have E/R = f/y<br>
+ f = 200000×10 / 10000<br>
+   = 200 N/mm<sup>2</sup>.</div>
+</div>
+<div class="card">
+<p style=""> What is the section modulus (Z) for a rectangular section?<br>
+a) bd<sup>2</sup>/6<br>
+b) a<sup>3</sup>/6<br>
+c) BD<sup>3</sup>-bd<sup>3</sup><br>
+d) D<sup>4</sup>-d<sup>4</sup><br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: a<br>
+Explanation: The modulus of section may be defined as the ratio of moment of inertia to the distance to the extreme fibre. It is denoted by Z.<br>
+Z= I/y ;   For rectangular section, I = bd<sup>3</sup>/12    &amp;    y = d/2.<br>
+Z= bd<sup>2</sup>/6.</div>
+</div>
+<div class="card">
+<p style=""> Find the modulus of section of square beam of size 300×300 mm.<br>
+ <a href="https://www.sanfoundry.com/wp-content/uploads/2017/12/strength-materials-questions-answers-section-modulus-q2.png"><noscript><img src="https://www.sanfoundry.com/wp-content/uploads/2017/12/strength-materials-questions-answers-section-modulus-q2.png" alt="Find the modulus of section of square beam of size 300×300 mm" width="128" height="115" class="alignnone size-full wp-image-187758" /></noscript><img src="https://www.sanfoundry.com/wp-content/uploads/2017/12/strength-materials-questions-answers-section-modulus-q2.png" data-src="https://www.sanfoundry.com/wp-content/uploads/2017/12/strength-materials-questions-answers-section-modulus-q2.png" alt="Find the modulus of section of square beam of size 300×300 mm" width="128" height="115" class="alignnone size-full wp-image-187758 lazyloaded"></a><br>
+a) 4.8 × 10<sup>6</sup> mm<sup>3</sup><br>
+b) 4.5 × 10<sup>6</sup> mm<sup>3</sup><br>
+c) 5.6  × 10<sup>6</sup> mm<sup>3</sup><br>
+d) 4.2  × 10<sup>6</sup> mm<sup>3</sup><br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: b<br>
+Explanation: Here, a = side of square section = 300 mm.<br>
+I = a<sup>4</sup>/12.      y= a/2.<br>
+Z = I/y = a<sup>3</sup>/6<br>
+            = 300<sup>3</sup>/6<br>
+            = 4.5 × 10<sup>6</sup> mm<sup>3</sup>.</div>
+</div>
+<div class="card">
+<p style=""> To what radius an Aluminium strip 300 mm wide and 40mm thick can be bent, if the maximum stress in a strip is not to exceed 40 N/mm<sup>2</sup>. Take young’s modulus for Aluminium is 7×105 N/mm<sup>2</sup>.<br>
+a) 45m<br>
+b) 52m<br>
+c) 35m<br>
+d) 65m<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: c<br>
+Explanation: Here, b = 300mm<br>
+d= 40mm.   y= 20mm.<br>
+From the relation; E/R = f/y<br>
+R= E×y/f<br>
+   =70×10<sup>3</sup> × 20 / 40<br>
+   = 35m.</div>
+</div>
+<div class="card">
+<p style=""> The bending stress in a beam is ______ to bending moment.<br>
+a) Less than<br>
+b) Directly proportionate<br>
+c) More than<br>
+d) Equal<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: b<br>
+Explanation: As we know, the bending stress is equal to bending moment per area. Hence, as the bending (flexure) moment increases/decreases the same is noticed in the bending stress too.</div>
+</div>
+<div class="card">
+<p style=""> The term “Tenacity” means __________<br>
+a) Working stress<br>
+b) Ultimate stress<br>
+c) Bulk modulus<br>
+d) Shear modulus<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: b<br>
+Explanation:  The ultimate stress of a material is the greatest load required to fracture the material divided by the area of the original cross section in the point of fracture  The ultimate stress is also known as tenacity.</div>
+</div>
+<div class="card">
+<p style=""> The bending strain is zero at _______<br>
+a) Point of contraflexure<br>
+b) Neutral axis<br>
+c) Curvature<br>
+d) Line of action of loading<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: b<br>
+Explanation:  The neutral axis is a line of intersection of neutral plane or neutral layer on a cross section. The neutral axis of a beam passes through the centroid of the section. At the neutral axis bending stress and bending strain is zero.</div>
+</div>
+<div class="card">
+<p style=""> The moment which resists the external bending is called ______<br>
+a) Moment of shear<br>
+b) Tolerating moment<br>
+c) Moment of resistance<br>
+d) Maximum bending moment<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: c<br>
+Explanation: The tensile and compressive stresses developed in the beam section from a couple whose moment is equal to the external bending moment. The moment of this couple which resists the external bending is known as moment of resistance [MR].</div>
+</div>
+<div class="card">
+<p style=""> ______ strength is caused by a moment of resistance offered by a section.<br>
+a) Shear<br>
+b) Flexural<br>
+c) Axial<br>
+d) Longitudinal<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: b<br>
+Explanation: The moment of couple with resists action of bending moment is a moment of resistance and the flexural strength possessed by section is the moment of resistance offered by it.</div>
+</div>
+<div class="card">
+<p style=""> A rectangular beam 100 mm wide is subjected to a maximum shear force and 50 kN. Find the depth of the beam.<br>
+a) 350 mm<br>
+b) 185 mm<br>
+c) 200 mm<br>
+d) 250 mm<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: d<br>
+Explanation: Let the depth of the beam be d<br>
+Maximum shear stress = 3/2 (Average Shear stress)<br>
+ d= 3×5000/ 3×2×100.</div>
+</div>
+<div class="card">
+<p style=""> What is the approximate value of coefficient of linear expansion for steel?<br>
+a) 13 × 10<sup>-6</sup>6 /°C<br>
+b) 11.5 × 10<sup>-6</sup> /°C<br>
+c) 12 × 10<sup>-6</sup> /°C<br>
+d) 16 × 10<sup>-6</sup>  /°C<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: b<br>
+Explanation: The increase in length of body per unit rise of temperature in original name is termed as coefficient of linear expansion and it is denoted by Greek letter alpha. Coefficient of linear expansion for steel is 11.5 × 10<sup>-6</sup> /°C.  For copper it is 17 × 10<sup>-6</sup> /°C.</div>
+</div>
+<div class="card">
+<p style=""> A hollow shaft has outside diameter 120 mm and thickness 20 mm. Find the polar moment of inertia (J).<br>
+a) 16.36 × 10<sup>6</sup> mm<sup>4</sup><br>
+b) 14.65 × 10<sup>6</sup> mm<sup>4</sup><br>
+c) 10.32 × 10<sup>6</sup> mm<sup>4</sup><br>
+d) 23.18 × 10<sup>6</sup> mm<sup>4</sup><br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: a<br>
+Explanation: D = 120mm<br>
+                        t= 20mm &amp; d = D – 2t = 80mm.<br>
+Polar moment of inertia (J) is     π/32 ×[ D<sup>4</sup>– d<sup>4</sup>].<br>
+                                                          π/32 × [ 120<sup>4</sup>– 80<sup>4</sup> ].<br>
+                                                          16.36 × 10<sup>6</sup> mm<sup>4</sup>.</div>
+</div>
+<div class="card">
+<p style=""> Unsymmetrical bending occurs due to ______<br>
+a) The Beam cross section is unsymmetrical<br>
+b) The shear Centre does not coincide with the neutral axis<br>
+c) The Beam is subjected to trust in addition to bending moment<br>
+d) The bending moment diagram is unsymmetrical<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: d<br>
+Explanation: If the bending moment diagram of a beam seems to unsymmetrical, then with respect to that diagram, the bending is said to be unsymmetrical bending.</div>
+</div>
+<div class="card">
+<p style=""> A body having similar properties throughout its volume is said to be _____________<br>
+a) Isotropic<br>
+b) Homogeneous<br>
+c) Continuous<br>
+d) Uniform<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: b<br>
+Explanation: A body having similar properties throughout its volume is said to be “homogeneous” and the material which exhibits the same elastic properties in all directions is called “isotropic”.</div>
+</div>
+<div class="card">
+<p style=""> Principal plane has ____________<br>
+a) Maximum shear stress<br>
+b) Maximum tensile stress<br>
+c) Zero shear stress<br>
+d) Minimum bending stress<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: c<br>
+Explanation: Principal stress is a magnitude of direct stress, across a principal plane which is a particular plane having no shear stress at all.</div>
+</div>
+<div class="card">
+<p style=""> Calculate the Strain energy that can be stored in a body to be pulled with 100 N/mm<sup>2</sup> stress (f) and E = 2×10<sup>5</sup> N/mm<sup>2</sup>.<br>
+a) 0.9 kNm<br>
+b) 0.05kNm<br>
+c) 0.87kNm<br>
+d) 0.54kNm<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: b<br>
+Explanation: Strain energy stored in the body be “U” = f<sup>2</sup>/ 2 E   ×    Volume.<br>
+                                                                = 100<sup>2</sup>/ 2×2×10<sup>5</sup><br>
+                                                                                               = 0.05 kNm.</div>
+</div>
+<div class="card">
+<p style=""> Materials exhibiting time bound behaviour are known as _______<br>
+a) Isentropic<br>
+b) Reactive<br>
+c) Fissile<br>
+d) Visco elastic<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: d<br>
+Explanation: Materials exhibiting time bound behaviour popularly known as visco elastic and if a body having similar properties throughout its volume it is known as homogeneous and according to one assumption, the concrete is considered to be homogeneous material.</div>
+</div>
+<div class="card">
+<p style=""> What are the units of true strain?<br>
+a) Kg/m<sup>2</sup><br>
+b) Kg/ m<sup>3</sup><br>
+c) No dimensions<br>
+d) N/mm<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: c<br>
+Explanation:  As we know strain is the ratio of change in dimension to the original dimension. It is denoted by “e”. Metres/metres hence no dimensions.</div>
+</div>
+<div class="card">
+<p style=""> Revert size is generally expressed in terms of _______<br>
+a) Shank width<br>
+b) Girder length<br>
+c) Lap length<br>
+d) Shank diameter<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: d<br>
+Explanation: Rivets are ductile metal pins of often used for joining structure members as in case of trusses, stanchions plate girders, cylindrical shells etc. The distance between two heads is known as shank and rivet size is generally expressed in terms of shank diameter.</div>
+</div>
+<div class="card">
+<p style=""> The specific gravity of sand is __________<br>
+a) 2.8<br>
+b) 2.25<br>
+c) 3.2<br>
+d) 2.65<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: d<br>
+Explanation: The specific gravity of sand is 2.65.<p></p>
+<table class="sf-tbl-fit">
+<tbody><tr>
+<th>Materials</th>
+<th>Specific Gravity</th>
+</tr>
+<tr>
+<td>Trap</td>
+<td>2.9</td>
+</tr>
+<tr>
+<td>Gravel</td>
+<td>2.66</td>
+</tr>
+<tr>
+<td>Granite</td>
+<td>2.8</td>
+</tr>
+<tr>
+<td>Sand</td>
+<td>2.65</td>
+</tr>
+</tbody></table>
+</div>
+</div>
+<div class="card">
+<p style=""> To what radius a silver strip 200 mm wide and 40 mm thick can be bent if the maximum stress in the ship is 80 N/mm<sup>2</sup>. Young’s modulus for Silver is 80×10<sup>3</sup> N/mm<sup>2</sup>.<br>
+a) 20m<br>
+b) 30m<br>
+c) 15m<br>
+d) 35m<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: a<br>
+Explanation: Here, b = 200 mm; d = 40mm<br>
+y = 40/2 = 20 mm<br>
+f = 80N/mm<sup>2</sup><br>
+From the relation; E/R = f/y<br>
+R = E×y / f<br>
+    = 80000×20 / 80<br>
+    = 20000mm = 20m.</div>
+</div>
+<div class="card">
+<p style=""> In flitched beams ______ remains same for both materials.<br>
+a) Stress<br>
+b) Strain<br>
+c) Section modulus<br>
+d) Young’s modulus<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: b<br>
+Explanation:  Due to bending, the strain will be same in both the materials.<br>
+<a href="https://www.sanfoundry.com/wp-content/uploads/2017/12/strength-materials-questions-answers-composite-flitched-beams-q1.png"><noscript><img src="https://www.sanfoundry.com/wp-content/uploads/2017/12/strength-materials-questions-answers-composite-flitched-beams-q1.png" alt="The strain will be same in both the materials" width="161" height="123" class="alignnone size-full wp-image-187793" /></noscript><img src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20161%20123%22%3E%3C/svg%3E" data-src="https://www.sanfoundry.com/wp-content/uploads/2017/12/strength-materials-questions-answers-composite-flitched-beams-q1.png" alt="The strain will be same in both the materials" width="161" height="123" class="lazyload alignnone size-full wp-image-187793"></a><br>
+A timber beam strengthened by steel strips.<br>
+Where E of timber / E of steel = m<br>
+The equivalent width = b + 2mt.</div>
+</div>
+<div class="card">
+<p style=""> What is the moment due to dead load in case of continuous beams at the middle of interior spans?<br>
+a) w L<sup>3</sup> / 12<br>
+b) w L<sup>2</sup>/ 14<br>
+c) w 3/ 20<br>
+d) w L<sup>2</sup> / 24<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: d<br>
+Explanation: The moment due to dead load in case of continuous beams at the middle of interior spans is w L<sup>2</sup> / 24.<p></p>
+<table class="sf-tbl-fit">
+<tbody><tr>
+<th>Position</th>
+<th>Moment due to Dead Load</th>
+</tr>
+<tr>
+<td>Near middle of end span</td>
+<td>W L<sup>2</sup>/ 12</td>
+</tr>
+<tr>
+<td>At the middle of interior span</td>
+<td>W L<sup>2</sup>/ 24</td>
+</tr>
+<tr>
+<td>At the support  next to and support</td>
+<td>-W L<sup>2</sup>/  22</td>
+</tr>
+</tbody></table>
+<p>.</p></div>
+</div>
+<div class="card">
+<p style=""> A continuous beam is one which is _______<br>
+a) Infinitely long<br>
+b) Supported at two points<br>
+c) Supported it more than two supports<br>
+d) Supported by a prop<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: c<br>
+Explanation: A beam which is supported by more than two supports is known as a continuous beam. In this beam, bending moment is low and hence the deflection in the beam is also comparatively less. This beam is stiffer when compared to the other traditional beams.</div>
+</div>
+<div class="card">
+<p style=""> The effective length of column depends upon ________<br>
+a) the cross section of beam<br>
+b) end conditions<br>
+c) maximum bending moment<br>
+d) extreme fibres<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: b<br>
+Explanation: The effective length of column depends upon end conditions.<p></p>
+<table class="sf-tbl-fit">
+<tbody><tr>
+<th>End Condition</th>
+<th>Effective Length</th>
+</tr>
+<tr>
+<td>Both ends hinged</td>
+<td>L</td>
+</tr>
+<tr>
+<td>Both ends fixed</td>
+<td>L/2</td>
+</tr>
+<tr>
+<td>One end is fixed and other end free</td>
+<td>2L</td>
+</tr>
+</tbody></table>
+</div>
+</div>
+<div class="card">
+<p style=""> The phenomenon under which the strain of material varies under constant stress is known as ________<br>
+a) Creep<br>
+b) Hysteresis<br>
+c) Viscoelasticity<br>
+d) Strain hardening<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: a<br>
+Explanation: A creep is a plastic deformation underweight the strain of material where is under constant stress this is one of the mechanical properties of the engineering materials. The best example is the failure of concrete.</div>
+</div>
+<div class="card">
+<p style=""> Volumetric strain = 3× _____ strain.<br>
+a) Lateral<br>
+b) Linear<br>
+c) Composite<br>
+d) Yield<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: b<br>
+Explanation: eV (volumetric strain) = 3× linear strain = 3×e<br>
+The volumetric strain is algebraic sum of all the linear(or) axial strain when a solid to be subjected to equal normal sources of the same type of all faces we will have €x, €y and €z equal in value. In this case the volumetric strain will be 3 times the linear strain in any of the three axes.</div>
+</div>
+<div class="card">
+<p style=""> The stress corresponding to breaking point is known as _____________<br>
+a) yield stress<br>
+b) ultimate stress<br>
+c) breaking stress<br>
+d) normal stress<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: c<br>
+Explanation: After reaching ultimate stress, the stress strain curve suddenly falls with rapid increase in strain and specimen breaks. The stress corresponding to breaking point is known as breaking stress and it is denoted by G.</div>
+</div>
+<div class="card">
+<p style=""> What is the elongation percentage of a steel rod of 50 mm diameter if the total extension is is 54 mm and gauge length is 200 mm.<br>
+a) 27%<br>
+b) 23%<br>
+c) 43%<br>
+d) 35%<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: a<br>
+Explanation: Percentage elongation = Total extension / Gauge length × 100<br>
+                                                                  = 54/200 × 100<br>
+                                                                 = 27%.</div>
+</div>
+<div class="card">
+<p style=""> __________ joints are provided when there is a break in the concreting operation.<br>
+a) transverse joints<br>
+b) longitudinal joints<br>
+c) construction joints<br>
+d) warpage joints<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: c<br>
+Explanation:  The construction joints are provided when there is a break in a concreting operation. Although the effort is always made to complete the concrete work in one day, sometimes it is not possible and therefore, construction joints are provided. For beams, the joints should be at the centre of the span or within the middle third.</div>
+</div>
+</div>
+
+
+<!--------------------------------------------------------------------------7---------------------------------------------------------------------------------------------->
+ <!-- Chapter 7-->
+        <div class="cardBinita" id="chapter7">
+<div class="card Binitagauatm">
+    <h2 class="chapter-title">Shear Stress</h2>
+  </div>
+<div class="card">
+<p style=""> At ________ the shearing stress in a beam are maximum.<br>
+a) Extreme fibres<br>
+b) Modulus of section<br>
+c) Neutral axis<br>
+d) Along the cross-sectional area<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: c<br>
+Explanation: Shearing stress in a beam is maximum at the neutral axis. Shearing stress is defined as the resistance offered by the internal stress to the shear force.</div>
+</div>
+<div class="card">
+<p style=""> Determine the shear stress at the level of neutral axis, if a beam has a triangle cross section having base “b” and altitude “h”. Let the shear force be subjected is F.<br>
+a) 3F/8bh<br>
+b) 4F/3bh<br>
+c) 8F/3bh<br>
+d) 3F/6bh<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: c<br>
+Explanation: For a triangular section subjected to shear force the shear stress in neutral axis is<br>
+Shear stress at NA = 4/3 [Average shear stress].<br>
+                                  = 4/3 [F/0.5 bh] = 8F / 3bh.</div>
+</div>
+<div class="card">
+<p style=""> The maximum shear stress is ______ times the average shear stress [For rectangular beams].<br>
+a) 2.5<br>
+b) 3<br>
+c) 1.2<br>
+d) 1.5<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: d<br>
+Explanation: The maximum shear stress occurs at neutral axis. Then y = 0.<br>
+Max shear stress = 3F/2bd = 3/2 [F/bd].<br>
+                                                 = 1.5 Average shear stress.</div>
+</div>
+<div class="card">
+<p style=""> Shear stress in a beam is zero at ______<br>
+a) Neutral axis<br>
+b) Extreme fibres<br>
+c) Cross section<br>
+d) Junctions<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: b<br>
+Explanation:  The resistance offered by the internal stress to shear is known as shearing stress. Shearing stress is zero at extreme fibres of the beam. The bending stresses are maximum at extreme fibres of the beam cross section.</div>
+</div>
+<div class="card">
+<p style=""> Shear stress distribution over rectangular section will be _________<br>
+a) parabolic<br>
+b) elliptical<br>
+c) triangular<br>
+d) trapezoidal<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: a<br>
+Explanation:<br>
+<a href="https://www.sanfoundry.com/wp-content/uploads/2017/12/strength-materials-questions-answers-introduction-shear-stress-q5.png"><noscript><img src="https://www.sanfoundry.com/wp-content/uploads/2017/12/strength-materials-questions-answers-introduction-shear-stress-q5.png" alt="Maximum shear stress is 1.5 times that of average shear stress" width="266" height="167" class="alignnone size-full wp-image-187801" /></noscript><img src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20266%20167%22%3E%3C/svg%3E" data-src="https://www.sanfoundry.com/wp-content/uploads/2017/12/strength-materials-questions-answers-introduction-shear-stress-q5.png" alt="Maximum shear stress is 1.5 times that of average shear stress" width="266" height="167" class="lazyload alignnone size-full wp-image-187801"></a><br>
+Maximum shear stress is 1.5 times that of average shear stress.<br>
+The shear stress distribution is parabolic.</div>
+</div>
+<div class="card">
+<p style=""> For circular section, the maximum shear stress is equal to ____________ times of average shear stress.<br>
+a) 2/3<br>
+b) 3/2<br>
+c) 4/3<br>
+d) 3/4<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: c<br>
+Explanation: Maximum shear stress occurs at neutral axis &amp; y = 0.<br>
+Max. Shear stress = 4/3 [ F/A ].<br>
+                                 F/A is average shear stress.<br>
+The maximum shear stress distribution is 33% more than average shear stress.</div>
+</div>
+<div class="card">
+<p style=""> A steel beam is 200 mm wide and 300 mm deep. The beam is simply supported and carries a concentrated load w. If the maximum stress are 2 N/mm<sup>2</sup>. What will be the corresponding load?<br>
+a) 50 kN<br>
+b) 80 kN<br>
+c) 40 kN<br>
+d) 85 kN<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer:  b<br>
+Explanation:  For a rectangular cross section<br>
+Max. Shear stress = 3/2 [F/A ]
+                              2 = 3/2  [w/200 × 300].<br>
+                               w = 80 kN.</div>
+</div>
+<div class="card">
+<p style=""> Maximum shear stress in thin cylindrical shell be ___________<br>
+a) pr/2t<br>
+b) pr/3t<br>
+c) pr/4t<br>
+d) pr/ 5t<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: c<br>
+Explanation: Hoop stress P(h) = pr/t<br>
+                      Longitudinal stress P(l) = pr/2t<br>
+Thus, hoop stress is twice the longitudinal stress<br>
+Max. Shear stress = P(h) – P(l) / 2<br>
+                                =  pr/4t.</div>
+</div>
+<div class="card">
+<p style=""> Circumferential stress is same as of _________<br>
+a) Hoop stress<br>
+b) Longitudinal stress<br>
+c) Transverse stress<br>
+d) Phreatic stress<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: a<br>
+Explanation:  In a thin cylindrical shell of internal radius r thickness t when subjected to internal fluid pressure P, the stress developed in the internal walls can be termed as circumferential stress or hoop stress.<br>
+P(h) = pr/t.</div>
+</div>
+<div class="card">
+<p style=""> A beam has a triangular cross-section, having altitude ”h” and base “b”. If the section is being subjected to a shear force “F”. Calculate the shear stress at the level of neutral axis in the cross section.<br>
+a) 4F/5bh<br>
+b) 4F/3bh<br>
+c) 8F/3bh<br>
+d) 3F/4bh<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: c<br>
+Explanation: For a triangular section subjected to a shear force,  the shear stress at neutral axis is<br>
+= 4/3 × average shear stress<br>
+= 4/3 × F/A/2 ;     A = bh<br>
+= 8F/3bh.</div>
+</div>
+<div class="card">
+<p style="">The modular ratio for M20 grade concrete is _____________<br>
+a) 16<br>
+b) 13<br>
+c) 11<br>
+d) 07<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: b<br>
+Explanation: According to Indian Standards 456-2000 The modular ratio (m) = 280/3× cbc,  For M20; compressive bearing capacity in concrete = 7 N/mm<sup>2</sup>  &amp; tensile strength = 330 N/mm<sup>2</sup>.<br>
+Modular ratio  (m) = 280/21 = 13.33.</div>
+</div>
+<div class="card">
+<p style=""> Calculate the modulus of section for a hollow circular column of external diameter 60 mm and 10 mm thickness.<br>
+a) 170 m<br>
+b) 190 m<br>
+c) 250 m<br>
+d) 300 m<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: a<br>
+Explanation: Given data :<br>
+D = 60 mm ; t = 10 mm   &amp;  d = 60 – 2×10  = 40 mm<br>
+For hollow circular section,  modulus of section( Z ) =  3.14 × D<sup>4</sup> – d<sup>4</sup> / 32 D.<br>
+                                                                                             = 17016.3 mm = 170 m.<br>
+<a href="https://www.sanfoundry.com/wp-content/uploads/2017/12/strength-materials-basic-questions-answers-q7.png"><noscript><img src="https://www.sanfoundry.com/wp-content/uploads/2017/12/strength-materials-basic-questions-answers-q7.png" alt="The modulus of section for hollow circular column of diameter 60 mm is 170 m" width="184" height="158" class="alignnone size-full wp-image-187808" /></noscript><img src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20184%20158%22%3E%3C/svg%3E" data-src="https://www.sanfoundry.com/wp-content/uploads/2017/12/strength-materials-basic-questions-answers-q7.png" alt="The modulus of section for hollow circular column of diameter 60 mm is 170 m" width="184" height="158" class="lazyload alignnone size-full wp-image-187808"></a></div>
+</div>
+<div class="card">
+<p style=""> Determine the modulus of a section for an I section,  given the distance from neutral axis is 50 mm and moment of inertia is 2.8×10<sup>6</sup> mm<sup>4</sup>.<br>
+a) 59m<br>
+b) 51m<br>
+c) 58m<br>
+d) 63m<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: c<br>
+Explanation: The modulus of section is the ratio of the moment of inertia to the distance of the neutral axis.<br>
+Given y = 50 mm<br>
+            I = 2.8×10<sup>6</sup> mm<sup>4</sup>.<br>
+       &amp;  Z =  I/y = 2.8×10<sup>6</sup>  / 50<br>
+               = 57.76 ×10<sup>3</sup> mm<br>
+               = 57.7 ~ 58 m.</div>
+</div>
+<div class="card">
+<p style=""> A  circular Beam of 0.25 m diameter is subjected to you shear force of 10 kN. Calculate the value of maximum shear stress. [Take area = 176 m<sup>2</sup>].<br>
+a) 0.75 N/mm<sup>2</sup><br>
+b) 0.58 N/mm<sup>2</sup><br>
+c) 0.73 N/mm<sup>2</sup><br>
+d) 0.65 N/mm<sup>2</sup><br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: a<br>
+Explanation: Given diameter = 0.25 m<br>
+Area (A) = 176 m<sup>2</sup><br>
+Shear Force (F) = 10 kN  ~ 10000 N.<br>
+For circular cross section the maximum shear stress is equal to 4/3 times of average shear stress<br>
+Maximum shear force = 4/3 × F/A<br>
+                                         = 4/3 × 10000/176<br>
+                                         = 0.75 N/mm<sup>2</sup>.</div>
+</div>
+<div class="card">
+<p style=""> The maximum shear stress distribution is _____________ percentage more than average shear stress in circular section.<br>
+a) 54 %<br>
+b) 60 %<br>
+c) 33 %<br>
+d) 50 %<br>
+</p>
+<div class="options">
+<button>Show Answer</button>
+</div>
+<div class="answer">Answer: c<br>
+Explanation: Maximum shear stress occurs at neutral axis; y =0<br>
+Maximum shear stress = 16/3 × average shear stress<br>
+But 4F / A is the average shear stress.<br>
+So, the maximum shear stress = 4/3 times the average shear stress.<br>
+Hence the maximum shear stress is 33% more than the average shear stress in a circular section.</div>
+</div>
 
 
 
@@ -2094,7 +3122,46 @@ Strain energy = W/2 x WL / AE = W<sup>2</sup>L / 2AE.</div></div>
 
 
 
-</div>
+</div>   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+        let answerCounter = 0;
+        document.querySelectorAll(".answer").forEach((answer, index) => {
+            answerCounter++;
+            answer.id = `answer${answerCounter}`;
+            const button = answer.previousElementSibling.querySelector("button");
+            if (button) {
+                button.setAttribute("onclick", `toggleAnswer('answer${answerCounter}')`);
+            }
+        });
+
+        function toggleAnswer(answerId) {
+            const answer = document.getElementById(answerId);
+            answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function toggleMenu() {
+            const menu = document.getElementById("menu");
+            menu.style.display = menu.style.display === "block" ? "none" : "block";
+        }
+    </script>
 <div class="social-media">
             <h2><i class="fab fa-connectdevelop"></i> Connect with Us</h2>
             <p>Follow us on social media to stay updated with the latest resources and news.</p>

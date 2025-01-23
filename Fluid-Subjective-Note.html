@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chapter Navigation</title>
     <link rel="stylesheet" href="Note.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 
 <body>
@@ -26,8 +27,8 @@
     <div class="menu" id="menu">
         <ul>
             <li><a href="#chapter1">Fluid and their Properties</a></li>
-            <li><a href="#chapter2">Stresses in Members</a></li>
-            <li><a href="#chapter3">Strain Energy & Resilience</a></li>
+            <li><a href="#chapter2">Fluid Pressure</a></li>
+            <li><a href="#chapter3">Hydrostatics</a></li>
             <li><a href="#chapter4">Center of Gravity & Moment of Inertia</a></li>
             <li><a href="#chapter5">Shear Force & Bending Moment</a></li>
             <li><a href="#chapter6">Pure Bending</a></li>
@@ -36,14 +37,15 @@
 
     
  <div class="content">
-        <h1>Fluid Mechanics Note</h1>
+        <h1  style="text-align: center;" >Fluid Mechanics Note</h1>
 
         <!-- Chapter 1 -->
         <div class="cardBinita" id="chapter1" style="text-align: justify;">
 <div class="card Binitagauatm">
     <h2 class="chapter-title">Fluid and their Properties</h2>
   </div>
-<div class="card">
+
+  <div class="card">
 <strong>Fluid </strong><br>
  <p style="margin-left: 35px;">
    A fluid is a substance which deforms continuously or flows under the application of shearing
@@ -65,11 +67,15 @@ stress when kept in container.
 </ol>
 <p style="margin-left: 35px;"><strong>Steady fluid:</strong> It is the fluid whose density remains constant at each and every point while flowing.</p>
 <p style="margin-left: 35px;"><strong>Unsteady fluid:</strong> It is the fluid whose velocity differs between any two points while flowing.</p>
-<p style="margin-left: 35px;"><strong>Compressible fluid and incompressible fluids: </strong>These are classified based on the Mach Number. The incompressible fluid has Mach Number&lt;0.3 and the compressible fluid has Mach Number between 0.3 and 1.</p>
+<p style="margin-left: 35px;"><strong>Compressible fluid and incompressible fluids: </strong>A compressible fluid is one whose density can change significantly with pressure and temperature variations.<br>An incompressible fluid is one whose density remains constant irrespective of pressure or temperature variations.<br>
+
+These are classified based on the Mach Number. <nt>The incompressible fluid has Mach Number less than 0.3 and the compressible fluid has Mach Number between 0.3 and 1.</p>
 <p style="margin-left: 35px;"><strong>Viscous or Non-viscous</strong>
 </p>
-<p style="margin-left: 35px;">Fluids with more thickness or viscosity are known as viscous fluids, they are generally very gloppy fluids. Examples: shampoo and motor oil.</p>
-<p style="margin-left: 35px;">Fluids with comparatively less thickness or viscosity are known as non-viscous fluids. These are the fluids with no resistance or negligible resistance to internal friction. Non-viscous fluids flow without any loss of kinetic energy.</p>
+<p style="margin-left: 35px;"> A viscous fluid is one that exhibits resistance to flow due to internal friction between its layers. This property is known as viscosity.<br>
+Fluids with more thickness or viscosity are known as viscous fluids, they are generally very gloppy fluids. Examples: shampoo and motor oil.</p>
+<p style="margin-left: 35px;">A non-viscous fluid is an ideal fluid with no internal resistance to flow, meaning its viscosity is zero.<br>
+Fluids with comparatively less thickness or viscosity are known as non-viscous fluids. These are the fluids with no resistance or negligible resistance to internal friction. Non-viscous fluids flow without any loss of kinetic energy.</p>
 <p style="margin-left: 35px;">Example: Superfluid liquid helium</p>
 <p style="margin-left: 35px;"><strong style="">Rotational or irrotational</strong>
 </p>
@@ -91,24 +97,35 @@ stress when kept in container.
 
 <p style="margin-left: 35px;"><strong style="">Density</strong></p>
 <p style="margin-left: 35px;">Density is defined as the mass per unit volume of a fluid. The density of a substance varies as per the volume of a substance. The SI unit of density is kg.m<sup>-3</sup>.</p>
-<div class="mathjax-scroll" bis_skin_checked="1" style="margin-left: 55px;"><mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" tabindex="0" ctxtmenu_counter="0" style="font-size: 123.9%; position: relative;"><mjx-math class="MJX-TEX" aria-hidden="true" style=""><mjx-mtable style="min-width: 6.89em;"><mjx-table><mjx-itable><mjx-mtr><mjx-mtd style="text-align: center;"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D70C TEX-I" style=""></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D" style=""></mjx-c></mjx-mo><mjx-mfrac space="4"><mjx-frac style=""><mjx-num style=""><mjx-nstrut></mjx-nstrut><mjx-mrow size="s" style=""><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45A TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D44E TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D460 TEX-I" style=""></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D460 TEX-I" style=""></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45C TEX-I" style=""></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D453 TEX-I" style=""></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D453 TEX-I" style=""></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D459 TEX-I" style=""></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D462 TEX-I" style=""></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D456 TEX-I" style=""></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D451 TEX-I" style=""></mjx-c></mjx-mi></mjx-mrow></mjx-num><mjx-dbox><mjx-dtable style=""><mjx-line style=""></mjx-line><mjx-row><mjx-den><mjx-dstrut></mjx-dstrut><mjx-mrow size="s" style=""><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D463 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45C TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D459 TEX-I" style=""></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D462 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45A TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D452 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45C TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D453 TEX-I" style=""></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D453 TEX-I" style=""></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D459 TEX-I" style=""></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D462 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D456 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D451 TEX-I"></mjx-c></mjx-mi></mjx-mrow></mjx-den></mjx-row></mjx-dtable></mjx-dbox></mjx-frac></mjx-mfrac><mjx-tstrut></mjx-tstrut></mjx-mtd></mjx-mtr></mjx-itable></mjx-table></mjx-mtable></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mtable columnalign="left" columnspacing="1em" rowspacing="4pt"><mtr><mtd><mi>ρ</mi><mo>=</mo><mfrac><mrow><mi>m</mi><mi>a</mi><mi>s</mi><mi>s</mi><mi>o</mi><mi>f</mi><mi>f</mi><mi>l</mi><mi>u</mi><mi>i</mi><mi>d</mi></mrow><mrow><mi>v</mi><mi>o</mi><mi>l</mi><mi>u</mi><mi>m</mi><mi>e</mi><mi>o</mi><mi>f</mi><mi>f</mi><mi>l</mi><mi>u</mi><mi>i</mi><mi>d</mi></mrow></mfrac></mtd></mtr></mtable></math></mjx-assistive-mml></mjx-container></div>
+\begin{equation}\rho={\frac{{M}{a}{s}{s}~{o}{f}~{f}{l}{u}{i}{d}}{{V}{o}{l}{u}{m}{e}~{o}{f}~{f}{l}{u}{i}{d}}}\end{equation}
+<br><p style="margin-left: 35px;">Density of fluid decrease on  increase temperature and vice versa and increase on increase in pressure and vice versa 
+\begin{equation}\rho={\frac{{P}}{{R}{T}}}\end{equation}
+<p style="margin-left: 35px;"><strong>Capillarity </strong> is the phenomenon where a liquid rises or falls in a narrow tube or small spaces without external forces like gravity. \begin{equation}\text{The height to which the liquid rises or falls }
+ \\ {h}={\frac{4\sigma{\operatorname{cos}{\alpha}}}{\gamma{d}}}\end{equation}
+\begin{equation}{H}={\frac{2\sigma{\operatorname{cos}{\theta}}}{\rho{g}{\left({r}_{2}~-{r}_{1} \right)}}}\end{equation}
+
+
 <p style="margin-left: 35px;"><strong>Viscosity</strong>
 </p>
-<p style="margin-left: 35px;">Viscosity determines the amount of resistance offered by the fluid to shear stress. A fluid that offers no resistance to shear stress is called an inviscid fluid.</p>
+<p style="margin-left: 35px;">Viscosity determines the amount of resistance offered by the fluid to shear stress. A fluid that offers no resistance to shear stress is called an inviscid fluid.</p><br><p style="margin-left: 35px;">Viscosity of liquid increase with decrease in temperture</p> <br><p style="margin-left: 35px;">Viscosity of gas increase with increase in tempertaure </p>
+
+<p style="margin-left: 35px;"><strong>Kinematic viscosity</strong></p><p style="margin-left: 35px;">It is defined as the ratio of dynamic viscosity to the fluid's density.</p>\begin{equation}{v}={\frac{\mu}{\rho}}\end{equation}
 <p style="margin-left: 35px;"><strong>Temperature</strong>
 </p>
 <p style="margin-left: 35px;">The degree of hotness or coldness of the body is determined by the temperature. The temperature of the fluid is measured using Kelvin or Celsius or Fahrenheit. According to the International System of Units, the Kelvin scale is used.</p>
 <p style="margin-left: 35px;"><strong>Pressure </strong>
 </p>
 <p style="margin-left: 35px;">The pressure of a fluid is the force applied by it per unit area. Fluid pressure takes place in two conditions: open condition and closed condition. The pressure at any given point of a static fluid is called hydrostatic pressure.</p>
-<div class="mathjax-scroll" bis_skin_checked="1" style="margin-left: 55px;"><mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" tabindex="0" ctxtmenu_counter="1" style="font-size: 123.9%; position: center;"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-mtable style="min-width: 12.419em;"><mjx-table><mjx-itable><mjx-mtr><mjx-mtd style="text-align: left;"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D443 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45F TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D452 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D460 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D460 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D462 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45F TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D452 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45C TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D453 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D461 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c210E TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D452 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D453 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D459 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D462 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D456 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D451 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mfrac space="4"><mjx-frac><mjx-num><mjx-nstrut></mjx-nstrut><mjx-mrow size="s"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D439 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45C TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45F TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D450 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D452 TEX-I"></mjx-c></mjx-mi></mjx-mrow></mjx-num><mjx-dbox><mjx-dtable><mjx-line></mjx-line><mjx-row><mjx-den><mjx-dstrut></mjx-dstrut><mjx-mrow size="s"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D434 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45F TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D452 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D44E TEX-I"></mjx-c></mjx-mi></mjx-mrow></mjx-den></mjx-row></mjx-dtable></mjx-dbox></mjx-frac></mjx-mfrac><mjx-tstrut></mjx-tstrut></mjx-mtd></mjx-mtr></mjx-itable></mjx-table></mjx-mtable></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mtable columnalign="left" columnspacing="1em" rowspacing="4pt"><mtr><mtd><mi>P</mi><mi>r</mi><mi>e</mi><mi>s</mi><mi>s</mi><mi>u</mi><mi>r</mi><mi>e</mi><mi>o</mi><mi>f</mi><mi>t</mi><mi>h</mi><mi>e</mi><mi>f</mi><mi>l</mi><mi>u</mi><mi>i</mi><mi>d</mi><mo>=</mo><mfrac><mrow><mi>F</mi><mi>o</mi><mi>r</mi><mi>c</mi><mi>e</mi></mrow><mrow><mi>A</mi><mi>r</mi><mi>e</mi><mi>a</mi></mrow></mfrac></mtd></mtr></mtable></math></mjx-assistive-mml></mjx-container></div>
+
 <p style="margin-left: 35px;"><strong>Specific Volume</strong>
 </p>
 <p style="margin-left: 35px;">It is defined as the ratio of the volume of the material to its mass. Specific volume is the reciprocal of the density of the material. Specific volume is inversely proportional to density.</p>
-<p style="margin-left: 35px;">The SI unit of specific volume is m<sup>3</sup>.kg<sup>-1</sup>.</p>
+\begin{equation}{V}_{{s}}={\frac{{V}}{{m}}}={\frac{1}{\rho}}\end{equation}
+<p style="margin-left: 35px;">The SI unit of specific volume is m<sup>3</sup>/kg<sup></sup>.</p>
 <p style="margin-left: 35px;"><strong>Specific Weight</strong>
 </p>
 <p style="margin-left: 35px;">The specific weight (γ) of a fluid is defined as the weight per unit volume. The SI unit of specific weight is N/m<sup>3</sup>.</p>
+\begin{equation}\gamma={\frac{{w}}{{v}}}=\rho{g}\end{equation}
 <p style="margin-left: 35px;">Specific weight is related to density as γ = ρg. The specific weight of fluid varies with temperature.</p>
 <p style="margin-left: 35px;"><strong>Specific Gravity</strong>
 </p>
@@ -135,59 +152,158 @@ stress when kept in container.
 </ul>
 <p style="margin-left: 35px;"><strong>Ideal fluid: </strong>It is a fluid that does not have viscosity and cannot be compressed. This type of fluid cannot exist practically.</p>
 <p style="margin-left: 35px;"><strong>Real fluid:</strong> All types of fluids that possess viscosity are classified as real fluids. Examples: Kerosene and castor oil.</p>
-<p style="margin-left: 35px;"><strong>Newtonian fluid: </strong>A real fluid that abides by Newton’s law of viscosity is known as a Newtonian fluid. Example: Hydrogen and water</p>
-<p style="margin-left: 35px;"><strong>Non-Newtonian fluid:</strong> Fluids that do not abide by Newton’s law of viscosity are known as Non-Newtonian fluid. Example: Oobleck and flubber</p>
+<p style="margin-left: 35px;"><strong>Newtonian fluid: </strong>Fluids that obey Newton's law of viscosity, where shear stress is directly proportional to the rate of shear strain is known as a Newtonian fluid<br>\begin{equation}\tau~\alpha~{\frac{{d}{v}}{{d}{y}}}\end{equation}. Example: Hydrogen and water</p>
+<p style="margin-left: 35px;"><strong>Non-Newtonian fluid:</strong>Fluids whose viscosity changes with the rate of shear strain are known as Non-Newtonian fluid. Example: Oobleck and flubber</p>
 <p style="margin-left: 35px;"><strong>Ideal plastic fluid: </strong>If the shear stress is directly proportional to the velocity gradient, and if the value of shear stress is greater than the resultant, it is referred to as ideal plastic fluid.</p>
 <p style="margin-left: 35px;"><strong>Incompressible fluid:</strong> If a fluid’s density does not vary with the application of force, it is known as an incompressible fluid. Example: The stream of water flowing at high speed from a garden hose pipe.</p>
 <p style="margin-left: 35px;"><strong>Compressible fluid: </strong>If a fluid’s density varies with the application of force, it is called a compressible fluid. Example: gas, vapour, and steam.</p>
-
-
-
-
-
-
-
-
-
+<strong>Newton's law of viscosity</strong><br><p style="margin-left: 35px;">Newton's law of viscosity states that for straight and parallel motion of a fluid, the shear stress
+between two adjoining layers is proportional to the rate of deformation or velocity gradient in
+a direction perpendicular to the layers.</p>\begin{equation}\tau=\mu~{\frac{{d}{u}}{{d}{y}}}\end{equation}
+<table>
+        <caption>Fluid Classification</caption>
+        <thead>
+            <tr>
+                <th>Fluid Type</th>
+                <th>Examples</th>
+                <th>Key Characteristics</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Ideal Fluids</td>
+                <td>None (theoretical)</td>
+                <td>No viscosity, incompressible</td>
+            </tr>
+            <tr>
+                <td>Real Fluids</td>
+                <td>Water, air</td>
+                <td>Viscous, compressible</td>
+            </tr>
+            <tr>
+                <td>Newtonian Fluids</td>
+                <td>Water, air</td>
+                <td>Constant viscosity</td>
+            </tr>
+            <tr>
+                <td>Non-Newtonian Fluids</td>
+                <td>Ketchup, blood</td>
+                <td>Viscosity changes with stress</td>
+            </tr>
+            <tr>
+                <td>Compressible Fluids</td>
+                <td>Air, helium</td>
+                <td>Density changes with pressure</td>
+            </tr>
+            <tr>
+                <td>Incompressible Fluids</td>
+                <td>Water, oil</td>
+                <td>Density remains constant</td>
+            </tr>
+            <tr>
+                <td>Single-Phase Fluids</td>
+                <td>Pure water, air</td>
+                <td>Single phase present</td>
+            </tr>
+            <tr>
+                <td>Multi-Phase Fluids</td>
+                <td>Oil-water, steam</td>
+                <td>Multiple phases coexist</td>
+            </tr>
+            <tr>
+                <td>Superfluids</td>
+                <td>Liquid helium</td>
+                <td>Zero viscosity</td>
+            </tr>
+            <tr>
+                <td>Plasma</td>
+                <td>Lightning, neon gas</td>
+                <td>Ionized, electrically conductive</td>
+            </tr>
+        </tbody>
+    </table>
 </div>
-
-
-
+</div>
 
    <!-- Chapter 2 -->
     <div class="cardBinita" id="chapter2">
         <div class="card Binitagauatm">
-            <h2 class="chapter-title">Stresses in Members</h2>
-        </div>
-    </div>
+            <h2 class="chapter-title">Fluid Pressure</h2>
+            </div>
+                   <div class="card">
+<strong>Atmospheric Pressure</strong><br><p style="margin-left: 35px;">The pressure exerted by the atmospheric air on the surface with which it is in contact is known as atmospheric pressure. The atmospheric pressure varies with the altitude and can be measured by means of Barometer. It is also called barometric pressure.
+<br><h4>Atmospheric pressure = 760mm Hg or 10.3 m of water or 101.325 Kpa</p></h4>
+<strong>Gauge pressure</strong><p style="margin-left: 35px;">If the pressure is quoted by taking atmospheric pressure as a datum, it is called gauge
+pressure. Pressure measuring instrument measures the gauge pressure. In such instrument,
+atmospheric pressure on the scale is marked zero.</p>
+<strong>
+    Absolute Pressure</strong><br>
+    <p style="margin-left: 35px;">Absolute Pressure is the total pressure exerted on a system, including both the atmospheric pressure and any additional pressure applied by the system
+    <br><h4>Absolute pressure is the sum of the gauge pressure and atmospheric pressure</h4></p>
+ 
+<strong>Vacuum Pressure</strong>
+<p style="margin-left: 35px;">The pressure below the atmospheric pressure is known as vacuum pressure. It is also called
+    negative gage pressure or suction pressure.</p>
+    <strong>Head</strong><p style="margin-left: 35px;">The vertical height of a column of given fluid needed to produce pressure is called head. The
+        gage pressure can be expressed in head.</p>
+        \begin{equation}{h}={\frac{{P}}{\gamma}}\end{equation}
+        <strong>Effect of capillarity: capillary correction</strong>
+        <p style="margin-left: 35px;"><h4> For capillary rise: true static height = given height of fluid - capillary rise<br>
+            For capillary fall: true static height = given height of fluid + capillary fall</p></h4>
+          <strong>Types of Head:</strong> 
+          <p style="margin-left: 35px;"><strong>Pressure Head:</strong>Represents the energy due to the pressure exerted by a fluid.</p>
+          \begin{equation}{h}_{{p}}​={\frac{{P}}{\gamma}}\end{equation}
+          <p style="margin-left: 35px;"><strong>Velocity Head:</strong>Represents the energy due to the velocity of the fluid.</p>
+          \begin{equation}{h}_{{v}}​={\frac{{v}^{2}}{2{g}}}​~\end{equation}
+          <p style="margin-left: 35px;"><strong>Loss Head:</strong>
+          <p style="margin-left: 35px;">Represents the energy lost due to friction and turbulence as the fluid flows through pipes, fittings, or other system components.
+        </p>\begin{equation}{h}_{{f}}​={\frac{{f}L{V}^{2}}{2{g}{D}}}\end{equation}
+        <strong>Pascal's Law,</strong>
+        <p style="margin-left: 35px;">It states that when a pressure is applied to a confined fluid, the pressure change is transmitted uniformly in all directions throughout the fluid without any loss.</p>
+<strong>Manometers</strong>
+<p style="margin-left: 35px;">A manometer is a device used to measure pressure, typically of gases or liquids. It operates based on the principle of hydrostatics, which relates pressure differences to the height of a liquid column.</p>
+<p style="margin-left: 35px;"><strong>Types of Manometers:</p></strong>
+<p style="margin-left: 50px;"><strong>1.Simple Manometer:</p></strong>
+<p style="margin-left: 70px;">Measures pressure at a single point.</p>\begin{equation}{P}=\rho{g}{h}\end{equation}
+<p style="margin-left: 50px;"><strong>2.Differential Manometer:</p></strong>
+<p style="margin-left: 70px;">Measures the pressure difference between two points in a system.</p>\begin{equation}\Delta{P}=\rho{g}{h}\end{equation}
+<p style="margin-left: 50px;"><strong>3.Inclined Manometer:</p> </strong> 
+<p style="margin-left: 70px;">A modification of the U-tube manometer, with one arm inclined.
+    Provides greater sensitivity for small pressure differences due to the longer liquid column.
+    Pressure is calculated using the horizontal component of the height.</p>
+</div>
+ </div>
 
     <!-- Chapter 3 -->
     <div class="cardBinita" id="chapter3">
         <div class="card Binitagauatm">
-            <h2 class="chapter-title">Strain Energy & Resilience</h2>
+            <h2 class="chapter-title">Hydrostatics</h2>
         </div>
-    </div>
+        <div class="card">
+        <strong>Total Pressure</strong>
+        <p style="margin-left: 35px;">The total pressure is defined as the force exerted by a static fluid on a surface (either plane or curved) when the 
+            fluid comes in contact with the surface. This force is always normal to the surface</p>
+            <strong>Center of Pressure</strong>
+            <p style="margin-left: 35px;">The centre of pressure is defined as the point of application of the resultant pressure on the surface.</p>
+<strong>Horizontally immersed surface</strong>
+<p style="margin-left: 35px;">\begin{equation}\text{total pressure }{\left({P} \right)}=\gamma{A}\overline{{x}}\end{equation}</p>
+  <strong>Vertically immersed surface.</strong>  
+  \begin{equation}\text{total pressure }{\left({P} \right)}=\gamma{A}\overline{{x}}\end{equation}
+  \begin{equation}\text{depth of centre of pressure from the liquid surface             } \\ \overline{{h}}={\frac{{I}_{{G}}}{{A}\overline{{X}}}}+\overline{{X}}\end{equation}
+<strong>Inclined immersed surface</strong>
+\begin{equation}\text{total pressure }{\left({P} \right)}=\gamma{A}\overline{{x}}\end{equation}
+\begin{equation}\text{depth of centre of pressure from the liquid surface                                                        } \\ \overline{{h}}={\frac{{I}_{{G}}~{S}{i}{n}^{2}\theta}{{A}\overline{{X}}}}+\overline{{X}}\end{equation}
+<strong>Curved immersed surface.</strong>
+\begin{equation}\text{total force }={\sqrt{{P}_{{H}}^{2}+{P}_{{v}}^{2}}}\end{equation}
+\begin{equation}\text{direction of the resultant force }\theta={\operatorname{tan}^{-1}{\left({\frac{{P}_{{V}}}{{P}_{{H}}}} \right)}}\end{equation}
+<strong>Lock Gates</strong>
+\begin{equation}\text{Reaction between the two gates }{\left({R} \right)}={\frac{{P}}{2{\operatorname{sin}{\alpha}}}}\end{equation}
+<h4>Center of pressure is always greater than or equal to center of garvity</h4>
 
-    <!-- Example Question Card -->
-    <div class="card">
-        <p>The maximum shear stress distribution is _____________ percentage more than average shear stress in circular section.<br>
-        a) 54 %<br>
-        b) 60 %<br>
-        c) 33 %<br>
-        d) 50 %<br>
-        </p>
-        <div class="options">
-            <button>Show Answer</button>
-        </div>
-        <div class="answer">
-            Answer: c<br>
-            Explanation: Maximum shear stress occurs at neutral axis; y = 0<br>
-            Maximum shear stress = 16/3 × average shear stress<br>
-            But 4F / A is the average shear stress.<br>
-            So, the maximum shear stress = 4/3 times the average shear stress.<br>
-            Hence the maximum shear stress is 33% more than the average shear stress in a circular section.
-        </div>
-    </div>
+
+</div>
+</div>
+    
 
     <script>
         let answerCounter = 0;
@@ -210,6 +326,7 @@ stress when kept in container.
             menu.style.display = menu.style.display === "block" ? "none" : "block";
         }
     </script>
+      <script src="Binita.js"></script>
 <div class="social-media">
             <h2><i class="fab fa-connectdevelop"></i> Connect with Us</h2>
             <p>Follow us on social media to stay updated with the latest resources and news.</p>

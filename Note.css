@@ -58,14 +58,15 @@ body {
 /* Navigation Menu (Initially Hidden) */
 .menu {
     display: none;
-    background-color: #fff;
+    background-color: rgba(30, 62, 238, 0.1);
     padding: 15px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 10px rgba(207, 221, 17, 0.1);
     position: fixed;
     top: 80px;
     left: 20px;
     width: 200px;
     z-index: 9;
+    border-radius: 15px;
 }
 
 .menu ul {
@@ -79,8 +80,10 @@ body {
 
 .menu a {
     text-decoration: none;
-    color: #3498db;
-    font-size: 18px;
+    color:rgba(36, 37, 37, 0.91);
+    font-size: 15px;
+    text-align: justify;
+
 }
 
 .menu a:hover {
@@ -94,8 +97,8 @@ body {
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    background-color: #f9f9f9;
+    box-shadow: 0 4px 15px rgba(44, 243, 26, 0.1);
+    background-color:rgba(65, 172, 16, 0.79);
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
@@ -264,4 +267,39 @@ footer a:hover {
     body {
         font-size: 12px;
     }
-}
+} table {
+            width: auto;
+            margin: 0 auto;
+            border-collapse: collapse;
+            table-layout: auto;  /* Automatically adjusts table width based on content */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border: 2px solid #28a745;  /* Green border for table */
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #fff;
+        }
+        th, td {
+            padding: 10px 15px;
+            text-align: left;
+            font-size: 16px;
+            word-wrap: break-word; /* Ensure that text wraps if it is too long */
+        }
+        th {
+            background-color: #28a745;  /* Green background for header */
+            color: #fff;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #e0e0e0;
+        }
+        td {
+            color: #333;
+        }
+        caption {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2d3e50;
+            padding-bottom: 10px;
+        }

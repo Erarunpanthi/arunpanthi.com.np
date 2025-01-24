@@ -60,7 +60,7 @@ body {
     display: none;
     background-color: rgba(30, 62, 238, 0.1);
     padding: 15px;
-    box-shadow: 0 2px 10px rgba(207, 221, 17, 0.1);
+    box-shadow: 0 2px 10px rgba(10, 115, 201, 0.1);
     position: fixed;
     top: 80px;
     left: 20px;
@@ -92,10 +92,10 @@ body {
 
 /* Chapter Card Styling */
 .cardBinita {
-    width: 90%;
+    width: 94%;
     margin: 20px auto;
     padding: 20px;
-    border: 1px solid #ccc;
+    border: 1px solid #dd3030;
     border-radius: 8px;
     box-shadow: 0 4px 15px rgba(44, 243, 26, 0.1);
     background-color:rgba(65, 172, 16, 0.79);
@@ -123,16 +123,19 @@ body {
 }
 
 .card {
-    background: #fff;
-    border-radius: 8px;
-    padding: 25px;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    width: 94%;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #dd3030;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(44, 243, 26, 0.1);
+    background-color:rgba(250, 250, 250, 0.79);
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .card:hover {
     transform: scale(1.05);
+    gap: 35px; 
 }
 
 .card h2 {
@@ -303,3 +306,71 @@ footer a:hover {
             color: #2d3e50;
             padding-bottom: 10px;
         }
+        .Card equation {
+            font-size: 20px;
+            word-wrap: break-word; /* Ensure that text wraps if it is too long */
+            text-align: center;
+            position: fixed;
+            background: linear-gradient(135deg, #4CAF50, #2E7D32);
+            font-family: "Times New Roman", serif;
+        }
+        .card > * {
+            margin-bottom: 16px; /* Space between elements inside the card */
+        }
+        
+        .card > :last-child {
+            margin-bottom: 0; /* Remove extra space below the last child */
+        }
+        
+        .card table {
+            width: 100%; /* Ensure the table stretches to the full width of the card */
+            border-collapse: collapse; /* Remove gaps between table cells */
+            text-align: left; /* Align table content to the left */
+        }
+        
+        .card table th,
+        .card table td {
+            border: 1px solid #ddd; /* Add borders to cells */
+            padding: 8px; /* Add padding for better readability */
+            font-size: 14px; /* Smaller font size for mobile screens */
+            word-wrap: break-word; /* Break long text if needed */
+        }
+        
+        .card table th {
+            background-color: #f4f4f4; /* Light grey background for headers */
+            font-weight: bold; /* Bold text for headers */
+        }
+        
+        .card table tr:nth-child(even) {
+            background-color: #f9f9f9; /* Add striped row effect */
+        }
+        
+        .card table tr:hover {
+            background-color: #f1f1f1; /* Highlight row on hover */
+        }
+        
+        /* Responsive styles for mobile */
+        @media (max-width: 768px) {
+            .card {
+                padding: 12px; /* Reduce padding on smaller screens */
+            }
+        
+            .card table th,
+            .card table td {
+                font-size: 12px; /* Slightly smaller text on mobile */
+                padding: 6px; /* Adjust padding for smaller screens */
+            }
+        
+            .card table {
+                display: block; /* Allow table to scroll horizontally */
+                overflow-x: auto;
+                white-space: wrap; /* Prevent text from wrapping and maintain horizontal scrolling */
+            }
+        }
+        .card-container {
+            display: flex;           /* Flexbox layout */
+            flex-direction: column;  /* Stack cards vertically */
+            gap: 40px;               /* Controls the spacing between cards */
+            max-width: 500px;        /* Optional: Constrain container width */
+            margin: auto;            /* Center container horizontally */
+          }

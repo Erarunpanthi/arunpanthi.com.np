@@ -34,7 +34,7 @@
     </div>
 
     <script>
-        // JavaScript to dynamically create cards
+        // JavaScript to dynamically create cards with test links
         const setsContainer = document.querySelector('.card-container');
         const totalSets = 30; // Total number of sets
 
@@ -42,7 +42,7 @@
             setsContainer.innerHTML += `
                 <div class="card">
                     <h3><i class="fas fa-check-circle set-icon"></i> Set ${i}</h3>
-                    <a href="notices" target="_blank" class="cta-button">Start Test</a>
+                    <a href="set-${i}" target="_blank" class="cta-button">Start Test</a>
                 </div>`;
         }
     </script>
@@ -51,10 +51,10 @@
         <h2><i class="fab fa-connectdevelop"></i> Connect with Us</h2>
         <p>Follow us on social media to stay updated with the latest resources and news.</p>
         <div class="icons">
-             <a href="https://www.facebook.com/arun.panthi27" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                <a href="https://www.tiktok.com/@er.arunpanthi" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-                <a href="https://www.youtube.com/@erarunpanthi" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                <a href="mailto:erarunpanthi@gmail.com" target="_blank" aria-label="Email"><i class="fas fa-envelope"></i></a>
+            <a href="https://www.facebook.com/arun.panthi27" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.tiktok.com/@er.arunpanthi" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+            <a href="https://www.youtube.com/@erarunpanthi" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="mailto:erarunpanthi@gmail.com" target="_blank" aria-label="Email"><i class="fas fa-envelope"></i></a>
         </div>
     </div>
 

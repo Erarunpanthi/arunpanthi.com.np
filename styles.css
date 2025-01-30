@@ -620,3 +620,12 @@ footer a:hover {
                 padding: 20px;
             }
         }
+.section h1 {
+    font-size: 16px; /* Adjust as needed */
+    white-space: nowrap; /* Prevents text from wrapping */
+    overflow: hidden; /* Hides overflow text */
+    text-overflow: ellipsis; /* Adds '...' if the text is too long */
+    width: 100%; /* Ensures the text does not exceed the card width */
+    text-align: center; /* Center the text */
+    padding: 5px; /* Adds some spacing */
+}

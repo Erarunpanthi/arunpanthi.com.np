@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CONCRETE TECHNOLOGY</title>
+    <link rel="stylesheet" href="Note.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+<body>
+<div class="navbar">
+        <a href="Home"><i class="fas fa-home"></i> Home</a>
+        <a href="resources"><i class="fas fa-book"></i> Resources</a>
+        <a href="license-preparation"><i class="fas fa-certificate"></i> License Prep</a>
+        <a href="psc-preparation"><i class="fas fa-graduation-cap"></i> PSC Prep</a>
+        <a href="aboutus"><i class="fas fa-info-circle"></i> About Us</a>
+        <a href="contactus"><i class="fas fa-envelope"></i> Contact Us</a>
+    </div>
+    <!-- Navigation Button on Left Side -->
+    <div class="nav-button-container">
+        <button class="nav-button" onclick="toggleMenu()">&#9776;</button>
+    </div>
+
+    <!-- Navigation Menu (Initially Hidden) -->
+    <div class="menu" id="menu">
+        <ul>
+            <li><a href="#chapter1">Introduction </a></li>
+            <li><a href="#chapter2">Ingredients of concrete</a></li>
+            <li><a href="#chapter3">Strain Energy & Resilience</a></li>
+            <li><a href="#chapter4">Center of Gravity & Moment of Inertia</a></li>
+            <li><a href="#chapter5">Shear Force & Bending Moment</a></li>
+            <li><a href="#chapter6">Pure Bending</a></li>
+        </ul>
+    </div>
+
+ <div class="content">
+        <h1>CONCRETE TECHNOLOGY</h1>
+
+        <!-- Chapter 1 -->
+        <div class="cardBinita" id="chapter1">
+<div class="card Binitagauatm">
+    <h2 class="chapter-title">Introduction  </h2>
+  </div>
+<div class="card">
+<strong>concrete:</strong>
+<p style="margin-left: 35px;">Concrete is a mixture of binding material, aggregates and water in a definate proportion.</p>
+<strong>Types of concrete:</strong>
+<p style="margin-left: 35px;"><STRONG>1. Cement concrete:</STRONG> It is a mixture of cement, fine aggregates, coarse aggregates and 
+water in a definite proportion.</p>
+<p style="margin-left: 35px;"><STRONG>2. Lime concrete:</STRONG> Here binding material is lime (CaO)</P>
+    <p style="margin-left: 35px;"><STRONG>3: RCC:</STRONG> Steel reinforcing is done in the Cement Concrete. </P>
+        <p style="margin-left: 35px;"><STRONG>4: Prestressed cement concrete:</STRONG>This concrete is a form of concrete used in construction which is "pre-stressed" by 
+            being placed under compression prior to supporting any loads beyond its own dead 
+            weight. This compression is produced by the tensioning of high-strength "tendons" 
+            located within or adjacent to the concrete volume, and is done to improve the 
+            performance of the concrete in service</p>
+            <STRONG>Uses of concrete:</STRONG>
+            <p style="margin-left: 35px;">Many structural elements like footings, columns, beams, chejjas, lintels, roofs are made 
+                with R.C.C. Cement concrete is used for making storage structures like water tanks, 
+                bins, silos, bunkers etc. Bridges, dams, retaining walls are R.C.C. structures in which 
+                concrete is the major ingradienting storage structures like water tanks, bins, silos, 
+                bunkers etc.</P>
+                <strong>.Benefits of concrete:</strong>
+                <p style="margin-left: 35px;">There are numerous positive aspects of concrete:<br>
+                    1. It is a relatively cheap material and has a relatively long life with few maintenance requirements.<br>
+                    2. It is strong in compression<br>
+                    3. Before it hardens it is a very pliable substance that can easily be shaped.<br>
+4. It is non-combustible
+            </p>
+            <strong>Limitations of concrete:</strong>
+            <p style="margin-left: 35px;">The limitations of concrete include:<br>
+                1.Relatively low tensile strength when compared to other building materials.<br>
+                2. Low ductility.<br>
+                3. Low strength-to-weight ratio.<br>
+                4. It is susceptible to cracking</p>
+</div>
+<div class="cardBinita" id="chapter2">
+    <div class="card Binitagauatm">
+        <h2 class="chapter-title">Ingredients of concrete </h2>
+      </div>
+    <div class="card">
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+</div>
+    <script>
+        let answerCounter = 0;
+        document.querySelectorAll(".answer").forEach((answer, index) => {
+            answerCounter++;
+            answer.id = `answer${answerCounter}`;
+            const button = answer.previousElementSibling.querySelector("button");
+            if (button) {
+                button.setAttribute("onclick", `toggleAnswer('answer${answerCounter}')`);
+            }
+        });
+
+        function toggleAnswer(answerId) {
+            const answer = document.getElementById(answerId);
+            answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function toggleMenu() {
+            const menu = document.getElementById("menu");
+            menu.style.display = menu.style.display === "block" ? "none" : "block";
+        }
+    </script>
+<div class="social-media">
+            <h2><i class="fab fa-connectdevelop"></i> Connect with Us</h2>
+            <p>Follow us on social media to stay updated with the latest resources and news.</p>
+            <div class="icons">
+                 <a href="https://www.facebook.com/arun.panthi27" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.tiktok.com/@er.arunpanthi" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                <a href="https://www.youtube.com/@erarunpanthi" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="mailto:erarunpanthi@gmail.com" target="_blank" aria-label="Email"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <p>© 2024 CivPrepMaster. All rights reserved. | 
+        <a href="PrivacyPolicy">Privacy Policy</a> | 
+        <a href="TermsofService">Terms of Service</a></p>
+    </footer>
+</body>
+</html>

@@ -271,12 +271,13 @@ footer a:hover {
         font-size: 12px;
     }
 } table {
-            width: auto;
-            margin: 0 auto;
-            border-collapse: collapse;
+    width: auto;
+            margin: auto;        
+    
+
             table-layout: auto;  /* Automatically adjusts table width based on content */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border: 2px solid #28a745;  /* Green border for table */
+            border: 2px solid #758178;  /* Green border for table */
             border-radius: 8px;
             overflow: hidden;
             background-color: #fff;
@@ -288,14 +289,14 @@ footer a:hover {
             word-wrap: break-word; /* Ensure that text wraps if it is too long */
         }
         th {
-            background-color: #28a745;  /* Green background for header */
-            color: #fff;
+            background-color: #bee0c6;  /* Green background for header */
+            color: #1a42c5;
         }
         tr:nth-child(even) {
-            background-color: #f2f2f2;
+            background-color: #e25858;
         }
         tr:hover {
-            background-color: #e0e0e0;
+            background-color: #da1212;
         }
         td {
             color: #333;
@@ -303,7 +304,7 @@ footer a:hover {
         caption {
             font-size: 20px;
             font-weight: bold;
-            color: #2d3e50;
+            color: #a6d3a8;
             padding-bottom: 10px;
         }
         .Card equation {
@@ -311,7 +312,7 @@ footer a:hover {
             word-wrap: break-word; /* Ensure that text wraps if it is too long */
             text-align: center;
             position: fixed;
-            background: linear-gradient(135deg, #4CAF50, #2E7D32);
+            background: linear-gradient(135deg, #8ada8d, #8ed892);
             font-family: "Times New Roman", serif;
         }
         .card > * {
@@ -330,14 +331,14 @@ footer a:hover {
         
         .card table th,
         .card table td {
-            border: 1px solid #ddd; /* Add borders to cells */
+            border: 1px solid #3c8f0b; /* Add borders to cells */
             padding: 8px; /* Add padding for better readability */
             font-size: 14px; /* Smaller font size for mobile screens */
             word-wrap: break-word; /* Break long text if needed */
         }
         
         .card table th {
-            background-color: #f4f4f4; /* Light grey background for headers */
+            background-color: #3bb3df; /* Light grey background for headers */
             font-weight: bold; /* Bold text for headers */
         }
         

@@ -1,30 +1,4 @@
-.toc {
-            background-color: #f4f4f4;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
-        }
-        .toc h2 {
-            text-align: center;
-            margin-bottom: 10px;
-        }
-        .toc ul {
-            list-style: none;
-            padding: 0;
-            columns: 2;
-        }
-        .toc ul li {
-            margin-bottom: 8px;
-        }
-        .toc ul li a {
-            text-decoration: none;
-            color: #007BFF;
-            font-weight: bold;
-        }
-        .toc ul li a:hover {
-            text-decoration: underline;
-        }/* General Body and Layout */
+/* General Body and Layout */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -428,3 +402,63 @@ footer a:hover {
 binita {
     color: red;
 }
+ .toc {
+            background-color: #f4f4f4;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        .toc h2 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .toc ul {
+            list-style: none;
+            padding: 0;
+            columns: 2;
+        }
+        .toc ul li {
+            margin-bottom: 8px;
+        }
+        .toc ul li a {
+            text-decoration: none;
+            color: #007BFF;
+            font-weight: bold;
+        }
+        .toc ul li a:hover {
+            text-decoration: underline;
+        }
+.btn {
+    display: inline-block;
+    padding: 14px 24px; /* Slightly larger padding for a premium feel */
+    background: linear-gradient(45deg, #007BFF, #0056b3); /* Gradient effect */
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    border-radius: 8px; /* More rounded edges */
+    transition: all 0.3s ease-in-out;
+    border: none;
+    box-shadow: 0px 4px 10px rgba(0, 123, 255, 0.3); /* Soft glow effect */
+    margin: 10px; /* Adds space between multiple buttons */
+}
+
+.btn:hover {
+    background: linear-gradient(45deg, #0056b3, #003d80); /* Deeper gradient */
+    transform: scale(1.1); /* More noticeable growth effect */
+    box-shadow: 0px 6px 15px rgba(0, 86, 179, 0.5); /* Stronger glow on hover */
+}
+p1 { margin-left: 5px; display: block; }
+        p2 { margin-left: 10px; display: block; }
+        p3 { margin-left: 15px; display: block; }
+        p4 { margin-left: 20px; display: block; }
+        p5 { margin-left: 25px; display: block; }
+        p10 { margin-left: 50px; display: block; }
+        p15 { margin-left: 75px; display: block; }
+        p20 { margin-left: 100px; display: block; }
+        p25 { margin-left: 120px; display: block; }
+        p30 { margin-left: 150px; display: block; }
+
+
+

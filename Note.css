@@ -1,4 +1,20 @@
-/* General Body and Layout */
+ .toc {
+            margin-bottom: 20px;
+        }
+        .toc button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            background: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .toc button:hover {
+            background: #0056b3;
+        }/* General Body and Layout */
 body {
     font-family: Arial, sans-serif;
     margin: 0;

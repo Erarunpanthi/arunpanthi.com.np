@@ -272,15 +272,26 @@ Explanation: The increase in hardness is shown by the value of the figure put in
 
     <!-- JavaScript for Toggle Functionality -->
     <script>
+let answerCounter = 0;
+        document.querySelectorAll(".answer").forEach((answer, index) => {
+            answerCounter++;
+            answer.id = `answer${answerCounter}`;
+            const button = answer.previousElementSibling.querySelector("button");
+            if (button) {
+                button.setAttribute("onclick", `toggleAnswer('answer${answerCounter}')`);
+            }
+        });
+
         function toggleAnswer(answerId) {
             const answer = document.getElementById(answerId);
             answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
         }
 
-        function toggleMenu() {
-            const menu = document.getElementById("menu");
-            menu.style.display = menu.style.display === "block" ? "none" : "block";
-        }
+
+
+
+        
+        
     </script>
 </body>
 </html>

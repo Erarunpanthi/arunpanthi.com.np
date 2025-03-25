@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engineering Drawing MCQ Test</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="Test.css">
+   
+</head>
+<body>
+    <div class="container">
+        <h1><i class="fas fa-drafting-compass"></i> Engineering Drawing MCQ Test</h1>
+        <div id="start-message">
+            <p>Welcome to the Engineering Drawing assessment!</p>
+            <p>You will have <span class="highlight">120 minutes</span> to complete all questions.</p>
+            <p>This test contains <strong>40 multiple-choice questions</strong> covering various aspects of engineering drawing.</p>
+            <button id="start-button" onclick="startTest()">Begin Test <i class="fas fa-arrow-right"></i></button>
+        </div>
+        <div id="test-content">
+            <div id="timer">
+                <i class="fas fa-clock"></i> Time Remaining: 120:00
+            </div>
+            <div id="stats">
+                <div class="stat-box">
+                    <h3><i class="fas fa-question-circle"></i> Total Questions</h3>
+                    <div class="stat-value" id="total-questions">40</div>
+                </div>
+                <div class="stat-box">
+                    <h3><i class="fas fa-check-circle"></i> Attempted</h3>
+                    <div class="stat-value" id="attempted">0</div>
+                </div>
+                <div class="stat-box">
+                    <h3><i class="fas fa-exclamation-circle"></i> Not Attempted</h3>
+                    <div class="stat-value" id="not-attempted">40</div>
+                </div>
+            </div>
+            <form id="quiz-form">
+                <!-- Questions will be dynamically inserted here -->
+            </form>
+            <div class="button-container">
+                <button type="button" id="back-button" onclick="showPreviousQuestions()" style="display: none;">
+                    <i class="fas fa-arrow-left"></i> Back
+                </button>
+                <button type="button" id="next-button" onclick="showNextQuestions()">
+                    Next <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+            <div id="result" style="display: none;">
+                <h2>Test Results</h2>
+                <div class="progress-container">
+                    <div class="progress-bar" id="progress-bar"></div>
+                </div>
+                <div class="score-display" id="score">0/0</div>
+                <p>You scored <span class="highlight" id="percentage">0</span>%</p>
+                <div class="answer-details" id="answer-details"></div>
+                <button id="submit-button" onclick="location.reload()">
+                    <i class="fas fa-redo"></i> Take Test Again
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Questions data (just 2 sample questions - add the remaining 38 following the same format)
+        const questionsData = [
+            
+    {
+        "question": "Which of the following lines are used to show that the object is cut and then viewed?",
+        "options": [
+            "Hidden Lines",
+            "Leader lines",
+            "Centre lines",
+            "Hatching lines"
+        ],
+        "answer": "Hatching lines"
+    },
+    {
+        "question": "If an isometric drawing is made use of an isometric scale, then the drawings are called _______",
+        "options": [
+            "Isometric projection",
+            "Isometric view",
+            "Isometric perception",
+            "Orthographic view"
+        ],
+        "answer": "Isometric projection"
+    },
+    {
+        "question": "Maps are drawn in which scale?",
+        "options": [
+            "enlarging",
+            "reducing",
+            "balanced",
+            "all of the above"
+        ],
+        "answer": "reducing"
+    },
+    {
+        "question": "Paper is designated by which letter ?",
+        "options": [
+            "A",
+            "B",
+            "C",
+            "D"
+        ],
+        "answer": "A"
+    },
+    {
+        "question": "The Area of A0 size paper is",
+        "options": [
+            "0.25m²",
+            "0.5m²",
+            "0.75m²",
+            "1m²"
+        ],
+        "answer": "1m²"
+    },
+    {
+        "question": "The aspect ratio of a letter refers to the ratio of its",
+        "options": [
+            "height to its width",
+            "width to height",
+            "length to width",
+            "width to length"
+        ],
+        "answer": "width to height"
+    },
+    {
+        "question": "The size of the letter means the ___ of the letter.",
+        "options": [
+            "thickness",
+            "height",
+            "length",
+            "width"
+        ],
+        "answer": "height"
+    },
+    {
+        "question": "The techniques for free hand sketch to drawing circle is",
+        "options": [
+            "fixing a fixed point and arc",
+            "fixing the perimeter",
+            "fixing the radius only",
+            "None of the above"
+        ],
+        "answer": "fixing a fixed point and arc"
+    },
+    {
+        "question": "What is the inclination of inclined lettering?",
+        "options": [
+            "75 degree",
+            "65 degree",
+            "45 degree",
+            "85 degree"
+        ],
+        "answer": "75 degree"
+    },
+    {
+        "question": "What is additional 3rd view on orthographic projection in general for simple objects?",
+        "options": [
+            "Front view",
+            "Top view",
+            "side view",
+            "View at 45 degree perpendiculars to horizontal plane"
+        ],
+        "answer": "side view"
+    },
+    {
+        "question": "What type of sketch shows the front in true shape?",
+        "options": [
+            "isometric",
+            "prespective",
+            "oblique",
+            "axonometric"
+        ],
+        "answer": "oblique"
+    },
+    {
+        "question": "A solid having equilateral triangles as base and other faces converging towards its axis is",
+        "options": [
+            "Prism",
+            "Pyramid",
+            "Hexahedron",
+            "Cone"
+        ],
+        "answer": "Pyramid"
+    },
+    {
+        "question": "Which of the following shape is made up of uniform triangles?",
+        "options": [
+            "Cone",
+            "Prism",
+            "Pyramid",
+            "None of the above"
+        ],
+        "answer": "Pyramid"
+    },
+    {
+        "question": "The hidden line is drawn as",
+        "options": [
+            "dashed narrow lines",
+            "dashed wide lines",
+            "long-dashed dotted wide line",
+            "long-dashed double dotted wide line"
+        ],
+        "answer": "dashed narrow lines"
+    },
+    {
+        "question": "A third angle orthogonal projection of an object is given below. What is the object?",
+        "options": [
+            "Triangle",
+            "Trapezium",
+            "Cone",
+            "Frustum of Cone"
+        ],
+        "answer": "Frustum of Cone"
+    },
+    {
+        "question": "The ______ representations of the objects are adopted universally, as they are not bound by any formal langue, region, or special skills.",
+        "options": [
+            "Isomeric representation",
+            "Orthogonal representation",
+            "Sectional representation",
+            "Pictorial representation"
+        ],
+        "answer": "Pictorial representation"
+    },
+    {
+        "question": "The Aspect ratio (a proportional relationship between width and height) of letter is",
+        "options": [
+            "1:2",
+            "2:1",
+            "3:1",
+            "4:1"
+        ],
+        "answer": "3:1"
+    },
+    {
+        "question": "The standard size of drawing board of designation D1 is (in mm)",
+        "options": [
+            "1000 x 700 x 25",
+            "100 x 75 x 25",
+            "1500 x 750 x 25",
+            "1500 x 700 x 25"
+        ],
+        "answer": "1000 x 700 x 25"
+    },
+    {
+        "question": "The width of the standard A-series drawing paper such as A4, A3, A2... is",
+        "options": [
+            "1/3 times the length of the paper",
+            "1/√2 times the length of the paper",
+            "1/2 times the length of the paper",
+            "1/√3 times the length of the paper"
+        ],
+        "answer": "1/√2 times the length of the paper"
+    },
+    {
+        "question": "Working /drawing space on the paper is determined by",
+        "options": [
+            "working line",
+            "drawing line",
+            "border line",
+            "leader line"
+        ],
+        "answer": "border line"
+    },
+    {
+        "question": "Which of the following angles can't be made with the help of set square?",
+        "options": [
+            "90°",
+            "115°",
+            "135°",
+            "75°"
+        ],
+        "answer": "115°"
+    },
+    {
+        "question": "Which of the following is an enlarging scale",
+        "options": [
+            "4:6",
+            "1:3",
+            "5:1",
+            "1:2"
+        ],
+        "answer": "5:1"
+    },
+    {
+        "question": "Which of the following is not a pencil?",
+        "options": [
+            "HB",
+            "2B",
+            "HB1",
+            "4H"
+        ],
+        "answer": "HB1"
+    },
+    {
+        "question": "Number of equal pieces of A4 size paper from A0 is equal to",
+        "options": [
+            "2",
+            "4",
+            "8",
+            "16"
+        ],
+        "answer": "16"
+    },
+    {
+        "question": "The length :width in case of an arrow head is",
+        "options": [
+            "1:1",
+            "2:1",
+            "3:1",
+            "4:1"
+        ],
+        "answer": "3:1"
+    },
+    {
+        "question": "French curves are used to draw;",
+        "options": [
+            "Circular curves",
+            "Circle",
+            "Ellipses",
+            "Smooth free from curves"
+        ],
+        "answer": "Smooth free from curves"
+    },
+    {
+        "question": "The Top view of an object is shown on which plane?",
+        "options": [
+            "Profile plane",
+            "Vertical plane",
+            "Horizontal plane",
+            "Parallel plane"
+        ],
+        "answer": "Horizontal plane"
+    },
+    {
+        "question": "The equipment used to draft vertical and angular lines is",
+        "options": [
+            "T-square and set square",
+            "Protector",
+            "Divided and flat scale",
+            "None of the above"
+        ],
+        "answer": "T-square and set square"
+    },
+    {
+        "question": "Which of the following is not the pictorial projection?",
+        "options": [
+            "Oblique projection",
+            "Isometric projection",
+            "Orthogonal projection",
+            "Perspective projection"
+        ],
+        "answer": "Orthogonal projection"
+    },
+    {
+        "question": "The section view drawing in which one fourth of an object has been marked for removal is known as a______ section",
+        "options": [
+            "Full",
+            "Half",
+            "Quarter",
+            "None of the above"
+        ],
+        "answer": "Half"
+    },
+    {
+        "question": "The Circular arch is drawn with the help of",
+        "options": [
+            "French curve",
+            "Compass",
+            "Scale",
+            "Drafter"
+        ],
+        "answer": "Compass"
+    },
+    {
+        "question": "‘Representative fraction’ (RF) is defined as",
+        "options": [
+            "Length of an object in the drawing / Actual length of the object",
+            "Length of an object in the drawing / Isometric length of the object",
+            "Actual length of the object / Length of an object in the drawing",
+            "Isometric length of the object / Length of an object in the drawing"
+        ],
+        "answer": "Length of an object in the drawing / Actual length of the object"
+    },
+    {
+        "question": "Apex Angle of Dutch cone tube is",
+        "options": [
+            "30 degree",
+            "45 degree",
+            "60 degree",
+            "90 degree"
+        ],
+        "answer": "60 degree"
+    },
+    {
+        "question": "The solid which is generated by the revolution of a right-angle triangle about one of its perpendicular sides which remains fixed is called",
+        "options": [
+            "A prism",
+            "A pyramid",
+            "A cylinder",
+            "A cone"
+        ],
+        "answer": "A cone"
+    },
+    {
+        "question": "Identify the front view of the below isometric view.",
+        "options": [
+            "Option 1 (image)",
+            "Option 2 (image)",
+            "Option 3 (image)",
+            "Option 4 (image)"
+        ],
+        "answer": "Option 1 (image)"
+    },
+    {
+        "question": "The isometric projection of a sphere is a",
+        "options": [
+            "Circle",
+            "Ellipse",
+            "Hyperbola",
+            "Parabola"
+        ],
+        "answer": "Circle"
+    },
+    {
+        "question": "Which of the following position is not possible for a plane?",
+        "options": [
+            "Perpendicular to both HP and VP",
+            "Parallel to both HP and VP",
+            "Perpendicular to HP and parallel to VP",
+            "Perpendicular to VP and parallel to HP"
+        ],
+        "answer": "Parallel to both HP and VP"
+    },
+    {
+        "question": "Find the incorrect dimensioning rule from the following.",
+        "options": [
+            "No need for unnecessary dimensions",
+            "Dimension lines should not be crossed",
+            "Dimensioning can be done anywhere in the drawing",
+            "Hidden lines need no dimensions"
+        ],
+        "answer": "Dimensioning can be done anywhere in the drawing"
+    },
+    {
+        "question": "When a pyramid or cone is cut by a cutting plane parallel to its base, the remaining portion thus obtained after removing the top portion is called_____",
+        "options": [
+            "A prism",
+            "Frustum",
+            "A cylinder",
+            "A cone"
+        ],
+        "answer": "Frustum"
+    },
+    {
+        "question": "If the cone is cut along its axis from the middle, the new shape we obtain after opening the paper is :",
+        "options": [
+            "Equilateral Triangle",
+            "Right Angled Triangle",
+            "Isosceles Triangle",
+            "None of the above"
+        ],
+        "answer": "Right Angled Triangle"
+    },
+    {
+        "question": "If the intersecting plane is parallel to the axis of the cone, then the conic section will be a …",
+        "options": [
+            "Hyperbola",
+            "Circle",
+            "Ellipse",
+            "parabola"
+        ],
+        "answer": "Hyperbola"
+    },
+    {
+        "question": "Length of 5 km straight road segment on the scale of map is 8 cm long,5 cm length on the map is equivalent to",
+        "options": [
+            "3.215 km",
+            "3.125 km",
+            "3.512 km",
+            "5.123 km"
+        ],
+        "answer": "3.125 km"
+    },
+    {
+        "question": "What does symbol R represent in dimension?",
+        "options": [
+            "Diameter",
+            "Radius",
+            "Circumference",
+            "Area"
+        ],
+        "answer": "Radius"
+    },
+    {
+        "question": "The Aspect ratio is the ratio of",
+        "options": [
+            "Horizontal to Vertical",
+            "Vertical to Horizontal",
+            "Slant Height to Vertical",
+            "None"
+        ],
+        "answer": "Horizontal to Vertical"
+    },
+    {
+        "question": "The isometric length of the edge of the cube is obtained by",
+        "options": [
+            "adding 0.815 in actual length",
+            "dividing actual length by 0.815",
+            "multiplying actual length by 0.815",
+            "none of the above"
+        ],
+        "answer": "multiplying actual length by 0.815"
+    },
+    {
+        "question": "The front angle projection of the frustum of cone is",
+        "options": [
+            "Option 1 (image)",
+            "Option 2 (image)",
+            "Both",
+            "None"
+        ],
+        "answer": "Option 1 (image)"
+    },
+    {
+        "question": "If an isometric projection is drawn with true measurements but not with isometric scale then the drawings are called ____________",
+        "options": [
+            "Isometric projection",
+            "Isometric view",
+            "Isometric perception",
+            "Orthographic view"
+        ],
+        "answer": "Isometric view"
+    },
+    {
+        "question": "The front view of a rectangle, when its plane is parallel to HP and perpendicular to VP, is",
+        "options": [
+            "Rectangle",
+            "Square",
+            "Line",
+            "Point"
+        ],
+        "answer": "Line"
+    },
+    {
+        "question": "The true length of the line is 30 cm and isometric view is drawn. How much length is reduced?",
+        "options": [
+            "24.45 cm",
+            "25.98 cm",
+            "4.01 cm",
+            "5.55 cm"
+        ],
+        "answer": "5.55 cm"
+    },
+    {
+        "question": "What is the purpose of a title block in an engineering drawing?",
+        "options": [
+            "To provide the title in decorative font",
+            "To mention author's name",
+            "To specify scale and provide essential information",
+            "To create a border for aesthetics"
+        ],
+        "answer": "To specify scale and provide essential information"
+    },
+    {
+        "question": "In aligned system of dimensioning, the dimensions may be read from",
+        "options": [
+            "Bottom or right hand edges",
+            "Bottom or left hand edges",
+            "Only from bottom",
+            "Only from left side"
+        ],
+        "answer": "Bottom or right hand edges"
+    },
+    {
+        "question": "When using an isometric view, you line up the drawing along three axis that are separated by _________ from each other.",
+        "options": [
+            "180 degree",
+            "90 degree",
+            "120 degree",
+            "60 degree"
+        ],
+        "answer": "120 degree"
+    },
+    {
+        "question": "The correct front view of given object is",
+        "options": [
+            "Option 1 (image)",
+            "Option 2 (image)",
+            "Option 3 (image)",
+            "Option 4 (image)"
+        ],
+        "answer": "Option 3 (image)"
+    },
+    {
+        "question": "A/An ________ view is an orthographic view that is projected onto any plane other than the frontal, horizontal, or profile plane,",
+        "options": [
+            "auxiliary",
+            "bevel",
+            "isometric",
+            "parametric"
+        ],
+        "answer": "auxiliary"
+    },
+    {
+        "question": "The internal angle of regular pentagon is __________ degree.",
+        "options": [
+            "72",
+            "108",
+            "120",
+            "150"
+        ],
+        "answer": "108"
+    },
+    {
+        "question": "A line of 1 meter is shown by 1cm on a scale. Its Representative fraction (RF) is",
+        "options": [
+            "1",
+            "100",
+            "1/100",
+            "1/50"
+        ],
+        "answer": "1/100"
+    },
+    {
+        "question": "What is the dimension of A1 size drawing sheet?",
+        "options": [
+            "1189 mm × 841 mm",
+            "594 mm × 841 mm",
+            "1230 mm × 880 mm",
+            "880 mm × 625 mm"
+        ],
+        "answer": "594 mm × 841 mm"
+    },
+    {
+        "question": "The front view of the given object is",
+        "options": [
+            "Option 1 (image)",
+            "Option 2 (image)",
+            "Option 3 (image)",
+            "Option 4 (image)"
+        ],
+        "answer": "Option 2 (image)"
+    },
+    {
+        "question": "When projectors are parallel to each other, but at an angle other than 90 degrees to the plane of projection, this type of projection is",
+        "options": [
+            "Oblique projection",
+            "Perpendicular projection",
+            "Aesthetic projection",
+            "Angular projection"
+        ],
+        "answer": "Oblique projection"
+    },
+    {
+        "question": "A full scale technical drawing will have a scale factor of _____.",
+        "options": [
+            "1:1",
+            "1:2",
+            "2:1",
+            "1:4"
+        ],
+        "answer": "1:1"
+    },
+    {
+        "question": "In isometric view, a circle is seen as:",
+        "options": [
+            "A parabola",
+            "A hyperbola",
+            "A cone",
+            "An ellipse"
+        ],
+        "answer": "An ellipse"
+    },
+    {
+        "question": "In which projection method is the object placed between the plane of projection and the observer?",
+        "options": [
+            "1st angle projection",
+            "2nd angle projection",
+            "3rd angle projection",
+            "4th angle projection"
+        ],
+        "answer": "1st angle projection"
+    },
+    {
+        "question": "In engineering drawing, which type of arrowhead is used?",
+        "options": [
+            "Open (90º)",
+            "Small open circle",
+            "Closed and filled",
+            "Oblique stroke"
+        ],
+        "answer": "Closed and filled"
+    }
+
+        ];
+
+        // Add IDs dynamically to all questions
+        const questions = questionsData.map((q, index) => ({
+            id: index + 1,
+            question: q.question,
+            options: q.options,
+            answer: q.answer
+        }));
+
+        let currentIndex = 0;
+        let userAnswers = {};
+        let timer;
+        let timeRemaining = 120 * 60; // 120 minutes in seconds
+        const form = document.getElementById('quiz-form');
+        const startMessage = document.getElementById('start-message');
+        const testContent = document.getElementById('test-content');
+
+        // Function to start the test
+        function startTest() {
+            startMessage.style.display = 'none';
+            testContent.style.display = 'block';
+            renderQuestions();
+            startTimer();
+        }
+
+        // Function to render questions
+        function renderQuestions() {
+            form.innerHTML = '';
+            for (let i = currentIndex; i < currentIndex + 3 && i < questions.length; i++) {
+                const question = questions[i];
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'question floating';
+                questionDiv.id = `question-${question.id}`;
+                questionDiv.innerHTML = `
+                    <p><i class="fas fa-question-circle" style="color: #4361ee; margin-right: 10px;"></i>${question.question}</p>
+                    <div class="options-container">
+                        ${question.options.map(option => `
+                            <label>
+                                <input type="radio" name="q${question.id}" value="${option}" onchange="lockOption(this)"
+                                    ${userAnswers[question.id] === option ? 'checked' : ''}>
+                                ${option}
+                            </label>
+                        `).join('')}
+                    </div>
+                `;
+                form.appendChild(questionDiv);
+            }
+
+            document.getElementById('back-button').style.display = currentIndex === 0 ? 'none' : 'inline-flex';
+            updateStats();
+        }
+
+        // Function to lock options once selected
+        function lockOption(option) {
+            const questionId = option.name.replace('q', '');
+            userAnswers[questionId] = option.value;
+            const questionDiv = option.closest('.question');
+            const inputs = questionDiv.querySelectorAll('input');
+            inputs.forEach(input => input.disabled = true);
+
+            questionDiv.classList.remove('floating');
+            questionDiv.style.borderLeft = '4px solid #4cc9f0';
+            setTimeout(() => {
+                questionDiv.style.borderLeft = '4px solid #4361ee';
+            }, 500);
+
+            updateStats();
+        }
+
+        // Function to show the next set of questions
+        function showNextQuestions() {
+            currentIndex += 3;
+            if (currentIndex >= questions.length) {
+                submitTest();
+            } else {
+                renderQuestions();
+                window.scrollTo({
+                    top: form.offsetTop - 20,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        // Function to show the previous set of questions
+        function showPreviousQuestions() {
+            currentIndex -= 3;
+            if (currentIndex < 0) currentIndex = 0;
+            renderQuestions();
+            window.scrollTo({
+                top: form.offsetTop - 20,
+                behavior: 'smooth'
+            });
+        }
+
+        // Function to update stats
+        function updateStats() {
+            const totalQuestions = questions.length;
+            const attempted = Object.keys(userAnswers).length;
+            const notAttempted = totalQuestions - attempted;
+
+            document.getElementById('total-questions').textContent = totalQuestions;
+            document.getElementById('attempted').textContent = attempted;
+            document.getElementById('not-attempted').textContent = notAttempted;
+        }
+
+        // Function to start the timer
+        function startTimer() {
+            timer = setInterval(() => {
+                timeRemaining--;
+                if (timeRemaining <= 0) {
+                    clearInterval(timer);
+                    submitTest();
+                }
+                updateTimer();
+            }, 1000);
+        }
+
+        // Function to update the timer display
+        function updateTimer() {
+            const minutes = Math.floor(timeRemaining / 60);
+            const seconds = timeRemaining % 60;
+            const timerElement = document.getElementById('timer');
+            timerElement.innerHTML = `<i class="fas fa-clock"></i> Time Remaining: ${minutes}:${seconds.toString().padStart(2, '0')}`;
+            
+            if (timeRemaining <= 300) {
+                timerElement.style.color = '#f72585';
+                timerElement.style.animation = 'pulse 1s infinite';
+            }
+        }
+
+        // Function to submit the test
+        function submitTest() {
+            clearInterval(timer);
+            document.getElementById('next-button').style.display = 'none';
+            document.getElementById('back-button').style.display = 'none';
+            showResult();
+        }
+
+        // Function to calculate and display the result
+        function showResult() {
+            let score = 0;
+            const answerDetails = [];
+
+            questions.forEach(question => {
+                const userAnswer = userAnswers[question.id];
+                const isCorrect = userAnswer === question.answer;
+                if (isCorrect) score++;
+
+                answerDetails.push(`
+                    <div class="answer-item ${isCorrect ? 'correct-answer' : 'incorrect-answer'}">
+                        <p><strong>Question ${question.id}:</strong> ${question.question}</p>
+                        <p><strong>Your Answer:</strong> <span class="${isCorrect ? 'correct' : 'incorrect'}">${userAnswer || 'Not answered'}</span></p>
+                        <p><strong>Correct Answer:</strong> <span class="correct">${question.answer}</span></p>
+                    </div>
+                `);
+            });
+
+            const percentage = Math.round((score / questions.length) * 100);
+            document.getElementById('score').textContent = `${score} / ${questions.length}`;
+            document.getElementById('percentage').textContent = percentage;
+            document.getElementById('progress-bar').style.width = `${percentage}%`;
+            document.getElementById('answer-details').innerHTML = answerDetails.join('');
+            document.getElementById('result').style.display = 'block';
+
+            window.scrollTo({
+                top: document.getElementById('result').offsetTop - 20,
+                behavior: 'smooth'
+            });
+
+            if (percentage >= 70) {
+                triggerConfetti();
+            }
+        }
+
+        // Simple confetti effect
+        function triggerConfetti() {
+            const confettiCount = 100;
+            const confettiContainer = document.createElement('div');
+            confettiContainer.style.position = 'fixed';
+            confettiContainer.style.top = '0';
+            confettiContainer.style.left = '0';
+            confettiContainer.style.width = '100%';
+            confettiContainer.style.height = '100%';
+            confettiContainer.style.pointerEvents = 'none';
+            confettiContainer.style.zIndex = '1000';
+            document.body.appendChild(confettiContainer);
+
+            for (let i = 0; i < confettiCount; i++) {
+                const confetti = document.createElement('div');
+                confetti.innerHTML = ['🎉', '✨', '🎊', '🏆', '👏'][Math.floor(Math.random() * 5)];
+                confetti.style.position = 'absolute';
+                confetti.style.fontSize = `${Math.random() * 20 + 10}px`;
+                confetti.style.left = `${Math.random() * 100}vw`;
+                confetti.style.top = '-50px';
+                confetti.style.animation = `fall ${Math.random() * 3 + 2}s linear forwards`;
+                confetti.style.opacity = Math.random();
+                confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+                confettiContainer.appendChild(confetti);
+
+                const animation = confetti.animate([
+                    { top: '-50px', opacity: 1 },
+                    { top: '100vh', opacity: 0 }
+                ], {
+                    duration: Math.random() * 3000 + 2000,
+                    easing: 'cubic-bezier(0.1, 0.8, 0.9, 1)'
+                });
+
+                animation.onfinish = () => {
+                    confetti.remove();
+                    if (i === confettiCount - 1) {
+                        confettiContainer.remove();
+                    }
+                };
+            }
+
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes fall {
+                    to { transform: translateY(100vh) rotate(360deg); }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+    </script>
+</body>
+</html>

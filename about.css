@@ -111,19 +111,27 @@ ul li span {
 
 /* Call-to-Action Button */
 .cta-button {
-    background-color: #fff;
-    color: #28a745;
-    padding: 12px 25px;
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: #2563eb;  /* Vibrant blue */
+    color: white;
     text-decoration: none;
-    border-radius: 5px;
-    font-size: 18px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.cta-button:hover {
-    background-color: #ddd;
+    font-weight: 600;
+    font-size: 1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .cta-button:hover {
+    background-color: #1d4ed8;  /* Slightly darker blue */
     transform: scale(1.05);
-}
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+  }
+  
+  .cta-button:active {
+    transform: scale(0.98);
+  }
 
 /* Responsive Design */
 @media (max-width: 768px) {

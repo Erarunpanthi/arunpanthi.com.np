@@ -7,18 +7,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
-        :root {
-    --primary-color: #2e7d32;  /* Green 800 */
-    --secondary-color: #4caf50; /* Green 500 */
-    --accent-color: #e74c3c;
-    --light-color: #e8f5e9;    /* Green 50 */
-    --dark-color: #1b5e20;     /* Green 900 */
-    --text-color: #333;
-    --border-radius: 5px;
-    --box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    --transition: all 0.3s ease;
-
-        }
+       :root {
+        --primary-color: #2e7d32;  /* Green 800 */
+        --secondary-color: #4caf50; /* Green 500 */
+        --accent-color: #e74c3c;
+        --light-color: #e8f5e9;    /* Green 50 */
+        --dark-color: #1b5e20;     /* Green 900 */
+        --text-color: #333;
+        --border-radius: 5px;
+        --box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        --transition: all 0.3s ease;
+    }
 
         * {
             margin: 0;
@@ -202,20 +201,29 @@
         tr:nth-child(even) {
             background-color: #f2f2f2;
         }
+         .social-media {
+        background-color: var(--primary-color); /* Changed to green */
+        padding: 2rem;
+        margin: 2rem 0;
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow);
+        text-align: center;
+        color: white; /* Added white text color for contrast */
+    }
 
-        .social-media {
-            background-color: white;
-            padding: 2rem;
-            margin: 2rem 0;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            text-align: center;
-        }
+    .social-media h2 {
+        margin-bottom: 1rem;
+        color: white; /* Make heading white */
+    }
 
-        .social-media h2 {
-            margin-bottom: 1rem;
-        }
+    .social-media a {
+        color: white; /* Changed to white for better visibility */
+        font-size: 1.5rem;
+        transition: var(--transition);
+    }
 
+
+        
         .social-media .icons {
             display: flex;
             justify-content: center;

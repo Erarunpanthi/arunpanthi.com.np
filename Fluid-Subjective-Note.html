@@ -333,6 +333,12 @@
             .chapter-title {
                 font-size: 1.3rem;
             }
+            .note {
+            background-color: #fff8e1;
+            padding: 10px;
+            border-left: 4px solid #ffc107;
+            margin: 15px 0;
+        }
         }
     </style>
 </head>
@@ -797,7 +803,88 @@
 </ul>
 <p>The distance between G and M is called the <strong>metacentric height (GM)</strong>.</p>
             
-            
+            <h2>Stability of Floating Bodies</h2>
+
+<p>The relative positions of the metacenter (M) and center of gravity (G) determine the stability of floating bodies, where the body's weight equals the weight of displaced fluid.</p>
+
+<h3>Stable Equilibrium</h3>
+<ul>
+    <li>M is above G (positive GM)</li>
+    <li>When tilted, the weight (W) and buoyant force (F<sub>b</sub>) create a restoring moment that returns the body to its original position</li>
+</ul>
+
+<h3>Unstable Equilibrium</h3>
+<ul>
+    <li>M is below G (negative GM)</li>
+    <li>When tilted, W and F<sub>b</sub> create an overturning moment that moves the body further away</li>
+    <li>This condition must be avoided in ship design and loading</li>
+</ul>
+
+<h3>Neutral Equilibrium</h3>
+<ul>
+    <li>M coincides with G (GM = 0)</li>
+    <li>No moment is produced when tilted - body remains in its new position</li>
+</ul>
+
+<div class="note">
+    <strong>Design Note:</strong> Ships are designed with G as low as possible relative to B, keeping M above G for positive GM and stable equilibrium.
+</div>
+
+<h2>Determination of Metacentric Height</h2>
+
+<h3>Analytical Method</h3>
+<p>The metacentric height can be calculated using:</p>
+<div class="formula">
+    GM = BM - BG = (I/V) - BG
+</div>
+<p>Where:<br>
+I = Moment of inertia of waterline area about longitudinal axis<br>
+V = Volume of displaced fluid<br>
+BG = Distance between center of buoyancy (B) and center of gravity (G)</p>
+
+<h3>Stability Check Procedure</h3>
+<ol>
+    <li>Calculate immersion depth using floatation principle (W = F<sub>b</sub>)</li>
+    <li>Determine positions of G and B relative to a reference point</li>
+    <li>Compute BG distance</li>
+    <li>Calculate moment of inertia (I) of waterplane area</li>
+    <li>Compute GM using the formula above</li>
+    <li>If GM > 0, the body is stable</li>
+</ol>
+                <h2>Liquid Containers Subjected to Angular Acceleration</h2>
+
+<p>When a liquid container rotates at constant angular velocity ω, the liquid surface forms a paraboloid of revolution due to the balance between centrifugal force and gravitational force.</p>
+
+<h3>Key Equations</h3>
+
+<p>Height of the paraboloid surface:</p>
+<div class="formula">
+    z = (ω²r²)/(2g)
+</div>
+<p>Where:<br>
+ω = angular velocity (rad/s)<br>
+r = radial distance from axis<br>
+g = acceleration due to gravity</p>
+
+<p>Volume of the paraboloid:</p>
+<div class="formula">
+    V = ½πR²h
+</div>
+<p>Where:<br>
+R = container radius<br>
+h = maximum height difference</p>
+
+<h3>Important Considerations</h3>
+<ul>
+    <li>The liquid surface becomes steeper with increasing angular velocity</li>
+    <li>The central depression and rim height are equal when ω is constant</li>
+    <li>For open containers, spillage occurs when the rim height exceeds the container walls</li>
+    <li>In fuel tanks of rotating vehicles, this effect must be considered for proper fuel pickup</li>
+</ul>
+
+<div class="note">
+    <strong>Practical Application:</strong> This principle is used in centrifugal casting where molten metal is poured into a rotating mold to create symmetrical parts with good material properties.
+</div>
             
             
             </div>

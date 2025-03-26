@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fluid Mechanics MCQ Test</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="Test.css">
+   
+</head>
+<body>
+    <div class="container">
+        <h1><i class="fas fa-drafting-compass"></i> Engineering Drawing MCQ Test</h1>
+        <div id="start-message">
+            <p>Welcome to the Fluid Meachanics assessment!</p>
+            <p>You will have <span class="highlight">120 minutes</span> to complete all questions.</p>
+            <p>This test contains <strong>40 multiple-choice questions</strong> covering various aspects of Fluid Mechanics.</p>
+<p>Some questions can be <strong>Repated /strong> please consider them and coordiinate with us </p>
+            <button id="start-button" onclick="startTest()">Begin Test <i class="fas fa-arrow-right"></i></button>
+        </div>
+        <div id="test-content">
+            <div id="timer">
+                <i class="fas fa-clock"></i> Time Remaining: 120:00
+            </div>
+            <div id="stats">
+                <div class="stat-box">
+                    <h3><i class="fas fa-question-circle"></i> Total Questions</h3>
+                    <div class="stat-value" id="total-questions">40</div>
+                </div>
+                <div class="stat-box">
+                    <h3><i class="fas fa-check-circle"></i> Attempted</h3>
+                    <div class="stat-value" id="attempted">0</div>
+                </div>
+                <div class="stat-box">
+                    <h3><i class="fas fa-exclamation-circle"></i> Not Attempted</h3>
+                    <div class="stat-value" id="not-attempted">40</div>
+                </div>
+            </div>
+            <form id="quiz-form">
+                <!-- Questions will be dynamically inserted here -->
+            </form>
+            <div class="button-container">
+                <button type="button" id="back-button" onclick="showPreviousQuestions()" style="display: none;">
+                    <i class="fas fa-arrow-left"></i> Back
+                </button>
+                <button type="button" id="next-button" onclick="showNextQuestions()">
+                    Next <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+            <div id="result" style="display: none;">
+                <h2>Test Results</h2>
+                <div class="progress-container">
+                    <div class="progress-bar" id="progress-bar"></div>
+                </div>
+                <div class="score-display" id="score">0/0</div>
+                <p>You scored <span class="highlight" id="percentage">0</span>%</p>
+                <div class="answer-details" id="answer-details"></div>
+                <button id="submit-button" onclick="location.reload()">
+                    <i class="fas fa-redo"></i> Take Test Again
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Questions data (just 2 sample questions - add the remaining 38 following the same format)
+        const questionsData = [
+            
+    {
+        "question": "Fluid mechanics is the study of:",
+        "options": [
+            "Gases only",
+            "Liquids only",
+            "Both gases and liquids",
+            "Solids only"
+        ],
+        "answer": "Both gases and liquids"
+    },
+    {
+        "question": "The unit of dynamic viscosity in the SI system is:",
+        "options": [
+            "Pascal",
+            "Poise",
+            "Pascal-second",
+            "Newton-second"
+        ],
+        "answer": "Pascal-second"
+    },
+    {
+        "question": "The property of a fluid which offers resistance to deformation is called:",
+        "options": [
+            "Density",
+            "Viscosity",
+            "Pressure",
+            "Surface tension"
+        ],
+        "answer": "Viscosity"
+    },
+    {
+        "question": "The continuity equation is based on the principle of:",
+        "options": [
+            "Conservation of mass",
+            "Conservation of energy",
+            "Conservation of momentum",
+            "Conservation of pressure"
+        ],
+        "answer": "Conservation of mass"
+    },
+    {
+        "question": "The equation of continuity for an incompressible fluid flow is:",
+        "options": [
+            "A₁V₁ = A₂V₂",
+            "A₁²V₁ = A₂²V₂",
+            "A₁V₁² = A₂V₂²",
+            "A₁V₁³ = A₂V₂³"
+        ],
+        "answer": "A₁V₁ = A₂V₂"
+    },
+    {
+        "question": "Bernoulli's equation is based on the principle of:",
+        "options": [
+            "Conservation of mass",
+            "Conservation of energy",
+            "Conservation of momentum",
+            "Conservation of pressure"
+        ],
+        "answer": "Conservation of energy"
+    },
+    {
+        "question": "In Bernoulli's equation, the sum of pressure energy, kinetic energy, and potential energy per unit weight is:",
+        "options": [
+            "Constant",
+            "Variable",
+            "Dependent on time",
+            "Dependent on velocity"
+        ],
+        "answer": "Constant"
+    },
+    {
+        "question": "The Bernoulli's equation is applicable to:",
+        "options": [
+            "Viscous and compressible fluids",
+            "Inviscid and incompressible fluids",
+            "Compressible fluids only",
+            "Viscous fluids only"
+        ],
+        "answer": "Inviscid and incompressible fluids"
+    },
+    {
+        "question": "The pressure at a point in a fluid at rest is called:",
+        "options": [
+            "Static pressure",
+            "Dynamic pressure",
+            "Total pressure",
+            "Stagnation pressure"
+        ],
+        "answer": "Static pressure"
+    },
+    {
+        "question": "The Venturi meter is used to measure:",
+        "options": [
+            "Pressure",
+            "Flow rate",
+            "Velocity",
+            "Viscosity"
+        ],
+        "answer": "Flow rate"
+    },
+    {
+        "question": "The phenomenon of vapor bubbles forming in a flowing liquid and then collapsing is called:",
+        "options": [
+            "Cavitation",
+            "Lamination",
+            "Turbulence",
+            "Sublimation"
+        ],
+        "answer": "Cavitation"
+    },
+    {
+        "question": "A streamline is defined as a line:",
+        "options": [
+            "Tangential to the velocity vector at every point",
+            "Normal to the velocity vector at every point",
+            "Along which the velocity is constant",
+            "Along which the pressure is constant"
+        ],
+        "answer": "Tangential to the velocity vector at every point"
+    },
+    {
+        "question": "The Reynolds number is the ratio of:",
+        "options": [
+            "Inertial forces to viscous forces",
+            "Viscous forces to inertial forces",
+            "Pressure forces to viscous forces",
+            "Viscous forces to pressure forces"
+        ],
+        "answer": "Inertial forces to viscous forces"
+    },
+    {
+        "question": "The flow of fluid is called laminar if the Reynolds number is:",
+        "options": [
+            "Less than 2000",
+            "Between 2000 and 4000",
+            "Greater than 4000",
+            "Greater than 6000"
+        ],
+        "answer": "Less than 2000"
+    },
+    {
+        "question": "The flow of fluid is called turbulent if the Reynolds number is:",
+        "options": [
+            "Less than 2000",
+            "Between 2000 and 4000",
+            "Greater than 4000",
+            "Greater than 6000"
+        ],
+        "answer": "Greater than 4000"
+    },
+    {
+        "question": "The flow in which the fluid particles follow a random path is called:",
+        "options": [
+            "Laminar flow",
+            "Turbulent flow",
+            "Uniform flow",
+            "Steady flow"
+        ],
+        "answer": "Turbulent flow"
+    },
+    {
+        "question": "The head loss in a pipe due to friction is given by:",
+        "options": [
+            "Darcy-Weisbach equation",
+            "Bernoulli's equation",
+            "Continuity equation",
+            "Euler's equation"
+        ],
+        "answer": "Darcy-Weisbach equation"
+    },
+    {
+        "question": "The Hagen-Poiseuille equation is valid for:",
+        "options": [
+            "Turbulent flow",
+            "Laminar flow",
+            "Compressible flow",
+            "Supersonic flow"
+        ],
+        "answer": "Laminar flow"
+    },
+    {
+        "question": "The point in the immersed body through which the resultant pressure of the liquid may be taken to act is known as:",
+        "options": [
+            "Center of pressure",
+            "Center of gravity",
+            "Center of buoyancy",
+            "Metacenter"
+        ],
+        "answer": "Center of pressure"
+    },
+    {
+        "question": "The buoyant force on a submerged object is equal to:",
+        "options": [
+            "Weight of the object",
+            "Volume of the object",
+            "Weight of the fluid displaced by the object",
+            "Volume of the fluid displaced by the object"
+        ],
+        "answer": "Weight of the fluid displaced by the object"
+    },
+    {
+        "question": "The dimensionless number which represents the effect of compressibility is:",
+        "options": [
+            "Reynolds number",
+            "Froude number",
+            "Mach number",
+            "Weber number"
+        ],
+        "answer": "Mach number"
+    },
+    {
+        "question": "The term 'viscosity' refers to a fluid's:",
+        "options": [
+            "Density",
+            "Resistance to flow",
+            "Pressure",
+            "Buoyancy"
+        ],
+        "answer": "Resistance to flow"
+    },
+    {
+        "question": "The ratio of inertial forces to gravitational forces is called:",
+        "options": [
+            "Reynolds number",
+            "Froude number",
+            "Mach number",
+            "Weber number"
+        ],
+        "answer": "Froude number"
+    },
+    {
+        "question": "The flow in which the fluid properties vary with time at any given location is called:",
+        "options": [
+            "Steady flow",
+            "Unsteady flow",
+            "Uniform flow",
+            "Non-uniform flow"
+        ],
+        "answer": "Unsteady flow"
+    },
+    {
+        "question": "The instrument used to measure the velocity of flow is:",
+        "options": [
+            "Manometer",
+            "Pitot tube",
+            "Orifice meter",
+            "Venturi meter"
+        ],
+        "answer": "Pitot tube"
+    },
+    {
+        "question": "The term 'hydraulic diameter' is used for:",
+        "options": [
+            "Circular pipes only",
+            "Non-circular pipes only",
+            "Both circular and non-circular pipes",
+            "Open channels only"
+        ],
+        "answer": "Both circular and non-circular pipes"
+    },
+    {
+        "question": "The critical velocity of a fluid in a pipe depends on:",
+        "options": [
+            "Diameter of the pipe",
+            "Density of the fluid",
+            "Viscosity of the fluid",
+            "All of the above"
+        ],
+        "answer": "All of the above"
+    },
+    {
+        "question": "The ratio of the actual velocity of fluid to the velocity of sound in the fluid is called:",
+        "options": [
+            "Reynolds number",
+            "Froude number",
+            "Mach number",
+            "Weber number"
+        ],
+        "answer": "Mach number"
+    },
+    {
+        "question": "The dimensionless number which represents the effect of surface tension is:",
+        "options": [
+            "Reynolds number",
+            "Froude number",
+            "Mach number",
+            "Weber number"
+        ],
+        "answer": "Weber number"
+    },
+    {
+        "question": "The streamline and equipotential lines in a flow field:",
+        "options": [
+            "Are parallel to each other",
+            "Are perpendicular to each other",
+            "Intersect at 45 degrees",
+            "Intersect at 30 degrees"
+        ],
+        "answer": "Are perpendicular to each other"
+    },
+    {
+        "question": "The Navier-Stokes equation deals with the law of conservation of:",
+        "options": [
+            "Mass",
+            "Energy",
+            "Momentum",
+            "Pressure"
+        ],
+        "answer": "Momentum"
+    },
+    {
+        "question": "The phenomenon by which a fluid rises in a thin tube due to surface tension is called:",
+        "options": [
+            "Adhesion",
+            "Capillarity",
+            "Cohesion",
+            "Viscosity"
+        ],
+        "answer": "Capillarity"
+    },
+    {
+        "question": "The potential flow theory is based on the assumption that the fluid is:",
+        "options": [
+            "Compressible",
+            "Incompressible",
+            "Viscous",
+            "Inviscid"
+        ],
+        "answer": "Inviscid"
+    },
+    {
+        "question": "The line joining the points of highest water elevation in open channel flow is known as:",
+        "options": [
+            "Streamline",
+            "Equipotential line",
+            "Hydraulic grade line",
+            "Energy grade line"
+        ],
+        "answer": "Energy grade line"
+    },
+    {
+        "question": "The phenomenon by which the boundary layer separates from the surface is known as:",
+        "options": [
+            "Boundary layer transition",
+            "Boundary layer separation",
+            "Boundary layer adhesion",
+            "Boundary layer cohesion"
+        ],
+        "answer": "Boundary layer separation"
+    },
+    {
+        "question": "The flow rate through an orifice is given by:",
+        "options": [
+            "Bernoulli's equation",
+            "Continuity equation",
+            "Torricelli's theorem",
+            "Navier-Stokes equation"
+        ],
+        "answer": "Torricelli's theorem"
+    },
+    {
+        "question": "In a fluid flow, the condition where no slip occurs at the boundary is known as:",
+        "options": [
+            "Slip condition",
+            "No-slip condition",
+            "Boundary condition",
+            "Continuity condition"
+        ],
+        "answer": "No-slip condition"
+    },
+    {
+        "question": "The height to which a liquid will rise in a capillary tube is inversely proportional to:",
+        "options": [
+            "Diameter of the tube",
+            "Surface tension",
+            "Viscosity",
+            "Density"
+        ],
+        "answer": "Diameter of the tube"
+    },
+    {
+        "question": "The dimensionless number which represents the ratio of inertia force to viscous force is:",
+        "options": [
+            "Reynolds number",
+            "Froude number",
+            "Mach number",
+            "Weber number"
+        ],
+        "answer": "Reynolds number"
+    },
+    {
+        "question": "The most economical section of a rectangular channel is one for which the ratio of width to depth is:",
+        "options": [
+            "1",
+            "2",
+            "3",
+            "4"
+        ],
+        "answer": "2"
+    },
+    {
+        "question": "The pressure measured with respect to the absolute vacuum is called:",
+        "options": [
+            "Gauge pressure",
+            "Absolute pressure",
+            "Atmospheric pressure",
+            "Static pressure"
+        ],
+        "answer": "Absolute pressure"
+    },
+    {
+        "question": "The discharge over a rectangular weir is given by:",
+        "options": [
+            "Q = (2/3)Cd√(2g)Lh^(3/2)",
+            "Q = Cd√(2g)Lh",
+            "Q = Cd√(2g)πDh²",
+            "Q = (1/2)Cd√(2g)Lh^(3/2)"
+        ],
+        "answer": "Q = (2/3)Cd√(2g)Lh^(3/2)"
+    },
+    {
+        "question": "In open channel flow, the specific energy is the:",
+        "options": [
+            "Total energy per unit discharge",
+            "Total energy per unit weight of fluid",
+            "Energy per unit volume",
+            "Energy per unit length"
+        ],
+        "answer": "Total energy per unit weight of fluid"
+    },
+    {
+        "question": "The boundary layer thickness is defined as the distance from the boundary where the velocity reaches:",
+        "options": [
+            "50% of the free stream velocity",
+            "90% of the free stream velocity",
+            "95% of the free stream velocity",
+            "99% of the free stream velocity"
+        ],
+        "answer": "99% of the free stream velocity"
+    },
+    {
+        "question": "The property of fluid which enables it to resist tensile stress is called:",
+        "options": [
+            "Viscosity",
+            "Density",
+            "Surface tension",
+            "Cohesion"
+        ],
+        "answer": "Surface tension"
+    },
+    {
+        "question": "The depth of flow in an open channel corresponding to minimum specific energy is called:",
+        "options": [
+            "Normal depth",
+            "Critical depth",
+            "Subcritical depth",
+            "Supercritical depth"
+        ],
+        "answer": "Critical depth"
+    },
+    {
+        "question": "The point at which the resultant pressure on a submerged body acts is called:",
+        "options": [
+            "Center of gravity",
+            "Center of pressure",
+            "Center of buoyancy",
+            "Metacenter"
+        ],
+        "answer": "Center of pressure"
+    },
+    {
+        "question": "The flow through a nozzle is:",
+        "options": [
+            "Subsonic",
+            "Supersonic",
+            "Both subsonic and supersonic",
+            "Neither subsonic nor supersonic"
+        ],
+        "answer": "Both subsonic and supersonic"
+    },
+    {
+        "question": "The hydraulic radius is defined as the ratio of:",
+        "options": [
+            "Area of flow to wetted perimeter",
+            "Wetted perimeter to area of flow",
+            "Velocity of flow to area of flow",
+            "Area of flow to velocity of flow"
+        ],
+        "answer": "Area of flow to wetted perimeter"
+    },
+    {
+        "question": "The velocity distribution for turbulent flow through a closed conduit is:",
+        "options": [
+            "Parabolic",
+            "Logarithmic",
+            "Linear",
+            "Hyperbolic"
+        ],
+        "answer": "Logarithmic"
+    }
+
+    
+
+        
+
+        ];
+
+        // Add IDs dynamically to all questions
+        const questions = questionsData.map((q, index) => ({
+            id: index + 1,
+            question: q.question,
+            options: q.options,
+            answer: q.answer
+        }));
+
+        let currentIndex = 0;
+        let userAnswers = {};
+        let timer;
+        let timeRemaining = 120 * 60; // 120 minutes in seconds
+        const form = document.getElementById('quiz-form');
+        const startMessage = document.getElementById('start-message');
+        const testContent = document.getElementById('test-content');
+
+        // Function to start the test
+        function startTest() {
+            startMessage.style.display = 'none';
+            testContent.style.display = 'block';
+            renderQuestions();
+            startTimer();
+        }
+
+        // Function to render questions
+        function renderQuestions() {
+            form.innerHTML = '';
+            for (let i = currentIndex; i < currentIndex + 3 && i < questions.length; i++) {
+                const question = questions[i];
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'question floating';
+                questionDiv.id = `question-${question.id}`;
+                questionDiv.innerHTML = `
+                    <p><i class="fas fa-question-circle" style="color: #4361ee; margin-right: 10px;"></i>${question.question}</p>
+                    <div class="options-container">
+                        ${question.options.map(option => `
+                            <label>
+                                <input type="radio" name="q${question.id}" value="${option}" onchange="lockOption(this)"
+                                    ${userAnswers[question.id] === option ? 'checked' : ''}>
+                                ${option}
+                            </label>
+                        `).join('')}
+                    </div>
+                `;
+                form.appendChild(questionDiv);
+            }
+
+            document.getElementById('back-button').style.display = currentIndex === 0 ? 'none' : 'inline-flex';
+            updateStats();
+        }
+
+        // Function to lock options once selected
+        function lockOption(option) {
+            const questionId = option.name.replace('q', '');
+            userAnswers[questionId] = option.value;
+            const questionDiv = option.closest('.question');
+            const inputs = questionDiv.querySelectorAll('input');
+            inputs.forEach(input => input.disabled = true);
+
+            questionDiv.classList.remove('floating');
+            questionDiv.style.borderLeft = '4px solid #4cc9f0';
+            setTimeout(() => {
+                questionDiv.style.borderLeft = '4px solid #4361ee';
+            }, 500);
+
+            updateStats();
+        }
+
+        // Function to show the next set of questions
+        function showNextQuestions() {
+            currentIndex += 3;
+            if (currentIndex >= questions.length) {
+                submitTest();
+            } else {
+                renderQuestions();
+                window.scrollTo({
+                    top: form.offsetTop - 20,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        // Function to show the previous set of questions
+        function showPreviousQuestions() {
+            currentIndex -= 3;
+            if (currentIndex < 0) currentIndex = 0;
+            renderQuestions();
+            window.scrollTo({
+                top: form.offsetTop - 20,
+                behavior: 'smooth'
+            });
+        }
+
+        // Function to update stats
+        function updateStats() {
+            const totalQuestions = questions.length;
+            const attempted = Object.keys(userAnswers).length;
+            const notAttempted = totalQuestions - attempted;
+
+            document.getElementById('total-questions').textContent = totalQuestions;
+            document.getElementById('attempted').textContent = attempted;
+            document.getElementById('not-attempted').textContent = notAttempted;
+        }
+
+        // Function to start the timer
+        function startTimer() {
+            timer = setInterval(() => {
+                timeRemaining--;
+                if (timeRemaining <= 0) {
+                    clearInterval(timer);
+                    submitTest();
+                }
+                updateTimer();
+            }, 1000);
+        }
+
+        // Function to update the timer display
+        function updateTimer() {
+            const minutes = Math.floor(timeRemaining / 60);
+            const seconds = timeRemaining % 60;
+            const timerElement = document.getElementById('timer');
+            timerElement.innerHTML = `<i class="fas fa-clock"></i> Time Remaining: ${minutes}:${seconds.toString().padStart(2, '0')}`;
+            
+            if (timeRemaining <= 300) {
+                timerElement.style.color = '#f72585';
+                timerElement.style.animation = 'pulse 1s infinite';
+            }
+        }
+
+        // Function to submit the test
+        function submitTest() {
+            clearInterval(timer);
+            document.getElementById('next-button').style.display = 'none';
+            document.getElementById('back-button').style.display = 'none';
+            showResult();
+        }
+
+        // Function to calculate and display the result
+        function showResult() {
+            let score = 0;
+            const answerDetails = [];
+
+            questions.forEach(question => {
+                const userAnswer = userAnswers[question.id];
+                const isCorrect = userAnswer === question.answer;
+                if (isCorrect) score++;
+
+                answerDetails.push(`
+                    <div class="answer-item ${isCorrect ? 'correct-answer' : 'incorrect-answer'}">
+                        <p><strong>Question ${question.id}:</strong> ${question.question}</p>
+                        <p><strong>Your Answer:</strong> <span class="${isCorrect ? 'correct' : 'incorrect'}">${userAnswer || 'Not answered'}</span></p>
+                        <p><strong>Correct Answer:</strong> <span class="correct">${question.answer}</span></p>
+                    </div>
+                `);
+            });
+
+            const percentage = Math.round((score / questions.length) * 100);
+            document.getElementById('score').textContent = `${score} / ${questions.length}`;
+            document.getElementById('percentage').textContent = percentage;
+            document.getElementById('progress-bar').style.width = `${percentage}%`;
+            document.getElementById('answer-details').innerHTML = answerDetails.join('');
+            document.getElementById('result').style.display = 'block';
+
+            window.scrollTo({
+                top: document.getElementById('result').offsetTop - 20,
+                behavior: 'smooth'
+            });
+
+            if (percentage >= 70) {
+                triggerConfetti();
+            }
+        }
+
+        // Simple confetti effect
+        function triggerConfetti() {
+            const confettiCount = 100;
+            const confettiContainer = document.createElement('div');
+            confettiContainer.style.position = 'fixed';
+            confettiContainer.style.top = '0';
+            confettiContainer.style.left = '0';
+            confettiContainer.style.width = '100%';
+            confettiContainer.style.height = '100%';
+            confettiContainer.style.pointerEvents = 'none';
+            confettiContainer.style.zIndex = '1000';
+            document.body.appendChild(confettiContainer);
+
+            for (let i = 0; i < confettiCount; i++) {
+                const confetti = document.createElement('div');
+                confetti.innerHTML = ['🎉', '✨', '🎊', '🏆', '👏'][Math.floor(Math.random() * 5)];
+                confetti.style.position = 'absolute';
+                confetti.style.fontSize = `${Math.random() * 20 + 10}px`;
+                confetti.style.left = `${Math.random() * 100}vw`;
+                confetti.style.top = '-50px';
+                confetti.style.animation = `fall ${Math.random() * 3 + 2}s linear forwards`;
+                confetti.style.opacity = Math.random();
+                confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+                confettiContainer.appendChild(confetti);
+
+                const animation = confetti.animate([
+                    { top: '-50px', opacity: 1 },
+                    { top: '100vh', opacity: 0 }
+                ], {
+                    duration: Math.random() * 3000 + 2000,
+                    easing: 'cubic-bezier(0.1, 0.8, 0.9, 1)'
+                });
+
+                animation.onfinish = () => {
+                    confetti.remove();
+                    if (i === confettiCount - 1) {
+                        confettiContainer.remove();
+                    }
+                };
+            }
+
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes fall {
+                    to { transform: translateY(100vh) rotate(360deg); }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+    </script>
+</body>
+</html>

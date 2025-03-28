@@ -3,18 +3,263 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Exam preparation mock test - Access and practice all test sets to prepare effectively for your NEC license exams. Boost your confidence with our comprehensive mock tests.">
-    <meta name="keywords" content="Exam preparation, NEC license mock tests, NEC license notes, practice tests, mock test sets, exam confidence booster">
+    <meta name="description" content="Exam preparation mock test - Access and practice all test sets to prepare effectively for your NEC license exams.">
+    <meta name="keywords" content="Exam preparation, NEC license mock tests, practice tests">
     <meta name="author" content="Arun Panthi">
-    <meta property="og:title" content="NEC License Exam Preparation Mock Tests">
-    <meta property="og:description" content="Prepare for your NEC license exams with our mock test sets. Gain confidence and master the material with comprehensive exam practice.">
-    <meta property="og:image" content="https://yourwebsite.com/images/og-image.jpg">
-    <meta property="og:url" content="https://arunpanthi.com.np/exam-preparation">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://arunpanthi.com.np/exam-preparation">
     <title>Exam Preparation Mock Test</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="Note.css">
+    <style>
+        :root {
+            --primary-color: #27ae60;
+            --secondary-color: #219653;
+            --accent-color: #2ecc71;
+            --light-color: #ecf0f1;
+            --dark-color: #1e8449;
+            --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f7fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, var(--dark-color), var(--primary-color));
+            padding: 15px 0;
+            display: flex;
+            justify-content: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 5px;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .navbar a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .navbar a i {
+            margin-right: 8px;
+        }
+
+        .main-container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .header-card {
+            background: white;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: var(--card-shadow);
+            text-align: center;
+            border-left: 5px solid var(--accent-color);
+        }
+
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .test-logo {
+            width: 80px;
+            height: 80px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-card h4 {
+            color: var(--dark-color);
+            font-size: 1.8rem;
+            margin: 0 0 15px 0;
+        }
+
+        .test-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .test-card {
+            background: white;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            border-top: 4px solid var(--primary-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .test-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .test-card h3 {
+            color: var(--dark-color);
+            margin: 0 0 15px 0;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .test-card h3 i {
+            color: var(--primary-color);
+            margin-right: 12px;
+        }
+
+        .start-btn {
+            display: inline-flex;
+            align-items: center;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            margin-top: 10px;
+        }
+
+        .start-btn:hover {
+            background-color: var(--dark-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .start-btn i {
+            margin-right: 8px;
+        }
+
+       .social-media {
+    background: linear-gradient(135deg, #4CAF50, #2E7D32);
+    color: white; /* White text for social media section */
+    padding: 30px 20px; /* Reduced padding */
+    text-align: center;
+    border-radius: 20px; /* Increased border radius */
+    margin: 30px auto; /* Increased margin */
+}
+
+.social-media h2 {
+    color: white; /* White color for heading */
+    margin: 10px 0; /* Reduced margin */
+}
+
+.social-media p {
+    margin: 10px 0; /* Reduced margin for paragraph */
+}
+
+.social-media .icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Space between icons */
+}
+
+.social-media .icons a {
+    color: #fff;
+    font-size: 36px;
+    transition: transform 0.3s;
+}
+
+.social-media .icons a:hover {
+    transform: scale(1.2);
+}
+
+/* Footer Styles */
+footer {
+    background-color: #4CAF50;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+footer a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-wrap: wrap;
+                padding: 10px;
+            }
+
+            .navbar a {
+                padding: 8px 12px;
+                margin: 5px;
+                font-size: 0.9rem;
+            }
+
+            .test-logo {
+                width: 70px;
+                height: 70px;
+                font-size: 1.8rem;
+            }
+
+            .header-card h4 {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .navbar a {
+                width: 100%;
+                text-align: center;
+                margin: 5px 0;
+            }
+
+            .test-card {
+                padding: 20px;
+            }
+
+            .test-card h3 {
+                font-size: 1.1rem;
+            }
+
+            .icons {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="navbar">
@@ -25,33 +270,42 @@
         <a href="aboutus"><i class="fas fa-info-circle"></i> About Us</a>
         <a href="contactus"><i class="fas fa-envelope"></i> Contact Us</a>
     </div>
-<div class="cardBinita" id="chapter1">
-<div class="card Binitagauatm">
-           <h4 style="justify-content: center;">Exam Preparation Mock Test</h4>
-</div>
+
+    <div class="main-container">
+        <div class="header-card">
+            <div class="logo-container">
+                <div class="test-logo">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+            </div>
+            <h4>Exam Preparation Mock Test</h4>
+            <p>Practice with our comprehensive test sets to prepare for your exams</p>
+        </div>
     
-        <div class="card-container">
-            <!-- JavaScript will populate this section with cards -->
+        <div class="test-container" id="testContainer">
+            <!-- Tests will be loaded here -->
         </div>
     </div>
 
     <script>
-        // JavaScript to dynamically create cards with test links
-        const setsContainer = document.querySelector('.card-container');
-        const totalSets = 30; // Total number of sets
+        // JavaScript to dynamically create test cards
+        const testContainer = document.getElementById('testContainer');
+        const totalTests = 30;
 
-        for (let i = 1; i <= totalSets; i++) {
-            setsContainer.innerHTML += `
-                <div class="card">
-                    <h3><i class="fas fa-check-circle set-icon"></i> Set ${i}</h3>
-                    <a href="set-${i}" target="_blank" class="cta-button">Start Test</a>
+        for (let i = 1; i <= totalTests; i++) {
+            testContainer.innerHTML += `
+                <div class="test-card">
+                    <h3><i class="fas fa-check-circle"></i> Test Set ${i}</h3>
+                    <a href="set-${i}" class="start-btn">
+                        <i class="far fa-clock"></i> Start Test
+                    </a>
                 </div>`;
         }
     </script>
 
     <div class="social-media">
-        <h2><i class="fab fa-connectdevelop"></i> Connect with Us</h2>
-        <p>Follow us on social media to stay updated with the latest resources and news.</p>
+        <h2><i class="fab fa-connectdevelop"></i> Connect With Us</h2>
+        <p>Follow us for updates and additional resources</p>
         <div class="icons">
             <a href="https://www.facebook.com/arun.panthi27" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
             <a href="https://www.tiktok.com/@er.arunpanthi" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
@@ -61,7 +315,7 @@
     </div>
 
     <footer>
-        <p>&copy; 2024 Notes by Semester | 
+        <p>&copy; 2024 Exam Prep | 
         <a href="PrivacyPolicy">Privacy Policy</a> | 
         <a href="TermsofService">Terms of Service</a></p>
     </footer>

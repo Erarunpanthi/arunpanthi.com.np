@@ -8,8 +8,178 @@
     <meta name="author" content="Arun Panthi">
     <title>Notes by Semester | Civil Engineering</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-    <link rel="canonical" href="https://arunpanthi.com.np/BE-notes">
+    <style>
+        :root {
+            --primary-color: #2E7D32; /* Dark green */
+            --secondary-color: #4CAF50; /* Medium green */
+            --accent-color: #8BC34A; /* Light green */
+            --light-color: #F1F8E9; /* Very light green */
+            --dark-color: #1B5E20; /* Very dark green */
+            --text-color: #333;
+            --text-light: #fff;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+        
+       .navbar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: #2E7D32; /* Darker green navbar */
+    padding: 10px 0;
+}
+
+.navbar a {
+    color: #fff; /* Link color */
+    padding: 8px 10px; /* Reduced padding for compactness */
+    text-decoration: none; /* Remove underline */
+    font-size: 14px; /* Smaller font size */
+    transition: background-color 0.3s; /* Animation */
+}
+
+.navbar a:hover {
+    background-color: #1B5E20; /* Even darker green on hover */
+}
+        
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        
+        .semester {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+        
+        .semester:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        }
+        
+        .semester h2 {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px 20px;
+            margin: 0;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .semester h2 i {
+            margin-right: 10px;
+        }
+        
+        .subjects {
+            display: none;
+            padding: 15px;
+            background-color: var(--light-color);
+        }
+        
+        .subject-box {
+            background-color: white;
+            border-left: 4px solid var(--secondary-color);
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            border-radius: 0 4px 4px 0;
+            transition: transform 0.2s;
+        }
+        
+        .subject-box:hover {
+            transform: translateX(5px);
+            border-left-color: var(--dark-color);
+        }
+        
+        .subject-box a {
+            color: var(--text-color);
+            text-decoration: none;
+            display: block;
+            font-weight: 500;
+        }
+        
+        .subject-box a:hover {
+            color: var(--primary-color);
+        }
+        
+      .social-media {
+    background: linear-gradient(135deg, #4CAF50, #2E7D32);
+    color: white; /* White text for social media section */
+    padding: 30px 20px; /* Reduced padding */
+    text-align: center;
+    border-radius: 20px; /* Increased border radius */
+    margin: 30px auto; /* Increased margin */
+}
+
+.social-media h2 {
+    color: white; /* White color for heading */
+    margin: 10px 0; /* Reduced margin */
+}
+
+.social-media p {
+    margin: 10px 0; /* Reduced margin for paragraph */
+}
+
+.social-media .icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Space between icons */
+}
+
+.social-media .icons a {
+    color: #fff;
+    font-size: 36px;
+    transition: transform 0.3s;
+}
+
+.social-media .icons a:hover {
+    transform: scale(1.2);
+}
+
+/* Footer Styles */
+footer {
+    background-color: #4CAF50;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+footer a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .hero {
+        padding: 15px; /* Further reduce padding for smaller screens */
+    }
+    .section {
+        padding: 15px; /* Adjust section padding */
+    }
+    .social-media {
+        padding: 15px; /* Further reduce padding */
+    }
+}
+    </style>
 </head>
 <body>
   
@@ -23,11 +193,13 @@
     </div>
 
     <div class="container">
+        <h1 style="color: var(--primary-color); text-align: center; margin-bottom: 30px;">Civil Engineering Semester Notes</h1>
+        
         <!-- First Semester -->
         <div class="semester" onclick="toggleSubjects(this)">
             <h2><i class="fas fa-book"></i> First Semester</h2>
             <div class="subjects" style="display: none;">
-                <div class="subject-box"><a href="notices">Engineering Mathematics I</a></div>
+                <div class="subject-box"><a href="https://rb.gy/bn9uwb">Engineering Mathematics I</a></div>
                 <div class="subject-box"><a href="notices">Applied Mechanics I (Statics)</a></div>
                 <div class="subject-box"><a href="notices">Engineering Physics</a></div>
                 <div class="subject-box"><a href="notices">Engineering Drawing I</a></div>
@@ -44,7 +216,7 @@
                 <div class="subject-box"><a href="notices">Engineering Mathematics II</a></div>
                 <div class="subject-box"><a href="notices">Applied Mechanics II (Dynamics)</a></div>
                 <div class="subject-box"><a href="notices">Surveying I</a></div>
-                <div class="subject-box"><a href="notices">Engineering Chemistry</a></div>
+                <div class="subject-box"><a href="https://rb.gy/cu4kej">Engineering Chemistry</a></div>
                 <div class="subject-box"><a href="notices">Strength of Materials I</a></div>
                 <div class="subject-box"><a href="notices">Fluid Mechanics</a></div>
             </div>
@@ -129,19 +301,7 @@
         </div>
     </div>
 
-    <script>
-        function toggleSubjects(element) {
-            const subjects = element.querySelector('.subjects');
-            const allSubjects = document.querySelectorAll('.subjects');
-            allSubjects.forEach(subject => {
-                if (subject !== subjects) {
-                    subject.style.display = 'none'; // Hide other subjects
-                }
-            });
-            subjects.style.display = subjects.style.display === 'none' ? 'block' : 'none'; // Toggle current subjects
-        }
-    </script>
- <div class="social-media">
+    <div class="social-media">
         <h2><i class="fab fa-connectdevelop"></i> Connect with Us</h2>
         <p>Follow us on social media to stay updated with the latest resources and news.</p>
         <div class="icons">
@@ -157,5 +317,29 @@
         <a href="PrivacyPolicy">Privacy Policy</a> | 
         <a href="TermsofService">Terms of Service</a></p>
     </footer>
+
+    <script>
+        function toggleSubjects(element) {
+            const subjects = element.querySelector('.subjects');
+            const allSubjects = document.querySelectorAll('.subjects');
+            
+            // Close all other semester subjects
+            allSubjects.forEach(subject => {
+                if (subject !== subjects) {
+                    subject.style.display = 'none';
+                    subject.parentElement.querySelector('h2').style.backgroundColor = 'var(--primary-color)';
+                }
+            });
+            
+            // Toggle current semester subjects
+            if (subjects.style.display === 'block') {
+                subjects.style.display = 'none';
+                element.querySelector('h2').style.backgroundColor = 'var(--primary-color)';
+            } else {
+                subjects.style.display = 'block';
+                element.querySelector('h2').style.backgroundColor = 'var(--dark-color)';
+            }
+        }
+    </script>
 </body>
 </html>

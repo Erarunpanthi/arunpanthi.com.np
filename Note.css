@@ -345,8 +345,6 @@ footer a:hover {
 }
 
 binita {
-  color: red;
-}
-.binita {
-  color: red;
-}
+      color: red;
+      display: block; /* Ensures the tag is recognized */
+    }

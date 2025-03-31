@@ -3,920 +3,688 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fluid Mechanics Notes | CivPrepMaster</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <style>
-        /* ========== COLOR VARIABLES ========== */
-        :root {
-            --primary-color: #2e7d32;  /* Green 800 */
-            --secondary-color: #4caf50; /* Green 500 */
-            --accent-color: #e74c3c;    /* Red for accents */
-            --light-color: #e8f5e9;     /* Green 50 */
-            --dark-color: #1b5e20;      /* Green 900 */
-            --text-color: #000000;      /* Black text */
-            --background-color: #ffffff; /* White background */
-            --card-background: #f9f9f9; /* Light gray for cards */
-            --border-radius: 5px;
-            --box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            --transition: all 0.3s ease;
-        }
-
-        /* ========== BASE STYLES ========== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            line-height: 1.6;
-            color: var(--text-color);
-            background-color: var(--background-color);
-            overflow-x: hidden;
-        }
-
-        /* ========== NAVIGATION BAR ========== */
-        .navbar {
-            background-color: var(--primary-color);
-            padding: 1rem 2rem;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1rem;
-            box-shadow: var(--box-shadow);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .navbar a {
-            color: white;
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            border-radius: var(--border-radius);
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .navbar a:hover {
-            background-color: var(--secondary-color);
-        }
-
-        /* ========== MOBILE MENU BUTTON ========== */
-        .nav-button-container {
-            position: fixed;
-            left: 1rem;
-            top: 1rem;
-            z-index: 1100;
-        }
-
-        .nav-button {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            font-size: 1.2rem;
-            border-radius: var(--border-radius);
-            cursor: pointer;
-            transition: var(--transition);
-            box-shadow: var(--box-shadow);
-        }
-
-        .nav-button:hover {
-            background-color: var(--secondary-color);
-        }
-
-        /* ========== SIDE MENU ========== */
-        .menu {
-            position: fixed;
-            left: 0;
-            top: 0;
-            height: 100vh;
-            width: 280px;
-            background-color: white;
-            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
-            z-index: 1000;
-            transform: translateX(-100%);
-            transition: transform 0.3s ease;
-            overflow-y: auto;
-            padding: 2rem 1rem;
-        }
-
-        .menu.active {
-            transform: translateX(0);
-        }
-
-        .menu ul {
-            list-style: none;
-        }
-
-        .menu li {
-            margin-bottom: 0.5rem;
-        }
-
-        .menu a {
-            display: block;
-            padding: 0.5rem 1rem;
-            color: var(--dark-color);
-            text-decoration: none;
-            border-radius: var(--border-radius);
-            transition: var(--transition);
-        }
-
-        .menu a:hover {
-            background-color: var(--light-color);
-            color: var(--secondary-color);
-        }
-
-        /* ========== MAIN CONTENT LAYOUT ========== */
-        .content {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }
-
-        /* ========== CARD STYLES ========== */
-        .cardBinita {
-            background-color: var(--card-background);
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            margin-bottom: 2rem;
-            overflow: hidden;
-        }
-
-        .Binitagauatm {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 1rem;
-        }
-
-        .chapter-title {
-            font-size: 1.5rem;
-            margin: 0;
-        }
-
-        .card {
-            padding: 1.5rem;
-            background-color: var(--background-color);
-        }
-
-        /* ========== TYPOGRAPHY ========== */
-        h1 {
-            color: var(--primary-color);
-            text-align: center;
-            margin-bottom: 2rem;
-            font-size: 2rem;
-        }
-
-        h2, h3, h4 {
-            color: var(--primary-color);
-            margin: 1.5rem 0 1rem;
-        }
-
-        p, li {
-            margin-bottom: 1rem;
-            color: var(--text-color);
-        }
-
-        strong {
-            color: var(--dark-color);
-        }
-
-        /* ========== TABLES ========== */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 1.5rem 0;
-            box-shadow: var(--box-shadow);
-        }
-
-        table caption {
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-            text-align: left;
-            color: var(--text-color);
-        }
-
-        th, td {
-            padding: 0.75rem;
-            text-align: left;
-            border: 1px solid #ddd;
-            color: var(--text-color);
-        }
-
-        th {
-            background-color: var(--primary-color);
-            color: white;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-
-        /* ========== EQUATION STYLES ========== */
-        .equation {
-            margin: 1rem 0;
-            padding: 0.5rem;
-            background-color: #f5f5f5;
-            border-radius: var(--border-radius);
-            overflow-x: auto;
-        }
-
-        /* ========== SOCIAL MEDIA SECTION ========== */
-        .social-media {
-            background-color: var(--primary-color);
-            padding: 2rem;
-            margin: 2rem 0;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            text-align: center;
-            color: white;
-        }
-
-        .social-media h2 {
-            margin-bottom: 1rem;
-            color: white;
-        }
-
-        .social-media p {
-            color: white;
-        }
-
-        .social-media .icons {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-top: 1rem;
-        }
-
-        .social-media a {
-            color: white;
-            font-size: 1.5rem;
-            transition: var(--transition);
-        }
-
-        .social-media a:hover {
-            color: var(--light-color);
-            transform: scale(1.1);
-        }
-
-        /* ========== FOOTER ========== */
-        footer {
-            background-color: var(--primary-color);
-            color: white;
-            text-align: center;
-            padding: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        footer a {
-            color: var(--light-color);
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-
-        /* ========== RESPONSIVE DESIGN ========== */
-        @media (max-width: 768px) {
-            .navbar {
-                padding: 0.75rem;
-                gap: 0.5rem;
-            }
-            
-            .navbar a {
-                padding: 0.5rem;
-                font-size: 0.9rem;
-            }
-            
-            .menu {
-                width: 250px;
-            }
-            
-            .content {
-                padding: 0 0.75rem;
-            }
-            
-            .card {
-                padding: 1rem;
-            }
-            
-            table {
-                display: block;
-                overflow-x: auto;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .navbar {
-                justify-content: space-around;
-            }
-            
-            .navbar a span {
-                display: none;
-            }
-            
-            .navbar a i {
-                margin-right: 0;
-                font-size: 1.2rem;
-            }
-            
-            h1 {
-                font-size: 1.5rem;
-            }
-            
-            .chapter-title {
-                font-size: 1.3rem;
-            }
-            .note {
-            background-color: #fff8e1;
-            padding: 10px;
-            border-left: 4px solid #ffc107;
-            margin: 15px 0;
-        }
-        }
-    </style>
+    <title>Fluid Mechanics Reference Guide</title>
+     <link rel="stylesheet" href="Note.css">
 </head>
-
 <body>
-    <!-- ========== NAVIGATION BAR ========== -->
     <div class="navbar">
-        <a href="Home"><i class="fas fa-home"></i> <span>Home</span></a>
-        <a href="resources"><i class="fas fa-book"></i> <span>Resources</span></a>
-        <a href="license-preparation"><i class="fas fa-certificate"></i> <span>License Prep</span></a>
-        <a href="psc-preparation"><i class="fas fa-graduation-cap"></i> <span>PSC Prep</span></a>
-        <a href="aboutus"><i class="fas fa-info-circle"></i> <span>About Us</span></a>
-        <a href="contactus"><i class="fas fa-envelope"></i> <span>Contact Us</span></a>
+        <a href="Home"><i class="fas fa-home"></i> Home</a>
+        <a href="resources"><i class="fas fa-book"></i> Resources</a>
+        <a href="license-preparation"><i class="fas fa-certificate"></i> License Prep</a>
+        <a href="psc-preparation"><i class="fas fa-graduation-cap"></i> PSC Prep</a>
+        <a href="aboutus"><i class="fas fa-info-circle"></i> About Us</a>
+        <a href="contactus"><i class="fas fa-envelope"></i> Contact Us</a>
+    </div>
+    <h1>Fluid Mechanics Reference Guide</h1>
+    
+    <div class="definition-box">
+        <h2>Definition of Fluid</h2>
+        <p>A fluid is a substance which deforms continuously under the action of shear force. A fluid is a substance with zero shear modulus.</p>
     </div>
     
-    <!-- ========== MOBILE MENU BUTTON ========== -->
-    <div class="nav-button-container">
-        <button class="nav-button" onclick="toggleMenu()">&#9776;</button>
+    <h2>Classification of Fluids</h2>
+    
+    <div class="types-container">
+        <div class="type-card">
+            <h3>1. Based on Flow Characteristics</h3>
+            <p><strong>Steady Fluid:</strong> Velocity remains constant at each point while flowing.</p>
+            <p><strong>Unsteady Fluid:</strong> Velocity differs between any two points while flowing.</p>
+        </div>
+        
+        <div class="type-card">
+            <h3>2. Based on Compressibility</h3>
+            <p><strong>Compressible Fluid:</strong> Density changes significantly with temperature and pressure.</p>
+            <div class="formula-box">
+                ρ = f(P,T) where ρ is density, P is pressure, T is temperature
+            </div>
+            <p><strong>Incompressible Fluid:</strong> Density remains constant regardless of pressure or temperature.</p>
+            <div class="formula-box">
+                ρ = constant
+            </div>
+        </div>
+        
+        <div class="type-card">
+            <h3>3. Based on Viscosity</h3>
+            <p><strong>Viscous Fluid:</strong> Exhibits resistance to flow due to internal friction.</p>
+            <p><strong>Non-Viscous Fluid:</strong> No internal resistance to flow (idealized concept).</p>
+        </div>
+        
+        <div class="type-card">
+            <h3>4. Based on Rotation</h3>
+            <p><strong>Rotational Flow:</strong> Angle between intersecting fluid element boundaries changes.</p>
+            <p><strong>Irrotational Flow:</strong> Fluid rotates as a whole with no angle changes.</p>
+        </div>
     </div>
-
-    <!-- ========== SIDE MENU ========== -->
-    <div class="menu" id="menu">
+    
+    <h2>Types of Fluids</h2>
+    
+    <table>
+        <tr>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Key Formula</th>
+        </tr>
+        <tr>
+            <td>Ideal Fluid</td>
+            <td>Hypothetical fluid with no viscosity and incompressible</td>
+            <td>μ = 0, ρ = constant</td>
+        </tr>
+        <tr>
+            <td>Real Fluid</td>
+            <td>Actual fluid with viscosity and compressibility</td>
+            <td>μ > 0, ρ = f(P,T)</td>
+        </tr>
+        <tr>
+            <td>Newtonian Fluid</td>
+            <td>Obeys Newton's law of viscosity</td>
+            <td>τ = μ(du/dy)</td>
+        </tr>
+        <tr>
+            <td>Non-Newtonian Fluid</td>
+            <td>Doesn't obey Newton's law of viscosity</td>
+            <td>τ = K(du/dy)<sup>n</sup></td>
+        </tr>
+        <tr>
+            <td>Dilatant Fluid</td>
+            <td>Shear stress increases with velocity gradient (n > 1)</td>
+            <td>n > 1 in τ = K(du/dy)<sup>n</sup></td>
+        </tr>
+        <tr>
+            <td>Pseudoplastic Fluid</td>
+            <td>Shear stress decreases with velocity gradient (n < 1)</td>
+            <td>n < 1 in τ = K(du/dy)<sup>n</sup></td>
+        </tr>
+    </table>
+    
+    <h2>Properties of Fluids</h2>
+    
+    <div class="types-container">
+        <div class="type-card">
+            <h3>1. Density (ρ)</h3>
+            <p>Mass per unit volume</p>
+            <div class="formula-box">
+                ρ = m/V [kg/m³]
+            </div>
+        </div>
+        
+        <div class="type-card">
+            <h3>2. Specific Weight (γ)</h3>
+            <p>Weight per unit volume</p>
+            <div class="formula-box">
+                γ = ρg [N/m³]
+            </div>
+        </div>
+        
+        <div class="type-card">
+            <h3>3. Specific Gravity (SG)</h3>
+            <p>Ratio of fluid density to water density</p>
+            <div class="formula-box">
+                SG = ρ<sub>fluid</sub>/ρ<sub>water</sub>
+            </div>
+        </div>
+        
+        <div class="type-card">
+            <h3>4. Specific Volume (v)</h3>
+            <p>Volume per unit mass</p>
+            <div class="formula-box">
+                v = 1/ρ [m³/kg]
+            </div>
+        </div>
+        
+        <div class="type-card">
+            <h3>5. Viscosity (μ)</h3>
+            <p>Resistance to flow</p>
+            <div class="formula-box">
+                τ = μ(du/dy) [Pa·s or N·s/m²]
+            </div>
+        </div>
+        
+        <div class="type-card">
+            <h3>6. Kinematic Viscosity (ν)</h3>
+            <p>Ratio of dynamic viscosity to density</p>
+            <div class="formula-box">
+                ν = μ/ρ [m²/s]
+            </div>
+        </div>
+        
+        <div class="type-card">
+            <h3>7. Surface Tension (σ)</h3>
+            <p>Force per unit length</p>
+            <div class="formula-box">
+                σ = F/L [N/m]
+            </div>
+        </div>
+        
+        <div class="type-card">
+            <h3>8. Capillarity</h3>
+            <p>Height of liquid rise/fall in tube</p>
+            <div class="formula-box">
+                h = (4σcosθ)/(ρgd)
+            </div>
+        </div>
+    </div>
+    
+    <h2>Pressure Types</h2>
+    
+    <table>
+        <tr>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Relationship</th>
+        </tr>
+        <tr>
+            <td>Atmospheric Pressure</td>
+            <td>Pressure exerted by atmosphere</td>
+            <td>~101.325 kPa at sea level</td>
+        </tr>
+        <tr>
+            <td>Gauge Pressure</td>
+            <td>Pressure relative to atmospheric</td>
+            <td>P<sub>gauge</sub> = P<sub>absolute</sub> - P<sub>atm</sub></td>
+        </tr>
+        <tr>
+            <td>Absolute Pressure</td>
+            <td>Total pressure including atmospheric</td>
+            <td>P<sub>absolute</sub> = P<sub>gauge</sub> + P<sub>atm</sub></td>
+        </tr>
+        <tr>
+            <td>Vacuum Pressure</td>
+            <td>Pressure below atmospheric</td>
+            <td>P<sub>vacuum</sub> = P<sub>atm</sub> - P<sub>absolute</sub></td>
+        </tr>
+    </table>
+    
+    <h2>Hydrostatic Force</h2>
+    
+    <div class="types-container">
+        <div class="type-card">
+            <h3>Horizontally Immersed Surface</h3>
+            <div class="formula-box">
+                P = γAħ
+            </div>
+            <p>where ħ is depth of centroid</p>
+        </div>
+        
+        <div class="type-card">
+            <h3>Vertically Immersed Surface</h3>
+            <div class="formula-box">
+                P = γAħ<br>
+                h* = (I<sub>G</sub>/Aħ) + ħ
+            </div>
+            <p>where h* is center of pressure</p>
+        </div>
+        
+        <div class="type-card">
+            <h3>Inclined Immersed Surface</h3>
+            <div class="formula-box">
+                P = γAħ<br>
+                h* = (I<sub>G</sub>sin²θ/Aħ) + ħ
+            </div>
+        </div>
+        
+        <div class="type-card">
+            <h3>Curved Surface</h3>
+            <div class="formula-box">
+                P = √(P<sub>H</sub>² + P<sub>V</sub>²)<br>
+                θ = tan⁻¹(P<sub>V</sub>/P<sub>H</sub>)
+            </div>
+        </div>
+    </div>
+    
+    <h2>Buoyancy</h2>
+    
+    <div class="definition-box">
+        <p>The upward force exerted by a fluid on a submerged or floating body.</p>
+        <div class="formula-box">
+            F<sub>b</sub> = ρ<sub>f</sub>gV<sub>disp</sub>
+        </div>
+        <p>where V<sub>disp</sub> is volume of displaced fluid</p>
+    </div>
+    
+    <h2>Lock Gates</h2>
+    
+    <div class="formula-box">
+        Reaction between gates: R = P/(2sinθ)
+    </div>
+     <h2>Buoyancy and Floating Bodies</h2>
+    
+    <div class="definition-box">
+        <p>Buoyancy is the upward force exerted by a fluid that opposes the weight of an immersed object. It occurs due to the pressure difference between the top and bottom of the submerged object.</p>
+        <div class="formula-box">
+            Buoyant Force (F<sub>b</sub>) = ρ<sub>fluid</sub> × g × V<sub>displaced</sub>
+        </div>
+    </div>
+    
+    <div class="types-container">
+        <div class="type-card">
+            <h3>Center of Buoyancy</h3>
+            <p>The point through which the buoyant force acts, coinciding with the centroid of the displaced fluid volume.</p>
+        </div>
+        
+        <div class="type-card">
+            <h3>Metacenter (M)</h3>
+            <p>The point about which a floating body oscillates when tilted.</p>
+            <div class="formula-box">
+                Metacentric height (GM) = BM - BG<br>
+                BM = I/V<sub>displaced</sub>
+            </div>
+        </div>
+        
+        <div class="type-card">
+            <h3>Equilibrium Conditions</h3>
+            <p><strong>Stable:</strong> M above G (GM > 0)<br>
+            <strong>Unstable:</strong> M below G (GM < 0)<br>
+            <strong>Neutral:</strong> M coincides with G (GM = 0)</p>
+        </div>
+    </div>
+    
+    <h3>Experimental Determination of Metacentric Height</h3>
+    <div class="formula-box">
+        GM = (w × x)/(W × tanθ)<br>
+        where w = movable weight, x = distance moved, W = total weight
+    </div>
+    
+    <h2>Liquid in Relative Equilibrium</h2>
+    <div class="formula-box">
+        For horizontal acceleration (a): tanθ = a/g<br>
+        For vertical acceleration: h = h<sub>0</sub>(1 ± a/g)<br>
+        For rotating fluids: z = (ω²r²)/(2g)
+    </div>
+    
+    <h2>Hydrostatic Forces</h2>
+    <table>
+        <tr>
+            <th>Surface Orientation</th>
+            <th>Total Force</th>
+            <th>Center of Pressure</th>
+        </tr>
+        <tr>
+            <td>Vertical</td>
+            <td>F = ½ρgh² × width</td>
+            <td>h* = ⅔h from surface</td>
+        </tr>
+        <tr>
+            <td>Horizontal</td>
+            <td>F = ρgh × area</td>
+            <td>At centroid</td>
+        </tr>
+        <tr>
+            <td>Inclined (θ)</td>
+            <td>F = ρgh̅A</td>
+            <td>h* = (I<sub>G</sub>sin²θ)/(Ah̅) + h̅</td>
+        </tr>
+    </table>
+    
+    <h2>Flow Measurement Devices</h2>
+    
+    <div class="types-container">
+        <div class="type-card">
+            <h3>Venturimeter</h3>
+            <div class="formula-box">
+                Q = C<sub>d</sub>(A<sub>1</sub>A<sub>2</sub>/√(A<sub>1</sub>²-A<sub>2</sub>²))√(2gh)<br>
+                h = x(S<sub>m</sub>/S<sub>f</sub> - 1) for heavier manometer fluid<br>
+                h = x(1 - S<sub>m</sub>/S<sub>f</sub>) for lighter fluid
+            </div>
+        </div>
+        
+        <div class="type-card">
+            <h3>Pitot Tube</h3>
+            <div class="formula-box">
+                v = √(2gh)<br>
+                where h = (P<sub>total</sub> - P<sub>static</sub>)/ρg
+            </div>
+        </div>
+    </div>
+    
+    <h2>Flow Classification</h2>
+    
+    <table>
+        <tr>
+            <th>Classification</th>
+            <th>Type</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td rowspan="2">Time Variation</td>
+            <td>Steady</td>
+            <td>∂/∂t = 0 (no change with time)</td>
+        </tr>
+        <tr>
+            <td>Unsteady</td>
+            <td>∂/∂t ≠ 0 (varies with time)</td>
+        </tr>
+        <tr>
+            <td rowspan="4">Space-Time</td>
+            <td>Steady Uniform</td>
+            <td>No change in space or time</td>
+        </tr>
+        <tr>
+            <td>Steady Non-uniform</td>
+            <td>Varies in space but not time</td>
+        </tr>
+        <tr>
+            <td>Unsteady Uniform</td>
+            <td>Varies in time but not space</td>
+        </tr>
+        <tr>
+            <td>Unsteady Non-uniform</td>
+            <td>Varies in both space and time</td>
+        </tr>
+        <tr>
+            <td rowspan="3">Flow Nature</td>
+            <td>Laminar (Re < 2000)</td>
+            <td>Smooth, orderly flow</td>
+        </tr>
+        <tr>
+            <td>Transitional (2000 < Re < 4000)</td>
+            <td>Intermittent turbulence</td>
+        </tr>
+        <tr>
+            <td>Turbulent (Re > 4000)</td>
+            <td>Chaotic, eddying flow</td>
+        </tr>
+    </table>
+    
+    <div class="formula-box">
+        Reynolds Number: Re = ρvD/μ = vD/ν<br>
+        Froude Number: Fr = v/√(gL)
+    </div>
+    
+    <h2>Flow Visualization</h2>
+    
+    <div class="types-container">
+        <div class="type-card">
+            <h3>Streamline</h3>
+            <p>Tangent gives instantaneous velocity direction</p>
+        </div>
+        
+        <div class="type-card">
+            <h3>Pathline</h3>
+            <p>Actual path followed by a fluid particle</p>
+        </div>
+        
+        <div class="type-card">
+            <h3>Streakline</h3>
+            <p>Locus of all particles passing through a point</p>
+        </div>
+    </div>
+    
+    <h2>Fundamental Equations</h2>
+    
+    <div class="type-card">
+        <h3>Continuity Equation</h3>
+        <div class="formula-box">
+            1D: ρ<sub>1</sub>A<sub>1</sub>v<sub>1</sub> = ρ<sub>2</sub>A<sub>2</sub>v<sub>2</sub><br>
+            For incompressible: A<sub>1</sub>v<sub>1</sub> = A<sub>2</sub>v<sub>2</sub><br>
+            3D: ∂(ρu)/∂x + ∂(ρv)/∂y + ∂(ρw)/∂z = -∂ρ/∂t
+        </div>
+    </div>
+    
+    <div class="type-card">
+        <h3>Bernoulli's Equation</h3>
+        <div class="formula-box">
+            P/ρg + v²/2g + z = constant<br>
+            Assumptions:<br>
+            1. Ideal fluid (inviscid)<br>
+            2. Steady flow<br>
+            3. Incompressible<br>
+            4. Along a streamline
+        </div>
+    </div>
+    
+    <h2>Important Notes</h2>
+    
+    <div class="note-box">
+        <div class="note-title">Key Points to Remember:</div>
         <ul>
-            <li><a href="#chapter1">Fluid and their Properties</a></li>
-            <li><a href="#chapter2">Fluid Pressure</a></li>
-            <li><a href="#chapter3">Hydrostatics</a></li>
-            <li><a href="#chapter4">BUOYANCY AND FLOATATION</a></li>
-            <li><a href="#chapter5">Shear Force & Bending Moment</a></li>
-            <li><a href="#chapter6">Pure Bending</a></li>
+            <li>Kinematic viscosity in CGS: 1 stoke = 1 cm²/s = 10⁻⁴ m²/s</li>
+            <li>For capillary tubes: h ∝ 1/r and mass ∝ r</li>
+            <li>Viscosity of water ≈ 55 × viscosity of air</li>
+            <li>Inclined manometers provide better sensitivity for small pressure differences</li>
+            <li>Vapor pressure increases with temperature</li>
+            <li>Maximum pressure in a bubble: ΔP = 4σ/R</li>
         </ul>
     </div>
-
-    <!-- ========== MAIN CONTENT ========== -->
-    <div class="content">
-        <h1>Fluid Mechanics Notes</h1>
-
-        <!-- ========== CHAPTER 1 ========== -->
-        <div class="cardBinita" id="chapter1">
-            <div class="card Binitagauatm">
-                <h2 class="chapter-title">Fluid and their Properties</h2>
-            </div>
-
-            <div class="card">
-                <h3>Fluid</h3>
-                <p>A fluid is a substance which deforms continuously or flows under the application of shearing forces, however small they may be. For a fluid at rest, there are no shearing forces acting on it, and any force must be acting perpendicular to the fluid. Fluid does not have tensile stress and has very little compressive stress when kept in container.</p>
-                
-                <p><strong>Fluids statics</strong>: It is the mechanism of fluids at rest or non-motion, and the pressure in fluids exerted by fluids on anybody.</p>
-                <p><strong>Fluids dynamics</strong> – It involves the study of the flow of fluids in motion. Popular branches like aerodynamics and hydrodynamics are part of fluid dynamics.</p>
-                
-                <h3>Classification of Fluids</h3>
-                <p>Fluids are classified into four types depending on their flow, they are:</p>
-                <ol>
-                    <li>Steady or unsteady</li>
-                    <li>Compressible or incompressible</li>
-                    <li>Viscous or non-viscous</li>
-                    <li>Rotational or irrotational</li>
-                </ol>
-                
-                <p><strong>Steady fluid:</strong> It is the fluid whose density remains constant at each and every point while flowing.</p>
-                <p><strong>Unsteady fluid:</strong> It is the fluid whose velocity differs between any two points while flowing.</p>
-                
-                <p><strong>Compressible fluid and incompressible fluids:</strong> A compressible fluid is one whose density can change significantly with pressure and temperature variations. An incompressible fluid is one whose density remains constant irrespective of pressure or temperature variations.</p>
-                <p>These are classified based on the Mach Number. The incompressible fluid has Mach Number less than 0.3 and the compressible fluid has Mach Number between 0.3 and 1.</p>
-                
-                <p><strong>Viscous or Non-viscous</strong></p>
-                <p>A viscous fluid is one that exhibits resistance to flow due to internal friction between its layers. This property is known as viscosity. Fluids with more thickness or viscosity are known as viscous fluids, they are generally very gloppy fluids. Examples: shampoo and motor oil.</p>
-                <p>A non-viscous fluid is an ideal fluid with no internal resistance to flow, meaning its viscosity is zero. Fluids with comparatively less thickness or viscosity are known as non-viscous fluids. These are the fluids with no resistance or negligible resistance to internal friction. Non-viscous fluids flow without any loss of kinetic energy. Example: Superfluid liquid helium</p>
-                
-                <p><strong>Rotational or irrotational</strong></p>
-                <p>If the angle between the two intersecting lines of the boundary of the fluid element changes while moving in the flow, the flow is a rotational flow. Depending on the angular motion of the fluid, it is classified into rotational fluid or irrotational fluid.</p>
-                <p>If the fluid rotates as a whole with no change in angles between the boundary lines, the flow of the fluid is classified as irrotational flow.</p>
-                
-                <h3>Properties of Fluids</h3>
-                <ol>
-                    <li>Density</li>
-                    <li>Viscosity</li>
-                    <li>Temperature</li>
-                    <li>Pressure</li>
-                    <li>Specific Volume</li>
-                    <li>Specific Weight</li>
-                    <li>Specific Gravity</li>
-                    <li>Surface Tension</li>
-                    <li>Vapour Pressure</li>
-                    <li>Capillarity</li>
-                    <li>Cavitation</li>
-                </ol>
-                
-                <h4>Density</h4>
-                <p>Density is defined as the mass per unit volume of a fluid. The density of a substance varies as per the volume of a substance. The SI unit of density is kg.m<sup>-3</sup>.</p>
-                <div class="equation">
-                    \begin{equation}\rho={\frac{{M}{a}{s}{s}~{o}{f}~{f}{l}{u}{i}{d}}{{V}{o}{l}{u}{m}{e}~{o}{f}~{f}{l}{u}{i}{d}}\end{equation}
-                </div>
-                <p>Density of fluid decrease on increase temperature and vice versa and increase on increase in pressure and vice versa</p>
-                <div class="equation">
-                    \begin{equation}\rho={\frac{{P}}{{R}{T}}}\end{equation}
-                </div>
-                
-                <h4>Capillarity</h4>
-                <p>Capillarity is the phenomenon where a liquid rises or falls in a narrow tube or small spaces without external forces like gravity.</p>
-                <div class="equation">
-                    \begin{equation}\text{The height to which the liquid rises or falls }
-                    \\ {h}={\frac{4\sigma{\operatorname{cos}{\alpha}}}{\gamma{d}}}\end{equation}
-                </div>
-                <div class="equation">
-                    \begin{equation}{H}={\frac{2\sigma{\operatorname{cos}{\theta}}}{\rho{g}{\left({r}_{2}~-{r}_{1} \right)}}\end{equation}
-                </div>
-                
-                <h4>Viscosity</h4>
-                <p>Viscosity determines the amount of resistance offered by the fluid to shear stress. A fluid that offers no resistance to shear stress is called an inviscid fluid.</p>
-                <p>Viscosity of liquid increase with decrease in temperature</p>
-                <p>Viscosity of gas increase with increase in temperature</p>
-                
-                <h4>Kinematic viscosity</h4>
-                <p>It is defined as the ratio of dynamic viscosity to the fluid's density.</p>
-                <div class="equation">
-                    \begin{equation}{v}={\frac{\mu}{\rho}}\end{equation}
-                </div>
-                
-                <h4>Temperature</h4>
-                <p>The degree of hotness or coldness of the body is determined by the temperature. The temperature of the fluid is measured using Kelvin or Celsius or Fahrenheit. According to the International System of Units, the Kelvin scale is used.</p>
-                
-                <h4>Pressure</h4>
-                <p>The pressure of a fluid is the force applied by it per unit area. Fluid pressure takes place in two conditions: open condition and closed condition. The pressure at any given point of a static fluid is called hydrostatic pressure.</p>
-                
-                <h4>Specific Volume</h4>
-                <p>It is defined as the ratio of the volume of the material to its mass. Specific volume is the reciprocal of the density of the material. Specific volume is inversely proportional to density.</p>
-                <div class="equation">
-                    \begin{equation}{V}_{{s}}={\frac{{V}}{{m}}}={\frac{1}{\rho}}\end{equation}
-                </div>
-                <p>The SI unit of specific volume is m<sup>3</sup>/kg<sup></sup>.</p>
-                
-                <h4>Specific Weight</h4>
-                <p>The specific weight (γ) of a fluid is defined as the weight per unit volume. The SI unit of specific weight is N/m<sup>3</sup>.</p>
-                <div class="equation">
-                    \begin{equation}\gamma={\frac{{w}}{{v}}}=\rho{g}\end{equation}
-                </div>
-                <p>Specific weight is related to density as γ = ρg. The specific weight of fluid varies with temperature.</p>
-                
-                <h4>Specific Gravity</h4>
-                <p>It is the ratio of the specific weight of the given fluid to the specific weight of standard fluid. Specific Gravity is also known as relative density. It is represented by the letter 'S' and has no unit.</p>
-                
-                <h4>Surface Tension</h4>
-                <p>It is the tendency of liquid surfaces to shrink in minimum surface area. Surface tension is caused by cohesive forces between the liquid molecules.</p>
-                <p>Note: Surface tension is the main reason for most insects to float on the water despite being denser than water.</p>
-                
-                <h4>Vapour Pressure</h4>
-                <p>The vapour pressure of a liquid is the equilibrium pressure of a vapour above its liquid. The vapour pressure of a liquid varies with temperature. As the temperature increases, the vapour pressure also increases.</p>
-                
-                <h4>Cavitation</h4>
-                <p>The process of cavitation happens when bubbles or voids form within a fluid. This process takes place when the pressure drops instantaneously below the vapour pressure.</p>
-                
-                <h3>Types of Fluids</h3>
-                <ul>
-                    <li>Ideal fluid</li>
-                    <li>Real fluid</li>
-                    <li>Newtonian fluid</li>
-                    <li>Non-Newtonian fluid</li>
-                    <li>Ideal plastic fluid</li>
-                    <li>Incompressible fluid</li>
-                    <li>Compressible fluid</li>
-                </ul>
-                
-                <p><strong>Ideal fluid:</strong> It is a fluid that does not have viscosity and cannot be compressed. This type of fluid cannot exist practically.</p>
-                <p><strong>Real fluid:</strong> All types of fluids that possess viscosity are classified as real fluids. Examples: Kerosene and castor oil.</p>
-                <p><strong>Newtonian fluid:</strong> Fluids that obey Newton's law of viscosity, where shear stress is directly proportional to the rate of shear strain is known as a Newtonian fluid</p>
-                <div class="equation">
-                    \begin{equation}\tau~\alpha~{\frac{{d}{v}}{{d}{y}}}\end{equation}
-                </div>
-                <p>Example: Hydrogen and water</p>
-                <p><strong>Non-Newtonian fluid:</strong> Fluids whose viscosity changes with the rate of shear strain are known as Non-Newtonian fluid. Example: Oobleck and flubber</p>
-                <p><strong>Ideal plastic fluid:</strong> If the shear stress is directly proportional to the velocity gradient, and if the value of shear stress is greater than the resultant, it is referred to as ideal plastic fluid.</p>
-                <p><strong>Incompressible fluid:</strong> If a fluid's density does not vary with the application of force, it is known as an incompressible fluid. Example: The stream of water flowing at high speed from a garden hose pipe.</p>
-                <p><strong>Compressible fluid:</strong> If a fluid's density varies with the application of force, it is called a compressible fluid. Example: gas, vapour, and steam.</p>
-                
-                <h4>Newton's law of viscosity</h4>
-                <p>Newton's law of viscosity states that for straight and parallel motion of a fluid, the shear stress between two adjoining layers is proportional to the rate of deformation or velocity gradient in a direction perpendicular to the layers.</p>
-                <div class="equation">
-                    \begin{equation}\tau=\mu~{\frac{{d}{u}}{{d}{y}}}\end{equation}
-                </div>
-                
-                <table>
-                    <caption>Fluid Classification</caption>
-                    <thead>
-                        <tr>
-                            <th>Fluid Type</th>
-                            <th>Examples</th>
-                            <th>Key Characteristics</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Ideal Fluids</td>
-                            <td>None (theoretical)</td>
-                            <td>No viscosity, incompressible</td>
-                        </tr>
-                        <tr>
-                            <td>Real Fluids</td>
-                            <td>Water, air</td>
-                            <td>Viscous, compressible</td>
-                        </tr>
-                        <tr>
-                            <td>Newtonian Fluids</td>
-                            <td>Water, air</td>
-                            <td>Constant viscosity</td>
-                        </tr>
-                        <tr>
-                            <td>Non-Newtonian Fluids</td>
-                            <td>Ketchup, blood</td>
-                            <td>Viscosity changes with stress</td>
-                        </tr>
-                        <tr>
-                            <td>Compressible Fluids</td>
-                            <td>Air, helium</td>
-                            <td>Density changes with pressure</td>
-                        </tr>
-                        <tr>
-                            <td>Incompressible Fluids</td>
-                            <td>Water, oil</td>
-                            <td>Density remains constant</td>
-                        </tr>
-                        <tr>
-                            <td>Single-Phase Fluids</td>
-                            <td>Pure water, air</td>
-                            <td>Single phase present</td>
-                        </tr>
-                        <tr>
-                            <td>Multi-Phase Fluids</td>
-                            <td>Oil-water, steam</td>
-                            <td>Multiple phases coexist</td>
-                        </tr>
-                        <tr>
-                            <td>Superfluids</td>
-                            <td>Liquid helium</td>
-                            <td>Zero viscosity</td>
-                        </tr>
-                        <tr>
-                            <td>Plasma</td>
-                            <td>Lightning, neon gas</td>
-                            <td>Ionized, electrically conductive</td>
-                        </tr>
-                    </tbody>
-                </table>
+    
+    <div class="note-box">
+        <div class="note-title">Approaches in Fluid Mechanics:</div>
+        <p><strong>Lagrangian:</strong> Follows individual fluid particles</p>
+        <p><strong>Eulerian:</strong> Observes flow at fixed points in space</p>
+    </div>
+     <h2>Orifice Flow</h2>
+    
+    <div class="definition-box">
+        <p>An orifice is a small opening of any cross-section on the side or bottom of a tank through which fluid flows.</p>
+        <div class="formula-box">
+            Actual velocity (v) = C<sub>v</sub>√(2gh)<br>
+            where C<sub>v</sub> = coefficient of velocity (0.95-0.99)<br>
+            h = head above orifice center
+        </div>
+    </div>
+    
+    <div class="types-container">
+        <div class="type-card">
+            <h3>Small Orifice</h3>
+            <p>Head from center > 5× depth of orifice</p>
+        </div>
+        <div class="type-card">
+            <h3>Large Orifice</h3>
+            <p>Head from center < 5× depth of orifice</p>
+        </div>
+    </div>
+    
+    <h2>Fundamental Principles</h2>
+    
+    <table>
+        <tr>
+            <th>Principle</th>
+            <th>Statement</th>
+            <th>Equation</th>
+        </tr>
+        <tr>
+            <td>Conservation of Mass</td>
+            <td>Mass can neither be created nor destroyed</td>
+            <td>ρ<sub>1</sub>A<sub>1</sub>v<sub>1</sub> = ρ<sub>2</sub>A<sub>2</sub>v<sub>2</sub></td>
+        </tr>
+        <tr>
+            <td>Conservation of Energy</td>
+            <td>Energy can neither be created nor destroyed</td>
+            <td>P<sub>1</sub>/ρg + v<sub>1</sub>²/2g + z<sub>1</sub> = P<sub>2</sub>/ρg + v<sub>2</sub>²/2g + z<sub>2</sub> + h<sub>L</sub></td>
+        </tr>
+        <tr>
+            <td>Conservation of Momentum</td>
+            <td>Change in momentum equals force × time</td>
+            <td>F = d(mv)/dt = ρQ(v<sub>2</sub> - v<sub>1</sub>)</td>
+        </tr>
+    </table>
+    
+    <h2>Flow Potential Functions</h2>
+    
+    <div class="types-container">
+        <div class="type-card">
+            <h3>Velocity Potential (ϕ)</h3>
+            <div class="formula-box">
+                u = -∂ϕ/∂x<br>
+                v = -∂ϕ/∂y<br>
+                w = -∂ϕ/∂z
             </div>
         </div>
-
-        <!-- ========== CHAPTER 2 ========== -->
-        <div class="cardBinita" id="chapter2">
-            <div class="card Binitagauatm">
-                <h2 class="chapter-title">Fluid Pressure</h2>
-            </div>
-            <div class="card">
-                <h3>Atmospheric Pressure</h3>
-                <p>The pressure exerted by the atmospheric air on the surface with which it is in contact is known as atmospheric pressure. The atmospheric pressure varies with the altitude and can be measured by means of Barometer. It is also called barometric pressure.</p>
-                <p><strong>Atmospheric pressure = 760mm Hg or 10.3 m of water or 101.325 Kpa</strong></p>
-                
-                <h3>Gauge pressure</h3>
-                <p>If the pressure is quoted by taking atmospheric pressure as a datum, it is called gauge pressure. Pressure measuring instrument measures the gauge pressure. In such instrument, atmospheric pressure on the scale is marked zero.</p>
-                
-                <h3>Absolute Pressure</h3>
-                <p>Absolute Pressure is the total pressure exerted on a system, including both the atmospheric pressure and any additional pressure applied by the system</p>
-                <p><strong>Absolute pressure is the sum of the gauge pressure and atmospheric pressure</strong></p>
-                
-                <h3>Vacuum Pressure</h3>
-                <p>The pressure below the atmospheric pressure is known as vacuum pressure. It is also called negative gage pressure or suction pressure.</p>
-                
-                <h3>Head</h3>
-                <p>The vertical height of a column of given fluid needed to produce pressure is called head. The gage pressure can be expressed in head.</p>
-                <div class="equation">
-                    \begin{equation}{h}={\frac{{P}}{\gamma}}\end{equation}
-                </div>
-                
-                <h3>Effect of capillarity: capillary correction</h3>
-                <p><strong>For capillary rise: true static height = given height of fluid - capillary rise</strong></p>
-                <p><strong>For capillary fall: true static height = given height of fluid + capillary fall</strong></p>
-                
-                <h3>Types of Head:</h3>
-                <p><strong>Pressure Head:</strong> Represents the energy due to the pressure exerted by a fluid.</p>
-                <div class="equation">
-                    \begin{equation}{h}_{{p}}​={\frac{{P}}{\gamma}}\end{equation}
-                </div>
-                
-                <p><strong>Velocity Head:</strong> Represents the energy due to the velocity of the fluid.</p>
-                <div class="equation">
-                    \begin{equation}{h}_{{v}}​={\frac{{v}^{2}}{2{g}}}​~\end{equation}
-                </div>
-                
-                <p><strong>Loss Head:</strong> Represents the energy lost due to friction and turbulence as the fluid flows through pipes, fittings, or other system components.</p>
-                <div class="equation">
-                    \begin{equation}{h}_{{f}}​={\frac{{f}L{V}^{2}}{2{g}{D}}}\end{equation}
-                </div>
-                
-                <h3>Pascal's Law</h3>
-                <p>It states that when a pressure is applied to a confined fluid, the pressure change is transmitted uniformly in all directions throughout the fluid without any loss.</p>
-                
-                <h3>Manometers</h3>
-                <p>A manometer is a device used to measure pressure, typically of gases or liquids. It operates based on the principle of hydrostatics, which relates pressure differences to the height of a liquid column.</p>
-                
-                <h4>Types of Manometers:</h4>
-                <p><strong>1. Simple Manometer:</strong> Measures pressure at a single point.</p>
-                <div class="equation">
-                    \begin{equation}{P}=\rho{g}{h}\end{equation}
-                </div>
-                
-                <p><strong>2. Differential Manometer:</strong> Measures the pressure difference between two points in a system.</p>
-                <div class="equation">
-                    \begin{equation}\Delta{P}=\rho{g}{h}\end{equation}
-                </div>
-                
-                <p><strong>3. Inclined Manometer:</strong> A modification of the U-tube manometer, with one arm inclined. Provides greater sensitivity for small pressure differences due to the longer liquid column. Pressure is calculated using the horizontal component of the height.</p>
+        <div class="type-card">
+            <h3>Stream Function (ψ)</h3>
+            <div class="formula-box">
+                u = ∂ψ/∂y<br>
+                v = -∂ψ/∂x<br>
+                Relation: ∂ϕ/∂x = ∂ψ/∂y and ∂ϕ/∂y = -∂ψ/∂x
             </div>
         </div>
-
-        <!-- ========== CHAPTER 3 ========== -->
-        <div class="cardBinita" id="chapter3">
-            <div class="card Binitagauatm">
-                <h2 class="chapter-title">Hydrostatics</h2>
+    </div>
+    
+    <h2>Energy Heads</h2>
+    
+    <div class="types-container">
+        <div class="type-card">
+            <h3>Potential Head</h3>
+            <p>Energy due to elevation (z)</p>
+        </div>
+        <div class="type-card">
+            <h3>Pressure Head</h3>
+            <p>P/ρg</p>
+        </div>
+        <div class="type-card">
+            <h3>Velocity Head</h3>
+            <p>v²/2g</p>
+        </div>
+    </div>
+    
+    <div class="formula-box">
+        Total Head = P/ρg + v²/2g + z<br>
+        Hydraulic Gradient Line (HGL) = P/ρg + z<br>
+        Energy Gradient Line (EGL) = P/ρg + v²/2g + z
+    </div>
+    
+    <div class="diagram-box">
+        [Diagram would show HGL and EGL relationships]
+    </div>
+    
+    <h2>Hydraulic Coefficients</h2>
+    
+    <table>
+        <tr>
+            <th>Coefficient</th>
+            <th>Definition</th>
+            <th>Formula</th>
+            <th>Typical Value</th>
+        </tr>
+        <tr>
+            <td>C<sub>v</sub> (Velocity)</td>
+            <td>Actual velocity/Theoretical velocity</td>
+            <td>C<sub>v</sub> = v<sub>actual</sub>/√(2gh)</td>
+            <td>0.95-0.99</td>
+        </tr>
+        <tr>
+            <td>C<sub>c</sub> (Contraction)</td>
+            <td>Jet area/Orifice area</td>
+            <td>C<sub>c</sub> = A<sub>jet</sub>/A<sub>orifice</sub></td>
+            <td>0.61-0.69</td>
+        </tr>
+        <tr>
+            <td>C<sub>d</sub> (Discharge)</td>
+            <td>Actual discharge/Theoretical discharge</td>
+            <td>C<sub>d</sub> = Q<sub>actual</sub>/Q<sub>theoretical</sub> = C<sub>v</sub>×C<sub>c</sub></td>
+            <td>0.61-0.65</td>
+        </tr>
+    </table>
+    
+    <div class="formula-box">
+        Actual discharge through orifice: Q = C<sub>d</sub>A√(2gh)
+    </div>
+    
+    <h2>Flow Measurement Devices</h2>
+    
+    <div class="types-container">
+        <div class="type-card">
+            <h3>Orifice Meter</h3>
+            <div class="formula-box">
+                Q = C<sub>d</sub>A<sub>o</sub>/√(1-(A<sub>o</sub>/A<sub>p</sub>)²) × √(2gΔh)
             </div>
-            <div class="card">
-                <h3>Total Pressure</h3>
-                <p>The total pressure is defined as the force exerted by a static fluid on a surface (either plane or curved) when the fluid comes in contact with the surface. This force is always normal to the surface</p>
-                
-                <h3>Center of Pressure</h3>
-                <p>The centre of pressure is defined as the point of application of the resultant pressure on the surface.</p>
-                
-                <h3>Horizontally immersed surface</h3>
-                <div class="equation">
-                    \begin{equation}\text{total pressure }{\left({P} \right)}=\gamma{A}\overline{{x}}\end{equation}
-                </div>
-                
-                <h3>Vertically immersed surface.</h3>
-                <div class="equation">
-                    \begin{equation}\text{total pressure }{\left({P} \right)}=\gamma{A}\overline{{x}}\end{equation}
-                </div>
-                <div class="equation">
-                    \begin{equation}\text{depth of centre of pressure from the liquid surface } \\ \overline{{h}}={\frac{{I}_{{G}}}{{A}\overline{{X}}}}+\overline{{X}}\end{equation}
-                </div>
-                
-                <h3>Inclined immersed surface</h3>
-                <div class="equation">
-                    \begin{equation}\text{total pressure }{\left({P} \right)}=\gamma{A}\overline{{x}}\end{equation}
-                </div>
-                <div class="equation">
-                    \begin{equation}\text{depth of centre of pressure from the liquid surface } \\ \overline{{h}}={\frac{{I}_{{G}}~{S}{i}{n}^{2}\theta}{{A}\overline{{X}}}}+\overline{{X}}\end{equation}
-                </div>
-                
-                <h3>Curved immersed surface.</h3>
-                <div class="equation">
-                    \begin{equation}\text{total force }={\sqrt{{P}_{{H}}^{2}+{P}_{{v}}^{2}}}\end{equation}
-                </div>
-                <div class="equation">
-                    \begin{equation}\text{direction of the resultant force }\theta={\operatorname{tan}^{-1}{\left({\frac{{P}_{{V}}}{{P}_{{H}}}} \right)}}\end{equation}
-                </div>
-                
-                <h3>Lock Gates</h3>
-                <div class="equation">
-                    \begin{equation}\text{Reaction between the two gates }{\left({R} \right)}={\frac{{P}}{2{\operatorname{sin}{\alpha}}}}\end{equation}
-                </div>
-                
-                <p><strong>Center of pressure is always greater than or equal to center of gravity</strong></p>
+            <p>Cheaper alternative to venturimeter</p>
+        </div>
+        <div class="type-card">
+            <h3>Venturimeter</h3>
+            <div class="formula-box">
+                Q = C<sub>d</sub>A<sub>1</sub>A<sub>2</sub>/√(A<sub>1</sub>²-A<sub>2</sub>²) × √(2gΔh)<br>
+                Head loss: h<sub>L</sub> = Δh(1-C<sub>d</sub>²)
             </div>
         </div>
-        
-        <!-- ========== CHAPTER 4 ========== -->
-        <div class="cardBinita" id="chapter4">
-            <div class="card Binitagauatm">
-                <h2 class="chapter-title">BUOYANCY AND FLOATATION</h2>
+        <div class="type-card">
+            <h3>Pitot Tube</h3>
+            <div class="formula-box">
+                v = √(2g(P<sub>total</sub>-P<sub>static</sub>)/ρg) = √(2gΔh)
             </div>
-            <div class="card">
-                <h3>BUOYANCY</h3>
-                <p>The tendency of submerged body to be lifted up in the fluid due to upward force opposite to the gravity force is called Buoyancy. It is due to the variation of pressure on the body due to fluid.</p>
-                
-                <h3>Buoyant Force</h3>
-                <p>It is the vertical upward force on the floating or submerged body. The point of application of Buoyant force is <strong>Center of Buoyancy</strong></p>
-            <h2>Forces on Immersed Bodies</h2>
-<p>Two forces act on an immersed body:</p>
-<ul>
-    <li>Buoyant force acting upward</li>
-    <li>Weight (W) of the body acting downward</li>
-</ul>
-<p>Both forces are collinear. For floating bodies:</p>
-<p class="formula">W = F<sub>b</sub></p>
-<p>This is known as the <strong>principle of floatation</strong>, which states that the weight of a body floating in a fluid is equal to the buoyant force, which in turn equals the weight of the fluid displaced by the body.</p>
-
-<ul>
-    <li>If W > F<sub>b</sub>, the body will sink</li>
-    <li>If W = F<sub>b</sub>, the body will float</li>
-    <li>If W < F<sub>b</sub>, the body will rise until W = F<sub>b</sub></li>
-</ul>
-
-<h3>Submerged Case (SG of body > SG of liquid)</h3>
-<div class="figure">
-    [Figure: Submerged body]
-</div>
-<p>Where:</p>
-<ul>
-    <li>T = tension applied upwards (force to hold the submerged body)</li>
-    <li>W = weight of submerged body (in air)</li>
-    <li>F<sub>b</sub> = Buoyant force due to liquid</li>
-</ul>
-<p class="formula">W - Weight when submerged = Buoyant force</p>
-<p>To make a floating body submerged, T should act downward.</p>
-
-<h2>Hydrometer</h2>
-<p>A hydrometer is an instrument used to measure specific gravity of a liquid based on Archimedes' principle. The floating level depends on the liquid's density.</p>
-
-<p>Construction:</p>
-<ul>
-    <li>Glass tube closed at both ends</li>
-    <li>One end enlarged into a bulb</li>
-    <li>Calibrated scale in the glass tube</li>
-</ul>
-
-<p>Working principle:</p>
-<ol>
-    <li>When dipped in water:
-        <p class="formula">F<sub>b</sub> = γ<sub>w</sub> × V<sub>w</sub></p>
-    </li>
-    <li>When dipped in another fluid (specific gravity S):
-        <p class="formula">F<sub>b</sub> = γ × V</p>
-        <p>Since weight remains the same:</p>
-        <p class="formula">γ<sub>w</sub> × V<sub>w</sub> = γ × (V<sub>w</sub> - A × h)</p>
-    </li>
-</ol>
-
-<h2>Three Conditions of Equilibrium</h2>
-<table>
-    <tr>
-        <th>Condition</th>
-        <th>Description</th>
-    </tr>
-    <tr>
-        <td>Stable equilibrium</td>
-        <td>Body returns to original position after small angular displacement</td>
-    </tr>
-    <tr>
-        <td>Unstable equilibrium</td>
-        <td>Body moves away and doesn't return after displacement</td>
-    </tr>
-    <tr>
-        <td>Neutral equilibrium</td>
-        <td>Body moves to new position and remains there</td>
-    </tr>
-</table>
-
-<h2>Metacenter and Metacentric Height</h2>
-<p>The metacenter is the point about which a body starts oscillating when tilted by a small angle.</p>
-
-<div class="figure">
-    [Figure: Definition sketch for metacenter]
-</div>
-
-<p>Consider a floating body in equilibrium:</p>
-<ul>
-    <li>G = Center of Gravity (CG)</li>
-    <li>B = Center of Buoyancy (CB)</li>
-</ul>
-<p>When tilted:</p>
-<ul>
-    <li>CB shifts to new position B<sub>1</sub></li>
-    <li>CG remains unchanged</li>
-    <li>Metacenter (M) is the intersection point of lines through G-B and vertical through B<sub>1</sub></li>
-</ul>
-<p>The distance between G and M is called the <strong>metacentric height (GM)</strong>.</p>
-            
-            <h2>Stability of Floating Bodies</h2>
-
-<p>The relative positions of the metacenter (M) and center of gravity (G) determine the stability of floating bodies, where the body's weight equals the weight of displaced fluid.</p>
-
-<h3>Stable Equilibrium</h3>
-<ul>
-    <li>M is above G (positive GM)</li>
-    <li>When tilted, the weight (W) and buoyant force (F<sub>b</sub>) create a restoring moment that returns the body to its original position</li>
-</ul>
-
-<h3>Unstable Equilibrium</h3>
-<ul>
-    <li>M is below G (negative GM)</li>
-    <li>When tilted, W and F<sub>b</sub> create an overturning moment that moves the body further away</li>
-    <li>This condition must be avoided in ship design and loading</li>
-</ul>
-
-<h3>Neutral Equilibrium</h3>
-<ul>
-    <li>M coincides with G (GM = 0)</li>
-    <li>No moment is produced when tilted - body remains in its new position</li>
-</ul>
-
-<div class="note">
-    <strong>Design Note:</strong> Ships are designed with G as low as possible relative to B, keeping M above G for positive GM and stable equilibrium.
-</div>
-
-<h2>Determination of Metacentric Height</h2>
-
-<h3>Analytical Method</h3>
-<p>The metacentric height can be calculated using:</p>
-<div class="formula">
-    GM = BM - BG = (I/V) - BG
-</div>
-<p>Where:<br>
-I = Moment of inertia of waterline area about longitudinal axis<br>
-V = Volume of displaced fluid<br>
-BG = Distance between center of buoyancy (B) and center of gravity (G)</p>
-
-<h3>Stability Check Procedure</h3>
-<ol>
-    <li>Calculate immersion depth using floatation principle (W = F<sub>b</sub>)</li>
-    <li>Determine positions of G and B relative to a reference point</li>
-    <li>Compute BG distance</li>
-    <li>Calculate moment of inertia (I) of waterplane area</li>
-    <li>Compute GM using the formula above</li>
-    <li>If GM > 0, the body is stable</li>
-</ol>
-                <h2>Liquid Containers Subjected to Angular Acceleration</h2>
-
-<p>When a liquid container rotates at constant angular velocity ω, the liquid surface forms a paraboloid of revolution due to the balance between centrifugal force and gravitational force.</p>
-
-<h3>Key Equations</h3>
-
-<p>Height of the paraboloid surface:</p>
-<div class="formula">
-    z = (ω²r²)/(2g)
-</div>
-<p>Where:<br>
-ω = angular velocity (rad/s)<br>
-r = radial distance from axis<br>
-g = acceleration due to gravity</p>
-
-<p>Volume of the paraboloid:</p>
-<div class="formula">
-    V = ½πR²h
-</div>
-<p>Where:<br>
-R = container radius<br>
-h = maximum height difference</p>
-
-<h3>Important Considerations</h3>
-<ul>
-    <li>The liquid surface becomes steeper with increasing angular velocity</li>
-    <li>The central depression and rim height are equal when ω is constant</li>
-    <li>For open containers, spillage occurs when the rim height exceeds the container walls</li>
-    <li>In fuel tanks of rotating vehicles, this effect must be considered for proper fuel pickup</li>
-</ul>
-
-<div class="note">
-    <strong>Practical Application:</strong> This principle is used in centrifugal casting where molten metal is poured into a rotating mold to create symmetrical parts with good material properties.
-</div>
-            
-            
-            </div>
-            
         </div>
-        
-        <!-- ========== SOCIAL MEDIA SECTION ========== -->
-        <div class="social-media">
+    </div>
+    
+    <h2>Weirs and Notches</h2>
+    
+    <div class="formula-box">
+        Rectangular weir: Q = (2/3)C<sub>d</sub>L√(2g)H<sup>3/2</sup><br>
+        V-notch (90°): Q = (8/15)C<sub>d</sub>√(2g)tan(θ/2)H<sup>5/2</sup> ≈ 2.364H<sup>5/2</sup>
+    </div>
+    
+    <h2>Tank Emptying/Filling</h2>
+    
+    <div class="types-container">
+        <div class="type-card">
+            <h3>Without Inflow</h3>
+            <div class="formula-box">
+                Time to empty: T = 2A(√H<sub>1</sub>-√H<sub>2</sub>)/(C<sub>d</sub>a√(2g))
+            </div>
+        </div>
+        <div class="type-card">
+            <h3>With Inflow (Q<sub>in</sub>)</h3>
+            <div class="formula-box">
+                dt = A·dh/(Q<sub>in</sub> - C<sub>d</sub>a√(2gh))
+            </div>
+        </div>
+    </div>
+    
+    <h2>Momentum Principles</h2>
+    
+    <div class="formula-box">
+        Linear momentum: F = ρQ(v<sub>2</sub> - v<sub>1</sub>)<br>
+        Angular momentum: T = ρQ(v<sub>2</sub>r<sub>2</sub> - v<sub>1</sub>r<sub>1</sub>)<br>
+        Force on plate by jet: F = ρA(v-u)²
+    </div>
+    
+    <h2>Boundary Layer Concepts</h2>
+    
+    <div class="definition-box">
+        <p>The thin layer near a boundary where velocity varies from zero (at wall) to free-stream velocity.</p>
+    </div>
+    
+    <div class="types-container">
+        <div class="type-card">
+            <h3>Drag Force (F<sub>D</sub>)</h3>
+            <div class="formula-box">
+                F<sub>D</sub> = C<sub>D</sub>½ρAv²
+            </div>
+            <p>Parallel to flow direction</p>
+        </div>
+        <div class="type-card">
+            <h3>Lift Force (F<sub>L</sub>)</h3>
+            <div class="formula-box">
+                F<sub>L</sub> = C<sub>L</sub>½ρAv²
+            </div>
+            <p>Perpendicular to flow direction</p>
+        </div>
+    </div>
+    
+    <div class="note-box">
+        <div class="note-title">Key Notes:</div>
+        <ul>
+            <li>Free stream velocity is the undisturbed flow velocity</li>
+            <li>Dynamic pressure = ½ρv²</li>
+            <li>Convective acceleration occurs due to position change</li>
+            <li>Weirs measure river flow rates</li>
+            <li>Bernoulli's energy constant varies between streamlines</li>
+        </ul>
+    </div>
+    <div class="social-media">
             <h2><i class="fab fa-connectdevelop"></i> Connect with Us</h2>
             <p>Follow us on social media to stay updated with the latest resources and news.</p>
             <div class="icons">
-                <a href="https://www.facebook.com/arun.panthi27" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                 <a href="https://www.facebook.com/arun.panthi27" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
                 <a href="https://www.tiktok.com/@er.arunpanthi" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
                 <a href="https://www.youtube.com/@erarunpanthi" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
                 <a href="mailto:erarunpanthi@gmail.com" target="_blank" aria-label="Email"><i class="fas fa-envelope"></i></a>
             </div>
         </div>
-    </div>
+    </main>
     
-    <!-- ========== FOOTER ========== -->
     <footer>
         <p>© 2024 CivPrepMaster. All rights reserved. | 
         <a href="PrivacyPolicy">Privacy Policy</a> | 
         <a href="TermsofService">Terms of Service</a></p>
     </footer>
-
-    <!-- ========== JAVASCRIPT ========== -->
-    <script>
-        function toggleMenu() {
-            const menu = document.getElementById("menu");
-            menu.classList.toggle("active");
-        }
-    </script>
 </body>
 </html>

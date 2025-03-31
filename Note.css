@@ -345,9 +345,9 @@ footer a:hover {
 }
 
 binita {
-      color: red;
-      display: block;    /* Fixes inline spacing */
-      margin: 0;         /* Removes outer gaps */
-      padding: 0;        /* Removes inner gaps */
-      white-space: normal; /* Ignores HTML indentation */
-    }
+  display: inline-block; /* or 'block' */
+  color: red;  
+  margin: 0;
+  padding: 0;
+  white-space: nowrap; /* Prevents line breaks */
+}

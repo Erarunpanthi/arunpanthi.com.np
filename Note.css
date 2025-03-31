@@ -229,3 +229,73 @@ section {
     transform: scale(1.05);
     box-shadow: 0px 6px 15px rgba(27, 94, 32, 0.5);
 }
+.social-media {
+    background: linear-gradient(135deg, #4CAF50, #2E7D32);
+    color: white; /* White text for social media section */
+    padding: 30px 20px; /* Reduced padding */
+    text-align: center;
+    border-radius: 20px; /* Increased border radius */
+    margin: 30px auto; /* Increased margin */
+}
+
+.social-media h2 {
+    color: white; /* White color for heading */
+    margin: 10px 0; /* Reduced margin */
+}
+
+.social-media p {
+    margin: 10px 0; /* Reduced margin for paragraph */
+}
+
+.social-media .icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Space between icons */
+}
+
+.social-media .icons a {
+    color: #fff;
+    font-size: 36px;
+    transition: transform 0.3s;
+}
+
+.social-media .icons a:hover {
+    transform: scale(1.2);
+}
+
+/* Footer Styles */
+footer {
+    background-color: #4CAF50;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+footer a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}.navbar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: #2E7D32; /* Darker green navbar */
+    padding: 10px 0;
+}
+
+.navbar a {
+    color: #fff; /* Link color */
+    padding: 8px 10px; /* Reduced padding for compactness */
+    text-decoration: none; /* Remove underline */
+    font-size: 14px; /* Smaller font size */
+    transition: background-color 0.3s; /* Animation */
+}
+
+.navbar a:hover {
+    background-color: #1B5E20; /* Even darker green on hover */
+}

@@ -3,314 +3,1883 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SET-1 NEC_MOCK</title>
+    <title>NEC License Exam  Set-1 </title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
-        /* Global Styles */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
+        :root {
+            --primary: #3498db;
+            --secondary: #2c3e50;
+            --success: #2ecc71;
+            --danger: #e74c3c;
+            --warning: #f39c12;
+            --light: #ecf0f1;
+            --dark: #34495e;
+            --gray: #95a5a6;
+        }
+        
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
-
-        /* Form Styles */
-        #detailsForm {
-            width: 100%;
-            max-width: 600px;
-            margin: 50px auto;
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #f5f7fa;
         }
-
-        .form-group {
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        /* Welcome Screen */
+        .welcome-screen {
+            background-color: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .welcome-title {
+            font-size: 2rem;
+            color: var(--secondary);
             margin-bottom: 20px;
         }
-
-        h1, p {
-            text-align: center;
+        
+        .welcome-message {
+            text-align: left;
+            margin-bottom: 30px;
+            line-height: 1.8;
         }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
+        
+        .rules-list {
+            text-align: left;
+            margin-bottom: 30px;
+            padding-left: 20px;
         }
-
-        input[type="text"], input[type="email"] {
-            width: 100%;
-            padding: 12px;
-            font-size: 1rem;
-            border: 2px solid #ccc;
-            border-radius: 8px;
-            background-color: #f9f9f9;
+        
+        .rules-list li {
             margin-bottom: 10px;
-            transition: all 0.3s ease;
         }
-
-        input[type="text"]:focus, input[type="email"]:focus {
-            border-color: #4CAF50;
-            background-color: #e8f8e8;
-            outline: none;
-            box-shadow: 0 0 5px rgba(76, 175, 80, 0.7);
-        }
-
-        button.btn {
-            display: block;
-            width: 100%;
-            padding: 12px;
-            background-color: #4CAF50;
+        
+        .start-btn {
+            background-color: var(--success);
             color: white;
-            font-size: 1.1rem;
             border: none;
-            border-radius: 8px;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            border-radius: 5px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: all 0.3s;
         }
-
-        button.btn:hover {
-            background-color: #45a049;
+        
+        .start-btn:hover {
+            background-color: #27ae60;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
-
-        /* MCQ Test Styles */
-        #test-page {
-            display: none;
-            padding: 20px;
-        }
-
-        .option-container {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .option-btn {
-            padding: 12px;
-            font-size: 1rem;
-            background-color: #fff;
-            border: 2px solid #ccc;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .option-btn:hover {
-            background-color: #f1f1f1;
-        }
-
-        .fade-in {
-            animation: fadeIn 0.8s ease-in-out forwards;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        /* Timer and Status Styles */
-        .header-container {
+        
+        /* Test Header */
+        .test-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            background-color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
             margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            flex-wrap: wrap;
         }
-
+        
+        .header-item {
+            display: flex;
+            align-items: center;
+            margin: 5px 10px;
+        }
+        
+        .header-label {
+            font-weight: 500;
+            margin-right: 5px;
+            color: var(--gray);
+        }
+        
+        .header-value {
+            font-weight: 700;
+            color: var(--dark);
+        }
+        
         .timer-container {
+            background-color: var(--dark);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .timer-icon {
+            margin-right: 10px;
             font-size: 1.2rem;
         }
-
-        #result-page {
+        
+        .timer {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .timer-warning {
+            color: var(--warning);
+        }
+        
+        .timer-danger {
+            color: var(--danger);
+            animation: pulse 1s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
+        /* Test Container */
+        .test-container {
             display: none;
-            padding: 20px;
         }
-
-        .results-container {
+        
+        .page-container {
             background-color: white;
-            padding: 20px;
+            padding: 25px;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
         }
-
-        ul {
-            list-style: none;
-            padding: 0;
+        
+        .question-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
         }
-
+        
+        .question-card {
+            border-left: 4px solid var(--primary);
+            padding-left: 15px;
+        }
+        
+        .question-text {
+            font-weight: 500;
+            margin-bottom: 15px;
+            color: var(--secondary);
+        }
+        
+        .options {
+            margin-left: 5px;
+        }
+        
+        .option {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding-left: 30px;
+            cursor: pointer;
+        }
+        
+        .option input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+        
+        .checkmark {
+            position: absolute;
+            left: 0;
+            height: 20px;
+            width: 20px;
+            background-color: var(--light);
+            border: 2px solid var(--gray);
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+        
+        .option:hover .checkmark {
+            border-color: var(--primary);
+        }
+        
+        .option input:checked ~ .checkmark {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+        
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+            left: 6px;
+            top: 2px;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+        
+        .option input:checked ~ .checkmark:after {
+            display: block;
+        }
+        
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            padding: 10px 25px;
+            border: none;
+            border-radius: 5px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .btn-secondary {
+            background-color: var(--light);
+            color: var(--dark);
+        }
+        
+        .btn-secondary:hover {
+            background-color: #d5dbdb;
+        }
+        
+        .btn-success {
+            background-color: var(--success);
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background-color: #27ae60;
+        }
+        
+        .page-numbers {
+            display: flex;
+            gap: 5px;
+        }
+        
+        .page-number {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        
+        .page-number.active {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .page-number.answered {
+            background-color: var(--success);
+            color: white;
+        }
+        
+        /* Result Container */
+        .result-container {
+            display: none;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+        }
+        
+        .result-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .result-title {
+            font-size: 2rem;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        
+        .score {
+            font-size: 3rem;
+            font-weight: 700;
+            margin: 20px 0;
+        }
+        
+        .score-pass {
+            color: var(--success);
+        }
+        
+        .score-fail {
+            color: var(--danger);
+        }
+        
+        .result-message {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        
+        .message-pass {
+            background-color: rgba(46, 204, 113, 0.1);
+            color: var(--success);
+            border-left: 4px solid var(--success);
+        }
+        
+        .message-fail {
+            background-color: rgba(231, 76, 60, 0.1);
+            color: var(--danger);
+            border-left: 4px solid var(--danger);
+        }
+        
+        /* Review Section */
+        .review-section {
+            margin-top: 40px;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--light);
+        }
+        
+        .review-question {
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        
+        .question-status {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+        
+        .status-correct {
+            background-color: rgba(46, 204, 113, 0.2);
+            color: var(--success);
+        }
+        
+        .status-incorrect {
+            background-color: rgba(231, 76, 60, 0.2);
+            color: var(--danger);
+        }
+        
+        .correct-answer {
+            color: var(--success);
+            font-weight: 500;
+        }
+        
+        .user-answer {
+            color: var(--danger);
+            font-weight: 500;
+        }
+        
+        .explanation {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: white;
+            border-left: 3px solid var(--primary);
+            font-size: 0.95rem;
+        }
+        
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        /* Submit Warning Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+        
+        .modal-title {
+            font-size: 1.5rem;
+            color: var(--danger);
+            margin-bottom: 20px;
+        }
+        
+        .modal-message {
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+        
+        .modal-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .modal-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        
+        .modal-btn-confirm {
+            background-color: var(--danger);
+            color: white;
+        }
+        
+        .modal-btn-cancel {
+            background-color: var(--light);
+            color: var(--dark);
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .question-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .test-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .header-item {
+                margin: 5px 0;
+            }
+            
+            .timer-container {
+                margin-top: 10px;
+                align-self: center;
+            }
+            
+            .pagination {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .page-numbers {
+                order: -1;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+        }
     </style>
 </head>
 <body>
-
-    <!-- User Info Form -->
-    <form id="detailsForm">
-        <div class="form-group">
-            <h1 class="fade-in">Welcome to the MCQ Test</h1>
-            <p class="fade-in">Enter your details to begin.</p>
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" placeholder="Enter your name" required>
+    <header>
+        <div class="container">
+            <h1>NEC License Exam Set-1</h1>
+            <p>Practice test with 80 questions (60 x 1 mark + 20 x 2 marks)</p>
         </div>
-        <div class="form-group">
-            <label for="email">Email ID:</label>
-            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+    </header>
+    
+    <div class="container">
+        <!-- Welcome Screen -->
+        <div id="welcome-screen" class="welcome-screen">
+            <h2 class="welcome-title">NEC License Practice Test Set-1 </h2>
+            <div class="welcome-message">
+                <p>This practice test will help you prepare for the Nepal Engineering Council (NEC) License Examination. The test consists of 80 multiple-choice questions designed to simulate the actual exam experience.</p>
+                
+                <h3 style="margin-top: 20px; margin-bottom: 10px;">Test Structure:</h3>
+                <ul class="rules-list">
+                    <li><strong>80 questions total</strong> (60 questions worth 1 mark each, 20 questions worth 2 marks each)</li>
+                    <li><strong>Time limit:</strong> 100 minutes (1.7 hours)</li>
+                    <li><strong>Passing score:</strong> 50 marks or higher</li>
+                    <li>You can navigate between questions using the pagination controls</li>
+                    <li>Once submitted, you cannot restart the test</li>
+                </ul>
+                
+                <h3 style="margin-top: 20px; margin-bottom: 10px;">Instructions:</h3>
+                <ul class="rules-list">
+                    <li>Read each question carefully before answering</li>
+                    <li>You can change your answers before submitting</li>
+                    <li>After submission, you'll receive detailed feedback on your performance</li>
+                    <li>Good luck with your preparation!</li>
+                </ul>
+            </div>
+            <button id="start-btn" class="start-btn">Start Test</button>
         </div>
-        <div class="form-group">
-            <label for="phone">Phone Number:</label>
-            <input type="text" id="phone" name="phone" placeholder="Enter your phone number" required>
-        </div>
-        <div class="form-group">
-            <label for="university">University:</label>
-            <input type="text" id="university" name="university" placeholder="Enter your university" required>
-        </div>
-        <button type="submit" class="btn">Start Test</button>
-    </form>
-
-    <!-- MCQ Test Page -->
-    <section id="test-page">
-        <header>
-            <div class="header-container">
-                <div class="user-info fade-in">
-                    <img src="logo.png" alt="Logo" class="logo">
-                    <div id="user-info-card">
-                        <h2 id="display-username"></h2>
-                        <p id="display-email"></p>
-                        <p id="display-phone"></p>
-                        <p id="display-university"></p>
-                    </div>
+        
+        <!-- Test Container -->
+        <div id="test-container" class="test-container">
+            <div class="test-header">
+                <div class="header-item">
+                    <span class="header-label">Questions:</span>
+                    <span class="header-value" id="total-questions">80</span>
                 </div>
-                <div class="timer-container slide-in">
-                    <span>⏳ Time Left:</span>
-                    <span id="timer">100:00</span>
+                <div class="header-item">
+                    <span class="header-label">Attempted:</span>
+                    <span class="header-value" id="attempted-count">0</span>
+                </div>
+                <div class="header-item">
+                    <span class="header-label">Pages Left:</span>
+                    <span class="header-value" id="pages-left">7</span>
+                </div>
+                <div class="header-item">
+                    <span class="header-label">Current Page:</span>
+                    <span class="header-value" id="current-page">1</span>
+                </div>
+                <div class="timer-container">
+                    <span class="timer-icon">⏱️</span>
+                    <span class="timer" id="timer">120:00</span>
                 </div>
             </div>
-        </header>
-
-        <main>
-            <div id="question-section" class="fade-in">
-                <h2 id="question-text"></h2>
-                <div id="options" class="option-container">
-                    <button class="option-btn">Option 1</button>
-                    <button class="option-btn">Option 2</button>
-                    <button class="option-btn">Option 3</button>
-                    <button class="option-btn">Option 4</button>
+            
+            <div class="page-container">
+                <div class="question-grid" id="question-grid">
+                    <!-- Questions will be inserted here -->
                 </div>
             </div>
-            <div id="status" class="fade-in">
-                <p>Attempted: <span id="attempted">0</span></p>
-                <p>Left: <span id="left"></span></p>
+            
+            <div class="pagination">
+                <button id="prev-btn" class="btn btn-secondary">Previous</button>
+                <div class="page-numbers" id="page-numbers">
+                    <!-- Page numbers will be inserted here -->
+                </div>
+                <button id="next-btn" class="btn btn-primary">Next</button>
             </div>
-            <button id="end-test" class="btn fade-in">End Test</button>
-        </main>
-    </section>
-
-    <!-- Results Page -->
-    <section id="result-page">
-        <div class="results-container slide-in">
-            <h1>Your Test Results</h1>
-            <div id="result-message" class="fade-in"></div>
-            <h2>Correct Answers:</h2>
-            <ul id="correct-answers" class="fade-in"></ul>
+            
+            <div style="text-align: center;">
+                <button id="submit-test-btn" class="btn btn-success">Submit Test</button>
+            </div>
         </div>
-    </section>
-
+        
+        <!-- Result Container -->
+        <div id="result-container" class="result-container">
+            <div class="result-header">
+                <h2 class="result-title">Test Results</h2>
+                <div class="score" id="final-score">0</div>
+                <div class="result-message" id="result-message"></div>
+            </div>
+            
+            <div class="review-section">
+                <h3 class="section-title">Review Answers</h3>
+                <div id="review-answers">
+                    <!-- Review content will be inserted here -->
+                </div>
+            </div>
+            
+            <div class="action-buttons">
+                <button id="retry-btn" class="btn btn-primary">Try Again</button>
+                <button id="view-answers-btn" class="btn btn-secondary">View All Answers</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Submit Warning Modal -->
+    <div id="submit-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h3 class="modal-title">Warning: Test Submission</h3>
+            <div class="modal-message">
+                <p>You are about to submit your test. Once submitted, you cannot restart or change your answers.</p>
+                <p>Are you sure you want to submit now?</p>
+            </div>
+            <div class="modal-buttons">
+                <button id="modal-cancel-btn" class="modal-btn modal-btn-cancel">Cancel</button>
+                <button id="modal-confirm-btn" class="modal-btn modal-btn-confirm">Submit Test</button>
+            </div>
+        </div>
+    </div>
+    
     <script>
-        // Form and Page Handling
-        const form = document.getElementById("detailsForm");
-        const testPage = document.getElementById("test-page");
-        const resultPage = document.getElementById("result-page");
+        // Question data in the specified format
+        const questionData = [
+            
+    {
+        "question": "What is the loading rate used in compressive strength test?",
+        "options": [
+            "14 N/mm2 per hour",
+            "14 N/mm2 per minute",
+            "20 N/mm2 per minute",
+            "40 N/mm2 per hour"
+        ],
+        "answer": "14 N/mm2 per minute"
+    },
+    {
+        "question": "To get the quantities, the lengths found using the long wall-short wall method are multiplied with _________",
+        "options": [
+            "Width",
+            "Weight",
+            "Thickness",
+            "Breadth and depth"
+        ],
+        "answer": "Breadth and depth"
+    },
+    {
+        "question": "Which is the weakest bond in building?",
+        "options": [
+            "English bond",
+            "Raking bond",
+            "Header bond",
+            "Flemish bond"
+        ],
+        "answer": "Raking bond"
+    },
+    {
+        "question": "The product of inertia at the principal axes is _____________",
+        "options": [
+            "Minimum",
+            "Unit",
+            "Zero",
+            "Maximum"
+        ],
+        "answer": "Zero"
+    },
+    {
+        "question": "Excess alkalies in cement cause",
+        "options": [
+            "alkali aggregate reaction",
+            "Efflorescence",
+            "staining",
+            "All of these"
+        ],
+        "answer": "All of these"
+    },
+    {
+        "question": "What is the CG of sphere?",
+        "options": [
+            "D/3",
+            "D/4",
+            "D/2",
+            "D"
+        ],
+        "answer": "D/2"
+    },
+    {
+        "question": "The relationship between γ and γd can be derived when the degree of saturation is______",
+        "options": [
+            "0",
+            "0.5",
+            "0.8",
+            "1"
+        ],
+        "answer": "0"
+    },
+    {
+        "question": "The relative density of loose granular soil is given by the range ______ in percentage.",
+        "options": [
+            "0-15",
+            "15-35",
+            "35-65",
+            "85-100"
+        ],
+        "answer": "15-35"
+    },
+    {
+        "question": "Decrease in water content causes _______",
+        "options": [
+            "shrinkage",
+            "swelling",
+            "frost heave",
+            "frost boil"
+        ],
+        "answer": "shrinkage"
+    },
+    {
+        "question": "Darcy's law is valid as long as it is equal to or less than ____________",
+        "options": [
+            "1",
+            "o",
+            "0.1",
+            "2"
+        ],
+        "answer": "1"
+    },
+    {
+        "question": "The reduction in volume of soil which is due to squeezing out of water from the voids is",
+        "options": [
+            "effective pressure",
+            "load increment",
+            "primary consolidation",
+            "secondary consolidation"
+        ],
+        "answer": "primary consolidation"
+    },
+    {
+        "question": "The unit of coefficient of volume change is",
+        "options": [
+            "m2/kN",
+            "m3/kN",
+            "m2/N",
+            "m3/N"
+        ],
+        "answer": "m2/kN"
+    },
+    {
+        "question": "The viscosity of a fluid in motion is 1 Poise. What will be its viscosity (in Poise) when the fluid is at rest?",
+        "options": [
+            "0",
+            "0.5",
+            "1",
+            "2"
+        ],
+        "answer": "1"
+    },
+    {
+        "question": "The aspect ratio (a proportional relationship between width and height) of letter and number is",
+        "options": [
+            "1:4 both",
+            "1:2 and 1:3 respectively",
+            "1:3 and 1:2 respectively",
+            "1:1 both"
+        ],
+        "answer": "1:2 and 1:3 respectively"
+    },
+    {
+        "question": "Fluid height after the hydraulic jump is ________",
+        "options": [
+            "Normal",
+            "Low",
+            "High",
+            "Zero"
+        ],
+        "answer": "High"
+    },
+    {
+        "question": "What is the total loss developed in a series of pipes?",
+        "options": [
+            "Sum of losses in each pipe only",
+            "Sum of local losses only",
+            "Sum of local losses plus the losses in each pipe",
+            "Zero"
+        ],
+        "answer": "Sum of local losses plus the losses in each pipe"
+    },
+    {
+        "question": "Double mass curve is used to",
+        "options": [
+            "check the consistency of rain gauge records",
+            "determine the reservoir capacity",
+            "determine the number of rain gauges required",
+            "determine the maximum probable precipitation."
+        ],
+        "answer": "check the consistency of rain gauge records"
+    },
+    {
+        "question": "A lysimeter is used to measure",
+        "options": [
+            "Infiltration",
+            "Evaporation",
+            "Evapotranspiration",
+            "Surface run-off"
+        ],
+        "answer": "Evapotranspiration"
+    },
+    {
+        "question": "Which of the following is statically determinate structure?",
+        "options": [
+            "Two hinged arch",
+            "Fixed beam",
+            "Double overhanging",
+            "Continuous beam"
+        ],
+        "answer": "Double overhanging"
+    },
+    {
+        "question": "Which type of structure would cost less in terms of materials?",
+        "options": [
+            "Statically indeterminate",
+            "Both will cost equally",
+            "Depends upon loading",
+            "Statically determinate"
+        ],
+        "answer": "Statically indeterminate"
+    },
+    {
+        "question": "The bearing of the lines AB and BC are 146° 30° and 68°30°, the included angle ABC is",
+        "options": [
+            "102°",
+            "78°",
+            "45°",
+            "None of the above"
+        ],
+        "answer": "102°"
+    },
+    {
+        "question": "The locus of reaction of a two hinged semi-circular arch is",
+        "options": [
+            "Straight line",
+            "Parabola",
+            "Circle",
+            "Hyperbola"
+        ],
+        "answer": "Straight line"
+    },
+    {
+        "question": "What will be the minimum diameter of a steel wire, which is used to raise a load of 4000N if the stress in the rod is not to exceed 95 MN/m2?",
+        "options": [
+            "6mm",
+            "6.4mm",
+            "7mm",
+            "7.3mm"
+        ],
+        "answer": "7.3mm"
+    },
+    {
+        "question": "Hinged supports offers vertical and ________ reaction.",
+        "options": [
+            "Horizontal",
+            "Moment",
+            "Rotation",
+            "Couple"
+        ],
+        "answer": "Horizontal"
+    },
+    {
+        "question": "As per IS : 456, the reinforcement in a column should not be less than",
+        "options": [
+            "0.5% and not more than 5% of cross-sectional area",
+            "0.6% and not more than 6% of cross-sectional area",
+            "0.7% and not more than 7% of cross-sectional area",
+            "0.8% and not more than 6% of cross-sectional area"
+        ],
+        "answer": "0.8% and not more than 6% of cross-sectional area"
+    },
+    {
+        "question": "Concrete is weak in?",
+        "options": [
+            "Compression",
+            "Tension",
+            "Loading",
+            "Bending"
+        ],
+        "answer": "Tension"
+    },
+    {
+        "question": "The weight of reinforced concrete, is generally taken as",
+        "options": [
+            "2200 kg/m3",
+            "2300 kg/m3",
+            "2400 kg/m3",
+            "2500 kg/m3"
+        ],
+        "answer": "2500 kg/m3"
+    },
+    {
+        "question": "Which of the following pressure units represents the least pressure?",
+        "options": [
+            "N/mm2",
+            "kgf/cm2",
+            "millibar",
+            "mm of mercury"
+        ],
+        "answer": "millibar"
+    },
+    {
+        "question": "Torsion reinforcement is provided in ___________ slab",
+        "options": [
+            "One way slab",
+            "Two way slab",
+            "Simply supported slab",
+            "Cantilever slab"
+        ],
+        "answer": "Two way slab"
+    },
+    {
+        "question": "What is the minimum imposed load on roof trusses as per IS code?",
+        "options": [
+            "0.5 kN/m2",
+            "0.4 kN/m2",
+            "0.9 kN/m2",
+            "0.75 kN/m2"
+        ],
+        "answer": "0.4 kN/m2"
+    },
+    {
+        "question": "In the case of solid columns of timber, S/d ratio shall not exceed",
+        "options": [
+            "50",
+            "25",
+            "75",
+            "100"
+        ],
+        "answer": "50"
+    },
+    {
+        "question": "What are the factors affecting per capita demand?",
+        "options": [
+            "Size of city",
+            "Size of city, habit of people",
+            "Cost of water, quality of water, size of city",
+            "Cost of water, quality of water, size of city, habit of people"
+        ],
+        "answer": "Cost of water, quality of water, size of city, habit of people"
+    },
+    {
+        "question": "Which ingredients of paints provides colour?",
+        "options": [
+            "Pigment",
+            "Vehicle",
+            "Base",
+            "Thinner"
+        ],
+        "answer": "Pigment"
+    },
+    {
+        "question": "What is the frequency of cleaning of a slow sand filter?",
+        "options": [
+            "1 week",
+            "1-3 months",
+            "2-3 days",
+            "2-3 weeks"
+        ],
+        "answer": "1-3 months"
+    },
+    {
+        "question": "Which of the following is most effective in the killing of bacteria present in water?",
+        "options": [
+            "Nascent oxygen",
+            "Chlorine",
+            "HOBr",
+            "I2"
+        ],
+        "answer": "Chlorine"
+    },
+    {
+        "question": "The sewer should be designed for a minimum of ______ litres of waste water per capita per day.",
+        "options": [
+            "50",
+            "100",
+            "150",
+            "1000"
+        ],
+        "answer": "150"
+    },
+    {
+        "question": "What kind of irrigation method uses artificial rain to irrigate the land?",
+        "options": [
+            "Sprinkler Irrigation Method",
+            "Drip Irrigation Method",
+            "Furrow Method",
+            "Border Irrigation Method"
+        ],
+        "answer": "Sprinkler Irrigation Method"
+    },
+    {
+        "question": "Based on surface tension, what is the name of the part of field capacity water?",
+        "options": [
+            "Hygroscopic Water",
+            "Gravity Water",
+            "Capillary Water",
+            "Residue Water"
+        ],
+        "answer": "Capillary Water"
+    },
+    {
+        "question": "What device is placed in front of head regulator for silt removal?",
+        "options": [
+            "Weir",
+            "Silt Extractor",
+            "Silt Excluder",
+            "Barrage"
+        ],
+        "answer": "Silt Excluder"
+    },
+    {
+        "question": "The approval for change in rules and regulations of the Nepal Engineering Council is granted by:",
+        "options": [
+            "GON",
+            "NEA",
+            "NEC",
+            "Ministry of Education"
+        ],
+        "answer": "GON"
+    },
+    {
+        "question": "Which type of fall is suitable for 60 cumecs discharge and 1.5 m drop?",
+        "options": [
+            "Montague Type Fall",
+            "Rapids",
+            "Straight Glacis Fall",
+            "Baffle Fall"
+        ],
+        "answer": "Straight Glacis Fall"
+    },
+    {
+        "question": "The maximum permissible reduction in the waterway from Lacey's perimeter is _______",
+        "options": [
+            "15%",
+            "20%",
+            "25%",
+            "30%"
+        ],
+        "answer": "20%"
+    },
+    {
+        "question": "First hydropower plant of Nepal is?",
+        "options": [
+            "Pharping",
+            "Kulekhani",
+            "Khopasi",
+            "Sundarijal"
+        ],
+        "answer": "Pharping"
+    },
+    {
+        "question": "Draft tubes are not used in which of the following turbines?",
+        "options": [
+            "Francis",
+            "Reaction",
+            "Kaplan",
+            "Pelton"
+        ],
+        "answer": "Pelton"
+    },
+    {
+        "question": "Among the following which turbine has highest efficiency?",
+        "options": [
+            "Francis turbine",
+            "Pelton turbine",
+            "Kaplan turbine",
+            "Propeller turbine"
+        ],
+        "answer": "Kaplan turbine"
+    },
+    {
+        "question": "As per estimate made by the Central Electricity Authority, the potential of the country is accessed at 84 GW at load factor value of",
+        "options": [
+            "40%",
+            "60%",
+            "80%",
+            "20%"
+        ],
+        "answer": "60%"
+    },
+    {
+        "question": "Forebay provides temporary storage before the water goes to the turbine. Following perform the function of forebay",
+        "options": [
+            "river",
+            "tailrace channel",
+            "reservoir",
+            "approach channel"
+        ],
+        "answer": "reservoir"
+    },
+    {
+        "question": "The maximum gradient compensation for a radius of 150 m is _____________",
+        "options": [
+            "0.5 %",
+            "1 %",
+            "1.5 %",
+            "2 %"
+        ],
+        "answer": "0.5 %"
+    },
+    {
+        "question": "The rise of crown for pavement of 7m wide having 1 in 50 slopes with respect to edges is",
+        "options": [
+            "0.14",
+            "0.07",
+            "0.09",
+            "0.11"
+        ],
+        "answer": "0.07"
+    },
+    {
+        "question": "The number of blows in Marshalls test specimen is?",
+        "options": [
+            "25",
+            "30",
+            "55",
+            "75"
+        ],
+        "answer": "75"
+    },
+    {
+        "question": "The design period of cement concrete road is taken as __________",
+        "options": [
+            "20",
+            "25",
+            "30",
+            "35"
+        ],
+        "answer": "30"
+    },
+    {
+        "question": "If the peak load for a power plant equals the plant capacity then the ratio of the capacity factor to load factor will be",
+        "options": [
+            "1",
+            "0",
+            "< 1",
+            "> 1"
+        ],
+        "answer": "1"
+    },
+    {
+        "question": "The total shift of a transition curve is ___________",
+        "options": [
+            "L2/12R",
+            "L2/24R",
+            "L2/48R",
+            "L2/96R"
+        ],
+        "answer": "L2/24R"
+    },
+    {
+        "question": "If the amber time at a signal is 3 sec and the green signal time is 25sec, find the red signal time?",
+        "options": [
+            "22sec",
+            "21sec",
+            "28sec",
+            "29sec"
+        ],
+        "answer": "28sec"
+    },
+    {
+        "question": "French curves are used to draw;",
+        "options": [
+            "Circular Curves",
+            "Ellipses",
+            "Smooth free from curves",
+            "Circle"
+        ],
+        "answer": "Smooth free from curves"
+    },
+    {
+        "question": "The amount of time by which the activity can be delayed without interfering with the start of succeeding activity is known as",
+        "options": [
+            "duration",
+            "free float",
+            "total float",
+            "interfering float"
+        ],
+        "answer": "free float"
+    },
+    {
+        "question": "In cash flows, when a company invests in fixed assets and short-term financial investments results in",
+        "options": [
+            "Increased Equity",
+            "Increased Liabilities",
+            "Decreased Cash",
+            "Increased Cash"
+        ],
+        "answer": "Decreased Cash"
+    },
+    {
+        "question": "A critical activity has",
+        "options": [
+            "maximum float",
+            "minimum float",
+            "zero float",
+            "average float"
+        ],
+        "answer": "zero float"
+    },
+    {
+        "question": "The total number of member in Nepal Engineering Council is",
+        "options": [
+            "12",
+            "15",
+            "18",
+            "21"
+        ],
+        "answer": "21"
+    },
+    {
+        "question": "The term...................... refers to principles, values and beliefs that define right and wrong behaviour.",
+        "options": [
+            "customer satisfaction",
+            "empowerment",
+            "innovation",
+            "ethics"
+        ],
+        "answer": "ethics"
+    },
+    {
+        "question": "The quantity of coarse aggregate required for RCC (1:3:6) for 20 cubic meters of work is",
+        "options": [
+            "18.24 m3",
+            "15.23 m3",
+            "24.87 m3",
+            "32.45 m3"
+        ],
+        "answer": "18.24 m3"
+    },
+    {
+        "question": "Find the value of R.L, if B.M = 400 m, B.S = 1.142 m, F.S = 2.121 by using rise and fall method?",
+        "options": [
+            "400.79 m",
+            "400.97 m",
+            "409.79 m",
+            "399.02 m"
+        ],
+        "answer": "399.02 m"
+    },
+    {
+        "question": "If the soil sample has porosity of 30% and specific gravity of solids G=2.7, then its dry unit weight will be ______",
+        "options": [
+            "18.350 kN/m3",
+            "18.535 kN/m3",
+            "18.640 kN/m3",
+            "18.545 kN/m3"
+        ],
+        "answer": "18.535 kN/m3"
+    },
+    {
+        "question": "If Nf is number of flow channels, Nd is number of potential drops, k is coefficient of permeability and H is total hydraulic head difference then the seepage is computed using __________.",
+        "options": [
+            "q=kH(Nf/Nd)",
+            "q=kHNd/Nf",
+            "q=kH(Nf/Nd)1/2",
+            "q=k(H)1/2Nd/Nf"
+        ],
+        "answer": "q=kH(Nf/Nd)"
+    },
+    {
+        "question": "Estimate the discharge of water in a trapezoidal channel section having a depth 3m, width of 6m, side slope of 1H:2V and velocity of water is 2m/s.",
+        "options": [
+            "40m3/s",
+            "45m3/s",
+            "50m3/s",
+            "55m3/s"
+        ],
+        "answer": "45m3/s"
+    },
+    {
+        "question": "Find the discharge through a rectangular orifice 2.2 m wide and 1.3 m deep fitted to a tank. The water level in a team is 2.5 m above the top edge of orifice.",
+        "options": [
+            "13.9 m3/s",
+            "11.5 m3/s",
+            "16.9 m3/s",
+            "8.7 m3/s"
+        ],
+        "answer": "13.9 m3/s"
+    },
+    {
+        "question": "At a hydroelectric power plant , the design discharge is 100m3/s and 100m of design head .Assuming 80% efficiency .If the power plant is able to run for 3 hours peaking period .How much is the income for peaking if selling rate is 12kW/hr?",
+        "options": [
+            "Rs33,00,000",
+            "Rs43,81,93,008",
+            "Rs33,90,33,336",
+            "Rs2,41,96,078"
+        ],
+        "answer": "Rs33,00,000"
+    },
+    {
+        "question": "A steel bar of 40mm x 40mm square cross-section is subjected to an axial compressive load of 200kN. If the length of the bar is 2m and E=200GPa, the elongation of the bar well be",
+        "options": [
+            "1.25mm",
+            "2.70mm",
+            "4.05mm",
+            "5.40mm"
+        ],
+        "answer": "1.25mm"
+    },
+    {
+        "question": "Calculate the factored bending moment of a rectangular reinforced concrete beam of effective span 4300 mm and load imposed 37.5 kN/m.",
+        "options": [
+            "100kNm",
+            "127kNm",
+            "130kNm",
+            "145kNm"
+        ],
+        "answer": "130kNm"
+    },
+    {
+        "question": "Calculate imposed load on roof truss of span 20m with slope of 20o.",
+        "options": [
+            "0.75 kN/m2",
+            "0.95 kN/m2",
+            "0.45 kN/m2",
+            "0.55kN/m2"
+        ],
+        "answer": "0.55kN/m2"
+    },
+    {
+        "question": "If the annual average hourly demand of the city is 10000m3, what is the maximum hourly consumption?",
+        "options": [
+            "2700 m3",
+            "27000 m3",
+            "270000 m3",
+            "2700000 m3"
+        ],
+        "answer": "27000 m3"
+    },
+    {
+        "question": "A circular sewer having 0.4m diameter is flowing with velocity 2m/Sec. If the gradient of sewer is 1 in 90. Find the value of Chezy's coefficient?",
+        "options": [
+            "10",
+            "30",
+            "60",
+            "40"
+        ],
+        "answer": "60"
+    },
+    {
+        "question": "It is said that a particular type of crop requires a depth of 6 cm of water every 24 days and the crop period is 168 days. Find the delta of the crop?",
+        "options": [
+            "50 cm",
+            "42 cm",
+            "20 cm",
+            "95 cm"
+        ],
+        "answer": "42 cm"
+    },
+    {
+        "question": "The average grain size of the bed material is 0.16 mm for medium silt, Lacey's silt factor is likely to be _______",
+        "options": [
+            "0.30",
+            "0.45",
+            "0.70",
+            "1.32"
+        ],
+        "answer": "0.70"
+    },
+    {
+        "question": "During a certain week a power plant turns out 84,00,000 kWh and the peak load during the week is 100,000 kW. What is the load factor during the week?",
+        "options": [
+            "40%",
+            "45%",
+            "50%",
+            "60%"
+        ],
+        "answer": "50%"
+    },
+    {
+        "question": "400 cumecs of water are being released from dam storage to meet the downstream demand through the turbines of the connected hydro plant. The effective head of water acting on the turbines is 50 m. The efficiency of the hydro plant is 0.8. The electrical power generated from this plant is",
+        "options": [
+            "1,56,800 MW",
+            "156.8 M kW",
+            "156.8 MW",
+            "156.8 kW"
+        ],
+        "answer": "156.8 MW"
+    },
+    {
+        "question": "The braking efficiency for a vehicle moving with a speed of 18kmph, having a lag distance of 14m and coefficient of longitudinal friction is 0.36.",
+        "options": [
+            "25.28%",
+            "25.4%",
+            "25.6%",
+            "25.8%"
+        ],
+        "answer": "25.28%"
+    },
+    {
+        "question": "The equivalent wheel load of 100KN load is",
+        "options": [
+            "1 time repetition of design load",
+            "1.25 times repetition of design load",
+            "2.5 times repetition of design load",
+            "3 times repetition of design load"
+        ],
+        "answer": "1.25 times repetition of design load"
+    },
+    {
+        "question": "In a closed traverse, sum of south latitudes exceeds the sum of north latitudes and sum of east departure exceeds the sum of west departure then the closing line will lie in SE .But, the bearing of closing line will lie in",
+        "options": [
+            "NW Quadrant",
+            "SE Quadrant",
+            "NE Quadrant",
+            "SW Quadrant"
+        ],
+        "answer": "NW Quadrant"
+    },
+            {
+    "question": "The intensity of pressure developed by the surface tension of 0.075 N/m in a droplet of water of 0.075 mm diameter is:",
+    "options": [
+        "0.8 N/cm²",
+        "0.6 N/cm²",
+        "0.4 N/cm²",
+        "400 N/cm²"
+    ],
+    "answer": "0.4 N/cm²"
+}
 
-        let currentQuestion = 0;
-        let attempted = 0;
-        let score = 0;
-        const questions = [
-            { text: "What is 2+2?", options: ["2", "3", "4", "5"], correct: 3, marks: 1 },
-            { text: "What is 5*5?", options: ["10", "15", "25", "30"], correct: 3, marks: 2 },
-            // Add more questions here
-        ];
-        const answers = [];
 
-        // Form Submit Event
-        form.addEventListener("submit", (e) => {
-            e.preventDefault();
-            document.getElementById("display-username").innerText = form.username.value;
-            document.getElementById("display-email").innerText = form.email.value;
-            document.getElementById("display-phone").innerText = form.phone.value;
-            document.getElementById("display-university").innerText = form.university.value;
 
-            form.style.display = "none";
-            testPage.style.display = "block";
-            startTest();
+
+    ];
+        
+        // Process questions to add IDs and marks
+        const questions = questionData.map((q, index) => {
+            return {
+                id: index + 1,
+                question: q.question,
+                options: q.options,
+                answer: q.options.indexOf(q.answer), // Convert answer to index
+                marks: index < 60 ? 1 : 2, // First 60 worth 1 mark, rest worth 2
+                explanation: `Explanation for question ${index + 1}. The correct answer is "${q.answer}" because...`
+            };
         });
-
-        function startTest() {
-            loadQuestion();
-            startTimer();
-        }
-
-        function loadQuestion() {
-            const question = questions[currentQuestion];
-            document.getElementById("question-text").innerText = question.text;
-            const optionButtons = document.querySelectorAll(".option-btn");
-            optionButtons.forEach((btn, index) => {
-                btn.innerText = question.options[index];
-                btn.onclick = () => selectAnswer(index);
+        
+        // If not enough questions, fill with samples
+        while (questions.length < 80) {
+            const i = questions.length;
+            questions.push({
+                id: i + 1,
+                question: `Sample question ${i + 1}?`,
+                options: ["Option A", "Option B", "Option C", "Option D"],
+                answer: Math.floor(Math.random() * 4),
+                marks: i < 60 ? 1 : 2,
+                explanation: `This is the explanation for sample question ${i + 1}`
             });
         }
-
-        function selectAnswer(selectedIndex) {
-            answers[currentQuestion] = selectedIndex;
-            attempted++;
-            updateStatus();
-            currentQuestion++;
-            if (currentQuestion < questions.length) {
-                loadQuestion();
-            } else {
-                endTest();
+        
+        // DOM elements
+        const welcomeScreen = document.getElementById('welcome-screen');
+        const startBtn = document.getElementById('start-btn');
+        const testContainer = document.getElementById('test-container');
+        const questionGrid = document.getElementById('question-grid');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const submitTestBtn = document.getElementById('submit-test-btn');
+        const resultContainer = document.getElementById('result-container');
+        const finalScoreEl = document.getElementById('final-score');
+        const resultMessageEl = document.getElementById('result-message');
+        const reviewAnswersEl = document.getElementById('review-answers');
+        const retryBtn = document.getElementById('retry-btn');
+        const viewAnswersBtn = document.getElementById('view-answers-btn');
+        const timerEl = document.getElementById('timer');
+        const pageNumbersEl = document.getElementById('page-numbers');
+        const attemptedCountEl = document.getElementById('attempted-count');
+        const pagesLeftEl = document.getElementById('pages-left');
+        const currentPageEl = document.getElementById('current-page');
+        const totalQuestionsEl = document.getElementById('total-questions');
+        const submitModal = document.getElementById('submit-modal');
+        const modalCancelBtn = document.getElementById('modal-cancel-btn');
+        const modalConfirmBtn = document.getElementById('modal-confirm-btn');
+        
+        // Test configuration
+        const QUESTIONS_PER_PAGE = 10;
+        const TOTAL_PAGES = Math.ceil(questions.length / QUESTIONS_PER_PAGE);
+        const PASS_MARK = 50;
+        const TIME_LIMIT = 100 * 60; // 120 minutes in seconds
+        
+        // Test state
+        let currentPage = 1;
+        let timeLeft = TIME_LIMIT;
+        let timerInterval;
+        let userAnswers = Array(questions.length).fill(null);
+        let answeredQuestions = 0;
+        let testStarted = false;
+        
+        // Initialize the test
+        function initTest() {
+            // Update total questions display
+            totalQuestionsEl.textContent = questions.length;
+            
+            // Initialize pagination
+            initPagination();
+            
+            // Load first page
+            loadPage(currentPage);
+            
+            // Update header info
+            updateHeaderInfo();
+        }
+        
+        // Start the test
+        function startTest() {
+            testStarted = true;
+            welcomeScreen.style.display = 'none';
+            testContainer.style.display = 'block';
+            
+            // Start timer
+            startTimer();
+        }
+        
+        // Initialize pagination controls
+        function initPagination() {
+            pageNumbersEl.innerHTML = '';
+            
+            for (let i = 1; i <= TOTAL_PAGES; i++) {
+                const pageNumber = document.createElement('div');
+                pageNumber.className = 'page-number';
+                if (i === 1) pageNumber.classList.add('active');
+                pageNumber.textContent = i;
+                pageNumber.addEventListener('click', () => {
+                    if (currentPage !== i) {
+                        currentPage = i;
+                        loadPage(currentPage);
+                        updatePaginationUI();
+                        updateHeaderInfo();
+                    }
+                });
+                pageNumbersEl.appendChild(pageNumber);
             }
         }
-
-        function updateStatus() {
-            document.getElementById("attempted").innerText = attempted;
-            document.getElementById("left").innerText = questions.length - attempted;
+        
+        // Load questions for a specific page
+        function loadPage(page) {
+            questionGrid.innerHTML = '';
+            
+            const startIndex = (page - 1) * QUESTIONS_PER_PAGE;
+            const endIndex = Math.min(startIndex + QUESTIONS_PER_PAGE, questions.length);
+            
+            for (let i = startIndex; i < endIndex; i++) {
+                const q = questions[i];
+                const questionEl = document.createElement('div');
+                questionEl.className = 'question-card';
+                
+                questionEl.innerHTML = `
+                    <div class="question-text">${q.id}. ${q.question}</div>
+                    <div class="options">
+                        ${q.options.map((opt, optIndex) => `
+                            <label class="option">
+                                <input type="radio" id="q${q.id}_opt${optIndex}" name="q${q.id}" value="${optIndex}" ${userAnswers[i] === optIndex ? 'checked' : ''}>
+                                <span class="checkmark"></span>
+                                ${opt}
+                            </label>
+                        `).join('')}
+                    </div>
+                `;
+                
+                // Add event listeners to radio buttons
+                const radioButtons = questionEl.querySelectorAll('input[type="radio"]');
+                radioButtons.forEach(radio => {
+                    radio.addEventListener('change', (e) => {
+                        const questionIndex = i;
+                        const selectedOption = parseInt(e.target.value);
+                        
+                        // Update user answer
+                        if (userAnswers[questionIndex] === null) {
+                            answeredQuestions++;
+                        }
+                        userAnswers[questionIndex] = selectedOption;
+                        
+                        // Update header info
+                        updateHeaderInfo();
+                        
+                        // Update pagination UI
+                        updatePaginationUI();
+                    });
+                });
+                
+                questionGrid.appendChild(questionEl);
+            }
         }
-
+        
+        // Update pagination UI
+        function updatePaginationUI() {
+            const pageNumbers = document.querySelectorAll('.page-number');
+            
+            pageNumbers.forEach((page, index) => {
+                page.classList.remove('active', 'answered');
+                
+                if (index + 1 === currentPage) {
+                    page.classList.add('active');
+                }
+                
+                // Check if any questions on this page are answered
+                const startIndex = index * QUESTIONS_PER_PAGE;
+                const endIndex = Math.min(startIndex + QUESTIONS_PER_PAGE, questions.length);
+                const pageAnswers = userAnswers.slice(startIndex, endIndex);
+                
+                if (pageAnswers.some(answer => answer !== null)) {
+                    page.classList.add('answered');
+                }
+            });
+            
+            // Update button states
+            prevBtn.disabled = currentPage === 1;
+            nextBtn.disabled = currentPage === TOTAL_PAGES;
+        }
+        
+        // Update header information
+        function updateHeaderInfo() {
+            attemptedCountEl.textContent = answeredQuestions;
+            pagesLeftEl.textContent = TOTAL_PAGES - currentPage;
+            currentPageEl.textContent = currentPage;
+        }
+        
+        // Start the countdown timer
         function startTimer() {
-            let time = 100 * 60;
-            const timerDisplay = document.getElementById("timer");
-            const timerInterval = setInterval(() => {
-                time--;
-                let minutes = Math.floor(time / 60);
-                let seconds = time % 60;
-                timerDisplay.innerText = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-
-                if (time <= 0) {
+            updateTimerDisplay();
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                updateTimerDisplay();
+                
+                if (timeLeft <= 0) {
                     clearInterval(timerInterval);
-                    endTest();
+                    submitTest();
                 }
             }, 1000);
         }
-
-        function endTest() {
-            testPage.style.display = "none";
-            resultPage.style.display = "block";
-            showResults();
+        
+        // Update timer display
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            
+            timerEl.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+            
+            // Change color based on time remaining
+            timerEl.className = 'timer';
+            if (timeLeft <= 30 * 60) {
+                timerEl.classList.add('timer-warning');
+            }
+            if (timeLeft <= 10 * 60) {
+                timerEl.classList.add('timer-danger');
+            }
         }
-
-        function showResults() {
-            document.getElementById("result-message").innerText = `You answered ${score} out of ${questions.length * 2} marks.`;
-            const correctAnswersList = document.getElementById("correct-answers");
-            questions.forEach((question, index) => {
-                if (answers[index] === question.correct) {
-                    const listItem = document.createElement("li");
-                    listItem.innerText = `${question.text}: Correct`;
-                    correctAnswersList.appendChild(listItem);
+        
+        // Show submit confirmation modal
+        function showSubmitModal() {
+            submitModal.style.display = 'flex';
+        }
+        
+        // Hide submit confirmation modal
+        function hideSubmitModal() {
+            submitModal.style.display = 'none';
+        }
+        
+        // Submit the test
+        function submitTest() {
+            clearInterval(timerInterval);
+            hideSubmitModal();
+            
+            // Calculate score
+            let score = 0;
+            const results = [];
+            
+            questions.forEach((q, index) => {
+                const userAnswer = userAnswers[index];
+                const isCorrect = userAnswer === q.answer;
+                
+                if (isCorrect) {
+                    score += q.marks;
+                }
+                
+                results.push({
+                    question: q,
+                    userAnswer: userAnswer,
+                    isCorrect: isCorrect
+                });
+            });
+            
+            // Show results
+            showResults(score, results);
+        }
+        
+        // Display test results
+        function showResults(score, results) {
+            testContainer.style.display = 'none';
+            resultContainer.style.display = 'block';
+            
+            // Update score display
+            finalScoreEl.textContent = `${score}/100`;
+            finalScoreEl.className = `score ${score >= PASS_MARK ? 'score-pass' : 'score-fail'}`;
+            
+            // Update result message
+            if (score >= PASS_MARK) {
+                resultMessageEl.textContent = `Congratulations! You scored ${score} marks and passed the practice test. You're well prepared for the NEC License exam!`;
+                resultMessageEl.className = 'result-message message-pass';
+            } else {
+                resultMessageEl.textContent = `You scored ${score} marks which is below the passing mark of ${PASS_MARK}. Review the questions below to improve your knowledge.`;
+                resultMessageEl.className = 'result-message message-fail';
+            }
+            
+            // Show review of answers
+            showReviewAnswers(results);
+        }
+        
+        // Show review of answers
+        function showReviewAnswers(results) {
+            reviewAnswersEl.innerHTML = '';
+            
+            results.forEach((result, index) => {
+                if (!result.isCorrect || index % 10 === 0) { // Show incorrect answers + first of each page
+                    const q = result.question;
+                    const reviewEl = document.createElement('div');
+                    reviewEl.className = 'review-question';
+                    
+                    let optionsHtml = q.options.map((opt, i) => {
+                        let classes = [];
+                        let status = '';
+                        
+                        if (i === q.answer) {
+                            classes.push('correct-answer');
+                            status = 'Correct Answer';
+                        }
+                        
+                        if (i === result.userAnswer && !result.isCorrect) {
+                            classes.push('user-answer');
+                            status = 'Your Answer';
+                        }
+                        
+                        return `
+                            <div class="${classes.join(' ')}">
+                                ${opt} 
+                                ${status ? `<small>(${status})</small>` : ''}
+                            </div>
+                        `;
+                    }).join('');
+                    
+                    reviewEl.innerHTML = `
+                        <div class="question-status ${result.isCorrect ? 'status-correct' : 'status-incorrect'}">
+                            ${result.isCorrect ? 'Correct' : 'Incorrect'} (${q.marks} mark${q.marks > 1 ? 's' : ''})
+                        </div>
+                        <div class="question-text">${q.id}. ${q.question}</div>
+                        <div class="options">${optionsHtml}</div>
+                        <div class="explanation">${q.explanation}</div>
+                    `;
+                    
+                    reviewAnswersEl.appendChild(reviewEl);
                 }
             });
         }
+        
+        // Show all answers
+        function showAllAnswers() {
+            reviewAnswersEl.innerHTML = '';
+            
+            questions.forEach((q, index) => {
+                const userAnswer = userAnswers[index];
+                const isCorrect = userAnswer === q.answer;
+                
+                const reviewEl = document.createElement('div');
+                reviewEl.className = 'review-question';
+                
+                let optionsHtml = q.options.map((opt, i) => {
+                    let classes = [];
+                    let status = '';
+                    
+                    if (i === q.answer) {
+                        classes.push('correct-answer');
+                        status = 'Correct Answer';
+                    }
+                    
+                    if (i === userAnswer && !isCorrect) {
+                        classes.push('user-answer');
+                        status = 'Your Answer';
+                    }
+                    
+                    return `
+                        <div class="${classes.join(' ')}">
+                            ${opt} 
+                            ${status ? `<small>(${status})</small>` : ''}
+                        </div>
+                    `;
+                }).join('');
+                
+                reviewEl.innerHTML = `
+                    <div class="question-status ${isCorrect ? 'status-correct' : 'status-incorrect'}">
+                        ${isCorrect ? 'Correct' : 'Incorrect'} (${q.marks} mark${q.marks > 1 ? 's' : ''})
+                    </div>
+                    <div class="question-text">${q.id}. ${q.question}</div>
+                    <div class="options">${optionsHtml}</div>
+                    <div class="explanation">${q.explanation}</div>
+                `;
+                
+                reviewAnswersEl.appendChild(reviewEl);
+            });
+        }
+        
+        // Event listeners
+        startBtn.addEventListener('click', () => {
+            initTest();
+            startTest();
+        });
+        
+        prevBtn.addEventListener('click', () => {
+            if (currentPage > 1) {
+                currentPage--;
+                loadPage(currentPage);
+                updatePaginationUI();
+                updateHeaderInfo();
+            }
+        });
+        
+        nextBtn.addEventListener('click', () => {
+            if (currentPage < TOTAL_PAGES) {
+                currentPage++;
+                loadPage(currentPage);
+                updatePaginationUI();
+                updateHeaderInfo();
+            }
+        });
+        
+        submitTestBtn.addEventListener('click', showSubmitModal);
+        
+        modalCancelBtn.addEventListener('click', hideSubmitModal);
+        
+        modalConfirmBtn.addEventListener('click', submitTest);
+        
+        retryBtn.addEventListener('click', () => {
+            if (confirm('Do you want to restart the test? All your answers will be lost.')) {
+                location.reload();
+            }
+        });
+        
+        viewAnswersBtn.addEventListener('click', showAllAnswers);
+        
+        // Initialize the welcome screen
+        window.addEventListener('DOMContentLoaded', () => {
+            welcomeScreen.style.display = 'block';
+            testContainer.style.display = 'none';
+            resultContainer.style.display = 'none';
+            submitModal.style.display = 'none';
+        });
     </script>
-
 </body>
 </html>
-

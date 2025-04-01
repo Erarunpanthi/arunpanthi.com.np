@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sanitation Engineering MCQ Test</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="Test.css">
+   
+</head>
+<body>
+    <div class="container">
+        <h1><i class="fas fa-drafting-compass"></i> Sanitation Engineering MCQ Test</h1>
+        <div id="start-message">
+            <p>Welcome to the Sanitation Engineering assessment!</p>
+            <p>You will have <span class="highlight">120 minutes</span> to complete all questions.</p>
+            <p>This test contains <strong>40 multiple-choice questions</strong> covering various aspects of engineering drawing.</p>
+            <button id="start-button" onclick="startTest()">Begin Test <i class="fas fa-arrow-right"></i></button>
+        </div>
+        <div id="test-content">
+            <div id="timer">
+                <i class="fas fa-clock"></i> Time Remaining: 120:00
+            </div>
+            <div id="stats">
+                <div class="stat-box">
+                    <h3><i class="fas fa-question-circle"></i> Total Questions</h3>
+                    <div class="stat-value" id="total-questions">40</div>
+                </div>
+                <div class="stat-box">
+                    <h3><i class="fas fa-check-circle"></i> Attempted</h3>
+                    <div class="stat-value" id="attempted">0</div>
+                </div>
+                <div class="stat-box">
+                    <h3><i class="fas fa-exclamation-circle"></i> Not Attempted</h3>
+                    <div class="stat-value" id="not-attempted">40</div>
+                </div>
+            </div>
+            <form id="quiz-form">
+                <!-- Questions will be dynamically inserted here -->
+            </form>
+            <div class="button-container">
+                <button type="button" id="back-button" onclick="showPreviousQuestions()" style="display: none;">
+                    <i class="fas fa-arrow-left"></i> Back
+                </button>
+                <button type="button" id="next-button" onclick="showNextQuestions()">
+                    Next <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+            <div id="result" style="display: none;">
+                <h2>Test Results</h2>
+                <div class="progress-container">
+                    <div class="progress-bar" id="progress-bar"></div>
+                </div>
+                <div class="score-display" id="score">0/0</div>
+                <p>You scored <span class="highlight" id="percentage">0</span>%</p>
+                <div class="answer-details" id="answer-details"></div>
+                <button id="submit-button" onclick="location.reload()">
+                    <i class="fas fa-redo"></i> Take Test Again
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Questions data (just 2 sample questions - add the remaining 38 following the same format)
+        const questionsData = [
+            
+    
+    {
+        "question": "The minimum size of sewer is",
+        "options": [
+            "15 cm",
+            "15 mm",
+            "30 cm",
+            "30 mm"
+        ],
+        "answer": "15 cm"
+    },
+    {
+        "question": "A Manhole is classified as shallow if its depth is between",
+        "options": [
+            "0.4 to 0.5 m",
+            "0.5 to 0.7 m",
+            "0.7 to 0.9 m",
+            "0.9 to 1.20 m"
+        ],
+        "answer": "0.7 to 0.9 m"
+    },
+    {
+        "question": "Consider the following statements regarding a good building/house drainage system: 1. The pipes should be of nonabsorbent materials. 2. The system should have traps at all necessary points. 3. The branch drains should be as long as possible. Which of the above statements are correct?",
+        "options": [
+            "1 and 2 only",
+            "2 and 3 only",
+            "1 and 3 only",
+            "1, 2 and 3"
+        ],
+        "answer": "1 and 2 only"
+    },
+    {
+        "question": "Sewerage system is generally designed for",
+        "options": [
+            "75 years",
+            "50 years",
+            "40 years",
+            "25 years"
+        ],
+        "answer": "25 years"
+    },
+    {
+        "question": "In sewerage system drop manholes are provided when there is a:",
+        "options": [
+            "Sloping ground, with drop more than 0.6 m is required to control the gradient.",
+            "Change in alignment of sewer line",
+            "Change in size of sewers",
+            "Change from gravity system to pressure system"
+        ],
+        "answer": "Sloping ground, with drop more than 0.6 m is required to control the gradient."
+    }
+
+
+
+
+];
+
+        // Add IDs dynamically to all questions
+        const questions = questionsData.map((q, index) => ({
+            id: index + 1,
+            question: q.question,
+            options: q.options,
+            answer: q.answer
+        }));
+
+        let currentIndex = 0;
+        let userAnswers = {};
+        let timer;
+        let timeRemaining = 120 * 60; // 120 minutes in seconds
+        const form = document.getElementById('quiz-form');
+        const startMessage = document.getElementById('start-message');
+        const testContent = document.getElementById('test-content');
+
+        // Function to start the test
+        function startTest() {
+            startMessage.style.display = 'none';
+            testContent.style.display = 'block';
+            renderQuestions();
+            startTimer();
+        }
+
+        // Function to render questions
+        function renderQuestions() {
+            form.innerHTML = '';
+            for (let i = currentIndex; i < currentIndex + 3 && i < questions.length; i++) {
+                const question = questions[i];
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'question floating';
+                questionDiv.id = `question-${question.id}`;
+                questionDiv.innerHTML = `
+                    <p><i class="fas fa-question-circle" style="color: #4361ee; margin-right: 10px;"></i>${question.question}</p>
+                    <div class="options-container">
+                        ${question.options.map(option => `
+                            <label>
+                                <input type="radio" name="q${question.id}" value="${option}" onchange="lockOption(this)"
+                                    ${userAnswers[question.id] === option ? 'checked' : ''}>
+                                ${option}
+                            </label>
+                        `).join('')}
+                    </div>
+                `;
+                form.appendChild(questionDiv);
+            }
+
+            document.getElementById('back-button').style.display = currentIndex === 0 ? 'none' : 'inline-flex';
+            updateStats();
+        }
+
+        // Function to lock options once selected
+        function lockOption(option) {
+            const questionId = option.name.replace('q', '');
+            userAnswers[questionId] = option.value;
+            const questionDiv = option.closest('.question');
+            const inputs = questionDiv.querySelectorAll('input');
+            inputs.forEach(input => input.disabled = true);
+
+            questionDiv.classList.remove('floating');
+            questionDiv.style.borderLeft = '4px solid #4cc9f0';
+            setTimeout(() => {
+                questionDiv.style.borderLeft = '4px solid #4361ee';
+            }, 500);
+
+            updateStats();
+        }
+
+        // Function to show the next set of questions
+        function showNextQuestions() {
+            currentIndex += 3;
+            if (currentIndex >= questions.length) {
+                submitTest();
+            } else {
+                renderQuestions();
+                window.scrollTo({
+                    top: form.offsetTop - 20,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        // Function to show the previous set of questions
+        function showPreviousQuestions() {
+            currentIndex -= 3;
+            if (currentIndex < 0) currentIndex = 0;
+            renderQuestions();
+            window.scrollTo({
+                top: form.offsetTop - 20,
+                behavior: 'smooth'
+            });
+        }
+
+        // Function to update stats
+        function updateStats() {
+            const totalQuestions = questions.length;
+            const attempted = Object.keys(userAnswers).length;
+            const notAttempted = totalQuestions - attempted;
+
+            document.getElementById('total-questions').textContent = totalQuestions;
+            document.getElementById('attempted').textContent = attempted;
+            document.getElementById('not-attempted').textContent = notAttempted;
+        }
+
+        // Function to start the timer
+        function startTimer() {
+            timer = setInterval(() => {
+                timeRemaining--;
+                if (timeRemaining <= 0) {
+                    clearInterval(timer);
+                    submitTest();
+                }
+                updateTimer();
+            }, 1000);
+        }
+
+        // Function to update the timer display
+        function updateTimer() {
+            const minutes = Math.floor(timeRemaining / 60);
+            const seconds = timeRemaining % 60;
+            const timerElement = document.getElementById('timer');
+            timerElement.innerHTML = `<i class="fas fa-clock"></i> Time Remaining: ${minutes}:${seconds.toString().padStart(2, '0')}`;
+            
+            if (timeRemaining <= 300) {
+                timerElement.style.color = '#f72585';
+                timerElement.style.animation = 'pulse 1s infinite';
+            }
+        }
+
+        // Function to submit the test
+        function submitTest() {
+            clearInterval(timer);
+            document.getElementById('next-button').style.display = 'none';
+            document.getElementById('back-button').style.display = 'none';
+            showResult();
+        }
+
+        // Function to calculate and display the result
+        function showResult() {
+            let score = 0;
+            const answerDetails = [];
+
+            questions.forEach(question => {
+                const userAnswer = userAnswers[question.id];
+                const isCorrect = userAnswer === question.answer;
+                if (isCorrect) score++;
+
+                answerDetails.push(`
+                    <div class="answer-item ${isCorrect ? 'correct-answer' : 'incorrect-answer'}">
+                        <p><strong>Question ${question.id}:</strong> ${question.question}</p>
+                        <p><strong>Your Answer:</strong> <span class="${isCorrect ? 'correct' : 'incorrect'}">${userAnswer || 'Not answered'}</span></p>
+                        <p><strong>Correct Answer:</strong> <span class="correct">${question.answer}</span></p>
+                    </div>
+                `);
+            });
+
+            const percentage = Math.round((score / questions.length) * 100);
+            document.getElementById('score').textContent = `${score} / ${questions.length}`;
+            document.getElementById('percentage').textContent = percentage;
+            document.getElementById('progress-bar').style.width = `${percentage}%`;
+            document.getElementById('answer-details').innerHTML = answerDetails.join('');
+            document.getElementById('result').style.display = 'block';
+
+            window.scrollTo({
+                top: document.getElementById('result').offsetTop - 20,
+                behavior: 'smooth'
+            });
+
+            if (percentage >= 70) {
+                triggerConfetti();
+            }
+        }
+
+        // Simple confetti effect
+        function triggerConfetti() {
+            const confettiCount = 100;
+            const confettiContainer = document.createElement('div');
+            confettiContainer.style.position = 'fixed';
+            confettiContainer.style.top = '0';
+            confettiContainer.style.left = '0';
+            confettiContainer.style.width = '100%';
+            confettiContainer.style.height = '100%';
+            confettiContainer.style.pointerEvents = 'none';
+            confettiContainer.style.zIndex = '1000';
+            document.body.appendChild(confettiContainer);
+
+            for (let i = 0; i < confettiCount; i++) {
+                const confetti = document.createElement('div');
+                confetti.innerHTML = ['🎉', '✨', '🎊', '🏆', '👏'][Math.floor(Math.random() * 5)];
+                confetti.style.position = 'absolute';
+                confetti.style.fontSize = `${Math.random() * 20 + 10}px`;
+                confetti.style.left = `${Math.random() * 100}vw`;
+                confetti.style.top = '-50px';
+                confetti.style.animation = `fall ${Math.random() * 3 + 2}s linear forwards`;
+                confetti.style.opacity = Math.random();
+                confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+                confettiContainer.appendChild(confetti);
+
+                const animation = confetti.animate([
+                    { top: '-50px', opacity: 1 },
+                    { top: '100vh', opacity: 0 }
+                ], {
+                    duration: Math.random() * 3000 + 2000,
+                    easing: 'cubic-bezier(0.1, 0.8, 0.9, 1)'
+                });
+
+                animation.onfinish = () => {
+                    confetti.remove();
+                    if (i === confettiCount - 1) {
+                        confettiContainer.remove();
+                    }
+                };
+            }
+
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes fall {
+                    to { transform: translateY(100vh) rotate(360deg); }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+    </script>
+</body>
+</html>

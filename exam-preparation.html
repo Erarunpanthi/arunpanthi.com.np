@@ -21,14 +21,9 @@
         <a href="contactus"><i class="fas fa-envelope"></i> Contact Us</a>
     </div>
 
-    <div class="main-container">
-        <div class="header-card">
-            <div class="logo-container">
-                <div class="test-logo">
-                    <i class="fas fa-graduation-cap"></i>
-                </div>
-            </div>
-            <h4>Exam Preparation Mock Test</h4>
+    
+             <div class="test-header">
+           <i class="fas fa-book"></i>  <h4>Exam Preparation Mock Test</h4>
             <p>Practice with our comprehensive test sets to prepare for your exams</p>
         </div>
     
@@ -44,10 +39,10 @@
 
         for (let i = 1; i <= totalTests; i++) {
             testContainer.innerHTML += `
-                <div class="test-card">
-                    <h3><i class="fas fa-check-circle"></i> Test Set ${i}</h3>
+                <div class="card-container">
+                    <h2><i class="fas fa-book"></i> Test Set ${i}</h2>
                     <a href="set-${i}" class="start-btn">
-                        <i class="far fa-clock"></i> Start Test
+                        <i class="fas fa-stopwatch"></i> Start Test
                     </a>
                 </div>`;
         }

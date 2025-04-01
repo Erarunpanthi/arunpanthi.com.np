@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Environmental assessment-Test</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="Test.css">
+   
+</head>
+<body>
+    <div class="container">
+        <h1><i class="fas fa-drafting-compass"></i> Environmental assessment-Test</h1>
+        <div id="start-message">
+            <p>Environmental assessment-Test!</p>
+            <p>You will have <span class="highlight">120 minutes</span> to complete all questions.</p>
+            <p>This test contains <strong>40 multiple-choice questions</strong> covering various aspects of Environmental assessment.</p>
+            <button id="start-button" onclick="startTest()">Begin Test <i class="fas fa-arrow-right"></i></button>
+        </div>
+        <div id="test-content">
+            <div id="timer">
+                <i class="fas fa-clock"></i> Time Remaining: 120:00
+            </div>
+            <div id="stats">
+                <div class="stat-box">
+                    <h3><i class="fas fa-question-circle"></i> Total Questions</h3>
+                    <div class="stat-value" id="total-questions">40</div>
+                </div>
+                <div class="stat-box">
+                    <h3><i class="fas fa-check-circle"></i> Attempted</h3>
+                    <div class="stat-value" id="attempted">0</div>
+                </div>
+                <div class="stat-box">
+                    <h3><i class="fas fa-exclamation-circle"></i> Not Attempted</h3>
+                    <div class="stat-value" id="not-attempted">40</div>
+                </div>
+            </div>
+            <form id="quiz-form">
+                <!-- Questions will be dynamically inserted here -->
+            </form>
+            <div class="button-container">
+                <button type="button" id="back-button" onclick="showPreviousQuestions()" style="display: none;">
+                    <i class="fas fa-arrow-left"></i> Back
+                </button>
+                <button type="button" id="next-button" onclick="showNextQuestions()">
+                    Next <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+            <div id="result" style="display: none;">
+                <h2>Test Results</h2>
+                <div class="progress-container">
+                    <div class="progress-bar" id="progress-bar"></div>
+                </div>
+                <div class="score-display" id="score">0/0</div>
+                <p>You scored <span class="highlight" id="percentage">0</span>%</p>
+                <div class="answer-details" id="answer-details"></div>
+                <button id="submit-button" onclick="location.reload()">
+                    <i class="fas fa-redo"></i> Take Test Again
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Questions data (just 2 sample questions - add the remaining 38 following the same format)
+        const questionsData = [
+            
+    {
+        "question": "Which one among the following is the correct order of steps taken during the process of Environmental Impact Assessment (EIA)?",
+        "options": [
+            "Scoping, Screening, Public Hearing, EIA, Issue of Environmental Clearance",
+            "Screening, Public Hearing, Scoping, EIA, Issue of Environmental Clearance",
+            "Screening, Scoping, EIA, Public Hearing, Issue of Environmental Clearance",
+            "Screening, EIA, Scoping, Public Hearing, Issue of Environmental Clearance"
+        ],
+        "answer": "Screening, Scoping, EIA, Public Hearing, Issue of Environmental Clearance"
+    },
+    {
+        "question": "A short-term environmental impact assessment (EIA) has a time period of:",
+        "options": [
+            "2-5 years",
+            "10-15 years",
+            "5-10 years",
+            "5-7 years"
+        ],
+        "answer": "5-10 years"
+    },
+    {
+        "question": "How many stages are there in EIA?",
+        "options": [
+            "5",
+            "3",
+            "2",
+            "4"
+        ],
+        "answer": "4"
+    },
+    {
+        "question": "The primary reason for Environmental Impact Assessment is to",
+        "options": [
+            "Mitigate existing environmental impacts of development",
+            "Predict the size of impacts of developments",
+            "Describe proposed developments",
+            "Identify the environmental consequences of development in advance"
+        ],
+        "answer": "Identify the environmental consequences of development in advance"
+    },
+    {
+        "question": "The full form of EIA is",
+        "options": [
+            "Environmental Initial Assessment",
+            "Environmental Impact Assignment",
+            "Environmental Initial Assignment",
+            "Environmental Impact Assessment"
+        ],
+        "answer": "Environmental Impact Assessment"
+    },
+    {
+        "question": "The full form of IEE is",
+        "options": [
+            "Impact Environmental Examination",
+            "Initial Environmental Examination",
+            "Initial Examination Environmental",
+            "Impact Examination Environmental"
+        ],
+        "answer": "Initial Environmental Examination"
+    },
+    {
+        "question": "Which of the following is related to environmental assessment?",
+        "options": [
+            "BES",
+            "IEE",
+            "EIA",
+            "All"
+        ],
+        "answer": "All"
+    },
+    {
+        "question": "In EIA, the baseline data describes",
+        "options": [
+            "The environmental consequences by mapping",
+            "Existing environmental status of the identified study area",
+            "Assessment of risk on the basis of proposal",
+            "Demographic and socio-economic data"
+        ],
+        "answer": "Existing environmental status of the identified study area"
+    },
+    {
+        "question": "The EIA report of a hydropower project would be valid up to how many years after the environmental clearance of the project?",
+        "options": [
+            "5",
+            "10",
+            "30",
+            "15"
+        ],
+        "answer": "10"
+    },
+    {
+        "question": "Which of the following is not a geological disaster?",
+        "options": [
+            "Landslides",
+            "Earthquakes",
+            "Volcanic eruptions",
+            "Cattle epidemic"
+        ],
+        "answer": "Cattle epidemic"
+    },
+    {
+        "question": "Hazard mitigation measures include",
+        "options": [
+            "Hazard mapping",
+            "Flood plain mapping",
+            "Insurance programs",
+            "All"
+        ],
+        "answer": "All"
+    },
+    {
+        "question": "In Nepal, the need for EIA for major infrastructure projects had first mentioned in",
+        "options": [
+            "Fifth five-year plan",
+            "Sixth five-year plan",
+            "Seventh five-year plan",
+            "Eighth five-year plan"
+        ],
+        "answer": "Sixth five-year plan"
+    },
+    {
+        "question": "The EIA law in Nepal is",
+        "options": [
+            "The Environment Protection Act (EPA), 2019 (2076)",
+            "Environment Protection Regulation (EPR), 2020",
+            "Plant Protection Act, 1972 amended in 2007",
+            "The Private Forest (Nationalization) Act, 1957"
+        ],
+        "answer": "The Environment Protection Act (EPA), 2019 (2076)"
+    },
+    {
+        "question": "The full form of BES in EIA is",
+        "options": [
+            "Brief Environmental Study",
+            "Bureau Environmental Study",
+            "Bureau of Environmental Study",
+            "Bureau of English Study"
+        ],
+        "answer": "Brief Environmental Study"
+    },
+    {
+        "question": "Once EIA is complete,",
+        "options": [
+            "EIA is submitted to competent authority",
+            "EIA is not submitted to competent authority",
+            "EIA is submitted to municipality chief",
+            "EIA is submitted to municipal administrative chief"
+        ],
+        "answer": "EIA is submitted to competent authority"
+    },
+    {
+        "question": "Process for IEE and EIA is provided by...for development activities in Nepal.",
+        "options": [
+            "Nepal Environmental Assessment Guideline 1993",
+            "National Environmental Assessment Guideline 1992",
+            "National Environmental Assessment Guideline 1993",
+            "Natural Environmental Assessment Guideline 1993"
+        ],
+        "answer": "National Environmental Assessment Guideline 1993"
+    },
+    {
+        "question": "Administrative Process for IEE and EIA is provided by...for approval, preparation, and implementation",
+        "options": [
+            "EPA 2077 and EPR 2078",
+            "EPA 2076 and EPR 2077",
+            "EPA 2076 and EPR 2077",
+            "EPA 2076 and EPR 2078"
+        ],
+        "answer": "EPA 2076 and EPR 2077"
+    },
+    {
+        "question": "IEE is done to",
+        "options": [
+            "Minimize the overall environmental impact and cost of the project",
+            "Maximize the overall environmental impact and cost of the project",
+            "Minimize the overall positive environmental impact and cost of the project",
+            "Maximize the overall environmental impact and cost of the house"
+        ],
+        "answer": "Minimize the overall environmental impact and cost of the project"
+    },
+    {
+        "question": "How many distinct types of actions are defined as part of disaster management?",
+        "options": [
+            "4",
+            "7",
+            "5",
+            "6"
+        ],
+        "answer": "6"
+    },
+    {
+        "question": "The full form of DRR is",
+        "options": [
+            "Disaster Risk Reuse",
+            "Daily Risk Reduction",
+            "Disaster Risk Relieves",
+            "Disaster Risk Reduction"
+        ],
+        "answer": "Disaster Risk Reduction"
+    },
+    {
+        "question": "Nepal Ranks ... in terms of earthquake risk.",
+        "options": [
+            "4th",
+            "11th",
+            "20th",
+            "6th"
+        ],
+        "answer": "11th"
+    },
+    {
+        "question": "Nepal Ranks ...th in terms of flood risk.",
+        "options": [
+            "4",
+            "7",
+            "5",
+            "30"
+        ],
+        "answer": "30"
+    },
+    {
+        "question": "Populations and their movements is ... vulnerability",
+        "options": [
+            "Physical",
+            "Environmental",
+            "Social",
+            "Economic"
+        ],
+        "answer": "Physical"
+    },
+    {
+        "question": "Insurance is an example of",
+        "options": [
+            "Risk reduction",
+            "Risk avoidance",
+            "Risk acceptance",
+            "Risk transfer"
+        ],
+        "answer": "Risk transfer"
+    },
+    {
+        "question": "Which of the following is wrong?",
+        "options": [
+            "Disaster may be a hazard",
+            "Hazard is a product of risk and vulnerability",
+            "Hazard is any negative event requiring external assistance",
+            "All"
+        ],
+        "answer": "All"
+    },
+    {
+        "question": "Slow occurrences and multi-casual among the following natural disasters",
+        "options": [
+            "Conflict",
+            "Earthquake",
+            "Volcano eruption",
+            "Outbreak"
+        ],
+        "answer": "Outbreak"
+    },
+    {
+        "question": "Common cause of tsunami",
+        "options": [
+            "Undersea earthquake",
+            "Funnel-shaped air spirals",
+            "Strong winds accompanied by rain, snow, and thunder",
+            "Volcanic eruption through magma"
+        ],
+        "answer": "Undersea earthquake"
+    },
+    {
+        "question": "Among the following types of hazards, which one is more common?",
+        "options": [
+            "Biological",
+            "Physical",
+            "Ergonomic",
+            "Mechanical"
+        ],
+        "answer": "Biological"
+    },
+    {
+        "question": "More frequent type of disaster in Nepal among the following:",
+        "options": [
+            "Flood",
+            "Outbreak",
+            "All of the above",
+            "None"
+        ],
+        "answer": "None"
+    },
+    {
+        "question": "Which of the following statements are false?",
+        "options": [
+            "Land use planning systems do the same things as EIA",
+            "EIA is intended to be a rational and comprehensive assessment",
+            "EIA is costly and time-consuming",
+            "EIA is a process"
+        ],
+        "answer": "EIA is costly and time-consuming"
+    },
+    {
+        "question": "EIA is necessary because:",
+        "options": [
+            "Development is bad for the environment",
+            "There is growing interest in sustainability",
+            "Environmental impacts of developments are of public interest",
+            "None of the above"
+        ],
+        "answer": "Environmental impacts of developments are of public interest"
+    },
+    {
+        "question": "Which environmental principle best reflects the intent of EIA?",
+        "options": [
+            "Polluter pays",
+            "Prevention is better than cure",
+            "Reduce, reuse, recycle",
+            "None of the above"
+        ],
+        "answer": "Prevention is better than cure"
+    },
+    {
+        "question": "Impacts on which of the following should not be considered in an EIA",
+        "options": [
+            "Ecological",
+            "Human Health",
+            "Social",
+            "Impacts on environmental consultants"
+        ],
+        "answer": "Impacts on environmental consultants"
+    },
+    {
+        "question": "Which of the elements of the EIA process does the following expression describe? \"...identifying at an early stage, from all a project's possible impacts, those that are crucial, significant ones...\"",
+        "options": [
+            "Screening",
+            "Scoping",
+            "Baseline description",
+            "Mitigation"
+        ],
+        "answer": "Scoping"
+    },
+    {
+        "question": "Which of the elements of the EIA process does the following expression describe? \"...narrowing the application of EIA to those projects that may have significant environmental impacts...\"",
+        "options": [
+            "Screening",
+            "Scoping",
+            "Baseline description",
+            "Mitigation"
+        ],
+        "answer": "Screening"
+    },
+    {
+        "question": "In which of the following scoping is required?",
+        "options": [
+            "BES",
+            "IEE",
+            "EIA",
+            "TOR"
+        ],
+        "answer": "EIA"
+    },
+    {
+        "question": "What is EIA",
+        "options": [
+            "Is a method for promoting rapid project development without considering its potential impact on the environment",
+            "EIA stands for Economic investment Appraisal, focusing on financial considerations rather than environmental effects",
+            "Is a process that intentionally overlooks potential negative effects of a project on the surrounding ecosystem",
+            "EIA is a systematic process used to evaluate the environmental consequences of a proposed project or development. Aiming to identify and mitigate potential adverse effects on the environment"
+        ],
+        "answer": "EIA is a systematic process used to evaluate the environmental consequences of a proposed project or development. Aiming to identify and mitigate potential adverse effects on the environment"
+    },
+    {
+        "question": "When was the first environmental act introduced in Nepal?",
+        "options": [
+            "1997",
+            "2001",
+            "1994",
+            "1993"
+        ],
+        "answer": "1997"
+    },
+    {
+        "question": "Earthquakes and landslides are categorized as",
+        "options": [
+            "Geological hazards",
+            "Hydrological hazards",
+            "Biological hazards",
+            "Chemical hazards"
+        ],
+        "answer": "Geological hazards"
+    },
+    {
+        "question": "Which ministry is related to National Disaster and risk management?",
+        "options": [
+            "Ministry of Forest and Environment",
+            "Ministry of Health and Pollution",
+            "Ministry of Home Affairs",
+            "Ministry of Energy, Water Resources and Irrigation"
+        ],
+        "answer": "Ministry of Home Affairs"
+    },
+    {
+        "question": "The EIA law in Nepal is",
+        "options": [
+            "The Environment Protection Act(EPA),2019(2076)",
+            "The Environment Protection Act(EPA),2020(2077)",
+            "The Environment Protection Act(EPR),2020(2077)",
+            "The Environment Protection Act(EPR),2019(2076)"
+        ],
+        "answer": "The Environment Protection Act(EPA),2019(2076)"
+    },
+    {
+        "question": "What are the key factors which must be taken into account when determining whether a project requires EIA or not?",
+        "options": [
+            "Size of the project",
+            "Size of the project and sensitivity of the surrounding environment",
+            "Size of the project, sensitivity of the surrounding environment, and effect on local communities",
+            "Size of the project, sensitivity of the surrounding environment, effect on local communities, and opinion of the developer"
+        ],
+        "answer": "Size of the project, sensitivity of the surrounding environment, and effect on local communities"
+    },
+    {
+        "question": "Which of the following is never an acceptable outcome of the screening process?",
+        "options": [
+            "A full and comprehensive EIA is required",
+            "EIA consideration is not required",
+            "No further level of EIA is required",
+            "A more limited EIA is required"
+        ],
+        "answer": "EIA consideration is not required"
+    },
+    {
+        "question": "Scoping is important to the EIA process as",
+        "options": [
+            "It decides from all the possible impacts which are the potentially significant ones",
+            "It saves the developer money",
+            "It ensures the environmental effects of the project are all considered in detail",
+            "It identifies all possible alternatives"
+        ],
+        "answer": "It decides from all the possible impacts which are the potentially significant ones"
+    },
+    {
+        "question": "Which of the following are not required to be included in a scoping report or ToR?",
+        "options": [
+            "An overview of the community that is likely to be affected",
+            "Description of the screening process",
+            "An overview or profile of the proposal and receiving environment",
+            "The possible alternatives to the project"
+        ],
+        "answer": "Description of the screening process"
+    },
+    {
+        "question": "Best practice scoping requires",
+        "options": [
+            "Relevant experience of similar developments",
+            "Using formal scoping techniques",
+            "A site visit",
+            "All of the above"
+        ],
+        "answer": "All of the above"
+    },
+    {
+        "question": "Minimum number of experts required in BES is:",
+        "options": [
+            "3",
+            "4",
+            "5",
+            "1"
+        ],
+        "answer": "3"
+    },
+    {
+        "question": "EPR is made in accordance with the clause no...... of EPA 2076",
+        "options": [
+            "44",
+            "45",
+            "43",
+            "33"
+        ],
+        "answer": "44"
+    }
+
+    
+
+
+
+];
+
+        // Add IDs dynamically to all questions
+        const questions = questionsData.map((q, index) => ({
+            id: index + 1,
+            question: q.question,
+            options: q.options,
+            answer: q.answer
+        }));
+
+        let currentIndex = 0;
+        let userAnswers = {};
+        let timer;
+        let timeRemaining = 120 * 60; // 120 minutes in seconds
+        const form = document.getElementById('quiz-form');
+        const startMessage = document.getElementById('start-message');
+        const testContent = document.getElementById('test-content');
+
+        // Function to start the test
+        function startTest() {
+            startMessage.style.display = 'none';
+            testContent.style.display = 'block';
+            renderQuestions();
+            startTimer();
+        }
+
+        // Function to render questions
+        function renderQuestions() {
+            form.innerHTML = '';
+            for (let i = currentIndex; i < currentIndex + 3 && i < questions.length; i++) {
+                const question = questions[i];
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'question floating';
+                questionDiv.id = `question-${question.id}`;
+                questionDiv.innerHTML = `
+                    <p><i class="fas fa-question-circle" style="color: #4361ee; margin-right: 10px;"></i>${question.question}</p>
+                    <div class="options-container">
+                        ${question.options.map(option => `
+                            <label>
+                                <input type="radio" name="q${question.id}" value="${option}" onchange="lockOption(this)"
+                                    ${userAnswers[question.id] === option ? 'checked' : ''}>
+                                ${option}
+                            </label>
+                        `).join('')}
+                    </div>
+                `;
+                form.appendChild(questionDiv);
+            }
+
+            document.getElementById('back-button').style.display = currentIndex === 0 ? 'none' : 'inline-flex';
+            updateStats();
+        }
+
+        // Function to lock options once selected
+        function lockOption(option) {
+            const questionId = option.name.replace('q', '');
+            userAnswers[questionId] = option.value;
+            const questionDiv = option.closest('.question');
+            const inputs = questionDiv.querySelectorAll('input');
+            inputs.forEach(input => input.disabled = true);
+
+            questionDiv.classList.remove('floating');
+            questionDiv.style.borderLeft = '4px solid #4cc9f0';
+            setTimeout(() => {
+                questionDiv.style.borderLeft = '4px solid #4361ee';
+            }, 500);
+
+            updateStats();
+        }
+
+        // Function to show the next set of questions
+        function showNextQuestions() {
+            currentIndex += 3;
+            if (currentIndex >= questions.length) {
+                submitTest();
+            } else {
+                renderQuestions();
+                window.scrollTo({
+                    top: form.offsetTop - 20,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        // Function to show the previous set of questions
+        function showPreviousQuestions() {
+            currentIndex -= 3;
+            if (currentIndex < 0) currentIndex = 0;
+            renderQuestions();
+            window.scrollTo({
+                top: form.offsetTop - 20,
+                behavior: 'smooth'
+            });
+        }
+
+        // Function to update stats
+        function updateStats() {
+            const totalQuestions = questions.length;
+            const attempted = Object.keys(userAnswers).length;
+            const notAttempted = totalQuestions - attempted;
+
+            document.getElementById('total-questions').textContent = totalQuestions;
+            document.getElementById('attempted').textContent = attempted;
+            document.getElementById('not-attempted').textContent = notAttempted;
+        }
+
+        // Function to start the timer
+        function startTimer() {
+            timer = setInterval(() => {
+                timeRemaining--;
+                if (timeRemaining <= 0) {
+                    clearInterval(timer);
+                    submitTest();
+                }
+                updateTimer();
+            }, 1000);
+        }
+
+        // Function to update the timer display
+        function updateTimer() {
+            const minutes = Math.floor(timeRemaining / 60);
+            const seconds = timeRemaining % 60;
+            const timerElement = document.getElementById('timer');
+            timerElement.innerHTML = `<i class="fas fa-clock"></i> Time Remaining: ${minutes}:${seconds.toString().padStart(2, '0')}`;
+            
+            if (timeRemaining <= 300) {
+                timerElement.style.color = '#f72585';
+                timerElement.style.animation = 'pulse 1s infinite';
+            }
+        }
+
+        // Function to submit the test
+        function submitTest() {
+            clearInterval(timer);
+            document.getElementById('next-button').style.display = 'none';
+            document.getElementById('back-button').style.display = 'none';
+            showResult();
+        }
+
+        // Function to calculate and display the result
+        function showResult() {
+            let score = 0;
+            const answerDetails = [];
+
+            questions.forEach(question => {
+                const userAnswer = userAnswers[question.id];
+                const isCorrect = userAnswer === question.answer;
+                if (isCorrect) score++;
+
+                answerDetails.push(`
+                    <div class="answer-item ${isCorrect ? 'correct-answer' : 'incorrect-answer'}">
+                        <p><strong>Question ${question.id}:</strong> ${question.question}</p>
+                        <p><strong>Your Answer:</strong> <span class="${isCorrect ? 'correct' : 'incorrect'}">${userAnswer || 'Not answered'}</span></p>
+                        <p><strong>Correct Answer:</strong> <span class="correct">${question.answer}</span></p>
+                    </div>
+                `);
+            });
+
+            const percentage = Math.round((score / questions.length) * 100);
+            document.getElementById('score').textContent = `${score} / ${questions.length}`;
+            document.getElementById('percentage').textContent = percentage;
+            document.getElementById('progress-bar').style.width = `${percentage}%`;
+            document.getElementById('answer-details').innerHTML = answerDetails.join('');
+            document.getElementById('result').style.display = 'block';
+
+            window.scrollTo({
+                top: document.getElementById('result').offsetTop - 20,
+                behavior: 'smooth'
+            });
+
+            if (percentage >= 70) {
+                triggerConfetti();
+            }
+        }
+
+        // Simple confetti effect
+        function triggerConfetti() {
+            const confettiCount = 100;
+            const confettiContainer = document.createElement('div');
+            confettiContainer.style.position = 'fixed';
+            confettiContainer.style.top = '0';
+            confettiContainer.style.left = '0';
+            confettiContainer.style.width = '100%';
+            confettiContainer.style.height = '100%';
+            confettiContainer.style.pointerEvents = 'none';
+            confettiContainer.style.zIndex = '1000';
+            document.body.appendChild(confettiContainer);
+
+            for (let i = 0; i < confettiCount; i++) {
+                const confetti = document.createElement('div');
+                confetti.innerHTML = ['🎉', '✨', '🎊', '🏆', '👏'][Math.floor(Math.random() * 5)];
+                confetti.style.position = 'absolute';
+                confetti.style.fontSize = `${Math.random() * 20 + 10}px`;
+                confetti.style.left = `${Math.random() * 100}vw`;
+                confetti.style.top = '-50px';
+                confetti.style.animation = `fall ${Math.random() * 3 + 2}s linear forwards`;
+                confetti.style.opacity = Math.random();
+                confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+                confettiContainer.appendChild(confetti);
+
+                const animation = confetti.animate([
+                    { top: '-50px', opacity: 1 },
+                    { top: '100vh', opacity: 0 }
+                ], {
+                    duration: Math.random() * 3000 + 2000,
+                    easing: 'cubic-bezier(0.1, 0.8, 0.9, 1)'
+                });
+
+                animation.onfinish = () => {
+                    confetti.remove();
+                    if (i === confettiCount - 1) {
+                        confettiContainer.remove();
+                    }
+                };
+            }
+
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes fall {
+                    to { transform: translateY(100vh) rotate(360deg); }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+    </script>
+</body>
+</html>

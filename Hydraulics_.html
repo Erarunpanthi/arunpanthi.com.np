@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HYDRAULICS Subjective Note</title>
+    <link rel="stylesheet" href="Subjective.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+                <script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+     <div class="navbar">
+        <a href="Home"><i class="fas fa-home"></i> Home</a>
+        <a href="resources"><i class="fas fa-book"></i> Resources</a>
+        <a href="engineering-preparation"><i class="fas fa-certificate"></i> Engineering Prep</a>
+        <a href="competitive-exams"><i class="fas fa-graduation-cap"></i> Competitive Exams</a>
+        <a href="aboutus"><i class="fas fa-info-circle"></i> About Us</a>
+        <a href="contactus"><i class="fas fa-envelope"></i> Contact Us</a>
+    </div>
+</head>
+<body>
+    <h1>HYDRAULICS Subjective Note</h1>
+    <section id="#top">
+    <div class="nav-buttons">
+         <button class="nav-btn" onclick="location.href='#pipe-flow'">Pipe Flow</button>
+    
+    <!-- Pipe Networks Section -->
+    <button class="nav-btn" onclick="location.href='#pipe-networks'">Pipe Networks</button>
+    
+    <!-- Unsteady Flow Section -->
+    <button class="nav-btn" onclick="location.href='#unsteady-flow'">Unsteady Flow</button>
+    
+    <!-- Open Channel Flow Section -->
+    <button class="nav-btn" onclick="location.href='#open-channel'">Open Channel Flow</button>
+    
+    <!-- Uniform Flow Section -->
+    <button class="nav-btn" onclick="location.href='#uniform-flow'">Uniform Flow</button>
+    
+    <!-- Energy & Momentum Section -->
+    <button class="nav-btn" onclick="location.href='#energy-momentum'">Energy & Momentum</button>
+    
+    <!-- Gradually Varied Flow Section -->
+    <button class="nav-btn" onclick="location.href='#varied-flow'">Gradually Varied Flow</button>
+    
+    <!-- Hydraulic Jump Section -->
+    <button class="nav-btn" onclick="location.href='#hydraulic-jump'">Hydraulic Jump</button>
+    
+    <!-- Mobile Boundary Section -->
+    <button class="nav-btn" onclick="location.href='#mobile-boundary'">Mobile Boundary</button>
+    
+    <!-- Similitude Section -->
+    <button class="nav-btn" onclick="location.href='#similitude'">Similitude</button>
+    </div>
+    </section>
+<!-- Pipe Flow -->
+<section id="pipe-flow">
+  <h2>Pipe Flow</h2>
+<p>Pipe flow refers to the movement of a fluid (liquid or gas) through a closed conduit, such as a pipe or tube, under the influence of pressure, gravity, or external forces.</p>
+h1>Pipe Flow Classification</h1>
+    
+    <h2>1. Based on Flow Regime</h2>
+    <ul>
+        <li><strong>Laminar Flow</strong>
+            <ul>
+                <li>Smooth, orderly flow with fluid moving in parallel layers.</li>
+                <li>Occurs at <strong>low Reynolds numbers (Re &lt; 2000)</strong>.</li>
+                <li>Velocity profile is <strong>parabolic</strong> (Hagen-Poiseuille flow).</li>
+            </ul>
+        </li>
+        <li><strong>Turbulent Flow</strong>
+            <ul>
+                <li>Chaotic, irregular flow with eddies and mixing.</li>
+                <li>Occurs at <strong>high Reynolds numbers (Re &gt; 4000)</strong>.</li>
+                <li>Velocity profile is flatter (logarithmic distribution).</li>
+            </ul>
+        </li>
+        <li><strong>Transitional Flow</strong>
+            <ul>
+                <li>Occurs between <strong>2000 &lt; Re &lt; 4000</strong>, where flow may switch between laminar and turbulent.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h2>2. Based on Time Dependency</h2>
+    <ul>
+        <li><strong>Steady Flow</strong>
+            <ul>
+                <li>Flow properties (velocity, pressure) do not change with time.</li>
+            </ul>
+        </li>
+        <li><strong>Unsteady (Transient) Flow</strong>
+            <ul>
+                <li>Flow properties vary with time (e.g., water hammer effect).</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h2>3. Based on Compressibility</h2>
+    <ul>
+        <li><strong>Incompressible Flow</strong>
+            <ul>
+                <li>Density remains constant (typical for liquids like water).</li>
+            </ul>
+        </li>
+        <li><strong>Compressible Flow</strong>
+            <ul>
+                <li>Density changes significantly (e.g., gas flow at high speeds).</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h2>4. Based on Viscosity Effects</h2>
+    <ul>
+        <li><strong>Viscous (Real) Flow</strong>
+            <ul>
+                <li>Accounts for fluid friction (e.g., most practical pipe flows).</li>
+            </ul>
+        </li>
+        <li><strong>Inviscid (Ideal) Flow</strong>
+            <ul>
+                <li>Neglects viscosity (used in theoretical models).</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h2>5. Based on Boundary Conditions</h2>
+    <ul>
+        <li><strong>Fully Developed Flow</strong>
+            <ul>
+                <li>Velocity profile does not change along the pipe.</li>
+            </ul>
+        </li>
+        <li><strong>Developing (Entry) Flow</strong>
+            <ul>
+                <li>Flow near the pipe entrance where the profile is still forming.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <div class="highlight">
+        <h2>Key Parameter: Reynolds Number (Re)</h2>
+        <p>\[ Re = \frac{\rho v D}{\mu} \]</p>
+        <p>where:</p>
+        <ul>
+            <li>\(\rho\) = fluid density</li>
+            <li>\(v\) = flow velocity</li>
+            <li>\(D\) = pipe diameter</li>
+            <li>\(\mu\) = dynamic viscosity</li>
+        </ul>
+    </div>
+
+    <h2>Summary Table</h2>
+    <table>
+        <tr>
+            <th>Classification</th>
+            <th>Flow Type</th>
+            <th>Key Characteristics</th>
+        </tr>
+        <tr>
+            <td rowspan="3">Flow Regime</td>
+            <td>Laminar</td>
+            <td>Re &lt; 2000, smooth layers</td>
+        </tr>
+        <tr>
+            <td>Turbulent</td>
+            <td>Re &gt; 4000, chaotic mixing</td>
+        </tr>
+        <tr>
+            <td>Transitional</td>
+            <td>2000 &lt; Re &lt; 4000</td>
+        </tr>
+        <tr>
+            <td>Time Dependency</td>
+            <td>Steady/Unsteady</td>
+            <td>Time-invariant vs. time-varying</td>
+        </tr>
+        <tr>
+            <td>Compressibility</td>
+            <td>Incompressible/Compressible</td>
+            <td>Constant vs. variable density</td>
+        </tr>
+    </table>
+
+
+
+
+
+
+  <button onclick="location.href='#top'">↑ Back to Top ↑</button>
+
+</section>
+
+<!-- Pipe Networks -->
+<section id="pipe-networks">
+  <h2>Pipe Networks</h2>
+  <button onclick="location.href='#top'">↑ Back to Top ↑</button>
+</section>
+
+<!-- Unsteady Flow -->
+<section id="unsteady-flow">
+  <h2>Unsteady Flow</h2>
+  <button onclick="location.href='#top'">↑ Back to Top ↑</button>
+</section>
+
+<!-- Open Channel Flow -->
+<section id="open-channel">
+  <h2>Open Channel Flow</h2>
+  <button onclick="location.href='#top'">↑ Back to Top ↑</button>
+</section>
+
+<!-- Uniform Flow -->
+<section id="uniform-flow">
+  <h2>Uniform Flow</h2>
+  <button onclick="location.href='#top'">↑ Back to Top ↑</button>
+</section>
+
+<!-- Energy & Momentum -->
+<section id="energy-momentum">
+  <h2>Energy & Momentum</h2>
+  <button onclick="location.href='#top'">↑ Back to Top ↑</button>
+</section>
+
+<!-- Gradually Varied Flow -->
+<section id="varied-flow">
+  <h2>Gradually Varied Flow</h2>
+  <button onclick="location.href='#top'">↑ Back to Top ↑</button>
+</section>
+
+<!-- Hydraulic Jump -->
+<section id="hydraulic-jump">
+  <h2>Hydraulic Jump</h2>
+  <button onclick="location.href='#top'">↑ Back to Top ↑</button>
+</section>
+
+<!-- Mobile Boundary -->
+<section id="mobile-boundary">
+  <h2>Mobile Boundary</h2>
+  <button onclick="location.href='#top'">↑ Back to Top ↑</button>
+</section>
+
+<!-- Similitude -->
+<section id="similitude">
+  <h2>Similitude</h2>
+  <button onclick="location.href='#top'">↑ Back to Top ↑</button>
+</section>
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+<div class="social-media">
+        <h3><i class="fab fa-connectdevelop"></i> Connect with Us</h3>
+        <p>Follow us on social media to stay updated with the latest resources and news.</p>
+        <div class="icons">
+            <a href="https://www.facebook.com/arun.panthi27" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.tiktok.com/@er.arunpanthi" target="_blank"><i class="fab fa-tiktok"></i></a>
+            <a href="https://www.youtube.com/@Arunpanthisblog" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="mailto:erarunpanthi@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>
+        </div>
+    </div>
+
+    <footer>
+        <p>©2024 CivPrepMaster. All rights reserved. | 
+        <a href="PrivacyPolicy">Privacy Policy</a> | 
+        <a href="TermsofService">Terms of Service</a></p>
+    </footer>
+</body>
+</html>

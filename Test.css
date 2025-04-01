@@ -421,3 +421,166 @@
             50% { transform: scale(1.05); }
             100% { transform: scale(1); }
         }
+ .logo-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .test-logo {
+            width: 80px;
+            height: 80px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-card h4 {
+            color: var(--dark-color);
+            font-size: 1.8rem;
+            margin: 0 0 15px 0;
+        }
+
+        .test-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .test-card {
+            background: white;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            border-top: 4px solid var(--primary-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .test-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .test-card h3 {
+            color: var(--dark-color);
+            margin: 0 0 15px 0;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .test-card h3 i {
+            color: var(--primary-color);
+            margin-right: 12px;
+        }
+
+        .start-btn {
+            display: inline-flex;
+            align-items: center;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            margin-top: 10px;
+        }
+
+        .start-btn:hover {
+            background-color: var(--dark-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .start-btn i {
+            margin-right: 8px;
+        }
+ .social-media {
+    background: linear-gradient(135deg, #4CAF50, #2E7D32);
+    color: white; /* White text for social media section */
+    padding: 30px 20px; /* Reduced padding */
+    text-align: center;
+    border-radius: 20px; /* Increased border radius */
+    margin: 30px auto; /* Increased margin */
+}
+
+.social-media h2 {
+    color: white; /* White color for heading */
+    margin: 10px 0; /* Reduced margin */
+}
+
+.social-media p {
+    margin: 10px 0; /* Reduced margin for paragraph */
+}
+
+.social-media .icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Space between icons */
+}
+
+.social-media .icons a {
+    color: #fff;
+    font-size: 36px;
+    transition: transform 0.3s;
+}
+
+.social-media .icons a:hover {
+    transform: scale(1.2);
+}
+
+/* Footer Styles */
+footer {
+    background-color: #4CAF50;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+footer a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-wrap: wrap;
+                padding: 10px;
+            }
+.navbar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: #2E7D32; /* Darker green navbar */
+    padding: 10px 0;
+}
+
+.navbar a {
+    color: #fff; /* Link color */
+    padding: 8px 10px; /* Reduced padding for compactness */
+    text-decoration: none; /* Remove underline */
+    font-size: 14px; /* Smaller font size */
+    transition: background-color 0.3s; /* Animation */
+}
+
+.navbar a:hover {
+    background-color: #1B5E20; /* Even darker green on hover */
+}
+
+

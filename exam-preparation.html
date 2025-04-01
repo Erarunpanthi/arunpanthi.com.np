@@ -3,15 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Exam preparation mock test - Access and practice all test sets to prepare effectively for your NEC license exams.">
-    <meta name="keywords" content="Exam preparation, NEC license mock tests, practice tests">
+    <meta http-equiv="Content-Language" content="en">
+    <meta name="description" content="Comprehensive NEC license exam preparation mock tests. Practice with 30+ test sets to effectively prepare for your engineering license exams in Nepal.">
+    <meta name="keywords" content="NEC license exam, Nepal Engineering Council, engineering mock tests, exam preparation Nepal, engineering license preparation, test series Nepal, engineering practice tests">
     <meta name="author" content="Arun Panthi">
-    <title>Exam Preparation Mock Test</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-                        <link rel="stylesheet" href="about.css">
+    <meta name="robots" content="index, follow">
     
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="NEC License Exam Mock Tests | Comprehensive Preparation">
+    <meta property="og:description" content="Prepare for Nepal Engineering Council exams with 30+ practice test sets. Simulate real exam conditions and track your progress.">
+    <meta property="og:url" content="https://arunpanthi.com.np/exam-preparation">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="NEC License Mock Test Series">
+    <meta name="twitter:description" content="30+ complete test sets for Nepal Engineering Council exam preparation. Practice, analyze, and excel in your licensing exams.">
+    
+    <!-- Canonical Link -->
+    <link rel="canonical" href="https://arunpanthi.com.np/exam-preparation">
+    
+    <title>NEC License Mock Tests | Exam Preparation</title>
+    <link rel="stylesheet" href="about.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
+
     <div class="navbar">
         <a href="Home"><i class="fas fa-home"></i> Home</a>
         <a href="resources"><i class="fas fa-book"></i> Resources</a>
@@ -21,33 +38,35 @@
         <a href="contactus"><i class="fas fa-envelope"></i> Contact Us</a>
     </div>
 
-    
-             <div class="test-header">
-           <i class="fas fa-book"></i>  <h4>Exam Preparation Mock Test</h4>
-            <p>Practice with our comprehensive test sets to prepare for your exams</p>
-        </div>
-    
-    <div class="test-header">   
-    <div class="test-container" id="testContainer">
-            <!-- Tests will be loaded here -->
-        </div>
+    <div class="test-header">
+        <h1><i class="fas fa-clipboard-list"></i> NEC License Mock Test Series</h1>
+        <p>Comprehensive test banks covering all subjects for Nepal Engineering Council license preparation. 30+ complete test sets available.</p>
     </div>
 
-    <script>
-        // JavaScript to dynamically create test cards
-        const testContainer = document.getElementById('testContainer');
-        const totalTests = 30;
+    <div class="card-container" id="testContainer">
+        <!-- Tests will be loaded here dynamically -->
+    </div>
 
-        for (let i = 1; i <= totalTests; i++) {
-            testContainer.innerHTML += `
-                <div class="card-container">
-                    <h2><i class="fas fa-book"></i> Test Set ${i}</h2>
-                    <a href="set-${i}" class="start-btn">
-                        <i class="fas fa-stopwatch"></i> Start Test
-                    </a>
-                </div>`;
-        }
-    </script>
+    <div class="test-features">
+        <h2><i class="fas fa-star"></i> Test Series Features</h2>
+        <div class="features-grid">
+            <div class="feature">
+                <i class="fas fa-clock"></i>
+                <h3>Timed Tests</h3>
+                <p>Simulate real exam conditions with our timed test environment</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-chart-line"></i>
+                <h3>Performance Tracking</h3>
+                <p>Monitor your progress across all test attempts</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-book-open"></i>
+                <h3>Detailed Solutions</h3>
+                <p>Every question includes explained answers</p>
+            </div>
+        </div>
+    </div>
 
     <div class="social-media">
         <h2><i class="fab fa-connectdevelop"></i> Connect With Us</h2>
@@ -65,5 +84,21 @@
         <a href="PrivacyPolicy">Privacy Policy</a> | 
         <a href="TermsofService">Terms of Service</a></p>
     </footer>
+
+    <script>
+        // JavaScript to dynamically create test cards
+        const testContainer = document.getElementById('testContainer');
+        const totalTests = 30;
+
+        for (let i = 1; i <= totalTests; i++) {
+            testContainer.innerHTML += `
+                <div class="section">
+                    <h2>Test Set ${i}</h2>
+                    <a href="set-${i}" class="cta-button">
+                        <i class="fas fa-stopwatch"></i> Start Test
+                    </a>
+                </div>`;
+        }
+    </script>
 </body>
 </html>

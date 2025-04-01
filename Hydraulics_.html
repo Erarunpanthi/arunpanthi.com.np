@@ -178,8 +178,73 @@ h1>Pipe Flow Classification</h1>
             <td>Constant vs. variable density</td>
         </tr>
     </table>
+ <h1>Difference Between Pipe Flow and Open Channel Flow</h1>
+ <p>Pipe flow and open channel flow represent two fundamental types of fluid flow systems in engineering, each with distinct characteristics and governing principles.</p>
 
+    <div class="highlight">
+        <h2>Key Differences</h2>
+        <table class="comparison-table">
+            <tr>
+                <th>Parameter</th>
+                <th>Pipe Flow</th>
+                <th>Open Channel Flow</th>
+            </tr>
+            <tr>
+                <td><strong>Definition</strong></td>
+                <td>Flow through completely filled, enclosed conduits</td>
+                <td>Flow with a free surface exposed to atmospheric pressure</td>
+            </tr>
+            <tr>
+                <td><strong>Driving Force</strong></td>
+                <td>Pressure gradient</td>
+                <td>Gravity (slope of channel)</td>
+            </tr>
+            <tr>
+                <td><strong>Cross-Section</strong></td>
+                <td>Fixed (circular, rectangular, etc.)</td>
+                <td>Variable (can change with flow depth)</td>
+            </tr>
+            <tr>
+                <td><strong>Pressure Distribution</strong></td>
+                <td>Hydraulic pressure throughout</td>
+                <td>Atmospheric pressure at free surface</td>
+            </tr>
+            <tr>
+                <td><strong>Flow Control</strong></td>
+                <td>Valves, pumps</td>
+                <td>Weirs, gates, channel slope</td>
+            </tr>
+            <tr>
+                <td><strong>Velocity Profile</strong></td>
+                <td>Developed by viscous forces</td>
+                <td>Influenced by surface roughness and channel geometry</td>
+            </tr>
+            <tr>
+                <td><strong>Typical Applications</strong></td>
+                <td>Water supply systems, oil pipelines</td>
+                <td>Rivers, canals, drainage systems</td>
+            </tr>
+        </table>
+    </div>
 
+    <h2>Detailed Comparison</h2>
+    
+    <p><strong>Pipe Flow</strong> occurs when a fluid completely fills the conduit, creating a closed system where the primary driving force is pressure difference. The entire cross-section is wetted, and flow characteristics are determined by the pipe's material, diameter, and the fluid's viscosity.</p>
+    
+    <p><strong>Open Channel Flow</strong> features a free surface that's exposed to atmospheric pressure, with gravity serving as the main driving force. The flow depth can vary, making the flow cross-section changeable. Surface waves and varying roughness significantly affect the flow behavior.</p>
+    
+    <h2>Governing Equations</h2>
+    
+    <p>In <strong>pipe flow</strong>, the Darcy-Weisbach equation is commonly used to calculate head loss due to friction:</p>
+    <p class="highlight">h<sub>f</sub> = f(L/D)(v²/2g)</p>
+    
+    <p>For <strong>open channel flow</strong>, the Manning equation is frequently employed to determine flow velocity:</p>
+    <p class="highlight">v = (1/n)R<sup>2/3</sup>S<sup>1/2</sup></p>
+    <p>where n is Manning's roughness coefficient, R is hydraulic radius, and S is channel slope.</p>
+    
+    <h2>Practical Implications</h2>
+    
+    <p>Pipe systems are generally more expensive to construct but offer better control and efficiency for pressurized systems. Open channels are typically more economical for large-scale water transport but are subject to environmental factors like evaporation and contamination.</p>
 
 
 

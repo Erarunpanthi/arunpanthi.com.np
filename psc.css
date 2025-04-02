@@ -79,9 +79,10 @@ footer a:hover {
         padding: 15px; /* Adjust section padding */
     }
     .social-media {
-        padding: 20px; /* Further reduce padding */
+        padding: 15px; /* Further reduce padding */
     }
 }
+
   body {
             font-family: Arial, sans-serif;
             max-width: 800px;

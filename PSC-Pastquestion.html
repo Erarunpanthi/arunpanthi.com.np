@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Language" content="en">
+    <meta name="description" content="Comprehensive NEC license exam preparation mock tests. Practice with past year question sets (2070-2082) to effectively prepare for your engineering license exams in Nepal.">
+    <meta name="keywords" content="NEC license exam, Nepal Engineering Council, engineering mock tests, exam preparation Nepal, engineering license preparation, test series Nepal, engineering practice tests, past questions">
+    <meta name="author" content="Arun Panthi">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="NEC License Past Year Questions | 2070-2082 Test Series">
+    <meta property="og:description" content="Prepare for Nepal Engineering Council exams with past year question sets from 2070 to 2082 BS. Simulate real exam conditions with actual past questions.">
+    <meta property="og:url" content="https://arunpanthi.com.np/exam-preparation">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="NEC License Past Year Questions (2070-2082)">
+    <meta name="twitter:description" content="Complete past year question sets from 2070 to 2082 BS for Nepal Engineering Council exam preparation. Practice with actual exam questions.">
+    
+    <!-- Canonical Link -->
+    <link rel="canonical" href="https://arunpanthi.com.np/exam-preparation">
+    
+    <title>NEC License Past Questions | 2070-2082 Test Series</title>
+    <link rel="stylesheet" href="about.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <div class="navbar">
+        <a href="Home"><i class="fas fa-home"></i> Home</a>
+        <a href="resources"><i class="fas fa-book"></i> Resources</a>
+        <a href="license-preparation"><i class="fas fa-certificate"></i> License Prep</a>
+        <a href="psc-preparation"><i class="fas fa-graduation-cap"></i> PSC Prep</a>
+        <a href="aboutus"><i class="fas fa-info-circle"></i> About Us</a>
+        <a href="contactus"><i class="fas fa-envelope"></i> Contact Us</a>
+    </div>
+
+    <div class="test-header">
+        <h1><i class="fas fa-clipboard-list"></i> NEC License Past Year Questions (2070-2082)</h1>
+        <p>Comprehensive collection of past year questions for Nepal Engineering Council license preparation. 13 complete year sets available.</p>
+    </div>
+
+    <div class="card-container" id="testContainer">
+        <!-- Tests will be loaded here dynamically -->
+    </div>
+
+    <div class="test-features">
+        <h2><i class="fas fa-star"></i> Test Series Features</h2>
+        <div class="features-grid">
+            <div class="feature">
+                <i class="fas fa-clock"></i>
+                <h3>Timed Tests</h3>
+                <p>Simulate real exam conditions with our timed test environment</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-chart-line"></i>
+                <h3>Performance Tracking</h3>
+                <p>Monitor your progress across all test attempts</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-book-open"></i>
+                <h3>Detailed Solutions</h3>
+                <p>Every question includes explained answers</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="social-media">
+        <h2><i class="fab fa-connectdevelop"></i> Connect With Us</h2>
+        <p>Follow us for updates and additional resources</p>
+        <div class="icons">
+            <a href="https://www.facebook.com/arun.panthi27" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.tiktok.com/@er.arunpanthi" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+            <a href="https://www.youtube.com/@erarunpanthi" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="mailto:erarunpanthi@gmail.com" target="_blank" aria-label="Email"><i class="fas fa-envelope"></i></a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Exam Prep | 
+        <a href="PrivacyPolicy">Privacy Policy</a> | 
+        <a href="TermsofService">Terms of Service</a></p>
+    </footer>
+
+    <script>
+        // JavaScript to dynamically create test cards with year names
+        const testContainer = document.getElementById('testContainer');
+        const startYear = 2070;
+        const endYear = 2082;
+        
+        // Create cards for each year from 2070 to 2082
+        for (let year = startYear; year <= endYear; year++) {
+            testContainer.innerHTML += `
+                <div class="section">
+                    <h2>${year} BS Past Questions</h2>
+                    <a href="year-${year}" class="cta-button">
+                        <i class="fas fa-stopwatch"></i> Start Test
+                    </a>
+                </div>`;
+        }
+        
+        // Add overall past questions card
+        testContainer.innerHTML += `
+            <div class="section">
+                <h2>Overall Past Questions (2070-2082)</h2>
+                <a href="overall-past-questions" class="cta-button">
+                    <i class="fas fa-stopwatch"></i> Start Test
+                </a>
+            </div>`;
+    </script>
+</body>
+</html>

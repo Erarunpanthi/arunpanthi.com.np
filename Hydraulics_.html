@@ -247,6 +247,198 @@
     <h2>Practical Implications</h2>
     
     <p>Pipe systems are generally more expensive to construct but offer better control and efficiency for pressurized systems. Open channels are typically more economical for large-scale water transport but are subject to environmental factors like evaporation and contamination.</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Advanced Pipe Flow Dynamics</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 5px;
+        }
+        .theorem {
+            background-color: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 10px 15px;
+            margin: 15px 0;
+        }
+        .derivation {
+            background-color: #fff8e1;
+            border-left: 4px solid #ffb300;
+            padding: 10px 15px;
+            margin: 15px 0;
+        }
+        .definition {
+            background-color: #e8f5e9;
+            border-left: 4px solid #43a047;
+            padding: 10px 15px;
+            margin: 15px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Advanced Pipe Flow Dynamics</h1>
+
+<div class="theorem">
+<h2>Reynolds Experiment</h2>
+<p>Osborne Reynolds' seminal experiment (1883) demonstrated the transition between flow regimes using a glass pipe with dye injection:</p>
+
+<p>The dimensionless Reynolds number determines flow regime:</p>
+\[ Re = \frac{\rho V D}{\mu} = \frac{V D}{\nu} \]
+
+<p>Where:
+<ul>
+    <li>\( \rho \) = fluid density [kg/m³]</li>
+    <li>\( V \) = mean velocity [m/s]</li>
+    <li>\( D \) = pipe diameter [m]</li>
+    <li>\( \mu \) = dynamic viscosity [Pa·s]</li>
+    <li>\( \nu \) = kinematic viscosity [m²/s]</li>
+</ul>
+</p>
+</div>
+
+<div class="definition">
+<h2>Laminar vs Turbulent Flow</h2>
+<table>
+    <tr>
+        <th>Characteristic</th>
+        <th>Laminar Flow (Re &lt; 2000)</th>
+        <th>Turbulent Flow (Re &gt; 4000)</th>
+    </tr>
+    <tr>
+        <td>Flow Structure</td>
+        <td>Ordered parallel layers</td>
+        <td>Chaotic eddies and mixing</td>
+    </tr>
+    <tr>
+        <td>Velocity Profile</td>
+        <td>Parabolic (Poiseuille)</td>
+        <td>Flattened logarithmic profile</td>
+    </tr>
+    <tr>
+        <td>Energy Loss</td>
+        <td>\( h_f \propto V \)</td>
+        <td>\( h_f \propto V^n \) (1.75 ≤ n ≤ 2)</td>
+    </tr>
+    <tr>
+        <td>Mixing</td>
+        <td>Molecular diffusion only</td>
+        <td>Strong convective mixing</td>
+    </tr>
+</table>
+</div>
+
+<div class="theorem">
+<h2>Hagen-Poiseuille Equation</h2>
+<p>For fully developed laminar flow in circular pipes:</p>
+
+<p>Velocity distribution:</p>
+\[ u(r) = \frac{1}{4\mu}\left(-\frac{dP}{dx}\right)(R^2 - r^2) \]
+
+<p>Volumetric flow rate (Poiseuille's Law):</p>
+\[ Q = \frac{\pi R^4}{8\mu}\left(-\frac{dP}{dx}\right) = \frac{\pi D^4 \Delta P}{128 \mu L} \]
+
+<p>Where \( \Delta P \) is the pressure drop over length \( L \). This shows the <strong>fourth-power dependence on diameter</strong>, making pipe sizing critical.</p>
+</div>
+
+<div class="derivation">
+<h2>Laminar Flow Between Parallel Plates</h2>
+<p>For infinite parallel plates separated by distance \( h \):</p>
+
+<p>Velocity profile:</p>
+\[ u(y) = \frac{1}{2\mu}\left(-\frac{dP}{dx}\right)(hy - y^2) \]
+
+<p>Volumetric flow rate per unit width:</p>
+\[ q = \frac{h^3}{12\mu}\left(-\frac{dP}{dx}\right) \]
+
+<p>Maximum velocity occurs at midplane:</p>
+\[ u_{max} = \frac{h^2}{8\mu}\left(-\frac{dP}{dx}\right) \]
+</div>
+
+<div class="derivation">
+<h2>Darcy-Weisbach Formula Derivation</h2>
+<p>From dimensional analysis and experimental data, the head loss equation:</p>
+
+\[ h_f = f \frac{L}{D} \frac{V^2}{2g} \]
+
+<p>Where \( f \) is the Darcy friction factor. For laminar flow:</p>
+
+\[ f = \frac{64}{Re} \]
+
+<p>For turbulent flow, the Colebrook-White equation (1939) provides an implicit relationship:</p>
+
+\[ \frac{1}{\sqrt{f}} = -2 \log_{10}\left(\frac{\epsilon/D}{3.7} + \frac{2.51}{Re\sqrt{f}}\right) \]
+
+<p>Where \( \epsilon \) is the equivalent sand-grain roughness height. This requires iterative solution, leading to the Moody chart development.</p>
+</div>
+
+<div class="theorem">
+<h2>Shear Stress Distribution</h2>
+<p>In fully developed pipe flow, the shear stress varies linearly:</p>
+
+\[ \tau(r) = \frac{r}{R} \tau_w \]
+
+<p>Where wall shear stress \( \tau_w \) is:</p>
+
+\[ \tau_w = \frac{D}{4}\left(-\frac{dP}{dx}\right) = \frac{f}{4} \rho V^2 \]
+
+<p>The shear stress is maximum at the wall and zero at the centerline.</p>
+</div>
+
+<div class="theorem">
+<h2>Pipe Network Analysis</h2>
+
+<h3>Pipes in Series</h3>
+<p>Total head loss is the sum of individual losses:</p>
+
+\[ h_{f,total} = \sum_{i=1}^n h_{f,i} \]
+
+<p>Dupuit equation for equivalent pipe:</p>
+
+\[ \frac{L_{eq}}{D_{eq}^5} = \sum \frac{L_i}{D_i^5} \]
+
+<h3>Pipes in Parallel</h3>
+<p>Head loss is equal across all branches:</p>
+
+\[ h_{f,1} = h_{f,2} = \cdots = h_{f,n} \]
+
+<p>Total flow is the sum of branch flows:</p>
+
+\[ Q_{total} = \sum_{i=1}^n Q_i \]
+
+<h3>Siphon Analysis</h3>
+<p>Applying Bernoulli's equation between reservoirs:</p>
+
+\[ \frac{P_{atm}}{\rho g} + z_1 = \frac{P_{vap}}{\rho g} + z_2 + h_f + \frac{V^2}{2g} \]
+
+<p>Where \( P_{vap} \) is the vapor pressure limiting the maximum siphon height.</p>
+</div>
 
 
 

@@ -394,3 +394,76 @@ binita {
   padding: 0;
   white-space: nowrap; /* Prevents line breaks */
 }
+.nav-btn {
+  /* Size & Dimensions */
+  height: 32px; /* Compact height */
+  min-width: 80px; /* Minimum width */
+  padding: 0 16px; /* Horizontal padding */
+  
+  /* Green Color Scheme */
+  background-color: #2E7D32; /* Rich green */
+  color: white;
+  
+  /* Typography */
+  font-size: 14px;
+  font-weight: 500;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  
+  /* Borders & Shape */
+  border: none;
+  border-radius: 4px;
+  
+  /* Effects & Transitions */
+  box-shadow: 0 2px 5px rgba(46, 125, 50, 0.3);
+  transition: all 0.2s ease-in-out;
+  
+  /* Layout */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* Hover State */
+.nav-btn:hover {
+  background-color: #1B5E20;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(46, 125, 50, 0.4);
+}
+
+/* Active State */
+.nav-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 3px rgba(46, 125, 50, 0.3);
+}
+
+/* Focus State */
+.nav-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.5);
+}
+
+/* Compact Version */
+.nav-btn.compact {
+  height: 28px;
+  min-width: 70px;
+  padding: 0 12px;
+  font-size: 12px;
+}
+
+/* Alternative Green Shades */
+.nav-btn.light-green {
+  background-color: #4CAF50;
+}
+.nav-btn.light-green:hover {
+  background-color: #3d8b40;
+}
+
+.nav-btn.vibrant-green {
+  background-color: #00C853;
+}
+.nav-btn.vibrant-green:hover {
+  background-color: #00B04A;
+}

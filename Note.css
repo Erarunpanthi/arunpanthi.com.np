@@ -276,7 +276,21 @@ section {
 .toc ul li a:hover {
     text-decoration: underline;
 }
-
+.button{
+    display: inline-block;
+    padding: 14px 24px;
+    background: linear-gradient(45deg, var(--primary-green), var(--dark-green));
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    border-radius: 8px;
+    transition: all 0.3s ease-in-out;
+    border: none;
+    box-shadow: 0px 4px 10px rgba(46, 125, 50, 0.3);
+    margin: 10px;
+}
+    
 .btn {
     display: inline-block;
     padding: 14px 24px;

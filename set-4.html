@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEC License Exam  Set-4 </title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #3498db;
+            --secondary: #2c3e50;
+            --success: #2ecc71;
+            --danger: #e74c3c;
+            --warning: #f39c12;
+            --light: #ecf0f1;
+            --dark: #34495e;
+            --gray: #95a5a6;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #f5f7fa;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        /* Welcome Screen */
+        .welcome-screen {
+            background-color: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .welcome-title {
+            font-size: 2rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+        
+        .welcome-message {
+            text-align: left;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+        
+        .rules-list {
+            text-align: left;
+            margin-bottom: 30px;
+            padding-left: 20px;
+        }
+        
+        .rules-list li {
+            margin-bottom: 10px;
+        }
+        
+        .start-btn {
+            background-color: var(--success);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .start-btn:hover {
+            background-color: #27ae60;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        /* Test Header */
+        .test-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            flex-wrap: wrap;
+        }
+        
+        .header-item {
+            display: flex;
+            align-items: center;
+            margin: 5px 10px;
+        }
+        
+        .header-label {
+            font-weight: 500;
+            margin-right: 5px;
+            color: var(--gray);
+        }
+        
+        .header-value {
+            font-weight: 700;
+            color: var(--dark);
+        }
+        
+        .timer-container {
+            background-color: var(--dark);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .timer-icon {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .timer {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .timer-warning {
+            color: var(--warning);
+        }
+        
+        .timer-danger {
+            color: var(--danger);
+            animation: pulse 1s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
+        /* Test Container */
+        .test-container {
+            display: none;
+        }
+        
+        .page-container {
+            background-color: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+        }
+        
+        .question-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+        
+        .question-card {
+            border-left: 4px solid var(--primary);
+            padding-left: 15px;
+        }
+        
+        .question-text {
+            font-weight: 500;
+            margin-bottom: 15px;
+            color: var(--secondary);
+        }
+        
+        .options {
+            margin-left: 5px;
+        }
+        
+        .option {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding-left: 30px;
+            cursor: pointer;
+        }
+        
+        .option input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+        
+        .checkmark {
+            position: absolute;
+            left: 0;
+            height: 20px;
+            width: 20px;
+            background-color: var(--light);
+            border: 2px solid var(--gray);
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+        
+        .option:hover .checkmark {
+            border-color: var(--primary);
+        }
+        
+        .option input:checked ~ .checkmark {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+        
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+            left: 6px;
+            top: 2px;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+        
+        .option input:checked ~ .checkmark:after {
+            display: block;
+        }
+        
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            padding: 10px 25px;
+            border: none;
+            border-radius: 5px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .btn-secondary {
+            background-color: var(--light);
+            color: var(--dark);
+        }
+        
+        .btn-secondary:hover {
+            background-color: #d5dbdb;
+        }
+        
+        .btn-success {
+            background-color: var(--success);
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background-color: #27ae60;
+        }
+        
+        .page-numbers {
+            display: flex;
+            gap: 5px;
+        }
+        
+        .page-number {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        
+        .page-number.active {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .page-number.answered {
+            background-color: var(--success);
+            color: white;
+        }
+        
+        /* Result Container */
+        .result-container {
+            display: none;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+        }
+        
+        .result-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .result-title {
+            font-size: 2rem;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        
+        .score {
+            font-size: 3rem;
+            font-weight: 700;
+            margin: 20px 0;
+        }
+        
+        .score-pass {
+            color: var(--success);
+        }
+        
+        .score-fail {
+            color: var(--danger);
+        }
+        
+        .result-message {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        
+        .message-pass {
+            background-color: rgba(46, 204, 113, 0.1);
+            color: var(--success);
+            border-left: 4px solid var(--success);
+        }
+        
+        .message-fail {
+            background-color: rgba(231, 76, 60, 0.1);
+            color: var(--danger);
+            border-left: 4px solid var(--danger);
+        }
+        
+        /* Review Section */
+        .review-section {
+            margin-top: 40px;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--light);
+        }
+        
+        .review-question {
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        
+        .question-status {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+        
+        .status-correct {
+            background-color: rgba(46, 204, 113, 0.2);
+            color: var(--success);
+        }
+        
+        .status-incorrect {
+            background-color: rgba(231, 76, 60, 0.2);
+            color: var(--danger);
+        }
+        
+        .correct-answer {
+            color: var(--success);
+            font-weight: 500;
+        }
+        
+        .user-answer {
+            color: var(--danger);
+            font-weight: 500;
+        }
+        
+        .explanation {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: white;
+            border-left: 3px solid var(--primary);
+            font-size: 0.95rem;
+        }
+        
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        /* Submit Warning Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+        
+        .modal-title {
+            font-size: 1.5rem;
+            color: var(--danger);
+            margin-bottom: 20px;
+        }
+        
+        .modal-message {
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+        
+        .modal-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .modal-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        
+        .modal-btn-confirm {
+            background-color: var(--danger);
+            color: white;
+        }
+        
+        .modal-btn-cancel {
+            background-color: var(--light);
+            color: var(--dark);
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .question-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .test-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .header-item {
+                margin: 5px 0;
+            }
+            
+            .timer-container {
+                margin-top: 10px;
+                align-self: center;
+            }
+            
+            .pagination {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .page-numbers {
+                order: -1;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>NEC License Exam Set-4</h1>
+            <p>Practice test with 80 questions (60 x 1 mark + 20 x 2 marks)</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <!-- Welcome Screen -->
+        <div id="welcome-screen" class="welcome-screen">
+            <h2 class="welcome-title">NEC License Practice Test Set-4 </h2>
+            <div class="welcome-message">
+                <p>This practice test will help you prepare for the Nepal Engineering Council (NEC) License Examination. The test consists of 80 multiple-choice questions designed to simulate the actual exam experience.</p>
+                
+                <h3 style="margin-top: 20px; margin-bottom: 10px;">Test Structure:</h3>
+                <ul class="rules-list">
+                    <li><strong>80 questions total</strong> (60 questions worth 1 mark each, 20 questions worth 2 marks each)</li>
+                    <li><strong>Time limit:</strong> 100 minutes (1.7 hours)</li>
+                    <li><strong>Passing score:</strong> 50 marks or higher</li>
+                    <li>You can navigate between questions using the pagination controls</li>
+                    <li>Once submitted, you cannot restart the test</li>
+                </ul>
+                
+                <h3 style="margin-top: 20px; margin-bottom: 10px;">Instructions:</h3>
+                <ul class="rules-list">
+                    <li>Read each question carefully before answering</li>
+                    <li>You can change your answers before submitting</li>
+                    <li>After submission, you'll receive detailed feedback on your performance</li>
+                    <li>Good luck with your preparation!</li>
+                </ul>
+            </div>
+            <button id="start-btn" class="start-btn">Start Test</button>
+        </div>
+        
+        <!-- Test Container -->
+        <div id="test-container" class="test-container">
+            <div class="test-header">
+                <div class="header-item">
+                    <span class="header-label">Questions:</span>
+                    <span class="header-value" id="total-questions">80</span>
+                </div>
+                <div class="header-item">
+                    <span class="header-label">Attempted:</span>
+                    <span class="header-value" id="attempted-count">0</span>
+                </div>
+                <div class="header-item">
+                    <span class="header-label">Pages Left:</span>
+                    <span class="header-value" id="pages-left">7</span>
+                </div>
+                <div class="header-item">
+                    <span class="header-label">Current Page:</span>
+                    <span class="header-value" id="current-page">1</span>
+                </div>
+                <div class="timer-container">
+                    <span class="timer-icon">⏱️</span>
+                    <span class="timer" id="timer">120:00</span>
+                </div>
+            </div>
+            
+            <div class="page-container">
+                <div class="question-grid" id="question-grid">
+                    <!-- Questions will be inserted here -->
+                </div>
+            </div>
+            
+            <div class="pagination">
+                <button id="prev-btn" class="btn btn-secondary">Previous</button>
+                <div class="page-numbers" id="page-numbers">
+                    <!-- Page numbers will be inserted here -->
+                </div>
+                <button id="next-btn" class="btn btn-primary">Next</button>
+            </div>
+            
+            <div style="text-align: center;">
+                <button id="submit-test-btn" class="btn btn-success">Submit Test</button>
+            </div>
+        </div>
+        
+        <!-- Result Container -->
+        <div id="result-container" class="result-container">
+            <div class="result-header">
+                <h2 class="result-title">Test Results</h2>
+                <div class="score" id="final-score">0</div>
+                <div class="result-message" id="result-message"></div>
+            </div>
+            
+            <div class="review-section">
+                <h3 class="section-title">Review Answers</h3>
+                <div id="review-answers">
+                    <!-- Review content will be inserted here -->
+                </div>
+            </div>
+            
+            <div class="action-buttons">
+                <button id="retry-btn" class="btn btn-primary">Try Again</button>
+                <button id="view-answers-btn" class="btn btn-secondary">View All Answers</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Submit Warning Modal -->
+    <div id="submit-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h3 class="modal-title">Warning: Test Submission</h3>
+            <div class="modal-message">
+                <p>You are about to submit your test. Once submitted, you cannot restart or change your answers.</p>
+                <p>Are you sure you want to submit now?</p>
+            </div>
+            <div class="modal-buttons">
+                <button id="modal-cancel-btn" class="modal-btn modal-btn-cancel">Cancel</button>
+                <button id="modal-confirm-btn" class="modal-btn modal-btn-confirm">Submit Test</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Question data in the specified format
+        const questionData = [
+            
+   {	question: "	Lime stone is not a	","options": ["	 sedimentary rock 	","	 stratified rock 	","	 aqueous rock 	","	 metamorphic rock 	" ], "answer": "	 metamorphic rock 	"},
+{	question: "	To retard the initial setting time of cement the compound responsible is	","options": ["	 Tricalcium silicate 	","	 Gypsum 	","	 Di-calcium silicate 	","	 Tri calcium aluminate 	" ], "answer": "	 Gypsum 	"},
+{	question: "	To construct a 10 cm thick partition wall you will prefer	","options": ["	 English bond 	","	 Flemish bond 	","	 Header bond 	","	 Stretcher bond 	" ], "answer": "	 Stretcher bond 	"},
+{	question: "	Stress may be defined as	","options": ["	 force per unit length 	","	 force per unit volume 	","	 force per unit area 	","	 none of these 	" ], "answer": "	 force per unit area 	"},
+{	question: "	Surveys which are carried out to depict mountains rivers water bodies wooded areas and other cultural details are known as	","options": ["	 cadastral surveys 	","	 city surveys 	","	 topographical surveys 	","	 guide map surveys 	" ], "answer": "	 topographical surveys 	"},
+{	question: "	The order of booking dimensions is	","options": ["	 Length breadth height 	","	 Breadth length height 	","	 Height breadth length 	","	 None of these 	" ], "answer": "	 Length breadth height 	"},
+{	question: "	If the soil stays at a place above the parent rock where it is produced then it is called:	","options": ["	 Stationary soil 	","	 Static Soil 	","	 Residual Soil 	","	 Immobile Soil 	" ], "answer": "	 Residual Soil 	"},
+{	question: "	The Void ratio of the saturated soil is equal to the â€¦â€¦... of water content and specific gravity.	","options": ["	 Sum 	","	 Difference 	","	 Product 	","	 Ratio 	" ], "answer": "	 Product 	"},
+{	question: "	Sieving is not practicable for grain size smaller than about:	","options": ["	 0.075 mm 	","	 0.095 mm 	","	 0.15 mm 	","	 0.2 mm 	" ], "answer": "	 0.075 mm 	"},
+{	question: "	Liquid limit minus plastic limit is termed as:	","options": ["	 Flow Index 	","	 Plasticity Index 	","	 Shrinkage Index 	","	 Liquidity Index 	" ], "answer": "	 Plasticity Index 	"},
+{	question: "	The time factor for the clay layer is:	","options": ["	 A dimensionless parameter 	","	 Directly proportional to permeability 	","	 Directly proportional to the drainage path 	","	 Both a and b 	" ], "answer": "	 A dimensionless parameter 	"},
+{	question: "	If the failure of the finite slope occurs through the toe it is called:	","options": ["	 Slope failure 	","	 Face failure 	","	 Base failure 	","	 Toe failure 	" ], "answer": "	 Toe failure 	"},
+{	question: "	When we apply some external forces on a solid it undergoes......	","options": ["	 Zero deformation 	","	 Finite deformation 	","	 Continuous deformation 	","	 Plastic deformation 	" ], "answer": "	 Finite deformation 	"},
+{	question: "	According to the Pascal lawÂ pressure at a point in a static fluid is	","options": ["	 Increases on moving downward 	","	 Constant in all direction 	","	 Increases on moving upward 	","	 None of these 	" ], "answer": "	 Constant in all direction 	"},
+{	question: "	Vorticity is ....... the angular velocity vector	","options": ["	 Equal to 	","	 Twice 	","	 four times 	","	 half 	" ], "answer": "	 Twice 	"},
+{	question: "	If the pipe network is connected in parallel then	","options": ["	 Discharge in each pipe is same 	","	 Head loss in each pipe is same 	","	 Discharge will be constant and pressure will be high 	","	 None of these 	" ], "answer": "	 Head loss in each pipe is same 	"},
+{	question: "	If the Froude number is less than one then the flow is called	","options": ["	 Sub-critical 	","	 Critical 	","	 Super-critical 	","	 Any of these 	" ], "answer": "	 Sub-critical 	"},
+{	question: "	Symon's rain gauge is	","options": ["	 tipping-bucket gauge 	","	 weighing type gauge 	","	 float recording gauge 	","	 non-recording gauge 	" ], "answer": "	 non-recording gauge 	"},
+{	question: "	The maximum bending moment due to a moving load on a simply supported beam occurs	","options": ["	 at the mid span 	","	 at the supports 	","	 under the load 	","	 anywhere on the beam 	" ], "answer": "	 at the mid span 	"},
+{	question: "	Struts are load carrying members of a frame structure which are subjected to	","options": ["	 axial tension loads 	","	 axial compressive loads 	","	 torsional loads 	","	 transverse loads 	" ], "answer": "	 axial compressive loads 	"},
+{	question: "	According to pure bending theory which of the following claims is factually incorrect?	","options": ["	 Every layer has a different center of curvature 	","	 Beam material is isotropic 	","	 Beam material is homogenous 	","	 Permissible stresses are under Elastic Limit 	" ], "answer": "	 Every layer has a different center of curvature 	"},
+{	question: "	A diagram which shows the variations of the axial load for all sections of the span of a beam is called	","options": ["	 bending moment diagram 	","	 shear force diagram 	","	 thrust diagram 	","	 none of these 	" ], "answer": "	 thrust diagram 	"},
+{	question: "	The moment area method is not suitable for which type of beams?	","options": ["	 Cantilevers beams 	","	 Continuous beams 	","	 Simply supported beams 	","	 Beams fixed at both ends 	" ], "answer": "	 Continuous beams 	"},
+{	question: "	If a three hinged parabolic arch carries a uniformly distributed load on its entire span every section of the arch resists.	","options": ["	 compressive force 	","	 tensile force 	","	 shear force 	","	 bending moment 	" ], "answer": "	 compressive force 	"},
+{	question: "	Imposed load is also known as	","options": ["	 special load 	","	 live load 	","	 snow load 	","	 wind load 	" ], "answer": "	 live load 	"},
+{	question: "	The grade of concrete corresponding to nominal mix proportions of 1:3:6	","options": ["	 M10 	","	 M15 	","	 M20 	","	 M25 	" ], "answer": "	 M10 	"},
+{	question: "	The value of average bond stress Ï„bd depends on_________.	","options": ["	 Steel strength and Area of bar 	","	 Concrete strength and type of bar 	","	 Concrete strength and Steel strength 	","	 Concrete strength and Area of bar 	" ], "answer": "	 Concrete strength and type of bar 	"},
+{	question: "	The purpose of reinforcement in pre-stressed concrete is	","options": ["	 To provide adequate bond stress 	","	 To resist tensile stress 	","	 To impart initial compressive stress in concrete 	","	 None of these 	" ], "answer": "	 To impart initial compressive stress in concrete 	"},
+{	question: "	All columns shall be designed for minimum eccentricity l/500 + d/30 = 20 mm. Where l = ____ d = _____.	","options": ["	 Effective length of column Depth of column 	","	 Unsupported length of column Lateral Dimension of column 	","	 Effective length of column Lateral dimension of column 	","	 Unsupported length of column Depth of column 	" ], "answer": "	 Unsupported length of column Lateral Dimension of column 	"},
+{	question: "	Lime mortar is generally made with	","options": ["	 Quick lime 	","	 Fat lime 	","	 Hydraulic lime 	","	 White lime 	" ], "answer": "	 Hydraulic lime 	"},
+{	question: "	Which water has less chance of being contaminated by bacteria?	","options": ["	 River 	","	 Lake 	","	 Sea 	","	 Infiltration wells 	" ], "answer": "	 Infiltration wells 	"},
+{	question: "	The layout which conveys water flow toward the outer periphery?	","options": ["	 Ring system 	","	 Radial system 	","	 Grid iron system 	","	 Dead end system 	" ], "answer": "	 Radial system 	"},
+{	question: "	Which chemical is used for dechlorination of water?	","options": ["	 Sodium sulphite 	","	 Sodium bicarbonate 	","	 Calcium carbonate 	","	 Hydrogen peroxide 	" ], "answer": "		"},
+{	question: "	The minimum size of sewer should not be less than	","options": ["	 12cm 	","	 15cm 	","	 19mm 	","	 25cm 	" ], "answer": "	 15cm 	"},
+{	question: "	The recirculation factor of low rate trickling filter is	","options": ["	1	","	2	","	0	","	3	" ], "answer": "	0	"},
+{	question: "	What is the amount of fine to be paid by any individual if a proposal is executed without approval of IEE report?	","options": ["	 Up to 5 lakhs rupees 	","	 Up to 10 lakhs rupees 	","	 Up to 50 lakhs rupees 	","	 Up to 1 crore rupees 	" ], "answer": "	 Up to 50 lakhs rupees 	"},
+{	question: "	For irrigation purpose PH value of water should be	","options": ["	 Between 3 & 6 	","	 Between 6 & 5 	","	 Between 5 & 11 	","	 More than 11 	" ], "answer": "	 Between 6 & 5 	"},
+{	question: "	Single bank canal is the other name of	","options": ["	 ridge canal 	","	 contour canal 	","	 side slope canal 	","	 none of the above 	" ], "answer": "	 contour canal 	"},
+{	question: "	Bligh's seepage theory is commonly used for the analysis and design of:	","options": ["	 Earth dams 	","	 Irrigation canals 	","	 Pumping stations 	","	 Water treatment plants 	" ], "answer": "	 Earth dams 	"},
+{	question: "	Levees in river training refer to:	","options": ["	 Small dams constructed across the river 	","	 Channels constructed to divert flow away from settlements 	","	 Structures built to control sediment transport in the river 	","	 Raised embankments along the river to confine floodwaters 	" ], "answer": "	 Raised embankments along the river to confine floodwaters 	"},
+{	question: "	Submerged pipe outlets are designed to:	","options": ["	 Discharge water above the water surface 	","	 Discharge water below the water surface 	","	 Store water within the pipe 	","	 Divert water from the main pipe 	" ], "answer": "	 Discharge water below the water surface 	"},
+{	question: "	The operation which washes out salts from the upper zone of the soil is called 	","options": ["	 reclamation 	","	 leaching 	","	 efflorescence 	","	 salinity 	" ], "answer": "	 leaching 	"},
+{	question: "	The objective of hydropower development policy is	","options": ["	 To generate electricity at low cost by utilizing the water resources. 	","	 To extend reliable and qualitative electric service throughout Nepal at a reasonable price. 	","	 To render support for the development of rural economy 	","	 All of these 	" ], "answer": "	 All of these 	"},
+{	question: "	Which principle is used in Hydraulic Turbines?	","options": ["	 Braggs law 	","	 Pascal's Law 	","	 Faraday Law 	","	 Newton's second law 	" ], "answer": "	 Newton's second law 	"},
+{	question: "	Which type of hydropower plant uses a dam to create a reservoir to store water for electricity generation?	","options": ["	 Reservoir plant 	","	 Run-of-river plant 	","	 Pumped-storage plant 	","	 Tidal plant 	" ], "answer": "	 Reservoir plant 	"},
+{	question: "	What is the primary function of a cofferdam?	","options": ["	 To store large volumes of water 	","	 To regulate water flow for irrigation purposes 	","	 To prevent flooding 	","	 To provide a dry work area during construction 	" ], "answer": "	 To provide a dry work area during construction 	"},
+{	question: "	The main governing factor for safe design of surge tank is	","options": ["	 Height of surge tank 	","	 Cross-sectional area of surge tank 	","	 Velocity of flow entering the surge tank 	","	 None of the above 	" ], "answer": "	 Height of surge tank 	"},
+{	question: "	All of the characteristics curves are drawn with respect to	","options": ["	 Unit discharge 	","	 Unit speed 	","	 Unit power 	","	 Unit pressure 	" ], "answer": "	 Unit speed 	"},
+{	question: "	As per 2070 the maximum height of the vehicles for design of roads in Nepal is	","options": ["	 2.50 m 	","	 3.75 m 	","	4.75 m 	","	 5 m 	" ], "answer": "	4.75 m 	"},
+{	question: "	As per IRC the maximum value of rate of change of centrifugal acceleration in transition curve is	","options": ["	0.25	","	0.5	","	0.8	","	1.2	" ], "answer": "	0.8	"},
+{	question: "	The aggregate sample used for crushing test is	","options": ["	 Passes through 2.36 mm 	","	 Passes through 0.75 mm and retained on 0.36 mm 	","	 Passes through 7.5 mm and retained on 4.75 mm 	","	 Passes through 12.5 mm and retained on 10 mm 	" ], "answer": "	 Passes through 12.5 mm and retained on 10 mm 	"},
+{	question: "	Which of the following is 'On street parking'?	","options": ["	 Multi-storey parking 	","	 Underground parking 	","	 Kerb parking 	","	 None of above 	" ], "answer": "	 Kerb parking 	"},
+{	question: "	As per IS code the flexural strength of concrete used in road pavement should not be less than â€¦.	","options": ["	 3.0 N/mm² 	","	5.0N/mm² 	","	13.2N/mm² 	","	40N/mm² 	" ], "answer": "	5.0N/mm² 	"},
+{	question: "	______ type of excavator is used for digging below at or above operating level in a vertical range.	","options": ["	 Skimmer 	","	 Dragline 	","	 Clamshell 	","	 Back trench 	" ], "answer": "	 Clamshell 	"},
+{	question: "	The dotted lines represent	","options": ["	 Hidden edges 	","	 Projection line 	","	 Centre line 	","	 Hatching line 	" ], "answer": "	 Hidden edges 	"},
+{	question: "	Mostly used risk analysis technique in engineering economics is	","options": ["	 sensitivity analysis 	","	 breakeven analysis 	","	 scenario analysis 	","	 monte-carlo simulation 	" ], "answer": "	 monte-carlo simulation 	"},
+{	question: "	In the initial stage of the project the probability of completing the project is ________	","options": ["	 Zero 	","	 High 	","	 Low 	","	 Medium 	" ], "answer": "	 Low 	"},
+{	question: "	Which risk is connected to the circumstance outside the project that may influence the scope of work and the performance of the organization?	","options": ["	 Operational Risk 	","	 Financial Risk 	","	 Strategic Risk 	","	 Contextual Risk 	" ], "answer": "	 Contextual Risk 	"},
+{	question: "	Which of the following is not concerned with the authority of Engineers?	","options": ["	 express an opinion on engineering matter 	","	 good behavior with client 	","	 conscious with his profession 	","	 divulge the confidential matter 	" ], "answer": "	 divulge the confidential matter 	"},
+{	question: "	NEC regulation was effective from	","options": ["	 2055-11-27 	","	 2056-03-08 	","	 2057-03-08 	","	 2057-11-27 	" ], "answer": "	 2057-03-08 	"},
+{	question: "	If P is the percentage of water required for normal consistency water to be added for determination of initial setting time is _________.	","options": ["	 0.70 P 	","	 0.75 P 	","	 0.80 P 	","	0. 85 P 	" ], "answer": "	0. 85 P 	"},
+{	question: "	Calculate the combined correction due to refraction and Earth's curvature in levelling (surveying) for a distance of 2500 	","options": ["	 0.168 m 	","	0. 490 m 	","	0. 070 m 	","	0.420 m 	" ], "answer": "	0.420 m 	"},
+{	question: "	If poisons ratio of a soil is 4 its coefficient of earth pressure at rest is:	","options": ["	0.5	","	0.7	","	0.3	","	1	" ], "answer": "	0.7	"},
+{	question: "	Terzaghi's equation for ultimate bearing capacity of a strip footing of width B and infinite length	","options": ["	qu = 1.2cNc + gDNq + 0.3gBNg	","	qu = 1.2cNc + gDNq + 0.4gBNg	","	qu = 1.2cNc + gDNq + 0.5gBNg	","	qu = CNC + gDNq + 0.5gBNg	" ], "answer": "	qu = 1.2cNc + gDNq + 0.5gBNg	"},
+{	question: "	The energy loss caused by abrupt enlargement is expressed by	","options": ["	 ((V1-V2)/2)² 	","	 ((V1-V2)/2g)² 	","	 ((V1-V2)/g)² 	","	 ((V1-V2)/(Γ2g))Â² 	" ], "answer": "	 ((V1-V2)/(Γ2g))Â² 	"},
+{	question: "	In a rectangular channel there occurs a jump corresponding to Fr1 = Then the critical depth expressed in terms of initial depth y1 is:	","options": ["	 1.84 y1 	","	 3.95 y1 	","	 15.63 y1 	","	 2.65 y1 	" ], "answer": "	 1.84 y1 	"},
+{	question: "	In the case of a beam simply supported at both ends if the same load instead of being concentrated at center is distributed uniformly throughout the length then deflection at center will get reduced by	","options": ["	 1/2 times 	","	 1/4 times 	","	 5/8 times 	","	 3/8 times 	" ], "answer": "	 5/8 times 	"},
+{	question: "	Which of the following is an example for Statically Determinate Structure?	","options": ["	 Two hinged arch 	","	 Cantilever beam 	","	 Fixed beam 	","	 Continuous beam 	" ], "answer": "	 Cantilever beam 	"},
+{	question: "	In the design of a two-way slab the flexural reinforcement required in a shorter span is found to be 200 mm2/Calculate the required spacing if steel bars of diameter 8 mm are to be used. Ignore the spacing of reinforcement based on other criteria's and calculate only based on the given information.	","options": ["	252 mm 	","	236.87 mm 	","	 267.23 mm 	","	189.165 mm 	" ], "answer": "	252 mm 	"},
+{	question: "	The diameter of longitudinal bars of a column should never be less than	","options": ["	 12 mm 	","	 6 mm 	","	 10 mm 	","	 8 mm 	" ], "answer": "	 12 mm 	"},
+{	question: "	If the total hardness and alkalinity of a sample of water are 300 mg/L and 100 mg/L (CaCO3 scale) respectively then its carbonate and non â€“ carbonate hardness (in units of mg/L) will be respectively.	","options": ["	 100 and 200 	","	 400 and 300 	","	 100 and 400 	","	 400 and zero 	" ], "answer": "	 100 and 200 	"},
+{	question: "	What is the surface area (m2) of settling tank used for design discharge of 5 m3/s? (Assume design overflow rate for tank as 40 m3/m2/day.)	","options": ["	2045.32	","	3240.44	","	4525.33	","	5076.13	" ], "answer": "	3240.44	"},
+{	question: "	The field capacity of a soil is 25% its permanent wilting point is 15% and specific dry unit weight is 5 g/cc. If the depth of the root zone of a crop is 80 cm the storage capacity of the soil is	","options": ["	 8 cm 	","	 10 cm 	","	 12 cm 	","	 14 cm 	" ], "answer": "	 12 cm 	"},
+{	question: "	By using Bligh'ss theory for the design of the floor if the residual head at any section is 42 m and the specific gravity of a material is 4 what will be the thickness of the floor by providing S as 4/3?	","options": ["	 50 m 	","	 40 m 	","	 25 m 	","	 30 m 	" ], "answer": "		"},
+{	question: "	A hydroelectric reservoir can supply water continuously at a rate of 100 m3/The head is 75 The theoretical power that can be developed is (in MW).	","options": ["	73.5	","	67.5	","	68.5	","	70.8	" ], "answer": "	73.5	"},
+{	question: "	A power system has a maximum load of 15 MW. Annual load factor is 50%. The reserve capacity of plant is _____ if the plant capacity factor is 40%.	","options": ["	 3.75 MW 	","	 7.75 MW 	","	 46.75 MW 	","	 18.75 MW 	" ], "answer": "	 18.75 MW 	"},
+{	question: "	The reaction time considered in SSD is ___________	","options": ["	 5 sec 	","	 2 sec 	","	 2.5 sec 	","	 3 sec 	" ], "answer": "	 2.5 sec 	"},
+{	question: "	If the speed of overtaken vehicle is 80Kmph then the design speed is ___________	","options": ["	 80kmph 	","	 96kmph 	","	 100kmph 	","	 106kmph 	" ], "answer": "	 100kmph 	"},
+{	question: "	If P is principal amount I is the rate of interest per annum and n is the number of periods in years the compound amount factor (CAF) is:	","options": ["	 (1+i)^n 	","	 (1+i)^1/2n 	","	 âˆš(n+i) 	","	 None of these 	" ], "answer": "	 (1+i)^n 	"},
+{	question: "	How many chapters are in NEC?	","options": ["	7	","	9	","	18	","	35	" ], "answer": "	7	"}
+
+ ];
+        
+        // Process questions to add IDs and marks
+        const questions = questionData.map((q, index) => {
+            return {
+                id: index + 1,
+                question: q.question,
+                options: q.options,
+                answer: q.options.indexOf(q.answer), // Convert answer to index
+                marks: index < 60 ? 1 : 2, // First 60 worth 1 mark, rest worth 2
+                explanation: `Explanation for question ${index + 1}. The correct answer is "${q.answer}" because...`
+            };
+        });
+        
+        // If not enough questions, fill with samples
+        while (questions.length < 80) {
+            const i = questions.length;
+            questions.push({
+                id: i + 1,
+                question: `Sample question ${i + 1}?`,
+                options: ["Option A", "Option B", "Option C", "Option D"],
+                answer: Math.floor(Math.random() * 4),
+                marks: i < 60 ? 1 : 2,
+                explanation: `This is the explanation for sample question ${i + 1}`
+            });
+        }
+        
+        // DOM elements
+        const welcomeScreen = document.getElementById('welcome-screen');
+        const startBtn = document.getElementById('start-btn');
+        const testContainer = document.getElementById('test-container');
+        const questionGrid = document.getElementById('question-grid');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const submitTestBtn = document.getElementById('submit-test-btn');
+        const resultContainer = document.getElementById('result-container');
+        const finalScoreEl = document.getElementById('final-score');
+        const resultMessageEl = document.getElementById('result-message');
+        const reviewAnswersEl = document.getElementById('review-answers');
+        const retryBtn = document.getElementById('retry-btn');
+        const viewAnswersBtn = document.getElementById('view-answers-btn');
+        const timerEl = document.getElementById('timer');
+        const pageNumbersEl = document.getElementById('page-numbers');
+        const attemptedCountEl = document.getElementById('attempted-count');
+        const pagesLeftEl = document.getElementById('pages-left');
+        const currentPageEl = document.getElementById('current-page');
+        const totalQuestionsEl = document.getElementById('total-questions');
+        const submitModal = document.getElementById('submit-modal');
+        const modalCancelBtn = document.getElementById('modal-cancel-btn');
+        const modalConfirmBtn = document.getElementById('modal-confirm-btn');
+        
+        // Test configuration
+        const QUESTIONS_PER_PAGE = 10;
+        const TOTAL_PAGES = Math.ceil(questions.length / QUESTIONS_PER_PAGE);
+        const PASS_MARK = 50;
+        const TIME_LIMIT = 100 * 60; // 120 minutes in seconds
+        
+        // Test state
+        let currentPage = 1;
+        let timeLeft = TIME_LIMIT;
+        let timerInterval;
+        let userAnswers = Array(questions.length).fill(null);
+        let answeredQuestions = 0;
+        let testStarted = false;
+        
+        // Initialize the test
+        function initTest() {
+            // Update total questions display
+            totalQuestionsEl.textContent = questions.length;
+            
+            // Initialize pagination
+            initPagination();
+            
+            // Load first page
+            loadPage(currentPage);
+            
+            // Update header info
+            updateHeaderInfo();
+        }
+        
+        // Start the test
+        function startTest() {
+            testStarted = true;
+            welcomeScreen.style.display = 'none';
+            testContainer.style.display = 'block';
+            
+            // Start timer
+            startTimer();
+        }
+        
+        // Initialize pagination controls
+        function initPagination() {
+            pageNumbersEl.innerHTML = '';
+            
+            for (let i = 1; i <= TOTAL_PAGES; i++) {
+                const pageNumber = document.createElement('div');
+                pageNumber.className = 'page-number';
+                if (i === 1) pageNumber.classList.add('active');
+                pageNumber.textContent = i;
+                pageNumber.addEventListener('click', () => {
+                    if (currentPage !== i) {
+                        currentPage = i;
+                        loadPage(currentPage);
+                        updatePaginationUI();
+                        updateHeaderInfo();
+                    }
+                });
+                pageNumbersEl.appendChild(pageNumber);
+            }
+        }
+        
+        // Load questions for a specific page
+        function loadPage(page) {
+            questionGrid.innerHTML = '';
+            
+            const startIndex = (page - 1) * QUESTIONS_PER_PAGE;
+            const endIndex = Math.min(startIndex + QUESTIONS_PER_PAGE, questions.length);
+            
+            for (let i = startIndex; i < endIndex; i++) {
+                const q = questions[i];
+                const questionEl = document.createElement('div');
+                questionEl.className = 'question-card';
+                
+                questionEl.innerHTML = `
+                    <div class="question-text">${q.id}. ${q.question}</div>
+                    <div class="options">
+                        ${q.options.map((opt, optIndex) => `
+                            <label class="option">
+                                <input type="radio" id="q${q.id}_opt${optIndex}" name="q${q.id}" value="${optIndex}" ${userAnswers[i] === optIndex ? 'checked' : ''}>
+                                <span class="checkmark"></span>
+                                ${opt}
+                            </label>
+                        `).join('')}
+                    </div>
+                `;
+                
+                // Add event listeners to radio buttons
+                const radioButtons = questionEl.querySelectorAll('input[type="radio"]');
+                radioButtons.forEach(radio => {
+                    radio.addEventListener('change', (e) => {
+                        const questionIndex = i;
+                        const selectedOption = parseInt(e.target.value);
+                        
+                        // Update user answer
+                        if (userAnswers[questionIndex] === null) {
+                            answeredQuestions++;
+                        }
+                        userAnswers[questionIndex] = selectedOption;
+                        
+                        // Update header info
+                        updateHeaderInfo();
+                        
+                        // Update pagination UI
+                        updatePaginationUI();
+                    });
+                });
+                
+                questionGrid.appendChild(questionEl);
+            }
+        }
+        
+        // Update pagination UI
+        function updatePaginationUI() {
+            const pageNumbers = document.querySelectorAll('.page-number');
+            
+            pageNumbers.forEach((page, index) => {
+                page.classList.remove('active', 'answered');
+                
+                if (index + 1 === currentPage) {
+                    page.classList.add('active');
+                }
+                
+                // Check if any questions on this page are answered
+                const startIndex = index * QUESTIONS_PER_PAGE;
+                const endIndex = Math.min(startIndex + QUESTIONS_PER_PAGE, questions.length);
+                const pageAnswers = userAnswers.slice(startIndex, endIndex);
+                
+                if (pageAnswers.some(answer => answer !== null)) {
+                    page.classList.add('answered');
+                }
+            });
+            
+            // Update button states
+            prevBtn.disabled = currentPage === 1;
+            nextBtn.disabled = currentPage === TOTAL_PAGES;
+        }
+        
+        // Update header information
+        function updateHeaderInfo() {
+            attemptedCountEl.textContent = answeredQuestions;
+            pagesLeftEl.textContent = TOTAL_PAGES - currentPage;
+            currentPageEl.textContent = currentPage;
+        }
+        
+        // Start the countdown timer
+        function startTimer() {
+            updateTimerDisplay();
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                updateTimerDisplay();
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    submitTest();
+                }
+            }, 1000);
+        }
+        
+        // Update timer display
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            
+            timerEl.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+            
+            // Change color based on time remaining
+            timerEl.className = 'timer';
+            if (timeLeft <= 30 * 60) {
+                timerEl.classList.add('timer-warning');
+            }
+            if (timeLeft <= 10 * 60) {
+                timerEl.classList.add('timer-danger');
+            }
+        }
+        
+        // Show submit confirmation modal
+        function showSubmitModal() {
+            submitModal.style.display = 'flex';
+        }
+        
+        // Hide submit confirmation modal
+        function hideSubmitModal() {
+            submitModal.style.display = 'none';
+        }
+        
+        // Submit the test
+        function submitTest() {
+            clearInterval(timerInterval);
+            hideSubmitModal();
+            
+            // Calculate score
+            let score = 0;
+            const results = [];
+            
+            questions.forEach((q, index) => {
+                const userAnswer = userAnswers[index];
+                const isCorrect = userAnswer === q.answer;
+                
+                if (isCorrect) {
+                    score += q.marks;
+                }
+                
+                results.push({
+                    question: q,
+                    userAnswer: userAnswer,
+                    isCorrect: isCorrect
+                });
+            });
+            
+            // Show results
+            showResults(score, results);
+        }
+        
+        // Display test results
+        function showResults(score, results) {
+            testContainer.style.display = 'none';
+            resultContainer.style.display = 'block';
+            
+            // Update score display
+            finalScoreEl.textContent = `${score}/100`;
+            finalScoreEl.className = `score ${score >= PASS_MARK ? 'score-pass' : 'score-fail'}`;
+            
+            // Update result message
+            if (score >= PASS_MARK) {
+                resultMessageEl.textContent = `Congratulations! You scored ${score} marks and passed the practice test. You're well prepared for the NEC License exam!`;
+                resultMessageEl.className = 'result-message message-pass';
+            } else {
+                resultMessageEl.textContent = `You scored ${score} marks which is below the passing mark of ${PASS_MARK}. Review the questions below to improve your knowledge.`;
+                resultMessageEl.className = 'result-message message-fail';
+            }
+            
+            // Show review of answers
+            showReviewAnswers(results);
+        }
+        
+        // Show review of answers
+        function showReviewAnswers(results) {
+            reviewAnswersEl.innerHTML = '';
+            
+            results.forEach((result, index) => {
+                if (!result.isCorrect || index % 10 === 0) { // Show incorrect answers + first of each page
+                    const q = result.question;
+                    const reviewEl = document.createElement('div');
+                    reviewEl.className = 'review-question';
+                    
+                    let optionsHtml = q.options.map((opt, i) => {
+                        let classes = [];
+                        let status = '';
+                        
+                        if (i === q.answer) {
+                            classes.push('correct-answer');
+                            status = 'Correct Answer';
+                        }
+                        
+                        if (i === result.userAnswer && !result.isCorrect) {
+                            classes.push('user-answer');
+                            status = 'Your Answer';
+                        }
+                        
+                        return `
+                            <div class="${classes.join(' ')}">
+                                ${opt} 
+                                ${status ? `<small>(${status})</small>` : ''}
+                            </div>
+                        `;
+                    }).join('');
+                    
+                    reviewEl.innerHTML = `
+                        <div class="question-status ${result.isCorrect ? 'status-correct' : 'status-incorrect'}">
+                            ${result.isCorrect ? 'Correct' : 'Incorrect'} (${q.marks} mark${q.marks > 1 ? 's' : ''})
+                        </div>
+                        <div class="question-text">${q.id}. ${q.question}</div>
+                        <div class="options">${optionsHtml}</div>
+                        <div class="explanation">${q.explanation}</div>
+                    `;
+                    
+                    reviewAnswersEl.appendChild(reviewEl);
+                }
+            });
+        }
+        
+        // Show all answers
+        function showAllAnswers() {
+            reviewAnswersEl.innerHTML = '';
+            
+            questions.forEach((q, index) => {
+                const userAnswer = userAnswers[index];
+                const isCorrect = userAnswer === q.answer;
+                
+                const reviewEl = document.createElement('div');
+                reviewEl.className = 'review-question';
+                
+                let optionsHtml = q.options.map((opt, i) => {
+                    let classes = [];
+                    let status = '';
+                    
+                    if (i === q.answer) {
+                        classes.push('correct-answer');
+                        status = 'Correct Answer';
+                    }
+                    
+                    if (i === userAnswer && !isCorrect) {
+                        classes.push('user-answer');
+                        status = 'Your Answer';
+                    }
+                    
+                    return `
+                        <div class="${classes.join(' ')}">
+                            ${opt} 
+                            ${status ? `<small>(${status})</small>` : ''}
+                        </div>
+                    `;
+                }).join('');
+                
+                reviewEl.innerHTML = `
+                    <div class="question-status ${isCorrect ? 'status-correct' : 'status-incorrect'}">
+                        ${isCorrect ? 'Correct' : 'Incorrect'} (${q.marks} mark${q.marks > 1 ? 's' : ''})
+                    </div>
+                    <div class="question-text">${q.id}. ${q.question}</div>
+                    <div class="options">${optionsHtml}</div>
+                    <div class="explanation">${q.explanation}</div>
+                `;
+                
+                reviewAnswersEl.appendChild(reviewEl);
+            });
+        }
+        
+        // Event listeners
+        startBtn.addEventListener('click', () => {
+            initTest();
+            startTest();
+        });
+        
+        prevBtn.addEventListener('click', () => {
+            if (currentPage > 1) {
+                currentPage--;
+                loadPage(currentPage);
+                updatePaginationUI();
+                updateHeaderInfo();
+            }
+        });
+        
+        nextBtn.addEventListener('click', () => {
+            if (currentPage < TOTAL_PAGES) {
+                currentPage++;
+                loadPage(currentPage);
+                updatePaginationUI();
+                updateHeaderInfo();
+            }
+        });
+        
+        submitTestBtn.addEventListener('click', showSubmitModal);
+        
+        modalCancelBtn.addEventListener('click', hideSubmitModal);
+        
+        modalConfirmBtn.addEventListener('click', submitTest);
+        
+        retryBtn.addEventListener('click', () => {
+            if (confirm('Do you want to restart the test? All your answers will be lost.')) {
+                location.reload();
+            }
+        });
+        
+        viewAnswersBtn.addEventListener('click', showAllAnswers);
+        
+        // Initialize the welcome screen
+        window.addEventListener('DOMContentLoaded', () => {
+            welcomeScreen.style.display = 'block';
+            testContainer.style.display = 'none';
+            resultContainer.style.display = 'none';
+            submitModal.style.display = 'none';
+        });
+    </script>
+</body>
+</html>

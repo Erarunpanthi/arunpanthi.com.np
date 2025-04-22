@@ -348,6 +348,7 @@ footer a:hover {
 }
 .card.viewed {
     border-top-color: #2E7D32;
+margin-top: 10px;
 }
 
 .card.viewed::after {

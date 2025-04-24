@@ -1,0 +1,2450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Supply Systems - Comprehensive Guide</title>
+    <link rel="stylesheet" href="Note.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<div class="navbar">
+        <a href="Home"><i class="fas fa-home"></i> Home</a>
+        <a href="resources"><i class="fas fa-book"></i> Resources</a>
+        <a href="license-preparation"><i class="fas fa-certificate"></i> License Prep</a>
+        <a href="psc-preparation"><i class="fas fa-graduation-cap"></i> PSC Prep</a>
+        <a href="aboutus"><i class="fas fa-info-circle"></i> About Us</a>
+        <a href="contactus"><i class="fas fa-envelope"></i> Contact Us</a>
+    </div>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Water Supply Systems</h1>
+            <p class="subtitle">A Comprehensive Guide to Water Treatment and Distribution</p>
+        </div>
+    </header>
+    <section id="top">
+    <nav>
+           <div class="nav-buttons">
+         <button class="nav-btn" onclick="location.href='#Introduction to Water Supply Engineering'">Introduction to Water Supply Engineering</button>
+    
+    <!-- Pipe Networks Section -->
+    <button class="nav-btn" onclick="location.href='#SOURCES OF WATER'">SOURCES OF WATER</button>
+    
+    <!-- Unsteady Flow Section -->
+    <button class="nav-btn" onclick="location.href='#QUANTITY OF WATER'">QUANTITY OF WATER</button>
+    
+    <!-- Open Channel Flow Section -->
+    <button class="nav-btn" onclick="location.href='#QUALITY OF WATER'">QUALITY OF WATER</button>
+    
+    <!-- Uniform Flow Section -->
+    <button class="nav-btn" onclick="location.href='#INTAKE WORK'">INTAKE WORK</button>
+    
+    <!-- Energy & Momentum Section -->
+    <button class="nav-btn" onclick="location.href='#WATER TREATMENT'">WATER TREATMENT</button>
+    
+    <!-- Gradually Varied Flow Section -->
+    <button class="nav-btn" onclick="location.href='#varied-flow'">Gradually Varied Flow</button>
+    
+    <!-- Hydraulic Jump Section -->
+    <button class="nav-btn" onclick="location.href='#hydraulic-jump'">Hydraulic Jump</button>
+    
+    <!-- Mobile Boundary Section -->
+    <button class="nav-btn" onclick="location.href='#mobile-boundary'">Mobile Boundary</button>
+    
+    <!-- Similitude Section -->
+    <button class="nav-btn" onclick="location.href='#similitude'">Similitude</button>
+    </div>
+    </nav>
+    
+    <div class="container">
+<section id="Introduction to Water Supply Engineering">
+  <h1>Introduction to Water Supply Engineering</h1>
+    <h2>Introduction</h2>
+    <p><strong>Panchatatwo:</strong> Air, Water, Food, Heat (or Light), and Shelter.</p>
+    <p>Contamination causes health hazards and degrades the environment, a subject addressed in Environmental Engineering.</p>
+    <p>
+      Water Supply Engineering, a branch of Public Health Engineering within Environmental Engineering,
+      deals with providing the community with sufficient, safe water.
+    </p>
+  </section>
+
+  <section>
+    <h2> Importance of Water</h2>
+    <ul>
+      <li>Water makes up about 50% of the body weight in females and 60% in males.</li>
+      <li>
+        Water composition in the human body:
+        <ul>
+          <li>Brain/Heart: ~73%</li>
+          <li>Lungs: ~83%</li>
+          <li>Skin: ~64%</li>
+          <li>Muscles and Kidneys: ~79%</li>
+          <li>Bones: ~31%</li>
+        </ul>
+      </li>
+      <li>Recommended daily water intake: Approximately 3 liters for an adult male and 2.2 liters for an adult female.</li>
+    </ul>
+    <p>Animals require water in proportions similar to humans.</p>
+
+    <h3>Functions and Uses of Water</h3>
+    <h4>In the Human Body</h4>
+    <p>
+      Water is essential for maintaining hydration and facilitating vital bodily processes such as nutrient transport, temperature regulation, and waste elimination.
+    </p>
+    
+    <h4>For the Habitat</h4>
+    <p>
+      Water supports plant life by helping in nutrient uptake, maintaining cell structure, and driving photosynthesis.
+    </p>
+    
+    <h4>Common Uses</h4>
+    <ul>
+      <li>Drinking and Cooking</li>
+      <li>Bathing and Washing</li>
+      <li>Watering lawns and gardens</li>
+      <li>Heating and air-cooling</li>
+      <li>Growing crops</li>
+      <li>Street washing and Fire fighting</li>
+      <li>Recreation, Power generation, and Industrial applications</li>
+      <li>Sanitation and building operations</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Types of Water</h2>
+<!-- Types of Water Section -->
+  <section>
+    <ol>
+      <li>
+        <strong>Pure Water:</strong> Contains only hydrogen and oxygen (H<sub>2</sub>O). It is colorless, tasteless, and odorless. Pure water is not found in nature as it dissolves gases and minerals from the atmosphere.
+      </li>
+      <li>
+        <strong>Impure Water:</strong> Contains minerals and other substances. It is used for drinking but must be within acceptable limits.
+      </li>
+      <li>
+        <strong>Potable Water:</strong> Safe for drinking with a pleasant taste and suitable for domestic use.
+      </li>
+      <li>
+        <strong>Wholesome Water:</strong> Contains beneficial minerals and is free from harmful impurities.
+      </li>
+    </ol>
+  </section>
+    
+<!-- Earth's Water Distribution Section -->
+  <section>
+    <h2>Earth's Water Distribution</h2>
+    <p>
+      Water covers about <strong>71%</strong> of Earth's surface. According to the United States Geological Survey (USGS):
+    </p>
+    <ul>
+      <li><strong>Freshwater:</strong> Approximately 3% of all water on Earth.</li>
+      <li>
+        Of this freshwater:
+        <ul>
+          <li>About 68.7% is contained in glaciers and ice caps.</li>
+          <li>About 30.1% exists as groundwater.</li>
+          <li>Only roughly 0.3% is available as surface water (in lakes, rivers, etc.).</li>
+        </ul>
+      </li>
+    </ul>
+    <p>
+      Very little of the freshwater is easily available in rivers.
+    </p>
+  </section>
+
+  <!-- History & Development Section -->
+  <section>
+    <h2>Evolution of Water Supply Systems</h2>
+    <p>
+      Early human settlements developed along riverbanks because water was essential for survival. Initially, families collected water from local sources such as springs, rivers, and wells.
+    </p>
+    <p>
+      With growing populations, local sources often became inadequate. Communities then began to fetch water from farther sources, conveying it through systems made of wood, clay channels, clay pipes, lead pipes, and other materials. Over time, increased waste production led to pollution issues.
+    </p>
+    <p>
+      The need for a more secure and clean supply gave rise to planned or protected, systematic, and well-organized water supply systems.
+    </p>
+    <div class="footer-note">Lecture by: A. P. Parajuli</div>
+  </section>
+
+  <!-- Objectives of Water Supply -->
+  <section>
+    <h2>Objectives of Water Supply</h2>
+    <ol>
+      <li>To supply safe and wholesome water.</li>
+      <li>To provide a reliable and adequate water supply.</li>
+      <li>To make water easily accessible to consumers.</li>
+      <li>
+        To supply water in a manner that is reliable in quality and quantity, helping maintain general cleanliness and greatly reducing water-related diseases.
+      </li>
+    </ol>
+  </section>
+
+  <!-- Impacts of Water Supply -->
+  <section>
+    <h2>Impacts of Water Supply</h2>
+    
+    <h3>A. Negative Impacts</h3>
+    <ol>
+      <li>Reduction in downstream water availability, affecting aquatic life.</li>
+      <li>Decrease in the groundwater table.</li>
+      <li>Potential disputes over water resources.</li>
+      <li>Downstream pollution.</li>
+    </ol>
+    
+    <h3>B. Positive Impacts</h3>
+    <h4>Immediate Impacts:</h4>
+    <ol>
+      <li>Time saved from reduced water fetching.</li>
+      <li>Improved hygiene which can lower medical expenses.</li>
+      <li>Achievement of a safe, reliable, adequate, and effective water supply.</li>
+    </ol>
+    <h4>Long Term Impacts:</h4>
+    <ol>
+      <li>Boost in socio-economic activities.</li>
+      <li>Improved living standards.</li>
+      <li>Support for the economic growth of both communities and nations.</li>
+    </ol>
+  </section>
+
+  <!-- Systems or Methods of Distribution of Water -->
+  <section>
+    <h2>Systems or Methods of Distribution of Water</h2>
+    
+    <h3>1. Gravity System</h3>
+    <p>
+      In a gravity-based distribution system, water flows naturally from a higher elevation (such as a reservoir) to lower areas without the need for mechanical pumping.
+    </p>
+    <pre>
+Figure 1.1: Gravity System
+    +------------+
+    | Reservoir  |
+    +-----+------+
+          |
+     Gravity Flow
+          |
+    +-----v------+
+    | Distribution|
+    |  Network    |
+    +------------+
+    </pre>
+    
+    <h3>2. Pumping System</h3>
+    <p>
+      A pumping system utilizes mechanical pumps to transport water from the source to the distribution network.
+    </p>
+    <pre>
+Figure 1.2: Pumping System
+    +-----------+
+    | Water     |
+    | Source    |
+    +-----+-----+
+          |  Pump
+    +-----v-----+
+    | Distribution|
+    |  Network    |
+    +------------+
+    </pre>
+    
+    <h3>3. Dual System</h3>
+    <p>
+      A dual system combines both gravity and pumping methods to provide a reliable water distribution network.
+    </p>
+    <pre>
+Figure 1.3: Dual System
+    +---------+      +---------+
+    | Gravity |      |  Pump   |
+    | System  |      | System  |
+    +----+----+      +----+----+
+         \               /
+          \             /
+           +-----------+
+           | Distribution|
+           |  Network    |
+           +-----------+
+    </pre>
+ <!-- Section 1.8 Essentials of Water Supply Engineering -->
+  <section>
+    <h2> Essentials of Water Supply Engineering</h2>
+    <p>
+      The basic water supply system uses several key components to ensure safe water delivery.
+      The process generally follows this flow:
+    </p>
+    <pre>
+   Source  -->  Intake  -->  Treatment Plant  -->  Reservoir  
+                           |                           |
+                     (Wastewater, Sanitary)      Transmission Main
+                                                     │
+                                             Distribution Pipe Network
+                                                     │
+                                             Distribution Reservoir
+                                                     │
+                                                User's Tap
+    </pre>
+    <p>
+      Two typical systems are observed:
+    </p>
+    <h3>1. Rural Area (Gravity System)</h3>
+    <pre>
+         [Spring / Stream]
+               │
+           (Intake)
+               │
+     [Clear Water Treatment]
+               │
+      [Distribution Reservoir]
+               │
+    ─────Transmission Main───── (Gravity Flow)
+               │
+          [User's Tap]
+    </pre>
+    <p><strong>Figure :</strong> Gravity system or gravity method of distribution (Rural).</p>
+
+    <h3>2. Urban Area (Pumping System)</h3>
+    <pre>
+         [Water Source]
+               │
+           (Intake)
+               │
+         [Treatment Plant]
+               │
+       [Clear Water Reservoir]
+               │
+        (Optional Pump)
+               │
+        [Transmission Main]
+               │
+      [Distribution Reservoir]
+               │
+     [Distribution Pipe Network]
+               │
+          [User's Tap]
+    </pre>
+    <p><strong>Figure :</strong> Schematic diagram of a typical urban water supply system.</p>
+  </section>
+
+  <!-- Section 1.9 Components of Water Supply System and Their Functions -->
+  <section>
+    <h2>Components of Water Supply System and Their Functions</h2>
+    <ol>
+      <li>
+        <strong>Source and Intake:</strong>
+        <ul>
+          <li><em>Source:</em> Place where water is available.</li>
+          <li><em>Intake:</em> A structure that taps water; it holds an inlet, outlet, and screening mechanism.</li>
+        </ul>
+      </li>
+      <li>
+        <strong>Collection Chamber (CC):</strong>
+        <ul>
+          <li>A small chamber attached to or near the intake to collect water from one or more sources and feed it to the transmission line (TL).</li>
+        </ul>
+      </li>
+      <li>
+        <strong>Pump:</strong>
+        <ul>
+          <li>A machine used for artificial lifting or conveyance of water.</li>
+        </ul>
+      </li>
+      <li>
+        <strong>Pipe Line:</strong>
+        <ul>
+          <li>
+            <em>a. Transmission Pipe Line or Transmission Main (TL):</em>
+            <ul>
+              <li>The system that conveys water from the source to the treatment plant (TP) and then to the distribution reservoir (DR).</li>
+            </ul>
+          </li>
+          <li>
+            <em>b. Distribution Pipe Line or Distribution Main (DL):</em>
+            <ul>
+              <li>The network that distributes water from the distribution reservoir to the user's tap.</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <strong>Treatment Works:</strong>
+        <ul>
+          <li>If the source water is of good quality, it may be distributed directly.</li>
+          <li>If impurities are present, water is processed (treated) in the treatment plant (TP) to remove them. The components of the treatment works depend on the source and the desired water quality.</li>
+        </ul>
+      </li>
+      <li>
+        <strong>Reservoir (RVT):</strong>
+        <ul>
+          <li>An engineered or constructed structure to store water.</li>
+          <li>
+            Types of reservoirs:
+            <ul>
+              <li><em>Impounded Reservoir:</em> Formed by erecting a dam across a river or stream.</li>
+              <li><em>Clear Water Reservoir:</em> Located at the end of the treatment plant.</li>
+              <li><em>Distribution Reservoir:</em> Positioned before distribution to balance daily inflow and outflow.</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <strong>Pipe Crossing (PC):</strong>
+        <ul>
+          <li>Pipe crossings are used to route pipelines across water courses (gullies, streams, or rivers). Types include:
+            <ul>
+              <li>
+                <em>Under-bed Pipe Crossing:</em>
+                <br>
+                Pipe laid beneath the bed of a shallow, non-perennial water course (commonly using HDPE material).
+                <br>
+              
+              </li>
+              <li>
+                <em>Over-bed Pipe Crossing:</em>
+                <br>
+                Pipe laid across a deep perennial water course (approximately 12 m wide). For widths greater than 12 m, multiple mid supports may be used.
+                <br>
+               
+              </li>
+              <li>
+                <em>Suspended Pipe Crossing:</em>
+                <br>
+                For wide perennial water courses (>12 m), strong pipes (such as GI or HDPE) are suspended on cables, with supporting structures at the banks.
+                <br>
+               
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <strong>Interruption Chamber (IC) and Break Pressure Tank (BPT):</strong>
+        <ul>
+          <li>A small chamber designed to break pipeline pressure.</li>
+          <li><em>IC:</em> Used in the transmission line (without a float valve).</li>
+          <li><em>BPT:</em> Used in the distribution line (with a float valve).</li>
+          <li>Note: Neither is used in U-profile zones.</li>
+        </ul>
+      </li>
+      <li>
+        <strong>Distribution Chamber (DC):</strong>
+        <ul>
+          <li>A small chamber used to divide the flow within the distribution system.</li>
+        </ul>
+      </li>
+      <li>
+        <strong>Valve and Valve Chamber (VC):</strong>
+        <ul>
+          <li>Accessories that serve various functions—such as sluice, globe, check, pressure relief, air relief, and washout valves.</li>
+          <li>The valve chamber safeguards these valves.</li>
+        </ul>
+      </li>
+    </ol>
+</div>
+</section>
+<section id="SOURCES OF WATER">
+<!-- Chapter-2 -->
+<div class="container">
+  <h1>SOURCES OF WATER</h1>
+<!-- Common Terminologies -->
+  <section>
+    <h2>Common Terminologies</h2>
+    <ol>
+      <li><strong>Hydrology:</strong> Science that deals with the occurrence, circulation, and distribution of water in the earth and atmosphere.</li>
+      <li><strong>Sublimation (S):</strong> Process of converting snow or glaciers into water.</li>
+      <li><strong>Evaporation (E):</strong> Process of converting water or snow into vapor.</li>
+      <li><strong>Interception (I):</strong> Process of absorbing water by obstructions such as vegetation or buildings.</li>
+      <li><strong>Transpiration (T):</strong> Process of releasing water by vegetation through their leaves.</li>
+      <li><strong>Evapotranspiration (ET):</strong> Combined process of water being released by vegetation and evaporating into the atmosphere.</li>
+      <li><strong>Infiltration (INF):</strong> Process of water entering the ground.</li>
+      <li><strong>Porosity:</strong> Ratio of the volume of voids to the total volume.</li>
+      <li><strong>Permeability:</strong> Property that describes the ability of water to pass through a material.</li>
+      <li><strong>Ground Water Table (GWT):</strong> The static level of ground water in saturated soil.</li>
+      <li><strong>Percolation (P):</strong> Vertical movement of water to the groundwater table after infiltration.</li>
+      <li><strong>Capillarity:</strong> Ability to absorb or uplift water from the groundwater table through pores.</li>
+      <li><strong>Precipitation:</strong> All forms of water reaching the earth from the atmosphere (rain, snowfall, hail, frost, dew, etc.). In Nepal, rainfall is major while snow and others are minimal.</li>
+      <li><strong>Rainfall (RF):</strong> The major form of precipitation, measured by rain gauges in mm or cm.</li>
+      <li><strong>Surface Runoff (SRO):</strong> Portion of rain that flows on the ground and reaches lakes, ponds, streams, rivers, and the sea. (SRO = RF minus losses due to evaporation, transpiration, ET, percolation, etc.)</li>
+      <li><strong>Base or Subsurface Flow (BF):</strong> Portion of percolated water that emerges from the groundwater table under favorable geological conditions (e.g., springs, geysers, artesian wells).</li>
+      <li><strong>Runoff or Flow or Discharge (RO):</strong> Total water reaching any section of a stream or river from both surface runoff and base flow. (RO = SRO + BF)</li>
+    </ol>
+      </section>
+
+  <!-- Water Cycle or Hydrological Cycle -->
+  <section>
+    <h2>Water Cycle or Hydrological Cycle</h2>
+    <p>This cycle explains the circulation of water in the earth and its atmosphere.</p>
+    <pre>
+       Precipitation
+             │
+        Surface Runoff (SRO)
+             │
+          Infiltration
+             │
+    Groundwater Table (GWT)
+             │
+       Evapotranspiration
+             │
+          Back to Atmosphere
+    </pre>
+  </section>
+
+  <!-- Subsurface Soil Strata -->
+  <section>
+    <h2>Subsurface Soil Strata</h2>
+    <pre>
+         Top Soil
+        -------------
+           (Shallow Well / Artesian)
+        -------------
+         Aquifer (sand)
+        -------------
+         Impervious Layer (clay)
+        -------------
+         Aquifer (sand) or Deeper Well
+        -------------
+         Perched Water Table
+    </pre>
+    <p><strong>Figure:</strong> Soil strata</p>
+
+  </section>
+
+  <!-- Water Bearing Stratum (Aquifer) -->
+  <section>
+    <h2>Water Bearing Stratum (Aquifer)</h2>
+    <ol>
+      <li>
+        <strong>Aquifer:</strong> A soil layer (e.g., sand) that is able to hold water and allow it to pass through its pores.
+        <ul>
+          <li><strong>Unconfined or Non-artesian Aquifer:</strong> Located between a top pervious layer and a bottom impervious layer. It is recharged by infiltration from the ground surface.</li>
+          <li><strong>Confined or Artesian Aquifer:</strong> Confined between two impervious layers where water remains under pressure. Recharge may occur from a distant area exposed to the surface.</li>
+          <li><strong>Perched Aquifer:</strong> A localized zone where an impervious layer within an unconfined aquifer retains water above the general water table.</li>
+        </ul>
+      </li>
+      <li>
+        <strong>Aquitard:</strong> A partly permeable formation (e.g., a sandy clay layer) which allows slow seepage and yields insignificant amounts of water.
+      </li>
+      <li>
+        <strong>Aquiclude:</strong> An impermeable layer (e.g., clay) that may contain water but does not allow it to drain off.
+      </li>
+      <li>
+        <strong>Aquifuge:</strong> An impermeable layer (e.g., granite) that neither contains water nor transmits it.
+      </li>
+    </ol>
+  </section>
+
+  <!-- Introduction and Classification of Sources of Water -->
+  <section>
+    <h2>Introduction and Classification of Sources of Water</h2>
+    <p>When considering sources of water, the following criteria are used:</p>
+    <ul>
+      <li><strong>Definition</strong></li>
+      <li><strong>Quality</strong></li>
+      <li><strong>Quantity</strong></li>
+      <li><strong>Suitability</strong></li>
+    </ul>
+    <h3>Classification of Sources</h3>
+    <p>The sources of water can be divided into:</p>
+    <ul>
+      <li><strong>Surface Sources:</strong> Stream, River, Pond, Lake, Sea, Stored Rainwater, Waste Water Reclamation, Fog Water Harvesting, and Impounded Reservoir.</li>
+      <li><strong>Groundwater Sources:</strong> Spring (gravity or non-gravity), Infiltration Galleries, Infiltration Wells, Porous Pipe Galleries, Wells (open/dug/draw or tube wells), and Artesian Wells.</li>
+    </ul>
+   
+  </section>
+
+  <!-- Surface Sources -->
+  <section>
+    <h2>Surface Sources</h2>
+    <h3>Stream</h3>
+    <ul>
+      <li>Small, steep natural drainage by springs and minor water courses.</li>
+      <li>Typically found in mountainous regions with small catchments.</li>
+      <li><strong>Quantity:</strong> Smaller during dry periods; larger during rainy seasons.</li>
+      <li><strong>Quality:</strong> Generally good at high altitudes but may acquire impurities during rainy periods; usually requires sedimentation before use.</li>
+      <li><strong>Suitability:</strong> Flows along valley sides; often the main source in hilly villages.</li>
+      <li><strong>Classification:</strong> Can be non‑perennial (dry or rain‑fed, formed solely by surface runoff; maximum discharge in rainy season, drying in summer – typically not suitable for water supply) or perennial (fed by springs, snowmelt, or sustained surface runoff – used for water supply throughout the year).</li>
+    </ul>
+
+    <h3>River</h3>
+    <ul>
+      <li>Large water courses generally formed by the convergence of streams, flowing from hills to low lands and eventually to the sea.</li>
+      <li>Size: Usually smaller in the hills and larger in the lowlands.</li>
+      <li><strong>Quantity:</strong> Generally sufficient for water supply in both rural and urban areas.</li>
+      <li><strong>Quality:</strong>
+        <ul>
+          <li>Good if upstream settlements or agricultural activities are minimal.</li>
+          <li>May be good in summer but can carry silt, clay, and sand during monsoon seasons.</li>
+          <li>Often degraded due to pesticides, fertilizers, or sewage from upstream areas – self-cleansing may occur; otherwise, treatment is required.</li>
+        </ul>
+      </li>
+      <li><strong>Classification:</strong>
+        <ul>
+          <li><strong>Non‑perennial (dry or rain‑fed) River:</strong> Formed primarily by surface runoff; high discharge during rainy seasons and dry in summer – often not suitable for water supply unless supplemented by an impounded reservoir.</li>
+          <li><strong>Perennial River:</strong> Fed by continuous sources such as snow‑melt or springs, providing water year‑round and hence suitable for water supply.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h3>Pond</h3>
+    <ul>
+      <li>Temporary surface reservoirs formed in artificial depressions (e.g., due to excavation for highways or bridges).</li>
+      <li><strong>Quality:</strong> Usually very poor because of the influence of surface runoff or village wastewater – requires extensive treatment.</li>
+      <li><strong>Quantity:</strong> Very limited, making ponds unreliable for primary water supply though useful for animal bathing or irrigation.</li>
+    </ul>
+
+    <h3>Lake</h3>
+    <ul>
+      <li>Large natural basins (e.g., Phewa, Rara, Begnas, Tscho Rolpa, Bishazar) found mainly in mountainous or hilly regions (with a few in the Terai).</li>
+      <li><strong>Quantity:</strong> Depends on basin capacity, catchment area, annual rainfall, and the porosity of the ground – generally sufficient for water supply.</li>
+      <li><strong>Quality:</strong>
+        <ul>
+          <li>Larger lakes typically have good water quality.</li>
+          <li>Lakes in mountainous regions, while of good quality, may be too remote for water supply use.</li>
+          <li>Lakes in hilly or Terai regions may become eutrophic and contaminated with sewage, fertilizers, or pesticides – necessitating heavy treatment before use.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h3>Sea</h3>
+    <ul>
+      <li><strong>Quantity:</strong> Abundant.</li>
+      <li><strong>Quality:</strong> Poor due to high salt content.</li>
+      <li>Sea water is used for water supply only after extensive and costly treatment and pumping.</li>
+    </ul>
+
+    <h3>Stored Rainwater (Rainwater Harvesting)</h3>
+    <ul>
+      <li>An option when other surface or groundwater sources are not available.</li>
+      <li>Involves collecting water from roofs or ground surfaces into watertight tanks or pucca courtyards via channels.</li>
+      <li>Practiced in regions such as Rajasthan, parts of the Arabian countries, and some areas of Nepal.</li>
+      <li>May contain impurities and, when collected from roofs, is often not reliable for water supply due to limited quantity. In hilly regions, however, storage behind high dams may provide a viable supply.</li>
+    </ul>
+
+    <h3>Waste Water Reclamation</h3>
+    <ul>
+      <li>An option in areas where conventional surface or groundwater sources are not available, particularly in non‑rainfall regions.</li>
+      <li>Involves treating wastewater to a very high standard for use in water supply. Initially implemented in places like Windhoek, Africa, though it is generally not considered highly reliable.</li>
+    </ul>
+
+    <h3>Fog Water Harvesting</h3>
+    <ul>
+      <li>An option in certain rainfall areas where other sources are unavailable.</li>
+      <li>Involves capturing fog through a membrane to provide water – though it is generally not a reliable supply.</li>
+    </ul>
+
+    <h3>Impounded Reservoir</h3>
+    <ul>
+      <li>An artificial lake or reservoir created by constructing a bund, weir, or dam across a reliable watercourse (stream or river).</li>
+      <li>Used to store water to meet demands during dry seasons (e.g., the Sundarijal dam).</li>
+      <li>The reservoir typically includes:
+        <ul>
+          <li>A dam to hold back water,</li>
+          <li>A spillway to discharge excess flow, and</li>
+          <li>A gate chamber with valves to regulate release.</li>
+        </ul>
+      </li>
+      <li>Its location is chosen based on the quality and quantity of the water source, suitable dam-site conditions, reservoir elevation and distance, population density/distribution, and the local geology.</li>
+      <li>The water quality generally mirrors that of the source stream or river.</li>
+    </ul>
+  </section>
+  <!-- Ground Sources Section -->
+  <section>
+    <h2>Ground Sources</h2>
+    <p>
+      Ground sources are places from which water is derived from aquifers below the ground level. The quality depends on the characteristics of percolating water and may contain herbicides, pesticides, nutrients, minerals, salts, and other substances from the soil. Often, ground water is of better quality than surface water because of natural filtration.
+    </p>
+    
+    <h3>Springs</h3>
+    <p>
+      Springs represent the natural outflow of groundwater under suitable geological conditions. Their quantity is generally lower than that in streams or rivers, while the quality is usually good. They are widely used in rural water supply in hilly areas of Nepal due to favorable geology, low cost, and minimal treatment. (Some springs discharge hot water containing sulfur and are used for bathing to cure skin diseases.)<br>
+      Springs are classified into:
+      <strong>Gravity Springs</strong> and <strong>Non-gravity (or pressure/fissure) Springs</strong>.
+    </p>
+    
+    <h4>Gravity Springs</h4>
+    <p>These springs flow under hydrostatic pressure and are further classified as:</p>
+    
+    <h5>Depression Spring</h5>
+    <p>
+      Formed due to the overflow of the groundwater table (GWT) at the intersection of the ground surface and the water table. The flow is variable depending on the rise and fall of the GWT.
+    </p>
+    <figure>
+      <pre>
+Ground Surface
+     │
+     ▼       ← Overflow from GWT
+   [ GWT ]
+      </pre>
+      <figcaption>Figure: Depression Spring</figcaption>
+    </figure>
+    
+    <h5>Surface or Contact Spring</h5>
+    <p>
+      Formed when the aquifer meets an overlying impervious or less permeable layer at the surface. They generally have a small underground storage above the crest, and flow may cease during drought periods. Their performance can be enhanced by constructing a cutoff trench or wall.
+    </p>
+    <figure>
+      <pre>
+Aquifer (permeable)
+  ─────────────
+      │  (Contact)
+  Impervious Layer
+      </pre>
+      <figcaption>Figure: Surface Spring</figcaption>
+    </figure>
+    
+    <h5>Artesian Spring</h5>
+    <p>
+      Occurs in confined aquifers where water is under pressure. An opening in the confining bed allows water to flow naturally. The quantity is larger with extensive catchments, and obstructions at the spring mouth may slightly reduce the flow.
+    </p>
+    <figure>
+      <pre>
+Confined Aquifer (Pressurized)
+         │
+         ▼ 
+   Artesian Spring (Natural outflow)
+      </pre>
+      <figcaption>Figure: Artesian Spring</figcaption>
+    </figure>
+    
+    <h4>Non-Gravity (Pressure or Fissure) Spring</h4>
+    <p>
+      Formed due to volcanic activity and associated fractures that extend to great depths in the earth’s crust. These springs usually discharge hot water enriched with minerals and sulfur. They are not suitable for water supply but are used for therapeutic bathing.
+    </p>
+    <figure>
+      <pre>
+   Volcanic Rocks
+     \    │    /
+      \───┼───/   ← Hot, mineralized water
+       Fissure
+       Spring
+      </pre>
+      <figcaption>Figure: Fissure Spring</figcaption>
+    </figure>
+    
+    <h3>Infiltration Galleries</h3>
+    <p>
+      Infiltration galleries are horizontal or nearly horizontal tunnels dug along stream or river banks. They are located 3 to 10 meters below the ground level near the bank, under the bed of a perennial source, marshy land, or other water bodies. In some cases, porous pipes are laid instead of constructing a gallery. The quantity and quality of water depend on the location and area of coverage.
+    </p>
+    <figure>
+      <pre>
+  Stream/ River Bank
+  ─────────────────
+  | Infiltration  |
+  |   Gallery     |
+  ─────────────────
+      </pre>
+      <figcaption>Figure: Infiltration Gallery</figcaption>
+    </figure>
+    
+    <h3>Infiltration Wells</h3>
+    <p>
+      These are shallow wells with permeable boundaries that are often constructed along the bank or under the bed of a nalla, stream, or river. They are typically circular with a joint-brick wall structure that helps infiltrate water. A manhole cover at the top allows for inspection and cleaning. Their quality is generally enhanced by the filtering effect of the surrounding bed soil.
+    </p>
+    <figure>
+      <pre>
+  [ Infiltration Well ]
+   ○ (Circular opening)
+  Brick wall enclosure
+      </pre>
+      <figcaption>Figure: Infiltration Wells</figcaption>
+    </figure>
+    
+    <h3>Porous Pipe Galleries</h3>
+    <p>
+      In porous pipe galleries, porous pipes are laid beneath marshy land along a slope. Both longitudinal and cross pipes are arranged to collect water into a collection well. The assembly is typically enhanced by surrounding the pipes with sand, gravel, and broken stone to improve water quality and intake capacity.
+    </p>
+    <figure>
+      <pre>
+  [====] ← Porous pipe
+  Sand, Gravel, Stones surrounding the pipe
+      </pre>
+      <figcaption>Figure: Porous Pipe Gallery</figcaption>
+    </figure>
+    
+    <h3>Wells</h3>
+    <p>
+      Wells are vertical holes or shafts excavated to draw groundwater to the surface. They are generally classified into two types:
+    </p>
+    
+    <h4>Open (Dug or Draw) Wells</h4>
+    <p>
+      These wells are excavated by digging. They usually have a circular plan with diameters ranging from 1 to 10 m and depths between 2 to 20 m. Open wells (often called “kaccha wells” if unlined) may be lined with brick, stone masonry, or precast rings ("pakka wells") to prevent collapse. They typically include a raised wall, a properly drained platform, and a cover. Though suitable for individual use, they are not ideal for larger water supply schemes.
+    </p>
+    <figure>
+      <pre>
+   Dug Well:
+    _________
+   |         |
+   |  Water  |
+   |_________|
+   (Lined or unlined)
+      </pre>
+      <figcaption>Figure: Dug Well</figcaption>
+    </figure>
+    
+    <p>
+      A common concept clarifies that the terms "shallow" and "deep" may not always correspond to their actual depths:
+    </p>
+    <figure>
+      <pre>
+Shallow Well  ← Sometimes deeper than expected
+Deep Well     ← Sometimes shallower than expected
+      </pre>
+      <figcaption>Figure: Concept of Shallow and Deep Wells</figcaption>
+    </figure>
+    
+    <h4>Tube Wells</h4>
+    <p>
+      Tube wells are constructed by sinking a long, small-diameter pipe (typically 80–600 mm) into the ground after boring to reach the aquifer. They are widely used in the Terai and some hilly regions of Nepal. Tube wells generally offer higher yields and better water quality (though sometimes with impurities) and are suitable for water supply in smaller towns after treatment. Tube wells are further classified based on construction:
+    </p>
+    <ol>
+      <li>
+        <strong>Strainer Type Tube Well:</strong> Involves drilling, lowering a casing pipe (slightly larger than the well pipe), assembling a blind or perforated (strainer) assembly in the water-bearing strata, and gravel packing after removing the casing.
+        <figure>
+          <pre>
+  [--Strainer Assembly--]
+          </pre>
+          <figcaption>Figure: Strainer Type Tube Well</figcaption>
+        </figure>
+      </li>
+      <li>
+        <strong>Cavity Type Tube Well:</strong> Not common; constructed by drilling and inserting a blind in strong clay so that the pipe rests on a hard stratum. Water is drawn only from the bottom cavity.
+        <figure>
+          <pre>
+   [Cavity at bottom]
+      Water drawn from base
+          </pre>
+          <figcaption>Figure: Cavity Type Tube Well</figcaption>
+        </figure>
+      </li>
+      <li>
+        <strong>Slotted Type Tube Well:</strong> Used when there is no water within a depth of 75–100 m and no clay or hard stratum lies just above the aquifer. This design uses a combined assembly of normal and slotted pipes to derive water from a single confined aquifer.
+        <figure>
+          <pre>
+   [Slotted Pipes Assembly]
+          </pre>
+          <figcaption>Figure: Slotted Type Tube Well</figcaption>
+        </figure>
+      </li>
+      <li>
+        <strong>Perforated Pipe Tube Well:</strong> Uses a narrow pipe (25–80 mm in diameter) that is temporarily driven into the ground. The lower portion is perforated and wrapped with jute rope to act as a strainer. Typically used in very shallow groundwater situations (up to 12 m) on a small scale.
+        <figure>
+          <pre>
+    [Perforated Pipe]
+          </pre>
+          <figcaption>Figure: Perforated Pipe Tube Well</figcaption>
+        </figure>
+      </li>
+    </ol>
+    
+    <h3>Artesian Well</h3>
+    <p>
+      Artesian wells are constructed to withdraw water from confined aquifers. In a properly constructed artesian well, the ground level lies above the well mouth so that the water—under pressure—may flow naturally. Such wells often provide a continuous supply and commonly yield good quality water.
+    </p>
+    <figure>
+      <pre>
+Confined Aquifer Pressure
+       │
+       ▼
+  Artesian Well (Natural outflow)
+      </pre>
+      <figcaption>Figure: Artesian Well</figcaption>
+    </figure>
+  </section>
+
+  <!-- Source Selection Criteria Section -->
+  <section>
+    <h2>Source Selection Criteria</h2>
+    <ol>
+      <li>
+        <strong>Priority:</strong> Favor sources in the following order: springs; streams/rivers; infiltration galleries and wells. In the absence of surface water, a tube well (groundwater) becomes the ultimate source.
+      </li>
+      <li>
+        <strong>Location:</strong> The source should be close to the consumer’s area and suitable for gravity conveyance to reduce costs.
+      </li>
+      <li>
+        <strong>Quantity:</strong> It should provide sufficient water for the design period—with potential for future extension.
+      </li>
+      <li>
+        <strong>Quality:</strong> The water should be safe, free from pathogenic bacteria, germs, and other pollutants.
+      </li>
+      <li>
+        <strong>Cost:</strong> Lower cost is preferred—sources with fewer impurities, that allow gravity conveyance and are close to the community, will reduce expenses.
+      </li>
+      <li>
+        <strong>Sustainability and Safety:</strong> The source should be long lasting and safe from flood, landslide, interference by cattle, pedestrians, etc.
+      </li>
+      <li>
+        <strong>Reliability:</strong> The discharge should be consistent.
+      </li>
+      <li>
+        <strong>Non-conflict Among Users:</strong> The source should promote equitable use without disputes.
+      </li>
+    </ol>
+  </section>
+</div>
+</section>
+<section id="QUANTITY OF WATER">
+<div class="container">
+  <h1>QUANTITY OF WATER</h1>
+
+ <!-- Introduction Section -->
+  <section>
+    <h2>Introduction</h2>
+    <p>
+      When designing a water supply system, key components (such as the intake, transmission system, treatment unit, reservoirs, distribution system, and taps) are sized for the service (design) year. The design process is generally carried out by:
+    </p>
+    <ul>
+      <li>Selecting the base and forecasting for the design period.</li>
+      <li>Considering the population.</li>
+      <li>Determining the water demand.</li>
+    </ul>
+
+  </section>
+
+  <!-- Design and Base Periods Section -->
+  <section>
+    <h2>Design and Base Periods</h2>
+    <p>
+      The planning process involves several key time periods:
+    </p>
+    <ul>
+      <li>
+        <strong>Survey Year:</strong> The year when social/technical surveys are carried out (e.g., 2020 AD).
+      </li>
+      <li>
+        <strong>Base Period:</strong> The duration for investigation, planning, surveying, design, and construction (typically 2–3 years in rural areas and higher in urban areas).
+      </li>
+      <li>
+        <strong>Base Year:</strong> The end of the base period and the start of service. (Calculated as: Base Year = Survey Year + Base Period; e.g., 2023 AD.)
+      </li>
+      <li>
+        <strong>Design (Service) Year:</strong> The future year when full service is expected. (Design Year = Survey Year + Base Period + Design Period; e.g., 2043 AD.)
+      </li>
+      <li>
+        <strong>Design Period:</strong> The period from the base year to the design year. For projects with dams, this may range from 22 to 30 years (or even up to 50 years). In Nepal:
+        <ul>
+          <li>Rural areas: About 15 years if the annual population growth rate (r) is 2% or higher; 20 years if r is below 2%.</li>
+          <li>Urban areas: Typically 25 to 30 years (generally 30 years).</li>
+        </ul>
+      </li>
+    </ul>
+    
+    <p><strong>Selection Basis for the Design Period:</strong></p>
+    <ul>
+      <li>A longer period increases both design capacity and cost.</li>
+      <li>A shorter period can lead to premature strengthening—again uneconomical.</li>
+      <li>Key considerations include:</li>
+      <ul>
+        <li>Availability and yield of the water source.</li>
+        <li>The development status of the community (rapidly developing cities may require shorter periods).</li>
+        <li>Available funding.</li>
+        <li>The expected life of structures, pipes, and construction materials.</li>
+        <li>Loan interest rates (a higher rate may lead to a shorter design period).</li>
+        <li>Average annual population growth rate.</li>
+      </ul>
+    </ul>
+
+    <figure>
+      <pre>
+  +-------------------+
+  |   Survey Year     |  (2020 AD)
+  +-------------------+
+           |
+           |  + Base Period (3 years)
+           V
+  +-------------------+
+  |    Base Year      |  (2023 AD)
+  +-------------------+
+           |
+           |  + Design Period (20 years)
+           V
+  +-------------------+
+  | Service/Design Yr |  (2043 AD)
+  +-------------------+
+      </pre>
+      <figcaption>Figure: Concept of Base and Design Periods</figcaption>
+    </figure>
+
+
+  </section>
+
+  <!-- Population Forecasting Section -->
+  <section>
+    <h2>Population Forecasting and Its Necessity</h2>
+    <p>
+      Population data helps determine future water demand. Since the survey year population equals the present population—and because population fluctuates due to births, deaths, migrations, and disasters—forecasting is essential for the design year. Past population data, available from decennial censuses or current surveys, supports this analysis.
+    </p>
+
+  </section>
+
+  <!-- Methods of Population Forecasting Section -->
+  <section>
+    <h2>Methods of Population Forecasting</h2>
+    
+    <h3>Factors Affecting Population Growth</h3>
+    <ul>
+      <li>Economic factors (generally increase growth).</li>
+      <li>Development programs.</li>
+      <li>Social facilities.</li>
+      <li>Communication and information access.</li>
+      <li>Tourism.</li>
+      <li>Community life – similar classes, living habits, social customs, and religion tend to group people together.</li>
+      <li>Unforeseen factors (disasters causing death and migration) may decrease or increase growth in different areas.</li>
+    </ul>
+    
+    <h3>Population Forecasting Methods</h3>
+    <ol>
+      <li>
+        <strong>Arithmetical Increase Method:</strong>
+        <ul>
+          <li>Suitable for larger or older cities.</li>
+          <li>Assumes a constant average increase per unit time.</li>
+          <li>
+            Formula (conceptual):
+            <br>
+            Pₙ = P₀ + (constant × n)
+            <br>
+            where P₀ = present population, n = time period.
+          </li>
+        </ul>
+      </li>
+      <li>
+        <strong>Geometrical Increase (Uniform Growth) Method:</strong>
+        <ul>
+          <li>Assumes a constant percentage increase per time unit.</li>
+          <li>Suitable for young, rapidly growing cities.</li>
+          <li>
+            Formula (conceptual):
+            <br>
+            Pₙ = P₀ × (1 + r)ⁿ
+            <br>
+            where r = average percentage increase per unit time.
+          </li>
+        </ul>
+      </li>
+      <li>
+        <strong>Incremental Increase Method:</strong>
+        <ul>
+          <li>An improvement over purely arithmetical or geometrical methods, useful for rapidly growing cities.</li>
+          <li>
+            Conceptually: Pₙ = P₀ + n × (incremental increase)
+          </li>
+        </ul>
+      </li>
+      <li>
+        <strong>Decreasing Rate of Growth Method:</strong>
+        <ul>
+          <li>Suitable for very old established cities where population growth approaches saturation and the rate decreases over time.</li>
+          <li>
+            (The method adjusts earlier higher growth rates to a lower incremental increase.)
+          </li>
+        </ul>
+      </li>
+      <li>
+        <strong>Simple Graphical Method:</strong>
+        <ul>
+          <li>Uses historical data trends to extend a forecast graphically (generally used only as a check).</li>
+        </ul>
+      </li>
+      <li>
+        <strong>Comparative Graphical Method:</strong>
+        <ul>
+          <li>Useful for newer cities that are expected to develop similarly to existing ones.</li>
+        </ul>
+      </li>
+    </ol>
+  </section>
+
+  <!-- Water Demand and Their Types Section -->
+  <section>
+    <h2>Water Demand and Their Types</h2>
+    <p>
+      Water demand is typically divided into the following categories:
+    </p>
+    <ol>
+      <li><strong>Domestic Demand (DD):</strong> Home use for drinking, cooking, bathing, washing, and sanitation. (For example, IS 1172-1993 specifies approximately 135–200 Ipcd for small to large towns in India; WHO recommends a minimum of about 45 Ipcd in rural areas and 100–160 Ipcd in urban areas of developing countries like Nepal.)</li>
+      <li><strong>Livestock Demand (LSD):</strong> Water for domestic animals and livestock. In design, this should not exceed 20% of the domestic demand.</li>
+      <li><strong>Commercial and Institutional Demand (CID):</strong> Water for offices, warehouses, stores, hotels, schools, hospitals, theaters, restaurants, etc.</li>
+      <li><strong>Industrial Demand (ID):</strong> Depends on the type of industry and is common in urban areas.</li>
+      <li><strong>Municipal (Public Place) Demand (MPD):</strong> Used for street washing, sewer cleaning, and watering public parks and gardens. In many Indian cities, this accounts for about 20–25% of the total demand.</li>
+      <li><strong>Fire Demand (FD):</strong> Water required for firefighting (e.g., through fire hydrants on water mains at appropriate spacing). Fire demand is estimated using various empirical formulas.</li>
+    </ol>
+
+    <h3>Domestic Demand in Nepal</h3>
+    <table>
+      <caption>Table: Domestic Demand (Ipcd)</caption>
+      <thead>
+        <tr>
+          <th>Type of House</th>
+          <th>Demand (Ipcd)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Partially plumbed (without sanitation)</td>
+          <td>25–45 (generally ~45)</td>
+        </tr>
+        <tr>
+          <td>Fully plumbed (with sanitation)</td>
+          <td>65–135 (generally ~112)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Livestock Demand</h3>
+    <table>
+      <caption>Table: Livestock Demand (as % of Domestic Demand)</caption>
+      <thead>
+        <tr>
+          <th>Parameter</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Livestock Demand</td>
+          <td>&le; 20% of DD</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- (Additional tables for commercial/institutional demand may be added if data are available.) -->
+    
+
+  </section>
+
+  <!-- Variation in the Demand of Water Section -->
+  <section>
+    <h2>Variation in the Demand of Water</h2>
+    <p>
+      The water demand does not remain constant—it varies by season, month, day, and even hour. The total average annual daily consumption is given by:
+    </p>
+    <p style="text-align: center; font-weight: bold;">Q<sub>avg</sub> = P<sub>n</sub> &times; q</p>
+    <p>
+      where P<sub>n</sub> is the design year population and q is the average annual daily per capita demand.
+    </p>
+    <h3>Types of Variations</h3>
+    <ul>
+      <li>
+        <strong>Seasonal Variation:</strong>
+        <ul>
+          <li>
+            Maximum Seasonal Demand (MSD):
+            <br>
+            In India: MSD = 1.4 &times; Q<sub>avg</sub> (using a seasonal peak factor P<sub>fs</sub> = 1.4)
+            <br>
+            In Nepal: MSD = 1.0 &times; Q<sub>avg</sub>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <strong>Monthly Variation:</strong>
+        <br>
+        Maximum Monthly Demand (MMD) in India is typically 150% of Q<sub>avg</sub> (this variation is generally not accounted for in Nepal).
+      </li>
+      <li>
+        <strong>Daily Variation:</strong>
+        <ul>
+          <li>
+            Maximum Daily Demand (MDD):
+            <br>
+            In India: MDD = 1.8 &times; Q<sub>avg</sub> (daily peak factor P<sub>fd</sub> = 1.8)
+            <br>
+            In Nepal: MDD = 1.0 &times; Q<sub>avg</sub> (although in some cases a factor of 1.1 may be used)
+          </li>
+        </ul>
+      </li>
+      <li>
+        <strong>Hourly Variation:</strong>
+        <ul>
+          <li>
+            Maximum Hourly Demand (MHD):
+            <br>
+            In India: MHD = 1.5 &times; Q<sub>avg</sub> (hourly peak factor P<sub>fh</sub> = 1.5)
+            <br>
+            In Nepal: MHD is typically 2 to 4 times Q<sub>avg</sub>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+
+  <!-- Peak Demand, Peak Factor and Design Discharge Section -->
+  <section>
+    <h2>Peak Demand, Peak Factor and Design Discharge</h2>
+    <p>
+      <strong>Peak Demand (Q<sub>p</sub>):</strong> This is the maximum hourly demand on the most demanding day of the most critical season.
+    </p>
+    <p>
+      <strong>Peak Factor (P<sub>f</sub>):</strong> The ratio Q<sub>p</sub> / Q<sub>avg</sub>. In Nepal, for continuous systems the peak factor is generally between 2 and 4 (about 3), while for intermittent systems it may be between 4 and 6.
+    </p>
+    <p>
+      <strong>Design Discharge (Q<sub>d</sub>):</strong> The discharge for design is given by:
+      <br>
+      Q<sub>d</sub> = P<sub>f</sub> &times; Q<sub>avg</sub> = P<sub>f</sub> &times; (P<sub>n</sub> &times; q)
+    </p>
+    <p>
+      For example, in Nepal’s continuous systems:
+      <br>
+      - For the transmission system, P<sub>f</sub> is taken as 1 (so Q<sub>d</sub> equals Q<sub>avg</sub>).
+      <br>
+      - For the distribution system, P<sub>f</sub> is generally taken as 2 to 4 (commonly 3).
+    </p>
+</div>
+</section> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container">
+<section id="QUALITY OF WATER">
+    <h1>QUALITY OF WATER</h1>
+    
+    
+    <p>Hard water contains minerals that reduce the soap’s ability to lather.</p>
+    
+    <h2>Causes</h2>
+    <p>Hard water is mainly caused by dissolved salts of:</p>
+    <ul>
+      <li><strong>Calcium (Ca++)</strong></li>
+      <li><strong>Magnesium (Mg++)</strong></li>
+      <li><strong>Strontium (Sr++)</strong></li>
+    </ul>
+    <p>These minerals come from compounds such as bicarbonates, sulphates, chlorides, and nitrates.</p>
+    
+    <h2>Acceptable Levels</h2>
+    <ul>
+      <li>200 mg/l (as CaCO₃) is ideal.</li>
+      <li>More than 200 mg/l is acceptable.</li>
+      <li>Over 600 mg/l is too high.</li>
+    </ul>
+    
+    <h2>Effects of Hard Water</h2>
+    <ol>
+      <li><strong>Extra Soap Needed:</strong> Soap does not lather well, leading to wasteful consumption.</li>
+      <li><strong>Color Problems:</strong> It can change colors during dyeing or leave stains on clothes.</li>
+      <li><strong>Boiler/Heater Issues:</strong> Scale build-up reduces efficiency and might cause leaks from corrosion.</li>
+      <li><strong>Pipe Blockages:</strong> Scale formation in pipes and fixtures lowers efficiency and speeds up wear and tear.</li>
+      <li><strong>Burst Risks:</strong> Excess scaling can lead to pipes or boilers bursting.</li>
+      <li><strong>Other Consequences:</strong> It can increase fuel consumption, make food taste bland, and have a laxative effect.</li>
+    </ol>
+    
+ <!-- Types of Hardness Section -->
+  <section>
+    <h2>Types of Hardness</h2>
+    <ul>
+      <li>
+        <strong>Temporary or Carbonate Hardness (CH):</strong>
+        <ul>
+          <li>Removable by simply boiling or by the addition of lime.</li>
+          <li>Caused by bicarbonate (HCO<sub>3</sub><sup>-</sup>), Ca<sup>2+</sup>, Mg<sup>2+</sup>, and Sr<sup>2+</sup>.</li>
+        </ul>
+      </li>
+      <li>
+        <strong>Permanent or Non-Carbonate Hardness (NCH):</strong>
+        <ul>
+          <li>Not removable by simply boiling.</li>
+          <li>Caused by sulfate (SO<sub>4</sub><sup>2-</sup>), chloride (Cl<sup>-</sup>), nitrate (NO<sub>3</sub><sup>-</sup>) together with Ca<sup>2+</sup>, Mg<sup>2+</sup>, and Sr<sup>2+</sup>.</li>
+          <li>Removed by processes such as lime-soda treatment, zeolite, or ion exchange.</li>
+        </ul>
+      </li>
+    </ul>
+    <p><strong>Total Hardness (TH) = CH + NCH</strong></p>
+  </section>
+
+  <!-- Determination of Hardness in Water Section -->
+  <section>
+    <h2>Determination of Hardness in Water</h2>
+    <ul>
+      <li>Measured on various scales (e.g., OCI, OFr, OAm) but usually reported in mg/l (ppm) as CaCO<sub>3</sub>.</li>
+      <li>Laboratory methods include O’Hener’s method, soap solution titration, and the EDTA (Ethylene Diamine Tetra-acetic Acid) method; however, hardness is commonly determined from chemical analysis results.</li>
+      <li>Only the concentrations of Ca<sup>2+</sup>, Mg<sup>2+</sup>, and Sr<sup>2+</sup> are considered after converting into CaCO<sub>3</sub> equivalents.</li>
+      <li>
+        <strong>Equivalent Weights:</strong>
+        <ul>
+          <li>Ca<sup>2+</sup>: 20</li>
+          <li>Mg<sup>2+</sup>: 12.2</li>
+          <li>Sr<sup>2+</sup>: 43.8</li>
+          <li>CaCO<sub>3</sub>: 50</li>
+        </ul>
+      </li>
+      <li>
+        Hardness due to any principal cation is calculated as:
+        <br>
+        <em>HM (mg/l as CaCO<sub>3</sub>) = (CM × E) / EM,</em>
+        where CM is the concentration of the cation (mg/l), EM is the equivalent weight of that cation, and E is the equivalent weight of CaCO<sub>3</sub> (50).
+      </li>
+    </ul>
+
+  </section>
+
+  <!-- Levels of Hardness Section -->
+  <section>
+    <h2>Levels of Hardness</h2>
+    <p>The hardness levels (expressed as mg/l of CaCO<sub>3</sub>) are classified as follows:</p>
+    <table>
+      <caption>Table: Different Levels of Hardness</caption>
+      <thead>
+        <tr>
+          <th>Range (mg/l as CaCO<sub>3</sub>)</th>
+          <th>Hardness Level</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>0–50</td>
+          <td>Soft</td>
+        </tr>
+        <tr>
+          <td>50–100</td>
+          <td>Slightly Hard</td>
+        </tr>
+        <tr>
+          <td>150–250</td>
+          <td>Moderately Hard</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Alkalinity in Water and Its Causes Section -->
+  <section>
+    <h2>Alkalinity in Water and Its Causes</h2>
+    <ul>
+      <li>Alkalinity is the ability of water to neutralize acids; water with a pH greater than 7 is considered alkaline.</li>
+      <li>It is due to the presence of anions such as carbonate (CO<sub>3</sub><sup>2-</sup>), bicarbonate (HCO<sub>3</sub><sup>-</sup>), and hydroxide (OH<sup>-</sup>).</li>
+      <li>Highly alkaline water has a bitter taste, is unsuitable for drinking, causes incrustation, and may be harmful to plants.</li>
+      <li>Types of alkalinity:
+        <ul>
+          <li><strong>Hydroxide Alkalinity (Caustic Alkalinity, HA):</strong> Caused by OH<sup>-</sup>.</li>
+          <li><strong>Carbonate Alkalinity (CA):</strong> Caused by CO<sub>3</sub><sup>2-</sup>.</li>
+          <li><strong>Bicarbonate Alkalinity (BCA):</strong> Caused by HCO<sub>3</sub><sup>-</sup>.</li>
+        </ul>
+      </li>
+      <li>The total alkalinity (TA) is generally expressed as:
+        <br>
+        <strong>TA = CA + BCA</strong> (or CA + HA if both exist together).
+      </li>
+      <li>Alkalinity is determined by titration, although the values are typically obtained from chemical analyses.</li>
+      <li>Only the concentrations of the principal anions are considered after converting them into CaCO<sub>3</sub> equivalents.</li>
+      <li>
+        <strong>Equivalent Weights:</strong>
+        <ul>
+          <li>CO<sub>3</sub><sup>2-</sup>: 30</li>
+          <li>HCO<sub>3</sub><sup>-</sup>: 61</li>
+          <li>OH<sup>-</sup>: 17</li>
+        </ul>
+      </li>
+      <li>
+        Alkalinity due to any principal anion is calculated by the formula:
+        <br>
+        <em>(CB × E) / EB</em>, where CB is the concentration of the anion (mg/l), EB is the equivalent weight of that anion, and E is the equivalent weight of CaCO<sub>3</sub> (50).
+      </li>
+    </ul>
+  </section>
+
+  <!-- Relationship Between Alkalinity and Hardness Section -->
+  <section>
+    <h2>Relationship Between Alkalinity and Hardness</h2>
+    <ol>
+      <li>
+        When Total Hardness (TH) is greater than Total Alkalinity (TA):<br>
+        <strong>CH = TA</strong> and <strong>NCH = TH – CH = TH – TA</strong>.
+      </li>
+      <li>
+        When TH equals CH:<br>
+        <strong>NCH = 0</strong>.
+      </li>
+    </ol>
+  </section>
+ <!-- Major Topic: Microbiological Examination of Water -->
+  <h2>Microbiological Examination of Water</h2>
+  <p>This section describes the microbiological examination of water for bacteria and other microscopic organisms. The examination is classified into two parts:</p>
+  <ul>
+    <li><strong>Bacteriological Examination:</strong> (Bacteria Test)</li>
+    <li><strong>Biological Examination:</strong> (Microscopic organisms including algae, fungi, moulds, yeasts, rotifers, protozoa, etc.)</li>
+  </ul>
+  <p>
+    A common bacteriological examination for pathogenic bacteria is performed indirectly by testing for coliform or E‑coli. In drinking water, the presence of coliform and E‑coli should be nil.
+  </p>
+  
+  <!-- Methods to Determine Coliform/E‑coli -->
+  <h3>Determination of Coliform/E‑coli in the Laboratory</h3>
+  <p>The following methods are used:</p>
+  <ol>
+    <li>Total Count or Agar Plate Test</li>
+    <li>Multiple Tube Fermentation Technique</li>
+    <li>Membrane Filter Technique</li>
+  </ol>
+  
+  <!-- Total Count or Agar Plate Test -->
+  <h4>Total Count or Agar Plate Test</h4>
+  <ul>
+    <li>
+      Dilute the sample with sterilized water using a ratio of 1/10 or 1/100. For a 1/10 dilution, mix 1 ml of the sample with 9 ml of sterilized water.
+    </li>
+    <li>
+      Transfer 1 ml of the diluted sample into a petri dish and add 10 ml of agar or gelatin (a culture medium used to cultivate bacteria).
+    </li>
+    <li>
+      Incubate the petri dish at:
+      <ul>
+        <li>37°C for 24 hours (hot count)</li>
+        <li>20°C for 48 hours (cold count)</li>
+      </ul>
+    </li>
+    <li>
+      Use a colony counter to count the bacterial colonies.
+    </li>
+    <li>
+      Calculate the total bacteria per ml by dividing the number of colonies by the dilution factor. For potable water, the total count should not be greater than 1 colony per 100 ml.
+    </li>
+  </ul>
+  
+  <!-- Multiple Tube Fermentation Technique -->
+  <h4>Multiple Tube Fermentation Technique</h4>
+  <p>This technique uses standard Durham tubes and is subdivided into three tests:</p>
+  
+  <h5>a. Presumptive Test</h5>
+  <ul>
+    <li>
+      Dispense definite amounts of the diluted sample (e.g., 0.1 ml, 1.0 ml, 10 ml) into Durham tubes containing lactose broth.
+    </li>
+    <li>
+      Incubate the tubes at 37°C for 48 hours.
+    </li>
+    <li>
+      If no gas formation is observed in all tubes, the result is negative—indicating the absence of coliform/E‑coli and that the water is safe.
+    </li>
+    <li>
+      If gas formation occurs in any tube, only those tubes move forward to the confirmed test.
+    </li>
+  </ul>
+  
+  <h5>b. Confirmed Test</h5>
+  <ul>
+    <li>
+      Gas formation in the presumptive test may be due to fermentative bacteria other than coliform/E‑coli. A confirmed test is necessary.
+    </li>
+    <li>
+      Transfer a small amount of the incubated sample (that showed gas formation) into another fermentation medium containing brilliant green lactose bile broth.
+    </li>
+    <li>
+      Incubate at 37°C for 48 hours.
+    </li>
+    <li>
+      No gas formation in these tubes indicates a negative result. If gas is produced, the sample proceeds to the completed test.
+    </li>
+  </ul>
+  
+  <h5>c. Completed Test</h5>
+  <ul>
+    <li>
+      This test ascertains whether the gas-forming bacteria in the confirmed test are coliform/E‑coli.
+    </li>
+    <li>
+      Streak a small amount of the positive sample onto plates containing Endo or Eosin-methylene-blue agar.
+    </li>
+    <li>
+      Incubate the plates at 37°C for 24 hours.
+    </li>
+    <li>
+      Observe the plates with a colony counter or microscope:
+      <ul>
+        <li>If no colonies appear, the result is negative.</li>
+        <li>If colonies are present, further confirmation is needed.</li>
+      </ul>
+    </li>
+    <li>
+      Transfer the cultures from the confirmed test to fermentation tubes containing lactose broth and incubate at 37°C for 24–48 hours.
+    </li>
+    <li>
+      No gas formation indicates a negative result; gas formation confirms the presence of coliform/E‑coli. This suggests contamination from human or animal excreta and the possible presence of pathogens.
+    </li>
+  </ul>
+  
+  <!-- Most Probable Number (MPN) -->
+  <h4>Most Probable Number (MPN) or MPN Index</h4>
+  <ul>
+    <li>
+      The bacterial density in the multiple tube fermentation method is estimated by the MPN method.
+    </li>
+    <li>
+      For drinking water, the MPN should be nil.
+    </li>
+    <li>
+      The MPN is approximately calculated using the Thomas equation:
+      <pre>
+MPN/100 ml = [100 × (number of positive tubes)] / [(ml in all tubes) × (ml in negative tubes)³]
+      </pre>
+    </li>
+  </ul>
+  
+  <!-- Membrane Filter Technique -->
+  <h4>Membrane Filter Technique</h4>
+  <ul>
+    <li>
+      This method employs a sterile membrane filter and is simple and non–time-consuming. It can even be performed in the field.
+    </li>
+    <li>
+      The test provides precise results, usually yielding less than 1 colony per 100 ml.
+    </li>
+    <li>
+      The membrane filter, featuring pores of 5–10 µm, retains bacteria from the sample.
+    </li>
+    <li>
+      <strong>Procedure:</strong>
+      <ol>
+        <li>Filter a 20 ml sample using the membrane filter in a vacuum filter setup.</li>
+        <li>Place the filter—with retained bacteria—onto a sterilized pad saturated with a nutrient medium (such as M-Endo's medium) that inhibits non–coliform bacterial growth.</li>
+        <li>Incubate at 37°C for 20 hours.</li>
+        <li>After incubation, remove and examine the filter under a microscope or colony counter.</li>
+      </ol>
+    </li>
+  </ul>
+  
+  <!-- Major Topic: Water Quality Standards -->
+  <h2>Water Quality Standard for Drinking Purpose</h2>
+  <ul>
+    <li>
+      The World Health Organization (WHO) provides common guidelines, and each country develops standards based on these guidelines.
+    </li>
+    <li>
+      In Nepal (2005), the Ministry of Physical Planning and Works published the "National Drinking Water Quality Standards."
+    </li>
+  </ul>
+  <p>
+    One typical method for testing water quality is as follows:
+  </p>
+  <ul>
+    <li>Filter a 20 ml water sample using a membrane filter with a vacuum apparatus.</li>
+    <li>
+      Place the filter (with the bacterial residue) onto a sterilized pad infused with a nutrient medium (M-Endo's medium) that inhibits the growth of non–coliform bacteria.
+    </li>
+    <li>
+      Incubate at 37°C for 20 hours.
+    </li>
+    <li>
+      Examine the filter with a microscope or colony counter.
+    </li>
+  </ul>
+  <p>
+    Express the result as:
+  </p>
+  <pre>
+(Number of coliform colonies counted) x (100 / Volume of sample in ml)
+  </pre>
+  
+  <!-- Drinking Water Quality Standard Table -->
+  <h2>Drinking Water Quality Standard Table</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Parameter</th>
+        <th>NDWQS 2005</th>
+        <th>WHO 2017</th>
+        <th>Unit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Turbidity</td>
+        <td>10</td>
+        <td>15</td>
+        <td>NTU</td>
+      </tr>
+      <tr>
+        <td>Color</td>
+        <td>NGV*</td>
+        <td>NGV*</td>
+        <td>–</td>
+      </tr>
+      <tr>
+        <td>Taste &amp; Odor</td>
+        <td>NGV*</td>
+        <td>NGV*</td>
+        <td>–</td>
+      </tr>
+      <tr>
+        <td>TDS</td>
+        <td>Not specified</td>
+        <td>Not specified</td>
+        <td>mg/L</td>
+      </tr>
+      <tr>
+        <td>Electrical Conductivity</td>
+        <td>1500</td>
+        <td>1500</td>
+        <td>µS/cm</td>
+      </tr>
+      <tr>
+        <td>E. coli</td>
+        <td>Must not be detectable</td>
+        <td>Must not be detectable</td>
+        <td>per 100 ml</td>
+      </tr>
+      <tr>
+        <td>Total Coliform</td>
+        <td>0 in 95% of samples</td>
+        <td>0 in 95% of samples</td>
+        <td>per 100 ml</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>
+    <small>*NGV: No Guideline Value established.</small>
+  </p>
+</div>
+</section>
+</section>
+<div class="container">
+<section id="INTAKE WORK">
+<h1>Intake Works</h1>
+
+  <!-- Definition and Function of Intake -->
+  <section id="definition-function">
+    <h2>Definition and Function of Intake</h2>
+    <p>
+      An intake is a structure or device located at the water source that collects water and admits it into the conveyance system. Water is gathered through an intake conduit and delivered directly to the transmission main either by gravity flow or by pumping. Alternatively, it may be directed under gravity to a sump well (jack well) and then pumped or flowed by gravity to the treatment plant. Its primary functions are:
+    </p>
+    <ul>
+      <li>Safe withdrawal of water</li>
+      <li>Discharge of water either indirectly through a sump well or directly to the treatment facility using pumping or gravity flow</li>
+      <li>Supporting screens and valves that control and filter the water intake</li>
+    </ul>
+  </section>
+
+  <!-- Major Components -->
+  <section id="components">
+    <h2>Major Components</h2>
+    <ol>
+      <li>
+        <strong>Intake Conduit:</strong>
+        <p>
+          The conduit conveys water from the source to the intake well by gravity. It is equipped with a fine screen at its inlet and a valve which helps control the water flow.
+        </p>
+      </li>
+      <li>
+        <strong>Intake Structure:</strong>
+        <p>
+          This structure, which may be constructed using stone, brick, reinforced cement concrete (RCC) for larger installations, or blocks for smaller ones, houses the intake well. It supports the conduit, screens, valve operation devices, and pumps, while also protecting these elements from floodwaters, ice, debris, and trash.
+        </p>
+      </li>
+    </ol>
+  </section>
+
+  <!-- Factors Governing the Selection of an Intake Site -->
+  <section id="site-selection">
+    <h2>Factors Governing the Selection of an Intake Site</h2>
+    <p>
+      The choice of intake site is crucial for reliability and cost effectiveness. Several factors must be considered:
+    </p>
+    <ol>
+      <li><em>Proximity to the treatment plant:</em> A site near the treatment plant helps reduce water delivery costs.</li>
+      <li><em>Water quality:</em> Selecting a location with good natural water quality minimizes treatment requirements.</li>
+      <li><em>Upstream Positioning:</em> The site should be upstream of sewage disposal points and navigation channels to avoid contamination.</li>
+      <li><em>Depth:</em> A deeper site ensures water is accessible during dry periods and may lower the need for expensive impounding dams or barrages.</li>
+      <li><em>Future Expansion:</em> Space should be available for possible future expansion.</li>
+      <li><em>Flood Safety:</em> The site must not be prone to flooding and should remain accessible during flood events.</li>
+      <li><em>River Dynamics:</em> In meandering rivers, placement on the concave (outer) bank can provide a more reliable water supply during dry periods.</li>
+      <li><em>Environmental Conditions:</em> The area should have minimal issues with scoring, silting, storms, or heavy water currents.</li>
+      <li><em>Accessibility:</em> Good approach roads are essential for maintenance and operational access.</li>
+      <li><em>Stability:</em> The site must be safe from wind currents, landslides, and drastic seasonal changes in water quantity and quality.</li>
+    </ol>
+  </section>
+
+  <!-- Classification of Intakes -->
+  <section id="classification">
+    <h2>Classification of Intakes</h2>
+    <p>
+      Intakes can be classified based on their design and the source of water. The common classification criteria include:
+    </p>
+
+    <h3>1. Based on Installation Method</h3>
+    <ul>
+      <li>
+        <strong>Submerged Intake:</strong> Installed below the water surface to ensure continuous water supply even during fluctuating water levels.
+      </li>
+      <li>
+        <strong>Exposed Intake:</strong> Placed at or above the water level; while easier to access, these intakes tend to be more exposed to sediment and debris.
+      </li>
+    </ul>
+
+    <h3>2. Based on the Water Source</h3>
+    <ul>
+      <li><strong>River Intake:</strong> Specifically designed to draw water from rivers.</li>
+      <li><strong>Reservoir Intake:</strong> Utilized for water drawn from impounded reservoirs.</li>
+      <li><strong>Lake and Stream Intake:</strong> Suitable for smaller natural sources like lakes or streams.</li>
+      <li><strong>Canal Intake:</strong> Designed for water conveyed through man-made canals.</li>
+      <li><strong>S Intake:</strong> A specialized design adapted to particular local or operational conditions.</li>
+    </ul>
+
+    <h3>3. Based on the Condition of the Intake Well</h3>
+    <p>
+      Some systems classify intakes by whether the intake well remains constantly water-covered (wet intake) or if it is periodically exposed (sometimes referred to as a dry intake), which can influence maintenance strategies.
+    </p>
+
+    <h3>Classification Summary</h3>
+    <table>
+      <tr>
+        <th>Criterion</th>
+        <th>Categories</th>
+      </tr>
+      <tr>
+        <td>Installation Method</td>
+        <td>Submerged Intake, Exposed Intake</td>
+      </tr>
+      <tr>
+        <td>Water Source</td>
+        <td>River, Reservoir, Lake/Stream, Canal, S Intake</td>
+      </tr>
+      <tr>
+        <td>Intake Well Condition</td>
+        <td>Wet Intake (permanently covered) vs. Dry Intake</td>
+      </tr>
+    </table>
+  </section>
+
+  <!-- Additional Considerations -->
+  <section id="additional-info">
+    <h2>Additional Considerations in Intake Design</h2>
+    <p>
+      An effective intake system considers several operational, environmental, and maintenance factors:
+    </p>
+    <ul>
+      <li><strong>Environmental Impact:</strong> Proper site selection and design help manage water quality and reduce ecological disturbance.</li>
+      <li><strong>Maintenance:</strong> Regular cleaning and inspection of the screens, valves, and pumps are essential to ensure system performance.</li>
+      <li><strong>Protection:</strong> Design elements must protect against debris, ice, and sediment accumulation.</li>
+      <li><strong>Accessibility:</strong> Adequate approach roads and safe working conditions are required for consistent maintenance and operational oversight.</li>
+    </ul>
+
+  <h1>Pipe Materials in Water Supply and Sanitation</h1>
+  <p>
+    The selection of pipe materials is critical to ensuring an efficient water supply and sanitation system. The following table summarizes the common materials along with their available sizes (diameter), standard lengths, advantages, and disadvantages.
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Material</th>
+        <th>Available Sizes (Diameter)</th>
+        <th>Standard Lengths</th>
+        <th>Advantages</th>
+        <th>Disadvantages</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Ductile Iron Pipes</td>
+        <td>150 mm to 1800 mm</td>
+        <td>Usually 6 m segments</td>
+        <td>High strength and durability; excellent corrosion resistance when properly coated</td>
+        <td>Heavy; higher installation and handling costs</td>
+      </tr>
+      <tr>
+        <td>Cast Iron Pipes</td>
+        <td>100 mm to 600 mm</td>
+        <td>Typically 3–4 m segments</td>
+        <td>Robust with a long-established performance history</td>
+        <td>Brittle over time; heavy and may require increased maintenance</td>
+      </tr>
+      <tr>
+        <td>PVC Pipes</td>
+        <td>20 mm to 600 mm</td>
+        <td>Typically available in 4 m segments</td>
+        <td>Lightweight, cost-effective, and chemically inert</td>
+        <td>Limited to low-pressure and moderate temperature applications</td>
+      </tr>
+      <tr>
+        <td>CPVC Pipes</td>
+        <td>20 mm to 150 mm (commonly)</td>
+        <td>Usually 4 m segments</td>
+        <td>Heat resistant; ideal for hot water applications</td>
+        <td>More expensive than PVC; somewhat less flexible</td>
+      </tr>
+      <tr>
+        <td>HDPE Pipes</td>
+        <td>20 mm to 1200 mm</td>
+        <td>Typically 6 m segments or in flexible lengths via fusion jointing</td>
+        <td>High flexibility, corrosion resistance, and impact resistance</td>
+        <td>Requires specialized fusion joining techniques; potential issues with thermal expansion</td>
+      </tr>
+      <tr>
+        <td>Stainless Steel Pipes</td>
+        <td>15 mm to 300 mm (commonly)</td>
+        <td>Custom fabricated segments</td>
+        <td>Superior corrosion resistance; ideal for ensuring water purity</td>
+        <td>High cost and limited size availability compared to other materials</td>
+      </tr>
+      <tr>
+        <td>Concrete Pipes</td>
+        <td>600 mm to 3000 mm</td>
+        <td>Ranges from 1 m to 6 m segments depending on design</td>
+        <td>Extremely robust and ideal for gravity flow and heavy-load applications</td>
+        <td>Heavy and require specialized equipment for installation</td>
+      </tr>
+      <tr>
+        <td>Asbestos Cement Pipes</td>
+        <td>100 mm to 600 mm</td>
+        <td>Typically produced in 4 m segments</td>
+        <td>Good strength and durability; historically cost-effective</td>
+        <td>Serious health hazards during fabrication and installation; now largely phased out</td>
+      </tr>
+    </tbody>
+  </table>
+    <h1>Pipes Comparison and Overview</h1>
+    
+    <section>
+      <h2>Cast Iron (CI) Pipes</h2>
+      <p>
+        <strong>Description:</strong> Manufactured from pig iron. Cast iron pipes are highly durable with a lifespan of about 100 years and are extensively used for conveying water in water supply systems.
+      </p>
+      
+      <h3>Advantages:</h3>
+      <ul>
+        <li>High durability</li>
+        <li>Strong and resistant to corrosion</li>
+        <li>Withstands high internal and external pressure</li>
+        <li>Easy to cut and join</li>
+      </ul>
+      
+      <h3>Disadvantages:</h3>
+      <ul>
+        <li>Heavy and difficult to transport and handle</li>
+        <li>Brittle in nature</li>
+        <li>The carrying capacity decreases with time</li>
+      </ul>
+    </section>
+    
+    <section>
+      <h2>Ductile Iron (DI) Pipes</h2>
+      <p>
+        <strong>Material:</strong> Ductile Iron (also called nodular or spheroidal graphite iron).<br>
+        <strong>Manufacturing:</strong> Produced using centrifugal casting in metal or resin-lined molds with an internal cement mortar lining and an external coating (zinc/asphalt/paints).<br>
+        <strong>Lifespan:</strong> Over 100 years.
+      </p>
+      
+      <h3>Advantages:</h3>
+      <ul>
+        <li>Greater strength than CI pipes</li>
+        <li>Greater impact resistance than CI pipes</li>
+        <li>Greater durability than CI pipes</li>
+        <li>Lighter in weight</li>
+        <li>Easily joined</li>
+      </ul>
+      
+      <h3>Disadvantages:</h3>
+      <ul>
+        <li>Requires both internal and external protection systems</li>
+        <li>Potential for corrosion</li>
+      </ul>
+    </section>
+    
+    <section>
+      <h2>Steel Pipes</h2>
+      <p>
+        <strong>Material:</strong> Mild Steel.<br>
+        <strong>Fabrication:</strong> Made by rolling flat steel plates to the desired diameter and joining by riveting or welding. Welded pipes are preferred due to their strength and smoothness.<br>
+        <strong>Lifespan:</strong> Approximately 40 years.
+      </p>
+      
+      <h3>Advantages:</h3>
+      <ul>
+        <li>Resists very high internal pressure</li>
+        <li>Lightweight and easy to handle</li>
+        <li>Impervious</li>
+        <li>Flexible and can be used for curves</li>
+      </ul>
+      
+      <h3>Disadvantages:</h3>
+      <ul>
+        <li>Easily corroded</li>
+        <li>Not suitable for vacuum applications</li>
+        <li>High maintenance cost</li>
+        <li>Cannot withstand external pressure</li>
+      </ul>
+    </section>
+    
+    <section>
+      <h2>Cement Concrete Pipes</h2>
+      <p>
+        Concrete pipes are made from either Plain Cement Concrete (PCC) or Reinforced Cement Concrete (RCC). Plain concrete pipes are typically used for heads up to 15 m while RCC pipes are used for heads up to 60 m (some references note usages up to 100 m). Pre-stressed pipes are used for heads up to 100–150 m. Although they are resistant to corrosion, their heavy weight and difficulty in making connections limit their widespread use.
+      </p>
+      
+      <h3>Advantages:</h3>
+      <ul>
+        <li>Less prone to corrosion and low maintenance</li>
+        <li>Durable with a lifespan of about 75 years</li>
+        <li>Highly resistant to external loading</li>
+        <li>Reduced transportation costs when cast in the field</li>
+      </ul>
+      
+      <h3>Disadvantages:</h3>
+      <ul>
+        <li>Difficult to repair</li>
+        <li>Cannot withstand high internal pressure</li>
+        <li>Challenging to make service connections</li>
+        <li>Acidic and alkaline water may corrode the pipe</li>
+        <li>Not suitable for small diameter pipes</li>
+      </ul>
+    </section>
+    
+    <section>
+      <h2>Galvanized Iron (GI) Pipes</h2>
+      <p>
+        These are zinc-coated wrought iron pipes, widely used for inside buildings and service connections. Wrought iron is the purest form of iron, containing about 0.2% carbon. GI pipes are mostly available in 6 m lengths, have a lifespan of around 20 years, and can withstand internal pressures up to 180 m. (Water containing free chlorine can corrode these pipes.)
+      </p>
+    </section>
+    
+    <section>
+      <h2>Plastic Pipes</h2>
+      
+      <h3>PVC Pipes</h3>
+      <ul>
+        <li>Life span: up to 50 years</li>
+        <li>Maximum service temperature: 60° C</li>
+      </ul>
+      
+      <h3>PPR Pipes</h3>
+      <ul>
+        <li>Temperature resistant up to 80° C</li>
+      </ul>
+      
+      <h3>Polyethylene Pipes</h3>
+      <p>
+        Types: HDPE, LDPE, MDPE.<br>
+        HDPE pipes are widely used in gravity flow rural supply in Nepal.
+      </p>
+      <ul>
+        <li>Life span: 50 years</li>
+      </ul>
+      
+      <h3>HDPE Pressure Ratings</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Rating</th>
+            <th>Pressure (kg/cm²)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>I</td>
+            <td>2</td>
+          </tr>
+          <tr>
+            <td>II</td>
+            <td>2.5</td>
+          </tr>
+          <tr>
+            <td>III</td>
+            <td>4</td>
+          </tr>
+          <tr>
+            <td>IV</td>
+            <td>6</td>
+          </tr>
+          <tr>
+            <td>V</td>
+            <td>10</td>
+          </tr>
+          <tr>
+            <td>VI</td>
+            <td>12.5</td>
+          </tr>
+          <tr>
+            <td>VII</td>
+            <td>16</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="note">
+        Note: 1 kg/cm² = 10 m. If pressure exceeds 10 kg/cm² (i.e., 160 m), galvanized iron (GI) pipes are typically used.
+      </p>
+    </section>
+<h1>Water Distribution Systems</h1>
+    
+    <section>
+      <h2>Dead-End System</h2>
+      <p>
+        Also called a tree system, it starts with one main supply line that branches into sub-main lines (typically at right angles) and further divides into laterals. This system is ideal for older, irregularly planned towns—it’s simple and economical.
+      </p>
+    </section>
+    
+    <section>
+      <h2>Gridiron System</h2>
+      <p>
+        Also known as an interlaced or reticulation system, all mains, sub-mains, and branches are connected, creating a looped network. With equal pressure in all pipes and multiple flow paths, it works best for well-planned cities.
+      </p>
+    </section>
+    
+    <section>
+      <h2>Radial System</h2>
+      <p>
+        In cities with roads radiating from distinct centers, this method places the distribution reservoir at those centers. Water is then supplied radially to the surrounding areas, earning the name zonal distribution.
+      </p>
+    </section>
+    
+    <section>
+      <h2>Ring System</h2>
+      <p>
+        Also called a circular system, it forms a closed ring (circular or rectangular) of main pipes around the service area. By dividing the area into blocks, this system ensures balanced pressure and is ideal for well-planned urban layouts.
+      </p>
+    </section>
+  </section>
+</div>
+<!-- -------------------------WATER TREATMENT----------------------- -->
+<div class="container">
+<section id="WATER TREATMENT">
+ <h1>WATER TREATMENT</h1>
+  <p>The treatment of water involves the removal of undesirable matters and excessive desirable substances to produce safe drinking water. Key points for a treatment plant include:</p>
+  <ul>
+    <li>Location: Near the city yet in a safe environment.</li>
+    <li>Adaptability: Various units arranged based on the impurities present.</li>
+    <li>Support Facilities: A well-equipped laboratory for tests is essential.</li>
+  </ul>
+  <p>This is an important part of delivering safe water for drinking.</p>
+ 
+
+  <h2>Objectives of Treatment</h2>
+  <ul>
+    <li>Reduce impurities to levels harmless to humans.</li>
+    <li>Remove objectionable colour, odour, and unpleasant dissolved gases.</li>
+    <li>Eliminate murkiness/turbidity.</li>
+    <li>Reduce hardness to make the water reasonably soft.</li>
+    <li>Kill pathogens.</li>
+    <li>Eliminate corrosive properties to prevent leaching and corrosion of pipes and mechanical devices.</li>
+    <li>Reduce organic content to prevent biological growth.</li>
+    <li>Produce water that is clear, safe, and wholesome.</li>
+  </ul>
+
+  <h2>Treatment Processes and Impurity Removal</h2>
+  <p>The treatment processes are designed to remove various suspended and dissolved impurities – including leaves, woody matters, sand, and undesirable dissolved chlorine or iron compounds – in order to improve the colour, odour, and taste of the water. Secondary processes further reduce the corrosive nature and organic content.</p>
+<pre>
+           [Raw Water Source]
+                    │
+                    ▼
+         ┌────────────────────────┐
+         |       Screening        |
+         └────────────────────────┘
+                    │
+                    ▼
+         ┌────────────────────────┐
+         |     Clarification      |
+         └────────────────────────┘
+                    │
+                    ▼
+         ┌────────────────────────┐
+         |     Sedimentation      |
+         └────────────────────────┘
+                    │
+                    ▼
+         ┌────────────────────────┐
+         |     Coagulation        |
+         └────────────────────────┘
+                    │
+                    ▼
+         ┌────────────────────────┐
+         |      Filtration        |
+         └────────────────────────┘
+                    │
+                    ▼
+         ┌────────────────────────┐
+         |     Disinfection       |
+         └────────────────────────┘
+                    │
+                    ▼
+         ┌────────────────────────┐
+         |     Distribution       |
+         └────────────────────────┘
+
+</pre> 
+
+  <h2>Screening</h2>
+  <p><strong>Screening</strong> is the process of removing bulky, suspended, or floating matters (such as pebbles, dead animals, plastics, branches, leaves, bark, pieces of wood, ice, etc.) by passing raw water through a device with uniform openings called a screen.</p>
+  <ul>
+    <li><strong>Location:</strong> At the raw-water intake or pumping station and at the treatment plant (TP).</li>
+    <li><strong>Screened Materials:</strong> The removed items (screenings) are collected and disposed of safely (manually or mechanically).</li>
+    <li><strong>Objectives of Screening:</strong>
+      <ul>
+        <li>Remove bulky/unsightly floating materials.</li>
+        <li>Reduce the load on subsequent treatment units.</li>
+        <li>Prevent clogging and protect downstream pumps, valves, and gates from abrasion.</li>
+      </ul>
+    </li>
+    <li><strong>Types:</strong>
+      <ul>
+        <li><em>Bar Screens or Bar Racks</em>: Remove larger floating or suspended matters using bars (e.g., 25 mm diameter bars with clear spacing of 20–25 mm) arranged on a sloped platform with perforations to squeeze water from the screenings.</li>
+        <li><em>Fine Screens</em>: Remove finer suspended impurities using wire meshes (around 6 mm or nylon) or perforated plates (although these tend to clog frequently and require rapid cleaning).</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h2>Plain Sedimentation</h2>
+  <p><strong>Plain sedimentation</strong> involves retaining water in a quiescent tank or basin to settle suspended solids (SS) under the action of gravity – without the use of chemicals. The primary purpose is to remove coarse or heavy suspended matters such as silt, sand, and clay.</p>
+  <p>Suspended solids in water may be:</p>
+  <ul>
+    <li><strong>Inorganic:</strong> typically about a specific gravity (Sp. Gr.) of 2.65.</li>
+    <li><strong>Organic:</strong> typically ranging from 1 to 1.4.</li>
+  </ul>
+  <p>Even particles with Sp. Gr. around 1 may remain in suspension due to turbulence but can be removed under quiescent conditions.</p>
+  <p>During sedimentation, the water is retained long enough so that heavier particles settle as sludge at the bottom, while lighter particles (or floating scum) are removed from the surface.</p>
+  
+  <h3>Theory of Settlement &amp; Settling Velocity of Discrete Particles</h3>
+  <p>In sedimentation, each discrete (i.e. non-deforming) particle has its own hydraulic settling velocity. For a spherical particle the net downward force is given by the difference between the weight and its buoyant force, as follows:</p>
+  <div class="formula">
+    Weight: W<sub>p</sub> = ρ<sub>p</sub> g V   &nbsp;&nbsp;&nbsp; Buoyant Force: F<sub>b</sub> = ρ<sub>w</sub> g V
+  </div>
+  <p>Since the volume of a sphere is</p>
+  <div class="formula">
+    V = (π/6)&nbsp;d<sup>3</sup>
+  </div>
+  <p>the net force is</p>
+  <div class="formula">
+    F = (ρ<sub>p</sub> − ρ<sub>w</sub>) g (πd<sup>3</sup>/6)
+  </div>
+  <p>For laminar flow (small particles), Stokes’ law gives the settling velocity as:</p>
+  <div class="formula">
+    v<sub>s</sub> = [g (ρ<sub>p</sub> − ρ<sub>w</sub>) d<sup>2</sup>]/[18 μ]
+  </div>
+  <p class="note">Note: For coarser particles or transitional flow, alternative formulations such as Hazen's formula may be used. In practice, trial‐and‐error calculations are used to verify design conditions.</p>
+  
+  <h3>Hazen’s Equation – Sample Calculation Table</h3>
+  <p>The following table illustrates a sample set of values (for demonstration only) that might be generated when using Hazen’s equation for estimating settling velocities:</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Particle Diameter (mm)</th>
+        <th>Specific Gravity (S)</th>
+        <th>Settling Velocity (mm/min)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>0.1</td>
+        <td>1.05</td>
+        <td>0.4</td>
+      </tr>
+      <tr>
+        <td>0.5</td>
+        <td>1.05</td>
+        <td>4</td>
+      </tr>
+      <tr>
+        <td>1.0</td>
+        <td>1.05</td>
+        <td>8</td>
+      </tr>
+      <tr>
+        <td>2.0</td>
+        <td>1.05</td>
+        <td>16</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="note">These values are for illustration only and the actual design should use site-specific data.</p>
+  
+  <h2>Types of Sedimentation Tanks</h2>
+  <p>Sedimentation tanks are typically constructed of RCC and may be rectangular or circular in plan. They are classified according to their method of operation:</p>
+  <ul>
+    <li><strong>Quiescent (Fill and Draw) Tanks:</strong> Intermittent use with long cycles (typically 30–36 hours for filling, retention, and cleaning). These are not popular today because of the large tank volume requirement.</li>
+    <li><strong>Continuous Flow Tanks:</strong> Raw water continuously enters, sedimentation occurs, and clear water is withdrawn. These are further classified by the direction of flow:
+      <ul>
+        <li><strong>Horizontal Flow Tanks:</strong>
+          <ul>
+            <li>Rectangular tanks with longitudinal (up‐and‐down or “around the end” flow) design.</li>
+            <li>Circular tanks with radial flow (further subdivided into those with peripheral feed and with central feed).</li>
+          </ul>
+        </li>
+        <li><strong>Vertical Flow Tanks:</strong> Typically feature a square or circular top with a hopper bottom so that water flows vertically.</li>
+      </ul>
+    </li>
+  </ul>
+  
+  <h2>Design of Horizontal Flow Rectangular Sedimentation Tank</h2>
+  <p>In an ideal horizontal flow rectangular sedimentation tank, consider the following design parameters:</p>
+  <ul>
+    <li>Q = flow (discharge rate).</li>
+    <li>L<sub>in</sub> = length of the inlet zone.</li>
+    <li>L<sub>out</sub> = length of the outlet zone.</li>
+    <li>B = tank width.</li>
+    <li>FB = freeboard.</li>
+    <li>d = depth of the sludge zone.</li>
+    <li>v = horizontal velocity.</li>
+    <li>v<sub>s</sub> = particle settling velocity.</li>
+    <li>t = detention time.</li>
+    <li>I = effective length of the settling zone; d' = effective depth.</li>
+  </ul>
+  <p>The overall tank dimensions can be estimated as:</p>
+  <div class="formula">
+    L = L<sub>in</sub> + I + L<sub>out</sub>  and  D = FB + d + d'
+  </div>
+  <p>For effective sedimentation, a discrete particle entering at the top must satisfy:</p>
+  <div class="formula">
+    v<sub>s</sub> ≥ (Q / (B · I))   i.e. the particle’s settling velocity must be greater than or equal to the surface overflow rate.
+  </div>
+  <p class="note">Here, Q, B, and I are chosen (or adjusted) to ensure that even smaller particles have sufficient residence time to settle.</p>
+  
+  <h3>Design Parameters &amp; Tank Dimensions – A Summary Table</h3>
+  <p>The following table summarizes some typical design parameters for sedimentation tanks. Two cases are shown: a closed continuous system (with disinfection and faucets) and an open system (without them).</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Parameter</th>
+        <th>Closed System (PS)</th>
+        <th>Open System (SWC)</th>
+        <th>Units</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Areal Loading</td>
+        <td>15 – 30</td>
+        <td>30 – 40</td>
+        <td>m³/m²/day</td>
+      </tr>
+      <tr>
+        <td>Retention Time</td>
+        <td>4 – 8</td>
+        <td>1 – 4</td>
+        <td>hours</td>
+      </tr>
+      <tr>
+        <td>Effective Depth</td>
+        <td colspan="2">2.5 – 5 (typically ~3)</td>
+        <td>meters</td>
+      </tr>
+      <tr>
+        <td>Flow Velocity</td>
+        <td colspan="2">Up to 40</td>
+        <td>mm/min</td>
+      </tr>
+      <tr>
+        <td>Inlet/Outlet Zone Length</td>
+        <td colspan="2">0.2 – 1</td>
+        <td>meters</td>
+      </tr>
+      <tr>
+        <td>Sludge Zone Depth</td>
+        <td colspan="2">~1</td>
+        <td>meter</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="note">These values should be adjusted based on specific site conditions and design criteria.</p>
+  
+  <p>By integrating these concepts—a proper screening step, effective plain sedimentation, and a well‐designed sedimentation tank—the water treatment process can reliably produce clear, safe drinking water.</p>
+ <h2>Discrete Particle Movement</h2>
+  <p>For a discrete particle reaching point A:</p>
+  <ul>
+    <li>The horizontal component (V<sub>h</sub>) tries to move the particle horizontally while the settling velocity (v<sub>s</sub>) tries to move it downward.</li>
+    <li>The actual path is the vector sum (v) of these velocities, whether along, below, or above the line AX.</li>
+    <li>For a smaller discrete particle entering at a height (h) from the top of the sludge zone, if V<sub>h</sub> and v<sub>s</sub> are such that <code>v<sub>s</sub> ≥ Q/(B·I)</code> (i.e. the settling velocity is greater than or equal to the surface overflow rate), the particle is effectively removed.</li>
+  </ul>
+  <p>
+    For a particle reaching point B (vertically below A) at a distance (h) above the top of the sludge zone, effective removal is also achieved provided the surface overflow rate (SOR) (defined as Q/(B·I), the overflow rate or surface loading of the sedimentation tank) meets the design criteria.
+  </p>
+
+  <h2>Design Considerations for Sedimentation Tank</h2>
+  <p>The following parameters are used for the design of treatment units and sedimentation tanks:</p>
+  <ul>
+    <li>
+      <strong>Design Flow (Q):</strong>
+      <ul>
+        <li>Closed continuous system (with disinfection and faucets): Average flow.</li>
+        <li>Open system (without disinfection and faucets): Peak flow.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Surface Overflow Rate (SOR):</strong> Q/(B·I)
+      <ul>
+        <li>For Public Supply (PS): 15 to 30 m<sup>3</sup>/m<sup>2</sup>/day</li>
+        <li>For Sewage Water (SWC): 30 to 40 m<sup>3</sup>/m<sup>2</sup>/day</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Detention Time (t):</strong> The theoretical time for retaining water in the tank.
+      <ul>
+        <li>PS: 4 to 8 hours</li>
+        <li>SWC: 1 to 4 hours</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Velocity of Flow (V<sub>h</sub>):</strong> Q/(B·d)
+      <ul>
+        <li>Typically up to 150 to 300 mm/minute</li>
+      </ul>
+    </li>
+    <li><strong>Effective Depth (d):</strong> 2.5 to 5 m (generally about 3 m)</li>
+  </ul>
+
+  <h2>Tank Dimensions</h2>
+  <p><strong>Rectangular Tank</strong></p>
+  <ul>
+    <li>Effective length (l) up to 30 m (sometimes up to 100 m)</li>
+    <li>Width (B) up to 12 m</li>
+    <li>Length-width ratio (l/B) between 3 and 5</li>
+    <li>Bottom slope – normally 1% from the outlet end towards the inlet end</li>
+    <li>Effective volume (V) = l × B × d</li>
+  </ul>
+
+  <p><strong>Circular Tank</strong></p>
+  <ul>
+    <li>Diameter up to 30 m (sometimes up to 60 m)</li>
+    <li>Bottom slope follows a gradual slope from the periphery to the center (e.g. 1:12)</li>
+    <li>Effective volume (V) is calculated based on a formula considering the diameter and depth.</li>
+  </ul>
+
+  <p><strong>Additional Dimensions</strong></p>
+  <ul>
+    <li>Free Board (FB): 0.5 to 1 m (depending on wind effects)</li>
+    <li>Depth of sludge zone (d<sub>s</sub>): 0.5 to 1 m (generally 1 m)</li>
+    <li>For rectangular tanks:
+      <ul>
+        <li>Inlet zone length (L<sub>i</sub>): 0.2 to 1 m</li>
+        <li>Outlet zone length (L<sub>o</sub>): 0.2 to 1 m</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h2>Sedimentation with Coagulation</h2>
+  <p>
+    In this process, electrically charged colloidal matters remain in suspension due to random (Brownian) motion. Chemically assisted sedimentation is used to remove fine suspended and colloidal impurities, improving colour, odour, and taste.
+  </p>
+  <p>
+    Coagulants are added to initiate the coagulation process (a chemical reaction that forms a gelatinous floc). The subsequent flocculation process promotes the formation of heavier floc particles that settle in the sedimentation tank.
+  </p>
+
+  <h2>Commonly Used Coagulants</h2>
+  <ul>
+    <li>Aluminum sulphate (alum)</li>
+    <li>Iron salts (e.g., ferrous sulphate, ferric sulphate, ferric chloride)</li>
+    <li>Chlorinated copperas</li>
+    <li>Sodium aluminate</li>
+  </ul>
+
+  <p>
+    The optimum dose is determined by jar tests. For example, when water has sufficient bicarbonate alkalinity, aluminum sulphate reacts as follows:
+  </p>
+  <pre>
+Al2(SO4)3·18H2O + 3 Ca(HCO3)2 → 3 CaSO4 + 6 CO2 + 18 H2O
+  </pre>
+  <p>
+    When alkalinity is low, hydrated lime or soda ash may be added to adjust the reaction. Alum is effective in a pH range of 6.5 to 8.5, with typical dosages ranging from 5 mg/L (clear water) to 30 mg/L (turbid water). Iron salts are often used in sewage treatment, and chlorinated copperas forms a robust floc effective at a pH of about 6 to 8 (or sometimes 9). Sodium aluminate is effective in the pH range of 6 to 8.5 but is usually costlier.
+  </p>
+
+  <h2>Processes of Sedimentation with Coagulation</h2>
+  <p>The treatment process typically involves four steps:</p>
+  <ol>
+    <li>
+      <strong>Feeding:</strong> The coagulant is added to the water. This can be done in dry form (using feeding devices) or as a solution (wet feeding).
+    </li>
+    <li>
+      <strong>Mixing:</strong> The coagulant is mixed vigorously to ensure full dispersion throughout the water. This is usually achieved in a mixing basin equipped with baffle walls or through mechanical means (known as flash mixing) suitable for larger treatment plants.
+    </li>
+    <li>
+      <strong>Flocculation:</strong> Slow stirring in the flocculator allows for the buildup of floc particles. Flocculation systems are designed either with longitudinal or vertical flow patterns.
+    </li>
+    <li>
+      <strong>Sedimentation:</strong> The flocculated water enters the sedimentation tank. In smaller projects, a combined coagulation–sedimentation tank is used where the detention period in the floc chamber is 15 to 40 minutes and the sedimentation period is 3 to 4 hours. The depth of the floc chamber is generally about half that of the sedimentation tank, and cleaning is conducted every 3 to 6 months.
+    </li>
+  </ol>
+
+
+</section>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Process all nav buttons
+  const navButtons = document.querySelectorAll('.nav-btn');
+  
+  navButtons.forEach(button => {
+    // Get the original onclick attribute value
+    const originalOnClick = button.getAttribute('onclick');
+    
+    if (originalOnClick && originalOnClick.includes("location.href='#")) {
+      // Extract the link part
+      const startIndex = originalOnClick.indexOf('#') + 1;
+      const endIndex = originalOnClick.indexOf("'", startIndex);
+      const originalLink = originalOnClick.substring(startIndex, endIndex);
+      
+      // Replace spaces with hyphens
+      const newLink = originalLink.replace(/\s+/g, '-');
+      
+      // Update the onclick attribute
+      button.setAttribute('onclick', `location.href='#${newLink}'`);
+      
+      // Find the corresponding section and update its id
+      const section = document.getElementById(originalLink);
+      if (section) {
+        section.id = newLink;
+      }
+    }
+  });
+  
+  // Also process all section IDs that might have spaces
+  const sections = document.querySelectorAll('section[id]');
+  sections.forEach(section => {
+    const originalId = section.id;
+    if (originalId.includes(' ')) {
+      const newId = originalId.replace(/\s+/g, '-');
+      section.id = newId;
+      
+      // Update any buttons that might point to this section
+      document.querySelectorAll(`.nav-btn[onclick*="#${originalId}"]`).forEach(btn => {
+        const onclick = btn.getAttribute('onclick');
+        btn.setAttribute('onclick', onclick.replace(`#${originalId}`, `#${newId}`));
+      });
+    }
+  });
+});
+</script>
+     <button class="back-to-top" onclick="location.href='#top'">↑ Back to Top ↑</button>
+    <div class="social-media">
+        <h5><i class="fab fa-connectdevelop"></i> Connect with Us</h5>
+        <p>Follow us on social media to stay updated with the latest resources and news.</p>
+        <div class="icons">
+            <a href="https://www.facebook.com/arun.panthi27" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.tiktok.com/@er.arunpanthi" target="_blank"><i class="fab fa-tiktok"></i></a>
+            <a href="https://www.youtube.com/@Arunpanthisblog" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="mailto:erarunpanthi@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>
+        </div>
+    </div>
+
+    <footer>
+        <p>©2024 CivPrepMaster. All rights reserved. | 
+        <a href="PrivacyPolicy">Privacy Policy</a> | 
+        <a href="TermsofService">Terms of Service</a></p>
+    </footer>
+</body>
+</html>

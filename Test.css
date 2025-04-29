@@ -187,7 +187,7 @@
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-                    background: green;
+                    background-color: green;
         }
 
         button i {
@@ -200,7 +200,7 @@
         }
 
         #back-button:hover {
-            background: #5a6268;
+            background-color: green;
             transform: translateY(-2px);
             box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
         }
@@ -583,5 +583,7 @@ footer a:hover {
 .navbar a:hover {
     background-color: #1B5E20; /* Even darker green on hover */
 }
-
+cta-button{
+            background-color: green;
+            }
 

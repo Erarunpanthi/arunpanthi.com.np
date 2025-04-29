@@ -187,6 +187,7 @@
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                    background: green;
         }
 
         button i {
@@ -205,18 +206,18 @@
         }
 
         #next-button {
-            background: var(--primary);
+            background: green;
             color: var(--white);
         }
 
         #next-button:hover {
-            background: var(--secondary);
+            background: green;
             transform: translateY(-2px);
             box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
         }
 
         #submit-button {
-            background: var(--success);
+            background: green;
             color: var(--white);
         }
 
@@ -497,7 +498,7 @@
         }
 
         .start-btn:hover {
-            background-color: var(--dark-color);
+            background: green;
             transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }

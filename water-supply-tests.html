@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watersupply Engineering MCQ Test</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="Test.css">
+   
+</head>
+<body>
+    <div class="container">
+       <h1><i class="fas fa-tint"></i> Watersupply Engineering MCQ Test</h1>
+        <div id="start-message">
+            <p>Welcome to the <strong>Fluid Mechanics</strong> assessment!</p>
+    <p>You will have <span class="highlight">120 minutes</span> to complete all questions.</p>
+    <p>This test contains <strong>40 multiple-choice questions</strong> covering various aspects of Watersupply Engineering MCQ.</p>
+    <p class="notice">Note: Some questions may be <strong>repeated</strong>. Please answer them carefully and report any issues to us.</p>
+    <button id="start-button" onclick="startTest()">
+        Begin Test <i class="fas fa-arrow-right"></i>
+    </button>
+        </div>
+        <div id="test-content">
+            <div id="timer">
+                <i class="fas fa-clock"></i> Time Remaining: 120:00
+            </div>
+            <div id="stats">
+                <div class="stat-box">
+                    <h3><i class="fas fa-question-circle"></i> Total Questions</h3>
+                    <div class="stat-value" id="total-questions">40</div>
+                </div>
+                <div class="stat-box">
+                    <h3><i class="fas fa-check-circle"></i> Attempted</h3>
+                    <div class="stat-value" id="attempted">0</div>
+                </div>
+                <div class="stat-box">
+                    <h3><i class="fas fa-exclamation-circle"></i> Not Attempted</h3>
+                    <div class="stat-value" id="not-attempted">40</div>
+                </div>
+            </div>
+            <form id="quiz-form">
+                <!-- Questions will be dynamically inserted here -->
+            </form>
+            <div class="button-container">
+                <button type="button" id="back-button" onclick="showPreviousQuestions()" style="display: none;">
+                    <i class="fas fa-arrow-left"></i> Back
+                </button>
+                <button type="button" id="next-button" onclick="showNextQuestions()">
+                    Next <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+            <div id="result" style="display: none;">
+                <h2>Test Results</h2>
+                <div class="progress-container">
+                    <div class="progress-bar" id="progress-bar"></div>
+                </div>
+                <div class="score-display" id="score">0/0</div>
+                <p>You scored <span class="highlight" id="percentage">0</span>%</p>
+                <div class="answer-details" id="answer-details"></div>
+                <button id="submit-button" onclick="location.reload()">
+                    <i class="fas fa-redo"></i> Take Test Again
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Questions data (just 2 sample questions - add the remaining 38 following the same format)
+        const questionsData = [
+          
+    {
+        "question": "Which of the following is a surface source of water?",
+        "options": ["Wells", "Infiltration wells", "Streams", "None of these"],
+        "answer": "Streams"
+    },
+    {
+        "question": "Example of aquaclude is ...",
+        "options": ["unconsolidated gravel and sand", "mud", "granite", "all of the above"],
+        "answer": "mud"
+    },
+    {
+        "question": "Infiltration wells are",
+        "options": ["surface sources", "ground sources", "rain water sources", "all of the above"],
+        "answer": "ground sources"
+    },
+    {
+        "question": "Which water has a less chance of contaminated by bacteria?",
+        "options": ["River", "Lake", "Sea", "Infiltration wells"],
+        "answer": "Infiltration wells"
+    },
+    {
+        "question": "Storage capacity of a reservoir depends on ...",
+        "options": ["Porosity of rocks", "Inter-connections", "Quality of solidity of rocks", "Porosity and inter-connections"],
+        "answer": "Porosity and inter-connections"
+    },
+    {
+        "question": "A city supply does not include",
+        "options": ["Livestock demand", "domestic", "commercial", "Loss and damage"],
+        "answer": "Livestock demand"
+    },
+    {
+        "question": "...... is the water that does not form lather directly with the soap.",
+        "options": ["Hard water", "Soft water", "Partially hard water", "Very hard water"],
+        "answer": "Hard water"
+    },
+    {
+        "question": "When total hardness is more than alkanity",
+        "options": ["carbonate hardness = Alkanity", "carbonate hardness = 0", "carbonate hardness = Non carbonate hardness", "all of the above"],
+        "answer": "carbonate hardness = Alkanity"
+    },
+    {
+        "question": "Most common surface water source is…",
+        "options": ["well", "River", "Tube well", "Infiltration well"],
+        "answer": "River"
+    },
+    {
+        "question": "Water borne disease are also known as",
+        "options": ["water quality disease", "water borne disease", "water based disease", "None of the above"],
+        "answer": "water borne disease"
+    },
+    {
+        "question": "Which aquifer is called water table aquifer?",
+        "options": ["Unconfined aquifer", "Confined aquifer", "Ground aquifer", "Connate aquifer"],
+        "answer": "Unconfined aquifer"
+    },
+    {
+        "question": "Which of the following give underground water?",
+        "options": ["spring", "River", "Pond", "Lake"],
+        "answer": "spring"
+    },
+    {
+        "question": "Which of the following statement is correct?",
+        "options": ["Rich class consumes less water", "Intermittent water supplies lead to less water consumption", "Loss of water is more if the pressure in the distribution system is less", "Water consumption is less in flush system"],
+        "answer": "Intermittent water supplies lead to less water consumption"
+    },
+    {
+        "question": "Unconfined aquifer is known as",
+        "options": ["phreatic line", "skyline", "drainage basin", "all of the above"],
+        "answer": "phreatic line"
+    },
+    {
+        "question": "The unit of per capita demand is",
+        "options": ["liters/head/day", "head/day", "days/head/liters", "None of these"],
+        "answer": "liters/head/day"
+    },
+    {
+        "question": "Hardness of water is conventionally expressed in terms of equivalent amount of ____________",
+        "options": ["H₂CO₃", "MgCO₃", "CaCO₃", "Na₂CO₃"],
+        "answer": "CaCO₃"
+    },
+    {
+        "question": "Select the incorrect statement from the following option.",
+        "options": ["Water which does not form lather with soap and forms white scum is called hard water", "Hard water contains dissolved calcium and magnesium salts in it", "In hard water, cleansing quality of soap is depressed", "Due to the presence of dissolved hardness-producing salts, the boiling point of water is depressed"],
+        "answer": "Due to the presence of dissolved hardness-producing salts, the boiling point of water is depressed"
+    },
+    {
+        "question": "E-coil and coliform are known as",
+        "options": ["water quality disease", "vector", "indicator organism", "mustard peer organism"],
+        "answer": "indicator organism"
+    },
+    {
+        "question": "Select the incorrect statement from the following option.",
+        "options": ["The taste of hard water is better than soft water", "The dissolved calcium in hard water can help to produce strong teeth", "Hard water coats the lead piping with a layer of insoluble calcium carbonate which prevents poisonous lead dissolving in water", "Boiler feed water should also be hard in nature"],
+        "answer": "Boiler feed water should also be hard in nature"
+    },
+    {
+        "question": "Which is the following factors considered for the selection of a particular source of water",
+        "options": ["Quantity of water available.", "Elevation of the source.", "Distance of the source of supply.", "All of these."],
+        "answer": "All of these."
+    },
+    {
+        "question": "Select the incorrect statement from the following option.",
+        "options": ["Permanent hardness is due to dissolved chlorides and sulphates of calcium and magnesium", "temporary hardness can be removed by boiling of water", "carbonate hardness is also known as alkaline hardness", "The difference between the total hardness and the alkaline hardness gives the non-alkaline hardness"],
+        "answer": "The difference between the total hardness and the alkaline hardness gives the non-alkaline hardness"
+    },
+    {
+        "question": "Which of the following is not a subsurface source of water?",
+        "options": ["Infiltration galleries", "Springs", "Storage reservoirs", "Tube wells"],
+        "answer": "Storage reservoirs"
+    },
+    {
+        "question": "Which is the correct statement regarding per capita demand?",
+        "options": ["Daily water required by an individual", "Water required for various purposes by a person", "Water required by an individual in a year", "Annual average amount of daily water required by one person"],
+        "answer": "Annual average amount of daily water required by one person"
+    },
+    {
+        "question": "Which of the following causes a decreases in per capita consumption?",
+        "options": ["Better standard of livings", "Good quality of water", "hotter climate", "Metering"],
+        "answer": "Metering"
+    },
+    {
+        "question": "Malaria, yellow fever ... are example of",
+        "options": ["water vector disease", "water borne disease", "water based disease", "None of the above"],
+        "answer": "water vector disease"
+    },
+    {
+        "question": "Worm and viruses are also known as ... organism present water",
+        "options": ["water quality", "vector", "living", "mustard peer organism"],
+        "answer": "vector"
+    },
+    {
+        "question": "Ground water is usually free from",
+        "options": ["Suspended impurities", "Dissolved impurities", "Both suspended and dissolved", "Neither suspended nor dissolved"],
+        "answer": "Suspended impurities"
+    },
+    {
+        "question": "What is the upper surface of water in a confined aquifer called?",
+        "options": ["Primary layer", "Secondary layer", "First layer", "Peizometric layer"],
+        "answer": "Peizometric layer"
+    },
+    {
+        "question": "Which of the following is not a unit of hardness?",
+        "options": ["Parts per million", "Degree centigrade", "Degree Clarke", "Degree French"],
+        "answer": "Degree centigrade"
+    },
+    {
+        "question": "NTU is unit",
+        "options": ["color", "odor", "turbidity", "taste"],
+        "answer": "turbidity"
+    },
+    {
+        "question": "A geological formation, which not only stores water but yields it in sufficient quantity is known as ..",
+        "options": ["aquifer", "aquifuge", "aquiclude", "aquitard"],
+        "answer": "aquifer"
+    },
+    {
+        "question": "The water which is not chemically pure but does not contain anything harmful to human being health is known as:",
+        "options": ["Pure", "Wholesome", "Polluted", "Contaminated"],
+        "answer": "Wholesome"
+    },
+    {
+        "question": "An aquifer confined at the bottom, and not at top is called ………… aquifer",
+        "options": ["Leaky", "Confined", "Unconfined", "Perched"],
+        "answer": "Unconfined"
+    },
+    {
+        "question": "The minimum quantity of water that can be supplied from spring during driest period is known as ………… yield",
+        "options": ["Design", "Secondary", "Spring", "Safe"],
+        "answer": "Safe"
+    },
+    {
+        "question": "An artesian well is also known as …... Well",
+        "options": ["Gravity", "Pressure", "Tube", "Shallow"],
+        "answer": "Pressure"
+    },
+    {
+        "question": "Shallow horizontal tunnels constructed along the river on its bank to intercept groundwater are called ……….",
+        "options": ["Infiltration well", "Infiltration gallery", "Tube well", "Artesian well"],
+        "answer": "Infiltration gallery"
+    },
+    {
+        "question": "Degree Hazen is a unit of ……….",
+        "options": ["Colour", "Odour", "Turbidity", "Taste"],
+        "answer": "Colour"
+    },
+    {
+        "question": "The pH value of water indicates",
+        "options": ["Acidity", "Alkalinity", "Both", "nan"],
+        "answer": "Both"
+    },
+    {
+        "question": "Temporary hardness in water is caused by …………… of Ca and Mg.",
+        "options": ["Bicarbonates", "Sulphates", "Chlorides", "Nitrates"],
+        "answer": "Bicarbonates"
+    },
+    {
+        "question": "Alkalinity in water is expressed as miligrams per liter in terms of equivalent ….",
+        "options": ["Calcium carbonate", "Magnesium carbonate", "Sodium carbonate", "Calcium hydroxide"],
+        "answer": "Calcium carbonate"
+    },
+    {
+        "question": "If total hardness of water is greater than total alkalinity, the carbonate hardness will be equal to ……….",
+        "options": ["Total alkalinity", "Total hardness", "Total hardness – total alkalinity", "Total non- carbonate hardness"],
+        "answer": "Total alkalinity"
+    },
+    {
+        "question": "Which of the following is the most toxic metal found in water?",
+        "options": ["Calcium", "Iron", "Magnesium", "Arsenic"],
+        "answer": "Arsenic"
+    },
+    {
+        "question": "Coliform bacteria present in the water is an indication of",
+        "options": ["Radioactive wastes", "Chemical fertilizer", "Decaying animals and plants", "Human feces"],
+        "answer": "Human feces"
+    },
+    {
+        "question": "Which of the following is not a water borne disease?",
+        "options": ["Typhoid", "Malaria", "Cholera", "Dysentery"],
+        "answer": "Malaria"
+    },
+    {
+        "question": "Ascariasis is a …………. Infection",
+        "options": ["Bacterial", "Viral", "Worm", "Protozoal"],
+        "answer": "Worm"
+    },
+    {
+        "question": "The BOD of drinking water should not be more than……….",
+        "options": ["0", "5", "10", "20"],
+        "answer": "5"
+    },
+    {
+        "question": "The optimum dosage of alum is determined by:",
+        "options": ["Hardness test", "pH test", "Jar test", "Turbidity test"],
+        "answer": "Jar test"
+    },
+    {
+        "question": "The maximum permissible limit of turbidity in drinking water as per Nepal Standard is ………. NTU",
+        "options": ["5", "10", "15", "20"],
+        "answer": "10"
+    },
+    {
+        "question": "The DO level in natural unpolluted waters at normal temperature is found to be of the order of",
+        "options": ["1", "10", "100", "1000"],
+        "answer": "10"
+    },
+    {
+        "question": "Water lost in theft and waste contributes to how much % of total consumption?",
+        "options": ["5", "10", "15", "20"],
+        "answer": "15"
+    },
+    {
+        "question": "Psychrophilic bacteria survive in between the temperature of …... degree Celsius",
+        "options": ["10-20", "20-30", "40-60", "None of the above"],
+        "answer": "10-20"
+    },
+    {
+        "question": "As per DWSS, fire demand in Nepal should not more than … lpcd.",
+        "options": ["1 lpcd", "2 lpcd", "3 lpcd", "1.5 lpcd"],
+        "answer": "1 lpcd"
+    },
+    {
+        "question": "The per capita per day demand of water is taken as an average value of over a period of …",
+        "options": ["1 day", "1 year", "1 month", "> 1 year"],
+        "answer": "> 1 year"
+    },
+    {
+        "question": "Department of water supply and Sewerage (DWSS) was formally established in ……… AD",
+        "options": ["1945", "1952", "1962", "1972"],
+        "answer": "1972"
+    },
+    {
+        "question": "The new National Drinking Water Quality Standard (NDWQS) came into effect in …… AD",
+        "options": ["2003", "2015", "2005", "2022"],
+        "answer": "2005"
+    },
+    {
+        "question": "The domestic demand in rural areas of Nepal is ………… lpcd.",
+        "options": ["10", "45", "65", "112"],
+        "answer": "45"
+    },
+    {
+        "question": "The livestock demand should not be more than …………. of domestic demand.",
+        "options": ["10", "20", "40", "100"],
+        "answer": "20"
+    },
+    {
+        "question": "As per DWSS guidelines, the fire demand in Nepal should not be more than………. lpcd.",
+        "options": ["1", "2", "3", "5"],
+        "answer": "1"
+    },
+    {
+        "question": "If total alkalinity of water sample is 100 mg/l and its total hardness is 300 mg/l, then its carbonate and non-carbonate hardness are respectively",
+        "options": ["100 mg/l and 200 mg/l", "200 mg/l and 100 mg/l", "300 mg/l and 0 mg/l", "100 mg/l and 0 mg/l"],
+        "answer": "100 mg/l and 200 mg/l"
+    },
+    {
+        "question": "A water having pH of 9 will have hydrogen concentration equal to ……. Moles /liter",
+        "options": ["10^-9", "10^9", "10^-5", "10^5"],
+        "answer": "10^-9"
+    }
+
+        ];
+
+        // Add IDs dynamically to all questions
+        const questions = questionsData.map((q, index) => ({
+            id: index + 1,
+            question: q.question,
+            options: q.options,
+            answer: q.answer
+        }));
+
+        let currentIndex = 0;
+        let userAnswers = {};
+        let timer;
+        let timeRemaining = 120 * 60; // 120 minutes in seconds
+        const form = document.getElementById('quiz-form');
+        const startMessage = document.getElementById('start-message');
+        const testContent = document.getElementById('test-content');
+
+        // Function to start the test
+        function startTest() {
+            startMessage.style.display = 'none';
+            testContent.style.display = 'block';
+            renderQuestions();
+            startTimer();
+        }
+
+        // Function to render questions
+        function renderQuestions() {
+            form.innerHTML = '';
+            for (let i = currentIndex; i < currentIndex + 3 && i < questions.length; i++) {
+                const question = questions[i];
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'question floating';
+                questionDiv.id = `question-${question.id}`;
+                questionDiv.innerHTML = `
+                    <p><i class="fas fa-question-circle" style="color: #4361ee; margin-right: 10px;"></i>${question.question}</p>
+                    <div class="options-container">
+                        ${question.options.map(option => `
+                            <label>
+                                <input type="radio" name="q${question.id}" value="${option}" onchange="lockOption(this)"
+                                    ${userAnswers[question.id] === option ? 'checked' : ''}>
+                                ${option}
+                            </label>
+                        `).join('')}
+                    </div>
+                `;
+                form.appendChild(questionDiv);
+            }
+
+            document.getElementById('back-button').style.display = currentIndex === 0 ? 'none' : 'inline-flex';
+            updateStats();
+        }
+
+        // Function to lock options once selected
+        function lockOption(option) {
+            const questionId = option.name.replace('q', '');
+            userAnswers[questionId] = option.value;
+            const questionDiv = option.closest('.question');
+            const inputs = questionDiv.querySelectorAll('input');
+            inputs.forEach(input => input.disabled = true);
+
+            questionDiv.classList.remove('floating');
+            questionDiv.style.borderLeft = '4px solid #4cc9f0';
+            setTimeout(() => {
+                questionDiv.style.borderLeft = '4px solid #4361ee';
+            }, 500);
+
+            updateStats();
+        }
+
+        // Function to show the next set of questions
+        function showNextQuestions() {
+            currentIndex += 3;
+            if (currentIndex >= questions.length) {
+                submitTest();
+            } else {
+                renderQuestions();
+                window.scrollTo({
+                    top: form.offsetTop - 20,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        // Function to show the previous set of questions
+        function showPreviousQuestions() {
+            currentIndex -= 3;
+            if (currentIndex < 0) currentIndex = 0;
+            renderQuestions();
+            window.scrollTo({
+                top: form.offsetTop - 20,
+                behavior: 'smooth'
+            });
+        }
+
+        // Function to update stats
+        function updateStats() {
+            const totalQuestions = questions.length;
+            const attempted = Object.keys(userAnswers).length;
+            const notAttempted = totalQuestions - attempted;
+
+            document.getElementById('total-questions').textContent = totalQuestions;
+            document.getElementById('attempted').textContent = attempted;
+            document.getElementById('not-attempted').textContent = notAttempted;
+        }
+
+        // Function to start the timer
+        function startTimer() {
+            timer = setInterval(() => {
+                timeRemaining--;
+                if (timeRemaining <= 0) {
+                    clearInterval(timer);
+                    submitTest();
+                }
+                updateTimer();
+            }, 1000);
+        }
+
+        // Function to update the timer display
+        function updateTimer() {
+            const minutes = Math.floor(timeRemaining / 60);
+            const seconds = timeRemaining % 60;
+            const timerElement = document.getElementById('timer');
+            timerElement.innerHTML = `<i class="fas fa-clock"></i> Time Remaining: ${minutes}:${seconds.toString().padStart(2, '0')}`;
+            
+            if (timeRemaining <= 300) {
+                timerElement.style.color = '#f72585';
+                timerElement.style.animation = 'pulse 1s infinite';
+            }
+        }
+
+        // Function to submit the test
+        function submitTest() {
+            clearInterval(timer);
+            document.getElementById('next-button').style.display = 'none';
+            document.getElementById('back-button').style.display = 'none';
+            showResult();
+        }
+
+        // Function to calculate and display the result
+        function showResult() {
+            let score = 0;
+            const answerDetails = [];
+
+            questions.forEach(question => {
+                const userAnswer = userAnswers[question.id];
+                const isCorrect = userAnswer === question.answer;
+                if (isCorrect) score++;
+
+                answerDetails.push(`
+                    <div class="answer-item ${isCorrect ? 'correct-answer' : 'incorrect-answer'}">
+                        <p><strong>Question ${question.id}:</strong> ${question.question}</p>
+                        <p><strong>Your Answer:</strong> <span class="${isCorrect ? 'correct' : 'incorrect'}">${userAnswer || 'Not answered'}</span></p>
+                        <p><strong>Correct Answer:</strong> <span class="correct">${question.answer}</span></p>
+                    </div>
+                `);
+            });
+
+            const percentage = Math.round((score / questions.length) * 100);
+            document.getElementById('score').textContent = `${score} / ${questions.length}`;
+            document.getElementById('percentage').textContent = percentage;
+            document.getElementById('progress-bar').style.width = `${percentage}%`;
+            document.getElementById('answer-details').innerHTML = answerDetails.join('');
+            document.getElementById('result').style.display = 'block';
+
+            window.scrollTo({
+                top: document.getElementById('result').offsetTop - 20,
+                behavior: 'smooth'
+            });
+
+            if (percentage >= 70) {
+                triggerConfetti();
+            }
+        }
+
+        // Simple confetti effect
+        function triggerConfetti() {
+            const confettiCount = 100;
+            const confettiContainer = document.createElement('div');
+            confettiContainer.style.position = 'fixed';
+            confettiContainer.style.top = '0';
+            confettiContainer.style.left = '0';
+            confettiContainer.style.width = '100%';
+            confettiContainer.style.height = '100%';
+            confettiContainer.style.pointerEvents = 'none';
+            confettiContainer.style.zIndex = '1000';
+            document.body.appendChild(confettiContainer);
+
+            for (let i = 0; i < confettiCount; i++) {
+                const confetti = document.createElement('div');
+                confetti.innerHTML = ['🎉', '✨', '🎊', '🏆', '👏'][Math.floor(Math.random() * 5)];
+                confetti.style.position = 'absolute';
+                confetti.style.fontSize = `${Math.random() * 20 + 10}px`;
+                confetti.style.left = `${Math.random() * 100}vw`;
+                confetti.style.top = '-50px';
+                confetti.style.animation = `fall ${Math.random() * 3 + 2}s linear forwards`;
+                confetti.style.opacity = Math.random();
+                confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+                confettiContainer.appendChild(confetti);
+
+                const animation = confetti.animate([
+                    { top: '-50px', opacity: 1 },
+                    { top: '100vh', opacity: 0 }
+                ], {
+                    duration: Math.random() * 3000 + 2000,
+                    easing: 'cubic-bezier(0.1, 0.8, 0.9, 1)'
+                });
+
+                animation.onfinish = () => {
+                    confetti.remove();
+                    if (i === confettiCount - 1) {
+                        confettiContainer.remove();
+                    }
+                };
+            }
+
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes fall {
+                    to { transform: translateY(100vh) rotate(360deg); }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+    </script>
+</body>
+</html>

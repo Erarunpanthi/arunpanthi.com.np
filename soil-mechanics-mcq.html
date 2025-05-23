@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Primary Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Comprehensive Soil Mechanics MCQs for Civil Engineering Exams - 500+ practice questions with detailed solutions for GATE, PSC, License Exams, and University Tests">
+    <meta name="keywords" content="Soil Mechanics MCQ, Geotechnical Engineering Questions, Civil Engineering Exams, GATE Preparation, PSC Civil Engineering, Soil Mechanics Practice Tests">
+    <meta name="author" content="CivPrepMaster">
+    
+    <!-- Open Graph / Facebook / Twitter Meta Tags -->
+    <meta property="og:title" content="Soil Mechanics MCQs - Ultimate Exam Preparation Guide">
+    <meta property="og:description" content="Master Soil Mechanics with 500+ MCQs covering all topics - from index properties to slope stability. Perfect for GATE, PSC, and university exams.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.arunpanthi.com.np/soil-mechanics-mcq">
+    <meta property="og:image" content="https://www.arunpanthi.com.np/images/soil-mechanics-mcq-preview.jpg">
+    
+    <title>Soil Mechanics MCQs - 500+ Questions for GATE, PSC & License Exams | CivPrepMaster</title>
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.arunpanthi.com.np/soil-mechanics-mcq">
+     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    
+    <!-- External Stylesheets -->
+   <link rel="stylesheet" href="MCQ.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+     <body>
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <a href="Home"><i class="fas fa-home"></i> Home</a>
+        <a href="resources"><i class="fas fa-book"></i> Resources</a>
+        <a href="license-preparation"><i class="fas fa-certificate"></i> License Prep</a>
+        <a href="psc-preparation"><i class="fas fa-graduation-cap"></i> PSC Prep</a>
+        <a href="aboutus"><i class="fas fa-info-circle"></i> About Us</a>
+        <a href="contactus"><i class="fas fa-envelope"></i> Contact Us</a>
+    </div>
+</body>
+
+<body>
+    <div class="nav-buttons">
+            <button class="nav-btn" onclick="location.href='#SOIL MECHANICS : AN
+INTRODUCTION'">SOIL MECHANICS : AN INTRODUCTION</button>
+<button class="nav-btn" onclick="location.href='#Lines'">Lines & Dimension</button>
+<button class="nav-btn" onclick="location.href='#Conics'">Cone and Conic Sections</button>
+<button class="nav-btn" onclick="location.href='#Theory of Projection'">Theory of Projection</button>
+<button class="nav-btn" onclick="location.href='#Working Drawings'">Working Drawings</button>
+        </div>       
+     <section id="SOIL MECHANICS : AN INTRODUCTION">
+
+
+
+<div class="card"><p style="">What is the typical range of the specific gravity of soil solids?<br>
+a) 2.0 to 2.2<br>
+b) 1.2 to 1.6<br>
+c) 3.0 to 3.5<br>
+d) 2.6 to 2.8<br>
+</p>
+                            <div class="options">
+                                <button class="nav-btn">Show Answer</button>
+                            </div>
+                            <div class="answer">Answer: d<br>
+Explanation: The specific gravity of soil solids typically ranges from 2.6 to 2.8. This value is a dimensionless quantity that reflects the ratio of the density of the soil solids to the density of water. It’s an important parameter used in various soil calculations, including void ratio and porosity.</div></div>
+
+
+
+
+
+
+
+
+
+
+
+   <script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Process all nav buttons
+  const navButtons = document.querySelectorAll('.nav-btn');
+  
+  navButtons.forEach(button => {
+    // Get the original onclick attribute value
+    const originalOnClick = button.getAttribute('onclick');
+    
+    if (originalOnClick && originalOnClick.includes("location.href='#")) {
+      // Extract the link part
+      const startIndex = originalOnClick.indexOf('#') + 1;
+      const endIndex = originalOnClick.indexOf("'", startIndex);
+      const originalLink = originalOnClick.substring(startIndex, endIndex);
+      
+      // Replace spaces with hyphens
+      const newLink = originalLink.replace(/\s+/g, '-');
+      
+      // Update the onclick attribute
+      button.setAttribute('onclick', `location.href='#${newLink}'`);
+      
+      // Find the corresponding section and update its id
+      const section = document.getElementById(originalLink);
+      if (section) {
+        section.id = newLink;
+      }
+    }
+  });
+  
+  // Also process all section IDs that might have spaces
+  const sections = document.querySelectorAll('section[id]');
+  sections.forEach(section => {
+    const originalId = section.id;
+    if (originalId.includes(' ')) {
+      const newId = originalId.replace(/\s+/g, '-');
+      section.id = newId;
+      
+      // Update any buttons that might point to this section
+      document.querySelectorAll(`.nav-btn[onclick*="#${originalId}"]`).forEach(btn => {
+        const onclick = btn.getAttribute('onclick');
+        btn.setAttribute('onclick', onclick.replace(`#${originalId}`, `#${newId}`));
+      });
+    }
+  });
+});
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const buttons = document.querySelectorAll('.nav-btn');
+    
+    buttons.forEach(button => {
+        button.addEventListener('click', function() {
+            const answer = this.closest('.card').querySelector('.answer');
+            
+            if (answer.classList.contains('visible')) {
+                answer.classList.remove('visible');
+                this.textContent = 'Show Answer';
+            } else {
+                answer.classList.add('visible');
+                this.textContent = 'Hide Answer';
+            }
+        });
+    });
+});
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const buttons = document.querySelectorAll('.nav-btn');
+    
+    buttons.forEach(button => {
+        // Set initial icon (eye open)
+        const icon = document.createElement('i');
+        icon.className = 'fas fa-eye';
+        button.prepend(icon);
+        
+        button.addEventListener('click', function() {
+            const card = this.closest('.card');
+            const answer = card.querySelector('.answer');
+            
+            // Toggle answer visibility
+            answer.classList.toggle('show');
+            
+            // Mark card as viewed
+            card.classList.add('viewed');
+            
+            // Change button icon and text
+            const icon = this.querySelector('i');
+            if (answer.classList.contains('show')) {
+                icon.className = 'fas fa-eye-slash';
+                this.innerHTML = icon.outerHTML + ' Hide Answer';
+            } else {
+                icon.className = 'fas fa-eye';
+                this.innerHTML = icon.outerHTML + ' Show Answer';
+            }
+        });
+    });
+});
+</script>
+     <button class="back-to-top" onclick="location.href='#top'">↑ Back to Top ↑</button>
+
+    <!-- Social Media Section -->
+    <div class="social-media">
+        <h2 style="font-size: 40px;"><i class="fab fa-connectdevelop"></i> Connect with Us</h2>
+        <p>Follow us on social media to stay updated with the latest resources and news.</p>
+        <div class="icons">
+            <a href="https://www.facebook.com/arun.panthi27" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.tiktok.com/@er.arunpanthi" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+            <a href="https://www.youtube.com/@erarunpanthi" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="mailto:info@erarunpanthi.com.np" target="_blank" aria-label="Email"><i class="fas fa-envelope"></i></a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2024 CivPrepMaster. All rights reserved. | 
+        <a href="PrivacyPolicy">Privacy Policy</a> | 
+        <a href="TermsofService">Terms of Service</a></p>
+    </footer>
+
+    
+</body>
+</html>

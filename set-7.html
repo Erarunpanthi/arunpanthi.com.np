@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEC License Exam  set-7 </title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="set.css">
+   </head>
+<body>
+    <header>
+        <div class="container">
+            <h1>NEC License Exam set-7</h1>
+            <p>Practice test with 80 questions (60 x 1 mark + 20 x 2 marks)</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <!-- Welcome Screen -->
+        <div id="welcome-screen" class="welcome-screen">
+            <h2 class="welcome-title">NEC License Practice Test set-7 </h2>
+            <div class="welcome-message">
+                <p>This practice test will help you prepare for the Nepal Engineering Council (NEC) License Examination. The test consists of 80 multiple-choice questions designed to simulate the actual exam experience.</p>
+                
+                <h3 style="margin-top: 20px; margin-bottom: 10px;">Test Structure:</h3>
+                <ul class="rules-list">
+                    <li><strong>80 questions total</strong> (60 questions worth 1 mark each, 20 questions worth 2 marks each)</li>
+                    <li><strong>Time limit:</strong> 100 minutes (1.7 hours)</li>
+                    <li><strong>Passing score:</strong> 50 marks or higher</li>
+                    <li>You can navigate between questions using the pagination controls</li>
+                    <li>Once submitted, you cannot restart the test</li>
+                </ul>
+                
+                <h3 style="margin-top: 20px; margin-bottom: 10px;">Instructions:</h3>
+                <ul class="rules-list">
+                    <li>Read each question carefully before answering</li>
+                    <li>You can change your answers before submitting</li>
+                    <li>After submission, you'll receive detailed feedback on your performance</li>
+                    <li>Good luck with your preparation!</li>
+                </ul>
+            </div>
+            <button id="start-btn" class="start-btn">Start Test</button>
+        </div>
+        
+        <!-- Test Container -->
+        <div id="test-container" class="test-container">
+            <div class="test-header">
+                <div class="header-item">
+                    <span class="header-label">Questions:</span>
+                    <span class="header-value" id="total-questions">80</span>
+                </div>
+                <div class="header-item">
+                    <span class="header-label">Attempted:</span>
+                    <span class="header-value" id="attempted-count">0</span>
+                </div>
+                <div class="header-item">
+                    <span class="header-label">Pages Left:</span>
+                    <span class="header-value" id="pages-left">7</span>
+                </div>
+                <div class="header-item">
+                    <span class="header-label">Current Page:</span>
+                    <span class="header-value" id="current-page">1</span>
+                </div>
+                <div class="timer-container">
+                    <span class="timer-icon">⏱️</span>
+                    <span class="timer" id="timer">120:00</span>
+                </div>
+            </div>
+            
+            <div class="page-container">
+                <div class="question-grid" id="question-grid">
+                    <!-- Questions will be inserted here -->
+                </div>
+            </div>
+            
+            <div class="pagination">
+                <button id="prev-btn" class="btn btn-secondary">Previous</button>
+                <div class="page-numbers" id="page-numbers">
+                    <!-- Page numbers will be inserted here -->
+                </div>
+                <button id="next-btn" class="btn btn-primary">Next</button>
+            </div>
+            
+            <div style="text-align: center;">
+                <button id="submit-test-btn" class="btn btn-success">Submit Test</button>
+            </div>
+        </div>
+        
+        <!-- Result Container -->
+        <div id="result-container" class="result-container">
+            <div class="result-header">
+                <h2 class="result-title">Test Results</h2>
+                <div class="score" id="final-score">0</div>
+                <div class="result-message" id="result-message"></div>
+            </div>
+            
+            <div class="review-section">
+                <h3 class="section-title">Review Answers</h3>
+                <div id="review-answers">
+                    <!-- Review content will be inserted here -->
+                </div>
+            </div>
+            
+            <div class="action-buttons">
+                <button id="retry-btn" class="btn btn-primary">Try Again</button>
+                <button id="view-answers-btn" class="btn btn-secondary">View All Answers</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Submit Warning Modal -->
+    <div id="submit-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h3 class="modal-title">Warning: Test Submission</h3>
+            <div class="modal-message">
+                <p>You are about to submit your test. Once submitted, you cannot restart or change your answers.</p>
+                <p>Are you sure you want to submit now?</p>
+            </div>
+            <div class="modal-buttons">
+                <button id="modal-cancel-btn" class="modal-btn modal-btn-cancel">Cancel</button>
+                <button id="modal-confirm-btn" class="modal-btn modal-btn-confirm">Submit Test</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Question data in the specified format
+        const questionData = [
+          
+    {
+        "question": "Plastic bitumen is used in….",
+        "options": ["Road pavement", "expansion joint", "filling cracks", "Paints"],
+        "answer": "filling cracks"
+    },
+    {
+        "question": "The relation between chainage of Mid ordinate(MO) and Intersection Point(IP) is",
+        "options": ["MO>IP", "IP>MO", "IP=MO", "Cant say Anything"],
+        "answer": "IP>MO"
+    },
+    {
+        "question": "Which of the following is not a type of hydraulic cement?",
+        "options": ["Ordinary Portland Cement", "Portland Pozzolana Cement", "Portland Slag Cement", "Hydration of lime"],
+        "answer": "Hydration of lime"
+    },
+    {
+        "question": "Standard consistency of cement is tested by ___________",
+        "options": ["Vicat apparatus", "Le Chatalier apparatus", "Soundness meter", "Duff Abrams apparatus"],
+        "answer": "Vicat apparatus"
+    },
+    {
+        "question": "In paints, the pigment is responsible for",
+        "options": ["Durability", "Colour", "Smoothness", "Glassy face"],
+        "answer": "Colour"
+    },
+    {
+        "question": "To find which of the following is consistency test performed?",
+        "options": ["Fineness of cement", "Tensile strength", "Compressive strength", "Correct water cement ratio"],
+        "answer": "Correct water cement ratio"
+    },
+    {
+        "question": "The quartzite is a _______ type of rock.",
+        "options": ["igneous", "basalt", "sedimentary", "metamorphic"],
+        "answer": "metamorphic"
+    },
+    {
+        "question": "Piston sampler is used for which type of soil?",
+        "options": ["Very soft clay", "Clay", "Sand", "Rock"],
+        "answer": "Very soft clay"
+    },
+    {
+        "question": "What is the typical height of a soil sample used in an oedometer test?",
+        "options": ["20 mm", "25 mm", "50 mm", "100 mm"],
+        "answer": "20 mm"
+    },
+    {
+        "question": "The depth of exploration is independent of",
+        "options": ["Size of structure", "Type of structure", "type of boring", "Load of structure"],
+        "answer": "Type of structure"
+    },
+    {
+        "question": "Unconfined compressive strength test is used in which of the following type of soil?",
+        "options": ["Sandy", "Clay", "Saturated clay", "gravel"],
+        "answer": "Saturated clay"
+    },
+    {
+        "question": "The ....... type of footing is preferred if two nearby separate footings are about to overlap.",
+        "options": ["spread footing", "Raft footing", "combined footing", "Eccentric footing"],
+        "answer": "combined footing"
+    },
+    {
+        "question": "The number of piles required to support column is",
+        "options": ["1", "2", "3", "4"],
+        "answer": "3"
+    },
+    {
+        "question": "The best suited material for stabilization of black cotton soils is",
+        "options": ["Sodium silicate", "Calcium chloride", "Hydrated lime", "Bitumen"],
+        "answer": "Hydrated lime"
+    },
+    {
+        "question": "In Taylors stability number, Sn = Cm/γH, the term Cm is",
+        "options": ["Maximum Cohesion", "Minimum Cohesion", "Mobilized Cohesion", "Unit Cohesion"],
+        "answer": "Mobilized Cohesion"
+    },
+    {
+        "question": "The open foundation is used for ……",
+        "options": ["sky scrapper", "Bridge", "Residential building", "Runway"],
+        "answer": "Bridge"
+    },
+    {
+        "question": "In defining the Froude number which depth parameter is used",
+        "options": ["hydraulic mean depth", "hydraulic radius", "critical depth", "depth"],
+        "answer": "hydraulic mean depth"
+    },
+    {
+        "question": "In a rectangular channel section, if the critical depth is 2.0 m, the specific energy at critical depth is",
+        "options": ["3.0 m", "1.33 m", "2.5m", "1.5m"],
+        "answer": "3.0 m"
+    },
+    {
+        "question": "If a capillary tube is dipped into liquid and the level of the liquid inside and outside are same, then the angle of contact is",
+        "options": ["0°", "90°", "45°", "30°"],
+        "answer": "90°"
+    },
+    {
+        "question": "The most accurate method to determine average precipitation depth over an area is",
+        "options": ["Arithmetic method", "data from a single rain gauge", "Isohyetal map method", "Thiessen Polygon method"],
+        "answer": "Isohyetal map method"
+    },
+    {
+        "question": "In the case of uniaxial stress field, the maximum shear stress is …… the normal stress.",
+        "options": ["equal to", "half of", "twice of", "1/√2 times"],
+        "answer": "half of"
+    },
+    {
+        "question": "A simply supported beam carries a varying load from zero at one end and w at the other end. If the length of the beam is a, the shear force will be zero at a distance x from least loaded point where x is",
+        "options": ["a/2", "a/3", "a/√3", "a√3/2"],
+        "answer": "a/√3"
+    },
+    {
+        "question": "To minimize the total cost of a roof truss, the ratio of the cost of truss to the cost of purlins shall be",
+        "options": ["1", "2", "3", "4"],
+        "answer": "2"
+    },
+    {
+        "question": "A beam is said to be Continuous if…",
+        "options": ["Fixed at both ends", "Fixed at one end and free at the other end", "Supported on more than two supports", "Extending beyond the supports"],
+        "answer": "Supported on more than two supports"
+    },
+    {
+        "question": "A three-hinged arch is hinged at supports end",
+        "options": ["at one quarter span", "at the crown", "anywhere in arch", "none of the above"],
+        "answer": "anywhere in arch"
+    },
+    {
+        "question": "The shear reinforcement in R.C.C. is provided to resist",
+        "options": ["vertical shear", "horizontal shear", "diagonal compression", "diagonal tension."],
+        "answer": "diagonal tension."
+    },
+    {
+        "question": "The shape of idealized stress-strain curve for prestressed concrete as prescribed by IS 456-1978 is:",
+        "options": ["Rectangular.", "Parabolic", "Rectangular-Parabolic", "None of these."],
+        "answer": "Rectangular-Parabolic"
+    },
+    {
+        "question": "Which NBC code deals with earthquake resistant design for low strength masonry?",
+        "options": ["NBC-202", "NBC-203", "NBC-204", "NBC-205"],
+        "answer": "NBC-203"
+    },
+    {
+        "question": "What kind of sample is used for tensile testing of mortars?",
+        "options": ["Mortar prism", "Mortar cylinder", "Mortar cube", "Mortar briquette"],
+        "answer": "Mortar briquette"
+    },
+    {
+        "question": "A laced column is_____ than battened column for same load",
+        "options": ["Equally strong", "Weaker", "Stronger", "Cannot be compared"],
+        "answer": "Stronger"
+    },
+    {
+        "question": "What is the chemical generally used for controlling algae?",
+        "options": ["Lime", "Alum", "Copper sulphate", "Bleaching powder"],
+        "answer": "Copper sulphate"
+    },
+    {
+        "question": "In water supply system, Blow off valve is provided at",
+        "options": ["summit of pipeline", "high pressure point of pipeline", "at the junction of distribution line", "bottom of the pipeline"],
+        "answer": "bottom of the pipeline"
+    },
+    {
+        "question": "Vulnerability analysis comes in which part of the Disaster Management Cycle",
+        "options": ["Preparedness", "Response", "Recovery", "mitigation"],
+        "answer": "mitigation"
+    },
+    {
+        "question": "Sanitary sewage is independent of",
+        "options": ["Rate of water supply", "Population growth", "Infiltration of groundwater", "Rainfall"],
+        "answer": "Rainfall"
+    },
+    {
+        "question": "Sewage sickness occurs when",
+        "options": ["Sewage contains pathogenic bacteria", "Sewers get clogged due to accumulate of solid", "Voids of soil get clogged due to continuous application of sewage on a piece of land", "Sewers enters the water supply system"],
+        "answer": "Voids of soil get clogged due to continuous application of sewage on a piece of land"
+    },
+    {
+        "question": "EIA is defined as:",
+        "options": ["A process of identifying, predicting, and evaluating the likely impacts of a proposed project or development to define mitigation actions to reduce negative impacts and to provide positive contributions to the natural environment and well-being", "A report written by government representatives on the planned development impacts of environment, socio-economic issues and culture", "Project life-cycle assessment", "None of these"],
+        "answer": "A process of identifying, predicting, and evaluating the likely impacts of a proposed project or development to define mitigation actions to reduce negative impacts and to provide positive contributions to the natural environment and well-being"
+    },
+    {
+        "question": "The slope of a sewer will be",
+        "options": ["Given in the direction of natural slope of ground", "Given in the direction opposite to natural slope of ground", "Zero", "1 in 20"],
+        "answer": "Given in the direction of natural slope of ground"
+    },
+    {
+        "question": "Which of the following intake structure is widely used in small works?",
+        "options": ["Sluiceways", "Simple submerged intakes", "Wet intake towers", "Dry intake towers"],
+        "answer": "Simple submerged intakes"
+    },
+    {
+        "question": "Lacey silt factor for 0.35 mm diameter particles",
+        "options": ["1", "2", "0.5", "0.67"],
+        "answer": "1"
+    },
+    {
+        "question": "Fish ladder is provided on the side of",
+        "options": ["divide wall", "diaphragm wall", "core wall", "wing wall"],
+        "answer": "divide wall"
+    },
+    {
+        "question": "In Lacey's regime theory, the velocity of flow is proportional to",
+        "options": ["silt factor, discharge", "silt factor , hydraulic radius", "discharge, hydraulic radius", "nan"],
+        "answer": "silt factor, discharge"
+    },
+    {
+        "question": "Which of the following crop has highest delta?",
+        "options": ["Rice", "Tobacco", "Wheat", "Banana"],
+        "answer": "Rice"
+    },
+    {
+        "question": "The method which uses dead furrows on cropped farms for drainage of excess irrigation or rain water, is called",
+        "options": ["Surface inlet", "Tile drainage", "Bedding", "French drain"],
+        "answer": "Bedding"
+    },
+    {
+        "question": "How can tile drainage help to increase crop yields?",
+        "options": ["Increases Free Gravity Water", "Increases Volume of Soil", "Decrease Air Circulation", "Increases Water Table Level"],
+        "answer": "Increases Volume of Soil"
+    },
+    {
+        "question": "Which of the following factor decides canal fall in main channel?",
+        "options": ["Topography", "Economy in earthwork balance", "Commanded area", "Regulating structure"],
+        "answer": "Economy in earthwork balance"
+    },
+    {
+        "question": "If Hnet=20m, P=2000 HP, Ns=600 rpm and N=230 rpm, then the number of turbine will be",
+        "options": ["1", "2", "3", "4"],
+        "answer": "1"
+    },
+    {
+        "question": "What is the range of head of francis turbine?",
+        "options": ["10 to 20 m", "> 250 m", "25 to 250 m", "< 50 m"],
+        "answer": "25 to 250 m"
+    },
+    {
+        "question": "The central core of the zoned embankment type earth dam",
+        "options": ["checks the seepage", "prevents piping", "gives stability to the central impervious fill", "distribute the load over a large area"],
+        "answer": "checks the seepage"
+    },
+    {
+        "question": "Which of the following is the most economical source of power?",
+        "options": ["Hydel", "Solar", "Thermal", "Nuclear"],
+        "answer": "Hydel"
+    },
+    {
+        "question": "Which one is suitable to meet base load as well as peak load?",
+        "options": ["ROR with pondage", "ROR without pondage", "Storage type", "Pumped"],
+        "answer": "Storage type"
+    },
+    {
+        "question": "Morning glory is the _____________________________",
+        "options": ["special flared inlet of the shaft spillway of a dam of very small height", "special flared inlet of the shaft spillway of a large dam project", "a horizontal tunnel constructed in a shaft spillway across the body of a gravity dam to carry surplus reservoir water to the d/s river.", "a horizontal tunnel constructed in a shaft spillway of an earthen dam through its foundation to carry surplus reservoir water to the d/s river."],
+        "answer": "special flared inlet of the shaft spillway of a large dam project"
+    },
+    {
+        "question": "The road foundation for modern highways construction, was developed by which of the following scientists?",
+        "options": ["Telford", "Macadam", "Tresguet", "Both Telford and Macadam"],
+        "answer": "Both Telford and Macadam"
+    },
+    {
+        "question": "Which of following is not related to cross section of road?",
+        "options": ["Camber", "Superelevation", "Lanes", "Gradient"],
+        "answer": "Gradient"
+    },
+    {
+        "question": "What is the most reliable mode of transportation?",
+        "options": ["Water transport", "Road transport", "Air transport", "Railway transport"],
+        "answer": "Road transport"
+    },
+    {
+        "question": "When was NEC Act promulated?",
+        "options": ["2055-06-01", "2056-06-01", "2055-11-27", "2079-05-05"],
+        "answer": "2055-11-27"
+    },
+    {
+        "question": "The technique of finding the fair price of an existing building or property is known as",
+        "options": ["Pricing", "Estimation", "Valuation", "Costing"],
+        "answer": "Valuation"
+    },
+    {
+        "question": "What are the steps involved in evaluation of toxicity?",
+        "options": ["hazard identification and dose-response evaluation", "chemical analysis", "pathway analysis", "evaluation of long term impact"],
+        "answer": "hazard identification and dose-response evaluation"
+    },
+    {
+        "question": "As per Nov 2021, the total number of universities recognised by NEC globally is",
+        "options": ["510", "610", "710", "810"],
+        "answer": "810"
+    },
+    {
+        "question": "The number of member directly elected for Council from Nepal Engineering Association is",
+        "options": ["5", "7", "21", "25"],
+        "answer": "5"
+    },
+    {
+        "question": "Which of the following is NOT protected by copyright?",
+        "options": ["Painting, drawing, photograph", "Songs", "Movies", "Design ideas in an article that are mass-used"],
+        "answer": "Design ideas in an article that are mass-used"
+    },
+    {
+        "question": "Find the CG of trapezoidal section for depth h with parallel side a and b from the base of b?",
+        "options": ["h/2*((b+2a)/(b+a))", "h/2*((b+2a)/(b-a))", "h/3*((b+2a)/(b+a))", "h/3*((b+2a)/(b-a))"],
+        "answer": "h/3*((b+2a)/(b+a))"
+    },
+    {
+        "question": "The section modulus of hollow rectangular section is",
+        "options": ["[BD³-bd³]/6d", "[BD²-bd²]/6D", "[BD²-bd²]/6", "[BD²-bd²]/12"],
+        "answer": "[BD²-bd²]/6D"
+    },
+    {
+        "question": "If the observed fore bearing of line AB is 135°35'5\" , then the back bearing is:",
+        "options": ["45°35'5\"", "44°24'55\"", "224°24'55\"", "315°35'5\""],
+        "answer": "315°35'5\""
+    },
+    {
+        "question": "What is the formula for Active earth pressure coefficient?",
+        "options": ["(1+sinϕ)/(1-sinϕ)", "(1-sinϕ)/(1+sinϕ)", "(1+sin²ϕ)/(1-sin²ϕ)", "(1-sin²ϕ)/(1+sin²ϕ)"],
+        "answer": "(1-sinϕ)/(1+sinϕ)"
+    },
+    {
+        "question": "Two Soap bubbles have d and 2d diameter respectively. Which bubble have more internal pressure?",
+        "options": ["with dia d", "with dia 2d", "same for both bubble", "can not be said until calculated"],
+        "answer": "with dia d"
+    },
+    {
+        "question": "When the coefficient of rugosity is increased from 0.01 to 0.02, the gradient of a pipe of a given diameter to carry the same flow at the same velocity should be",
+        "options": ["increased by 4 times", "increased by 2 times", "decreased by 2 times", "decreased by 4 times"],
+        "answer": "increased by 4 times"
+    },
+    {
+        "question": "If specific gravity of soil is 1.527 then find specific weight.",
+        "options": ["15270 N/m³", "1527 N/cm³", "14980 N/m³", "1498 N/cm³"],
+        "answer": "14980 N/m³"
+    },
+    {
+        "question": "What of the following relation of y2/y1 is correct?",
+        "options": ["0.5 {√(8f²+1)}-1", "0.5 {√(8f^2+1)-1}", "{√(8f^2+1)}-1", "{√(8f^2+1)-1}"],
+        "answer": "0.5 {√(8f^2+1)-1}"
+    },
+    {
+        "question": "For an I-beam, shape factor is 1.12. The factor of safety in bending is 1.5. if the allowable stress is increased by 20% for wind and earthquake loads, then the load factor is",
+        "options": ["1.1", "1.25", "1.35", "1.4"],
+        "answer": "1.4"
+    },
+    {
+        "question": "What will be the Euler's Crippling formula when both ends are hinged ?",
+        "options": ["π²ΕΙ/L²", "2π²ΕΙ/L²", "4π²ΕΙ/L²", "π²ΕΙ/4L²"],
+        "answer": "π²ΕΙ/L²"
+    },
+    {
+        "question": "A simply supported beam is supporting 3 point loads 10kN at 1m , 2m and 3m each from support of span 4m. Find maximum bending moment",
+        "options": ["10KN-m", "15KNm", "20KNm", "30KNm"],
+        "answer": "20KNm"
+    },
+    {
+        "question": "If three pipes of different diameters, lengths & friction factors are connected in parallel, then (where, Q = flow rate, V = fluid velocity f = friction factor).",
+        "options": ["Q = Q1 + Q2 + Q3", "V1 = V2 = V3", "Q1 = Q2 = Q3", "f = f1 + f2 + f3"],
+        "answer": "Q = Q1 + Q2 + Q3"
+    },
+    {
+        "question": "The ratio of COD to BOD of untreated sewage is",
+        "options": ["1.25-2.5", "2.5-5", "5-10", "None of these"],
+        "answer": "2.5-5"
+    },
+    {
+        "question": "To design sewer pipes of diameters 0.4m to 0.9m at maximum flow, the flow in sewer is running at",
+        "options": ["full depth", "half full", "Two third full", "three fourth full"],
+        "answer": "half full"
+    },
+    {
+        "question": "The provision for design discharge of under sluices should be",
+        "options": ["atleast double the canal discharge", "about 10 to 15% of maximum flood discharge", "able to pass winter flow", "Maximum of (a), (b) and (c)"],
+        "answer": "Maximum of (a), (b) and (c)"
+    },
+    {
+        "question": "What is the utilization factor for the power plant of 100 MW installed capacity which supply 570000 KWH per day of energy with peak load of 95 MW.",
+        "options": ["0.23", "0.95", "0.25", "0.6"],
+        "answer": "0.95"
+    },
+    {
+        "question": "In a mini-grid, the average load variation is recorded as; Time: 10PM to 6Am, 6Am to 9Am, 9Am to 6 Pm and 6Pm to 10Pm, the load in KW: 400, 540, 450, and 820 respectively. The power supplied by the power capacity is 950 KW micro hydro. Find out the load factor",
+        "options": ["0.63", "0.29", "0.46", "nan"],
+        "answer": "0.63"
+    },
+    {
+        "question": "The maximum theoretical capacity for a single lane is given by__________",
+        "options": ["1000 V/S", "1000 S/V", "1000 S", "1000 V"],
+        "answer": "1000 V/S"
+    },
+    {
+        "question": "The speed and jam density of the traffic stream is 50Km/hr and 100 vehicles/km respectively. The average time headway will be …..",
+        "options": ["1.38 sec", "1.94 sec", "0.72 sec", "0.51 sec"],
+        "answer": "0.72 sec"
+    },
+    {
+        "question": "For permanent affiliation, the supervision of college conducted by NEC for",
+        "options": ["two times in a year", "once in two year", "one time in a year", "three times a year"],
+        "answer": "once in two year""
+    }
+ ];
+        
+        // Process questions to add IDs and marks
+        const questions = questionData.map((q, index) => {
+            return {
+                id: index + 1,
+                question: q.question,
+                options: q.options,
+                answer: q.options.indexOf(q.answer), // Convert answer to index
+                marks: index < 60 ? 1 : 2, // First 60 worth 1 mark, rest worth 2
+                explanation: `Explanation for question ${index + 1}. The correct answer is "${q.answer}" because...`
+            };
+        });
+        
+        // If not enough questions, fill with samples
+        while (questions.length < 80) {
+            const i = questions.length;
+            questions.push({
+                id: i + 1,
+                question: `Sample question ${i + 1}?`,
+                options: ["Option A", "Option B", "Option C", "Option D"],
+                answer: Math.floor(Math.random() * 4),
+                marks: i < 60 ? 1 : 2,
+                explanation: `This is the explanation for sample question ${i + 1}`
+            });
+        }
+        
+        // DOM elements
+        const welcomeScreen = document.getElementById('welcome-screen');
+        const startBtn = document.getElementById('start-btn');
+        const testContainer = document.getElementById('test-container');
+        const questionGrid = document.getElementById('question-grid');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const submitTestBtn = document.getElementById('submit-test-btn');
+        const resultContainer = document.getElementById('result-container');
+        const finalScoreEl = document.getElementById('final-score');
+        const resultMessageEl = document.getElementById('result-message');
+        const reviewAnswersEl = document.getElementById('review-answers');
+        const retryBtn = document.getElementById('retry-btn');
+        const viewAnswersBtn = document.getElementById('view-answers-btn');
+        const timerEl = document.getElementById('timer');
+        const pageNumbersEl = document.getElementById('page-numbers');
+        const attemptedCountEl = document.getElementById('attempted-count');
+        const pagesLeftEl = document.getElementById('pages-left');
+        const currentPageEl = document.getElementById('current-page');
+        const totalQuestionsEl = document.getElementById('total-questions');
+        const submitModal = document.getElementById('submit-modal');
+        const modalCancelBtn = document.getElementById('modal-cancel-btn');
+        const modalConfirmBtn = document.getElementById('modal-confirm-btn');
+        
+        // Test configuration
+        const QUESTIONS_PER_PAGE = 10;
+        const TOTAL_PAGES = Math.ceil(questions.length / QUESTIONS_PER_PAGE);
+        const PASS_MARK = 50;
+        const TIME_LIMIT = 100 * 60; // 120 minutes in seconds
+        
+        // Test state
+        let currentPage = 1;
+        let timeLeft = TIME_LIMIT;
+        let timerInterval;
+        let userAnswers = Array(questions.length).fill(null);
+        let answeredQuestions = 0;
+        let testStarted = false;
+        
+        // Initialize the test
+        function initTest() {
+            // Update total questions display
+            totalQuestionsEl.textContent = questions.length;
+            
+            // Initialize pagination
+            initPagination();
+            
+            // Load first page
+            loadPage(currentPage);
+            
+            // Update header info
+            updateHeaderInfo();
+        }
+        
+        // Start the test
+        function startTest() {
+            testStarted = true;
+            welcomeScreen.style.display = 'none';
+            testContainer.style.display = 'block';
+            
+            // Start timer
+            startTimer();
+        }
+        
+        // Initialize pagination controls
+        function initPagination() {
+            pageNumbersEl.innerHTML = '';
+            
+            for (let i = 1; i <= TOTAL_PAGES; i++) {
+                const pageNumber = document.createElement('div');
+                pageNumber.className = 'page-number';
+                if (i === 1) pageNumber.classList.add('active');
+                pageNumber.textContent = i;
+                pageNumber.addEventListener('click', () => {
+                    if (currentPage !== i) {
+                        currentPage = i;
+                        loadPage(currentPage);
+                        updatePaginationUI();
+                        updateHeaderInfo();
+                    }
+                });
+                pageNumbersEl.appendChild(pageNumber);
+            }
+        }
+        
+        // Load questions for a specific page
+        function loadPage(page) {
+            questionGrid.innerHTML = '';
+            
+            const startIndex = (page - 1) * QUESTIONS_PER_PAGE;
+            const endIndex = Math.min(startIndex + QUESTIONS_PER_PAGE, questions.length);
+            
+            for (let i = startIndex; i < endIndex; i++) {
+                const q = questions[i];
+                const questionEl = document.createElement('div');
+                questionEl.className = 'question-card';
+                
+                questionEl.innerHTML = `
+                    <div class="question-text">${q.id}. ${q.question}</div>
+                    <div class="options">
+                        ${q.options.map((opt, optIndex) => `
+                            <label class="option">
+                                <input type="radio" id="q${q.id}_opt${optIndex}" name="q${q.id}" value="${optIndex}" ${userAnswers[i] === optIndex ? 'checked' : ''}>
+                                <span class="checkmark"></span>
+                                ${opt}
+                            </label>
+                        `).join('')}
+                    </div>
+                `;
+                
+                // Add event listeners to radio buttons
+                const radioButtons = questionEl.querySelectorAll('input[type="radio"]');
+                radioButtons.forEach(radio => {
+                    radio.addEventListener('change', (e) => {
+                        const questionIndex = i;
+                        const selectedOption = parseInt(e.target.value);
+                        
+                        // Update user answer
+                        if (userAnswers[questionIndex] === null) {
+                            answeredQuestions++;
+                        }
+                        userAnswers[questionIndex] = selectedOption;
+                        
+                        // Update header info
+                        updateHeaderInfo();
+                        
+                        // Update pagination UI
+                        updatePaginationUI();
+                    });
+                });
+                
+                questionGrid.appendChild(questionEl);
+            }
+        }
+        
+        // Update pagination UI
+        function updatePaginationUI() {
+            const pageNumbers = document.querySelectorAll('.page-number');
+            
+            pageNumbers.forEach((page, index) => {
+                page.classList.remove('active', 'answered');
+                
+                if (index + 1 === currentPage) {
+                    page.classList.add('active');
+                }
+                
+                // Check if any questions on this page are answered
+                const startIndex = index * QUESTIONS_PER_PAGE;
+                const endIndex = Math.min(startIndex + QUESTIONS_PER_PAGE, questions.length);
+                const pageAnswers = userAnswers.slice(startIndex, endIndex);
+                
+                if (pageAnswers.some(answer => answer !== null)) {
+                    page.classList.add('answered');
+                }
+            });
+            
+            // Update button states
+            prevBtn.disabled = currentPage === 1;
+            nextBtn.disabled = currentPage === TOTAL_PAGES;
+        }
+        
+        // Update header information
+        function updateHeaderInfo() {
+            attemptedCountEl.textContent = answeredQuestions;
+            pagesLeftEl.textContent = TOTAL_PAGES - currentPage;
+            currentPageEl.textContent = currentPage;
+        }
+        
+        // Start the countdown timer
+        function startTimer() {
+            updateTimerDisplay();
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                updateTimerDisplay();
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    submitTest();
+                }
+            }, 1000);
+        }
+        
+        // Update timer display
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            
+            timerEl.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+            
+            // Change color based on time remaining
+            timerEl.className = 'timer';
+            if (timeLeft <= 30 * 60) {
+                timerEl.classList.add('timer-warning');
+            }
+            if (timeLeft <= 10 * 60) {
+                timerEl.classList.add('timer-danger');
+            }
+        }
+        
+        // Show submit confirmation modal
+        function showSubmitModal() {
+            submitModal.style.display = 'flex';
+        }
+        
+        // Hide submit confirmation modal
+        function hideSubmitModal() {
+            submitModal.style.display = 'none';
+        }
+        
+        // Submit the test
+        function submitTest() {
+            clearInterval(timerInterval);
+            hideSubmitModal();
+            
+            // Calculate score
+            let score = 0;
+            const results = [];
+            
+            questions.forEach((q, index) => {
+                const userAnswer = userAnswers[index];
+                const isCorrect = userAnswer === q.answer;
+                
+                if (isCorrect) {
+                    score += q.marks;
+                }
+                
+                results.push({
+                    question: q,
+                    userAnswer: userAnswer,
+                    isCorrect: isCorrect
+                });
+            });
+            
+            // Show results
+            showResults(score, results);
+        }
+        
+        // Display test results
+        function showResults(score, results) {
+            testContainer.style.display = 'none';
+            resultContainer.style.display = 'block';
+            
+            // Update score display
+            finalScoreEl.textContent = `${score}/100`;
+            finalScoreEl.className = `score ${score >= PASS_MARK ? 'score-pass' : 'score-fail'}`;
+            
+            // Update result message
+            if (score >= PASS_MARK) {
+                resultMessageEl.textContent = `Congratulations! You scored ${score} marks and passed the practice test. You're well prepared for the NEC License exam!`;
+                resultMessageEl.className = 'result-message message-pass';
+            } else {
+                resultMessageEl.textContent = `You scored ${score} marks which is below the passing mark of ${PASS_MARK}. Review the questions below to improve your knowledge.`;
+                resultMessageEl.className = 'result-message message-fail';
+            }
+            
+            // Show review of answers
+            showReviewAnswers(results);
+        }
+        
+        // Show review of answers
+        function showReviewAnswers(results) {
+            reviewAnswersEl.innerHTML = '';
+            
+            results.forEach((result, index) => {
+                if (!result.isCorrect || index % 10 === 0) { // Show incorrect answers + first of each page
+                    const q = result.question;
+                    const reviewEl = document.createElement('div');
+                    reviewEl.className = 'review-question';
+                    
+                    let optionsHtml = q.options.map((opt, i) => {
+                        let classes = [];
+                        let status = '';
+                        
+                        if (i === q.answer) {
+                            classes.push('correct-answer');
+                            status = 'Correct Answer';
+                        }
+                        
+                        if (i === result.userAnswer && !result.isCorrect) {
+                            classes.push('user-answer');
+                            status = 'Your Answer';
+                        }
+                        
+                        return `
+                            <div class="${classes.join(' ')}">
+                                ${opt} 
+                                ${status ? `<small>(${status})</small>` : ''}
+                            </div>
+                        `;
+                    }).join('');
+                    
+                    reviewEl.innerHTML = `
+                        <div class="question-status ${result.isCorrect ? 'status-correct' : 'status-incorrect'}">
+                            ${result.isCorrect ? 'Correct' : 'Incorrect'} (${q.marks} mark${q.marks > 1 ? 's' : ''})
+                        </div>
+                        <div class="question-text">${q.id}. ${q.question}</div>
+                        <div class="options">${optionsHtml}</div>
+                        <div class="explanation">${q.explanation}</div>
+                    `;
+                    
+                    reviewAnswersEl.appendChild(reviewEl);
+                }
+            });
+        }
+        
+        // Show all answers
+        function showAllAnswers() {
+            reviewAnswersEl.innerHTML = '';
+            
+            questions.forEach((q, index) => {
+                const userAnswer = userAnswers[index];
+                const isCorrect = userAnswer === q.answer;
+                
+                const reviewEl = document.createElement('div');
+                reviewEl.className = 'review-question';
+                
+                let optionsHtml = q.options.map((opt, i) => {
+                    let classes = [];
+                    let status = '';
+                    
+                    if (i === q.answer) {
+                        classes.push('correct-answer');
+                        status = 'Correct Answer';
+                    }
+                    
+                    if (i === userAnswer && !isCorrect) {
+                        classes.push('user-answer');
+                        status = 'Your Answer';
+                    }
+                    
+                    return `
+                        <div class="${classes.join(' ')}">
+                            ${opt} 
+                            ${status ? `<small>(${status})</small>` : ''}
+                        </div>
+                    `;
+                }).join('');
+                
+                reviewEl.innerHTML = `
+                    <div class="question-status ${isCorrect ? 'status-correct' : 'status-incorrect'}">
+                        ${isCorrect ? 'Correct' : 'Incorrect'} (${q.marks} mark${q.marks > 1 ? 's' : ''})
+                    </div>
+                    <div class="question-text">${q.id}. ${q.question}</div>
+                    <div class="options">${optionsHtml}</div>
+                    <div class="explanation">${q.explanation}</div>
+                `;
+                
+                reviewAnswersEl.appendChild(reviewEl);
+            });
+        }
+        
+        // Event listeners
+        startBtn.addEventListener('click', () => {
+            initTest();
+            startTest();
+        });
+        
+        prevBtn.addEventListener('click', () => {
+            if (currentPage > 1) {
+                currentPage--;
+                loadPage(currentPage);
+                updatePaginationUI();
+                updateHeaderInfo();
+            }
+        });
+        
+        nextBtn.addEventListener('click', () => {
+            if (currentPage < TOTAL_PAGES) {
+                currentPage++;
+                loadPage(currentPage);
+                updatePaginationUI();
+                updateHeaderInfo();
+            }
+        });
+        
+        submitTestBtn.addEventListener('click', showSubmitModal);
+        
+        modalCancelBtn.addEventListener('click', hideSubmitModal);
+        
+        modalConfirmBtn.addEventListener('click', submitTest);
+        
+        retryBtn.addEventListener('click', () => {
+            if (confirm('Do you want to restart the test? All your answers will be lost.')) {
+                location.reload();
+            }
+        });
+        
+        viewAnswersBtn.addEventListener('click', showAllAnswers);
+        
+        // Initialize the welcome screen
+        window.addEventListener('DOMContentLoaded', () => {
+            welcomeScreen.style.display = 'block';
+            testContainer.style.display = 'none';
+            resultContainer.style.display = 'none';
+            submitModal.style.display = 'none';
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engineering Economics - Complete Study Notes | Arun Panthi</title>
+    <meta name="description" content="Comprehensive Engineering Economics notes for civil engineers - covers time value of money, cost analysis, project evaluation, depreciation methods, and economic decision making">
+    <meta name="keywords" content="Engineering Economics, time value of money, cost-benefit analysis, NPV, IRR, depreciation, break-even analysis, project evaluation, civil engineering economics">
+    <meta name="author" content="Arun Panthi">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://arunpanthi.com.np/Engineering_Economics_Notes">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Engineering Economics - Complete Study Notes for Engineers">
+    <meta property="og:description" content="Professional engineering economics notes covering financial analysis techniques for engineering projects">
+    <meta property="og:url" content="https://arunpanthi.com.np/Engineering_Economics_Notes">
+    <meta property="og:type" content="website">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "EducationalArticle",
+      "headline": "Complete Engineering Economics Notes for Engineers",
+      "description": "Detailed engineering economics notes covering financial decision-making in engineering projects",
+      "author": {
+        "@type": "Person",
+        "name": "Arun Panthi"
+      },
+      "datePublished": "2023-01-01",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Arun Panthi"
+      }
+    }
+    </script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="Note.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <div class="navbar">
+        <a href="Home"><i class="fas fa-home"></i> Home</a>
+        <a href="resources"><i class="fas fa-book"></i> Resources</a>
+        <a href="license-preparation"><i class="fas fa-certificate"></i> License Prep</a>
+        <a href="psc-preparation"><i class="fas fa-graduation-cap"></i> PSC Prep</a>
+        <a href="aboutus"><i class="fas fa-info-circle"></i> About Us</a>
+        <a href="contactus"><i class="fas fa-envelope"></i> Contact Us</a>
+    </div>
+</head>
+<body>
+    <section id="top">
+        <nav>
+            <div class="nav-buttons">
+                <button class="nav-btn" onclick="location.href='#TimeValue'">Time Value</button>
+                <button class="nav-btn" onclick="location.href='#CostConcepts'">Cost Concepts</button>
+                <button class="nav-btn" onclick="location.href='#Depreciation'">Depreciation</button>
+                <button class="nav-btn" onclick="location.href='#ProjectEvaluation'">Project Evaluation</button>
+                <button class="nav-btn" onclick="location.href='#BreakEven'">Break-Even</button>
+                <button class="nav-btn" onclick="location.href='#CaseStudies'">Case Studies</button>
+            </div>
+        </nav>
+    </section>
+
+    <main>
+        <!-- Time Value of Money -->
+        <section id="TimeValue">
+            <h1>Time Value of Money in Engineering Economics</h1>
+            
+            <p>
+                The fundamental principle that money available today is worth more than the same amount in the future due to its potential earning capacity. This core concept drives all engineering economic decisions.
+            </p>
+
+            <h2>Key Formulas</h2>
+            <div class="formula-box">
+                <h3>Future Value (Single Amount)</h3>
+                <p>\[ F = P(1 + i)^n \]</p>
+                <p>Where:<br>
+                F = Future value<br>
+                P = Present value<br>
+                i = Interest rate per period<br>
+                n = Number of periods</p>
+            </div>
+
+            <div class="formula-box">
+                <h3>Present Worth Factor</h3>
+                <p>\[ P = F \frac{1}{(1 + i)^n} \]</p>
+            </div>
+
+            <h2>Annuity Calculations</h2>
+            <p>Series of equal payments at regular intervals:</p>
+            <div class="formula-box">
+                <h3>Uniform Series Present Worth</h3>
+                <p>\[ P = A \left[ \frac{(1 + i)^n - 1}{i(1 + i)^n} \right] \]</p>
+            </div>
+
+            <div class="formula-box">
+                <h3>Capital Recovery Factor</h3>
+                <p>\[ A = P \left[ \frac{i(1 + i)^n}{(1 + i)^n - 1} \right] \]</p>
+                <p>Used to calculate loan payments</p>
+            </div>
+        </section>
+
+        <!-- Cost Concepts -->
+        <section id="CostConcepts">
+            <h1>Engineering Cost Concepts</h1>
+            
+            <h2>Fixed vs Variable Costs</h2>
+            <div class="comparison-table">
+                <table>
+                    <tr>
+                        <th>Fixed Costs</th>
+                        <th>Variable Costs</th>
+                    </tr>
+                    <tr>
+                        <td>Constant regardless of production volume</td>
+                        <td>Vary directly with production volume</td>
+                    </tr>
+                    <tr>
+                        <td>Examples: Rent, salaries, insurance</td>
+                        <td>Examples: Materials, labor, utilities</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h2>Marginal Cost Analysis</h2>
+            <p>The cost of producing one additional unit:</p>
+            <p>\[ MC = \frac{\Delta TC}{\Delta Q} \]</p>
+            <p>Where:<br>
+            MC = Marginal cost<br>
+            ΔTC = Change in total cost<br>
+            ΔQ = Change in quantity</p>
+        </section>
+
+        <!-- Depreciation Methods -->
+        <section id="Depreciation">
+            <h1>Depreciation Methods for Engineering Assets</h1>
+            
+            <div class="method-card">
+                <h2>Straight-Line Method</h2>
+                <p>\[ D_j = \frac{C - S_n}{n} \]</p>
+                <p>Where:<br>
+                D<sub>j</sub> = Depreciation in year j<br>
+                C = Initial cost<br>
+                S<sub>n</sub> = Salvage value<br>
+                n = Useful life</p>
+            </div>
+
+            <div class="method-card">
+                <h2>Declining Balance Method</h2>
+                <p>\[ D_j = d \times BV_{j-1} \]</p>
+                <p>Where:<br>
+                d = Depreciation rate (e.g., 1.5/n for 150% DB)<br>
+                BV = Book value at beginning of year</p>
+            </div>
+
+            <div class="method-card">
+                <h2>MACRS (Tax Depreciation)</h2>
+                <p>Modified Accelerated Cost Recovery System with predefined recovery periods (3,5,7,10,15,20,27.5,39 years)</p>
+            </div>
+        </section>
+
+        <!-- Project Evaluation -->
+        <section id="ProjectEvaluation">
+            <h1>Project Evaluation Techniques</h1>
+            
+            <div class="evaluation-method">
+                <h2>Net Present Value (NPV)</h2>
+                <p>\[ NPV = \sum_{t=0}^n \frac{R_t - C_t}{(1 + i)^t} \]</p>
+                <p>Decision Rule: Accept if NPV ≥ 0</p>
+            </div>
+
+            <div class="evaluation-method">
+                <h2>Internal Rate of Return (IRR)</h2>
+                <p>The discount rate that makes NPV = 0</p>
+                <p>\[ 0 = \sum_{t=0}^n \frac{R_t - C_t}{(1 + IRR)^t} \]</p>
+                <p>Decision Rule: Accept if IRR ≥ MARR</p>
+            </div>
+
+            <div class="evaluation-method">
+                <h2>Benefit-Cost Ratio (BCR)</h2>
+                <p>\[ BCR = \frac{PV(\text{Benefits})}{PV(\text{Costs})} \]</p>
+                <p>Decision Rule: Accept if BCR ≥ 1.0</p>
+            </div>
+        </section>
+
+        <!-- Break-Even Analysis -->
+        <section id="BreakEven">
+            <h1>Break-Even Analysis for Engineering Projects</h1>
+            
+            <p>The point where total revenue equals total costs:</p>
+            <p>\[ Q_{BE} = \frac{FC}{P - VC} \]</p>
+            <p>Where:<br>
+            Q<sub>BE</sub> = Break-even quantity<br>
+            FC = Fixed costs<br>
+            P = Price per unit<br>
+            VC = Variable cost per unit</p>
+
+            <div class="graph-box">
+                <h3>Break-Even Graph Components</h3>
+                <ul>
+                    <li>Fixed cost line (horizontal)</li>
+                    <li>Total cost line (starts at FC, slopes upward)</li>
+                    <li>Revenue line (starts at origin, slopes upward)</li>
+                    <li>Intersection point = Break-even</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Case Studies -->
+        <section id="CaseStudies">
+            <h1>Engineering Economics Case Studies</h1>
+            
+            <div class="case-study">
+                <h2>Highway Construction Project</h2>
+                <p><strong>Problem:</strong> Compare asphalt vs concrete pavement for a 20km highway with 20-year life</p>
+                <p><strong>Analysis:</strong> Life-cycle cost analysis including initial construction, maintenance, and user delay costs</p>
+            </div>
+
+            <div class="case-study">
+                <h2>Equipment Replacement</h2>
+                <p><strong>Problem:</strong> Determine optimal replacement year for an excavator with increasing maintenance costs</p>
+                <p><strong>Analysis:</strong> Marginal cost comparison between keeping existing vs purchasing new equipment</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+
+    <button class="back-to-top" onclick="location.href='#top'">↑ Back to Top ↑</button>
+    
+    <div class="social-media">
+        <h5><i class="fab fa-connectdevelop"></i> Connect with Us</h5>
+        <p>Follow us on social media to stay updated with the latest resources and news.</p>
+        <div class="icons">
+            <a href="https://www.facebook.com/arun.panthi27" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.tiktok.com/@er.arunpanthi" target="_blank"><i class="fab fa-tiktok"></i></a>
+            <a href="https://www.youtube.com/@Arunpanthisblog" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="mailto:erarunpanthi@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>
+        </div>
+    </div>
+    
+    <footer>
+        <p>©2024 CivPrepMaster. All rights reserved. | <a href="PrivacyPolicy">Privacy Policy</a> | <a href="TermsofService">Terms of Service</a></p>
+    </footer>
+</body>
+</html>

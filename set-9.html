@@ -1,0 +1,1353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEC License Exam  set-9 </title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="set.css">
+   </head>
+<body>
+    <header>
+        <div class="container">
+            <h1>NEC License Exam set-9</h1>
+            <p>Practice test with 80 questions (60 x 1 mark + 20 x 2 marks)</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <!-- Welcome Screen -->
+        <div id="welcome-screen" class="welcome-screen">
+            <h2 class="welcome-title">NEC License Practice Test set-9 </h2>
+            <div class="welcome-message">
+                <p>This practice test will help you prepare for the Nepal Engineering Council (NEC) License Examination. The test consists of 80 multiple-choice questions designed to simulate the actual exam experience.</p>
+                
+                <h3 style="margin-top: 20px; margin-bottom: 10px;">Test Structure:</h3>
+                <ul class="rules-list">
+                    <li><strong>80 questions total</strong> (60 questions worth 1 mark each, 20 questions worth 2 marks each)</li>
+                    <li><strong>Time limit:</strong> 100 minutes (1.7 hours)</li>
+                    <li><strong>Passing score:</strong> 50 marks or higher</li>
+                    <li>You can navigate between questions using the pagination controls</li>
+                    <li>Once submitted, you cannot restart the test</li>
+                </ul>
+                
+                <h3 style="margin-top: 20px; margin-bottom: 10px;">Instructions:</h3>
+                <ul class="rules-list">
+                    <li>Read each question carefully before answering</li>
+                    <li>You can change your answers before submitting</li>
+                    <li>After submission, you'll receive detailed feedback on your performance</li>
+                    <li>Good luck with your preparation!</li>
+                </ul>
+            </div>
+            <button id="start-btn" class="start-btn">Start Test</button>
+        </div>
+        
+        <!-- Test Container -->
+        <div id="test-container" class="test-container">
+            <div class="test-header">
+                <div class="header-item">
+                    <span class="header-label">Questions:</span>
+                    <span class="header-value" id="total-questions">80</span>
+                </div>
+                <div class="header-item">
+                    <span class="header-label">Attempted:</span>
+                    <span class="header-value" id="attempted-count">0</span>
+                </div>
+                <div class="header-item">
+                    <span class="header-label">Pages Left:</span>
+                    <span class="header-value" id="pages-left">7</span>
+                </div>
+                <div class="header-item">
+                    <span class="header-label">Current Page:</span>
+                    <span class="header-value" id="current-page">1</span>
+                </div>
+                <div class="timer-container">
+                    <span class="timer-icon">⏱️</span>
+                    <span class="timer" id="timer">120:00</span>
+                </div>
+            </div>
+            
+            <div class="page-container">
+                <div class="question-grid" id="question-grid">
+                    <!-- Questions will be inserted here -->
+                </div>
+            </div>
+            
+            <div class="pagination">
+                <button id="prev-btn" class="btn btn-secondary">Previous</button>
+                <div class="page-numbers" id="page-numbers">
+                    <!-- Page numbers will be inserted here -->
+                </div>
+                <button id="next-btn" class="btn btn-primary">Next</button>
+            </div>
+            
+            <div style="text-align: center;">
+                <button id="submit-test-btn" class="btn btn-success">Submit Test</button>
+            </div>
+        </div>
+        
+        <!-- Result Container -->
+        <div id="result-container" class="result-container">
+            <div class="result-header">
+                <h2 class="result-title">Test Results</h2>
+                <div class="score" id="final-score">0</div>
+                <div class="result-message" id="result-message"></div>
+            </div>
+            
+            <div class="review-section">
+                <h3 class="section-title">Review Answers</h3>
+                <div id="review-answers">
+                    <!-- Review content will be inserted here -->
+                </div>
+            </div>
+            
+            <div class="action-buttons">
+                <button id="retry-btn" class="btn btn-primary">Try Again</button>
+                <button id="view-answers-btn" class="btn btn-secondary">View All Answers</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Submit Warning Modal -->
+    <div id="submit-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h3 class="modal-title">Warning: Test Submission</h3>
+            <div class="modal-message">
+                <p>You are about to submit your test. Once submitted, you cannot restart or change your answers.</p>
+                <p>Are you sure you want to submit now?</p>
+            </div>
+            <div class="modal-buttons">
+                <button id="modal-cancel-btn" class="modal-btn modal-btn-cancel">Cancel</button>
+                <button id="modal-confirm-btn" class="modal-btn modal-btn-confirm">Submit Test</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Question data in the specified format
+        const questionData = [
+
+    {
+        "question": "What is the function of plastic bitumen ?",
+        "options": [
+            "road pavements",
+            "expansion joints",
+            "crack fillings",
+            "none to these."
+        ],
+        "answer": "crack fillings"
+    },
+    {
+        "question": "The Indian Standard Size of Brick is",
+        "options": [
+            "190mm x 90mm x 90 mm",
+            "240 m x 115m x 57 m",
+            "190m x 90m x 90 m",
+            "3.5 N/sq. mm"
+        ],
+        "answer": "190mm x 90mm x 90 mm"
+    },
+    {
+        "question": "Excess of alumina in a brick earth causes",
+        "options": [
+            "Loss of cohesion",
+            "Impermeable",
+            "Cracking and warping on drying",
+            "Brittleness"
+        ],
+        "answer": "Cracking and warping on drying"
+    },
+    {
+        "question": "Red Lead on Paint acts as",
+        "options": [
+            "Base",
+            "Vehicle",
+            "Pigment",
+            "Drier"
+        ],
+        "answer": "Base"
+    },
+    {
+        "question": "when a first class brick is immersed in cold water for 24 hrs, it should not absorb water by weight more than…….",
+        "options": [
+            "0.15",
+            "0.2",
+            "0.1",
+            "None of The above"
+        ],
+        "answer": "0.15"
+    },
+    {
+        "question": "Compressive Strength of Second Class Brick is",
+        "options": [
+            "10.5 N/sq. mm",
+            "7 N/sq. mm",
+            "3.5 N/sq. mm",
+            "None of The above"
+        ],
+        "answer": "7 N/sq. mm"
+    },
+    {
+        "question": "Good quality stone should not absorb water more than",
+        "options": [
+            "0.2",
+            "0.15",
+            "0.1",
+            "0.05"
+        ],
+        "answer": "0.05"
+    },
+    {
+        "question": "The carpet area of a residential building is generally ____________percent of its plinth area.",
+        "options": [
+            "35 to 50",
+            "50 to 65",
+            "65 to 80",
+            "80 to 95"
+        ],
+        "answer": "50 to 65"
+    },
+    {
+        "question": "The Construction of a temporary Structure required to support an Unsafe Structure is called",
+        "options": [
+            "Underpinning",
+            "Shoring",
+            "Scafffolding",
+            "Jacking"
+        ],
+        "answer": "Shoring"
+    },
+    {
+        "question": "what is the center of gravity of sphere?",
+        "options": [
+            "At the center",
+            "on the circumference",
+            "at the diameter",
+            "at the radius"
+        ],
+        "answer": "At the center"
+    },
+    {
+        "question": "The exact use of core cutter method is",
+        "options": [
+            "to determine unit weight of soil",
+            "to determine Specific Weight of soil",
+            "to determine dry density of soil",
+            "None of them"
+        ],
+        "answer": "to determine unit weight of soil"
+    },
+    {
+        "question": "When drainage is permitted throughout the triaxial test, it is known as:",
+        "options": [
+            "CD test",
+            "CU test",
+            "UC test",
+            "UU test"
+        ],
+        "answer": "to determine unit weight of soil"
+    },
+    {
+        "question": "The hydrostatic pressure on the Phreatic line within a dam section is",
+        "options": [
+            "Greater than atmospheric pressure",
+            "Equal to atmospheric pressure",
+            "Less than atmospheric pressure",
+            "None of the above"
+        ],
+        "answer": "Equal to atmospheric pressure"
+    },
+    {
+        "question": "The radius of the Mohr's circle represents",
+        "options": [
+            "Minimum shear stress",
+            "Minimum normal stress",
+            "Maximum shear stress",
+            "Maximum normal stress"
+        ],
+        "answer": "Maximum shear stress"
+    },
+    {
+        "question": "Vane shear test is used for",
+        "options": [
+            "Saturated Clay",
+            "Soft Clay",
+            "Unsaturated Clay",
+            "Stiff Clay"
+        ],
+        "answer": "Soft Clay"
+    },
+    {
+        "question": "In the unconfined compression test, the corrected area of cross section (Ac) at any strain can be calculated by (A0 = Original area of cross section, ϵ = strain)",
+        "options": [
+            "Ac = A0/(1 - ϵ)",
+            "Ac = A0*(1 - ϵ)",
+            "Ac = A0",
+            "nan"
+        ],
+        "answer": "Ac = A0/(1 - ϵ)"
+    },
+    {
+        "question": "The primary function of a pile foundation is",
+        "options": [
+            "to transmit the load of a structure through a material or stratum of poor bearing capacity to one of adequate bearing capacity",
+            "to improve the load-bearing capacity of the soil",
+            "to resist lateral loads and to function as a fender to absorb wear",
+            "All of the above"
+        ],
+        "answer": "All of the above"
+    },
+    {
+        "question": "Which of the following is NOT one of the common types of Mat foundation?",
+        "options": [
+            "Flat plate type",
+            "Box structures",
+            "Mats placed on piles",
+            "Double flat plate thickened"
+        ],
+        "answer": "Double flat plate thickened"
+    },
+    {
+        "question": "Dimensions of the dynamic viscosity (μ) are",
+        "options": [
+            "MLT^-2",
+            "M-1L-1T-1",
+            "ML^-1T^-1",
+            "Allof the above"
+        ],
+        "answer": "M-1L-1T-1"
+    },
+    {
+        "question": "Chezy's formula is used to determine ( Please Note : the Dimension of chezys Constant )",
+        "options": [
+            "head loss due to friction in pipe",
+            "velocity of flow in pipe",
+            "velocity of flow in open channels",
+            "All of the above"
+        ],
+        "answer": "velocity of flow in open channels"
+    },
+    {
+        "question": "Kinematic similarity between model and prototype is :",
+        "options": [
+            "similarity of shape",
+            "similarity of streamline pattern",
+            "similarity of forces influencing the fluid motion",
+            "similarity of discharge"
+        ],
+        "answer": "similarity of discharge"
+    },
+    {
+        "question": "The center of pressure lies ________ the center of gravity of the vertical surface.",
+        "options": [
+            "in the same horizontal axis",
+            "as at the same point as",
+            "Above",
+            "Below"
+        ],
+        "answer": "Below"
+    },
+    {
+        "question": "The upper surface of a weir over which water flows is known as",
+        "options": [
+            "Nappe",
+            "Sill",
+            "Vein",
+            "Top"
+        ],
+        "answer": "Sill"
+    },
+    {
+        "question": "The ratio of linear stress to linear strain is callled",
+        "options": [
+            "Modulus of Elasticity",
+            "Bulk Modulus",
+            "Poisson ratio",
+            "Modulus of Rigidity"
+        ],
+        "answer": "Modulus of Elasticity"
+    },
+    {
+        "question": "The point of intersection of all three medians of a triangle is called-",
+        "options": [
+            "Circumcentre",
+            "Incentre",
+            "Orthocentre",
+            "Centroid"
+        ],
+        "answer": "Centroid"
+    },
+    {
+        "question": "The point of contraflexure is the point where:",
+        "options": [
+            "bending moment is maximum",
+            "bending moment is minimum",
+            "shear force is zero",
+            "bending moment changes sign"
+        ],
+        "answer": "bending moment changes sign"
+    },
+    {
+        "question": "The maximum bending moment in a beam under a wheel load caused by a train of moving load, is: -",
+        "options": [
+            "When this wheel and the C.G. of the total load system are equidistant from the ends of the beam.",
+            "Always at the centre",
+            "Closest to CG of loads",
+            "None of above"
+        ],
+        "answer": "When this wheel and the C.G. of the total load system are equidistant from the ends of the beam."
+    },
+    {
+        "question": "Which condition applies for statically indeterminate beams?",
+        "options": [
+            "No. of equilibrium conditions are more than no. of reactions",
+            "No. of reactions are more than no. of equilibrium conditions",
+            "No. of reactions are equal to no. of equilibrium conditions",
+            "No. of reactions are more than no. of forces"
+        ],
+        "answer": "No. of reactions are more than no. of equilibrium conditions"
+    },
+    {
+        "question": "The property of metals because of which they can be transformed into different shapes by hammering is",
+        "options": [
+            "Toughness",
+            "Hardness",
+            "Ductility",
+            "Malleability"
+        ],
+        "answer": "Malleability"
+    },
+    {
+        "question": "The type of footing which is used to transmit heavy loads through steel columns is:",
+        "options": [
+            "Raft foundation",
+            "Grillage foundation",
+            "Well foundation",
+            "Isolated footing"
+        ],
+        "answer": "Grillage foundation"
+    },
+    {
+        "question": "In an eccentric connection, when the axis of load is lying in the plane of bolted joint, the bolts are subjected to",
+        "options": [
+            "only shear stresses",
+            "only tensile stresses",
+            "both tensile and shear stresses",
+            "tensile, shear and bending stresses"
+        ],
+        "answer": "tensile, shear and bending stresses"
+    },
+    {
+        "question": "Select the incorrect statement from the following.",
+        "options": [
+            "Purlin is subjected to biaxial bending.",
+            "The span of purlin is center to center of truss; purlin is located at the panel point of the truss.",
+            "Purlin runs perpendicular to truss.",
+            "Purlin is designed as a tension member."
+        ],
+        "answer": "Purlin is designed as a tension member."
+    },
+    {
+        "question": "Relation between Dissolve solid , total solid and Suspended solid is",
+        "options": [
+            "Dissolved solid = Total solid + Suspended solid",
+            "Dissolved solid = Total solid – Suspended solid",
+            "Total solid = Dissolved solid / Suspended solid",
+            "Dissolved solid = Suspended solid – Total solid"
+        ],
+        "answer": "Dissolved solid = Total solid – Suspended solid"
+    },
+    {
+        "question": "The function of reflux valve is",
+        "options": [
+            "used to control the flow of water in a pipe system by dividing it into a number of sections",
+            "designed to enable the flow of fluid in one direction while preventing backflow.",
+            "Used to drain out the water from the pipe system",
+            "controls the pressure in a system."
+        ],
+        "answer": "designed to enable the flow of fluid in one direction while preventing backflow."
+    },
+    {
+        "question": "The bacteria present in sludge digestor tank of activated sludge process is",
+        "options": [
+            "Aerobic",
+            "Anaerobic",
+            "Both",
+            "nan"
+        ],
+        "answer": "Aerobic"
+    },
+    {
+        "question": "Percentage amount of Solid in Sewage is",
+        "options": [
+            "2.5% or more",
+            "1% or more",
+            "0.1% or less",
+            "zero"
+        ],
+        "answer": "0.1% or less"
+    },
+    {
+        "question": "In vacuum flotation unit, the vacuum pressure present in the aerated sewage cause the air bubbles to:",
+        "options": [
+            "To expand and move downwards",
+            "To contract and move upwards",
+            "To contract and move downwards",
+            "To expand and move upwards"
+        ],
+        "answer": "To expand and move upwards"
+    },
+    {
+        "question": "The crop among the following, which is expected to have the maximum duty, is",
+        "options": [
+            "Wheat",
+            "Rice",
+            "Sugarcane",
+            "Cotton"
+        ],
+        "answer": "Wheat"
+    },
+    {
+        "question": "The crop which can withstand the maximum water table is",
+        "options": [
+            "Rice",
+            "Sugarcane",
+            "Wheat",
+            "Maize"
+        ],
+        "answer": "Rice"
+    },
+    {
+        "question": "Lacey's silt factor for medium silt whose average grain size is 0.25 mm, is likely to be",
+        "options": [
+            "0.66",
+            "0.77",
+            "0.88",
+            "0.99"
+        ],
+        "answer": "0.88"
+    },
+    {
+        "question": "According to the Khosla theory, the exit gradient in the absence of downstream cut-off is",
+        "options": [
+            "Zero",
+            "Infinity",
+            "Unity",
+            "Very Large"
+        ],
+        "answer": "Infinity"
+    },
+    {
+        "question": "The condition of superpassage is",
+        "options": [
+            "natural stream water flows with the free surface below a canal",
+            "natural stream water flows under pressure below a canal",
+            "canal water flows with free surface below a natural stream",
+            "canal water flows under pressure below a natural stream"
+        ],
+        "answer": "canal water flows with free surface below a natural stream"
+    },
+    {
+        "question": "The correct sequence, in the direction of installation/location, of a hydropower plant is",
+        "options": [
+            "Reservoir, surge tank, turbine, penstock",
+            "Reservoir, surge tank, penstock, turbine",
+            "Reservoir, penstock, turbine, surge tank",
+            "Reservoir, penstock, surge tank, turbine"
+        ],
+        "answer": "Reservoir, surge tank, penstock, turbine"
+    },
+    {
+        "question": "Which of the following is the formula for plant capacity Factor ?",
+        "options": [
+            "Average demand / plant capacity",
+            "Sum of individual max. demand / Max. demand of plant",
+            "Station output / Plant Hours of use",
+            "Plant capacity / Average demand"
+        ],
+        "answer": "Average demand / plant capacity"
+    },
+    {
+        "question": "In case of non-availability of space due to topography, the most suitable spillway is",
+        "options": [
+            "Straight drop spillway",
+            "Shaft spillway",
+            "Chute spillway",
+            "Ogee spillway"
+        ],
+        "answer": "Shaft spillway"
+    },
+    {
+        "question": "which of the following is the function of surge tank ?",
+        "options": [
+            "smoothen the flow of water",
+            "minimize friction losses in pipe",
+            "prevent occurrence of hydraulic jump",
+            "relieve pressure due to water hammer"
+        ],
+        "answer": "relieve pressure due to water hammer"
+    },
+    {
+        "question": "Width of Single lane road is",
+        "options": [
+            "3.75",
+            "2.5",
+            "4",
+            "4.5"
+        ],
+        "answer": "3.75"
+    },
+    {
+        "question": "The value of coefficient of lateral friction is",
+        "options": [
+            "0.1",
+            "0.15",
+            "0.35",
+            "0.4"
+        ],
+        "answer": "0.15"
+    },
+    {
+        "question": "The Central Raised part of road is called",
+        "options": [
+            "Super elevation",
+            "Camber",
+            "Crown",
+            "Kerb"
+        ],
+        "answer": "Crown"
+    },
+    {
+        "question": "California Bearing Ratio (CBR)",
+        "options": [
+            "Is a measure of soil strength",
+            "Is a procedure for designing Rigid pavements",
+            "Is a method of soil identification",
+            "Is a measure to indicate the relative strengths of paving materials."
+        ],
+        "answer": "Is a measure to indicate the relative strengths of paving materials."
+    },
+    {
+        "question": "Benkelman beam deflection method is used for the design of",
+        "options": [
+            "Rigid overlay on rigid pavement",
+            "Flexible overlay on flexible pavement",
+            "Flexible overlay on rigid pavement",
+            "Rigid overlay on flexible pavement"
+        ],
+        "answer": "Flexible overlay on flexible pavement"
+    },
+    {
+        "question": "Maintainance of asphalt is done at",
+        "options": [
+            "Recurrent Maintainance",
+            "Routine Maintainance",
+            "Periodic Maintainance",
+            "Emergency Maintainance"
+        ],
+        "answer": "Recurrent Maintainance"
+    },
+    {
+        "question": "To increase the stability of Soil , Which of the following is used ?",
+        "options": [
+            "Mechanical Stabilization",
+            "Chemical Stabilization",
+            "Physical Stabilization",
+            "All"
+        ],
+        "answer": "All"
+    },
+    {
+        "question": "In cash flow diagram , Which of the following is true ?",
+        "options": [
+            "Time 1 is considered to be the end of time period 1",
+            "A vertical arrow pointing up indicates a positive cash flow",
+            "An arrow pointing downward indicates a negative cash flow",
+            "All of the above"
+        ],
+        "answer": "All of the above"
+    },
+    {
+        "question": "Technical Purposal during Tendering is Included in",
+        "options": [
+            "Single Stage Single Envelope System",
+            "Single Stage Double Envelope System",
+            "Double Stage Double Envelope System",
+            "Both a and b"
+        ],
+        "answer": "Single Stage Double Envelope System"
+    },
+    {
+        "question": "The difference between EST of succeeding activity and EFT of the activity under consideration is called",
+        "options": [
+            "Total float",
+            "Independent float",
+            "Interfering float",
+            "Free float"
+        ],
+        "answer": "Free float"
+    },
+    {
+        "question": "First Registar of Nepal Engineering Council is",
+        "options": [
+            "Bindeshwor Yadav",
+            "Ram Babu Sharma",
+            "Nirajan Prasad Chalise",
+            "Yuvraj Sharma"
+        ],
+        "answer": "Bindeshwor Yadav"
+    },
+    {
+        "question": "Directly Elected member for Council from Nepal Engineering Association is",
+        "options": [
+            "5",
+            "6",
+            "21",
+            "22"
+        ],
+        "answer": "5"
+    },
+    {
+        "question": "Total Number of Registration Category of Engineer in NEC is",
+        "options": [
+            "3",
+            "4",
+            "5",
+            "6"
+        ],
+        "answer": "3"
+    },
+    {
+        "question": "Total member in NEA Central and Province Committeee is ……Respectively .",
+        "options": [
+            "25 and 15",
+            "21 and 15",
+            "15 and 25",
+            "25 and 16"
+        ],
+        "answer": "25 and 15"
+    },
+    {
+        "question": "Cyclopean Aggregate has size more than",
+        "options": [
+            "4.75mm",
+            "25mm",
+            "45mm",
+            "75mm"
+        ],
+        "answer": "75mm"
+    },
+    {
+        "question": "In a closed traverse, sum of south latitudes exceeds the sum of north latitudes and the sum of east departures exceeds the sum of west departures, then, the closing line will lie in ",
+        "options": [
+            "north-west quadrant",
+            "north east quadrant",
+            "south-east quadrant",
+            "south-west quadrant."
+        ],
+        "answer": "south-east quadrant"
+    },
+    {
+        "question": "The type of soil sample collected using wash boring technique is __________.",
+        "options": [
+            "representative",
+            "zero-representative",
+            "undisturbed",
+            "zero disturbed"
+        ],
+        "answer": "zero-representative"
+    },
+    {
+        "question": "Observed N - Value of SPT test is 21 . Corrected Value after dilatency test is",
+        "options": [
+            "15",
+            "18",
+            "19",
+            "21"
+        ],
+        "answer": "18"
+    },
+    {
+        "question": "A man Weighting 120 KN on Earth , his weight on moon is … KN.",
+        "options": [
+            "20",
+            "720",
+            "60",
+            "40"
+        ],
+        "answer": "20"
+    },
+    {
+        "question": "The ratio of the stiffness of a beam at the near end when the far end is hinged to the stiffness ofthe beam at the near end when the far end is fixed",
+        "options": [
+            "1",
+            "0.5",
+            "1.33",
+            "0.75"
+        ],
+        "answer": "0.75"
+    },
+    {
+        "question": "Basic wind speed = 55m/s and k1, k2, k3 all are 1 then wind pressure considered is",
+        "options": [
+            "18.15",
+            "181.5",
+            "1815",
+            "18150"
+        ],
+        "answer": "1815"
+    },
+    {
+        "question": "If the effective length of a 32 cm diameter R.C.C. column is 4.40 m, its slenderness ratio, is",
+        "options": [
+            "40",
+            "45",
+            "50",
+            "55"
+        ],
+        "answer": "55"
+    },
+    {
+        "question": "The cover to the main reinforced may be reduced up to one third of the specified cover but not less than",
+        "options": [
+            "5 mm",
+            "7 mm",
+            "10 mm",
+            "15 mm"
+        ],
+        "answer": "5 mm"
+    },
+    {
+        "question": "Rate of filtration (Ltr/hr/m2) for Rapid sand filter ranges from",
+        "options": [
+            "10 to 100",
+            "3000 to 6000",
+            "8000 to 10000",
+            "100 to 3000"
+        ],
+        "answer": "3000 to 6000"
+    },
+    {
+        "question": "Use of egg shaped sewer is best preferred on",
+        "options": [
+            "Combined",
+            "Separate",
+            "Both",
+            "nan"
+        ],
+        "answer": "Combined"
+    },
+    {
+        "question": "In lanes weighted creep theory, weightage factor for horizontal creep is given as:",
+        "options": [
+            "1/3",
+            "2/3",
+            "0.5",
+            "1.5"
+        ],
+        "answer": "1/3"
+    },
+    {
+        "question": "If the length of barrage is 500 meter , length of upstream and downstream guide bank is",
+        "options": [
+            "500 m and 100 m",
+            "550 m and 100 m",
+            "550 m and 110 m",
+            "550 m and 200 m"
+        ],
+        "answer": "550 m and 100 m"
+    },
+    {
+        "question": "Turbine having speed 600-900rpm is called",
+        "options": [
+            "Pelton",
+            "Fransis",
+            "Kaplan",
+            "Bulb"
+        ],
+        "answer": "Kaplan"
+    },
+    {
+        "question": "The Kathmandu - Terai Fast Track Express Way Construction Modality is",
+        "options": [
+            "EPC Modality",
+            "Design and Built or Unit Rate Contract of Hybrid Contract Modality",
+            "Option a for Tunnel and Option b for bridge and other Works",
+            "Option b for Tunnel and Option a for bridge and other Works"
+        ],
+        "answer": "Option a for Tunnel and Option b for bridge and other Works"
+    },
+    {
+        "question": "Two straight lines intersect at an angle of 120°. The radius of a curve joining the two straight lines is 600m. The length of long chord and mid-ordinates in metres of the curve are",
+        "options": [
+            "80.4, 600.0",
+            "600.0, 80.4",
+            "600.0, 39.89",
+            "49.89, 300.00"
+        ],
+        "answer": "600.0, 80.4"
+    },
+    {
+        "question": "Bitumen grade 80/100 means",
+        "options": [
+            "its penetration value is 8 mm",
+            "its penetration value is 10 mm",
+            "its penetration value is 8 to 10 mm",
+            "its penetration value is 8 to 10 cm",
+                    ],
+        "answer": "its penetration value is 8 to 10 mm"
+    },
+    {
+        "question": "A company wants to set up a sinking fund to repay a loan of $10,000 in 5 years. If the sinking fund earns an annual interest rate of 6%, how much should the company deposit into the sinking fund each year?",
+        "options": [
+            "1774",
+            "1560",
+            "1254",
+            "2000"
+        ],
+        "answer": "1774"
+    },
+    {
+        "question": "The Regulations related to Guidelines of Master Program by NEC is Formulated on date is",
+        "options": [
+            "2076-09-06",
+            "2077-05-26",
+            "2066-03-23",
+            "2066-07-03"
+        ],
+        "answer": "2076-09-06"
+    },
+{
+        "question": "68. The relation between Shear force and Bending moment is ",
+        "options": [
+            "S=dM/dx",
+            "M=dS/dx",
+            "dM/dS=x",
+            "dS/dM=x"
+        ],
+        "answer": "S=dM/dx"
+    }
+];
+      // Process questions to add IDs and marks
+        const questions = questionData.map((q, index) => {
+            return {
+                id: index + 1,
+                question: q.question,
+                options: q.options,
+                answer: q.options.indexOf(q.answer), // Convert answer to index
+                marks: index < 60 ? 1 : 2, // First 60 worth 1 mark, rest worth 2
+                explanation: `Explanation for question ${index + 1}. The correct answer is "${q.answer}" because...`
+            };
+        });
+        
+        // If not enough questions, fill with samples
+        while (questions.length < 80) {
+            const i = questions.length;
+            questions.push({
+                id: i + 1,
+                question: `Sample question ${i + 1}?`,
+                options: ["Option A", "Option B", "Option C", "Option D"],
+                answer: Math.floor(Math.random() * 4),
+                marks: i < 60 ? 1 : 2,
+                explanation: `This is the explanation for sample question ${i + 1}`
+            });
+        }
+        
+        // DOM elements
+        const welcomeScreen = document.getElementById('welcome-screen');
+        const startBtn = document.getElementById('start-btn');
+        const testContainer = document.getElementById('test-container');
+        const questionGrid = document.getElementById('question-grid');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const submitTestBtn = document.getElementById('submit-test-btn');
+        const resultContainer = document.getElementById('result-container');
+        const finalScoreEl = document.getElementById('final-score');
+        const resultMessageEl = document.getElementById('result-message');
+        const reviewAnswersEl = document.getElementById('review-answers');
+        const retryBtn = document.getElementById('retry-btn');
+        const viewAnswersBtn = document.getElementById('view-answers-btn');
+        const timerEl = document.getElementById('timer');
+        const pageNumbersEl = document.getElementById('page-numbers');
+        const attemptedCountEl = document.getElementById('attempted-count');
+        const pagesLeftEl = document.getElementById('pages-left');
+        const currentPageEl = document.getElementById('current-page');
+        const totalQuestionsEl = document.getElementById('total-questions');
+        const submitModal = document.getElementById('submit-modal');
+        const modalCancelBtn = document.getElementById('modal-cancel-btn');
+        const modalConfirmBtn = document.getElementById('modal-confirm-btn');
+        
+        // Test configuration
+        const QUESTIONS_PER_PAGE = 10;
+        const TOTAL_PAGES = Math.ceil(questions.length / QUESTIONS_PER_PAGE);
+        const PASS_MARK = 50;
+        const TIME_LIMIT = 100 * 60; // 120 minutes in seconds
+        
+        // Test state
+        let currentPage = 1;
+        let timeLeft = TIME_LIMIT;
+        let timerInterval;
+        let userAnswers = Array(questions.length).fill(null);
+        let answeredQuestions = 0;
+        let testStarted = false;
+        
+        // Initialize the test
+        function initTest() {
+            // Update total questions display
+            totalQuestionsEl.textContent = questions.length;
+            
+            // Initialize pagination
+            initPagination();
+            
+            // Load first page
+            loadPage(currentPage);
+            
+            // Update header info
+            updateHeaderInfo();
+        }
+        
+        // Start the test
+        function startTest() {
+            testStarted = true;
+            welcomeScreen.style.display = 'none';
+            testContainer.style.display = 'block';
+            
+            // Start timer
+            startTimer();
+        }
+        
+        // Initialize pagination controls
+        function initPagination() {
+            pageNumbersEl.innerHTML = '';
+            
+            for (let i = 1; i <= TOTAL_PAGES; i++) {
+                const pageNumber = document.createElement('div');
+                pageNumber.className = 'page-number';
+                if (i === 1) pageNumber.classList.add('active');
+                pageNumber.textContent = i;
+                pageNumber.addEventListener('click', () => {
+                    if (currentPage !== i) {
+                        currentPage = i;
+                        loadPage(currentPage);
+                        updatePaginationUI();
+                        updateHeaderInfo();
+                    }
+                });
+                pageNumbersEl.appendChild(pageNumber);
+            }
+        }
+        
+        // Load questions for a specific page
+        function loadPage(page) {
+            questionGrid.innerHTML = '';
+            
+            const startIndex = (page - 1) * QUESTIONS_PER_PAGE;
+            const endIndex = Math.min(startIndex + QUESTIONS_PER_PAGE, questions.length);
+            
+            for (let i = startIndex; i < endIndex; i++) {
+                const q = questions[i];
+                const questionEl = document.createElement('div');
+                questionEl.className = 'question-card';
+                
+                questionEl.innerHTML = `
+                    <div class="question-text">${q.id}. ${q.question}</div>
+                    <div class="options">
+                        ${q.options.map((opt, optIndex) => `
+                            <label class="option">
+                                <input type="radio" id="q${q.id}_opt${optIndex}" name="q${q.id}" value="${optIndex}" ${userAnswers[i] === optIndex ? 'checked' : ''}>
+                                <span class="checkmark"></span>
+                                ${opt}
+                            </label>
+                        `).join('')}
+                    </div>
+                `;
+                
+                // Add event listeners to radio buttons
+                const radioButtons = questionEl.querySelectorAll('input[type="radio"]');
+                radioButtons.forEach(radio => {
+                    radio.addEventListener('change', (e) => {
+                        const questionIndex = i;
+                        const selectedOption = parseInt(e.target.value);
+                        
+                        // Update user answer
+                        if (userAnswers[questionIndex] === null) {
+                            answeredQuestions++;
+                        }
+                        userAnswers[questionIndex] = selectedOption;
+                        
+                        // Update header info
+                        updateHeaderInfo();
+                        
+                        // Update pagination UI
+                        updatePaginationUI();
+                    });
+                });
+                
+                questionGrid.appendChild(questionEl);
+            }
+        }
+        
+        // Update pagination UI
+        function updatePaginationUI() {
+            const pageNumbers = document.querySelectorAll('.page-number');
+            
+            pageNumbers.forEach((page, index) => {
+                page.classList.remove('active', 'answered');
+                
+                if (index + 1 === currentPage) {
+                    page.classList.add('active');
+                }
+                
+                // Check if any questions on this page are answered
+                const startIndex = index * QUESTIONS_PER_PAGE;
+                const endIndex = Math.min(startIndex + QUESTIONS_PER_PAGE, questions.length);
+                const pageAnswers = userAnswers.slice(startIndex, endIndex);
+                
+                if (pageAnswers.some(answer => answer !== null)) {
+                    page.classList.add('answered');
+                }
+            });
+            
+            // Update button states
+            prevBtn.disabled = currentPage === 1;
+            nextBtn.disabled = currentPage === TOTAL_PAGES;
+        }
+        
+        // Update header information
+        function updateHeaderInfo() {
+            attemptedCountEl.textContent = answeredQuestions;
+            pagesLeftEl.textContent = TOTAL_PAGES - currentPage;
+            currentPageEl.textContent = currentPage;
+        }
+        
+        // Start the countdown timer
+        function startTimer() {
+            updateTimerDisplay();
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                updateTimerDisplay();
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    submitTest();
+                }
+            }, 1000);
+        }
+        
+        // Update timer display
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            
+            timerEl.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+            
+            // Change color based on time remaining
+            timerEl.className = 'timer';
+            if (timeLeft <= 30 * 60) {
+                timerEl.classList.add('timer-warning');
+            }
+            if (timeLeft <= 10 * 60) {
+                timerEl.classList.add('timer-danger');
+            }
+        }
+        
+        // Show submit confirmation modal
+        function showSubmitModal() {
+            submitModal.style.display = 'flex';
+        }
+        
+        // Hide submit confirmation modal
+        function hideSubmitModal() {
+            submitModal.style.display = 'none';
+        }
+        
+        // Submit the test
+        function submitTest() {
+            clearInterval(timerInterval);
+            hideSubmitModal();
+            
+            // Calculate score
+            let score = 0;
+            const results = [];
+            
+            questions.forEach((q, index) => {
+                const userAnswer = userAnswers[index];
+                const isCorrect = userAnswer === q.answer;
+                
+                if (isCorrect) {
+                    score += q.marks;
+                }
+                
+                results.push({
+                    question: q,
+                    userAnswer: userAnswer,
+                    isCorrect: isCorrect
+                });
+            });
+            
+            // Show results
+            showResults(score, results);
+        }
+        
+        // Display test results
+        function showResults(score, results) {
+            testContainer.style.display = 'none';
+            resultContainer.style.display = 'block';
+            
+            // Update score display
+            finalScoreEl.textContent = `${score}/100`;
+            finalScoreEl.className = `score ${score >= PASS_MARK ? 'score-pass' : 'score-fail'}`;
+            
+            // Update result message
+            if (score >= PASS_MARK) {
+                resultMessageEl.textContent = `Congratulations! You scored ${score} marks and passed the practice test. You're well prepared for the NEC License exam!`;
+                resultMessageEl.className = 'result-message message-pass';
+            } else {
+                resultMessageEl.textContent = `You scored ${score} marks which is below the passing mark of ${PASS_MARK}. Review the questions below to improve your knowledge.`;
+                resultMessageEl.className = 'result-message message-fail';
+            }
+            
+            // Show review of answers
+            showReviewAnswers(results);
+        }
+        
+        // Show review of answers
+        function showReviewAnswers(results) {
+            reviewAnswersEl.innerHTML = '';
+            
+            results.forEach((result, index) => {
+                if (!result.isCorrect || index % 10 === 0) { // Show incorrect answers + first of each page
+                    const q = result.question;
+                    const reviewEl = document.createElement('div');
+                    reviewEl.className = 'review-question';
+                    
+                    let optionsHtml = q.options.map((opt, i) => {
+                        let classes = [];
+                        let status = '';
+                        
+                        if (i === q.answer) {
+                            classes.push('correct-answer');
+                            status = 'Correct Answer';
+                        }
+                        
+                        if (i === result.userAnswer && !result.isCorrect) {
+                            classes.push('user-answer');
+                            status = 'Your Answer';
+                        }
+                        
+                        return `
+                            <div class="${classes.join(' ')}">
+                                ${opt} 
+                                ${status ? `<small>(${status})</small>` : ''}
+                            </div>
+                        `;
+                    }).join('');
+                    
+                    reviewEl.innerHTML = `
+                        <div class="question-status ${result.isCorrect ? 'status-correct' : 'status-incorrect'}">
+                            ${result.isCorrect ? 'Correct' : 'Incorrect'} (${q.marks} mark${q.marks > 1 ? 's' : ''})
+                        </div>
+                        <div class="question-text">${q.id}. ${q.question}</div>
+                        <div class="options">${optionsHtml}</div>
+                        <div class="explanation">${q.explanation}</div>
+                    `;
+                    
+                    reviewAnswersEl.appendChild(reviewEl);
+                }
+            });
+        }
+        
+        // Show all answers
+        function showAllAnswers() {
+            reviewAnswersEl.innerHTML = '';
+            
+            questions.forEach((q, index) => {
+                const userAnswer = userAnswers[index];
+                const isCorrect = userAnswer === q.answer;
+                
+                const reviewEl = document.createElement('div');
+                reviewEl.className = 'review-question';
+                
+                let optionsHtml = q.options.map((opt, i) => {
+                    let classes = [];
+                    let status = '';
+                    
+                    if (i === q.answer) {
+                        classes.push('correct-answer');
+                        status = 'Correct Answer';
+                    }
+                    
+                    if (i === userAnswer && !isCorrect) {
+                        classes.push('user-answer');
+                        status = 'Your Answer';
+                    }
+                    
+                    return `
+                        <div class="${classes.join(' ')}">
+                            ${opt} 
+                            ${status ? `<small>(${status})</small>` : ''}
+                        </div>
+                    `;
+                }).join('');
+                
+                reviewEl.innerHTML = `
+                    <div class="question-status ${isCorrect ? 'status-correct' : 'status-incorrect'}">
+                        ${isCorrect ? 'Correct' : 'Incorrect'} (${q.marks} mark${q.marks > 1 ? 's' : ''})
+                    </div>
+                    <div class="question-text">${q.id}. ${q.question}</div>
+                    <div class="options">${optionsHtml}</div>
+                    <div class="explanation">${q.explanation}</div>
+                `;
+                
+                reviewAnswersEl.appendChild(reviewEl);
+            });
+        }
+        
+        // Event listeners
+        startBtn.addEventListener('click', () => {
+            initTest();
+            startTest();
+        });
+        
+        prevBtn.addEventListener('click', () => {
+            if (currentPage > 1) {
+                currentPage--;
+                loadPage(currentPage);
+                updatePaginationUI();
+                updateHeaderInfo();
+            }
+        });
+        
+        nextBtn.addEventListener('click', () => {
+            if (currentPage < TOTAL_PAGES) {
+                currentPage++;
+                loadPage(currentPage);
+                updatePaginationUI();
+                updateHeaderInfo();
+            }
+        });
+        
+        submitTestBtn.addEventListener('click', showSubmitModal);
+        
+        modalCancelBtn.addEventListener('click', hideSubmitModal);
+        
+        modalConfirmBtn.addEventListener('click', submitTest);
+        
+        retryBtn.addEventListener('click', () => {
+            if (confirm('Do you want to restart the test? All your answers will be lost.')) {
+                location.reload();
+            }
+        });
+        
+        viewAnswersBtn.addEventListener('click', showAllAnswers);
+        
+        // Initialize the welcome screen
+        window.addEventListener('DOMContentLoaded', () => {
+            welcomeScreen.style.display = 'block';
+            testContainer.style.display = 'none';
+            resultContainer.style.display = 'none';
+            submitModal.style.display = 'none';
+        });
+    </script>
+</body>
+</html>

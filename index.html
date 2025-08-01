@@ -1,7 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
+<script>
+// Load the favicon injector on all pages
+const faviconScript = document.createElement('script');
+faviconScript.src = '/auto-favicon.js';
+faviconScript.onload = function() {
+    // After loading, inject it into all iframes too
+    const iframes = document.getElementsByTagName('iframe');
+    for (let iframe of iframes) {
+        try {
+            const script = iframe.contentDocument.createElement('script');
+            script.src = '/auto-favicon.js';
+            iframe.contentDocument.head.appendChild(script);
+        } catch (e) {
+            // Cross-origin iframe protection
+        }
+    }
+};
+document.head.appendChild(faviconScript);
+</script>
     <meta charset="UTF-8">
    <!-- Standard Favicon (Works in all browsers) -->
 <link rel="icon" href="https://arunpanthi.com.np/logo.ico" type="image/x-icon">

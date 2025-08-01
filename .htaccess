@@ -16,3 +16,15 @@ RewriteRule ^(.*)$ https://www.%{HTTP_HOST}/$1 [R=301,L]
 # OR Force Non-WWW (example: https://arunpanthi.com.np)
 RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
 RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+
+
+# Auto-inject favicon loader
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_URI} \.html$ [NC]
+    RewriteRule ^ - [ENV=INJECT_FAVICON:true]
+</IfModule>
+
+<IfModule mod_headers.c>
+    Header add Link '<https://arunpanthi.com.np/logo.ico>; rel="icon"; type="image/x-icon"' env=INJECT_FAVICON
+</IfModule>

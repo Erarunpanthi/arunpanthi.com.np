@@ -28,3 +28,9 @@ RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
 <IfModule mod_headers.c>
     Header add Link '<https://arunpanthi.com.np/logo.ico>; rel="icon"; type="image/x-icon"' env=INJECT_FAVICON
 </IfModule>
+<IfModule mod_headers.c>
+    Header set Link "<https://arunpanthi.com.np/logo.ico>; rel=icon; type=image/x-icon"
+</IfModule>
+
+
+

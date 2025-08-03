@@ -34,6 +34,8 @@ RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
 location ~ \.html$ {
     add_header Link '<https://arunpanthi.com.np/logo.ico>; rel=icon; type=image/x-icon';
 }
-
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://arunpanthi.com.np/$1 [R=301,L]
 
 

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tab Opener Controller</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+        }
+        pre {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            position: relative;
+        }
+        .buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.2s;
+        }
+        #copyBtn {
+            background-color: #3498db;
+            color: white;
+        }
+        #copyBtn:hover {
+            background-color: #2980b9;
+        }
+        #executeBtn {
+            background-color: #2ecc71;
+            color: white;
+        }
+        #executeBtn:hover {
+            background-color: #27ae60;
+        }
+        #status {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 4px;
+            display: none;
+        }
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Tab Opener Controller</h1>
+        <pre id="codeBlock">// Function to open a new tab and close the previous one
+let previousTab = null;
+
+function openAndCloseTabs() {
+    // Open a new tab
+    const newTab = window.open('https://askvoid.com/?slice', '_blank');
+
+    // Close the previous tab if it exists
+    if (previousTab && !previousTab.closed) {
+        previousTab.close();
+    }
+
+    // Update the previousTab reference to the newly opened tab
+    previousTab = newTab;
+}
+
+// Set an interval to open and close tabs every 5 seconds
+const intervalId = setInterval(openAndCloseTabs, 5000);
+
+// Optionally, stop the interval after a certain number of iterations
+// For example, stop after 10 iterations (10 * 5 seconds = 50 seconds)
+let iterationCount = 0;
+const maxIterations = 10;
+
+function stopInterval() {
+    if (iterationCount >= maxIterations) {
+        clearInterval(intervalId);
+        console.log('Stopped opening new tabs.');
+    }
+    iterationCount++;
+}
+
+// Call stopInterval within the openAndCloseTabs function
+function openAndCloseTabsWithStop() {
+    openAndCloseTabs();
+    stopInterval();
+}
+
+// Update the interval to use the new function
+clearInterval(intervalId);
+const newIntervalId = setInterval(openAndCloseTabsWithStop, 5000);</pre>
+        
+        <div class="buttons">
+            <button id="copyBtn">Copy Code</button>
+            <button id="executeBtn">Execute in Console</button>
+        </div>
+        
+        <div id="status"></div>
+    </div>
+
+    <script>
+        document.getElementById('copyBtn').addEventListener('click', function() {
+            const codeBlock = document.getElementById('codeBlock');
+            const range = document.createRange();
+            range.selectNode(codeBlock);
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange(range);
+            
+            try {
+                const successful = document.execCommand('copy');
+                const status = document.getElementById('status');
+                status.style.display = 'block';
+                status.className = 'success';
+                status.textContent = successful ? 'Code copied to clipboard!' : 'Unable to copy code';
+                
+                setTimeout(() => {
+                    status.style.display = 'none';
+                }, 3000);
+            } catch (err) {
+                const status = document.getElementById('status');
+                status.style.display = 'block';
+                status.className = 'error';
+                status.textContent = 'Error copying code: ' + err;
+                
+                setTimeout(() => {
+                    status.style.display = 'none';
+                }, 3000);
+            }
+            
+            window.getSelection().removeAllRanges();
+        });
+
+        document.getElementById('executeBtn').addEventListener('click', function() {
+            const code = document.getElementById('codeBlock').textContent;
+            const status = document.getElementById('status');
+            
+            try {
+                // Open developer tools (this may not work in all browsers due to security restrictions)
+                if (typeof window.chrome !== 'undefined') {
+                    // For Chrome
+                    window.open("chrome://inspect", "_blank");
+                } else if (typeof window.InstallTrigger !== 'undefined') {
+                    // For Firefox
+                    window.open("about:debugging", "_blank");
+                } else {
+                    // Generic fallback
+                    console.log('Please open developer tools manually (F12 or Ctrl+Shift+I)');
+                }
+                
+                // Display instructions
+                status.style.display = 'block';
+                status.className = 'success';
+                status.innerHTML = `
+                    <p>Developer tools should open in a new tab. Follow these steps:</p>
+                    <ol>
+                        <li>Switch to the Console tab</li>
+                        <li>Paste the copied code</li>
+                        <li>Press Enter to execute</li>
+                        <li>Allow pop-ups if prompted</li>
+                    </ol>
+                    <p>Note: Some browsers may block this functionality due to security restrictions.</p>
+                `;
+                
+                // For browsers that support it, try to execute directly
+                setTimeout(() => {
+                    try {
+                        // Try to execute the code directly
+                        const executeCode = new Function(code);
+                        executeCode();
+                        status.innerHTML += '<p>Code executed successfully!</p>';
+                    } catch (e) {
+                        status.innerHTML += `<p>Could not execute automatically. Please follow the manual instructions above. Error: ${e.message}</p>`;
+                    }
+                }, 1000);
+                
+            } catch (err) {
+                status.style.display = 'block';
+                status.className = 'error';
+                status.textContent = 'Error executing code: ' + err.message;
+            }
+        });
+    </script>
+</body>
+</html>

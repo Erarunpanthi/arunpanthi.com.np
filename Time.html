@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">00:00:00</title> <!-- Timer displayed in the title -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            position: relative;
+        }
+
+        .container {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .timer-display {
+            font-size: 3em;
+            margin: 20px 0;
+            color: #333;
+        }
+
+        .buttons button {
+            margin: 5px;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+        }
+
+        .buttons button:hover {
+            background-color: #0056b3;
+        }
+
+        #startBtn {
+            margin-top: 20px;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #28a745;
+            color: white;
+        }
+
+        #startBtn:hover {
+            background-color: #218838;
+        }
+
+        #stopBtn {
+            margin-top: 20px;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #dc3545;
+            color: white;
+        }
+
+        #stopBtn:hover {
+            background-color: #c82333;
+        }
+
+        #clearBtn {
+            margin-top: 20px;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #ffc107;
+            color: black;
+        }
+
+        #clearBtn:hover {
+            background-color: #e0a800;
+        }
+
+        /* Nepal Time Display */
+        .nepal-time {
+            position: absolute;
+            top: 20px;
+            font-size: 1.2em;
+            color: #333;
+        }
+
+        .nepal-time.left {
+            left: 20px;
+        }
+
+        .nepal-time.right {
+            right: 20px;
+        }
+
+        /* Heading Style */
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Nepal Time Display -->
+    <div class="nepal-time left" id="nepalTimeLeft">Nepal Time: <span id="timeLeft">Loading...</span></div>
+    <div class="nepal-time right" id="nepalTimeRight">Nepal Time: <span id="timeRight">Loading...</span></div>
+
+    <!-- Countdown Timer -->
+    <div class="container">
+        <h1>Countdown Timer</h1>
+        <div class="timer-display" id="timer">00:00:00</div>
+        <div class="buttons">
+            <button onclick="addTime(300)">5 Minutes</button>
+            <button onclick="addTime(600)">10 Minutes</button>
+            <button onclick="addTime(1200)">20 Minutes</button>
+            <button onclick="addTime(1500)">25 Minutes</button>
+            <button onclick="addTime(1800)">30 Minutes</button>
+            <button onclick="addTime(3600)">1 Hour</button>
+        </div>
+        <button onclick="startTimer()" id="startBtn">Start Timer</button>
+        <button onclick="stopTimer()" id="stopBtn">Stop Timer</button>
+        <button onclick="clearScreen()" id="clearBtn">Clear Screen</button>
+    </div>
+
+    <script>
+        let timeLeft = 0;
+        let timerInterval;
+
+        // Function to get Nepal time in 12-hour format
+        function getNepalTime() {
+            const now = new Date();
+            const utcOffset = now.getTimezoneOffset() * 60000; // Convert offset to milliseconds
+            const nepalOffset = 5.75 * 3600000; // Nepal is UTC+5:45 (5.75 hours)
+            const nepalTime = new Date(now.getTime() + utcOffset + nepalOffset);
+
+            let hours = nepalTime.getHours();
+            const minutes = String(nepalTime.getMinutes()).padStart(2, '0');
+            const seconds = String(nepalTime.getSeconds()).padStart(2, '0');
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+
+            // Convert to 12-hour format
+            hours = hours % 12 || 12;
+
+            return `${hours}:${minutes}:${seconds} ${ampm}`;
+        }
+
+        // Function to update Nepal time display
+        function updateNepalTime() {
+            const nepalTime = getNepalTime();
+            document.getElementById('timeLeft').textContent = nepalTime;
+            document.getElementById('timeRight').textContent = nepalTime;
+        }
+
+        // Update Nepal time every second
+        setInterval(updateNepalTime, 1000);
+
+        // Countdown Timer Functions
+        function addTime(seconds) {
+            timeLeft += seconds;
+            updateDisplay();
+        }
+
+        function startTimer() {
+            if (timeLeft <= 0) return;
+
+            clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    alert("Time's up!");
+                    updateTitle("00:00:00"); // Reset title when timer ends
+                    return;
+                }
+                timeLeft--;
+                updateDisplay();
+            }, 1000);
+        }
+
+        function stopTimer() {
+            clearInterval(timerInterval); // Stop the timer
+        }
+
+        function clearScreen() {
+            timeLeft = 0; // Reset the timer
+            updateDisplay(); // Update the display
+            updateTitle("00:00:00"); // Reset the page title
+        }
+
+        function updateDisplay() {
+            const hours = Math.floor(timeLeft / 3600);
+            const minutes = Math.floor((timeLeft % 3600) / 60);
+            const seconds = timeLeft % 60;
+            const timeString = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+            document.getElementById('timer').textContent = timeString;
+            updateTitle(timeString); // Update the page title
+        }
+
+        function updateTitle(timeString) {
+            document.getElementById('pageTitle').textContent = timeString; // Update the <title> tag
+        }
+
+        document.getElementById('startBtn').addEventListener('click', startTimer);
+
+        // Initialize Nepal time display
+        updateNepalTime();
+    </script>
+</body>
+</html>

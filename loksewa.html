@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCQ Examination System</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 800px;
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 2.2rem;
+        }
+        
+        h2 {
+            color: #444;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .active {
+            display: block;
+        }
+        
+        .setup-form {
+            text-align: center;
+        }
+        
+        .input-group {
+            margin: 25px 0;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+            color: #444;
+            font-weight: 500;
+        }
+        
+        input[type="number"] {
+            width: 100px;
+            padding: 12px 15px;
+            font-size: 1.2rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            text-align: center;
+            transition: border-color 0.3s;
+        }
+        
+        input[type="number"]:focus {
+            border-color: #4a86e8;
+            outline: none;
+        }
+        
+        .btn {
+            background-color: #4a86e8;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            margin: 5px;
+        }
+        
+        .btn:hover {
+            background-color: #3a76d8;
+            transform: translateY(-2px);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .btn-secondary {
+            background-color: #6c757d;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+        
+        .timer-container {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 20px;
+            border: 1px solid #e9ecef;
+        }
+        
+        #timer {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #e63946;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .question-container {
+            margin-bottom: 25px;
+            padding: 20px;
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            background-color: #f8f9fa;
+        }
+        
+        .question-number {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        @media (max-width: 600px) {
+            .options {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .option {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            background-color: white;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .option:hover {
+            background-color: #e9ecef;
+            border-color: #adb5bd;
+        }
+        
+        .option.selected {
+            background-color: #d1e7dd;
+            border-color: #0f5132;
+        }
+        
+        .option input {
+            margin-right: 10px;
+            cursor: pointer;
+        }
+        
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        
+        .results {
+            text-align: center;
+        }
+        
+        .result-item {
+            margin: 15px 0;
+            font-size: 1.2rem;
+        }
+        
+        .correct {
+            color: #0f5132;
+            font-weight: 600;
+        }
+        
+        .incorrect {
+            color: #dc3545;
+            font-weight: 600;
+        }
+        
+        .score {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #4a86e8;
+            margin: 20px 0;
+        }
+        
+        .progress-bar {
+            height: 10px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background-color: #4a86e8;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        .question-navigation {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 20px 0;
+            justify-content: center;
+        }
+        
+        .question-nav-btn {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .question-nav-btn:hover {
+            background-color: #e9ecef;
+        }
+        
+        .question-nav-btn.active {
+            background-color: #4a86e8;
+            color: white;
+            border-color: #3a76d8;
+        }
+        
+        .question-nav-btn.answered {
+            background-color: #d1e7dd;
+            border-color: #0f5132;
+        }
+        
+        .answer-input {
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .answer-input input {
+            padding: 10px 15px;
+            font-size: 1.1rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            width: 60px;
+            text-align: center;
+            margin: 0 5px;
+            text-transform: uppercase;
+        }
+        
+        .answer-input input:focus {
+            border-color: #4a86e8;
+            outline: none;
+        }
+        
+        .results-details {
+            margin-top: 30px;
+            text-align: left;
+        }
+        
+        .result-question {
+            padding: 15px;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            background-color: #f8f9fa;
+        }
+        
+        .result-question.correct {
+            border-color: #0f5132;
+            background-color: #d1e7dd;
+        }
+        
+        .result-question.incorrect {
+            border-color: #dc3545;
+            background-color: #f8d7da;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>MCQ Examination System</h1>
+        
+        <div id="setup-section" class="section active">
+            <div class="setup-form">
+                <div class="input-group">
+                    <label for="question-count">Enter Number of Questions:</label>
+                    <input type="number" id="question-count" min="1" max="50" value="5">
+                </div>
+                <button id="start-btn" class="btn">Start Exam</button>
+            </div>
+        </div>
+        
+        <div id="exam-section" class="section">
+            <div class="timer-container">
+                <div>Time Remaining:</div>
+                <div id="timer">00:00:00</div>
+            </div>
+            
+            <div class="progress-bar">
+                <div class="progress" id="progress-bar"></div>
+            </div>
+            
+            <div class="question-navigation" id="question-nav"></div>
+            
+            <div class="question-container">
+                <div class="question-number" id="question-number">Question 1</div>
+                <div class="options" id="options-container">
+                    <!-- Options will be generated here -->
+                </div>
+            </div>
+            
+            <div class="navigation">
+                <button id="prev-btn" class="btn">Previous</button>
+                <button id="next-btn" class="btn">Next</button>
+                <button id="submit-btn" class="btn">Submit Exam</button>
+            </div>
+        </div>
+        
+        <div id="answer-input-section" class="section">
+            <h2>Enter Correct Answers</h2>
+            <p style="text-align: center; margin-bottom: 20px;">Please provide the correct answers for each question to calculate your score.</p>
+            
+            <div id="correct-answers-container">
+                <!-- Correct answer inputs will be generated here -->
+            </div>
+            
+            <div style="text-align: center; margin-top: 30px;">
+                <button id="calculate-score-btn" class="btn">Calculate Score</button>
+            </div>
+        </div>
+        
+        <div id="result-section" class="section">
+            <h2>Exam Results</h2>
+            
+            <div class="results">
+                <div class="score" id="score">0/0</div>
+                
+                <div class="result-item">
+                    Correct Answers: <span id="correct-answers" class="correct">0</span>
+                </div>
+                
+                <div class="result-item">
+                    Incorrect Answers: <span id="incorrect-answers" class="incorrect">0</span>
+                </div>
+                
+                <div class="result-item">
+                    Percentage: <span id="percentage">0%</span>
+                </div>
+            </div>
+            
+            <div class="results-details" id="results-details">
+                <!-- Detailed results will be shown here -->
+            </div>
+            
+            <div style="margin-top: 30px; text-align: center;">
+                <button id="restart-btn" class="btn">Take Another Exam</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // DOM Elements
+            const setupSection = document.getElementById('setup-section');
+            const examSection = document.getElementById('exam-section');
+            const answerInputSection = document.getElementById('answer-input-section');
+            const resultSection = document.getElementById('result-section');
+            const questionCountInput = document.getElementById('question-count');
+            const startBtn = document.getElementById('start-btn');
+            const timerDisplay = document.getElementById('timer');
+            const optionsContainer = document.getElementById('options-container');
+            const questionNumberDisplay = document.getElementById('question-number');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const submitBtn = document.getElementById('submit-btn');
+            const questionNav = document.getElementById('question-nav');
+            const progressBar = document.getElementById('progress-bar');
+            const correctAnswersContainer = document.getElementById('correct-answers-container');
+            const calculateScoreBtn = document.getElementById('calculate-score-btn');
+            const scoreDisplay = document.getElementById('score');
+            const correctAnswersDisplay = document.getElementById('correct-answers');
+            const incorrectAnswersDisplay = document.getElementById('incorrect-answers');
+            const percentageDisplay = document.getElementById('percentage');
+            const resultsDetails = document.getElementById('results-details');
+            const restartBtn = document.getElementById('restart-btn');
+            
+            // Exam state variables
+            let totalQuestions = 0;
+            let currentQuestion = 0;
+            let userAnswers = [];
+            let correctAnswers = [];
+            let timePerQuestion = 30; // seconds per question
+            let totalTime = 0;
+            let timerInterval = null;
+            let timeRemaining = 0;
+            
+            // Initialize the exam
+            startBtn.addEventListener('click', startExam);
+            prevBtn.addEventListener('click', showPreviousQuestion);
+            nextBtn.addEventListener('click', showNextQuestion);
+            submitBtn.addEventListener('click', finishExam);
+            calculateScoreBtn.addEventListener('click', calculateScore);
+            restartBtn.addEventListener('click', resetExam);
+            
+            function startExam() {
+                totalQuestions = parseInt(questionCountInput.value);
+                if (isNaN(totalQuestions) || totalQuestions < 1) {
+                    alert('Please enter a valid number of questions');
+                    return;
+                }
+                
+                // Initialize exam state
+                userAnswers = new Array(totalQuestions).fill(null);
+                totalTime = totalQuestions * timePerQuestion;
+                timeRemaining = totalTime;
+                currentQuestion = 0;
+                
+                // Update UI
+                updateTimerDisplay();
+                generateQuestionNavigation();
+                showQuestion(0);
+                
+                // Switch to exam section
+                setupSection.classList.remove('active');
+                examSection.classList.add('active');
+                
+                // Start timer
+                startTimer();
+            }
+            
+            function startTimer() {
+                clearInterval(timerInterval);
+                
+                timerInterval = setInterval(function() {
+                    timeRemaining--;
+                    updateTimerDisplay();
+                    updateProgressBar();
+                    
+                    if (timeRemaining <= 0) {
+                        clearInterval(timerInterval);
+                        finishExam();
+                    }
+                }, 1000);
+            }
+            
+            function updateTimerDisplay() {
+                const hours = Math.floor(timeRemaining / 3600);
+                const minutes = Math.floor((timeRemaining % 3600) / 60);
+                const seconds = timeRemaining % 60;
+                
+                timerDisplay.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            }
+            
+            function updateProgressBar() {
+                const percentage = ((totalTime - timeRemaining) / totalTime) * 100;
+                progressBar.style.width = `${percentage}%`;
+            }
+            
+            function generateQuestionNavigation() {
+                questionNav.innerHTML = '';
+                
+                for (let i = 0; i < totalQuestions; i++) {
+                    const button = document.createElement('div');
+                    button.className = 'question-nav-btn';
+                    button.textContent = i + 1;
+                    button.addEventListener('click', () => showQuestion(i));
+                    
+                    questionNav.appendChild(button);
+                }
+            }
+            
+            function showQuestion(index) {
+                if (index < 0 || index >= totalQuestions) return;
+                
+                currentQuestion = index;
+                
+                // Update question number display
+                questionNumberDisplay.textContent = `Question ${index + 1} of ${totalQuestions}`;
+                
+                // Generate options
+                optionsContainer.innerHTML = '';
+                
+                const options = ['A', 'B', 'C', 'D'];
+                options.forEach(option => {
+                    const optionElement = document.createElement('div');
+                    optionElement.className = 'option';
+                    
+                    if (userAnswers[index] === option) {
+                        optionElement.classList.add('selected');
+                    }
+                    
+                    optionElement.innerHTML = `
+                        <input type="radio" name="answer" id="option-${option}" value="${option}" 
+                            ${userAnswers[index] === option ? 'checked' : ''}>
+                        <label for="option-${option}">${option}</label>
+                    `;
+                    
+                    optionElement.addEventListener('click', () => selectOption(option));
+                    optionsContainer.appendChild(optionElement);
+                });
+                
+                // Update navigation buttons
+                prevBtn.disabled = index === 0;
+                nextBtn.disabled = index === totalQuestions - 1;
+                
+                // Update navigation highlights
+                const navButtons = questionNav.querySelectorAll('.question-nav-btn');
+                navButtons.forEach((btn, i) => {
+                    btn.classList.remove('active');
+                    btn.classList.remove('answered');
+                    
+                    if (i === index) {
+                        btn.classList.add('active');
+                    }
+                    
+                    if (userAnswers[i] !== null) {
+                        btn.classList.add('answered');
+                    }
+                });
+            }
+            
+            function selectOption(option) {
+                userAnswers[currentQuestion] = option;
+                
+                // Update UI to show selected option
+                const options = optionsContainer.querySelectorAll('.option');
+                options.forEach(opt => opt.classList.remove('selected'));
+                
+                event.currentTarget.classList.add('selected');
+                
+                // Mark question as answered in navigation
+                const navButtons = questionNav.querySelectorAll('.question-nav-btn');
+                if (navButtons[currentQuestion]) {
+                    navButtons[currentQuestion].classList.add('answered');
+                }
+            }
+            
+            function showPreviousQuestion() {
+                if (currentQuestion > 0) {
+                    showQuestion(currentQuestion - 1);
+                }
+            }
+            
+            function showNextQuestion() {
+                if (currentQuestion < totalQuestions - 1) {
+                    showQuestion(currentQuestion + 1);
+                }
+            }
+            
+            function finishExam() {
+                clearInterval(timerInterval);
+                
+                // Generate correct answer inputs
+                correctAnswersContainer.innerHTML = '';
+                for (let i = 0; i < totalQuestions; i++) {
+                    const inputGroup = document.createElement('div');
+                    inputGroup.className = 'answer-input';
+                    
+                    inputGroup.innerHTML = `
+                        <label for="correct-answer-${i}">Question ${i + 1} Correct Answer:</label>
+                        <input type="text" id="correct-answer-${i}" maxlength="1" placeholder="A, B, C, or D">
+                    `;
+                    
+                    correctAnswersContainer.appendChild(inputGroup);
+                }
+                
+                // Switch to answer input section
+                examSection.classList.remove('active');
+                answerInputSection.classList.add('active');
+            }
+            
+            function calculateScore() {
+                // Get correct answers from inputs
+                correctAnswers = [];
+                for (let i = 0; i < totalQuestions; i++) {
+                    const answerInput = document.getElementById(`correct-answer-${i}`);
+                    const answer = answerInput.value.toUpperCase();
+                    
+                    if (!['A', 'B', 'C', 'D'].includes(answer)) {
+                        alert(`Please enter a valid answer (A, B, C, or D) for Question ${i + 1}`);
+                        answerInput.focus();
+                        return;
+                    }
+                    
+                    correctAnswers.push(answer);
+                }
+                
+                // Calculate results
+                let correctCount = 0;
+                let incorrectCount = 0;
+                
+                resultsDetails.innerHTML = '';
+                
+                for (let i = 0; i < totalQuestions; i++) {
+                    const resultQuestion = document.createElement('div');
+                    resultQuestion.className = 'result-question';
+                    
+                    if (userAnswers[i] === correctAnswers[i]) {
+                        correctCount++;
+                        resultQuestion.classList.add('correct');
+                        resultQuestion.innerHTML = `
+                            <p><strong>Question ${i + 1}:</strong> Correct</p>
+                            <p>Your Answer: ${userAnswers[i] || 'Not answered'} | Correct Answer: ${correctAnswers[i]}</p>
+                        `;
+                    } else {
+                        incorrectCount++;
+                        resultQuestion.classList.add('incorrect');
+                        resultQuestion.innerHTML = `
+                            <p><strong>Question ${i + 1}:</strong> Incorrect</p>
+                            <p>Your Answer: ${userAnswers[i] || 'Not answered'} | Correct Answer: ${correctAnswers[i]}</p>
+                        `;
+                    }
+                    
+                    resultsDetails.appendChild(resultQuestion);
+                }
+                
+                const percentage = ((correctCount / totalQuestions) * 100).toFixed(1);
+                
+                // Display results
+                scoreDisplay.textContent = `${correctCount}/${totalQuestions}`;
+                correctAnswersDisplay.textContent = correctCount;
+                incorrectAnswersDisplay.textContent = incorrectCount;
+                percentageDisplay.textContent = `${percentage}%`;
+                
+                // Switch to result section
+                answerInputSection.classList.remove('active');
+                resultSection.classList.add('active');
+            }
+            
+            function resetExam() {
+                // Reset exam state
+                userAnswers = [];
+                correctAnswers = [];
+                totalQuestions = 0;
+                currentQuestion = 0;
+                timeRemaining = 0;
+                
+                // Reset UI
+                questionCountInput.value = '5';
+                progressBar.style.width = '0%';
+                
+                // Switch to setup section
+                resultSection.classList.remove('active');
+                setupSection.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>

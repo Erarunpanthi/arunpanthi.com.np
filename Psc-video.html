@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="https://arunpanthi.com.np/logo.ico">
+         <link rel="stylesheet" href="styles.css">
+    <meta http-equiv="Content-Language" content="en">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Google Fonts -->
+   
+    <title>
+       Civil: Lok Sewa Preparation
+    </title>
+      
+  
+  
+    <style>
+    
+   
+
+    h1, h2, h3 {
+      color: #2E7D32; 
+      margin-bottom: 20px;
+    }
+    h2 {
+       color: #542e7d; 
+      margin-bottom: 20px;
+    }
+  
+
+    .button-group {
+      text-align: left;
+      margin-bottom: 30px;
+    }
+    .button-group button {
+      margin: 6px;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 5px;
+      background-color: #2E7D32; 
+      color: rgb(232, 241, 232);
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .button-group button:hover {
+      background-color: #2E7D32; 
+      transform: translateY(-2px);
+    }
+
+    .section {
+      display: none;
+    }
+    .active {
+      display: block;
+    }
+
+    .subtopic-list {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .subtopic-list button {
+      display: inline-block;
+      margin: 8px;
+      padding: 10px 16px;
+      border: none;
+      border-radius: 4px;
+      background-color: oklab(52.344% -0.10919 0.07878); 
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .subtopic-list button:hover {
+      background-color: #2E7D32; 
+      transform: translateY(-1px);
+    }
+
+    .card {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      padding: 25px;
+      animation: fadeIn 0.4s ease-in;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .card h2 {
+      margin-top: 0;
+    }
+
+    .videos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+      margin-top: 20px;
+    }
+    .videos-grid iframe {
+      width: 100%;
+      height: 180px;
+      border: none;
+      border-radius: 6px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .videos-grid iframe:hover {
+      transform: scale(1.03);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+    }
+
+    .controls {
+      margin-top: 25px;
+      text-align: center;
+    }
+    .controls button {
+      margin: 6px;
+      padding: 10px 16px;
+      border: none;
+      border-radius: 5px;
+      background-color: #2E7D32; 
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .controls button:hover {
+      background: #c0392b;
+    }
+
+  </style>
+</head>
+<body>
+   <div class="navbar">
+        <a href="Home"><i class="fas fa-home"></i> Home</a>
+        <a href="resources"><i class="fas fa-book"></i> Resources</a>
+        <a href="license-preparation"><i class="fas fa-certificate"></i> License Prep</a>
+        <a href="psc-preparation"><i class="fas fa-graduation-cap"></i> PSC Prep</a>
+        <a href="aboutus"><i class="fas fa-info-circle"></i> About Us</a>
+        <a href="contactus"><i class="fas fa-envelope"></i> Contact Us</a>
+    </div>
+  <div class="container">
+    <h1>PSC Topics & Subtopics</h1>
+
+    <div id="topics" class="section active">
+      <div class="button-group">
+        <button onclick="showSubtopics('general')">General Awareness</button>
+        <button onclick="showSubtopics('province')">Province Papers</button>
+        <button onclick="showSubtopics('engineering')">Engineering Knowledge</button>
+      </div>
+    </div>
+
+    <div id="subtopics" class="section">
+      <h2 id="subtopic-title">Subtopics</h2>
+      <div class="subtopic-list" id="subtopic-buttons"></div>
+      <div class="controls">
+        <button onclick="backToTopics()">Back to Topics</button>
+      </div>
+    </div>
+
+    <div id="message" class="section">
+      <div class="card">
+        <h2 id="topic-name">Topic: …</h2>
+        <h3 id="subtopic-name">Subtopic: …</h3>
+        <div class="videos-grid" id="video-container"></div>
+        <div class="controls">
+          <button onclick="backToSubtopics()">Back to Subtopics</button>
+          <button onclick="backToTopics()">Back to Topics</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const subtopicsData = {
+      general: ["History", "Geography", "Current Affairs"],
+      province: ["Nepal Provinces", "Provincial Policies", "Local Government"],
+      engineering: ["Structural", "Hydraulics", "Materials"]
+    };
+
+    const videosData = {
+      History: [
+        "https://www.youtube.com/embed/dk7x_oCTp4U",
+        "https://www.youtube.com/embed/a1b2c3d4e5F",
+        "https://www.youtube.com/embed/z9Y8X7W6V5"
+      ],
+      Geography: [
+        "https://www.youtube.com/embed/abc123xyz",
+        "https://www.youtube.com/embed/def456uvw",
+        "https://www.youtube.com/embed/ghi789rst"
+      ],
+      "Current Affairs": [
+        "https://www.youtube.com/embed/mn0p9q8rs",
+        "https://www.youtube.com/embed/op1q2r3s4",
+        "https://www.youtube.com/embed/t5u6v7w8x"
+      ],
+      "Nepal Provinces": [
+        "https://www.youtube.com/embed/pProvince1",
+        "https://www.youtube.com/embed/pProvince2",
+        "https://www.youtube.com/embed/pProvince3"
+      ],
+      "Provincial Policies": [
+        "https://www.youtube.com/embed/pPolicy1",
+        "https://www.youtube.com/embed/pPolicy2",
+        "https://www.youtube.com/embed/pPolicy3"
+      ],
+      "Local Government": [
+        "https://www.youtube.com/embed/lg1",
+        "https://www.youtube.com/embed/lg2",
+        "https://www.youtube.com/embed/lg3"
+      ],
+      Structural: [
+        "https://www.youtube.com/embed/str1",
+        "https://www.youtube.com/embed/str2",
+        "https://www.youtube.com/embed/str3"
+      ],
+      Hydraulics: [
+        "https://www.youtube.com/embed/hyd1",
+        "https://www.youtube.com/embed/hyd2",
+        "https://www.youtube.com/embed/hyd3"
+      ],
+      Materials: [
+        "https://www.youtube.com/embed/mat1",
+        "https://www.youtube.com/embed/mat2",
+        "https://www.youtube.com/embed/mat3"
+      ]
+    };
+
+    let currentTopic = "";
+
+    function showSubtopics(topicKey) {
+      currentTopic = topicKey;
+      document.getElementById("topics").classList.remove("active");
+      document.getElementById("message").classList.remove("active");
+
+      const subsec = document.getElementById("subtopics");
+      subsec.classList.add("active");
+      document.getElementById("subtopic-title").innerText = `Subtopics for ${capitalize(topicKey)}`;
+
+      const btnDiv = document.getElementById("subtopic-buttons");
+      btnDiv.innerHTML = "";
+      subtopicsData[topicKey].forEach(sub => {
+        const btn = document.createElement("button");
+        btn.innerText = sub;
+        btn.onclick = () => showMessage(sub);
+        btnDiv.appendChild(btn);
+      });
+    }
+
+    function showMessage(subtopic) {
+      document.getElementById("subtopics").classList.remove("active");
+      document.getElementById("message").classList.add("active");
+
+      document.getElementById("topic-name").innerText = `Topic: ${capitalize(currentTopic)}`;
+      document.getElementById("subtopic-name").innerText = `Subtopic: ${subtopic}`;
+
+      const container = document.getElementById("video-container");
+      container.innerHTML = "";
+      (videosData[subtopic] || []).forEach(url => {
+        const iframe = document.createElement("iframe");
+        iframe.src = url;
+        iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+        container.appendChild(iframe);
+      });
+    }
+
+    function backToSubtopics() {
+      document.getElementById("message").classList.remove("active");
+      document.getElementById("subtopics").classList.add("active");
+    }
+    function backToTopics() {
+      document.getElementById("subtopics").classList.remove("active");
+      document.getElementById("message").classList.remove("active");
+      document.getElementById("topics").classList.add("active");
+    }
+
+    function capitalize(s) {
+      return s.charAt(0).toUpperCase() + s.slice(1);
+    }
+  </script>
+<div class="social-media">
+            <h2><i class="fab fa-connectdevelop"></i> Connect with Us</h2>
+            <p>Follow us on social media to stay updated with the latest resources and news.</p>
+            <div class="icons">
+                 <a href="https://www.facebook.com/arun.panthi27" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.tiktok.com/@er.arunpanthi" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                <a href="https://www.youtube.com/@erarunpanthi" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="mailto:erarunpanthi@gmail.com" target="_blank" aria-label="Email"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <p>© 2024 CivPrepMaster. All rights reserved. | 
+        <a href="PrivacyPolicy">Privacy Policy</a> | 
+        <a href="TermsofService">Terms of Service</a></p>
+    </footer>
+</body>
+</html>

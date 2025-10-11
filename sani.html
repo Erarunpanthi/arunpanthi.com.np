@@ -2,116 +2,1372 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Happy Birthday Sani ❣    </title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
-            box-sizing: border-box;
-            -webkit-text-size-adjust: 100%;
-            text-size-adjust: 100%;
-            -webkit-user-scalable: no;
-            user-scalable: no;
-                margin: 0;
+            margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-                html, body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            font-size: 16px;
-          
+        .light-beam {
+            position: absolute;
+            top: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 200px;
+            background: linear-gradient(to bottom, transparent, rgba(255, 204, 0, 0.2), transparent);
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            z-index: 2;
+            opacity: 0.5;
+            animation: pulse 3s infinite;
         }
 
-        /* Desktop Mode Container */
-        .desktop-container {
-            width: 100%;
-            min-width: 1200px;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            transform-origin: 0 0;
-        }
-
-
-        .bless {
-    width: 280px;
-    height: 280px;
-    overflow: hidden;
-    background: linear-gradient(135deg, #74ebd5, #9face6);
-    padding: 6px;
+       .acouple {
     position: relative;
-    clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
-    animation: prismRefract 8s ease-in-out infinite;
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+    perspective: 1000px;
 }
 
-.bless::before {
+.acouple img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 8px solid #fff;
+    box-shadow: 
+        0 0 25px rgba(255, 105, 180, 0.4),
+        0 0 50px rgba(255, 182, 193, 0.3),
+        inset 0 0 15px rgba(255, 255, 255, 0.6);
+    transition: all 0.5s ease;
+    animation: float 3s ease-in-out infinite;
+    filter: brightness(1.05) contrast(1.1) saturate(1.2);
+}
+
+.acouple::before {
     content: '';
     position: absolute;
-    top: -6px;
-    left: -6px;
-    right: -6px;
-    bottom: -6px;
-    background: conic-gradient(from 0deg, #74ebd5, #acb6e5, #74ebd5);
-    clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+    top: -15px;
+    left: -15px;
+    right: -15px;
+    bottom: -15px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #ff6b6b, #ffa8a8, #ffd8d8, #ffa8a8, #ff6b6b);
+    background-size: 400% 400%;
+    animation: gradientShift 4s ease infinite;
     z-index: -1;
-    animation: prismRainbow 6s linear infinite;
-    filter: blur(8px);
     opacity: 0.7;
 }
 
-.bless::after {
-    content: '💎';
+.acouple::after {
+    content: '❤';
     position: absolute;
-    bottom: -35px;
+    top: 20px;
+    right: 20px;
+    font-size: 24px;
+    color: #ff6b6b;
+    animation: heartbeat 1.2s ease infinite;
+    text-shadow: 0 0 10px rgba(255, 107, 107, 0.5);
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-10px) rotate(1deg);
+    }
+}
+
+@keyframes gradientShift {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+@keyframes heartbeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+    25% {
+        transform: scale(1.2);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    75% {
+        transform: scale(1.3);
+    }
+}
+
+/* Hover effects */
+.acouple:hover img {
+    transform: scale(1.05) rotate(2deg);
+    box-shadow: 
+        0 0 35px rgba(255, 105, 180, 0.6),
+        0 0 70px rgba(255, 182, 193, 0.4),
+        inset 0 0 20px rgba(255, 255, 255, 0.8);
+}
+
+.acouple:hover::before {
+    opacity: 0.9;
+    animation-duration: 2s;
+}
+
+/* Sparkle effect */
+.acouple:hover::after {
+    content: '❤❤';
+    animation: sparkle 0.8s ease infinite;
+}
+
+@keyframes sparkle {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.7;
+        transform: scale(1.1);
+    }
+}
+        .promise {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: linear-gradient(135deg, #2c3e50, #34495e);
+    padding: 12px;
+    position: relative;
+}
+
+.promise::before {
+    content: '🤵‍♂️💍👰‍♀️';
+    position: absolute;
+    top: -35px;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 2.5em;
+    font-size: 1.5em;
     z-index: 10;
-    animation: crystalShine 2s infinite alternate;
+    white-space: nowrap;
+}
+
+.promise::after {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    border: 3px solid #e74c3c;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.promise img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+    border: 2px solid #ecf0f1;
+}
+       .standing-beside {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+    perspective: 800px;
+}
+
+.standing-beside img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 20px;
+    border: 6px solid #ff6b6b;
+    box-shadow: 
+        0 10px 25px rgba(255, 107, 107, 0.3),
+        0 5px 15px rgba(0, 0, 0, 0.2),
+        inset 0 0 10px rgba(255, 255, 255, 0.4);
+    transition: all 0.4s ease;
+    animation: bounce 2s ease-in-out infinite;
+    filter: contrast(1.1) saturate(1.1);
+    background: linear-gradient(135deg, #ffe8e8, #fff5f5);
+    padding: 10px;
+}
+
+.standing-beside::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    border-radius: 25px;
+    background: linear-gradient(45deg, #ff6b6b, #ff8e8e, #ffb6b6, #ff8e8e, #ff6b6b);
+    background-size: 300% 300%;
+    animation: angryGlow 3s ease infinite;
+    z-index: -1;
+    opacity: 0.6;
+}
+
+.standing-beside::after {
+    
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 28px;
+    animation: angryPulse 1.5s ease infinite;
+    filter: drop-shadow(0 0 5px rgba(255, 0, 0, 0.5));
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+    }
+    50% {
+        transform: translateY(-8px) scale(1.02);
+    }
+}
+
+@keyframes angryGlow {
+    0%, 100% {
+        background-position: 0% 50%;
+        opacity: 0.6;
+    }
+    50% {
+        background-position: 100% 50%;
+        opacity: 0.8;
+    }
+}
+
+@keyframes angryPulse {
+    0%, 100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+    25% {
+        transform: scale(1.2) rotate(-10deg);
+        opacity: 0.8;
+    }
+    50% {
+        transform: scale(1.3) rotate(10deg);
+        opacity: 1;
+    }
+    75% {
+        transform: scale(1.1) rotate(-5deg);
+        opacity: 0.9;
+    }
+}
+
+/* Hover effects */
+.standing-beside:hover img {
+    transform: scale(1.05) rotate(-1deg);
+    box-shadow: 
+        0 15px 35px rgba(255, 107, 107, 0.5),
+        0 8px 20px rgba(0, 0, 0, 0.3),
+        inset 0 0 15px rgba(255, 255, 255, 0.6);
+    border-color: #ff5252;
+    filter: contrast(1.2) saturate(1.3);
+}
+
+.standing-beside:hover::before {
+    opacity: 0.8;
+    animation-duration: 1.5s;
+}
+
+.standing-beside:hover::after {
+    
+    animation: doubleAngry 0.6s ease infinite;
+}
+
+@keyframes doubleAngry {
+    0%, 100% {
+        transform: scale(1) rotate(0deg);
+    }
+    25% {
+        transform: scale(1.3) rotate(-15deg);
+    }
+    50% {
+        transform: scale(1.4) rotate(15deg);
+    }
+    75% {
+        transform: scale(1.2) rotate(-10deg);
+    }
+}
+
+/* Additional steam effect */
+.standing-beside:hover::before {
+    box-shadow: 
+        0 0 30px rgba(255, 107, 107, 0.4),
+        0 0 60px rgba(255, 107, 107, 0.2);
+}
+      .still-there {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+    perspective: 1000px;
+}
+
+.still-there img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 50% 20px 50% 20px;
+    border: 8px solid #4ecdc4;
+    box-shadow: 
+        0 0 25px rgba(78, 205, 196, 0.4),
+        0 10px 30px rgba(0, 0, 0, 0.2),
+        inset 0 0 15px rgba(255, 255, 255, 0.6);
+    transition: all 0.5s ease;
+    animation: laughBounce 2s ease-in-out infinite;
+    filter: brightness(1.1) saturate(1.2);
+    background: linear-gradient(135deg, #e0f7fa, #f0fdfc);
+    padding: 8px;
+}
+
+.still-there::before {
+    content: '';
+    position: absolute;
+    top: -12px;
+    left: -12px;
+    right: -12px;
+    bottom: -12px;
+    border-radius: 50% 25px 50% 25px;
+    background: linear-gradient(45deg, #4ecdc4, #26c6da, #00bcd4, #26c6da, #4ecdc4);
+    background-size: 400% 400%;
+    animation: happyGradient 5s ease infinite;
+    z-index: -1;
+    opacity: 0.7;
+}
+
+.still-there::after {
+    
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 32px;
+    animation: laughShake 1s ease infinite;
+    filter: drop-shadow(0 0 8px rgba(255, 193, 7, 0.4));
+}
+
+@keyframes laughBounce {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg) scale(1);
+    }
+    25% {
+        transform: translateY(-5px) rotate(1deg) scale(1.02);
+    }
+    50% {
+        transform: translateY(-10px) rotate(-1deg) scale(1.03);
+    }
+    75% {
+        transform: translateY(-5px) rotate(0.5deg) scale(1.01);
+    }
+}
+
+@keyframes happyGradient {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+@keyframes laughShake {
+    0%, 100% {
+        transform: scale(1) rotate(0deg);
+    }
+    25% {
+        transform: scale(1.2) rotate(5deg);
+    }
+    50% {
+        transform: scale(1.3) rotate(-5deg);
+    }
+    75% {
+        transform: scale(1.1) rotate(3deg);
+    }
+}
+
+/* Hover effects */
+.still-there:hover img {
+    transform: scale(1.08) rotate(2deg);
+    box-shadow: 
+        0 0 35px rgba(78, 205, 196, 0.6),
+        0 15px 40px rgba(0, 0, 0, 0.25),
+        inset 0 0 20px rgba(255, 255, 255, 0.8);
+    border-color: #26a69a;
+    animation-duration: 1s;
+}
+
+.still-there:hover::before {
+    opacity: 0.9;
+    animation-duration: 3s;
+}
+
+.still-there:hover::after {
+    
+    animation: doubleLaugh 0.8s ease infinite;
+}
+
+@keyframes doubleLaugh {
+    0%, 100% {
+        transform: scale(1) rotate(0deg);
+    }
+    25% {
+        transform: scale(1.4) rotate(8deg);
+    }
+    50% {
+        transform: scale(1.5) rotate(-8deg);
+    }
+    75% {
+        transform: scale(1.3) rotate(5deg);
+    }
+}
+
+/* Floating particles effect */
+.still-there:hover::before {
+    box-shadow: 
+        0 0 40px rgba(78, 205, 196, 0.5),
+        0 0 80px rgba(78, 205, 196, 0.3);
+}
+
+/* Additional joy sparkles */
+.still-there::before {
+    background: linear-gradient(45deg, #4ecdc4, #26c6da, #00bcd4, #ffeb3b, #26c6da, #4ecdc4);
+}
+        .hardsituation {
+    width: 340px;
+    height: 250px;
+    border-radius: 18px;
+    overflow: hidden;
+    background: 
+        conic-gradient(from 0deg, #667eea, #764ba2, #f093fb, #f5576c, #667eea);
+    padding: 10px;
+    position: relative;
+    animation: unityRotate 10s linear infinite;
+    background-size: 400% 400%;
+}
+
+.hardsituation::before {
+    content: '🔗';
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 2em;
+    z-index: 10;
+    animation: linkConnect 3s infinite alternate;
+}
+
+.hardsituation::after {
+    content: '🔗';
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    font-size: 2em;
+    z-index: 10;
+    animation: linkConnect 3s infinite alternate-reverse;
+}
+
+.hardsituation img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    display: block;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(5px);
+    background: rgba(255, 255, 255, 0.1);
+    animation: unityGlow 4s ease-in-out infinite;
+}
+
+@keyframes unityRotate {
+    0% { 
+        background-position: 0% 50%;
+        transform: rotate(0deg);
+    }
+    50% { 
+        background-position: 100% 50%;
+        transform: rotate(1deg);
+    }
+    100% { 
+        background-position: 0% 50%;
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes linkConnect {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1.2) rotate(15deg); }
+}
+
+@keyframes unityGlow {
+    0%, 100% { 
+        box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.3);
+    }
+    50% { 
+        box-shadow: inset 0 0 30px rgba(255, 255, 255, 0.5);
+    }
+}
+      .together.fore.every {
+    position: relative;
+    width: 500px;
+    height: 350px;
+    margin: 20px auto;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 
+        0 0 0 4px #fff,
+        0 10px 30px rgba(0,0,0,0.3),
+        inset 0 0 20px rgba(255,255,255,0.2);
+    transform: perspective(1000px) rotateX(5deg) rotateY(-5deg);
+    transition: all 0.5s ease;
+}
+
+.together.fore.every:hover {
+    transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1.05);
+    box-shadow: 
+        0 0 0 4px #fff,
+        0 15px 40px rgba(0,0,0,0.4),
+        0 0 50px rgba(100,200,255,0.6),
+        inset 0 0 20px rgba(255,255,255,0.3);
+}
+
+.together.fore.every img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: 
+        brightness(1.1) 
+        contrast(1.1) 
+        saturate(1.2)
+        drop-shadow(0 5px 15px rgba(0,0,0,0.2));
+    transition: all 0.5s ease;
+}
+
+.together.fore.every:hover img {
+    filter: 
+        brightness(1.2) 
+        contrast(1.15) 
+        saturate(1.3)
+        drop-shadow(0 8px 25px rgba(0,0,0,0.3));
+}
+
+.together.fore.every::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        45deg,
+        rgba(255,255,255,0.1) 0%,
+        rgba(255,255,255,0) 50%,
+        rgba(255,255,255,0.1) 100%
+    );
+    z-index: 2;
+    pointer-events: none;
+}
+
+.together.fore.every::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent 30%,
+        rgba(255,255,255,0.1) 50%,
+        transparent 70%
+    );
+    transform: rotate(45deg);
+    animation: shimmer 3s infinite linear;
+    z-index: 3;
+    pointer-events: none;
+}
+
+@keyframes shimmer {
+    0% {
+        transform: rotate(45deg) translateX(-100%);
+    }
+    100% {
+        transform: rotate(45deg) translateX(100%);
+    }
+}
+
+/* Floating elements animation */
+.together.fore.every {
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: perspective(1000px) rotateX(5deg) rotateY(-5deg) translateY(0px);
+    }
+    50% {
+        transform: perspective(1000px) rotateX(5deg) rotateY(-5deg) translateY(-10px);
+    }
+}
+
+/* Add decorative corner elements */
+.together.fore.every::before {
+    border: 2px solid transparent;
+    background: linear-gradient(135deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4) border-box;
+    -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+}
+      .resontohappines {
+    position: relative;
+    width: 320px;
+    height: 320px;
+    margin: 0 auto;
+    perspective: 1400px;
+}
+
+.resontohappines img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 2px solid transparent;
+    background: 
+        linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 250, 252, 0.9)) padding-box,
+        conic-gradient(from 0deg at 50% 50%, 
+            #FF9E80, #FFD180, #FFFF8D, #CF9, #80DEEA, #9FA8DA, #FF9E80) border-box;
+    box-shadow: 
+        0 6px 25px rgba(0, 0, 0, 0.08),
+        0 3px 12px rgba(255, 158, 128, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.03);
+    transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    animation: gentleRise 5s ease-in-out infinite;
+    filter: brightness(1.04) contrast(1.06);
+    padding: 2px;
+    clip-path: polygon(
+        0% 15%, 15% 0%, 85% 0%, 100% 15%,
+        100% 85%, 85% 100%, 15% 100%, 0% 85%
+    );
+}
+
+.resontohappines::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    right: -20px;
+    bottom: -20px;
+    background: 
+        radial-gradient(circle at 20% 20%, rgba(255, 158, 128, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(128, 222, 234, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 40% 70%, rgba(207, 255, 153, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 70% 30%, rgba(159, 168, 218, 0.1) 0%, transparent 50%);
+    animation: fluidMove 8s ease-in-out infinite;
+    z-index: -1;
+    border-radius: 20px;
+    opacity: 0.8;
+}
+
+.resontohappines::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 105%;
+    height: 105%;
+    background: 
+        linear-gradient(125deg, 
+            transparent 30%,
+            rgba(255, 255, 255, 0.4) 50%,
+            transparent 70%);
+    animation: lightSweep 6s ease-in-out infinite;
+    z-index: 1;
+    border-radius: 16px;
+    pointer-events: none;
+    mix-blend-mode: soft-light;
+    clip-path: polygon(
+        0% 15%, 15% 0%, 85% 0%, 100% 15%,
+        100% 85%, 85% 100%, 15% 100%, 0% 85%
+    );
+}
+
+@keyframes gentleRise {
+    0%, 100% {
+        transform: translateY(0px) scale(1) rotateX(0deg);
+        box-shadow: 
+            0 6px 25px rgba(0, 0, 0, 0.08),
+            0 3px 12px rgba(255, 158, 128, 0.12);
+    }
+    33% {
+        transform: translateY(-6px) scale(1.008) rotateX(2deg);
+        box-shadow: 
+            0 10px 35px rgba(0, 0, 0, 0.12),
+            0 6px 20px rgba(255, 209, 128, 0.18);
+    }
+    66% {
+        transform: translateY(-3px) scale(1.004) rotateX(-1deg);
+        box-shadow: 
+            0 8px 30px rgba(0, 0, 0, 0.1),
+            0 5px 18px rgba(128, 222, 234, 0.15);
+    }
+}
+
+@keyframes fluidMove {
+    0%, 100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 0.8;
+    }
+    25% {
+        transform: scale(1.02) rotate(1deg);
+        opacity: 0.9;
+    }
+    50% {
+        transform: scale(1.01) rotate(-0.5deg);
+        opacity: 0.7;
+    }
+    75% {
+        transform: scale(1.03) rotate(0.5deg);
+        opacity: 0.85;
+    }
+}
+
+@keyframes lightSweep {
+    0%, 100% {
+        transform: translate(-50%, -50%) rotate(0deg);
+        opacity: 0.3;
+    }
+    25% {
+        transform: translate(-50%, -50%) rotate(90deg);
+        opacity: 0.6;
+    }
+    50% {
+        transform: translate(-50%, -50%) rotate(180deg);
+        opacity: 0.4;
+    }
+    75% {
+        transform: translate(-50%, -50%) rotate(270deg);
+        opacity: 0.5;
+    }
+}
+
+/* Sophisticated Hover Effects */
+.resontohappines:hover img {
+    transform: translateY(-10px) scale(1.03) rotateX(5deg);
+    animation-duration: 3s;
+    box-shadow: 
+        0 15px 45px rgba(0, 0, 0, 0.15),
+        0 8px 28px rgba(255, 158, 128, 0.25),
+        0 4px 16px rgba(128, 222, 234, 0.2),
+        inset 0 2px 0 rgba(255, 255, 255, 0.95),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.05);
+    filter: brightness(1.08) contrast(1.1) saturate(1.15);
+    background: 
+        linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(252, 253, 255, 0.92)) padding-box,
+        conic-gradient(from 45deg at 50% 50%, 
+            #FF9E80, #FFD180, #FFFF8D, #CF9, #80DEEA, #9FA8DA, #FF9E80) border-box;
+}
+
+.resontohappines:hover::before {
+    opacity: 0.95;
+    animation-duration: 4s;
+    background: 
+        radial-gradient(circle at 20% 20%, rgba(255, 158, 128, 0.25) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(128, 222, 234, 0.25) 0%, transparent 50%),
+        radial-gradient(circle at 40% 70%, rgba(207, 255, 153, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 70% 30%, rgba(159, 168, 218, 0.2) 0%, transparent 50%);
+}
+
+.resontohappines:hover::after {
+    animation-duration: 3s;
+    opacity: 0.7;
+}
+
+/* Container Styling */
+.resontohappines {
+    background: 
+        linear-gradient(135deg, #fafbfc 0%, #f1f3f4 100%);
+    padding: 24px;
+    border-radius: 20px;
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.04),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+/* Advanced Effects */
+@supports (backdrop-filter: blur(20px)) {
+    .resontohappines::before {
+        backdrop-filter: blur(12px) brightness(1.1);
+        background: 
+            radial-gradient(circle at 20% 20%, rgba(255, 158, 128, 0.12) 0%, transparent 50%),
+            radial-gradient(circle at 80% 80%, rgba(128, 222, 234, 0.12) 0%, transparent 50%),
+            radial-gradient(circle at 40% 70%, rgba(207, 255, 153, 0.08) 0%, transparent 50%),
+            radial-gradient(circle at 70% 30%, rgba(159, 168, 218, 0.08) 0%, transparent 50%);
+    }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    .resontohappines img,
+    .resontohappines::before,
+    .resontohappines::after {
+        animation: none;
+        transition-duration: 0.1s;
+    }
+}
+
+/* Focus State */
+.resontohappines:focus-within img {
+    outline: 2px solid #FF9E80;
+    outline-offset: 4px;
+}
+.connect {
+    position: relative;
+    width: 320px;
+    height: 320px;
+    margin: 0 auto;
+    perspective: 1200px;
+}
+
+.connect img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 34%;
+    border: 3px solid transparent;
+    background: 
+        linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 250, 252, 0.9)) padding-box,
+        linear-gradient(135deg, #667eea 0%, #764ba2 50%, #667eea 100%) border-box;
+    box-shadow: 
+        0 8px 32px rgba(102, 126, 234, 0.15),
+        0 4px 16px rgba(118, 75, 162, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.05);
+    transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    animation: connectionPulse 6s ease-in-out infinite;
+    filter: brightness(1.05) contrast(1.08);
+    padding: 4px;
+}
+
+.connect::before {
+    content: '';
+    position: absolute;
+    top: -25px;
+    left: -25px;
+    right: -25px;
+    bottom: -25px;
+    border-radius: 50%;
+    background: 
+        radial-gradient(circle at 30% 30%, rgba(102, 126, 234, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 70% 70%, rgba(118, 75, 162, 0.2) 0%, transparent 50%),
+        conic-gradient(from 0deg, 
+            transparent 0%, 
+            rgba(102, 126, 234, 0.3) 10%, 
+            transparent 20%,
+            transparent 30%,
+            rgba(118, 75, 162, 0.3) 40%,
+            transparent 50%,
+            transparent 60%,
+            rgba(102, 126, 234, 0.3) 70%,
+            transparent 80%,
+            transparent 90%,
+            rgba(118, 75, 162, 0.3) 100%);
+    animation: connectionOrbit 8s linear infinite;
+    z-index: -1;
+    opacity: 0.7;
+}
+
+.connect::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 110%;
+    height: 110%;
+    background: 
+        radial-gradient(circle, 
+            rgba(102, 126, 234, 0.1) 0%,
+            rgba(118, 75, 162, 0.08) 30%,
+            transparent 70%);
+    animation: connectionGlow 4s ease-in-out infinite;
+    z-index: -1;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+@keyframes connectionPulse {
+    0%, 100% {
+        transform: scale(1) translateY(0px);
+        box-shadow: 
+            0 8px 32px rgba(102, 126, 234, 0.15),
+            0 4px 16px rgba(118, 75, 162, 0.1);
+    }
+    25% {
+        transform: scale(1.02) translateY(-4px);
+        box-shadow: 
+            0 12px 40px rgba(102, 126, 234, 0.2),
+            0 6px 20px rgba(118, 75, 162, 0.15);
+    }
+    50% {
+        transform: scale(1.01) translateY(-2px);
+        box-shadow: 
+            0 10px 36px rgba(102, 126, 234, 0.18),
+            0 5px 18px rgba(118, 75, 162, 0.12);
+    }
+    75% {
+        transform: scale(1.015) translateY(-3px);
+        box-shadow: 
+            0 14px 38px rgba(102, 126, 234, 0.22),
+            0 7px 22px rgba(118, 75, 162, 0.17);
+    }
+}
+
+@keyframes connectionOrbit {
+    0% {
+        transform: rotate(0deg) scale(1);
+        opacity: 0.7;
+    }
+    50% {
+        transform: rotate(180deg) scale(1.05);
+        opacity: 0.9;
+    }
+    100% {
+        transform: rotate(360deg) scale(1);
+        opacity: 0.7;
+    }
+}
+
+@keyframes connectionGlow {
+    0%, 100% {
+        opacity: 0.4;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+        opacity: 0.7;
+        transform: translate(-50%, -50%) scale(1.08);
+    }
+}
+
+/* Connection Lines Animation */
+.connect::before {
+    background: 
+        radial-gradient(circle at 30% 30%, rgba(102, 126, 234, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 70% 70%, rgba(118, 75, 162, 0.15) 0%, transparent 50%),
+        conic-gradient(from 0deg, 
+            transparent 0%, 
+            rgba(102, 126, 234, 0.25) 8%, 
+            transparent 16%,
+            transparent 24%,
+            rgba(118, 75, 162, 0.25) 32%,
+            transparent 40%,
+            transparent 48%,
+            rgba(102, 126, 234, 0.25) 56%,
+            transparent 64%,
+            transparent 72%,
+            rgba(118, 75, 162, 0.25) 80%,
+            transparent 88%,
+            transparent 96%,
+            rgba(102, 126, 234, 0.25) 100%);
+}
+
+/* Enhanced Hover Effects */
+.connect:hover img {
+    transform: scale(1.05) translateY(-8px);
+    animation-duration: 3s;
+    box-shadow: 
+        0 20px 60px rgba(102, 126, 234, 0.25),
+        0 12px 36px rgba(118, 75, 162, 0.2),
+        0 6px 20px rgba(102, 126, 234, 0.15),
+        inset 0 2px 0 rgba(255, 255, 255, 0.9),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.08);
+    filter: brightness(1.1) contrast(1.12);
+    border: 3px solid transparent;
+    background: 
+        linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(252, 253, 255, 0.92)) padding-box,
+        linear-gradient(135deg, #667eea 0%, #764ba2 30%, #667eea 70%, #764ba2 100%) border-box;
+}
+
+.connect:hover::before {
+    opacity: 0.9;
+    animation-duration: 4s;
+    background: 
+        radial-gradient(circle at 30% 30%, rgba(102, 126, 234, 0.25) 0%, transparent 50%),
+        radial-gradient(circle at 70% 70%, rgba(118, 75, 162, 0.25) 0%, transparent 50%),
+        conic-gradient(from 0deg, 
+            transparent 0%, 
+            rgba(102, 126, 234, 0.4) 6%, 
+            transparent 12%,
+            transparent 18%,
+            rgba(118, 75, 162, 0.4) 24%,
+            transparent 30%,
+            transparent 36%,
+            rgba(102, 126, 234, 0.4) 42%,
+            transparent 48%,
+            transparent 54%,
+            rgba(118, 75, 162, 0.4) 60%,
+            transparent 66%,
+            transparent 72%,
+            rgba(102, 126, 234, 0.4) 78%,
+            transparent 84%,
+            transparent 90%,
+            rgba(118, 75, 162, 0.4) 96%,
+            transparent 100%);
+}
+
+.connect:hover::after {
+    animation-duration: 2s;
+    opacity: 0.8;
+   
+}
+
+/* Container Styling */
+.connect {
+    padding: 28px;
+    border-radius: 24px;
+    box-shadow: 
+        0 10px 40px rgba(0, 0, 0, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+/* Modern Backdrop Effects */
+@supports (backdrop-filter: blur(20px)) {
+    .connect::before {
+        backdrop-filter: blur(10px) brightness(1.05);
+    }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    .connect img,
+    .connect::before,
+    .connect::after {
+        animation: none;
+        transition-duration: 0.1s;
+    }
+}
+
+/* Focus State */
+.connect:focus-within img {
+    outline: 3px solid #667eea;
+    outline-offset: 6px;
+}
+
+/* Connection Bridge Effect */
+.connect:hover::before {
+    box-shadow: 
+        0 0 60px rgba(102, 126, 234, 0.3),
+        0 0 120px rgba(118, 75, 162, 0.2);
+}        
+        .icon-display {
+            font-size: 80px;
+            margin: 20px;
+            animation: iconPulse 2s infinite;
+            color: white;
+        }
+
+        @keyframes iconPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+
+        .sanu {
+    width: 280px;
+    height: 280px;
+    border-radius: 55%;
+    overflow: hidden;
+    background: white;
+    padding: 8px;
+    position: relative;
+    border: 3px dashed #e74c3c;
+}
+
+.sanu img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+    border: 2px solid #e74c3c;
+}
+.something {
+    width: 320px;
+    height: 320px;
+    border-radius: 34%;
+    overflow: hidden;
+    background: 
+        radial-gradient(circle at 30% 30%, #FFD700, #FFA500, #FF8C00);
+    padding: 12px;
+    position: relative;
+    animation: auraGlow 3s ease-in-out infinite;
+    box-shadow: 
+        0 0 80px rgba(255, 215, 0, 0.7),
+        inset 0 0 50px rgba(255, 255, 255, 0.4);
+}
+
+.something::before {
+
+    position: absolute;
+    top: -15px;
+    left: -15px;
+    right: -15px;
+    bottom: -15px;
+    background: 
+        radial-gradient(circle at 30% 30%, rgba(255,215,0,0.8) 0%, transparent 70%),
+        radial-gradient(circle at 70% 70%, rgba(255,165,0,0.6) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: auraExpand 4s ease-in-out infinite;
+    z-index: -1;
+    filter: blur(20px);
+}
+
+.something::after {
+
+    position: absolute;
+    bottom: -35px;
+    right: -20px;
+    font-size: 3em;
+    z-index: 10;
+    animation: crownFloat 2s infinite alternate;
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+}
+
+.something img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 34%;
+    display: block;
+    border: 5px solid rgba(255, 255, 255, 0.9);
+    box-shadow: inset 0 0 40px rgba(255, 255, 255, 0.6);
+    filter: sepia(0.2) contrast(1.2);
+    position: relative;
+    z-index: 2;
+}
+
+@keyframes auraGlow {
+    0%, 100% { 
+        transform: scale(1);
+        box-shadow: 0 0 80px rgba(255, 215, 0, 0.7);
+    }
+    50% { 
+        transform: scale(1.03);
+        box-shadow: 0 0 100px rgba(255, 215, 0, 0.9);
+    }
+}
+
+@keyframes auraExpand {
+    0%, 100% { transform: scale(1); opacity: 0.7; }
+    50% { transform: scale(1.1); opacity: 0.9; }
+}
+
+@keyframes crownFloat {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-15px) rotate(10deg); }
+}
+       .bless {
+    position: relative;
+    width: 320px;
+    height: 320px;
+    margin: 0 auto;
+    perspective: 1200px;
 }
 
 .bless img {
     width: 100%;
     height: 100%;
-    top: 150px;
-    left: 300px;
     object-fit: cover;
-    display: block;
-    clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
-    border: 2px solid rgba(255, 255, 255, 0.6);
-    filter: brightness(1.1) saturate(1.3);
+    border-radius: 8px;
+    border: 3px solid #D4AF37;
+    background: 
+        linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(255, 255, 255, 0.05)) padding-box,
+        linear-gradient(135deg, #D4AF37, #FFD700, #B8860B, #D4AF37) border-box;
+    box-shadow: 
+        0 4px 20px rgba(0, 0, 0, 0.15),
+        0 8px 30px rgba(212, 175, 55, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+    transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    animation: elegantFloat 6s ease-in-out infinite;
+    filter: brightness(1.02) contrast(1.05) saturate(1.1);
+    padding: 2px;
 }
 
-@keyframes prismRefract {
-    0%, 100% { 
-        transform: rotate(0deg) scale(1);
-        filter: hue-rotate(0deg);
+.bless::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    right: -20px;
+    bottom: -20px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, 
+        rgba(212, 175, 55, 0.1) 0%,
+        rgba(255, 255, 255, 0.05) 30%,
+        rgba(212, 175, 55, 0.15) 70%,
+        rgba(184, 134, 11, 0.1) 100%);
+    z-index: -1;
+    opacity: 0.8;
+    animation: sophisticatedGlow 8s ease-in-out infinite;
+}
+
+.bless::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 110%;
+    height: 110%;
+    background: 
+        radial-gradient(ellipse at center, 
+            rgba(255, 255, 255, 0.1) 0%,
+            rgba(255, 255, 255, 0) 60%),
+        linear-gradient(135deg, 
+            transparent 0%,
+            rgba(212, 175, 55, 0.03) 50%,
+            transparent 100%);
+    animation: divineLight 10s ease-in-out infinite;
+    z-index: -1;
+    border-radius: 12px;
+    pointer-events: none;
+}
+
+@keyframes elegantFloat {
+    0%, 100% {
+        transform: translateY(0px) scale(1);
+        box-shadow: 
+            0 4px 20px rgba(0, 0, 0, 0.15),
+            0 8px 30px rgba(212, 175, 55, 0.2);
     }
-    33% { 
-        transform: rotate(5deg) scale(1.02);
-        filter: hue-rotate(120deg);
-    }
-    66% { 
-        transform: rotate(-5deg) scale(1.01);
-        filter: hue-rotate(240deg);
+    50% {
+        transform: translateY(-5px) scale(1.005);
+        box-shadow: 
+            0 8px 30px rgba(0, 0, 0, 0.18),
+            0 15px 40px rgba(212, 175, 55, 0.25);
     }
 }
 
-@keyframes prismRainbow {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+@keyframes sophisticatedGlow {
+    0%, 100% {
+        opacity: 0.6;
+        transform: scale(1);
+    }
+    25% {
+        opacity: 0.8;
+        transform: scale(1.01);
+    }
+    50% {
+        opacity: 0.7;
+        transform: scale(1.005);
+    }
+    75% {
+        opacity: 0.75;
+        transform: scale(1.008);
+    }
 }
 
-@keyframes crystalShine {
-    0%, 100% { transform: translateX(-50%) scale(1); opacity: 1; }
-    50% { transform: translateX(-50%) scale(1.2); opacity: 0.8; }
+@keyframes divineLight {
+    0%, 100% {
+        opacity: 0.4;
+        transform: translate(-50%, -50%) scale(1) rotate(0deg);
+    }
+    33% {
+        opacity: 0.6;
+        transform: translate(-50%, -50%) scale(1.02) rotate(120deg);
+    }
+    66% {
+        opacity: 0.5;
+        transform: translate(-50%, -50%) scale(1.01) rotate(240deg);
+    }
+}
+
+/* Professional Hover Effects */
+.bless:hover img {
+    transform: scale(1.02) translateY(-8px);
+    box-shadow: 
+        0 12px 40px rgba(0, 0, 0, 0.2),
+        0 20px 50px rgba(212, 175, 55, 0.3),
+        inset 0 2px 0 rgba(255, 255, 255, 0.5),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.15);
+    border: 3px solid #FFD700;
+    filter: brightness(1.05) contrast(1.08) saturate(1.15);
+    animation-duration: 3s;
+}
+
+.bless:hover::before {
+    opacity: 0.9;
+    animation-duration: 4s;
+    background: linear-gradient(135deg, 
+        rgba(212, 175, 55, 0.15) 0%,
+        rgba(255, 255, 255, 0.08) 30%,
+        rgba(212, 175, 55, 0.2) 70%,
+        rgba(184, 134, 11, 0.15) 100%);
+}
+
+.bless:hover::after {
+    animation-duration: 5s;
+    opacity: 0.7;
+}
+
+/* Additional Professional Touches */
+.bless {
+    background: 
+        linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 
+        0 10px 40px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+/* Subtle corner accents */
+.bless::before {
+    box-shadow: 
+        inset 0 0 0 1px rgba(212, 175, 55, 0.1),
+        0 0 0 1px rgba(255, 255, 255, 0.3);
+}
+
+/* Enhanced focus state for accessibility */
+.bless:focus-within img {
+    outline: 2px solid #D4AF37;
+    outline-offset: 4px;
+}
+
+/* Smooth backdrop blur effect for modern browsers */
+@supports (backdrop-filter: blur(10px)) {
+    .bless::before {
+        backdrop-filter: blur(5px);
+        background: linear-gradient(135deg, 
+            rgba(212, 175, 55, 0.08) 0%,
+            rgba(255, 255, 255, 0.03) 30%,
+            rgba(212, 175, 55, 0.12) 70%,
+            rgba(184, 134, 11, 0.08) 100%);
+    }
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .bless img,
+    .bless::before,
+    .bless::after {
+        animation: none;
+        transition-duration: 0.1s;
+    }
 }
         .healty{
     width: 280px;
@@ -924,33 +2180,35 @@ background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01
         }
 
         .flower {
-            position: absolute;
-            width: 60px;
-            height: 60px;
-            background: radial-gradient(circle at 30% 30%, #ff6b6b, #ff4757);
-            border-radius: 50%;
-            animation: glow 2s infinite alternate;
+            width: 150px;
+            height: 150px;
+            position: relative;
+            animation: bloom 3s ease-in-out infinite;
         }
 
-        .flower:before {
-            content: "";
+        .petal {
             position: absolute;
-            width: 60px;
-            height: 60px;
-            background: radial-gradient(circle at 30% 30%, #ffa502, #ff6348);
-            border-radius: 50%;
-            transform: rotate(45deg);
+            width: 50px;
+            height: 80px;
+            background: linear-gradient(to top, #FF69B4, #FFB6C1);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            top: 50%;
+            left: 50%;
+            transform-origin: bottom center;
+            box-shadow: 0 0 20px rgba(255, 105, 180, 0.5);
         }
 
-        .flower:after {
-            content: "";
-            position: absolute;
-            width: 60px;
-            height: 60px;
-            background: radial-gradient(circle at 30% 30%, #2ed573, #1e90ff);
-            border-radius: 50%;
-            transform: rotate(90deg);
+        .petal:nth-child(1) { transform: translate(-50%, -100%) rotate(0deg); }
+        .petal:nth-child(2) { transform: translate(-50%, -100%) rotate(72deg); }
+        .petal:nth-child(3) { transform: translate(-50%, -100%) rotate(144deg); }
+        .petal:nth-child(4) { transform: translate(-50%, -100%) rotate(216deg); }
+        .petal:nth-child(5) { transform: translate(-50%, -100%) rotate(288deg); }
+
+        @keyframes bloom {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
         }
+
 
         .slot-machine {
             display: flex;
@@ -1030,40 +2288,168 @@ background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01
             left: 22px;
         }
 
-        .cake {
-            width: 200px;
-            height: 100px;
-            background: linear-gradient(45deg, #ff6b6b, #ff4757);
-            border-radius: 10px 10px 0 0;
+             .cake-container {
             position: relative;
-            margin: 20px;
+            width: 320px;
+            height: 400px;
+            margin: 2rem 0;
+        }
+
+        .cake {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 240px;
+            height: 140px;
+            background: linear-gradient(to bottom, #ff9a9e, #fad0c4);
+            border-radius: 10px 10px 0 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            z-index: 5;
         }
 
         .cake:before {
-            content: "";
+            content: '';
             position: absolute;
-            width: 220px;
-            height: 20px;
-            background: #ffa502;
-            top: -10px;
-            left: -10px;
-            border-radius: 10px;
+            top: -25px;
+            left: 0;
+            width: 100%;
+            height: 50px;
+            background: linear-gradient(to bottom, #ff9a9e, #fad0c4);
+            border-radius: 10px 10px 0 0;
         }
 
         .cake:after {
-            content: "";
+            content: '';
             position: absolute;
-            width: 20px;
-            height: 40px;
-            background: #ffa502;
             top: -50px;
-            left: 90px;
-            border-radius: 5px;
-            box-shadow: 0 0 20px #ffa502, 0 0 40px #ffa502;
-            animation: flicker 1.5s infinite alternate;
+            left: 10px;
+            width: calc(100% - 20px);
+            height: 50px;
+            background: linear-gradient(to bottom, #ff9a9e, #fad0c4);
+            border-radius: 10px 10px 0 0;
         }
 
-        .emoji {
+        .cake-top {
+            position: absolute;
+            top: -70px;
+            left: 20px;
+            width: calc(100% - 40px);
+            height: 40px;
+            background: linear-gradient(to bottom, #ff9a9e, #fad0c4);
+            border-radius: 10px 10px 0 0;
+            z-index: 6;
+        }
+
+        .cake-decoration {
+            position: absolute;
+            top: -70px;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            display: flex;
+            justify-content: space-around;
+            z-index: 7;
+        }
+
+        .cherry {
+            width: 20px;
+            height: 20px;
+            background: #e74c3c;
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .cake-candle {
+            position: absolute;
+            top: -110px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 12px;
+            height: 50px;
+            background: linear-gradient(to bottom, #ffffff, #ffcc00);
+            border-radius: 6px;
+            z-index: 8;
+            box-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
+        }
+
+        .cake-flame {
+            position: absolute;
+            top: -140px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 24px;
+            height: 40px;
+            background: radial-gradient(ellipse at center, #ffff00, #ff9900, #ff3300 70%);
+            border-radius: 50% 50% 20% 20%;
+            box-shadow: 0 0 25px #ff9900, 0 0 50px #ff5722;
+            animation: flicker 0.8s infinite alternate;
+            z-index: 9;
+            filter: blur(1px);
+        }
+
+        .cake-plate {
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 280px;
+            height: 20px;
+            background: linear-gradient(to bottom, #e0e0e0, #bdbdbd);
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            z-index: 4;
+        }
+
+        .cake-shadow {
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 250px;
+            height: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 50%;
+            filter: blur(10px);
+            z-index: 3;
+        }
+      .particles-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.particle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0;
+    animation: floatUp 8s ease-in infinite;
+}
+
+@keyframes floatUp {
+    0% {
+        opacity: 0;
+        transform: translateY(100px) rotate(0deg);
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-100px) rotate(360deg);
+    }
+}
+   .emoji {
             font-size: 40px;
             margin: 10px;
             animation: bounce 2s infinite;
@@ -1255,7 +2641,7 @@ background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01
             <div class="balloon"></div>
             <div class="balloon"></div>
         </div> <div class="love-sign">❤️</div>
-         <h1>Hi  👋</h1>
+        <div class="icon-display">Hi  👋 </div>
                <div class="card">
 <div class="hi-photo-frame">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXjyfHv_dMYeIQDocYap0gY0PTRKagiklkJw&s" alt="Special Person">
@@ -1272,7 +2658,7 @@ background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01
           <div class="page-inner">
             <div class="page-content">
               <h1>Today is : 26 Ashoj 2082</h1>
-              <div class="calendar" aria-hidden="true">
+              <div class="calendar" -hidden="true">
                 <div class="cal-head"><div class="month">Ashoj 2082</div></div>
                 <div class="grid" id="calGrid"></div>
               </div>
@@ -1291,8 +2677,8 @@ background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01
                 <p>20 years ago, a special person was born</p>
                 <div style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap;">
                     <div class="candle"><div class="flame"></div></div>
-                    <div class="photo-frame">
-                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj9jcexJasegLLXre9MrS-tkJJMsIUJLT_gXFnMtwaFF_K0fvIdlHFBAh5KukKSk5_pdywGb7fli4vVPfGBYJqWu4du2VMx5vq8Pf-lUopCboV3QB_XXNJnTzk_t39NQuDuFsZuQ4IPFKvXZPXAzoYNOTQ5D1eudmnVuMFPCtiAdodT1cYuA9TfJ62ma1_q/s320/snaptik_7433397392277343489_0.jpeg" alt="Special Person">
+                   <div class="sanu">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj9jcexJasegLLXre9MrS-tkJJMsIUJLT_gXFnMtwaFF_K0fvIdlHFBAh5KukKSk5_pdywGb7fli4vVPfGBYJqWu4du2VMx5vq8Pf-lUopCboV3QB_XXNJnTzk_t39NQuDuFsZuQ4IPFKvXZPXAzoYNOTQ5D1eudmnVuMFPCtiAdodT1cYuA9TfJ62ma1_q/s320/snaptik_7433397392277343489_0.jpeg" alt="sanu">
                     </div>
                    <div class="candle"><div class="flame"></div></div>
                 </div>
@@ -1395,10 +2781,16 @@ background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01
         <div class="page hidden" id="page11">
             <div class="page-content">
                 <h2>Stay Healthy </h2>
-                <div class="health-icon"><i class="fas fa-heartbeat"></i></div>
-                <p>Wishing you good health and vitality always</p>
-                 <div class="page-graphic"><div class="flower"></div></div>
-                <div class="healty">
+                 <div class="flower">
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+        </div>
+             <p>Stay healthy and bloom like a flower 🌸</p>
+                
+                                 <div class="healty">
         <img src="https://thumbs.dreamstime.com/b/cute-happy-kid-eat-healthy-fresh-fruit-boy-breakfast-broccoli-cartoon-character-child-childhood-comic-cook-delicious-diet-dinner-159774476.jpg" alt="healty">
         </div>
                
@@ -1409,25 +2801,24 @@ background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01
         <div class="page hidden" id="page12">
             <div class="page-content">
                 <h2>Stay Blessed 🙏</h2>
-              <div class="page-graphic"><div style="font-size:155px">🙏</div></div>
+              <div class="page-graphic"><div style="font-size:80px">🙏</div></div>
                 <p>May you always be blessed with love and happiness</p>
                  <div class="bless">
             <img src="https://i.pinimg.com/736x/2f/73/d9/2f73d9058b36e581a0565e4562727a11.jpg" alt="bless">
-                <div class="floating-hearts" id="floatingHearts12"></div>
+                
             </div>
         </div>
 </div>
         <!-- Page 13: Message -->
         <div class="page hidden" id="page13">
             <div class="page-content">
-                <h2>I Just Want To Tell You Something 💌</h2>
+                <h2>I Just Want To Tell You Something....... 💌</h2>
                 <div class="message-icon"><i class="fas fa-comment-dots"></i></div>
-                <p>You mean the world to me, and I cherish every moment we share</p>
-                <div class="photo-frame" style="border-radius: 30px;">
-                    <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Message">
-                </div>
-                <div class="floating-hearts" id="floatingHearts13"></div>
-            </div>
+                <p>You make my days brighter and my smile stickier; let’s never stop collecting silly, perfect moments.</p>
+                <div class="something">
+            <img src="https://i.pinimg.com/1200x/ff/bc/5a/ffbc5a8d87099c05d9eebde73a2fa8f1.jpg" alt="Tell Somthing">
+                    </div>
+                           </div>
         </div>
 
         <!-- Page 14: Connection -->
@@ -1440,10 +2831,10 @@ background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01
                     <div class="connector"></div>
                     <div class="block">Me</div>
                 </div>
-                <div class="photo-frame" style="border-radius: 20px 50% 20px 50%;">
-                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Connection">
-                </div>
-                <div class="floating-hearts" id="floatingHearts14"></div>
+               <div class="connect">
+    <img src="https://www.shutterstock.com/image-vector/vector-illustration-two-kids-connecting-600nw-2424329873.jpg" alt="Connection">
+</div>
+                
             </div>
         </div>
 
@@ -1451,25 +2842,27 @@ background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01
         <div class="page hidden" id="page15">
             <div class="page-content">
                 <h2>Conditions Are Worst But Happiness Remains 🌈</h2>
-                <div class="joy-icon">😊</div>
-                <p>No matter how tough things get, happiness will always find its way to you</p>
-                <div class="photo-frame" style="border-radius: 10px 30px 10px 30px;">
-                    <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Happiness">
-                </div>
-                <div class="floating-hearts" id="floatingHearts15"></div>
+                                <p>You and I find a reason to be together no matter what—your smile turns every situation into our little happy place. </p>
+                <div class="resontohappines">
+                                    <img src="https://i.pinimg.com/736x/30/a4/19/30a419dea0f6eb69c96753ed1decc3e9.jpg" alt="Happiness">
+                                                                </div>
+                
             </div>
         </div>
 
         <!-- Page 16: Never Give Up -->
         <div class="page hidden" id="page16">
             <div class="page-content">
-                <h2>I Will Never Give Up On Us 💪</h2>
+                <h2>I Will Never Give Up On Us </h2>
                 <div class="message-icon"><i class="fas fa-heart"></i></div>
-                <p>No matter what challenges we face, I'll always be by your side</p>
-                <div class="photo-frame" style="border-radius: 40% 10px 40% 10px;">
-                    <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Never Give Up">
+                               <p class="lead">Through every storm and sunshine.</p>
+                              <p>No matter what challenges we face, I'll always be by your side</p>
+<div class="together fore every">
+                                <img src="https://thumbs.dreamstime.com/b/cartoon-childrens-couple-walking-under-rain-umbrella-pool-surrounded-trees-flowers-ducklings-390300180.jpg" alt="together fore every"> 
+                
+                              
                 </div>
-                <div class="floating-hearts" id="floatingHearts16"></div>
+
             </div>
         </div>
 
@@ -1478,90 +2871,103 @@ background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01
             <div class="page-content">
                 <h2>I Know Sometimes It Is Hard 😔</h2>
                 <div class="health-icon"><i class="fas fa-hand-holding-heart"></i></div>
-                <p>But remember, every difficult moment makes us stronger together</p>
-                <div class="photo-frame" style="border-radius: 15px 40px 15px 40px;">
-                    <img src="https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Hard Times">
-                </div>
+                <p>But remember, every difficult moment makes us stronger together.</p>
+                              <div class="hardsituation">
+                                <img src="https://img.freepik.com/premium-vector/couple-breakup-break-relationship-girlfriend-boyfriend-couples-conflict-dispute-communication-love-quarrel-cartoon-vector-illustration_81894-9902.jpg" alt="hard situation">
                 <div class="floating-hearts" id="floatingHearts17"></div>
             </div>
         </div>
-
+</div>
         <!-- Page 18: Still There -->
         <div class="page hidden" id="page18">
             <div class="page-content">
-                <h2>I Am Still There 💓</h2>
+                <h2>I Am Still There............. 💓</h2>
                 <div class="love-sign">❤️</div>
-                <p>Through thick and thin, I'll always be there for you</p>
-                <div class="photo-frame" style="border-radius: 50% 50% 20px 20px;">
-                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Still There">
-                </div>
-                <div class="floating-hearts" id="floatingHearts18"></div>
+                <p>Whether we’re dancing in sunshine or splashing through puddles, I’ll be right beside you, probably making you laugh.</p>
+                <div class="still-there">
+        <img src="https://img.freepik.com/premium-vector/cartoon-kid-laughing-out-loud-while-holding-his-stomach_844724-16207.jpg" alt="Still There">
+        </div>
+                
             </div>
         </div>
 
         <!-- Page 19: Standing Beside -->
         <div class="page hidden" id="page19">
             <div class="page-content">
-                <h2>Standing Beside You 🤝</h2>
-                <div class="connection">
-                    <div class="block">You</div>
-                    <div class="connector"></div>
-                    <div class="block">Me</div>
-                </div>
+                <h1>Standing Beside You 👥</h1>
+                <div class="page-graphic"><div style="font-size:88px"><div class="icon-display">👫</div></div></div>
                 <p>I'll always stand beside you, no matter what life brings</p>
-                <div class="photo-frame" style="border-radius: 20px 20px 50% 50%;">
-                    <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Standing Beside">
+               <div class="standing-beside">
+    <img src="https://cdn.vectorstock.com/i/500p/71/02/little-girl-is-angry-and-dissatisfied-with-a-boy-vector-41807102.jpg" alt="Standing Beside">
+
                 </div>
-                <div class="floating-hearts" id="floatingHearts19"></div>
             </div>
         </div>
 
         <!-- Page 20: Promise -->
         <div class="page hidden" id="page20">
             <div class="page-content">
-                <h2>I Promise You 🤞</h2>
+                <h1>I Promise You 🤞</h1>
                 <div class="blessed-icon"><i class="fas fa-handshake"></i></div>
                 <p>To always be honest, faithful, and true to our relationship</p>
-                <div class="photo-frame" style="border-radius: 30px 10px 30px 10px;">
-                    <img src="https://images.unsplash.com/photo-1519452635265-7b1fbfd1e4e0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Promise">
-                </div>
-                <div class="floating-hearts" id="floatingHearts20"></div>
+                <div class="promise">
+    <img src="https://thumbs.dreamstime.com/b/ai-generated-charming-d-illustration-depicts-young-boy-one-knee-offering-vibrant-red-rose-to-delighted-girl-both-isolated-398937292.jpg" alt="Promise">
+</div>
+                
             </div>
         </div>
 
         <!-- Page 21: Never Stop Loving -->
         <div class="page hidden" id="page21">
             <div class="page-content">
-                <h2>I Will Never Stop Loving and Keeping Beside You 💑</h2>
-                <div class="walking-couple">
-                    <div class="walking-person"></div>
-                    <div class="walking-person"></div>
-                </div>
+                <h2>I will never stop loving you and being beside you. 💑</h2>
+                                                           
+               
                 <p>Our journey together will continue forever, side by side</p>
-                <div class="photo-frame" style="border-radius: 10px 40px 10px 40px;">
-                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Couple">
-                </div>
-                <div class="floating-hearts" id="floatingHearts21"></div>
+                <div class="page-graphic"><div style="font-size:88px">🚶‍♀️🚶‍♂️</div></div>
+                <div class="acouple">
+                            <img src="https://img.freepik.com/premium-vector/cute-couple-boy-girl-sitting-together-cartoon-vector-icon-illustration_995200-21507.jpg" alt="Couple">
+                                            </div>
+               
+                
             </div>
         </div>
 
         <!-- Page 22: Final Birthday Wish -->
         <div class="page hidden" id="page22">
+                <div class="particles-container" id="particles"></div>
             <div class="page-content">
-                <h1>Once Again, Very, Very Happy Birthday, Sani! 🎂🎉</h1>
-                <div class="cake"></div>
-                <p>May all your dreams come true and your life be filled with joy and love!</p>
-                <div class="emoji">🎈🎁🎊🥳</div>
-                <div class="floating-hearts" id="floatingHearts22"></div>
+                <h1>Once Again, Very, Very Happy Birthday, Sani 🌸❣ 🎂🎉</h1>
+                        <div class="cake-container">
+            <div class="light-beam"></div>
+            <div class="cake-shadow"></div>
+            <div class="cake-plate"></div>
+            <div class="cake">
+                <div class="cake-top"></div>
+                <div class="cake-decoration">
+                    <div class="cherry"></div>
+                    <div class="cherry"></div>
+                    <div class="cherry"></div>
+                    <div class="cherry"></div>
+                    <div class="cherry"></div>
+                </div>
+                <div class="cake-candle"></div>
+                <div class="cake-flame"></div>
             </div>
         </div>
+                <p>  Every wish I make today is a promise to fill your year with laughter, light, and little stolen moments.</p>
+                
+                
+            </div>
+        </div>
+
 
         <!-- Page 23: Slot Machine -->
         <div class="page hidden" id="page23">
             <div class="page-content">
-                <h2>Birthday Lucky Number 🎰</h2>
-                <p>Click stop to get your lucky number for the year ahead!</p>
-                <div class="result" id="result">?</div>
+                <h2>🎰Birthday Lucky Number 🎰</h2>
+                <p>Click stop to Check your Luck Sani 😍</p>
+                <div class="result" id="result"></div>
                 <div class="slot-machine">
                     <div class="slot">
                         <div class="slot-number" id="slot1">0</div>
@@ -1584,7 +2990,7 @@ background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01
     </div>
 </div>
 </div>
-    <script>
+   <script>
     document.addEventListener('DOMContentLoaded', function() {
         const startBtn = document.getElementById('startBtn');
         const stopBtn = document.getElementById('stopBtn');
@@ -1620,12 +3026,12 @@ background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01
                 page1Content.appendChild(countdownElement);
                 
                 // Countdown from 10 to 1
-                let count = 10;
+                let count = 10; // Fixed: was starting at 1 instead of 10
                 const countdownInterval = setInterval(function() {
-                    count--;
                     countdownElement.textContent = count;
+                    count--;
                     
-                    if (count === 0) {
+                    if (count < 0) { // Fixed: check for less than 0
                         clearInterval(countdownInterval);
                         flipPage(1, 2);
                     }
@@ -1678,8 +3084,26 @@ background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01
             const page1Content = document.querySelector('#page1 .page-content');
             if (page1Content) {
                 page1Content.innerHTML = `
-                    <h1>Happy Birthday Sani! 🎉</h1>
-                    <p>Ready for a special birthday journey?</p>
+                   <h1>Once Again,Happy Birthday, Sani 🌸❣ </h1>
+                    <div class="particles-container" id="particles"></div>
+                                    <div class="cake-container">
+            <div class="light-beam"></div>
+            <div class="cake-shadow"></div>
+            <div class="cake-plate"></div>
+            <div class="cake">
+                <div class="cake-top"></div>
+                <div class="cake-decoration">
+                    <div class="cherry"></div>
+                    <div class="cherry"></div>
+                    <div class="cherry"></div>
+                    <div class="cherry"></div>
+                    <div class="cherry"></div>
+                </div>
+                <div class="cake-candle"></div>
+                <div class="cake-flame"></div>
+            </div>
+        </div>
+                   <p>Ready for a special  journey?</p>
                     <button class="btn" id="startBtn">Start Surprise</button>
                     <div class="floating-hearts" id="floatingHearts1"></div>
                 `;
@@ -1700,10 +3124,10 @@ background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01
                         // Countdown from 10 to 1
                         let count = 10;
                         const countdownInterval = setInterval(function() {
-                            count--;
                             countdownElement.textContent = count;
+                            count--;
                             
-                            if (count === 0) {
+                            if (count < 0) {
                                 clearInterval(countdownInterval);
                                 flipPage(1, 2);
                             }
@@ -1765,7 +3189,7 @@ background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01
                 if (to < totalPages && to !== 23) {
                     autoFlipTimeout = setTimeout(function() {
                         flipPage(to, to + 1);
-                    }, 3000);
+                    }, 7500);
                 }
                 
             }, 500);
@@ -1854,17 +3278,176 @@ background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01
         }
 
         // Build Nepali month calendar (simple static for Ashoj 2082)
-    (function buildCal(){
-      const daysInMonth = 31; // rough (Ashoj usually 30)
-      const grid = document.getElementById('calGrid');
-      // Heading for weekdays
-      const wNames = ['आइतवार','सोमवार','मङ्गलवार','बुधवार','बिहिवार','शुक्रवार','शनिवार'];
-      wNames.forEach(w=>{ const el=document.createElement('div'); el.className='cell'; el.style.fontWeight='700'; el.textContent=w; grid.appendChild(el); });
-      // calculate start blank (simple fixed to align so 26 appears somewhere in middle)
-      const startOffset = 3; // shift
-      for(let i=0;i<startOffset;i++){ const el=document.createElement('div'); el.className='cell'; el.textContent=''; grid.appendChild(el); }
-      for(let d=1;d<=daysInMonth;d++){ const el=document.createElement('div'); el.className='cell'; el.textContent=d; if(d===26) el.classList.add('today'); grid.appendChild(el); }
-    })();     
+        (function buildCal(){
+            const daysInMonth = 31; // rough (Ashoj usually 30)
+            const grid = document.getElementById('calGrid');
+            if (!grid) return; // Added safety check
+            
+            // Heading for weekdays
+            const wNames = ['आइतवार','सोमवार','मङ्गलवार','बुधवार','बिहिवार','शुक्रवार','शनिवार'];
+            wNames.forEach(w=>{ 
+                const el=document.createElement('div'); 
+                el.className='cell'; 
+                el.style.fontWeight='700'; 
+                el.textContent=w; 
+                grid.appendChild(el); 
+            });
+            
+            // calculate start blank (simple fixed to align so 26 appears somewhere in middle)
+            const startOffset = 3; // shift
+            for(let i=0;i<startOffset;i++){ 
+                const el=document.createElement('div'); 
+                el.className='cell'; 
+                el.textContent=''; 
+                grid.appendChild(el); 
+            }
+            
+            for(let d=1;d<=daysInMonth;d++){ 
+                const el=document.createElement('div'); 
+                el.className='cell'; 
+                el.textContent=d; 
+                if(d===26) el.classList.add('today'); 
+                grid.appendChild(el); 
+            }
+        })();
+
+        // Initialize particles system only if elements exist
+        function initializeParticles() {
+            const flame = document.querySelector('.flame');
+            const cake = document.querySelector('.cake');
+            const particlesContainer = document.querySelector('.particles-container');
+            
+            // Only initialize if all required elements exist
+            if (flame && cake && particlesContainer) {
+                // Create initial particles
+                createParticles(30);
+
+                // Flame interactivity
+                flame.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateX(-50%) scale(1.3)';
+                    this.style.boxShadow = '0 0 40px #ffcc00, 0 0 80px #ff5722';
+                    createParticles(10);
+                });
+
+                flame.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateX(-50%) scale(1)';
+                    this.style.boxShadow = '0 0 25px #ff9900, 0 0 50px #ff5722';
+                });
+
+                // Cake click event
+                cake.addEventListener('click', function() {
+                    // Create burst of particles
+                    createParticles(50);
+                    // Create particle explosion
+                    createParticles(100);
+                    
+                    // Pulse animation for cake
+                    cake.style.animation = 'pulse 1s 3';
+                    setTimeout(() => {
+                        cake.style.animation = '';
+                    }, 3000);
+                });
+            }
+        }
+// Function to create particles
+function createParticles(count) {
+    for (let i = 0; i < count; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        
+        // Random properties for variety
+        const size = Math.random() * 6 + 2;
+        const posX = Math.random() * window.innerWidth;
+        const posY = Math.random() * window.innerHeight;
+        const color = getRandomColor();
+        const duration = Math.random() * 3 + 2;
+        const delay = Math.random() * 2;
+        
+        // Apply styles
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.left = `${posX}px`;
+        particle.style.top = `${posY}px`;
+        particle.style.background = color;
+        particle.style.animation = `floatUp ${duration}s ease-in ${delay}s forwards`;
+        
+        // Add to container
+        particlesContainer.appendChild(particle);
+        
+        // Remove particle after animation completes
+        setTimeout(() => {
+            if (particle.parentNode) {
+                particle.remove();
+            }
+        }, (duration + delay) * 1000);
+    }
+}
+
+// Helper function for random colors
+function getRandomColor() {
+    const colors = [
+        '#ff9a9e', '#fad0c4', '#a1c4fd', '#ffecd2', '#fcb69f',
+        '#ff9a9e', '#fecfef', '#fda085', '#f6d365', '#a8edea'
+    ];
+    return colors[Math.floor(Math.random() * colors.length)];
+}
+
+// Continuous particle effect
+setInterval(() => {
+    if (particlesContainer.children.length < 50) {
+        createParticles(5);
+    }
+}, 1000);
+
+// Usage examples:
+// Create 30 particles initially
+createParticles(30);
+
+// Create burst of particles on interaction
+document.getElementById('wishBtn').addEventListener('click', function() {
+    createParticles(50);
+});
+
+// Flame hover effect
+document.querySelector('.cake-flame').addEventListener('mouseenter', function() {
+    createParticles(10);
+});
+        // Function to create particles
+        function createParticles(count) {
+            const container = document.querySelector('.particles-container');
+            if (!container) return; // Safety check
+            
+            for (let i = 0; i < count; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Set random position relative to container
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                
+                // Set random size
+                const size = Math.random() * 10 + 5;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                
+                // Set random color
+                const colors = ['#ff0000', '#ff9900', '#ffff00', '#ff5722'];
+                particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                
+                // Add to container
+                container.appendChild(particle);
+                
+                // Remove particle after animation
+                setTimeout(() => {
+                    if (particle.parentNode) {
+                        particle.remove();
+                    }
+                }, 2000);
+            }
+        }
+
+        // Initialize particles when DOM is loaded
+        initializeParticles();
 
         // Auto-start the experience after a short delay (optional)
         setTimeout(() => {
@@ -1873,4 +3456,4 @@ background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01
     });
 </script>
 </body>
-</html>
+    </html>

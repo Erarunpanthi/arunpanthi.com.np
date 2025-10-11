@@ -12,6 +12,32 @@
             box-sizing: border-box;
             font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
+        /* Add this to your existing CSS */
+@media (max-width: 768px) {
+    .together.fore.every {
+        width: 90%;
+        height: 300px;
+        margin: 10px auto;
+        transform: perspective(500px) rotateX(2deg);
+    }
+    
+    .together.fore.every:hover {
+        transform: perspective(500px) rotateX(0deg) scale(1.02);
+    }
+}
+
+@media (max-width: 480px) {
+    .together.fore.every {
+        width: 95%;
+        height: 250px;
+        border-radius: 15px;
+    }
+    
+    div[style*="display: flex"] {
+        gap: 15px;
+        padding: 15px;
+    }
+        
         .light-beam {
             position: absolute;
             top: -200px;

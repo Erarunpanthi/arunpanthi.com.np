@@ -12,32 +12,6 @@
             box-sizing: border-box;
             font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        /* Add this to your existing CSS */
-@media (max-width: 768px) {
-    .together.fore.every {
-        width: 90%;
-        height: 300px;
-        margin: 10px auto;
-        transform: perspective(500px) rotateX(2deg);
-    }
-    
-    .together.fore.every:hover {
-        transform: perspective(500px) rotateX(0deg) scale(1.02);
-    }
-}
-
-@media (max-width: 480px) {
-    .together.fore.every {
-        width: 95%;
-        height: 250px;
-        border-radius: 15px;
-    }
-    
-    div[style*="display: flex"] {
-        gap: 15px;
-        padding: 15px;
-    }
-        
         .light-beam {
             position: absolute;
             top: -200px;
@@ -1754,7 +1728,7 @@
     .cell.today{background:linear-gradient(90deg,#ff9a9e,#fecfef);color:#1b1023;font-weight:800;box-shadow:0 8px 30px rgba(255,70,130,.09)}
 
 /* Book wrapper - center container */
-    .book-wrap{width:980px;max-width:98vw;height:640px;max-height:92vh;perspective:2000px;position:relative}
+    .book-wrap{width:980px;max-width:98vw;height:px;max-height:92vh;perspective:2000px;position:relative}
     @media (max-width:600px){.book-wrap{height:90vh}}
  
     /* The stack of pages */
@@ -2681,7 +2655,6 @@ background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01
         <!-- Page 3: Calendar -->
         <div class="page hidden" id="page3">
              <section class="page" data-page="3">
-                 <div style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 20px; padding: 20px; box-sizing: border-box;">
           <div class="page-inner">
             <div class="page-content">
               <h1>Today is : 26 Ashoj 2082</h1>
@@ -2695,23 +2668,21 @@ background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01
                 <div class="floating-hearts" id="floatingHearts3"></div>
             </div>
         </div>
- </div>
 
         <!-- Page 4: Special Day -->
         <div class="page hidden" id="page4">
             <div class="page-content">
-              <div style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 20px; padding: 20px; box-sizing: border-box;">
                 <h2>A Special Day 🎂</h2>
                 <div class="candle"><div class="flame"></div></div>
                 <p>20 years ago, a special person was born</p>
-      <div style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap;">
+                <div style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap;">
                     <div class="candle"><div class="flame"></div></div>
                    <div class="sanu">
             <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj9jcexJasegLLXre9MrS-tkJJMsIUJLT_gXFnMtwaFF_K0fvIdlHFBAh5KukKSk5_pdywGb7fli4vVPfGBYJqWu4du2VMx5vq8Pf-lUopCboV3QB_XXNJnTzk_t39NQuDuFsZuQ4IPFKvXZPXAzoYNOTQ5D1eudmnVuMFPCtiAdodT1cYuA9TfJ62ma1_q/s320/snaptik_7433397392277343489_0.jpeg" alt="sanu">
                     </div>
                    <div class="candle"><div class="flame"></div></div>
                 </div>
-              </div>
+              
             </div>
         </div>
 
@@ -3018,7 +2989,7 @@ background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01
         </div>
     </div>
 </div>
-</div>
+</div></div>
    <script>
     document.addEventListener('DOMContentLoaded', function() {
         const startBtn = document.getElementById('startBtn');

@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <link rel="icon" href="https://arunpanthi.com.np/logo.ico" type="image/x-icon">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="pageTitle">00:00:00</title> <!-- Timer displayed in the title -->
+    <title id="pageTitle">00:00:00</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -16,6 +15,7 @@
             margin: 0;
             background-color: #f0f0f0;
             position: relative;
+            transition: background-color 0.5s ease;
         }
 
         .container {
@@ -24,38 +24,64 @@
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 1000px;
+            width: 90%;
         }
 
         .timer-display {
             font-size: 3em;
             margin: 20px 0;
             color: #333;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
         }
 
         .buttons button {
-            margin: 5px;
-            padding: 10px 20px;
+            padding: 10px 15px;
             font-size: 1em;
             cursor: pointer;
             border: none;
             border-radius: 5px;
             background-color: #007bff;
             color: white;
+            transition: background-color 0.3s, transform 0.1s;
         }
 
         .buttons button:hover {
             background-color: #0056b3;
         }
 
-        #startBtn {
-            margin-top: 20px;
-            padding: 15px 30px;
+        .buttons button:active {
+            transform: scale(0.98);
+        }
+
+        .control-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .control-buttons button {
+            padding: 15px 20px;
             font-size: 1.2em;
             cursor: pointer;
             border: none;
             border-radius: 5px;
-            background-color: #28a745;
             color: white;
+            transition: background-color 0.3s, transform 0.1s;
+        }
+
+        #startBtn {
+            background-color: #28a745;
         }
 
         #startBtn:hover {
@@ -63,14 +89,7 @@
         }
 
         #stopBtn {
-            margin-top: 20px;
-            padding: 15px 30px;
-            font-size: 1.2em;
-            cursor: pointer;
-            border: none;
-            border-radius: 5px;
             background-color: #dc3545;
-            color: white;
         }
 
         #stopBtn:hover {
@@ -78,12 +97,6 @@
         }
 
         #clearBtn {
-            margin-top: 20px;
-            padding: 15px 30px;
-            font-size: 1.2em;
-            cursor: pointer;
-            border: none;
-            border-radius: 5px;
             background-color: #ffc107;
             color: black;
         }
@@ -92,12 +105,23 @@
             background-color: #e0a800;
         }
 
+        #restartBtn {
+            background-color: #17a2b8;
+        }
+
+        #restartBtn:hover {
+            background-color: #138496;
+        }
+
         /* Nepal Time Display */
         .nepal-time {
             position: absolute;
             top: 20px;
             font-size: 1.2em;
             color: #333;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 5px 10px;
+            border-radius: 5px;
         }
 
         .nepal-time.left {
@@ -112,6 +136,117 @@
         h1 {
             font-size: 2em;
             margin-bottom: 20px;
+            color: #333;
+        }
+
+        /* Message Display */
+        .message-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .message-card {
+            background-color: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 400px;
+            width: 80%;
+            animation: slideUp 0.5s ease;
+        }
+
+        .message-card h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .message-card p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            color: #555;
+        }
+
+        .message-card button {
+            padding: 12px 25px;
+            font-size: 1.1em;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .message-card button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Message types */
+        .success-message h2 {
+            color: #28a745;
+        }
+
+        .warning-message h2 {
+            color: #ffc107;
+        }
+
+        .info-message h2 {
+            color: #17a2b8;
+        }
+
+        .error-message h2 {
+            color: #dc3545;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .timer-display {
+                font-size: 2.5em;
+            }
+            
+            .nepal-time {
+                position: static;
+                margin-bottom: 10px;
+            }
+            
+            .nepal-time.left, .nepal-time.right {
+                position: static;
+                display: inline-block;
+                margin: 5px;
+            }
+            
+            body {
+                flex-direction: column;
+                padding: 20px;
+                height: auto;
+            }
         }
     </style>
 </head>
@@ -125,6 +260,9 @@
         <h1>Countdown Timer</h1>
         <div class="timer-display" id="timer">00:00:00</div>
         <div class="buttons">
+            <button onclick="addTime(60)">1 Minute</button>
+            <button onclick="addTime(120)">2 Minutes</button>
+            <button onclick="addTime(180)">3 Minutes</button>
             <button onclick="addTime(300)">5 Minutes</button>
             <button onclick="addTime(600)">10 Minutes</button>
             <button onclick="addTime(1200)">20 Minutes</button>
@@ -132,14 +270,27 @@
             <button onclick="addTime(1800)">30 Minutes</button>
             <button onclick="addTime(3600)">1 Hour</button>
         </div>
-        <button onclick="startTimer()" id="startBtn">Start Timer</button>
-        <button onclick="stopTimer()" id="stopBtn">Stop Timer</button>
-        <button onclick="clearScreen()" id="clearBtn">Clear Screen</button>
+        <div class="control-buttons">
+            <button onclick="startTimer()" id="startBtn">Start Timer</button>
+            <button onclick="stopTimer()" id="stopBtn">Stop Timer</button>
+            <button onclick="restartTimer()" id="restartBtn">Restart Timer</button>
+            <button onclick="clearScreen()" id="clearBtn">Clear Screen</button>
+        </div>
+    </div>
+
+    <!-- Message Display -->
+    <div class="message-overlay" id="messageOverlay">
+        <div class="message-card" id="messageCard">
+            <h2 id="messageTitle">Message Title</h2>
+            <p id="messageText">Message content goes here.</p>
+            <button onclick="closeMessage()">Close</button>
+        </div>
     </div>
 
     <script>
         let timeLeft = 0;
         let timerInterval;
+        let savedTime = 0; // Store the initial time for restart functionality
 
         // Function to get Nepal time in 12-hour format
         function getNepalTime() {
@@ -169,20 +320,84 @@
         // Update Nepal time every second
         setInterval(updateNepalTime, 1000);
 
+        // Function to show messages in card view
+        function showMessage(title, message, type = 'info') {
+            const messageOverlay = document.getElementById('messageOverlay');
+            const messageCard = document.getElementById('messageCard');
+            const messageTitle = document.getElementById('messageTitle');
+            const messageText = document.getElementById('messageText');
+            
+            // Remove previous message type classes
+            messageCard.classList.remove('success-message', 'warning-message', 'info-message', 'error-message');
+            
+            // Add the appropriate class based on message type
+            switch(type) {
+                case 'success':
+                    messageCard.classList.add('success-message');
+                    break;
+                case 'warning':
+                    messageCard.classList.add('warning-message');
+                    break;
+                case 'error':
+                    messageCard.classList.add('error-message');
+                    break;
+                default:
+                    messageCard.classList.add('info-message');
+            }
+            
+            // Set message content
+            messageTitle.textContent = title;
+            messageText.textContent = message;
+            
+            // Show the message
+            messageOverlay.style.display = 'flex';
+            
+            // Change background based on message type
+            switch(type) {
+                case 'success':
+                    document.body.style.backgroundColor = '#d4edda';
+                    break;
+                case 'warning':
+                    document.body.style.backgroundColor = '#fff3cd';
+                    break;
+                case 'error':
+                    document.body.style.backgroundColor = '#f8d7da';
+                    break;
+                default:
+                    document.body.style.backgroundColor = '#d1ecf1';
+            }
+        }
+
+        // Function to close message
+        function closeMessage() {
+            document.getElementById('messageOverlay').style.display = 'none';
+            document.body.style.backgroundColor = '#f0f0f0'; // Reset background
+        }
+
         // Countdown Timer Functions
         function addTime(seconds) {
             timeLeft += seconds;
             updateDisplay();
+            showMessage('Time Added', `Added ${seconds} seconds to the timer.`, 'info');
         }
 
         function startTimer() {
-            if (timeLeft <= 0) return;
-
+            if (timeLeft <= 0) {
+                showMessage('Timer Error', 'Please set a timer before starting.', 'warning');
+                return;
+            }
+            
+            // Save the initial time for restart functionality
+            if (savedTime === 0) {
+                savedTime = timeLeft;
+            }
+            
             clearInterval(timerInterval);
+            showMessage('Timer Started', 'Countdown timer is now running.', 'success');
             timerInterval = setInterval(() => {
                 if (timeLeft <= 0) {
                     clearInterval(timerInterval);
-                    alert("Time's up!");
+                    showMessage("Time's Up!", "Your countdown timer has completed.", 'success');
                     updateTitle("00:00:00"); // Reset title when timer ends
                     return;
                 }
@@ -192,13 +407,30 @@
         }
 
         function stopTimer() {
-            clearInterval(timerInterval); // Stop the timer
+            if (timerInterval) {
+                clearInterval(timerInterval); // Stop the timer
+                showMessage('Timer Stopped', 'Countdown timer has been paused.', 'warning');
+            } else {
+                showMessage('Timer Error', 'No timer is currently running.', 'warning');
+            }
+        }
+
+        function restartTimer() {
+            if (savedTime > 0) {
+                timeLeft = savedTime;
+                updateDisplay();
+                showMessage('Timer Restarted', 'Timer has been reset to its initial value.', 'info');
+            } else {
+                showMessage('Restart Error', 'No timer saved to restart. Please set a timer first.', 'error');
+            }
         }
 
         function clearScreen() {
             timeLeft = 0; // Reset the timer
+            savedTime = 0; // Reset the saved time
             updateDisplay(); // Update the display
             updateTitle("00:00:00"); // Reset the page title
+            showMessage('Timer Cleared', 'Timer has been reset to zero.', 'info');
         }
 
         function updateDisplay() {
@@ -208,16 +440,23 @@
             const timeString = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
             document.getElementById('timer').textContent = timeString;
             updateTitle(timeString); // Update the page title
+            
+            // Change color when timer is running low
+            if (timeLeft <= 60) {
+                document.getElementById('timer').style.color = '#dc3545'; // Red color
+            } else if (timeLeft <= 300) {
+                document.getElementById('timer').style.color = '#ffc107'; // Yellow color
+            } else {
+                document.getElementById('timer').style.color = '#333'; // Default color
+            }
         }
 
         function updateTitle(timeString) {
             document.getElementById('pageTitle').textContent = timeString; // Update the <title> tag
         }
 
-        document.getElementById('startBtn').addEventListener('click', startTimer);
-
         // Initialize Nepal time display
         updateNepalTime();
     </script>
 </body>
-</html>
+    </html>

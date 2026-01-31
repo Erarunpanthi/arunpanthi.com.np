@@ -1563,6 +1563,31 @@
                 updateTimer();
             }, 1000);
         }
+  function displayQuestion() {
+            // Hide feedback message and firecracker
+            feedbackMessage.classList.add('hidden');
+            firecrackerContainer.innerHTML = '';
+            nextButton.classList.add('hidden'); // Hide next button until an option is selected
+
+            if (currentQuestionIndex < currentSectionQuestions.length) {
+                const currentQuestion = currentSectionQuestions[currentQuestionIndex];
+                questionText.textContent = currentQuestion.question;
+                optionsContainer.innerHTML = ''; // Clear previous options
+
+                currentQuestion.options.forEach((option, index) => {
+                    const button = document.createElement('button');
+                    button.textContent = option;
+                    button.classList.add('option-button');
+                    button.setAttribute('data-index', index);
+                    button.addEventListener('click', () => selectOption(index));
+                    optionsContainer.appendChild(button);
+                });
+
+                updateProgressText();
+            } else {
+                endQuiz(); // All questions answered
+            }
+        }
 
         // Function to update the timer display
         function updateTimer() {

@@ -1,0 +1,1675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Construction Materials </title>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="Test.css">
+</head>
+<body>
+    <div class="container">
+        <h1><i class="fas fa-drafting-compass"></i> Construction Materials MCQ Test</h1>
+        <div id="start-message">
+            <p>Welcome to the Construction Materials assessment!</p>
+            <p>You will have <span class="highlight">120 minutes</span> to complete all questions.</p>
+            <p>This test contains <strong>270 multiple-choice questions</strong> covering various aspects of Construction Materials.</p>
+            <button id="start-button" onclick="startTest()">Begin Test <i class="fas fa-arrow-right"></i></button>
+        </div>
+        <div id="test-content">
+            <div id="timer">
+                <i class="fas fa-clock"></i> Time Remaining: 120:00
+            </div>
+            <div id="stats">
+                <div class="stat-box">
+                    <h3><i class="fas fa-question-circle"></i> Total Questions</h3>
+                    <div class="stat-value" id="total-questions">40</div>
+                </div>
+                <div class="stat-box">
+                    <h3><i class="fas fa-check-circle"></i> Attempted</h3>
+                    <div class="stat-value" id="attempted">0</div>
+                </div>
+                <div class="stat-box">
+                    <h3><i class="fas fa-exclamation-circle"></i> Not Attempted</h3>
+                    <div class="stat-value" id="not-attempted">40</div>
+                </div>
+            </div>
+            <form id="quiz-form">
+                <!-- Questions will be dynamically inserted here -->
+            </form>
+            <div class="button-container">
+                <button type="button" id="back-button" onclick="showPreviousQuestions()" style="display: none;">
+                    <i class="fas fa-arrow-left"></i> Back
+                </button>
+                <button type="button" id="next-button" onclick="showNextQuestions()">
+                    Next <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+            <div id="result" style="display: none;">
+                <h2>Test Results</h2>
+                <div class="progress-container">
+                    <div class="progress-bar" id="progress-bar"></div>
+                </div>
+                <div class="score-display" id="score">0/0</div>
+                <p>You scored <span class="highlight" id="percentage">0</span>%</p>
+                <div class="answer-details" id="answer-details"></div>
+                <button id="submit-button" onclick="location.reload()">
+                    <i class="fas fa-redo"></i> Take Test Again
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Questions data (just 2 sample questions - add the remaining 38 following the same format)
+        const questionsData = [
+
+{
+                    question: "Cast iron piles",
+                    options: ["Are suitable for works under sea water", "Resist shocks or vibrations", "Are suitable for use as batter piles", "Are useful for heavy vertical loads"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "The form work from the slabs excluding props, can be removed only after",
+                    options: ["1 day", "4 days", "7 days", "14 days"],
+                    correctAnswerIndex: 1
+                },
+                {
+                    question: "The process of filling hollow spaces of walls before plastering, is known",
+                    options: ["Hacking", "Dubbing out", "Blistering", "Peeling"],
+                    correctAnswerIndex: 1
+                },
+                {
+                    question: "The type of arch generally constructed over a wooden lintel or over a flat arch for the purpose of carrying the load of the wall above is",
+                    options: ["Segmental arch", "Pointed arch", "Relieving arch", "Flat arch"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "The platform at the end of a series of steps, is known as",
+                    options: ["Platform", "Relief", "Rest", "Landing"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "The pile which supports the load due to friction between pile face and surrounding soil, is generally known as",
+                    options: ["Bearing pile", "Friction pile", "Sheet pile", "Battered pile"],
+                    correctAnswerIndex: 1
+                },
+                {
+                    question: "Pick up the correct statement from the following:",
+                    options: ["A mortar joint having a concave finishing in brick masonry, is called keyed joint", "A mortar joint projecting beyond the face of a masonry wall, is called tucked joint", "A mortar joint having a recess in it, is called ruled joint", "All the above"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "The type of roof which slopes in two directions with a break in the slope on each side is known as",
+                    options: ["Gable roof", "Hip roof", "Gambrel roof", "Mansard roof"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "The inclined surface of an abutment to receive the arch, is known as",
+                    options: ["Skew back", "Soffit", "Spandril", "Haunch"],
+                    correctAnswerIndex: 0
+                },
+                {
+                    question: "Pick up the correct statement from the following:",
+                    options: ["D.P.C. should be continuous", "D.P.C. should be of good impervious material", "D.P.C. may be horizontal or vertical", "All the above"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "A wall constructed with stones to protect slopes of cuttings in natural ground from the action of weathering agents, is called",
+                    options: ["Retaining wall", "Breast wall", "Buttress", "Parapet wall"],
+                    correctAnswerIndex: 1
+                },
+                {
+                    question: "Higher pitch of the roof (i) Results in stronger roof (ii) Results in weaker roof (iii) Requires more covering material (iv) Requires less covering material The correct answer is",
+                    options: ["(i) and (iii)", "(i) and (iv)", "(ii) and (iii)", "(ii) and (iv)"],
+                    correctAnswerIndex: 0
+                },
+                {
+                    question: "For different layers of cement concrete floor. Pick up the incorrect statement from the following:",
+                    options: ["The lowest layer consists of consolidated ground", "A 10 cm thick clean sand is laid on consolidated ground", "A 10 cm lime concrete (1 : 4 : 8) is laid on clean sand", "A 10 cm thick cement concrete (1 : 2 : 4) is laid on top layer"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "Open test pit is only suitable upto a depth of",
+                    options: ["2 metres", "2.5 metres", "3 metres", "None of the above"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "The service area in a building means the area occupied by",
+                    options: ["Stairs", "Toilets", "Light and shafts", "All the above"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "The number of steps in a flight generally should not be less than",
+                    options: ["2", "3", "5", "No limit"],
+                    correctAnswerIndex: 1
+                },
+                {
+                    question: "The columns of multi-storeyed buildings are designed to withstand the forces due to",
+                    options: ["Dead loads", "Live loads", "Wind loads", "All of these"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "In soils possessing low bearing capacity, the type of foundation generally provided, is",
+                    options: ["Column footing", "Grillage footing", "Raft footing", "All the above"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "The minimum strength of the mortar used in load bearing brick masonry, is",
+                    options: ["50 N/cm2", "100 N/cm2", "150 N/cm2", "200 N/cm2"],
+                    correctAnswerIndex: 1
+                },
+                {
+                    question: "As compared to stretcher course, the thickness of joints in header course should be",
+                    options: ["Less", "More", "Equal", "Equal or more"],
+                    correctAnswerIndex: 0
+                },
+                {
+                    question: "To obtain good bonding in brick masonry",
+                    options: ["First class bricks are used", "Vertical joints in alternate courses are kept in plumb line", "Bats are used where necessary", "All the above"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "The type of pointing in which upper side of mortar joints is kept about 12 mm inside the face of the masonry and bottom is kept flushed with face of wall, is",
+                    options: ["Truck pointing", "Recessed pointing", "Struck pointing", "Grooved pointing"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "The wedge shaped bricks forming an arch ring, are called",
+                    options: ["Soffits", "Voussoirs", "Haunches", "Spandrils"],
+                    correctAnswerIndex: 1
+                },
+                {
+                    question: "The maximum total settlement for isolated foundations on clayey soils should be limited to",
+                    options: ["25 mm", "40 mm", "65 mm", "100 mm"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "The foundation which consists of a thick reinforced cement slab covering whole area to support heavy concentrated structural loads, is known as",
+                    options: ["Combined footing", "Strap footing", "Raft footing", "None of these"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "For each storey of a building, the depth of exploration should be",
+                    options: ["1 metre", "2 metres", "3 metres", "4 metres"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "Pick up the correct statement from the following:",
+                    options: ["Plain cement concrete is equally strong in compression as well as in tension", "Slump test is performed to check concrete strength", "Curing of concrete is done for proper compaction of cement", "Fineness modulus is the index number expressing the relative sizes of both coarse and fine aggregates"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "The bearing capacity of a water logged soil can be improved by",
+                    options: ["Compacting the soil", "Draining the soil", "Increasing the depth of foundation", "Grouting"],
+                    correctAnswerIndex: 1
+                },
+                {
+                    question: "The position of a brick when laid on its side 9 cm × 9 cm with its frog in the vertical plane, is called",
+                    options: ["Brick on edge", "Brick on end", "Brick on bed", "Brick held vertically"],
+                    correctAnswerIndex: 1
+                },
+                {
+                    question: "A floor constructed with the 4 to 6 mm marble chips, is known",
+                    options: ["Reinforced marble floor", "Terrazzo floor", "Marble floor", "Chip floor"],
+                    correctAnswerIndex: 1
+                },
+                {
+                    question: "A stair should not have pitch more than",
+                    options: ["25°", "30°", "40°", "50°"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "Depth or height of the arch is the",
+                    options: ["Perpendicular distance between intrados and extrados", "Vertical distance between springing line and intrados", "Perpendicular distance between springing line and extrados", "None of the above"],
+                    correctAnswerIndex: 0
+                },
+                {
+                    question: "Pick up the correct statement from the following:",
+                    options: ["The pile driven in sand is called sand pile", "The drilled hole filled with sand is called sand pile", "The sand piles are used for bearing purposes", "None of these"],
+                    correctAnswerIndex: 0
+                },
+                {
+                    question: "A wall constructed to resist the pressure of an earth filling, is called",
+                    options: ["Retaining wall", "Breast wall", "Buttress", "Parapet wall"],
+                    correctAnswerIndex: 0
+                },
+                {
+                    question: "Two columns 50 cm × 50 cm and 60 cm × 60 cm carry 80 tonnes and 120 tonnes of loads respectively. The centre to centre distance between columns is 5.00 metres. The permissible bearing capacity of the soil is 20 t/m2. If the footing is not to project more than 25 cm beyond the outside of the smaller column, pick up the correct design parameters of the footing from the following:",
+                    options: ["Distance of C.G. of the loads from the smaller column = 3.00 m", "The length of the foundation slab = 7.00 m", "Area of footing slab = 11.00 m2", "All the above"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "Pitched and sloping roofs are suitable for",
+                    options: ["Coastal regions", "Plain regions", "Covering large areas", "All of the above"],
+                    correctAnswerIndex: 0
+                },
+                {
+                    question: "A wooden block hinged on post outside a door, is known",
+                    options: ["Cleat", "Stop", "Horn", "None of these"],
+                    correctAnswerIndex: 0
+                },
+                {
+                    question: "If a is the offset of concrete bed in cms, and d is the depth of concrete bed in cms, then",
+                    options: ["d = 0.445 a", "d = 0.557 a", "d = 0.775 a", "None of these"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "In high mountainous region, the type of roof generally recommended for buildings, is",
+                    options: ["Shed type", "Gable type", "Gambrel type", "Mansard type"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "The function of cleats in a roof truss is",
+                    options: ["To support the common rafter", "To support purlins", "To prevent the purlins from tilting", "All of the above"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "The Auger borings are not common",
+                    options: ["In soils that require lateral support", "In cohesive soils", "In soft soils", "None of the above"],
+                    correctAnswerIndex: 0
+                },
+                {
+                    question: "The pile provided with one or more bulles in its vertical shaft, is generally known as",
+                    options: ["Under-ream pile", "Friction pile", "Bearing pile", "Sheet pile"],
+                    correctAnswerIndex: 0
+                },
+                {
+                    question: "Pick up the correct statement from the following:",
+                    options: ["Isolated footing is provided under column to transfer the load safely to soil bed", "Column footings may have steps or projections in the concrete base", "Heavily loaded column base must be provided steel reinforcement in both directions", "All the above"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "In any good staircase, the maximum and minimum pitch respectively should be",
+                    options: ["90° and 0°", "75° and 30°", "60° and 10°", "40° and 25°"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "Raft foundation are generally preferred to when the area required for individual footing, is more than",
+                    options: ["25% to total area", "30% of total area", "40% to total area", "50% of total area"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "According to National Building Code, the hydrants in water mains is provided at minimum interval of",
+                    options: ["50 m", "60 m", "75 m", "90 m"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "The X-ray rooms are plastered with",
+                    options: ["Plaster of Paris", "Barium plaster", "Martin's cement", "Keen's cement"],
+                    correctAnswerIndex: 1
+                },
+                {
+                    question: "The type of footing which is used to transmit heavy loads through steel columns is",
+                    options: ["Raft foundation", "Grillage foundation", "Well foundation", "Isolated footing"],
+                    correctAnswerIndex: 1
+                },
+                {
+                    question: "Dutch bond is a modification of",
+                    options: ["English bond", "Stretcher bond", "Header bond", "Single Flemish bond"],
+                    correctAnswerIndex: 0
+                },
+                {
+                    question: "In clay soil",
+                    options: ["Swelling and shrinkage characteristics prevail", "Consolidation continues even after several years of construction", "Differential settlement is generally prevalent", "All the above"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "Which one of the following activities is not correct as applicable to brick corbels?",
+                    options: ["The maximum projection of the corbel should not be more than the thickness of the wall", "The maximum projection of each corbel course should be limited to a quarter brick at a time", "The discontinuous corbels are used to carry heavy concentrated loads", "Stretcher bond is generally used for the construction of brick corbel"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "In ordinary residential and public buildings, the damp proof course is generally provided at",
+                    options: ["Ground level", "Plinth level", "Water table level", "Midway ground level and water-table level"],
+                    correctAnswerIndex: 1
+                },
+                {
+                    question: "In which of the following pairs both trees yield soft wood?",
+                    options: ["Deodar and Shishum", "Chir and sal", "Sal and teak", "Chir and deodar"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "The raft slab is projected beyond the outer walls of the structure by",
+                    options: ["5 to 10 cm", "15 to 20 cm", "25 to 30 cm", "30 to 45 cm"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "In grillage foundations, distance between flanges of grillage beams, is kept",
+                    options: ["40 cm", "Equal to flange width", "Twice the flange width", "Maximum of (a), (b) and (c)"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "The sill of a common wooden partition is",
+                    options: ["Vertical wooden member on either end", "Lower horizontal wooden member", "Upper horizontal wooden member", "Intermediate horizontal wooden member"],
+                    correctAnswerIndex: 1
+                },
+                {
+                    question: "The important test to be conducted on a stone used in docks and harbours is",
+                    options: ["Hardness test", "Workability test", "Weight test", "Toughness test"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "The member which is placed horizontally to support common rafter of a sloping roof, is",
+                    options: ["Purlin", "Cleat", "Batten", "Strut"],
+                    correctAnswerIndex: 0
+                },
+                {
+                    question: "A covering of concrete placed on the exposed top of an external wall, is known as",
+                    options: ["Cornice", "Coping", "Frieze", "Lintel"],
+                    correctAnswerIndex: 1
+                },
+                {
+                    question: "The bond in which headers and stretchers are laid in alternate courses and every stretcher course is started with a three fourth brick bat, is known as",
+                    options: ["English cross bond", "Dutch bond", "Monk bond", "Rat-trap bond"],
+                    correctAnswerIndex: 1
+                },
+                {
+                    question: "The vertical distance between the springing line and highest point of the inner curve of an arch is known as",
+                    options: ["Intrados", "Rise", "Spandril", "Extrados"],
+                    correctAnswerIndex: 1
+                },
+                {
+                    question: "The entrained concrete is used in lining walls and roofs for making",
+                    options: ["Heat insulated", "Sound insulated", "Neither (a) nor (b)", "Both (a) and (b)"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "The depth of concrete bed of the foundation depends upon",
+                    options: ["The projection of the concrete block beyond the footing over it", "The upward soil pressure", "The mix of the concrete", "All the above"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "A pre-stressed concrete pile is",
+                    options: ["Easy to handle", "Lighter in weight", "Extremely durable", "All the above"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "The type of joint commonly used at the junction of a principal rafter and tie beam in timber trusses is",
+                    options: ["Mortise and tenon joint", "Oblique mortise and tenon joint", "Butt joint", "Mitred joint"],
+                    correctAnswerIndex: 1
+                },
+                {
+                    question: "During percussion drilling",
+                    options: ["Ground water observations are hindered due to entry of the slurry in the soil below the bottom of the hole", "Caving or mixing of strata are caused in soft soils or cohesionless soils", "The soil to a considerable depth below the bottom of the hole gets disturbed", "All the above"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "The type of stone masonry in which stones of same height are laid in layers, is called",
+                    options: ["Random rubble masonry", "Course rubble masonry", "Uncoursed rubble masonry", "Ashlar masonry"],
+                    correctAnswerIndex: 1
+                },
+                {
+                    question: "A wooden block fixed on back side of a door frame on its post, is known as",
+                    options: ["Cleat", "Stop", "Horn", "None of these"],
+                    correctAnswerIndex: 1
+                },
+                {
+                    question: "In a colar beam roof",
+                    options: ["There is no horizontal tie beam", "There is a horizontal tie at the feet of rafters only", "There is a horizontal tie at almost the middle of rafters only", "There are two horizontal ties, one at the feet and other at the middle of the rafters"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "The piece of a brick cut with its one corner equivalent to half the length and half the width of a full brick, is known as",
+                    options: ["Queen closer", "Bevelled closer", "King closer", "Half king closer"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "For effective drainage, the finished surface of flat roof should have a minimum slope of",
+                    options: ["1 in 20", "1 to 50", "1 in 10", "1 in 5"],
+                    correctAnswerIndex: 0
+                },
+                {
+                    question: "Vertical construction joints are provided where the shearing forces are minimum in the case of",
+                    options: ["Slabs", "Beams", "Girders", "All of these"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "Single Flemish bond consists of",
+                    options: ["Double Flemish bond facing and English bond backing in each course", "English bond facing and double Flemish bond backing in each course", "Stretcher bond facing and double Flemish bond backing in each course", "Double Flemish bond facing and header bond backing in each course"],
+                    correctAnswerIndex: 0
+                },
+                {
+                    question: "The foundations are placed below ground level, to increase",
+                    options: ["Strength", "Workability", "Stability of structure", "All the above"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "The type of bond in a brick masonry containing alternate courses of stretchers and headers, is called",
+                    options: ["Flemish bond", "English bond", "Stretcher bond", "Header bond"],
+                    correctAnswerIndex: 1
+                },
+                {
+                    question: "The width of the hollow space between two walls of a cavity wall should not exceed",
+                    options: ["5 cm", "7.5 cm", "10 cm", "15 cm"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "The predominant constituent which is responsible for strength in granite is",
+                    options: ["Quartz", "Felspar", "Mica", "None of the above"],
+                    correctAnswerIndex: 0
+                },
+                {
+                    question: "To ensure that supporting area of an offset footing of a boundary wall is fully compressive, the C.G. of load must act",
+                    options: ["At the centre of the base", "Within the middle third of the base", "Within the middle fifth of the base", "Neither (a), (b) nor (c)"],
+                    correctAnswerIndex: 1
+                },
+                {
+                    question: "The size of a floor tile commonly used, is",
+                    options: ["15 cm × 15 cm × 1.8 cm", "20 cm × 20 cm × 2 cm", "22.5 × 22.5 cm × 2.2 cm", "All the above"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "The art of bringing the floor to a true level surface by means of screeds, is called",
+                    options: ["Topping", "Bedding", "Screeding", "None of these"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "The type of roof suitable in plains where rainfall is meagre and temperature is high is",
+                    options: ["Pitched and sloping roof", "Flat roof", "Shell roof", "None of the above"],
+                    correctAnswerIndex: 1
+                },
+                {
+                    question: "For constructing a terrazzo floor, Pick up the incorrect statement from the following:",
+                    options: ["A base course is prepared as in cement concrete flooring", "A 32 mm thick layer of cement concrete (1 : 2 : 4) is laid on the base course and the surface is made smooth by trowelling", "Glass strips are driven into the layer according to the pattern required", "After final grinding is over, oxalic acid mixed with water is spread over and rubbed hard with soft material"],
+                    correctAnswerIndex: 1
+                },
+                {
+                    question: "The arrangement made to support an unsafe structure temporarily, is known as",
+                    options: ["Shoring", "Scaffolding", "Underpinning", "Jacking"],
+                    correctAnswerIndex: 0
+                },
+                {
+                    question: "The type of pointing in which a V-shaped projection outside the wall surface, is provided, is called",
+                    options: ["Recessed pointing", "Weather pointing", "V-pointing", "Tuck pointing"],
+                    correctAnswerIndex: 1
+                },
+                {
+                    question: "Assertion A : Shishum is used for decorative woodwork. Reason R : Shishum can be polished to an excellent finish. Select your answer according to the coding system given below:",
+                    options: ["Both A and R is true and R is the correct explanation of A", "Both A and R is true but R is not the correct explanation of A", "A is true but R is false", "A is false but R is true"],
+                    correctAnswerIndex: 0
+                },
+                {
+                    question: "Rotary drilling",
+                    options: ["Is not suitable for deposits containing very coarse gravel", "Hinders the ground water observations and permeability test", "Is not economical for holes of less than 10 cm", "All the above"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "Safe bearing capacity of black cotton soil varies from",
+                    options: ["2 to 3 t/m2", "5 to 7.5 t/m2", "8 to 10 t/m2", "10 to 12 t/m2"],
+                    correctAnswerIndex: 1
+                },
+                {
+                    question: "The window which projects outside a room of a building for admitting more light and air, is known",
+                    options: ["Bay window", "Casement window", "Lantern window", "Dormer window"],
+                    correctAnswerIndex: 0
+                },
+                {
+                    question: "In the construction of arches, sand box method is used for",
+                    options: ["Centring", "Actual laying of arch work", "Striking of centring", "None of the above"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "In English garden wall bond",
+                    options: ["One course of headers to three or five course of stretchers", "Queen closer in provided in each heading course", "The middle course of stretchers is started with a header to give proper vertical joints", "All the above"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "The concrete slump recommended for foundations, is",
+                    options: ["25 to 50 mm", "30 to 125 mm", "50 to 100 mm", "75 to 125 mm"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "Pick up the correct statement from the following:",
+                    options: ["In a king post truss, principal rafter and tie beams are jointed together with a bridle joint", "Joint between the principal rafter and the king post is made by making tenon and mortise respectively", "Joint between strut and king post, is generally of mortise and tenon type", "All the above"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "Sum of tread and rise must lie between",
+                    options: ["300 to 350 mm", "400 to 450 mm", "500 to 550 mm", "600 to 650 mm"],
+                    correctAnswerIndex: 1
+                },
+                {
+                    question: "In case of foundations on sandy soil, maximum permissible differential settlement, is usually limited to",
+                    options: ["15 mm", "25 mm", "35 mm", "45 mm"],
+                    correctAnswerIndex: 1
+                },
+                {
+                    question: "In soft clay of low bearing capacity, the type of steel pile generally used, is",
+                    options: ["H-pile", "Screw pile", "Disc pile", "Pipe pile"],
+                    correctAnswerIndex: 1
+                },
+                {
+                    question: "Gravels",
+                    options: ["Are cohesionless aggregates", "Vary in size between 2 to 20 mm", "Never swell when they come into contact with water", "All the above"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "The differential settlement in case of foundations on sandy soils should not exceed",
+                    options: ["25 mm", "40 mm", "65 mm", "100 mm"],
+                    correctAnswerIndex: 0
+                },
+                {
+                    question: "An arch constructed with finely dressed stones, is known",
+                    options: ["Ashlar arch", "Rubble arch", "Gauged arch", "Axed arch"],
+                    correctAnswerIndex: 0
+                },
+                {
+                    question: "Pick up the correct statement from the following:",
+                    options: ["Lime mortar with cement in the ratio of in 10 is cheaper and better for outside plaster", "For very cold or very hot climate, a compact and closed plan should be provided", "On the sea coast, an exposed and open house is generally preferred", "All the above"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "Weep holes are provided in retaining and breast walls",
+                    options: ["To drain off the water from the filling", "To ventilate the stone masonry", "To add architectural beauty", "To increase compaction of the earth retained"],
+                    correctAnswerIndex: 0
+                },
+                {
+                    question: "The radial splits which are wider on the outside of the log and narrower towards the pith are known as",
+                    options: ["Heart shakes", "Cupshakes", "Starshakes", "Rindgalls"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "The angular steps used for changing direction of the stairs, are called",
+                    options: ["Round steps", "Angular steps", "Winders", "Radial steps"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "The concrete slump recommended for columns, is",
+                    options: ["25 to 50 mm", "25 to 75 mm", "75 to 125 mm", "50 to 100 mm"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "The minimum width of a stair in residential buildings, is",
+                    options: ["55 cm", "70 cm", "85 cm", "100 cm"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "The function of king post in a king post roof truss is",
+                    options: ["To support the frame work of the roof", "To receive the ends of principal rafter", "To prevent the walls from spreading outward", "To prevent the tie beam from sagging at its centre"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "The dimensions of a half queen closer, are",
+                    options: ["9 cm × 9 cm × 9 cm", "9 cm × 9 cm × 4.5 cm", "9 cm × 4.5 cm × 9 cm", "1.8 cm × 4.5 cm × 9 cm"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "For plastering the exposed brick walls, the cement sand mortar should be",
+                    options: ["1 : 2", "1 : 3", "1 : 4", "1 : 6"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "The stone blocks approximately triangular in shape, used as steps, are known",
+                    options: ["Stone steps", "Built up steps", "Spandril steps", "None of these"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "As compared to English bond, double Flemish bond is",
+                    options: ["Stronger", "More compact", "Costly", "None of the above"],
+                    correctAnswerIndex: 1
+                },
+                {
+                    question: "Pick up the correct statement from the following:",
+                    options: ["The cost of square rooms is less", "The expenditure on the foundation and roof for the double storeyed building is nearly half of that for the ground storeyed building", "The cost of construction of a house may be minimised by restricting the height floors", "All the above"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "In the method of tube boring of soil investigation, the following is essential:",
+                    options: ["A tube of about 2 metres length and 20 cm diameter with a cutting edge", "A flap valve at the bottom of tube is provided to extract the soil sample", "The tube is raised and lowered by 4 thick rope moving over a pulley suspended on a tripod stand", "All the above"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "Slate",
+                    options: ["Is a metamorphic rock", "Splits into thin sheets along its bedding planes", "Has a smooth surface and contains alumina and silica", "Possesses good water absorption capacity"],
+                    correctAnswerIndex: 0
+                },
+                {
+                    question: "The minimum depth of foundation in clayey soils is",
+                    options: ["0.5 m", "0.7 m", "0.9 m", "1.2 m"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "In case of Raymond pile",
+                    options: ["Lengths vary from 6 m to 12 m", "Diameter of top of piles varies from 40 cm to 60 cm", "Diameter of pile at bottom varies from 20 cm to 28 cm", "All the above"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "Herringbone bond is used for",
+                    options: ["Walls having thickness more than 4 bricks", "Architectural finish to the face work", "Ornamental panels in brick flooring", "All the above"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "Suitable spacing of timber piles, is",
+                    options: ["50 cm", "60 cm", "80 cm", "90 cm"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "The disease of dry rot in timber is caused by",
+                    options: ["Lack of ventilation", "Alternate wet and dry conditions", "Complete submergence in water", "None of the above"],
+                    correctAnswerIndex: 0
+                },
+                {
+                    question: "Pick up the correct statement from the following:",
+                    options: ["Louvered door is generally provided in bath rooms", "Flush door is generally provided in dining room", "Revolving door is generally provided in cinema halls", "Sliding door is generally provided in show rooms"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "The minimum distance between the centres of bulb of diameter du, of a multi under reamed piles, is",
+                    options: ["du", "1.25 du", "1.5 du", "1.75 du"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "The stone masonry of finely dressed stones laid in cement or lime, is",
+                    options: ["Random rubble masonry", "Coursed rubble masonry", "Dry rubble masonry", "Ashlar masonry"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "The vertical posts placed at the top and bottom ends of a flight supporting the hand rail are known as",
+                    options: ["Balusters", "Newel posts", "Balustrades", "Railings"],
+                    correctAnswerIndex: 1
+                },
+                {
+                    question: "Pick up the incorrect statement from the following:",
+                    options: ["The function of foundation is to distribute the load of super structure over a large bearing area", "No timbering is required for shallow trenches", "Shallow foundations can be constructed on made-up soil", "Black cotton soil is very good for foundation bed"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "For the construction of flyovers in sandy soils, the type of foundation provided, is",
+                    options: ["Strap footing", "Raft footing", "Combined footing", "Pier footing"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "For a rectangular foundation of width b, eccentricity of load should not exceed",
+                    options: ["b/2", "b/3", "b/4", "b/6"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "The type of pile which is driven at an inclination to resist inclined forces is known as",
+                    options: ["Friction pile", "Sheet pile", "Batter pile", "Anchor pile"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "The maximum bearing capacity of soil is that of",
+                    options: ["Black cotton soil", "Loose fine sandy soil", "Dry coarse sandy soil", "Hard rocks"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "Pick up the correct statement from the following:",
+                    options: ["Cavity of a cavity wall should start near ground level", "Cavity of a cavity wall should terminate near eaves level of sloping roof", "Cavity of a cavity wall should terminate near coping of flat roof with parapet wall", "All the above"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "The thickness of a reinforced brick partition wall, is generally kept",
+                    options: ["5 cm", "10 cm", "15 cm", "20 cm"],
+                    correctAnswerIndex: 1
+                },
+                {
+                    question: "The term string is used for",
+                    options: ["The underside of a stair", "Outer projecting edge of a tread", "A sloping member which supports the steps in a stair", "A vertical member between two treads"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "The 19 cm × 9 cm side of a brick as seen in the wall face, is generally known as",
+                    options: ["Stretcher", "Face", "Front", "Header"],
+                    correctAnswerIndex: 0
+                },
+                {
+                    question: "The steel pile which is generally sunk in soft clay or loose sand of low bearing capacity, is",
+                    options: ["H-pile", "Pipe pile", "Screw pile", "Disc pile"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "Pick up the correct statement about silt soil from the following:",
+                    options: ["The silt soil has particle size from 0.02 mm to 0.06 mm", "In organic fine grained silt soil possesses no plasticity", "The least plastic type normally consists of more or less equidimensional grains of quartz", "All the above"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "The type of flooring suitable for use in churches, theatres, public libraries and other places where noiseless floor covering is desired is",
+                    options: ["Cork flooring", "Glass flooring", "Wooden flooring", "Linoleum flooring"],
+                    correctAnswerIndex: 0
+                },
+                {
+                    question: "The angle between skew back of a flat arch and the horizontal, is kept approximately equal to",
+                    options: ["0°", "30°", "60°", "90°"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "Pick up the correct statement from the following:",
+                    options: ["The sand in the sand pile is well compacted", "The sand is kept moist at the time of placing and tamping", "Sand piles are generally used under column loads", "All of the above"],
+                    correctAnswerIndex: 3
+                }
+            ],
+           {
+                    question: "Pick up the correct statement from the following:",
+                    options: ["A combined footing is so proportioned that centre of gravity of supporting area coincides with centre of gravity of two column loads", "A combined footing may be either rectangular or trapezoidal in shape", "Trapezoidal shaped footings may be provided under any loading", "All the above"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "Minimum width of landing should be",
+                    options: ["Equal to width of stairs", "Half the width of stairs", "Twice the width of stairs", "One fourth the width of stairs"],
+                    correctAnswerIndex: 0
+                },
+                {
+                    question: "For a wall carrying heavy load on low bearing capacity soil,",
+                    options: ["Lean concrete bed is provided", "Thick concrete bed is provided", "Reinforced concrete bed is provided", "Both (a) and (c) of the above"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "While investigating the site, a thick layer of fairly firm clay over a deep layer of soft clay is encountered. In such a situation, the following type of foundation is useful:",
+                    options: ["Pile formation", "Raft foundation", "Grillage foundation", "None of these"],
+                    correctAnswerIndex: 1
+                },
+                {
+                    question: "The type of arch used for high class buildings where appearance is of prime importance, is known as",
+                    options: ["Ashlar arch", "Rubble arch", "Gauged brick arch", "Axed brick arch"],
+                    correctAnswerIndex: 0
+                },
+                {
+                    question: "Mansard roof is a roof which slopes in",
+                    options: ["Two directions without break in the slope on each side", "Two directions with break in the slope on each side", "Four directions without break in the slope on each side", "Four directions with break in the slope on each side"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "If is the angle of repose of soil of weight w kg/m3, the horizontal pressure p at a depth of h metres per metre length of wall, is",
+                    options: ["wh × [(1 - sin )/(1 + )]", "(wh/2) × [(1 - sin )/(1 + )]", "wh - sin )/(1 + )]", "wh )/(1 - )]"],
+                    correctAnswerIndex: 0
+                },
+                {
+                    question: "Pick up the correct specification of one-room quarters generally adopted from the following:",
+                    options: ["Six quarters in a row", "The size of room is either 3.5 m × 3 m or 4.2 m × 2.5 m", "The front verandah is kept 2 m wide", "All the above"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "The piece of a brick cut along the centre of width in such a way that its length is equal to that of full brick, is called",
+                    options: ["Half brick", "Queen closer", "King closer", "Bevelled closer"],
+                    correctAnswerIndex: 1
+                },
+                {
+                    question: "Number of vertical joints in a stretcher course is x times the number of joints in the header course, where x is equal to",
+                    options: ["1/2", "1", "2", "1/4"],
+                    correctAnswerIndex: 0
+                },
+                {
+                    question: "The process of keeping concrete moist for a certain period after its finishing, is known as",
+                    options: ["Finishing of concrete", "Curing of concrete", "Placing of concrete", "Compaction of concrete"],
+                    correctAnswerIndex: 1
+                },
+                {
+                    question: "The inner section of a cavity wall, is generally known as",
+                    options: ["Buttress", "Leaf wall", "Pilaster", "Pillar"],
+                    correctAnswerIndex: 1
+                },
+                {
+                    question: "Pick up the correct statement from the following:",
+                    options: ["Sand consists of coarse particles of silica formed due to the disintegration of rocks", "The grains of sand are not affected by frost", "Sand beds are permeable and do not allow water to rise up between pores due to capillary action", "All the above"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "The lintels are preferred to arches because",
+                    options: ["Arches require more headroom to span the openings like doors, windows etc.", "Arches require strong abutments to withstand arch thrust", "Arches are difficult in construction", "All of the above"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "Cavity wall is generally provided for",
+                    options: ["Heat insulation", "Sound insulation", "Prevention of dampness", "All the above"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "The construction joints in buildings are provided after",
+                    options: ["10 m", "15 m", "20 m", "40 m"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "A pointed arch which forms isosceles or equilateral triangle, is generally known as",
+                    options: ["Three centred arch", "Two centred arch", "Lancet arch", "Bull's eye arch"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "In case of foundations on black cotton soils, the most suitable method to increase the bearing capacity of soils is to",
+                    options: ["Increase the depth of foundation", "Drain the soil", "Compact the soil", "Replace the poor soil"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "Depth of lean concrete bed placed at the bottom of a wall footing, is kept",
+                    options: ["10 cm", "15 cm", "Equal to its projection beyond wall base", "Less than its projection beyond wall base"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "The sound which continues even after its source is cut off, is called",
+                    options: ["Reverberation", "Echo", "Intensity of sound", "Interference"],
+                    correctAnswerIndex: 0
+                },
+                {
+                    question: "Pick up the correct statement from the following:",
+                    options: ["The bearing capacity of a pile is defined as the load which can be sustained by the pile without producing excessive settlement", "The safe bearing capacity of a pile is obtained by dividing the ultimate bearing capacity with a suitable factor of safety", "The factor of safety for piles is taken as 6", "All the above"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "The maximum total settlement for raft foundation on clayey soils should be limited to",
+                    options: ["25 mm", "25 to 40 mm", "40 to 65 mm", "65 to 100 mm"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "Which one of the following rocks is used for monumental buildings?",
+                    options: ["Granite", "Marble", "Sand stone", "Slate"],
+                    correctAnswerIndex: 1
+                },
+                {
+                    question: "Pick up the consideration to the taken while designing a hospital from the following:",
+                    options: ["The operation theatre unit to be detached as it requires sterilized zone but near the ward for the patients and doctor", "The mortuary should be detached from the main circulation with a post-mortem room", "Casualty unit should be provided a separate entrance", "All the above"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "The members which support covering material of a sloping roof, are",
+                    options: ["Rafters", "Purlins", "Battens", "Struts"],
+                    correctAnswerIndex: 0
+                },
+                {
+                    question: "The triangular space formed between the extrados and the horizontal line drawn through the crown of an arch is known as",
+                    options: ["Haunch", "Spandril", "Voussoirs", "Skewbacks"],
+                    correctAnswerIndex: 1
+                },
+                {
+                    question: "For providing a raft foundation, the following activities are involved 1. Ramming the foundation bed 2. Excavation of the soil upto required depth 3. Laying the reinforcement over the foundation bed 4. Curing the cement concrete placed over reinforcement 5. Pouring the cement concrete over the reinforcement The correct sequence is",
+                    options: ["1, 2, 3, 4, 5", "5, 4, 3, 2, 1", "2, 1, 3, 5, 4", "3, 2, 5, 1, 4"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "The stone whose crushing strength is maximum, is",
+                    options: ["Granite", "Chalk", "Slate", "Sand stone"],
+                    correctAnswerIndex: 0
+                },
+                {
+                    question: "Brick nogging type of partition wall, is constructed by",
+                    options: ["Laying bricks as stretchers in cement mortar", "Laying bricks as headers in cement mortar", "Reinforcing brick wall with iron straps", "Constructing brick work within a wooden framework"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "Couple close roof is suitable for maximum span of",
+                    options: ["2.5 m", "3.5 m", "4.5 m", "5.5 m"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "A solid core of rock is formed inside the cylinder in the case of",
+                    options: ["Auger boring", "Percussion drilling", "Diamond drilling", "Wash boring"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "The floor is rubbed with oxalic acid, for making its surface",
+                    options: ["Free from voids", "Glossy", "Durable", "Uniform"],
+                    correctAnswerIndex: 1
+                },
+                {
+                    question: "The line of intersection of two surfaces of a sloping roof forming an internal angle less than 180°, is known as",
+                    options: ["Ridge", "Hip", "Valley", "None of these"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "In which of the following directions, the strength of timber is maximum?",
+                    options: ["Parallel to grains", "45° to grains", "Perpendicular to grains", "Same in all directions"],
+                    correctAnswerIndex: 0
+                },
+                {
+                    question: "Arches in the form of masonry arcs struck from more than four centres, are called",
+                    options: ["Two curved arches", "Gothic arches", "Ogee arches", "Drop gothic arches"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "Pick up the incorrect statement from the following:",
+                    options: ["Horizontal D.P.C. is provided at plinth level in internal walls", "D.P.C. is provided under door and verandah openings", "Vertical D.P.C. is not provided in internal walls", "Cement concrete is a rigid damp-proofing material"],
+                    correctAnswerIndex: 1
+                },
+                {
+                    question: "The vertical faces of a door opening which support frame of the door, are",
+                    options: ["Jambs", "Posts", "Reveals", "Styles"],
+                    correctAnswerIndex: 0
+                },
+                {
+                    question: "The lower edge of the pitched roof, from where the rain water of the roof surface drops down, is known as",
+                    options: ["Hip", "Gable", "Ridge", "Eaves"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "The arrangement of supporting an existing structure by providing supports underneath, is known as",
+                    options: ["Shoring", "Underpinning", "Jacking", "Piling"],
+                    correctAnswerIndex: 1
+                },
+                {
+                    question: "Pick up the correct statement from the following:",
+                    options: ["The first coat of stucco plaster is called scratch coat", "The second coat of stucco plaster is called brown coat", "The third coat of stucco plaster is called white coat", "All the above"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "A concrete structure is set on fire and the temperature raises to 1000°C. The strength of concrete as compared to original strength reduces to",
+                    options: ["10 %", "15 %", "20 %", "25 %"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "The horizontal timber piece provided at the apex of a roof truss which supports the common rafter is called",
+                    options: ["Ridge board", "Hip rafter", "Eaves board", "Valley rafter"],
+                    correctAnswerIndex: 0
+                },
+                {
+                    question: "Pick up the incorrect statement from the following:",
+                    options: ["In dog-legged stairs, no space between its flights is provided", "In open newel stair, a rectangular well is provided", "In geometric stair, a curved shaped well between forward and backward flights, is provided", "In geometrical stair, two quarter space landing is provided"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "The maximum number of steps in a flight should generally be restricted to",
+                    options: ["10", "12", "15", "No limit"],
+                    correctAnswerIndex: 1
+                },
+                {
+                    question: "In flat roof of reinforced cement concrete, the recommended angle of slope, is",
+                    options: ["Zero", "A few degrees", "10°", "200°"],
+                    correctAnswerIndex: 1
+                },
+                {
+                    question: "The process of working a flat for the finishing coat, is known",
+                    options: ["Dubbing out", "Floating", "Knitting", "Blistering"],
+                    correctAnswerIndex: 1
+                },
+                {
+                    question: "The highest line of sloping roof, where two opposite slopes meet, is known as",
+                    options: ["Rafter", "Ridge", "Crown", "Eave"],
+                    correctAnswerIndex: 1
+                },
+                {
+                    question: "The depth of the ground water table may be ascertained by",
+                    options: ["Looking through the well in the vicinity", "Standing on the well in the vicinity", "Measuring the depth of water in the well", "None of the above"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "Which of the following metal sheets is most effective in preventing dampness?",
+                    options: ["Copper sheets", "Lead sheets", "Aluminium sheets", "All the above"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "Under reamed piles are generally used for",
+                    options: ["Machine foundations", "Factory building", "Tall structures", "All the above"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "Pick up the incorrect statement from the following:",
+                    options: ["The width of the wall is constructed thicker at the base in a stepped fashion", "A long vertical load transferring concrete structure is called a concrete pile", "In pile which transfers the load to the soil by the friction between the pile and the surrounding soil is called friction pile", "The pile which transfers the load to a hard rock bed at certain depth is called load bearing"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "Engineering news formula for obtaining safe bearing capacity of pile for drop hammer, is,",
+                    options: ["Q = Wh/6 (S + 2.5)", "Q = Wh/2.5 (S + 6)", "Q = (W × 6)/h (S + 2.5)", "Q = (W × 2.5)/6 (S + h)"],
+                    correctAnswerIndex: 0
+                },
+                {
+                    question: "The rock formed from the solidification of molten matter (magma) is called:",
+                    options: ["Sedimentary rock", "Metamorphic rock", "Igneous rock", "None of the above"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "The maximum permissible deflection of a timber beam supporting a roof, is",
+                    options: ["L/100", "L/150", "L/260", "L/360"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "Negative skin friction",
+                    options: ["Is a downward drag acting on a pile due to downward movement of the surrounding compressible soil relative to the pile", "Develops due to lowering of ground water", "Both (a) and (b)", "Neither (a) not (b)"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "The ceiling height of a building is",
+                    options: ["Between ceiling and ground level", "Between ceiling and floor level", "Upto roof above ground level", "Upto ceiling from the ground level"],
+                    correctAnswerIndex: 1
+                },
+                {
+                    question: "The skirting/dado in a bath roof should be upto",
+                    options: ["Ceiling", "15 cm above floor level", "200 cm", "Level of the tap"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "The bearing capacity of piles is determined by",
+                    options: ["Dynamic formula", "Static formula", "Pile load tests", "All the above"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "The vertical sides of a door and window openings provided in a wall, are known as",
+                    options: ["Verticals", "Reveals", "Jambs", "None of these"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "The type of ashlar masonry in which stones are finely chisel dressed and thickness of joints does not exceed 3 mm, is",
+                    options: ["Chamfered ashlar masonry", "Ashlar facing masonry", "Random coursed ashlar masonry", "Coursed ashlar masonry"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "The form Work including the props can be removed from beams, only after",
+                    options: ["3 day", "7 days", "14 days", "21 days"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "The mortar in which both cement and lime are used as binding materials, is called",
+                    options: ["Cement mortar", "Lime mortar", "Fire resistant mortar", "Gauged mortar"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "According to Rankine's formula, minimum depth of foundations, is",
+                    options: ["(P/w) × [(1 + sin )/(1 - )]²", "(P/w) × [(1 - sin )/(1 + )]²", "(P/2w) × [(1 - sin )/(1 + )]²", "(P/w) × [(1 + sin )/(1 - )]"],
+                    correctAnswerIndex: 1
+                },
+                {
+                    question: "To stagger vertical joints in successive courses of a wall, a piece of brick is generally used at the end of the course, which is known as",
+                    options: ["Bat", "Header", "Stretcher", "Closer"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "The bearing capacity of granite is generally",
+                    options: ["5 to 10 kg/cm2", "15 to 20 kg/cm2", "30 to 35 kg/cm2", "40 to 45 kg/cm2"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "In grillage foundations a minimum 15 cm cover is provided on",
+                    options: ["Upper flange of top tier", "Lower beam of lower tier", "Ends of external beams", "None to these"],
+                    correctAnswerIndex: 1
+                },
+                {
+                    question: "Stability of an existing structure may be disturbed by",
+                    options: ["Rising of water table", "Vibrations caused by traffic movements", "Mining in the neighbourhood", "All the above"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "The Auger boring method is not suitable for",
+                    options: ["Very hard soil", "Cemented soil", "Vary soft soil", "All the above"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "Dampness causes",
+                    options: ["Efflorescence", "Bleaching of paints", "Crumbling of plaster", "Growth of termites"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "The pile which supports the load partly by friction and partly by resting on hard stratum, is called",
+                    options: ["Friction pile", "Bearing pile", "Friction bearing pile", "Rough pile"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "An ordinary concrete may be made water proof by adding",
+                    options: ["Pudlo", "Impermo", "Snowcem", "All of these"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "The opening provided in sloping roof with its top parallel to the roof surface, is called",
+                    options: ["Dormer window", "Sky light window", "Lantern window", "Louvered window"],
+                    correctAnswerIndex: 1
+                },
+                {
+                    question: "Pick up the correct statement from the following:",
+                    options: ["The roof slabs of multi-storeyed buildings are constructed monolithically to carry the various floor loads", "The beams of multi-storeyed buildings rest on girders and are the main load transferring members to the columns", "The slab is spanned across the secondary beams provided between the main beams", "All of these"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "The window which is provided in flat roof of a room, is known",
+                    options: ["Dormer window", "Lantern window", "Louvered window", "Sky window"],
+                    correctAnswerIndex: 1
+                },
+                {
+                    question: "Grillage foundation",
+                    options: ["Is used to transfer heavy structural loads from steel columns to a soil having low bearing capacity", "Is light and economical", "Does not require deep cutting as the required base area with required pressure intensity is obtained at a shallow depth", "All the above"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "Pick up the correct statements from the following:",
+                    options: ["Cracks appear on the plastered surface in the form of hair cracks", "In brick work, the efflorescence is removed by applying a solution of zinc sulphate and water", "Excessive thermal variations in the backing or plaster causes the plaster to fall", "All the above"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "The window which is provided on a sloping roof of a building, is called",
+                    options: ["Lantern window", "Dormer window", "Louvered window", "Rash window"],
+                    correctAnswerIndex: 1
+                },
+                {
+                    question: "The single stage well point system of dewatering an excavation can be used if the depth of excavation does not exceed",
+                    options: ["5 m", "10 m", "15 m", "20 m"],
+                    correctAnswerIndex: 0
+                },
+                {
+                    question: "The nominal thickness of one brick wall in mm, is",
+                    options: ["90 mm", "150 mm", "190 mm", "200 mm"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "Pick up the incorrect statement from the following:",
+                    options: ["The retaining wall should be structurally capable to resist the applied earth pressure", "The section of the retaining wall should be so proportioned that it may not overturn by the lateral pressure", "The retaining wall should be safe against sliding", "To drain off water from the earth retained, weep holes are provided near the top of the retaining wall"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "The stepped structure provided for lateral support of a structure, is",
+                    options: ["Retaining wall", "Breast wall", "Buttress", "Parapet wall"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "Raft foundations are used for:",
+                    options: ["Providing increased area of foundation over poor bearing capacity of soil", "Spanning over small soft or loose pockets", "Counter acting the hydrostatic effect", "All the above"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "Pick up the incorrect statement from the following:",
+                    options: ["In Flemish bond, headers and stretchers are laid alternately in the same course", "In Flemish bond every header in each course lies centrally over every stretcher of the underlying course", "In English bond, stretchers are laid in every course", "In English bond, headers and stretchers are laid in alternate courses"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "Stud(s) of a common wooden partition",
+                    options: ["Are vertical wooden members", "Is the upper horizontal wooden member", "Is the lower horizontal wooden member", "Are the intermediate horizontal wooden members"],
+                    correctAnswerIndex: 0
+                },
+                {
+                    question: "The additional piles which are driven to increase the capacity of supporting loads on vertical piles, are known",
+                    options: ["Construction piles", "Raking piles", "Eccentric piles", "Sinking piles"],
+                    correctAnswerIndex: 1
+                },
+                {
+                    question: "Queen closer may be placed",
+                    options: ["In header course", "In stretcher course", "In header course next to first brick", "In stretcher course next to first brick"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "The bearing capacity of a water logged soil, may be improved by",
+                    options: ["Grouting", "Chemical action", "Drainage", "Compaction"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "The process of making the back ground rough, before plastering, is",
+                    options: ["Dubbing", "Hacking", "Blistering", "Peeling"],
+                    correctAnswerIndex: 1
+                },
+                {
+                    question: "Which one of the following piles has a cast iron shoe even after removal of the hollow cylindrical steel casing?",
+                    options: ["Simplex pile", "Pedestal pile", "Vibro pile", "Both (a) and (c) of the above"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "While designing a stair, the product of rise and going is approximately kept equal to",
+                    options: ["350", "420", "450", "500"],
+                    correctAnswerIndex: 1
+                },
+                {
+                    question: "Nogging of a common wooden partition is",
+                    options: ["Upper horizontal wooden member", "Lower horizontal wooden member", "Intermediate horizontal wooden member", "Vertical wooden member"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "Which one of the following factors is considered for the orientation of buildings?",
+                    options: ["The direction of the prevailing winds in the area", "The exposure of the walls and roof of the buildings to the rays of sun", "The extent up to which the sunrays penetrate with the verandah", "All the above"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "To construct a 10 cm thick partition wall, you will prefer",
+                    options: ["English bond", "Flemish bond", "Header bond", "Stretcher bond"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "The strength of brick masonry in 1:6 cement mortar, is",
+                    options: ["20 tonnes/m2", "40 tonnes/m2", "50 tonnes/m2", "60 tonnes/m2"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "The form work from the sides of beams can be removed only after",
+                    options: ["1 day", "4 days", "7 days", "14 days"],
+                    correctAnswerIndex: 0
+                },
+                {
+                    question: "For brick construction, the lime-sand mortar, is",
+                    options: ["1 : 1", "1 : 2", "1 : 3", "1 : 4"],
+                    correctAnswerIndex: 1
+                },
+                {
+                    question: "The least bearing capacity of soil is that of",
+                    options: ["Hard rock", "Moist clay", "Soft rock", "Coarse sandy soil"],
+                    correctAnswerIndex: 1
+                },
+                {
+                    question: "The maximum permissible differential settlement, in case of foundations in clayey soil, is usually limited to",
+                    options: ["10 mm", "20 mm", "30 mm", "40 mm"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "Pick up the correct statement from the following:",
+                    options: ["English bond is used for brick masonry to support heavy loads", "Double-Flemish bond is suitable for brick masonry to give uniform face appearance", "The stretcher bond is used for the construction of half brick masonry brick", "All the above"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "The black cotton soil",
+                    options: ["Undergoes volumetric changes", "Swells excessively when wet", "Shrinks excessively when dry", "All the above"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "A cut in frame of a door to receive the shutter, is called",
+                    options: ["Louver", "Stop", "Horn", "Rebate"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "The loose pockets in soil mass can be bridged safely by providing a raft foundation provided the soft area is smaller than",
+                    options: ["The column spacing", "One-third the column spacing", "Half the column spacing", "Three-fourth the column spacing"],
+                    correctAnswerIndex: 1
+                },
+                {
+                    question: "Pick up the incorrect statement from the following:",
+                    options: ["In king post truss, one vertical post is used", "In a queen post truss, one vertical post is used", "In a queen post truss, two vertical posts are used", "None of these"],
+                    correctAnswerIndex: 1
+                },
+                {
+                    question: "The pile which is provided with a bulb filled with concrete at its lower end, is known as",
+                    options: ["Simplex pile", "Mac-Arthur pile", "Raymond pile", "Franki pile"],
+                    correctAnswerIndex: 1
+                },
+                {
+                    question: "Ornamental moulded course placed on the top of a wall, is",
+                    options: ["Cornice", "Coping", "Frieze", "Lintel"],
+                    correctAnswerIndex: 0
+                },
+                {
+                    question: "Pick up the incorrect statement from the following:",
+                    options: ["Cement is added to lime mortar to increase its hydraulic properties only", "Lime surkhi mortar is used for pointing the walls", "Lime should be slaked before preparing lime mortar", "High early strength concrete is generally used in cold weather"],
+                    correctAnswerIndex: 0
+                },
+                {
+                    question: "Pile foundation is generally provided if soil is",
+                    options: ["Compressible", "Water logged", "Made up", "All the above"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "Bearing capacity of soils cannot be improved by",
+                    options: ["Draining sub-soil water", "Ramming crushed stone in soil", "Driving sand piles", "Watering surface of soil"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "Rotary drilling is the fastest method in case of",
+                    options: ["Rocky soils", "Clay soils", "Sandy soil", "All of these"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "The concrete slump recommended for beams and slabs; is",
+                    options: ["25 to 50 mm", "25 to 75 mm", "30 to 125 mm", "50 to 100 mm"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "The alignment of a cross joint along the plumb line is",
+                    options: ["Bed block", "Perpend", "Lintel", "Vertical line"],
+                    correctAnswerIndex: 1
+                },
+                {
+                    question: "A projecting piece usually provided to support a truss, is",
+                    options: ["Cornice", "Coping", "Frieze", "Lintel"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "Best type of piles for soft soil having little resistance to the flow of concrete, is",
+                    options: ["Simplex pile", "Vibro pile", "Raymond pile", "Franki pile"],
+                    correctAnswerIndex: 1
+                },
+                {
+                    question: "The form work from the underside of slabs, can be removed only after",
+                    options: ["1 day", "4 days", "7 days", "14 days"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "Couple roof is used for spans",
+                    options: ["3.5 m or less", "3.5 m but less than 5 m", "5 m but less than 6.5 m", "6.5 m but less than 8 m"],
+                    correctAnswerIndex: 0
+                },
+                {
+                    question: "For heavy embankments and dams, of height h, the depth of exploration of soil should not be less than",
+                    options: ["h/4", "1/2 h", "h", "2 h"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "The vertical member running through middle of a shutter frame, is",
+                    options: ["Style", "Reveal", "Mullion", "Post"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "The lower half portion between crown and skew back of the arch, is called",
+                    options: ["Spandril", "Haunch", "Springing", "Soffit"],
+                    correctAnswerIndex: 1
+                },
+                {
+                    question: "An arch may fail due to",
+                    options: ["Uneven settlement of abutments", "Sliding of voussoirs", "Crushing of the material", "All the above"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "The exterior angle between outer faces of a wall, is known as",
+                    options: ["Turn", "Junction", "Quion", "All the above"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "The minimum thickness of walls built in cement mortar (1 : 6) for a single storey building, is",
+                    options: ["10 cm", "15 cm", "20 cm", "25 cm"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "Pick up the commonly adopted geophysical method in civil engineering from the following:",
+                    options: ["The seismic method", "Electrical resistivity method", "Gravitational method", "Both (a) and (b) of the above"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "If height of the first storey of a building is 3.2 m and riser is 13 cm, the number of treads required, is",
+                    options: ["12", "18", "24", "25"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "Dado is usually provided in",
+                    options: ["Dining halls", "Bath rooms", "Living rooms", "Verandah"],
+                    correctAnswerIndex: 1
+                },
+                {
+                    question: "A roof which slopes in four directions, is called",
+                    options: ["Shed roof", "Gable end roof", "Hipped roof", "Gambrel roof"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "The taper of precast concrete pile should not be more than",
+                    options: ["1 cm per metre length", "2 cm per metre length", "4 cm per metre length", "5 cm per metre length"],
+                    correctAnswerIndex: 1
+                },
+                {
+                    question: "If the depth of an excavation is 20 metres, number of single stage well points to be installed at various levels, is",
+                    options: ["5", "4", "3", "2"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "In case of multi-storeyed buildings, the forms to be removed first are",
+                    options: ["Sides of beams and girders", "Column forms", "Bottom of beams and girders", "All the above at the same time"],
+                    correctAnswerIndex: 0
+                },
+                {
+                    question: "The vertical members fixed between steps and hand rail, are known",
+                    options: ["Balusters", "Strings", "Newel posts", "Soffits"],
+                    correctAnswerIndex: 0
+                },
+                {
+                    question: "The depth of an arch is the distance between",
+                    options: ["Ground level and springing line", "Crown and springing line", "Crown and ground level", "Intrados and extrados"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "The nominal thickness of an expansion joint in brick walls, is kept more than",
+                    options: ["5 mm", "10 mm", "15 mm", "20 mm"],
+                    correctAnswerIndex: 3
+                },
+                {
+                    question: "Exposed portions of vertical surface at right angles to the door or window frame, are known as",
+                    options: ["Jambs", "Lintels", "Reveals", "Soffits"],
+                    correctAnswerIndex: 2
+                },
+                {
+                    question: "The projections of head or sill of a door or window frame are",
+                    options: ["Transoms", "Horns", "Stops", "Chocks"],
+                    correctAnswerIndex: 1
+                },
+                {
+                    question: "The line of intersection of the surfaces of a sloping roof forming an external angle exceeding 180°, is",
+                    options: ["Ridge", "Hip", "Valley", "None of these"],
+                    correctAnswerIndex: 1
+                },
+                {
+                    question: "The depth of excavation of foundations, is generally measured with a",
+                    options: ["Ranging rod", "Steel tape", "Levelling staff", "Boning rod"],
+                    correctAnswerIndex: 3
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+];
+
+        // Add IDs dynamically to all questions
+        const questions = questionsData.map((q, index) => ({
+            id: index + 1,
+            question: q.question,
+            options: q.options,
+            answer: q.answer
+        }));
+
+        let currentIndex = 0;
+        let userAnswers = {};
+        let timer;
+        let timeRemaining = 120 * 60; // 120 minutes in seconds
+        const form = document.getElementById('quiz-form');
+        const startMessage = document.getElementById('start-message');
+        const testContent = document.getElementById('test-content');
+
+        // Function to start the test
+        function startTest() {
+            startMessage.style.display = 'none';
+            testContent.style.display = 'block';
+            renderQuestions();
+            startTimer();
+        }
+
+        // Function to render questions
+        function renderQuestions() {
+            form.innerHTML = '';
+            for (let i = currentIndex; i < currentIndex + 3 && i < questions.length; i++) {
+                const question = questions[i];
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'question floating';
+                questionDiv.id = `question-${question.id}`;
+                questionDiv.innerHTML = `
+                    <p><i class="fas fa-question-circle" style="color: #4361ee; margin-right: 10px;"></i>${question.question}</p>
+                    <div class="options-container">
+                        ${question.options.map(option => `
+                            <label>
+                                <input type="radio" name="q${question.id}" value="${option}" onchange="lockOption(this)"
+                                    ${userAnswers[question.id] === option ? 'checked' : ''}>
+                                ${option}
+                            </label>
+                        `).join('')}
+                    </div>
+                `;
+                form.appendChild(questionDiv);
+            }
+
+            document.getElementById('back-button').style.display = currentIndex === 0 ? 'none' : 'inline-flex';
+            updateStats();
+        }
+
+        // Function to lock options once selected
+        function lockOption(option) {
+            const questionId = option.name.replace('q', '');
+            userAnswers[questionId] = option.value;
+            const questionDiv = option.closest('.question');
+            const inputs = questionDiv.querySelectorAll('input');
+            inputs.forEach(input => input.disabled = true);
+
+            questionDiv.classList.remove('floating');
+            questionDiv.style.borderLeft = '4px solid #4cc9f0';
+            setTimeout(() => {
+                questionDiv.style.borderLeft = '4px solid #4361ee';
+            }, 500);
+
+            updateStats();
+        }
+
+        // Function to show the next set of questions
+        function showNextQuestions() {
+            currentIndex += 3;
+            if (currentIndex >= questions.length) {
+                submitTest();
+            } else {
+                renderQuestions();
+                window.scrollTo({
+                    top: form.offsetTop - 20,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        // Function to show the previous set of questions
+        function showPreviousQuestions() {
+            currentIndex -= 3;
+            if (currentIndex < 0) currentIndex = 0;
+            renderQuestions();
+            window.scrollTo({
+                top: form.offsetTop - 20,
+                behavior: 'smooth'
+            });
+        }
+
+        // Function to update stats
+        function updateStats() {
+            const totalQuestions = questions.length;
+            const attempted = Object.keys(userAnswers).length;
+            const notAttempted = totalQuestions - attempted;
+
+            document.getElementById('total-questions').textContent = totalQuestions;
+            document.getElementById('attempted').textContent = attempted;
+            document.getElementById('not-attempted').textContent = notAttempted;
+        }
+
+        // Function to start the timer
+        function startTimer() {
+            timer = setInterval(() => {
+                timeRemaining--;
+                if (timeRemaining <= 0) {
+                    clearInterval(timer);
+                    submitTest();
+                }
+                updateTimer();
+            }, 1000);
+        }
+
+        // Function to update the timer display
+        function updateTimer() {
+            const minutes = Math.floor(timeRemaining / 60);
+            const seconds = timeRemaining % 60;
+            const timerElement = document.getElementById('timer');
+            timerElement.innerHTML = `<i class="fas fa-clock"></i> Time Remaining: ${minutes}:${seconds.toString().padStart(2, '0')}`;
+            
+            if (timeRemaining <= 300) {
+                timerElement.style.color = '#f72585';
+                timerElement.style.animation = 'pulse 1s infinite';
+            }
+        }
+
+        // Function to submit the test
+        function submitTest() {
+            clearInterval(timer);
+            document.getElementById('next-button').style.display = 'none';
+            document.getElementById('back-button').style.display = 'none';
+            showResult();
+        }
+
+        // Function to calculate and display the result
+        function showResult() {
+            let score = 0;
+            const answerDetails = [];
+
+            questions.forEach(question => {
+                const userAnswer = userAnswers[question.id];
+                const isCorrect = userAnswer === question.answer;
+                if (isCorrect) score++;
+
+                answerDetails.push(`
+                    <div class="answer-item ${isCorrect ? 'correct-answer' : 'incorrect-answer'}">
+                        <p><strong>Question ${question.id}:</strong> ${question.question}</p>
+                        <p><strong>Your Answer:</strong> <span class="${isCorrect ? 'correct' : 'incorrect'}">${userAnswer || 'Not answered'}</span></p>
+                        <p><strong>Correct Answer:</strong> <span class="correct">${question.answer}</span></p>
+                    </div>
+                `);
+            });
+
+            const percentage = Math.round((score / questions.length) * 100);
+            document.getElementById('score').textContent = `${score} / ${questions.length}`;
+            document.getElementById('percentage').textContent = percentage;
+            document.getElementById('progress-bar').style.width = `${percentage}%`;
+            document.getElementById('answer-details').innerHTML = answerDetails.join('');
+            document.getElementById('result').style.display = 'block';
+
+            window.scrollTo({
+                top: document.getElementById('result').offsetTop - 20,
+                behavior: 'smooth'
+            });
+
+            if (percentage >= 70) {
+                triggerConfetti();
+            }
+        }
+
+        // Simple confetti effect
+        function triggerConfetti() {
+            const confettiCount = 100;
+            const confettiContainer = document.createElement('div');
+            confettiContainer.style.position = 'fixed';
+            confettiContainer.style.top = '0';
+            confettiContainer.style.left = '0';
+            confettiContainer.style.width = '100%';
+            confettiContainer.style.height = '100%';
+            confettiContainer.style.pointerEvents = 'none';
+            confettiContainer.style.zIndex = '1000';
+            document.body.appendChild(confettiContainer);
+
+            for (let i = 0; i < confettiCount; i++) {
+                const confetti = document.createElement('div');
+                confetti.innerHTML = ['🎉', '✨', '🎊', '🏆', '👏'][Math.floor(Math.random() * 5)];
+                confetti.style.position = 'absolute';
+                confetti.style.fontSize = `${Math.random() * 20 + 10}px`;
+                confetti.style.left = `${Math.random() * 100}vw`;
+                confetti.style.top = '-50px';
+                confetti.style.animation = `fall ${Math.random() * 3 + 2}s linear forwards`;
+                confetti.style.opacity = Math.random();
+                confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+                confettiContainer.appendChild(confetti);
+
+                const animation = confetti.animate([
+                    { top: '-50px', opacity: 1 },
+                    { top: '100vh', opacity: 0 }
+                ], {
+                    duration: Math.random() * 3000 + 2000,
+                    easing: 'cubic-bezier(0.1, 0.8, 0.9, 1)'
+                });
+
+                animation.onfinish = () => {
+                    confetti.remove();
+                    if (i === confettiCount - 1) {
+                        confettiContainer.remove();
+                    }
+                };
+            }
+
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes fall {
+                    to { transform: translateY(100vh) rotate(360deg); }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+    </script>
+</body>
+              </html>

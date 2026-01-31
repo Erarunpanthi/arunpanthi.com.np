@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hydraulics Design </title>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="Test.css">
+</head>
+<body>
+    <div class="container">
+        <h1><i class="fas fa-drafting-compass"></i> Hydraulics Design MCQ Test</h1>
+        <div id="start-message">
+            <p>Welcome to the Hydraulics Design assessment!</p>
+            <p>You will have <span class="highlight">120 minutes</span> to complete all questions.</p>
+            <p>This test contains <strong>40 multiple-choice questions</strong> covering various aspects of Hydraulics Design.</p>
+            <button id="start-button" onclick="startTest()">Begin Test <i class="fas fa-arrow-right"></i></button>
+        </div>
+        <div id="test-content">
+            <div id="timer">
+                <i class="fas fa-clock"></i> Time Remaining: 120:00
+            </div>
+            <div id="stats">
+                <div class="stat-box">
+                    <h3><i class="fas fa-question-circle"></i> Total Questions</h3>
+                    <div class="stat-value" id="total-questions">40</div>
+                </div>
+                <div class="stat-box">
+                    <h3><i class="fas fa-check-circle"></i> Attempted</h3>
+                    <div class="stat-value" id="attempted">0</div>
+                </div>
+                <div class="stat-box">
+                    <h3><i class="fas fa-exclamation-circle"></i> Not Attempted</h3>
+                    <div class="stat-value" id="not-attempted">40</div>
+                </div>
+            </div>
+            <form id="quiz-form">
+                <!-- Questions will be dynamically inserted here -->
+            </form>
+            <div class="button-container">
+                <button type="button" id="back-button" onclick="showPreviousQuestions()" style="display: none;">
+                    <i class="fas fa-arrow-left"></i> Back
+                </button>
+                <button type="button" id="next-button" onclick="showNextQuestions()">
+                    Next <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+            <div id="result" style="display: none;">
+                <h2>Test Results</h2>
+                <div class="progress-container">
+                    <div class="progress-bar" id="progress-bar"></div>
+                </div>
+                <div class="score-display" id="score">0/0</div>
+                <p>You scored <span class="highlight" id="percentage">0</span>%</p>
+                <div class="answer-details" id="answer-details"></div>
+                <button id="submit-button" onclick="location.reload()">
+                    <i class="fas fa-redo"></i> Take Test Again
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Questions data (just 2 sample questions - add the remaining 38 following the same format)
+        const questionsData = [
+            
+    {
+
+ { question: "When a body is placed over a liquid, it will sink down if", options: ["Gravitational force is equal to the up-thrust of the liquid", "Gravitational force is less than the up-thrust of the liquid", "Gravitational force is more than the up-thrust of the liquid", "None of the above"], answer: "Gravitational force is more than the up-thrust of the liquid" },
+                { question: "The property by virtue of which a liquid opposes relative motion between its different layers is called", options: ["Surface tension", "Coefficient of viscosity", "Viscosity", "Osmosis"], answer: "Viscosity" },
+                { question: "A weir is said to be narrow-crested weir, if the width of the crest of the weir is __________ the height of water above the weir crest.", options: ["Equal to half", "Less than half", "More than half", "None of these"], answer: "Less than half" },
+                { question: "Euler's dimensionless number relates the following", options: ["Inertial force and gravity", "Viscous force and inertial force", "Viscous force and buoyancy force", "Pressure force and inertial force"], answer: "Pressure force and inertial force" },
+                { question: "When a body floating in a liquid, is displaced slightly, it oscillates about", options: ["C.G. of body", "Center of pressure", "Center of buoyancy", "Metacentre"], answer: "Metacentre" },
+                { question: "The pressure of the liquid flowing through the divergent portion of a Venturimeter", options: ["Remains constant", "Increases", "Decreases", "Depends upon mass of liquid"], answer: "Decreases" },
+                { question: "When the Mach number is between __________ the flow is called super-sonic flow.", options: ["1 and 2.5", "2.5 and 4", "4 and 6", "1 and 6"], answer: "1 and 6" },
+                { question: "In an immersed body, centre of pressure is", options: ["At the centre of gravity", "Above the centre of gravity", "Below the centre of gravity", "Could be above or below e.g. depending on density of body and liquid"], answer: "Below the centre of gravity" },
+                { question: "A vertically immersed surface is shown in the below figure. The distance of its centre of pressure from the water surface is", options: ["(bd²/12)+x", "(d²/12x)+x", "b²/12+x", "d²/12+x"], answer: "(d²/12x)+x" },
+                { question: "The torque required to overcome viscous resistance of a collar bearing is (where R₁ and R₂ = External and internal radius of collar)", options: ["(μπ²N/60t)×(R₁-R₂)", "(μπ²N/60t)×(R₁²-R₂²)", "(μπ²N/60t)×(R₁³-R₂³)", "(μπ²N/60t)×(R₁⁴-R₂⁴)"], answer: "(μπ²N/60t)×(R₁⁴-R₂⁴)" },
+                { question: "Steady flow occurs when", options: ["The direction and magnitude of the velocity at all points are identical", "The velocity of successive fluid particles, at any point, is the same at successive periods of time", "The magnitude and direction of the velocity do not change from point to point in the fluid", "The fluid particles move in plane or parallel planes and the streamline patterns are identical in each plane"], answer: "The velocity of successive fluid particles, at any point, is the same at successive periods of time" },
+                { question: "A flow is called super-sonic if the", options: ["Velocity of flow is very high", "Discharge is difficult to measure", "Mach number is between 1 and 6", "None of these"], answer: "Mach number is between 1 and 6" },
+                { question: "In a forced vortex, the velocity of flow everywhere within the fluid is", options: ["Maximum", "Minimum", "Zero", "Nonzero finite"], answer: "Nonzero finite" },
+                { question: "The depth of centre of pressure (h) for a vertically immersed surface from the liquid surface is given by (where I_G = Moment of inertia of the immersed surface about horizontal axis through its centre of gravity, A = Area of immersed surface, and x = Depth of centre of gravity of the immersed surface from the liquid surface)", options: ["(I_G/Ax)-x", "(I_G/x)-Ax", "(Ax/I_G)+x", "(I_G/Ax)+x"], answer: "(I_G/Ax)+x" },
+                { question: "Mach number is significant in", options: ["Supersonics, as with projectiles and jet propulsion", "Full immersion or completely enclosed flow, as with pipes, aircraft wings, nozzles etc.", "Simultaneous motion through two fluids where there is a surface of discontinuity, gravity force, and wave making effects, as with ship's hulls", "All of the above"], answer: "Supersonics, as with projectiles and jet propulsion" },
+                { question: "A fluid which obeys the Newton's law of viscosity is termed as", options: ["Real fluid", "Ideal fluid", "Newtonian fluid", "Non-Newtonian fluid"], answer: "Newtonian fluid" },
+                { question: "In order that flow takes place between two points in a pipeline, the differential pressure between these points must be more than", options: ["Frictional force", "Viscosity", "Surface friction", "All of the above"], answer: "All of the above" },
+                { question: "The error in discharge (dQ/Q) to the error in measurement of head (dH/H) over a triangular notch is given by", options: ["dQ/Q = 3/2 x (dH/H)", "dQ/Q = 2 x (dH/H)", "dQ/Q = 5/2 x (dH/H)", "dQ/Q = 3 x (dH/H)"], answer: "dQ/Q = 5/2 x (dH/H)" },
+                { question: "For similarity, in addition to models being geometrically similar to prototype, the following in both cases should also be equal", options: ["Ratio of inertial force to force due to viscosity", "Ratio of inertial force to force due to gravitation", "Ratio of inertial force to force due to surface tension", "All the four ratios of inertial force to force due to viscosity, gravitation, surface tension, and elasticity"], answer: "All the four ratios of inertial force to force due to viscosity, gravitation, surface tension, and elasticity" },
+                { question: "The value of coefficient of velocity for a sharp edged orifice __________ with the head of water.", options: ["Decreases", "Increases", "Remain same", "None of these"], answer: "Increases" },
+                { question: "If cohesion between molecules of a fluid is greater than adhesion between fluid and glass, then the free level of fluid in a dipped glass tube will be", options: ["Higher than the surface of liquid", "The same as the surface of liquid", "Lower than the surface of liquid", "Unpredictable"], answer: "Lower than the surface of liquid" },
+                { question: "The ratio of the inertia force to the __________ is called Euler's number.", options: ["Pressure force", "Elastic force", "Surface tension force", "Viscous force"], answer: "Pressure force" },
+                { question: "A one dimensional flow is one which", options: ["Is uniform flow", "Is steady uniform flow", "Takes place in straight lines", "Involves zero transverse component of flow"], answer: "Involves zero transverse component of flow" },
+                { question: "According to Manning's formula, the discharge through an open channel is (where M = Manning's constant)", options: ["A x M x m^(1/2) x i^(2/3)", "A x M x m^(2/3) x i^(1/2)", "A^(1/2) x M^(2/3) x m x i", "A^(2/3) x M^(1/3) x m x i"], answer: "A x M x m^(2/3) x i^(1/2)" },
+                { question: "Dimensions of surface tension are", options: ["ML⁰T⁻²", "ML⁰T", "MLT⁻²", "ML²T²"], answer: "ML⁰T⁻²" },
+                { question: "An opening in the side of a tank or vessel such that the liquid surface with the tank is below the top edge of the opening, is called", options: ["Weir", "Notch", "Orifice", "None of these"], answer: "Notch" },
+                { question: "The property of fluid by virtue of which it offers resistance to shear is called", options: ["Surface tension", "Adhesion", "Cohesion", "Viscosity"], answer: "Viscosity" },
+                { question: "Coefficient of velocity is defined as the ratio of", options: ["Actual velocity of jet at vena contracta to the theoretical velocity", "Area of jet at vena contracta to the area of orifice", "Actual discharge through an orifice to the theoretical discharge", "None of the above"], answer: "Actual velocity of jet at vena contracta to the theoretical velocity" },
+                { question: "A liquid compressed in cylinder has a volume of 0.04 m³ at 50 kg/cm² and a volume of 0.039 m³ at 150 kg/cm². The bulk modulus of elasticity of liquid is", options: ["400 kg/cm²", "4000 kg/cm²", "40x10⁵ kg/cm²", "40x10⁶ kg/cm²"], answer: "4000 kg/cm²" },
+                { question: "The mass of 2.5 m³ of a certain liquid is 2 tonnes. Its mass density is", options: ["200 kg/m³", "400 kg/m³", "600 kg/m³", "800 kg/m³"], answer: "800 kg/m³" },
+                { question: "A fluid in equilibrium can't sustain", options: ["Tensile stress", "Compressive stress", "Shear stress", "Bending stress"], answer: "Shear stress" },
+                { question: "When a plate is immersed in a liquid parallel to the flow, it will be subjected to a pressure __________ that if the same plate is immersed perpendicular to the flow.", options: ["Less than", "More than", "Equal to", "None of these"], answer: "Less than" },
+                { question: "An object having 10 kg mass weighs 9.81 kg on a spring balance. The value of 'g' at this place is", options: ["10 m/sec²", "9.81 m/sec²", "9.75 m/sec²", "9 m/sec²"], answer: "10 m/sec²" },
+                { question: "A flow is called hyper-sonic, if the Mach number is", options: ["Less than unity", "Unity", "Between 1 and 6", "Greater than 6"], answer: "Greater than 6" },
+                { question: "Liquids", options: ["Cannot be compressed", "Occupy definite volume", "Are not affected by change in pressure and temperature", "None of the above"], answer: "None of the above" },
+                { question: "When a cylindrical vessel containing liquid is revolved, the surface of the liquid takes the shape of", options: ["A triangle", "A paraboloid", "An ellipse", "None of these"], answer: "A paraboloid" },
+                { question: "Fluid is a substance that", options: ["Cannot be subjected to shear forces", "Always expands until it fills any container", "Has the same shear stress at a point regardless of its motion", "Cannot remain at rest under action of any shear force"], answer: "Cannot remain at rest under action of any shear force" },
+                { question: "The force exerted by a moving fluid on an immersed body is directly proportional to the rate of change of momentum due to the presence of the body. This statement is called", options: ["Newton's law of motion", "Newton's law of cooling", "Newton's law of viscosity", "Newton's law of resistance"], answer: "Newton's law of resistance" },
+                { question: "The property of a fluid which enables it to resist tensile stress is known as", options: ["Compressibility", "Surface tension", "Cohesion", "Adhesion"], answer: "Cohesion" },
+                { question: "The loss of pressure head in case of laminar flow is proportional to", options: ["Velocity", "(Velocity)²", "(Velocity)³", "(Velocity)⁴"], answer: "Velocity" },
+                { question: "The surface tension of mercury at normal temperature compared to that of water is", options: ["More", "Less", "Same", "More or less depending on size of glass tube"], answer: "More" },
+                { question: "An air vessel is provided at the summit in a siphon to", options: ["Avoid interruption in the flow", "Increase discharge", "Increase velocity", "Maintain pressure difference"], answer: "Avoid interruption in the flow" },
+                { question: "The unit of viscosity is", options: ["Metres per sec", "kg-sec/metre²", "Newton-sec per metre²", "Newton-sec per meter"], answer: "kg-sec/metre²" },
+                { question: "Select the correct statement", options: ["Weber's number is the ratio of inertia force to elastic force.", "Weber's number is the ratio of gravity force to surface tension force.", "Weber's number is the ratio of viscous force to pressure force.", "Weber's number is the ratio of inertia force to surface tension force."], answer: "Weber's number is the ratio of inertia force to surface tension force." },
+                { question: "Choose the wrong statement. Alcohol is used in manometer, because", options: ["Its vapour pressure is low", "It provides suitable meniscus for the inclined tube", "Its density is less", "It provides longer length for a given pressure difference"], answer: "Its vapour pressure is low" },
+                { question: "When a tank containing liquid moves with an acceleration in the horizontal direction, then the free surface of the liquid", options: ["Remains horizontal", "Becomes curved", "Falls on the front end", "Falls on the back end"], answer: "Falls on the front end" },
+                { question: "A pressure of 25 m of head of water is equal to", options: ["25 kN/m²", "245 kN/m²", "2500 kN/m²", "2.5 kN/m²"], answer: "245 kN/m²" },
+                { question: "The hammer blow in pipes occurs when", options: ["There is excessive leakage in the pipe", "The pipe bursts under high pressure of fluid", "The flow of fluid through the pipe is suddenly brought to rest by closing of the valve", "The flow of fluid through the pipe is gradually brought to rest by closing of the valve"], answer: "The flow of fluid through the pipe is suddenly brought to rest by closing of the valve" },
+                { question: "The resultant upward pressure of the fluid on an immersed body is called", options: ["Up-thrust", "Buoyancy", "Center of pressure", "All the above are correct"], answer: "Buoyancy" },
+                { question: "When the water level on the downstream side of a weir is above the top surface of a weir, the weir is known as", options: ["Narrow-crested weir", "Broad-crested weir", "Ogee weir", "Submerged weir"], answer: "Submerged weir" },
+                { question: "If the surface of liquid is convex, then", options: ["Cohesion pressure is negligible", "Cohesion pressure is decreased", "Cohesion pressure is increased", "There is no cohesion pressure"], answer: "Cohesion pressure is increased" },
+                { question: "The increase in pressure at the outer edge of a drum of radius (r) completely filled up with liquid of density (p) and rotating at (w) rad/s is", options: ["ρw²r²", "2ρw²r²", "ρw²r²/2", "ρw²r²/4"], answer: "ρw²r²/2" },
+                { question: "The atmospheric pressure with rise in altitude decreases", options: ["Linearly", "First slowly and then steeply", "First steeply and then gradually", "Unpredictable"], answer: "First slowly and then steeply" },
+                { question: "Dynamic viscosity of most of the gases with rise in temperature", options: ["Increases", "Decreases", "Remain unaffected", "Unpredictable"], answer: "Increases" },
+                { question: "According to Bernoulli's equation", options: ["Z + p/w + v²/2g = constant", "Z + p/w - v²/2g = constant", "Z - p/w + v²/2g = constant", "Z - p/w - v²/2g = constant"], answer: "Z + p/w + v²/2g = constant" },
+                { question: "Center of buoyancy is the", options: ["Centroid of the displaced volume of fluid", "Center of pressure of displaced volume", "Does not exist", "None of the above"], answer: "Centroid of the displaced volume of fluid" },
+                { question: "The loss of head due to viscosity for laminar flow in pipes is (where d = Diameter of pipe, l = Length of pipe, v = Velocity, w = Specific weight of the flowing liquid)", options: ["4μvl/wd²", "8μvl/wd²", "16μvl/wd²", "32μvl/wd²"], answer: "32μvl/wd²" },
+                { question: "For a body floating in a liquid the normal pressure exerted by the liquid acts at", options: ["Bottom surface of the body", "C.G. of the body", "Metacentre", "All points on the surface of the body"], answer: "All points on the surface of the body" },
+                { question: "Newton's law of viscosity is a relationship between", options: ["Pressure, velocity and temperature", "Shear stress and rate of shear strain", "Shear stress and velocity", "Rate of shear strain and temperature"], answer: "Shear stress and rate of shear strain" },
+                { question: "Differential manometer is used to measure", options: ["Pressure in pipes, channels etc.", "Atmospheric pressure", "Very low pressure", "Difference of pressure between two points"], answer: "Difference of pressure between two points" },
+                { question: "When a body is immersed wholly or partially in a liquid, it is lifted up by a force equal to the weight of liquid displaced by the body. This statement is called", options: ["Pascal's law", "Archimedes' principle", "Principle of floatation", "Bernoulli's theorem"], answer: "Archimedes' principle" },
+                { question: "Non uniform flow occurs when", options: ["The direction and magnitude of the velocity at all points are identical", "The velocity of successive fluid particles, at any point, is the same at successive periods of time", "Velocity, depth, pressure, etc. change from point to point in the fluid flow.", "The fluid particles move in plane or parallel planes and the streamline patterns are identical in each plane"], answer: "Velocity, depth, pressure, etc. change from point to point in the fluid flow." },
+                { question: "When a tube of smaller diameter is dipped in water, the water rises in the tube with an upward __________ surface.", options: ["Concave", "Convex", "Plane", "None of these"], answer: "Concave" },
+                { question: "A piece of metal of specific gravity 7 floats in mercury of specific gravity 13.6. What fraction of its volume is under mercury?", options: ["0.5", "0.4", "0.515", "0.525"], answer: "0.515" },
+                { question: "A flow through an expanding tube at constant rate is called", options: ["Steady uniform flow", "Steady non-uniform flow", "Unsteady uniform flow", "Unsteady non-uniform flow"], answer: "Steady non-uniform flow" },
+                { question: "Reynolds number is significant in", options: ["Supersonics, as with projectile and jet propulsion", "Full immersion or completely enclosed flow, as with pipes, aircraft wings, nozzles etc.", "Simultaneous motion through two fluids where there is a surface of discontinuity, gravity forces, and wave making effect, as with ship's hulls", "All of the above"], answer: "Full immersion or completely enclosed flow, as with pipes, aircraft wings, nozzles etc." },
+                { question: "The loss of head due to friction in a pipe of uniform diameter in which a viscous flow is taking place, is (where RN = Reynold number)", options: ["1/RN", "4/RN", "16/RN", "64/RN"], answer: "16/RN" },
+                { question: "Practical fluids", options: ["Are viscous", "Possess surface tension", "Are compressible", "Possess all the above properties"], answer: "Possess all the above properties" },
+                { question: "A compound pipe of diameter d1, d2 and d3 having lengths l1, l2 and l3 is to be replaced by an equivalent pipe of uniform diameter d and of the same length (l) as that of the compound pipe. The size of the equivalent pipe is given by", options: ["l/d² = l₁/d₁² + l₂/d₂² + l₃/d₃²", "l/d³ = l₁/d₁³ + l₂/d₂³ + l₃/d₃³", "l/d⁴ = l₁/d₁⁴ + l₂/d₂⁴ + l₃/d₃⁴", "l/d⁵ = l₁/d₁⁵ + l₂/d₂⁵ + l₃/d₃⁵"], answer: "l/d⁵ = l₁/d₁⁵ + l₂/d₂⁵ + l₃/d₃⁵" },
+                { question: "The tendency of a liquid surface to contract is due to the following property", options: ["Cohesion", "Adhesion", "Viscosity", "Surface tension"], answer: "Surface tension" },
+                { question: "The Newton's law of resistance is based on the assumption that the", options: ["Planes of the body are completely smooth", "Space around the body is completely filled with the fluid", "Fluid particles do not exert any influence on one another", "All of the above"], answer: "All of the above" },
+                { question: "For manometer, a better liquid combination is one having", options: ["Higher surface tension", "Lower surface tension", "Surface tension is no criterion", "High density and viscosity"], answer: "Higher surface tension" },
+                { question: "The flow in a pipe is neither laminar nor turbulent when Reynold number is", options: ["Less than 2000", "Between 2000 and 2800", "More than 2800", "None of these"], answer: "Between 2000 and 2800" },
+                { question: "The point in the immersed body through which the resultant pressure of the liquid may be taken to act is known as", options: ["Meta center", "Center of pressure", "Center of buoyancy", "Center of gravity"], answer: "Center of pressure" },
+                { question: "Stoke is the unit of", options: ["Kinematic viscosity in C. G. S. units", "Kinematic viscosity in M. K. S. units", "Dynamic viscosity in M. K. S. units", "Dynamic viscosity in S. I. units"], answer: "Kinematic viscosity in C. G. S. units" },
+                { question: "The vapour pressure over the concave surface is", options: ["Less than the vapour pressure over the plane surface", "Equal to the vapour pressure over the plane surface", "Greater than the vapour pressure over the plane surface", "Zero"], answer: "Less than the vapour pressure over the plane surface" },
+                { question: "The velocity at which the flow changes from laminar flow to turbulent flow is called", options: ["Critical velocity", "Velocity of approach", "Sub-sonic velocity", "Super-sonic velocity"], answer: "Critical velocity" },
+                { question: "Mercury is often used in barometer because", options: ["It is the best liquid", "The height of barometer will be less", "Its vapour pressure is so low that it may be neglected", "Both (B) and (C)"], answer: "Both (B) and (C)" },
+                { question: "A vertical wall is subjected to a pressure due to one kind of liquid, on one of its sides. Which of the following statement is correct?", options: ["The pressure on the wall at the liquid level is minimum", "The pressure on the bottom of the wall is maximum", "The pressure on the wall at the liquid level is zero, and on the bottom of the wall is maximum", "The pressure on the bottom of the wall is zero"], answer: "The pressure on the wall at the liquid level is zero, and on the bottom of the wall is maximum" },
+                { question: "Center of pressure compared to C.G. is", options: ["Above it", "Below it", "At same point", "Above or below depending on area of body"], answer: "Below it" },
+                { question: "The centre of gravity of the volume of the liquid displaced by an immersed body is called", options: ["Centre of gravity", "Centre of pressure", "Metacentre", "Centre of buoyancy"], answer: "Centre of buoyancy" },
+                { question: "A tank of uniform cross-sectional area (A) containing liquid upto height (H1) has an orifice of cross-sectional area (a) at its bottom. The time required to bring the liquid level from H1 to H2 will be", options: ["(2A(H1 - H2))/(Cd x a x sqrt(2g))", "(2A(sqrt(H1) - sqrt(H2)))/(Cd x a x sqrt(2g))", "(2A(H1^(3/2) - H2^(3/2)))/(Cd x a x sqrt(2g))", "None of these"], answer: "(2A(sqrt(H1) - sqrt(H2)))/(Cd x a x sqrt(2g))" },
+                { question: "Gradually varied flow is", options: ["Steady uniform", "Non-steady non-uniform", "Non-steady uniform", "Steady non-uniform"], answer: "Steady non-uniform" },
+                { question: "The viscosity of water at 20°C is", options: ["One stoke", "One centistoke", "One poise", "One centipoise"], answer: "One centipoise" },
+                { question: "The velocity of jet of water travelling out of opening in a tank filled with water is proportional to", options: ["Head of water (h)", "h²", "sqrt(h)", "1/h"], answer: "sqrt(h)" },
+                { question: "According to Darcy's formula, the loss of head due to friction in the pipe is (where f = Darcy's coefficient, l = Length of pipe, v = Velocity of liquid in pipe, and d = Diameter of pipe)", options: ["flv²/2gd", "flv²/gd", "3flv²/2gd", "4flv²/2gd"], answer: "4flv²/2gd" },
+                { question: "According to Bernoulli's equation for steady ideal fluid flow", options: ["Principle of conservation of mass holds", "Velocity and pressure are inversely proportional", "Total energy is constant throughout", "The energy is constant along a streamline but may vary across streamlines"], answer: "The energy is constant along a streamline but may vary across streamlines" },
+                { question: "The discharge through a convergent mouthpiece is __________ the discharge through an internal mouthpiece of the same diameter and head of water.", options: ["Equal to", "One-half", "Three fourth", "Double"], answer: "Double" },
+                { question: "Bernoulli equation deals with the law of conservation of", options: ["Mass", "Momentum", "Energy", "Work"], answer: "Energy" },
+                { question: "For an inclined plane with angle θ with horizontal, the center of pressure on the surface lies at a distance equal to __________ the centre of gravity.", options: ["(IG sin²θ / Ah) below", "(IG sin²θ / Ah) above", "(IG sinθ / Ah) below", "(IG sinθ / Ah) above"], answer: "(IG sin²θ / Ah) below" },
+                { question: "Principle of similitude forms the basis of", options: ["Comparing two identical equipments", "Designing models so that the result can be converted to prototypes", "Comparing similarity between design and actual equipment", "Hydraulic designs"], answer: "Designing models so that the result can be converted to prototypes" },
+                { question: "The rise of liquid along the walls of a revolving cylinder about the initial level is __________ the depression of the liquid at the axis of rotation.", options: ["Same as", "Less than", "More than", "None of these"], answer: "Same as" },
+                { question: "Hot wire anemometer is used to measure", options: ["Pressure in gases", "Liquid discharge", "Pressure in liquids", "Gas velocities"], answer: "Gas velocities" },
+                { question: "Venturimeter is used to", options: ["Measure the velocity of a flowing liquid", "Measure the pressure of a flowing liquid", "Measure the discharge of liquid flowing in a pipe", "Measure the pressure difference of liquid flowing between two points in a pipe line"], answer: "Measure the discharge of liquid flowing in a pipe" },
+                { question: "The two important forces for a floating body are", options: ["Buoyancy, gravity", "Buoyancy, pressure", "Buoyancy, inertial", "Inertial, gravity"], answer: "Buoyancy, gravity" },
+                { question: "The kinematic viscosity of an oil (in stokes) whose specific gravity is 0.95 and viscosity 0.011 poise, is", options: ["0.0116 stoke", "0.116 stoke", "0.0611 stoke", "0.611 stoke"], answer: "0.0116 stoke" },
+                { question: "According to the principle of buoyancy a body totally or partially immersed in a fluid will be lifted up by a force equal to", options: ["The weight of the body", "More than the weight of the body", "Less than the weight of the body", "Weight of the fluid displaced by the body"], answer: "Weight of the fluid displaced by the body" },
+                { question: "The pressure measured with the help of a pressure gauge is called", options: ["Atmospheric pressure", "Gauge pressure", "Absolute pressure", "Mean pressure"], answer: "Gauge pressure" },
+                { question: "The total pressure force on a plane area is equal to the area multiplied by the intensity of pressure at the Centroid, if", options: ["The area is horizontal", "The area is vertical", "The area is inclined", "All of the above"], answer: "All of the above" },
+                { question: "The power absorbed (in watts) in overcoming the viscous resistance of a footstep bearing is", options: ["μN²R⁴/1800t", "μπN²R⁴/1800t", "μN²R⁴/3600t", "μπN²R⁴/3600t"], answer: "μπN²R⁴/1800t" },
+                { question: "In order to increase sensitivity of U-tube manometer, one leg is usually inclined by angle θ. Sensitivity of inclined tube to sensitivity of U-tube is equal to", options: ["sin(θ)", "1/sin(θ)", "cos(θ)", "1/cos(θ)"], answer: "1/sin(θ)" },
+                { question: "The most economical section of a rectangular channel is one which has hydraulic mean depth or hydraulic radius equal to", options: ["Half the depth", "Half the breadth", "Twice the depth", "Twice the breadth"], answer: "Half the depth" },
+                { question: "Capillary action is due to the", options: ["Surface tension", "Cohesion of the liquid", "Adhesion of the liquid molecules and the molecules on the surface of a solid", "All of the above"], answer: "All of the above" },
+                { question: "The intensity of pressure on an immersed surface __________ with the increase in depth.", options: ["Does not change", "Increases", "Decreases", "None of these"], answer: "Increases" },
+                { question: "Free surface of a liquid behaves like a sheet and tends to contract to smallest possible area due to the", options: ["Force of adhesion", "Force of cohesion", "Force of friction", "Force of diffusion"], answer: "Force of cohesion" },
+                { question: "Which of the following statement is correct?", options: ["In a compressible flow, the volume of the flowing liquid changes during the flow", "A flow, in which the volume of the flowing liquid does not change, is called incompressible flow", "When the particles rotate about their own axes while flowing, the flow is said to be rotational flow", "All of the above"], answer: "All of the above" },
+                { question: "A bucket of water is hanging from a spring balance. An iron piece is suspended into water without touching sides of bucket from another support. The spring balance reading will", options: ["Increase", "Decrease", "Remain same", "Increase/decrease depending on depth of immersion"], answer: "Remain same" },
+                { question: "A flow through a long pipe at constant rate is called", options: ["Steady uniform flow", "Steady non-uniform flow", "Unsteady uniform flow", "Unsteady non-uniform flow"], answer: "Steady uniform flow" },
+                { question: "Choose the wrong statement", options: ["Viscosity of a fluid is that property which determines the amount of its resistance to a shearing force", "Viscosity is due primarily to interaction between fluid molecules", "Viscosity of liquids decreases with increase in temperature", "Viscosity of liquids is appreciably affected by change in pressure"], answer: "Viscosity of liquids is appreciably affected by change in pressure" },
+                { question: "The unit of dynamic viscosity in S.I. units is", options: ["N-m/s²", "N-s/m²", "Poise", "Stoke"], answer: "N-s/m²" },
+                { question: "A perfect gas", options: ["Has constant viscosity", "Has zero viscosity", "Is incompressible", "None of the above"], answer: "None of the above" },
+                { question: "In a free nappe,", options: ["The pressure below the nappe is atmospheric", "The pressure below the nappe is negative", "The pressure above the nappe is atmospheric", "The pressure above the nappe is negative"], answer: "The pressure below the nappe is atmospheric" },
+                { question: "In a static fluid", options: ["Resistance to shear stress is small", "Fluid pressure is zero", "Linear deformation is small", "Only normal stresses can exist"], answer: "Only normal stresses can exist" },
+                { question: "One litre of water occupies a volume of", options: ["100 cm³", "250 cm³", "500 cm³", "1000 cm³"], answer: "1000 cm³" },
+                { question: "A balloon lifting in air follows the following principle", options: ["Law of gravitation", "Archimedes principle", "Principle of buoyancy", "All of the above"], answer: "All of the above" },
+                { question: "The maximum discharge over a broad crested weir is", options: ["0.384 Cd × L × H^(1/2)", "0.384 Cd × L × H^(3/2)", "1.71 Cd × L × H^(1/2)", "1.71 Cd × L × H^(3/2)"], answer: "1.71 Cd × L × H^(3/2)" },
+                { question: "The ratio of absolute viscosity to mass density is known as", options: ["Specific viscosity", "Viscosity index", "Kinematic viscosity", "Coefficient of viscosity"], answer: "Kinematic viscosity" },
+                { question: "Reynold's number is the ratio of inertia force to", options: ["Pressure force", "Elastic force", "Gravity force", "Viscous force"], answer: "Viscous force" },
+                { question: "Metacentric height is given as the distance between", options: ["The center of gravity of the body and the metacentre", "The center of gravity of the body and the center of buoyancy", "The center of gravity of the body and the center of pressure", "Center of buoyancy and metacentre"], answer: "The center of gravity of the body and the metacentre" },
+                { question: "In a footstep bearing, if the speed of the shaft is doubled, then the torque required to overcome the viscous resistance will be", options: ["Double", "Four times", "Eight times", "Sixteen times"], answer: "Double" },
+                { question: "The continuity equation is connected with", options: ["Open channel/pipe flow", "Compressibility of fluids", "Conservation of mass", "Steady/unsteady flow"], answer: "Conservation of mass" },
+                { question: "The most economical section of a trapezoidal channel is one which has hydraulic mean depth equal to", options: ["1/2 × depth", "1/2 × breadth", "1/2 × sloping side", "1/4 × (depth + breadth)"], answer: "1/2 × depth" },
+                { question: "The velocity of sound is __________ of the absolute temperature.", options: ["Directly proportional to the square root", "Inversely proportional to the square root", "Directly proportional to", "Inversely proportional to"], answer: "Directly proportional to the square root" },
+                { question: "The absolute pressure is equal to", options: ["Gauge pressure + atmospheric pressure", "Gauge pressure - atmospheric pressure", "Atmospheric pressure - gauge pressure", "Gauge pressure - vacuum pressure"], answer: "Gauge pressure + atmospheric pressure" },
+                { question: "Unit of surface tension is", options: ["Energy/unit area", "Force/unit length", "Both of the above", "It has no units"], answer: "Both of the above" },
+                { question: "A Piezometer tube is used only for measuring", options: ["Low pressure", "High pressure", "Moderate pressure", "Vacuum pressure"], answer: "Moderate pressure" },
+                { question: "The capillary rise at 20°C in a clean glass tube of 1 mm bore containing water is approximately", options: ["5 mm", "10 mm", "20 mm", "30 mm"], answer: "30 mm" },
+                { question: "The Cipoletti weir is a __________ weir.", options: ["Rectangular", "Triangular", "Trapezoidal", "Circular"], answer: "Trapezoidal" },
+                { question: "Pressure of the order of 10⁻⁸ torr can be measured by", options: ["Bourdon tube", "Pirani Gauge", "Micro-manometer", "Ionisation gauge"], answer: "Ionisation gauge" },
+                { question: "The volume of a fluid __________ as the pressure increases.", options: ["Remains same", "Decreases", "Increases", "None of these"], answer: "Decreases" },
+                { question: "Buoyant force is", options: ["The resultant force acting on a floating body", "The resultant force on a body due to the fluid surrounding it", "Equal to the volume of liquid displaced", "The force necessary to maintain equilibrium of a submerged body"], answer: "The resultant force on a body due to the fluid surrounding it" },
+                { question: "A flow through a long pipe at decreasing rate is called __________ uniform flow.", options: ["Steady", "Unsteady", "Both A and B", "None of these"], answer: "Unsteady" },
+                { question: "Choose the wrong statement", options: ["The center of buoyancy is located at the center of gravity of the displaced liquid", "For stability of a submerged body, the center of gravity of body must lie directly below the center of buoyancy", "If C.G. and center of buoyancy coincide, the submerged body must lie at neutral equilibrium for all positions", "All floating bodies are stable"], answer: "All floating bodies are stable" },
+                { question: "The intensity of pressure at any point, in a liquid, is __________ to the depth of liquid from the surface.", options: ["Equal", "Directly proportional", "Inversely proportional", "None of these"], answer: "Directly proportional" },
+                { question: "True one-dimensional flow occurs when", options: ["The direction and magnitude of the velocity at all points are identical", "The velocity of successive fluid particles, at any point, is the same at successive periods of time", "The magnitude and direction of the velocity do not change from point to point in the fluid", "The fluid particles move in plane or parallel planes and the streamline patterns are identical in each plane"], answer: "The direction and magnitude of the velocity at all points are identical" },
+                { question: "The discharge in an open channel corresponding to critical depth is", options: ["Zero", "Minimum", "Maximum", "None of these"], answer: "Maximum" },
+                { question: "A piece of wood having weight 5 kg floats in water with 60% of its volume under the liquid. The specific gravity of wood is", options: ["0.83", "0.6", "0.4", "0.3"], answer: "0.6" },
+                { question: "A pitot tube is used to measure the", options: ["Velocity of flow at the required point in a pipe", "Pressure difference between two points in a pipe", "Total pressure of liquid flowing in a pipe", "Discharge through a pipe"], answer: "Velocity of flow at the required point in a pipe" },
+                { question: "The total energy of each particle at various places in the case of perfect incompressible fluid flowing in continuous stream", options: ["Keeps on increasing", "Keeps on decreasing", "Remains constant", "May increase/decrease"], answer: "Remains constant" },
+                { question: "The critical depth meter is used to measure", options: ["Velocity of flow in an open channel", "Depth of flow in an open channel", "Hydraulic jump", "Discharge in an open channel"], answer: "Discharge in an open channel" },
+                { question: "Two pipe systems can be said to be equivalent, when the following quantities are same", options: ["Friction loss and flow", "Length and diameter", "Flow and length", "Friction factor and diameter"], answer: "Friction loss and flow" },
+                { question: "In a footstep bearing, if the radius of the shaft is doubled, then the torque required to overcome the viscous resistance will be", options: ["Double", "Four times", "Eight times", "Sixteen times"], answer: "Sixteen times" },
+                { question: "Surface tension has the units of", options: ["Newton-sec/m", "Newton-m/sec", "Newton/m", "Newton"], answer: "Newton/m" },
+                { question: "The value of bulk modulus of a fluid is required to determine", options: ["Reynold's number", "Froude's number", "Mach number", "Euler's number"], answer: "Mach number" },
+                { question: "Fluid is a substance which offers no resistance to change of", options: ["Pressure", "Flow", "Shape", "Volume"], answer: "Shape" },
+                { question: "The pressure less than atmospheric pressure is known as", options: ["Suction pressure", "Vacuum pressure", "Negative gauge pressure", "All of these"], answer: "All of these" },
+                { question: "The normal stress in a fluid will be constant in all directions at a point only if", options: ["It is incompressible", "It has uniform viscosity", "It has zero viscosity", "It is at rest"], answer: "It is at rest" },
+                { question: "The power transmitted through a pipe is (where w = Specific weight in N/m³, and Q = Discharge in m³/s)", options: ["w × Q × H", "w × Q × hf", "w × Q (H - hf)", "w × Q (H + hf)"], answer: "w × Q (H - hf)" },
+                { question: "If the specific weight of a liquid is 'w' and 'h' is the head of the liquid, then the pressure intensity at that point will be", options: ["h", "wh", "w/h", "h/w"], answer: "wh" },
+                { question: "A compound pipe is required to be replaced by a new pipe. The two pipes are said to be equivalent, if", options: ["Length of both the pipes is same", "Diameter of both the pipes is same", "Loss of head and discharge of both the pipes is same", "Loss of head and velocity of flow in both the pipes is same"], answer: "Loss of head and discharge of both the pipes is same" },
+                { question: "The center of gravity of the volume of the liquid displaced by an immersed body is called", options: ["Metacentre", "Center of pressure", "Center of buoyancy", "Center of gravity"], answer: "Center of buoyancy" },
+                { question: "A flow is called sub-sonic, if the Mach number is", options: ["Less than unity", "Unity", "Between 1 and 6", "More than 6"], answer: "Less than unity" },
+                { question: "Barometer is used to measure", options: ["Pressure in pipes, channels etc.", "Atmospheric pressure", "Very low pressure", "Difference of pressure between two points"], answer: "Atmospheric pressure" },
+                { question: "The hydraulic gradient line lies over the centre line of the pipe by an amount equal to the", options: ["Pressure head", "Velocity head", "Pressure head + velocity head", "Pressure head - velocity head"], answer: "Pressure head" },
+                { question: "The center of pressure of a surface subjected to fluid pressure is the point", options: ["On the surface at which resultant pressure acts", "On the surface at which gravitational force acts", "At which all hydraulic forces meet", "Similar to metacentre"], answer: "On the surface at which resultant pressure acts" },
+                { question: "The variation in the volume of a liquid with the variation of pressure is called its", options: ["Surface tension", "Compressibility", "Capillarity", "Viscosity"], answer: "Compressibility" },
+                { question: "A model of torpedo is tested in a towing tank at a velocity of 25 m/sec. The prototype is expected to attain a velocity of 5 m/sec. What model scale has been used?", options: ["1 : 5", "1 : 2.5", "1 : 25", "5 : 1"], answer: "1 : 5" },
+                { question: "The surface tension of mercury at normal temperature is __________ that of water.", options: ["Same as", "Lower than", "Higher than", "None of these"], answer: "Higher than" },
+                { question: "Flow of water in a pipe about 3 metres in diameter can be measured by", options: ["Orifice plate", "Venturimeter", "Rotameter", "Pitot tube"], answer: "Pitot tube" }
+];
+
+        // Add IDs dynamically to all questions
+        const questions = questionsData.map((q, index) => ({
+            id: index + 1,
+            question: q.question,
+            options: q.options,
+            answer: q.answer
+        }));
+
+        let currentIndex = 0;
+        let userAnswers = {};
+        let timer;
+        let timeRemaining = 120 * 60; // 120 minutes in seconds
+        const form = document.getElementById('quiz-form');
+        const startMessage = document.getElementById('start-message');
+        const testContent = document.getElementById('test-content');
+
+        // Function to start the test
+        function startTest() {
+            startMessage.style.display = 'none';
+            testContent.style.display = 'block';
+            renderQuestions();
+            startTimer();
+        }
+
+        // Function to render questions
+        function renderQuestions() {
+            form.innerHTML = '';
+            for (let i = currentIndex; i < currentIndex + 3 && i < questions.length; i++) {
+                const question = questions[i];
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'question floating';
+                questionDiv.id = `question-${question.id}`;
+                questionDiv.innerHTML = `
+                    <p><i class="fas fa-question-circle" style="color: #4361ee; margin-right: 10px;"></i>${question.question}</p>
+                    <div class="options-container">
+                        ${question.options.map(option => `
+                            <label>
+                                <input type="radio" name="q${question.id}" value="${option}" onchange="lockOption(this)"
+                                    ${userAnswers[question.id] === option ? 'checked' : ''}>
+                                ${option}
+                            </label>
+                        `).join('')}
+                    </div>
+                `;
+                form.appendChild(questionDiv);
+            }
+
+            document.getElementById('back-button').style.display = currentIndex === 0 ? 'none' : 'inline-flex';
+            updateStats();
+        }
+
+        // Function to lock options once selected
+        function lockOption(option) {
+            const questionId = option.name.replace('q', '');
+            userAnswers[questionId] = option.value;
+            const questionDiv = option.closest('.question');
+            const inputs = questionDiv.querySelectorAll('input');
+            inputs.forEach(input => input.disabled = true);
+
+            questionDiv.classList.remove('floating');
+            questionDiv.style.borderLeft = '4px solid #4cc9f0';
+            setTimeout(() => {
+                questionDiv.style.borderLeft = '4px solid #4361ee';
+            }, 500);
+
+            updateStats();
+        }
+
+        // Function to show the next set of questions
+        function showNextQuestions() {
+            currentIndex += 3;
+            if (currentIndex >= questions.length) {
+                submitTest();
+            } else {
+                renderQuestions();
+                window.scrollTo({
+                    top: form.offsetTop - 20,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        // Function to show the previous set of questions
+        function showPreviousQuestions() {
+            currentIndex -= 3;
+            if (currentIndex < 0) currentIndex = 0;
+            renderQuestions();
+            window.scrollTo({
+                top: form.offsetTop - 20,
+                behavior: 'smooth'
+            });
+        }
+
+        // Function to update stats
+        function updateStats() {
+            const totalQuestions = questions.length;
+            const attempted = Object.keys(userAnswers).length;
+            const notAttempted = totalQuestions - attempted;
+
+            document.getElementById('total-questions').textContent = totalQuestions;
+            document.getElementById('attempted').textContent = attempted;
+            document.getElementById('not-attempted').textContent = notAttempted;
+        }
+
+        // Function to start the timer
+        function startTimer() {
+            timer = setInterval(() => {
+                timeRemaining--;
+                if (timeRemaining <= 0) {
+                    clearInterval(timer);
+                    submitTest();
+                }
+                updateTimer();
+            }, 1000);
+        }
+
+        // Function to update the timer display
+        function updateTimer() {
+            const minutes = Math.floor(timeRemaining / 60);
+            const seconds = timeRemaining % 60;
+            const timerElement = document.getElementById('timer');
+            timerElement.innerHTML = `<i class="fas fa-clock"></i> Time Remaining: ${minutes}:${seconds.toString().padStart(2, '0')}`;
+            
+            if (timeRemaining <= 300) {
+                timerElement.style.color = '#f72585';
+                timerElement.style.animation = 'pulse 1s infinite';
+            }
+        }
+
+        // Function to submit the test
+        function submitTest() {
+            clearInterval(timer);
+            document.getElementById('next-button').style.display = 'none';
+            document.getElementById('back-button').style.display = 'none';
+            showResult();
+        }
+
+        // Function to calculate and display the result
+        function showResult() {
+            let score = 0;
+            const answerDetails = [];
+
+            questions.forEach(question => {
+                const userAnswer = userAnswers[question.id];
+                const isCorrect = userAnswer === question.answer;
+                if (isCorrect) score++;
+
+                answerDetails.push(`
+                    <div class="answer-item ${isCorrect ? 'correct-answer' : 'incorrect-answer'}">
+                        <p><strong>Question ${question.id}:</strong> ${question.question}</p>
+                        <p><strong>Your Answer:</strong> <span class="${isCorrect ? 'correct' : 'incorrect'}">${userAnswer || 'Not answered'}</span></p>
+                        <p><strong>Correct Answer:</strong> <span class="correct">${question.answer}</span></p>
+                    </div>
+                `);
+            });
+
+            const percentage = Math.round((score / questions.length) * 100);
+            document.getElementById('score').textContent = `${score} / ${questions.length}`;
+            document.getElementById('percentage').textContent = percentage;
+            document.getElementById('progress-bar').style.width = `${percentage}%`;
+            document.getElementById('answer-details').innerHTML = answerDetails.join('');
+            document.getElementById('result').style.display = 'block';
+
+            window.scrollTo({
+                top: document.getElementById('result').offsetTop - 20,
+                behavior: 'smooth'
+            });
+
+            if (percentage >= 70) {
+                triggerConfetti();
+            }
+        }
+
+        // Simple confetti effect
+        function triggerConfetti() {
+            const confettiCount = 100;
+            const confettiContainer = document.createElement('div');
+            confettiContainer.style.position = 'fixed';
+            confettiContainer.style.top = '0';
+            confettiContainer.style.left = '0';
+            confettiContainer.style.width = '100%';
+            confettiContainer.style.height = '100%';
+            confettiContainer.style.pointerEvents = 'none';
+            confettiContainer.style.zIndex = '1000';
+            document.body.appendChild(confettiContainer);
+
+            for (let i = 0; i < confettiCount; i++) {
+                const confetti = document.createElement('div');
+                confetti.innerHTML = ['🎉', '✨', '🎊', '🏆', '👏'][Math.floor(Math.random() * 5)];
+                confetti.style.position = 'absolute';
+                confetti.style.fontSize = `${Math.random() * 20 + 10}px`;
+                confetti.style.left = `${Math.random() * 100}vw`;
+                confetti.style.top = '-50px';
+                confetti.style.animation = `fall ${Math.random() * 3 + 2}s linear forwards`;
+                confetti.style.opacity = Math.random();
+                confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+                confettiContainer.appendChild(confetti);
+
+                const animation = confetti.animate([
+                    { top: '-50px', opacity: 1 },
+                    { top: '100vh', opacity: 0 }
+                ], {
+                    duration: Math.random() * 3000 + 2000,
+                    easing: 'cubic-bezier(0.1, 0.8, 0.9, 1)'
+                });
+
+                animation.onfinish = () => {
+                    confetti.remove();
+                    if (i === confettiCount - 1) {
+                        confettiContainer.remove();
+                    }
+                };
+            }
+
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes fall {
+                    to { transform: translateY(100vh) rotate(360deg); }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+    </script>
+</body>
+</html>

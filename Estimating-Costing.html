@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estimating & Costing </title>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="Test.css">
+</head>
+<body>
+    <div class="container">
+        <h1><i class="fas fa-drafting-compass"></i> Estimating & Costing MCQ Test</h1>
+        <div id="start-message">
+            <p>Welcome to the Estimating & Costing assessment!</p>
+            <p>You will have <span class="highlight">120 minutes</span> to complete all questions.</p>
+            <p>This test contains <strong>86 multiple-choice questions</strong> covering various aspects of Estimating & Costing.</p>
+            <button id="start-button" onclick="startTest()">Begin Test <i class="fas fa-arrow-right"></i></button>
+        </div>
+        <div id="test-content">
+            <div id="timer">
+                <i class="fas fa-clock"></i> Time Remaining: 120:00
+            </div>
+            <div id="stats">
+                <div class="stat-box">
+                    <h3><i class="fas fa-question-circle"></i> Total Questions</h3>
+                    <div class="stat-value" id="total-questions">40</div>
+                </div>
+                <div class="stat-box">
+                    <h3><i class="fas fa-check-circle"></i> Attempted</h3>
+                    <div class="stat-value" id="attempted">0</div>
+                </div>
+                <div class="stat-box">
+                    <h3><i class="fas fa-exclamation-circle"></i> Not Attempted</h3>
+                    <div class="stat-value" id="not-attempted">40</div>
+                </div>
+            </div>
+            <form id="quiz-form">
+                <!-- Questions will be dynamically inserted here -->
+            </form>
+            <div class="button-container">
+                <button type="button" id="back-button" onclick="showPreviousQuestions()" style="display: none;">
+                    <i class="fas fa-arrow-left"></i> Back
+                </button>
+                <button type="button" id="next-button" onclick="showNextQuestions()">
+                    Next <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+            <div id="result" style="display: none;">
+                <h2>Test Results</h2>
+                <div class="progress-container">
+                    <div class="progress-bar" id="progress-bar"></div>
+                </div>
+                <div class="score-display" id="score">0/0</div>
+                <p>You scored <span class="highlight" id="percentage">0</span>%</p>
+                <div class="answer-details" id="answer-details"></div>
+                <button id="submit-button" onclick="location.reload()">
+                    <i class="fas fa-redo"></i> Take Test Again
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Questions data (just 2 sample questions - add the remaining 38 following the same format)
+        const questionsData = [
+          { question: "The rate of payment is made for 100 cu m (per % cu m) in case of", options: ["Earth work in excavation", "Rock cutting", "Excavation in trenches for foundation", "All the above"], answer: "All the above" },
+                { question: "The rate of an item of work depends on", options: ["Specifications of works", "Specifications of materials", "Proportion of mortar", "All the above"], answer: "All the above" },
+                { question: "The main factor to be considered while preparing a detailed estimate, is", options: ["Quantity of the materials", "Availability of materials", "Transportation of materials", "All the above"], answer: "All the above" },
+                { question: "Pick up the correct statement from the following:", options: ["The estimated value of the work excluding the amount for contingencies, work charged establishment, tool and plants, is called work value", "The actual expenditure involved to complete a work including incidental, establishment and travelling charges, is called actual cost", "The formal acceptance by the administrative department for incurring an expenditure on the work, is called administrative approval", "All the above"], answer: "All the above" },
+                { question: "Brick walls are measured in sq. m if the thickness of the wall is", options: ["10 cm", "15 cm", "20 cm", "None of these"], answer: "10 cm" },
+                { question: "The plinth area of a building not includes", options: ["Area of the walls at the floor level", "Internal shaft for sanitary installations up to 2 sq m. in area", "Lift and wall including landing", "Area of cantilevered porch"], answer: "Area of cantilevered porch" },
+                { question: "If the formation level of a highway has a uniform gradient for a particular length, and the ground is also having a longitudinal slope, the earthwork may be calculated by", options: ["Mid-section formula", "Trapezoidal formula", "Prismoidal formula", "All the above"], answer: "All the above" },
+                { question: "While estimating a reinforced cement structure, the omitted cover of concrete is assumed", options: ["At the end of reinforcing bar, not less than 25 mm or twice the diameter of the bar", "In thin slabs, 12 mm minimum or diameter of the bar whichever is more", "For reinforcing longitudinal bar in a beam 25 mm minimum or diameter of the largest bar which is more", "All the above"], answer: "All the above" },
+                { question: "A cement concrete road is 1000 m long, 8 m wide and 15 cm thick over the sub-base of 10 cm thick gravel. The box cutting in road crust is", options: ["500 m³", "1000 m³", "1500 m³", "2000 m³"], answer: "1500 m³" },
+                { question: "While estimating the qualities for the construction of a building, the correct metric unit is", options: ["Metre for length", "Cubic metre for area", "Square metres for volume", "Litre for capacity"], answer: "Litre for capacity" },
+                { question: "Pick up the correct statement from the following:", options: ["In order to check up the average depth of excavation, 'Dead man's' are left at the mid-widths of borrow pits", "The earthwork calculation in excavation is made from the difference in levels obtained with a level", "The earth work in excavation to form the road embankment includes the formation of correct profile and depositing the soil in layers", "All the above"], answer: "All the above" },
+                { question: "The brick work is not measured in cu m in case of", options: ["One or more than one brick wall", "Brick work in arches", "Reinforced brick work", "Half brick wall"], answer: "Half brick wall" },
+                { question: "Pick up the incorrect statement from the following:", options: ["Lead is the average horizontal straight distance between the borrow pit and the place of spreading soil", "The lead is calculated for each block of the excavated area", "The unit of lead is 50 m for a distance upto 500 m", "The unit of lead is 1 km where the lead exceeds 2 km"], answer: "The unit of lead is 1 km where the lead exceeds 2 km" },
+                { question: "The assumption on which the trapezoidal formula for volumes is based, is", options: ["The end sections are parallel planes", "The mid-area of a pyramid is half the average area of the ends", "The volume of the Prismoidal is over-estimated and hence a Prismoidal correction is applied", "All the above"], answer: "All the above" },
+                { question: "In the mid-section formula", options: ["The mean depth is the average of depths of two consecutive sections", "The area of mid-sections is calculated by using mean depth", "The volume of the earth work is calculated by multiplying the mid-section area by the distance between the two original sections", "All of the above"], answer: "All of the above" },
+                { question: "Pick up the correct statement from the following:", options: ["The earth work of cutting in trenches or borrow pits in fairly uniform ground is measured with the help of average depths of the dead men", "The earth work in trenches or borrow pits in irregular ground is measured by taking the difference in levels before and after completion of work", "The earth work in trenches or borrow pits, where neither a nor b is feasible, are measured from the fillings after deduction of voids", "All the above"], answer: "All the above" },
+                { question: "The cross-sections for a highway is taken at", options: ["Right angle to the centre line", "30 metres apart", "Intermediate points having abrupt change in gradient", "All the above"], answer: "All the above" },
+                { question: "Referring of given figure, pick up the correct statement from the following:", options: ["The total length of centre line of four walls is 20 m", "Length of long wall out-to-out is 6.80 m", "Length of short walls in-to-in is 3.20 m", "All the above"], answer: "All the above" },
+                { question: "Pick up the correct statement regarding the centre line method of estimating a building", options: ["Product of the centre line of the walls and area of cross-section of any item, gives total quantity of the item", "The centre line is worked out separately for different sections of walls of a building", "The centre line length is reduced by half the layer of main wall joining the partition wall", "All the above"], answer: "All the above" },
+                { question: "According to Indian Standards Institute, the actual size of modular bricks is", options: ["23 cm x 11.5 cm x 7.5 cm", "25 cm x 13 cm x 7.5 cm", "19 cm x 9 cm x 9 cm", "20 cm x 10 cm x 10 cm"], answer: "19 cm x 9 cm x 9 cm" },
+                { question: "The following item of earth work is not measured separately.", options: ["Setting out of works", "Site clearance", "Steps in deep excavation", "All the above"], answer: "All the above" },
+                { question: "The measurement is made in square metre in case of", options: ["Cement concrete in foundation", "R.C.C. structure", "Hollow concrete block wall", "None of these"], answer: "None of these" },
+                { question: "Cost of fittings and their fixing is specified for the following sanitary fittings", options: ["Water closets", "Flushing pipes", "Lavatory basins", "All the above"], answer: "All the above" },
+                { question: "The excavation exceeding 1.5 m in width and 10 sq.m in plan area with a depth not exceeding 30 cm, is termed as", options: ["Excavation", "Surface dressing", "Cutting", "Surface excavation"], answer: "Surface excavation" },
+                { question: "For the construction of buildings, the subheads of the estimate are", options: ["Earthwork, Concrete work, Brick work", "Brickwork, Stone work, Roofing", "Brickwork Flooring, Wood work, Steel work", "All the above"], answer: "All the above" },
+                { question: "Pick up the correct statement from the following:", options: ["Pointing is measured in sq.m", "Plastering is measured in sq.m", "Glazing is measured in sq.m", "All the above"], answer: "All the above" },
+                { question: "Pick up the correct statement from the following:", options: ["If the bed level is above N.S.L. the canal is called fully in banking and the berms are designed as 3d where d is full supply depth of water (F.S.D.)", "Area of canal in cutting = BD + Sd² where B = bed width, d = depth of cutting and S is the side slope", "If F.S.L. is above N.S.L the canal is called partly in cutting and partly in filling and berms are designed as 2d where d is full supply depth", "All the above"], answer: "All the above" },
+                { question: "Pick up the incorrect statement from the following:", options: ["No deduction is made for the volume occupied by reinforcement", "No deduction is made for the openings upto 0.1 sq.m", "No deduction is made for volumes occupied by pipes, not exceeding 100 sq.cm in cross-section", "None of these"], answer: "None of these" },
+                { question: "The value of 'B' of Indian type W.C. shown in the given figure is:", options: ["45 cm", "50 cm", "30 cm", "25 cm"], answer: "45 cm" },
+                { question: "Pick up the excavation where measurements are made in square metres for payment.", options: ["Ordinary cuttings up to 1 m", "Surface dressing up to 15 cm depths", "Surface excavation up to 30 cm depths", "Both (b) and (c)"], answer: "Both (b) and (c)" },
+                { question: "As per Indian Standard Specifications, the peak discharge for domestic purposes per capita per minute, is taken", options: ["1.80 litres for 5 to 10 users", "1.20 litres for 15 users", "1.35 for 20 users", "All the above"], answer: "All the above" },
+                { question: "In long and short wall method of estimation, the length of long wall is the centre to centre distance between the walls and", options: ["Breadth of the wall", "Half breadth of wall on each side", "One fourth breadth of wall on each side", "None of these"], answer: "Half breadth of wall on each side" },
+                { question: "The expected out turn of cement concrete 1:2:4 per mason per day is", options: ["1.5 m³", "2.5 m³", "3.5 m³", "5.0 m³"], answer: "5.0 m³" },
+                { question: "The value of 'C' of Indian type W.C. shown in the given figure is:", options: ["400 mm", "450 mm", "500 mm", "550 mm"], answer: "500 mm" },
+                { question: "The area is measured correct to the nearest", options: ["0.01 sqm", "0.02 sqm", "0.03 sqm", "0.04 sqm"], answer: "0.01 sqm" },
+                { question: "The measurement is not made in square metres in case of", options: ["D.P.C. (Damp proof course)", "Form works", "Concrete Jeffries", "R.C. Chhajja"], answer: "R.C. Chhajja" },
+                { question: "The value of 'A' of Indian type W.C. shown in the given figure is:", options: ["25 cm", "30 cm", "40 cm", "45 cm"], answer: "30 cm" },
+                { question: "The trap which is provided to disconnect the house drain from the street sewer is called", options: ["Master trap", "Intercepting trap", "Interception manhole", "All the above"], answer: "All the above" },
+                { question: "Due to change in price level, a revised estimate is prepared if the sanctioned estimate exceeds", options: ["2.0%", "2.5%", "4.0%", "5.0%"], answer: "5.0%" },
+                { question: "The expected out turn of 2.5 cm cement concrete floor per mason per day", options: ["2.5 sqm", "5.0 sqm", "7.5 sqm", "10 sqm"], answer: "7.5 sqm" },
+                { question: "Pick up the correct statement from the following:", options: ["The bent up bars at a support resist the negative bending moment", "The bent up bars at a support resist the shearing force", "The bending of bars near supports is generally at 45°", "All the above"], answer: "All the above" },
+                { question: "While preparing a detailed estimate", options: ["Dimension should be measured correct to 0.01 m", "Area should be measured correct to 0.01 sqm", "Volume should be measured correct to 0.01 cum", "All the above"], answer: "All the above" },
+                { question: "The item of the brick structure measured in sq.m, is", options: ["Reinforced brick work", "Broken glass coping", "Brick edging", "Brick work in arches"], answer: "Broken glass coping" },
+                { question: "The most reliable estimate is", options: ["Detailed estimate", "Preliminary estimate", "Plinth area estimate", "Cube rate estimate"], answer: "Detailed estimate" },
+                { question: "According to ISI method of measurement, the order of the sequence is", options: ["Length, breadth, height", "Breadth, length, height", "Height, length, breadth", "None of these"], answer: "Length, breadth, height" },
+                { question: "Anti-siphonage pipe is connected to", options: ["Main soil pipe", "Bottom of P trap W.C.", "Top of P trap W.C.", "Side of water closet"], answer: "Top of P trap W.C." },
+                { question: "Pick up the correct statement from the following:", options: ["In a gully trap, a water seal of 6 to 7.5 cm is provided", "The gully trap collects waste water from the kitchen, sink, wash basins, etc.", "The gully trap disconnects the sullage drain from the main drainage system", "The grating provided over gully traps is 23 cm square"], answer: "The gully trap collects waste water from the kitchen, sink, wash basins, etc." },
+                { question: "Pick up the correct statement from the following:", options: ["Bricks are paid per thousand", "Cement is paid per 50 kg bag", "Lime is paid per quintal", "All the above"], answer: "All the above" },
+                { question: "Pick up the correct statement from the following:", options: ["All pipes and fittings are classified according to their diameters", "The diameter of the pipes is the nominal diameter of internal bore", "All pipes are measured along the centre line of the pipes in metres", "All the above"], answer: "All the above" },
+                { question: "A portion of an embankment having a uniform up-gradient 1 in 500 is circular with radius 1000 m of the centre line. It subtends 180° at the centre. If the height of the bank is 1 m at the lower end, and side slopes 2:1, the earth work involved.", options: ["26,000 m³", "26,500 m³", "27,000 m³", "27,500 m³"], answer: "27,500 m³" },
+                { question: "Pick up the correct statement in case of water supply.", options: ["Pipes laid in trenches and pipes fixed to walls are measured separately", "Cutting through walls and floors are included with the item", "Pipes are classified according to their sizes and quality", "All the above"], answer: "All the above" },
+                { question: "The concrete work for the following part of the building of specified thickness is measured in square metres", options: ["Root slabs", "Floors", "Wall panels", "All the above"], answer: "All the above" },
+                { question: "The expected out turn of 12 mm plastering with cement mortar is", options: ["2.5 sq m", "4.0 sq m", "6.0 sq m", "8.0 sq m"], answer: "8.0 sq m" },
+                { question: "The total length of a cranked bar through a distance (d) at 45° in case of a beam of effective length L, is", options: ["L + 0.42 d", "L + (2 × 0.42 d)", "L - (0.42 d)", "L - (2 × 0.4 d)"], answer: "L + (2 × 0.42 d)" },
+                { question: "The measurement is made for stone work in square metre in case of", options: ["Wall facing", "Columns, lintels, copings", "Building work", "(a) and (d) of the above"], answer: "(a) and (d) of the above" },
+                { question: "Carpet area does not include the area of", options: ["The walls along with doors and other openings", "Bath room and lavatory", "Kitchen and pantry", "All the above"], answer: "All the above" },
+                { question: "Pick up the correct statement from the following:", options: ["The incidental expenses of a miscellaneous character which could not be predicted during preparation of the estimate, is called contingencies", "Additional supervising staff engaged at work site, is called work charged establishment", "Detailed specifications specify qualities, quantities and the proportions of materials to be used for a particular item", "All the above"], answer: "All the above" },
+                { question: "The correct Prismoidal formula for volume is", options: ["D [first area + last area + Σ Even area + 2 Σ odd areas]", "D/3 [first area + last area + 4 Σ Even area + 2 Σ odd areas]", "D/3 [first area + last area + 2 Σ Even area + 4 Σ odd areas]", "D/6 [first area + Σ odd areas]"], answer: "D/3 [first area + last area + 4 Σ Even area + 2 Σ odd areas]" },
+                { question: "In case of laying gullies, siphons, intercepting traps, the cost includes", options: ["Setting and laying", "Bed concreting", "Connection to drains", "All of these"], answer: "All of these" },
+                { question: "The inspection pit or chamber is a manhole provided in a base drainage system", options: ["At every change of direction", "At every change of gradient", "At every 30 m intervals", "All the above"], answer: "All the above" },
+                { question: "Pick up the incorrect statement from the following:", options: ["Dimensions are measured to the nearest 0.01 m", "Areas are measured to the nearest 0.01 sq.m", "Cubic contents are measured to the nearest 0.1 cum", "Weights are measured to the nearest 0.001 tonnes"], answer: "Cubic contents are measured to the nearest 0.1 cum" },
+                { question: "The 'centre line method' is specially adopted for estimating", options: ["Circular buildings", "Hexagonal buildings", "Octagonal buildings", "All the above"], answer: "All the above" },
+                { question: "Pick up the incorrect statement from the following:", options: ["The built up covered area at the floor level of any storey of a building is called plinth area", "The usable covered area of the rooms of any storey of a building is called carpet area", "The carpet area of a building along with area of its kitchen, pantry, store, lavatory, bath room and glazed veranda, is called floor area", "None of these"], answer: "None of these" },
+                { question: "The unit of measurement is per quintal for the following:", options: ["Collapsible gates with rails", "Rolling shutters", "Expanded metal wire netting", "M.S. reinforcement of R.C.C. works"], answer: "M.S. reinforcement of R.C.C. works" },
+                { question: "The diameter of a domestic sewer pipe laid at gradient 1 in 100 is recommended", options: ["100 mm", "150 mm", "200 mm", "175 mm"], answer: "150 mm" },
+                { question: "The order of booking dimensions is", options: ["Length, breadth, height", "Breadth, length, height", "Height, breadth, length", "None of these"], answer: "Length, breadth, height" },
+                { question: "Pick up the incorrect statement regarding a master trap from the following:", options: ["It is provided in between the lower end of the house drain and the street sewer", "It is provided a cleaning eye at the top of the trap", "The mica flap valve which opens inwards only, is fitted at the top of the inlet pipe", "The water seal is less than that of ordinary traps"], answer: "The water seal is less than that of ordinary traps" },
+                { question: "The detention period in a septic tank is assumed", options: ["20 minutes", "25 minutes", "30 minutes", "40 minutes"], answer: "30 minutes" },
+                { question: "If B is the width of formation, d is the height of the embankment, side slope S : 1, for a highway with no transverse slope, the area of cross-section is", options: ["B + d + Sd", "Bd + Sd²", "B × d - Sd¹/²", "½ (Bd + Sd²)"], answer: "Bd + Sd²" },
+                { question: "Pick up the item of work not included in the plinth area estimate", options: ["Wall thickness", "Room area", "W.C. area", "Courtyard area"], answer: "Courtyard area" },
+                { question: "The minimum width of a septic tank is taken", options: ["70 cm", "75 cm", "80 cm", "90 cm"], answer: "75 cm" },
+                { question: "Pick up the item whose weight is added to the weight of respective item, is", options: ["Cleats", "Brackets", "Bolts", "All the above"], answer: "All the above" },
+                { question: "The expected out turn for earth work in excavation in ordinary soil per workman per day is", options: ["1.00 cum", "2.00 cum", "3.00 cum", "4.00 cum"], answer: "3.00 cum" },
+                { question: "The expected out turn of brick work in cement mortar in foundation and plinth per mason per day, is", options: ["1.00 m³", "1.25 m³", "1.50 m³", "1.75 m³"], answer: "1.25 m³" },
+                { question: "The brick work is measured in sq metre, in case of", options: ["Honey comb brick work", "Brick flat soling", "Half brick walls or the partition", "All the above"], answer: "All the above" },
+                { question: "The height of the sink of wash basin above floor level is kept", options: ["60 cm", "70 cm", "75 cm to 80 cm", "80 cm"], answer: "75 cm to 80 cm" },
+                { question: "For 12 mm thick cement plastering 1 : 6 on 100 sq.m new brick work, the quantity of cement required, is", options: ["0.200 m³", "0.247 m³", "0.274 m³", "0.295 m³"], answer: "0.274 m³" },
+                { question: "The item of steel work which is measured in sq.m, is", options: ["Collapsible gates", "Rolling shutters", "Ventilators and glazing", "All the above"], answer: "All the above" },
+                { question: "The damp proof course (D.P.C.) is measured in", options: ["Cub. m", "Sq. m", "Metres", "None of these"], answer: "Sq. m" },
+                { question: "The volume is measured correct to the nearest", options: ["0.01 cum", "0.02 cum", "0.03 cum", "0.04 cum"], answer: "0.01 cum" },
+                { question: "For 100 sq. m cement concrete (1 : 2: 4) 4 cm thick floor, the quantity of cement required, is", options: ["0.90 m³", "0.94 m³", "0.98 m³", "1.00 m³"], answer: "0.94 m³" },
+                { question: "Size, capacity and materials need be specified for", options: ["Bib-cocks", "Stop-cocks", "Ball valves", "All the above"], answer: "All the above" },
+                { question: "The expected out turn of half brick partition wall per mason per day is", options: ["1.5 m²", "2.0 m²", "4.0 m²", "5.0 m²"], answer: "5.0 m²" },
+                { question: "The floor area includes the area of the balcony up to", options: ["100 %", "75 %", "50 %", "25 %"], answer: "50 %" },
+                { question: "The weight of an item is measured correct to nearest", options: ["0.25 kg", "0.50 kg", "0.75 kg", "1.00 kg"], answer: "1.00 kg" },
+                { question: "Berms are provided in canals if these are", options: ["Fully in excavation", "Partly in excavation and partly in embankment", "Fully in embankment", "All the above"], answer: "Partly in excavation and partly in embankment" }
+          ];
+
+        // Add IDs dynamically to all questions
+        const questions = questionsData.map((q, index) => ({
+            id: index + 1,
+            question: q.question,
+            options: q.options,
+            answer: q.answer
+        }));
+
+        let currentIndex = 0;
+        let userAnswers = {};
+        let timer;
+        let timeRemaining = 120 * 60; // 120 minutes in seconds
+        const form = document.getElementById('quiz-form');
+        const startMessage = document.getElementById('start-message');
+        const testContent = document.getElementById('test-content');
+
+        // Function to start the test
+        function startTest() {
+            startMessage.style.display = 'none';
+            testContent.style.display = 'block';
+            renderQuestions();
+            startTimer();
+        }
+
+        // Function to render questions
+        function renderQuestions() {
+            form.innerHTML = '';
+            for (let i = currentIndex; i < currentIndex + 3 && i < questions.length; i++) {
+                const question = questions[i];
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'question floating';
+                questionDiv.id = `question-${question.id}`;
+                questionDiv.innerHTML = `
+                    <p><i class="fas fa-question-circle" style="color: #4361ee; margin-right: 10px;"></i>${question.question}</p>
+                    <div class="options-container">
+                        ${question.options.map(option => `
+                            <label>
+                                <input type="radio" name="q${question.id}" value="${option}" onchange="lockOption(this)"
+                                    ${userAnswers[question.id] === option ? 'checked' : ''}>
+                                ${option}
+                            </label>
+                        `).join('')}
+                    </div>
+                `;
+                form.appendChild(questionDiv);
+            }
+
+            document.getElementById('back-button').style.display = currentIndex === 0 ? 'none' : 'inline-flex';
+            updateStats();
+        }
+
+        // Function to lock options once selected
+        function lockOption(option) {
+            const questionId = option.name.replace('q', '');
+            userAnswers[questionId] = option.value;
+            const questionDiv = option.closest('.question');
+            const inputs = questionDiv.querySelectorAll('input');
+            inputs.forEach(input => input.disabled = true);
+
+            questionDiv.classList.remove('floating');
+            questionDiv.style.borderLeft = '4px solid #4cc9f0';
+            setTimeout(() => {
+                questionDiv.style.borderLeft = '4px solid #4361ee';
+            }, 500);
+
+            updateStats();
+        }
+
+        // Function to show the next set of questions
+        function showNextQuestions() {
+            currentIndex += 3;
+            if (currentIndex >= questions.length) {
+                submitTest();
+            } else {
+                renderQuestions();
+                window.scrollTo({
+                    top: form.offsetTop - 20,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        // Function to show the previous set of questions
+        function showPreviousQuestions() {
+            currentIndex -= 3;
+            if (currentIndex < 0) currentIndex = 0;
+            renderQuestions();
+            window.scrollTo({
+                top: form.offsetTop - 20,
+                behavior: 'smooth'
+            });
+        }
+
+        // Function to update stats
+        function updateStats() {
+            const totalQuestions = questions.length;
+            const attempted = Object.keys(userAnswers).length;
+            const notAttempted = totalQuestions - attempted;
+
+            document.getElementById('total-questions').textContent = totalQuestions;
+            document.getElementById('attempted').textContent = attempted;
+            document.getElementById('not-attempted').textContent = notAttempted;
+        }
+
+        // Function to start the timer
+        function startTimer() {
+            timer = setInterval(() => {
+                timeRemaining--;
+                if (timeRemaining <= 0) {
+                    clearInterval(timer);
+                    submitTest();
+                }
+                updateTimer();
+            }, 1000);
+        }
+
+        // Function to update the timer display
+        function updateTimer() {
+            const minutes = Math.floor(timeRemaining / 60);
+            const seconds = timeRemaining % 60;
+            const timerElement = document.getElementById('timer');
+            timerElement.innerHTML = `<i class="fas fa-clock"></i> Time Remaining: ${minutes}:${seconds.toString().padStart(2, '0')}`;
+            
+            if (timeRemaining <= 300) {
+                timerElement.style.color = '#f72585';
+                timerElement.style.animation = 'pulse 1s infinite';
+            }
+        }
+
+        // Function to submit the test
+        function submitTest() {
+            clearInterval(timer);
+            document.getElementById('next-button').style.display = 'none';
+            document.getElementById('back-button').style.display = 'none';
+            showResult();
+        }
+
+        // Function to calculate and display the result
+        function showResult() {
+            let score = 0;
+            const answerDetails = [];
+
+            questions.forEach(question => {
+                const userAnswer = userAnswers[question.id];
+                const isCorrect = userAnswer === question.answer;
+                if (isCorrect) score++;
+
+                answerDetails.push(`
+                    <div class="answer-item ${isCorrect ? 'correct-answer' : 'incorrect-answer'}">
+                        <p><strong>Question ${question.id}:</strong> ${question.question}</p>
+                        <p><strong>Your Answer:</strong> <span class="${isCorrect ? 'correct' : 'incorrect'}">${userAnswer || 'Not answered'}</span></p>
+                        <p><strong>Correct Answer:</strong> <span class="correct">${question.answer}</span></p>
+                    </div>
+                `);
+            });
+
+            const percentage = Math.round((score / questions.length) * 100);
+            document.getElementById('score').textContent = `${score} / ${questions.length}`;
+            document.getElementById('percentage').textContent = percentage;
+            document.getElementById('progress-bar').style.width = `${percentage}%`;
+            document.getElementById('answer-details').innerHTML = answerDetails.join('');
+            document.getElementById('result').style.display = 'block';
+
+            window.scrollTo({
+                top: document.getElementById('result').offsetTop - 20,
+                behavior: 'smooth'
+            });
+
+            if (percentage >= 70) {
+                triggerConfetti();
+            }
+        }
+
+        // Simple confetti effect
+        function triggerConfetti() {
+            const confettiCount = 100;
+            const confettiContainer = document.createElement('div');
+            confettiContainer.style.position = 'fixed';
+            confettiContainer.style.top = '0';
+            confettiContainer.style.left = '0';
+            confettiContainer.style.width = '100%';
+            confettiContainer.style.height = '100%';
+            confettiContainer.style.pointerEvents = 'none';
+            confettiContainer.style.zIndex = '1000';
+            document.body.appendChild(confettiContainer);
+
+            for (let i = 0; i < confettiCount; i++) {
+                const confetti = document.createElement('div');
+                confetti.innerHTML = ['🎉', '✨', '🎊', '🏆', '👏'][Math.floor(Math.random() * 5)];
+                confetti.style.position = 'absolute';
+                confetti.style.fontSize = `${Math.random() * 20 + 10}px`;
+                confetti.style.left = `${Math.random() * 100}vw`;
+                confetti.style.top = '-50px';
+                confetti.style.animation = `fall ${Math.random() * 3 + 2}s linear forwards`;
+                confetti.style.opacity = Math.random();
+                confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+                confettiContainer.appendChild(confetti);
+
+                const animation = confetti.animate([
+                    { top: '-50px', opacity: 1 },
+                    { top: '100vh', opacity: 0 }
+                ], {
+                    duration: Math.random() * 3000 + 2000,
+                    easing: 'cubic-bezier(0.1, 0.8, 0.9, 1)'
+                });
+
+                animation.onfinish = () => {
+                    confetti.remove();
+                    if (i === confettiCount - 1) {
+                        confettiContainer.remove();
+                    }
+                };
+            }
+
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes fall {
+                    to { transform: translateY(100vh) rotate(360deg); }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>For my pretty girl 💘</title>
+  <!-- Font Awesome 6 (free) for cute icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* Reset & base – dreamy valentine vibe */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', 'Poppins', 'Helvetica Neue', sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at 20% 30%, #ffe9f4, #ffb3c6);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+      padding: 16px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* floating hearts background (cute & subtle) */
+    body::before {
+      content: "❤️";
+      position: absolute;
+      font-size: 24px;
+      opacity: 0.1;
+      top: 5%;
+      left: 3%;
+      animation: float 8s infinite ease-in-out;
+    }
+
+    body::after {
+      content: "❤️";
+      position: absolute;
+      font-size: 32px;
+      opacity: 0.08;
+      bottom: 8%;
+      right: 5%;
+      animation: float 12s infinite reverse;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(5deg); }
+      100% { transform: translateY(0px) rotate(0deg); }
+    }
+
+    /* main card – soft, glossy and love-infused */
+    .valentine-card {
+      background: rgba(255, 250, 245, 0.85);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 60px 20px 60px 20px;
+      box-shadow: 0 25px 40px rgba(210, 70, 110, 0.25),
+                  inset 0 0 30px rgba(255, 220, 240, 0.6);
+      max-width: 650px;
+      width: 100%;
+      padding: 40px 30px;
+      text-align: center;
+      border: 2px solid rgba(255, 200, 220, 0.7);
+      position: relative;
+      z-index: 10;
+      transition: 0.3s;
+    }
+
+    /* question text – sparkly */
+    .question {
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: #9f2b5e;
+      text-shadow: 3px 3px 0 #ffc2d1, 0 0 12px #ff98b9;
+      margin-bottom: 20px;
+      letter-spacing: 2px;
+      word-break: break-word;
+    }
+
+    .question i {
+      color: #ff4d6d;
+      font-size: 2.6rem;
+      margin: 0 8px;
+    }
+
+    /* wrapper to hold buttons – yes stays central, no runs away */
+    .buttons-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+      position: relative;
+      min-height: 90px;
+    }
+
+    /* base button style – irresistible */
+    .btn {
+      border: none;
+      padding: 18px 45px;
+      font-size: 1.9rem;
+      font-weight: 600;
+      border-radius: 60px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      transition: all 0.2s ease;
+      box-shadow: 0 8px 0 rgba(0, 0, 0, 0.1), 0 12px 25px rgba(255, 80, 120, 0.4);
+      letter-spacing: 2px;
+      border: 2px solid white;
+    }
+
+    /* YES button – brave, visible, always on top */
+    .yes-btn {
+      background: #ff4d6d;
+      color: white;
+      position: relative;
+      z-index: 2;
+      box-shadow: 0 8px 0 #b3243e, 0 12px 30px #ff4d6d;
+    }
+
+    .yes-btn:hover {
+      transform: scale(1.07);
+      background: #ff1e4d;
+      box-shadow: 0 5px 0 #9e1e36, 0 18px 35px #ff3b5c;
+    }
+
+    /* NO button – starts innocent, becomes a little escape artist */
+    .no-btn {
+      background: #6c757d;
+      color: white;
+      border: 2px solid #f8d7da;
+      box-shadow: 0 8px 0 #3d4145, 0 12px 25px #565e64;
+      z-index: 1;  /* lower than YES so YES is always clickable */
+      transition: left 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                  top 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+                  transform 0.2s, background 0.2s;
+      position: relative; /* becomes fixed on first touch/mouseover */
+      cursor: pointer;
+    }
+
+    .no-btn i {
+      font-size: 1.8rem;
+    }
+
+    /* when YES is clicked — love message style */
+    .love-message {
+      font-size: 2.5rem;
+      color: #b34167;
+      background: rgba(255, 235, 245, 0.8);
+      padding: 40px 20px;
+      border-radius: 70px 20px 70px 20px;
+      text-shadow: 2px 2px 0 #ffe2f0;
+      animation: heartbeat 1.5s infinite;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      backdrop-filter: blur(5px);
+    }
+
+    .love-message i {
+      font-size: 3.4rem;
+      color: #ff4d6d;
+    }
+
+    @keyframes heartbeat {
+      0% { transform: scale(1); }
+      25% { transform: scale(1.05); }
+      35% { transform: scale(1); }
+      45% { transform: scale(1.02); }
+      55% { transform: scale(1); }
+      100% { transform: scale(1); }
+    }
+
+    /* tiny hearts decoration (extra cute) */
+    .floating-heart {
+      position: absolute;
+      color: #ffa5b0;
+      font-size: 1.3rem;
+      opacity: 0.4;
+      user-select: none;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* responsive for small devices */
+    @media (max-width: 500px) {
+      .valentine-card {
+        padding: 30px 18px;
+      }
+      .question {
+        font-size: 2.2rem;
+      }
+      .btn {
+        padding: 14px 30px;
+        font-size: 1.6rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- several absolutely positioned floating hearts (random cuteness) -->
+  <div class="floating-heart" style="top: 7%; left: 12%;">❤️</div>
+  <div class="floating-heart" style="bottom: 15%; left: 8%; font-size: 2rem;">❤️</div>
+  <div class="floating-heart" style="top: 20%; right: 10%;">🧡</div>
+  <div class="floating-heart" style="bottom: 25%; right: 18%; font-size: 1.8rem;">💖</div>
+  <div class="floating-heart" style="top: 45%; left: 5%;">💗</div>
+  <div class="floating-heart" style="top: 70%; right: 7%;">💘</div>
+
+  <!-- MAIN CARD – everything important inside -->
+  <div class="valentine-card" id="valentineCard">
+    <div id="contentArea">
+      <!-- Question with heart icons -->
+      <h1 class="question">
+        <i class="fas fa-heart"></i> Do you love me? <i class="fas fa-heart"></i>
+      </h1>
+
+      <!-- Buttons container: YES (safe) and NO (rascal) -->
+      <div class="buttons-wrap" id="buttonWrapper">
+        <button class="btn yes-btn" id="yesBtn">
+          <i class="fas fa-check-circle"></i> Yes 
+          <i class="fas fa-heart" style="font-size: 1.6rem;"></i>
+        </button>
+        <button class="btn no-btn" id="noBtn">
+          <i class="fas fa-times-circle"></i> No 
+          <i class="fas fa-frown"></i>
+        </button>
+      </div>
+      <!-- subtle hint -->
+      <p style="margin-top: 30px; color: #b3546b; font-size: 1.2rem; font-weight: 500; opacity: 0.9;">
+        <i class="fas fa-arrow-right"></i> the "No" is shy.. try to catch it! <i class="fas fa-arrow-left"></i>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      "use strict";
+
+      // ---------- ELEMENTS ----------
+      const noBtn = document.getElementById('noBtn');
+      const yesBtn = document.getElementById('yesBtn');
+      const valentineCard = document.getElementById('valentineCard');
+      const contentArea = document.getElementById('contentArea');
+
+      // ---------- HELPER: random position for NO button (fixed to viewport) ----------
+      function moveNoButtonRandomly() {
+        if (!noBtn) return;
+
+        // get viewport dimensions and button size
+        const winWidth = window.innerWidth;
+        const winHeight = window.innerHeight;
+        const btnWidth = noBtn.offsetWidth;
+        const btnHeight = noBtn.offsetHeight;
+
+        // calculate safe random boundaries (stay fully visible)
+        const maxLeft = Math.max(0, winWidth - btnWidth - 10);  // 10px margin from edge
+        const maxTop = Math.max(0, winHeight - btnHeight - 10);
+
+        // random coordinates
+        let randomLeft = Math.floor(Math.random() * maxLeft);
+        let randomTop = Math.floor(Math.random() * maxTop);
+
+        // ensure not negative and within screen
+        randomLeft = Math.max(5, Math.min(randomLeft, maxLeft));
+        randomTop = Math.max(5, Math.min(randomTop, maxTop));
+
+        // --- FIXED POSITION — escape from any container! ---
+        // only set position to fixed if not already (first time)
+        if (noBtn.style.position !== 'fixed') {
+          noBtn.style.position = 'fixed';
+          noBtn.style.zIndex = '1';       // stay behind YES
+          // remove from flex flow – it will now be relative to viewport
+          noBtn.style.display = 'inline-block'; // keep as button
+        }
+
+        // apply new random coordinates
+        noBtn.style.left = randomLeft + 'px';
+        noBtn.style.top = randomTop + 'px';
+
+        // optional tiny extra: add a little "whoosh" effect
+        noBtn.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+          if (noBtn) noBtn.style.transform = 'scale(1)';
+        }, 120);
+      }
+
+      // ---------- EVENT LISTENERS: mouse & touch trigger escape ----------
+      function attachNoButtonEvents() {
+        if (!noBtn) return;
+
+        // ---- mouseenter: runs away immediately ----
+        noBtn.addEventListener('mouseenter', function(e) {
+          e.preventDefault();
+          moveNoButtonRandomly();
+        });
+
+        // ---- touchstart: for mobile "touch" - move instantly ----
+        noBtn.addEventListener('touchstart', function(e) {
+          e.preventDefault();   // prevent scrolling or zoom while interacting
+          moveNoButtonRandomly();
+        }, { passive: false });
+
+        // ---- just in case someone actually manages to click "No" (rare, but playful) ----
+        noBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          // move again aggressively
+          moveNoButtonRandomly();
+          // playful alert (only once per click, not spammy)
+          alert("💞 Oops! No is not an option, sweetheart! 💞");
+        });
+      }
+
+      // ---------- YES button: show love message for Sanu ----------
+      function handleYesClick() {
+        // create beautiful love declaration
+        const loveDiv = document.createElement('div');
+        loveDiv.className = 'love-message';
+        loveDiv.innerHTML = `
+          <i class="fas fa-heart" style="font-size: 4rem; animation: heartbeat 1.2s infinite;"></i>
+          <span style="font-size: 3.2rem; font-weight: 800;">💘 Love you to Sanu. 💘</span>
+          <i class="fas fa-heart" style="font-size: 4rem; animation: heartbeat 1.2s infinite reverse;"></i>
+          <p style="font-size: 1.6rem; margin-top: 10px; color: #a12e4a;">
+            <i class="fas fa-smile-wink"></i> my pretty girl <i class="fas fa-smile-wink"></i>
+          </p>
+        `;
+
+        // clear entire content area and append the love message
+        if (contentArea) {
+          contentArea.innerHTML = '';
+          contentArea.appendChild(loveDiv);
+        }
+
+        // also hide the runaway no button (it may be floating somewhere)
+        if (noBtn) {
+          noBtn.style.display = 'none';  // vanish
+        }
+        // yes button is gone because contentArea cleared, but double-check:
+        if (yesBtn) {
+          // yesBtn is removed from DOM already, but ensure no residual
+        }
+
+        // add extra floating hearts around the message (delightful)
+        const card = valentineCard;
+        const extraHeart = document.createElement('div');
+        extraHeart.className = 'floating-heart';
+        extraHeart.style.cssText = 'top: 20%; right: 10%; font-size: 3rem; opacity: 0.3; animation: float 4s infinite;';
+        extraHeart.innerHTML = '❤️';
+        card.appendChild(extraHeart);
+        
+        const extraHeart2 = document.createElement('div');
+        extraHeart2.className = 'floating-heart';
+        extraHeart2.style.cssText = 'bottom: 15%; left: 5%; font-size: 2.8rem; opacity: 0.25; animation: float 6s infinite reverse;';
+        extraHeart2.innerHTML = '💖';
+        card.appendChild(extraHeart2);
+      }
+
+      // ---------- attach YES button listener ----------
+      if (yesBtn) {
+        yesBtn.addEventListener('click', handleYesClick);
+        // also for touch devices
+        yesBtn.addEventListener('touchstart', function(e) {
+          // just to make it responsive, but we'll use click to avoid double
+        });
+      }
+
+      // ---------- initialize no button events ----------
+      attachNoButtonEvents();
+
+      // ---------- (optional) on window resize, ensure no button stays inside ----------
+      window.addEventListener('resize', function() {
+        // if no button is in fixed mode and visible, re-clamp its position
+        if (noBtn && noBtn.style.position === 'fixed') {
+          const winWidth = window.innerWidth;
+          const winHeight = window.innerHeight;
+          const btnWidth = noBtn.offsetWidth;
+          const btnHeight = noBtn.offsetHeight;
+          let left = parseFloat(noBtn.style.left) || 0;
+          let top = parseFloat(noBtn.style.top) || 0;
+          const maxLeft = winWidth - btnWidth - 10;
+          const maxTop = winHeight - btnHeight - 10;
+
+          if (left > maxLeft) noBtn.style.left = maxLeft + 'px';
+          if (top > maxTop) noBtn.style.top = maxTop + 'px';
+          if (left < 5) noBtn.style.left = '5px';
+          if (top < 5) noBtn.style.top = '5px';
+        }
+      });
+
+      // ---------- little extra charm: move no button a bit on page load? ----------
+      // not necessary, but we'll place it initially in flow. keep as is.
+      // BUT we want the NO button to be touchable from start? It stays in wrapper.
+      // We'll not pre-move, let it be next to Yes, but first hover will make it escape.
+      // To make it extra fun: pre-position it fixed after 1 second? 
+      // better: on first interaction. Keep it clean.
+
+      // For mobile: ensure that if NO is never hovered but tried to tap, it still moves.
+      // Already touchstart does that.
+
+      // Also, if user clicks Yes, everything is replaced. 
+    })();
+  </script>
+
+  <!-- Extra small style tweaks to keep yes always above no (even when no is fixed) -->
+  <style>
+    /* ensure YES button is always on top, even if NO flies over */
+    .yes-btn {
+      position: relative;
+      z-index: 999 !important;  /* extremely high to stay above fixed no */
+    }
+    .no-btn {
+      z-index: 100; /* lower than yes, but higher than background */
+    }
+    /* when no becomes fixed, we set z-index = 1 in js, but this ensures it */
+    .no-btn[style*="fixed"] {
+      z-index: 100 !important; /* keep yes above (yes z-index 999) */
+    }
+    /* make the message extra shiny */
+    .love-message {
+      background: linear-gradient(145deg, #fff3f9, #ffe4ed);
+      border: 4px solid white;
+      box-shadow: 0 20px 35px rgba(200, 60, 100, 0.3);
+    }
+  </style>
+
+  <!-- ensure that the no button is never on top of yes button -->
+  <script>
+    (function overrideNoZindex() {
+      // just to be super sure: every time no button moves, keep its z-index low
+      const noBtn = document.getElementById('noBtn');
+      if (noBtn) {
+        const originalMove = noBtn.style.left; // dummy
+        // we already set zindex in move function, but we can observe
+        const setter = setInterval(function() {
+          if (noBtn && noBtn.style.position === 'fixed') {
+            noBtn.style.zIndex = '100';  // yes is 999
+          }
+        }, 200);
+        // clean potential interval if yes clicked (but not necessary)
+      }
+    })();
+  </script>
+</body>
+  </html>

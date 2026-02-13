@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>प्यारी सानु तिम्रो लागि भ्यालेन्टाइन २०२६</title>
+  <!-- Fonts & Icons: Devanagari friendly + elegant -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@300;400;600&family=Noto+Serif+Devanagari:wght@400;600&family=Poppins:wght@300;400;600&family=Playfair+Display:wght@400;600;700&family=Sacramento&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+
+  <style>
+    /* ----- unified & cleaned CSS (all original styles preserved, merged) ----- */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --deep-rose: #b3404a; --blush: #ffd9de; --petal: #fff0f3; --heart-red: #e43d4c;
+      --gold-soft: #f7d6b3; --warm-gray: #4e3b3f; --shadow: rgba(180, 60, 80, 0.2);
+      --primary: #b3404a; --purple: #8e5b9f; --accent: #f7d6b3; --gold: #d4af37; --dark: #3d2b2f;
+    }
+
+    body {
+      font-family: 'Noto Sans Devanagari', 'Poppins', sans-serif;
+      background: linear-gradient(145deg, #ffe9ef 0%, #ffdbe5 100%);
+      color: #3d2b2f; line-height: 1.6; overflow-x: hidden; height: 100vh; margin: 0;
+    }
+
+    h1, h2, h3, .section-title, .letter-head, .dream-card h3 { font-family: 'Noto Serif Devanagari', 'Playfair Display', serif; }
+
+    /* navigation bar (original + merged) */
+    .nav-bar {
+      position: fixed; top: 0; left: 0; width: 100%;
+      background: rgba(255, 245, 248, 0.9); backdrop-filter: blur(10px);
+      box-shadow: 0 4px 20px var(--shadow); display: flex; justify-content: center;
+      padding: 0.8rem 2rem; z-index: 100; border-bottom: 1px solid rgba(255,140,170,0.3);
+    }
+    .nav-links { display: flex; gap: 2.2rem; flex-wrap: wrap; justify-content: center; }
+    .nav-links a {
+      text-decoration: none; font-weight: 500; font-size: 1.1rem; color: #a13e4b;
+      display: flex; align-items: center; gap: 0.4rem; transition: 0.3s;
+      border-bottom: 2px solid transparent; padding-bottom: 4px; cursor: pointer;
+    }
+    .nav-links a i { font-size: 1.2rem; color: #e6536b; transition: 0.3s; }
+    .nav-links a:hover { border-bottom-color: #e6536b; transform: translateY(-2px); }
+    .nav-links a:hover i { transform: scale(1.2); color: #c42e4b; }
+
+    /* sections */
+    .section { display: none; min-height: 100vh; height: auto; overflow-y: auto; padding: 5rem 2rem 3rem; max-width: 1300px; margin: 0 auto; flex-direction: column; position: relative; }
+    .section.active { display: flex; }
+
+    .section-title {
+      font-size: 3.8rem; font-weight: 600; color: #a14252; text-shadow: 2px 2px 4px rgba(230,80,110,0.2);
+      margin-bottom: 2rem; text-align: center; letter-spacing: 0.02em; line-height: 1.3;
+    }
+    .section-title::after { content: '♥'; display: block; font-size: 2rem; margin-top: 1rem; color: var(--gold); }
+
+    .title-decoration {
+      display: flex; align-items: center; justify-content: center; gap: 0.8rem;
+      margin-top: -1rem; margin-bottom: 2.5rem; flex-shrink: 0;
+    }
+    .title-decoration i { color: #e65d74; font-size: 1.4rem; opacity: 0.8; }
+
+    /* HOME hero */
+    #home { background: radial-gradient(circle at 80% 30%, rgba(255,220,230,0.6) 0%, transparent 50%); }
+    .hero-content { text-align: center; max-width: 900px; margin: 0 auto; }
+    .hero-content h2 { font-family: 'Noto Serif Devanagari', serif; font-size: 5rem; color: #a12f44; line-height: 1.3; margin-bottom: 1rem; }
+    .hero-content .sub { font-size: 1.6rem; font-weight: 300; color: #7e4a56; margin-bottom: 2rem; }
+    .countdown-box {
+      background: rgba(255,255,255,0.6); backdrop-filter: blur(4px); border-radius: 80px;
+      padding: 1.2rem 2.5rem; display: inline-block; box-shadow: 0 10px 30px rgba(200,100,120,0.3);
+      border: 1px solid rgba(255,200,210,0.9); margin: 2rem 0;
+    }
+    #countdown { font-size: 2.2rem; font-weight: 600; color: #c62e4c; letter-spacing: 4px; }
+    .heart-float-btn {
+      background: #ff99aa; border: none; color: white; font-size: 1.4rem; padding: 1rem 2.8rem;
+      border-radius: 50px; box-shadow: 0 10px 20px #e65d7450; cursor: pointer; transition: all 0.3s;
+      border: 1px solid white; margin-top: 2rem; font-weight: 600;
+    }
+    .heart-float-btn i { margin-right: 10px; color: #ffeef2; }
+    .heart-float-btn:hover { background: #ff7f9f; transform: scale(1.05); box-shadow: 0 15px 30px #d43f5e80; }
+
+    /* ----- TIMELINE (merged original + english design) ----- */
+    .timeline { position: relative; padding: 2rem 0; }
+    .timeline::before {
+      content: ''; position: absolute; left: 50%; transform: translateX(-50%);
+      width: 4px; height: 100%; background: linear-gradient(to bottom, #b3404a, #8e5b9f);
+    }
+    .timeline-item {
+      display: flex; margin-bottom: 4rem; position: relative; opacity: 0;
+      animation: slideInTimeline 0.8s forwards;
+    }
+    .timeline-item:nth-child(even) { flex-direction: row-reverse; }
+    @keyframes slideInTimeline { to { opacity: 1; } }
+    .timeline-item:nth-child(1) { animation-delay: 0.2s; }
+    .timeline-item:nth-child(2) { animation-delay: 0.4s; }
+    .timeline-item:nth-child(3) { animation-delay: 0.6s; }
+    .timeline-item:nth-child(4) { animation-delay: 0.8s; }
+    .timeline-item:nth-child(5) { animation-delay: 1s; }
+
+    .timeline-content {
+      width: 45%; background: white; padding: 2rem; border-radius: 15px;
+      box-shadow: 0 5px 30px rgba(0,0,0,0.15); position: relative; transition: 0.3s;
+    }
+    .timeline-content:hover { transform: scale(1.05); box-shadow: 0 10px 40px rgba(230,57,70,0.3); }
+    .timeline-content h3 { font-size: 1.8rem; color: #b3404a; margin-bottom: 0.5rem; }
+    .timeline-content .date-badge {
+      display: inline-block; background: #f7d6b3; color: #3d2b2f; padding: 0.3rem 1rem;
+      border-radius: 20px; font-size: 0.9rem; margin-bottom: 1rem;
+    }
+    .timeline-content p { font-size: 1.2rem; line-height: 1.8; }
+    .timeline-dot {
+      position: absolute; left: 50%; transform: translateX(-50%); width: 20px; height: 20px;
+      background: #d4af37; border-radius: 50%; border: 4px solid white;
+      box-shadow: 0 0 0 4px #b3404a; z-index: 1;
+    }
+
+    /* REASONS grid (merged both sets) */
+    .reasons-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2rem; margin-top: 1rem;
+    }
+    .reason-card {
+      background: rgba(255,248,250,0.7); backdrop-filter: blur(2px); padding: 2rem 1rem;
+      text-align: center; border-radius: 30px 10px 30px 10px; box-shadow: 0 15px 25px rgba(170,100,120,0.2);
+      transition: 0.4s; border: 1px solid rgba(255,160,180,0.4); cursor: pointer; position: relative; overflow: hidden;
+    }
+    .reason-card::before {
+      content: ''; position: absolute; top:0; left:0; width:100%; height:100%;
+      background: linear-gradient(135deg, #b3404a, #8e5b9f); opacity: 0; transition: 0.4s; z-index:0;
+    }
+    .reason-card:hover::before { opacity: 0.1; }
+    .reason-card:hover { transform: scale(1.03) rotate(0.5deg); background: #ffeef2; border-color: #ff91a8; }
+    .reason-card i { font-size: 2.8rem; color: #e6536b; margin-bottom: 1rem; position: relative; z-index: 1; }
+    .reason-card .number {
+      font-size: 3rem; color: #b3404a; font-weight: bold; font-family: 'Playfair Display', serif; position: relative; z-index:1;
+    }
+    .reason-card h3 { font-size: 2rem; margin-bottom: 0.5rem; color: #a63f52; position: relative; z-index:1; }
+    .reason-card p { font-size: 1rem; color: #5c3e46; position: relative; z-index:1; }
+
+    /* GALLERY (merged) */
+    .gallery-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto;
+    }
+    .gallery-item {
+      aspect-ratio: 1 / 1.2; background: linear-gradient(145deg, #fcc6d2, #ffb1c2);
+      border-radius: 30% 10% 30% 10%; box-shadow: 0 20px 30px #e6a3b3;
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      transition: 0.4s; border: 3px solid white; position: relative; overflow: hidden;
+      color: white; text-shadow: 2px 2px 4px #b34b5e; font-size: 1.6rem;
+    }
+    .gallery-item i { font-size: 5rem; color: white; text-shadow: 0 4px 8px #d43f5e; }
+    .gallery-item span { font-family: 'Noto Serif Devanagari', serif; margin-top: 0.5rem; }
+    .gallery-item::after {
+      content: "♥"; position: absolute; bottom: -10px; right: -10px; font-size: 5rem;
+      color: rgba(255,255,255,0.2); pointer-events: none;
+    }
+    .gallery-item:hover { transform: scale(1.02) rotate(0.8deg); background: linear-gradient(145deg, #ffb6c9, #f596af); }
+
+    /* LOVE LETTER (merged both) */
+    .letter-container { display: flex; justify-content: center; width: 100%; }
+    .love-letter {
+      background: #fff9f7; max-width: 800px; width:100%; padding: 3rem 3.5rem;
+      border-radius: 30px 10px 30px 10px; box-shadow: 0 30px 40px #e2a9b9;
+      border: 1px solid #ffcfda; transform: rotate(0.6deg); transition: 0.3s; position: relative;
+    }
+    .love-letter:hover { transform: rotate(0deg) scale(1.01); }
+    .letter-head { font-size: 2.2rem; color: #a63f52; border-bottom: 2px dashed #fbaac3; padding-bottom: 0.5rem; margin-bottom: 1.8rem; }
+    .letter-body { font-size: 1.3rem; color: #442f35; line-height: 2; }
+    .letter-sign { margin-top: 2rem; text-align: right; font-size: 2.5rem; color: #b3485c; }
+    .letter-envelope-icon { position: absolute; bottom: -15px; left: -15px; font-size: 3rem; color: #f698ad; opacity: 0.4; }
+    .english-letter p { font-size: 1.2rem; margin-top: 1.5rem; text-align: justify; }
+    .english-letter .signature { font-family: 'Sacramento', cursive; font-size: 2.5rem; color: #8e5b9f; text-align: right; margin-top: 2rem; }
+
+    /* FUTURE + SURPRISE (merged) */
+    .dreams-grid {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 2.5rem; margin: 2rem 0;
+    }
+    .dream-card {
+      background: rgba(253,235,240,0.7); backdrop-filter: blur(3px); padding: 2rem;
+      width: 240px; border-radius: 40px 10px 40px 10px; border: 1px solid white;
+      box-shadow: 0 20px 30px #e2b0bd; text-align: center; transition: 0.4s;
+    }
+    .dream-card:hover { background: #fff0f3; transform: translateY(-10px); }
+    .dream-card i { font-size: 3rem; color: #e6536b; margin-bottom: 1rem; }
+    .dream-card h3 { font-size: 2rem; color: #ac3f55; margin-bottom: 0.5rem; }
+    .dream-card p { color: #5f404b; }
+/* CSS for gallery images – applies only to images inside .gallery-item */
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;          /* ensures the image fills the box without distortion */
+  border-radius: inherit;     /* matches the parent's curved shape */
+  display: block;
+  position: relative;
+  z-index: 2;                 /* sits above the background but below the heart overlay */
+}
+    /* surprise box (from english page) */
+    .surprise-box {
+      background: white; max-width: 600px; margin: 3rem auto; padding: 3rem;
+      border-radius: 25px; box-shadow: 0 15px 50px rgba(0,0,0,0.2); text-align: center;
+    }
+    .gift-box { font-size: 8rem; cursor: pointer; transition: transform 0.3s; display: inline-block; }
+    .gift-box:hover { transform: scale(1.1) rotate(5deg); }
+    .hidden-message { display: none; animation: revealMessage 1s ease-in; }
+    .hidden-message.show { display: block; }
+    @keyframes revealMessage { from { opacity:0; transform:scale(0.5); } to { opacity:1; transform:scale(1); } }
+    .hidden-message h3 { font-size: 2.5rem; color: #b3404a; margin:2rem 0; }
+    .hidden-message p { font-size:1.3rem; }
+
+    /* ----- UPLOAD SECTION replaced with ASCII art ----- */
+    .ascii-container {
+      background: #1a0c10; /* dark background for contrast */
+      border-radius: 30px;
+      padding: 1.5rem;
+      box-shadow: 0 20px 30px #e2a9b9;
+      max-width: 100%;
+      overflow-x: auto;
+      border: 3px solid #ffb3c6;
+    }
+    .ascii-container pre {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 6px;  /* adjustable for fitting */
+      line-height: 1.1;
+      color: #fbb1c2;      /* soft pink */
+      text-shadow: 0 0 2px #ff99aa;
+      white-space: pre;
+      margin: 0;
+    }
+    /* optional responsive scaling */
+    @media (max-width: 700px) {
+      .ascii-container pre { font-size: 0.4rem; }
+    }
+
+    /* floating hearts */
+    .float-heart {
+      position: fixed; color: #ff5a7a; font-size: 1.8rem; user-select: none;
+      pointer-events: none; z-index: 9999; animation: floatUp 4s linear forwards;
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(-200px) scale(1.8); opacity: 0; }
+    }
+ 
+
+    /* nav arrows */
+    .nav-arrow {
+      position: fixed; top: 50%; transform: translateY(-50%);
+      background: rgba(255,220,230,0.7); backdrop-filter: blur(4px); width: 50px; height: 50px;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 2rem; color: #b34b5e; cursor: pointer; z-index: 200;
+      border: 1px solid rgba(255,255,255,0.8); box-shadow: 0 4px 12px rgba(200,100,120,0.5);
+      transition: 0.2s;
+    }
+    .nav-arrow:hover { background: #ffb6c9; transform: translateY(-50%) scale(1.1); color: #8f3b4a; }
+    .nav-arrow.left { left: 16px; }
+    .nav-arrow.right { right: 16px; }
+
+    /* footer */
+    .footer-note {
+      text-align: center; padding: 2rem; font-size: 1.2rem; color: #b35f70;
+      border-top: 1px solid #ffbfcf; background: #ffeef4; margin-top: 3rem;
+      border-radius: 50px 10px 50px 10px;
+    }
+
+    /* floating hearts background */
+    .hearts-background {
+      position: fixed; top:0; left:0; width:100%; height:100%; pointer-events: none; z-index: 1; overflow: hidden;
+    }
+    .heart-bg {
+      position: absolute; font-size: 20px; color: rgba(230,57,70,0.2);
+      animation: float-up 15s infinite ease-in;
+    }
+    @keyframes float-up {
+      0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+      10% { opacity: 0.6; } 90% { opacity: 0.6; }
+      100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+    }
+
+    @media (max-width: 700px) {
+      .section-title { font-size: 3rem; }
+      .hero-content h2 { font-size: 3.5rem; }
+      .timeline-item { flex-direction: column; text-align: center; }
+      .timeline-content { width: 100%; }
+      .timeline-dot { left: 50%; }
+      .nav-links a span { display: none; }
+      .nav-links a i { font-size: 1.7rem; }
+      .countdown-box { padding: 0.8rem 1rem; }
+      #countdown { font-size: 1.6rem; }
+      .nav-arrow { width: 40px; height: 40px; font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <!-- floating hearts background (preserved) -->
+  <div class="hearts-background" id="heartsContainer"></div>
+
+  <!-- Nepali navigation (7 sections) -->
+  <nav class="nav-bar">
+    <div class="nav-links">
+      <a data-section="home"><i class="fas fa-heart"></i><span> गृहपृष्ठ</span></a>
+      <a data-section="story"><i class="fas fa-book-open"></i><span> हाम्रो कथा</span></a>
+      <a data-section="reasons"><i class="fas fa-star"></i><span> कारणहरू</span></a>
+      <a data-section="gallery"><i class="fas fa-images"></i><span> ग्यालेरी</span></a>
+      <a data-section="letter"><i class="fas fa-envelope"></i><span> प्रेमपत्र</span></a>
+      <a data-section="future"><i class="fas fa-moon"></i><span> गिफ्ट- १</span></a>
+      <a data-section="upload"><i class="fas fa-heart"></i><span> </span></a>  <!-- renamed slightly but same section -->
+    </div>
+  </nav>
+
+  <!-- prev/next arrows -->
+  <div class="nav-arrow left" id="prevSection"><i class="fas fa-chevron-left"></i></div>
+  <div class="nav-arrow right" id="nextSection"><i class="fas fa-chevron-right"></i></div>
+
+  <!-- HOME section -->
+  <section id="home" class="section active">
+    <div class="hero-content">
+      <h2>मेरी प्यारी सानु</h2>
+      <div class="sub">आज हाम्रो पहिलो भ्यालेन्टाइन</div>
+      <div class="countdown-box"><span id="countdown">--d --h --m --s</span></div>
+      <p style="font-size:1.5rem; margin:1rem 0;">हरेक प्रेम कथा सुन्दर हुन्छ, तर हाम्रो कथा मेरो मनपर्ने किताब हो। ❤️🕊️</p>
+      <button class="heart-float-btn" id="sendLoveBtn"><i class="fas fa-heart"></i> भ्यालेन्टाइन दिवस २०२६ को शुभकामन प्यारी सानु</button>
+    </div>
+  </section>
+
+  <!-- STORY timeline (merged: English design + Nepali content) -->
+  <section id="story" class="section">
+    <h2 class="section-title">हाम्रो कथा</h2>
+    <div class="title-decoration"><i class="fas fa-heart"></i> <i class="fas fa-heart"></i> <i class="fas fa-heart"></i></div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-content"><h3>पहिलो पटक  मेसेज कुराकनी</h3><span class="date-badge">२०८२ साउन ३१ शनिवार </span><p>भदौ कृष्ण अष्टमी को दिन मैले सुरुमा मेसेज गरेको श्री कृष्ण जन्म आस्थामी को सुभकामना भन्दै </p></div>
+        <div class="timeline-dot"></div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content"><h3>पहिलो  पटक  कल  कुराकनी</h3><span class="date-badge">१३ भदौ २०८२, शुक्रवार </span><p>बुटवल जादा मेसेज गरेन भनेर रोएको अनि रिसको अनि मैले मेरो आफ्नो मोबाइल नम्बर दिएको अनि उता बाट नम्बर नुम्ब सातेको अनि त्येही दिन मेरो अरु कोहि छ कि नाइ सोधेको</p></div>
+        <div class="timeline-dot"></div>
+      </div>
+	  <div class="timeline-item">
+        <div class="timeline-content"><h3>राती ३ बजे सम्म मेसेज मा कुरा गरेको </h3><span class="date-badge">२२ भदौ २०८२, आइतवार</span><p>२:४० सम्म खग्रास चन्द्रग्रहण लागेको र तेति बेला सम्म सुत्न दिनु हुन्न दिदि ले भनेर </p></div>
+        <div class="timeline-dot"></div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content"><h3>मेरो कारण पहिलो पटक रोएको </h3><span class="date-badge">२९ भदौ २०८२, आइतवार</span><p>जेठी दिदि को जन्म दिनको दिन संधिकर्खा जादा मेरो मेसेज दिदिले  देखेर मेरो कुरा आएर </p></div>
+        <div class="timeline-dot"></div>
+      </div>
+     
+      <div class="timeline-item">
+        <div class="timeline-content"><h3>हाम्रो पहिलो झगडा भएको</h3><span class="date-badge">३ असोज २०८२, शुक्रवार</span><p>कारण तिमि आफैलाई थाहा होला निस्तुरी ❤️🕊️😣बोल्दिन कत्तिती बाईईईईईईईईईईईईईइ............</p></div>
+        <div class="timeline-dot"></div>
+      </div>
+    </div>
+	 <div class="timeline-item">
+        <div class="timeline-content"><h3>पहिलो पटक एक ले अर्को लै माया गर्छै  भनेर भनेको  </h3><span class="date-badge">१३ कार्तिक २०८२, बिहिवार</span><p>पहिलो पटक एक ले अर्को लै love you र love you too भनेको  </p></div>
+        <div class="timeline-dot"></div>
+      </div>
+  </section>
+
+  <!-- REASONS (merged: 6 Nepali + 12 English cards = 18 reasons) -->
+  <section id="reasons" class="section">
+    <h2 class="section-title">म तिमीलाई किन माया गर्छु</h2>
+    <div class="title-decoration"><i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i></div>
+    <div class="reasons-grid">
+      <!-- original Nepali cards -->
+      <div class="reason-card"><i class="fas fa-female"></i><h3>तिम्रो आत्मबिश्वाश </h3><p>तिमि भित्र को आत्मबिश्वाश  ले तिमि ले जीवनमा आउने सुख-दुख हासी हासी समाधान गर्नेछै </p></div>
+      <div class="reason-card"><i class="fa-regular fa-face-meh-blank"></i><h3>मेरो मौनतालाई बुझ्छौ</h3><p>तिमी मेरो मौनतालाई बुझ्छौ कहिले काही बोल्ने सब्धा हुदैन म सित त्यो बेला पनि म सित झिजो न मानी  कुरा गर्क्षौ  अनि मैले भन्न न सकेको कुरा आफै बुझ्छौ</p></div>
+      <div class="reason-card"><i class="fa-regular fa-smile fa-2x"></i><h3>हसिलो अनुहार</h3><p>तिम्रो हसिलो अनुहार  मेरो खुसीको कारण हौ।</p></div>
+      <div class="reason-card"><i class="fas fa-brain"></i><h3>तिम्रो सकारात्मक सोचाई </h3><p>तिम्रो सकारात्मक सोचाई  ले गर्दा हामी दुवै जना ले एक ले अर्को लै बिश्वाश गरेको छौ । जति झगडा हुदा पनि साथ मा छै </p></div>
+      <div class="reason-card">
+    <i class="fa-solid fa-clock-rotate-left"></i>
+    <h3>तिम्रो धैर्यता</h3>
+    <p>कहिलेकाहीँ म आवेशमा आउँदा वा गल्ती गर्दा पनि तिमीले मलाई धैर्यताका साथ सम्झाउँछौ। तिम्रो यो सहनशीलताले नै हाम्रो सम्बन्धलाई बलियो बनाएको छ।</p>
+</div>
+
+<div class="reason-card">
+    <i class="fa-solid fa-mountain"></i>
+    <h3>मप्रतिको अटुट विश्वास</h3>
+    <p>संसारले जे सुकै भनोस्, तर तिमीले मलाई जहिले पनि विश्वास गर्यौ। तिम्रो त्यही विश्वासले मलाई हरेक दिन अझ राम्रो मान्छे बन्ने प्रेरणा दिन्छ।</p>
+</div>
+
+<div class="reason-card">
+    <i class="fa-solid fa-seedling"></i>
+    <h3>साना कुरामा खुसी खोज्ने बानी</h3>
+    <p>ठूला उपहार वा उपलब्धिमा मात्र होइन, तिमी साना-साना कुरामा पनि खुसी हुन्छौ। तिम्रो यो सरलताले जीवन जिउन कति सजिलो छ भन्ने कुरा मलाई सिकाउँछ।</p>
+</div>
+
+<div class="reason-card">
+    <i class="fa-solid fa-rocket"></i>
+    <h3>मेरो सपनालाई आफ्नै ठान्ने स्वभाव</h3>
+    <p>मेरो सफलतामा तिमी मभन्दा बढी खुसी हुन्छौ। मेरा सपनाहरूलाई तिमीले जसरी साथ र समर्थन दिन्छौ, त्यसले मलाई अघि बढ्न सधैं हिम्मत दिने गर्छ।</p>
+</div>
+
+<div class="reason-card">
+    <i class="fa-solid fa-hand-holding-heart"></i>
+    <h3>तिम्रो केयरिङ व्यवहार</h3>
+    <p>म बिरामी हुँदा होस् वा थकित हुँदा, तिमीले जसरी मेरो ख्याल राख्छौ, त्यसले मलाई संसारकै भाग्यमानी महसुस गराउँछ। तिम्रो मायालु स्पर्शमा एउटा छुट्टै शान्ति छ।</p>
+	
+</div>
+<div class="reason-card">
+    <i class="fa-grin"></i>
+    <h3>तिम्रो प्राकृतिक सुन्दरता</h3>
+    <p>तिम्रो अनुहारको त्यो प्राकृतिक चमक र आँखाको गहिराइले मलाई सधैं मन्त्रमुग्ध बनाउँछ। तिमी जस्तो छौ, त्यस्तै रूपमा संसारकै सबैभन्दा सुन्दर लाग्छौ।</p>
+</div>
+</div>
+    <p style="text-align: center; font-size: 1.5rem; margin-top: 3rem; color: #8e5b9f; font-style: italic;">र बाकी अरु कुरा हरु त कल मा भन्छु नि त है सानी । ❤️</p>
+  </section>
+
+  <!-- GALLERY (merged: 4 Nepali + 6 English = 10 items) -->
+  <section id="gallery" class="section">
+    <h2 class="section-title">हाम्रा मिठा पलहरु</h2>
+    <div class="title-decoration"><i class="fas fa-camera-retro"></i> <i class="fas fa-heart"></i> <i class="fas fa-camera-retro"></i></div>
+    <div class="gallery-grid">
+	<div class="gallery-item">
+  <img src="https://arunpanthi.com.np/unofficical_vet.png" alt="Romantic couple silhouette">
+</div>
+<div class="gallery-item">
+  <img src="https://arunpanthi.com.np/f1.jpg" alt="Romantic couple silhouette">
+</div>
+<div class="gallery-item">
+  <img src="https://arunpanthi.com.np/f2.jpg" alt="Romantic couple silhouette">
+</div>
+</div>
+    </div>
+    
+  </section>
+
+  <!-- LOVE LETTER (merged Nepali + English) -->
+  <section id="letter" class="section">
+    <h2 class="section-title">मेरी सानीलाई एउटा सानो प्रेम पत्र:र</h2>
+    <div class="title-decoration"><i class="fas fa-feather"></i> <i class="fas fa-feather"></i> <i class="fas fa-feather"></i></div>
+    <div class="letter-container">
+      <div class="love-letter">
+        <div class="letter-head">मेरी प्यारी मुटु माया,,</div>
+        <div class="letter-body">
+          <p>आज भ्यालेन्टाइन डे, चारैतिर प्रेमको रङ्ग छाएको छ तर मेरो लागि भने यो दिन तिमी बिना अलि खल्लो महसुस भइरहेको छ।म यता तम्घासमा तिमि उता बुटवल छै  यो दूरी त केवल किलोमिटरमा मात्र हो, तर मेरो हरेक पल  तिम्रो  नाम छ । 
+		  
+		  </p>
+          <p>तिम्रो त्यो हसिलो अनुहार , तिम्रो जादुमयी मुस्कान, र तिमीले मलाई हेर्ने त्यो मायालु नजर... म ती सबै कुरालाई अहिले निकै 'मिस' गरिरहेको छु। तिमी मेरो जीवनको त्यो सुन्दर उपहार हौ, जसले मेरो साधारण संसारलाई पनि स्वर्ग बनाइदियौ। तिम्रो सकारात्मक सोच र मप्रतिको अटुट विश्वासले नै मलाई आज यहाँसम्म बलियो बनाएर राखेको छ। तिमी टाढा भए पनि मेरो मुटुको सबैभन्दा नजिक छौ।
+		  </p>
+		  <p>
+		  Happy Valentine's Day, kanxu ❤️🕊️<br>
+बुटवलको भीडमा पनि मेरो मायालाई महसुस गर्नु है। म तिमीलाई धेरै मिस गरिरहेको छु।</p>
+
+
+        </div>
+        <!-- English letter inside same container, preserved -->
+        <div class="english-letter">
+        
+          <div class="signature">तिम्रै  बादर</div>
+        </div>
+        
+        <div class="letter-envelope-icon"><i class="fas fa-envelope-open-text"></i></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FUTURE + SURPRISE (merged) -->
+  <section id="future" class="section">
+    <h2 class="section-title">Gift-1</h2>
+    <div class="title-decoration"><i class="fas fa-cloud-moon"></i> <i class="fas fa-cloud-moon"></i> <i class="fas fa-cloud-moon"></i></div>
+   
+    <!-- surprise box (original from English page) -->
+    <div class="surprise-box">
+      <p style="font-size: 1.3rem; margin-bottom: 2rem;">गिफ्ट हेर्न यसमा किलिक गर्नु </p>
+      <div class="gift-box" onclick="revealSurprise()">🎁</div>
+      <div id="hiddenMessage" class="hidden-message">
+        <h3>✨ मेरो भ्यालेन्टाइन बाचा ✨ ✨</h3>
+        
+        <p>💝 💝 तिमीले गर्ने हरेक कुरा मा  मेरो  माया र साथ रहनेछ।
+
+
+</p>
+        <p>🌹 आज मत्र होइन सधै भरि येसरी नै माया गर्ने छु </p>
+        <p>🌟 नपाउने जानी मात्र होइन पाए पछि पनि उसतै माया र साथ दिने छु हाम्रो भगाय मा रैछ भने </p>
+        <p>💕हामी दुवै मिलेर जीवनका नयाँ र सुन्दर पाटाहरू पहिल्याउनेछौं।</p>
+        <p style="margin-top:2rem; font-size:1.6rem; color:#b3404a; font-weight:bold;">संसारको भीडमा म सधैं तिम्रै हात थामिरहनेछु, र जुन दिन सम्म हाम्रो भगाय ले हामी लै साथ राख्न लेखेको छ त्यो दिन सम्म हरेक दिन  तिमीलाई नै आफ्नो बनाइराख्ने बाचा गर्दछु</p>
+      </div>
+    </div>
+    <p style="text-align:center; margin-top:1rem; font-size:1.4rem;">☆ हरेक सपना तिमीसँग राम्रो ☆</p>
+    <div class="footer-note"><i class="fas fa-heart" style="color:#e6536b;"></i> फेब्रुअरी १४, २०२६ को लागि मेरो प्यारो मान्छे को लागि लेखेको  <i class="fas fa-heart" style="color:#e6536b;"></i></div>
+  </section>
+
+  <!-- UPLOAD section replaced with ASCII art (dot image) -->
+  <section id="upload" class="section">
+    <h2 class="section-title">Gift-2</h2>
+    <div class="title-decoration"><i class="fas fa-dot-circle"></i> <i class="fas fa-heart"></i> <i class="fas fa-dot-circle"></i></div>
+    <div class="ascii-container">
+      <pre>
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠟⣛⣋⡭⠤⠄⠒⠂⠈⢉⣉⣁⣠⣤⣤⣤⣤⣤⣴⣴⣦⢶⣤⣤⣤⣤⣀⡀⠈⠜⣉⠏⡛⢶⡙⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⢛⣋⡭⠡⠐⠊⢉⣁⣠⣤⣴⣶⢾⡿⣿⢟⡟⣟⢯⡛⣭⢛⡭⢓⢭⡒⡍⢎⡒⢆⠲⡡⢎⡹⠄⢐⠰⣈⠑⡊⢧⢹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠿⡛⣛⣉⠤⠐⠊⠀⣀⣠⡴⣶⣻⣻⡿⣽⣻⢾⡽⣞⡽⣎⠿⣼⡹⢶⡹⣎⠷⣚⠭⡲⢍⡚⢥⠚⣌⢣⢑⡊⠴⣉⠀⠒⡄⠃⠀⢻⠂⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⢟⣋⣭⢥⣶⢾⠶⡏⠉⢀⣠⢴⡲⣟⡽⣳⢟⡯⣗⢯⡝⢧⡛⣬⢓⠮⡵⢎⡟⣲⢝⣣⠟⣬⠳⣍⠞⣡⠣⡍⢆⠭⡐⠦⣁⢎⡱⠂⠀⣁⠂⠀⠀⠀⠆⠈⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠿⢛⣛⣛⣩⣭⡭⡭⡭⡦⣶⣶⣶⡶⢾⠫⡝⡰⢦⡙⣎⠳⣄⠲⣭⠲⢧⢻⡜⡳⣙⠮⡱⢎⠶⡙⢦⡙⢦⢋⠞⡡⢏⡜⡱⠎⡜⡙⢆⡛⢬⡙⢆⠳⡘⡬⢒⢭⢒⡥⡚⠄⢀⠐⠀⠀⠀⠀⠀⠐⡀⠸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⢛⡛⡭⠵⠒⠚⠉⣉⣉⣠⣤⣤⣤⣤⣤⣤⡀⠩⢆⡱⠊⠁⠀⠀⠀⠣⡘⠲⡈⠷⣌⠛⣌⠣⡜⠱⡌⢲⠑⢎⡒⢍⠢⡉⢆⠩⢌⡑⢢⠐⡡⢊⠔⡉⢆⡘⠤⡘⢄⠣⡑⠬⡉⠖⠉⠂⡁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠐⣀⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⢟⡛⠭⠐⠊⣉⣠⣤⣶⣾⣿⣿⣿⡿⣿⢟⢯⡛⢭⡹⢍⠃⡰⠈⠀⠀⣤⡶⠟⠂⠀⠈⠑⡌⡀⢪⠱⣌⠱⢌⠱⡈⢆⡉⠆⢌⠂⡑⢈⠤⢁⠂⡐⢂⠡⠐⠡⢈⠐⠂⡌⠰⢐⠨⡐⢌⠦⠱⠚⠈⠀⠀⠀⠀⠀⠔⠁⡄⢂⠀⠀⠀⢸⡆⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⡛⡩⠴⠊⢉⣤⣴⢶⣿⣿⢿⡿⣻⢏⣯⠳⡝⣎⠳⢎⠦⡙⢢⡑⠋⠠⠀⠀⠀⠘⠉⠀⠀⠀⠀⠀⠀⠀⠑⠠⡁⠪⢕⢪⡐⡁⢆⠰⣈⠂⡜⢀⠆⡰⢀⠒⡄⠢⠄⠣⠘⠤⠉⠒⠀⠃⠈⠀⠁⠀⠀⠀⠀⠀⠀⠀⢠⣎⡐⠀⠠⠀⠀⢂⠀⠀⠀⢷⡈⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⢛⠩⠔⠈⢁⡤⢖⡻⣏⢷⣫⣟⢾⣺⡹⣞⠵⣋⠶⡹⣘⢌⠳⣈⠖⡉⢦⠉⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠁⠂⠓⠐⠑⠊⠐⠂⠑⠈⠀⠈⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠐⠠⢀⡀⢀⠂⠀⠀⠈⠁⣈⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⣋⡵⠈⠉⣠⡴⢞⡏⡞⣭⢷⢏⡟⣶⡹⣎⠷⣙⠬⣓⢩⢒⡱⢌⢊⠖⡡⢎⠱⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠲⢀⡀⠀⠀⠀⠀⠸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⢏⣥⠚⠁⣠⡶⢟⢣⡹⣜⡼⣽⢫⠞⡽⣚⢥⠳⣘⠜⠤⠓⡌⢂⠖⡐⢊⠌⢢⠑⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠆⠀⠀⣄⢲⡌⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⣱⠏⠀⣠⡾⢋⡜⣌⡦⡷⢭⣛⠬⣇⠻⡰⠡⢎⠱⢌⠚⡌⡑⡈⢆⠘⠠⠁⠌⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⡆⢻⣖⡌⡙⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⣰⠇⠊⣰⢋⠔⣣⡴⡯⡞⡭⢳⢌⠳⠌⠃⠁⠃⠈⠀⠈⠒⠠⠑⡀⠂⠈⠐⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠹⡌⠻⣷⣦⣀⡊⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⢁⡟⡌⠀⢆⠥⣞⡷⣏⠷⡹⡘⠅⠈⠀⠀⠠⠀⠀⠁⠈⠐⠀⠁⠂⠀⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢳⠀⠈⠻⣿⣾⣦⢛⠻⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⢸⣣⠂⠈⡼⣻⣙⢮⠱⠋⠄⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⡆⠀⠀⠈⠻⣿⡏⠸⡤⠛⡻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠏⠈⠱⢂⠀⠜⠡⠌⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⡀⠀⠀⠀⠈⣳⠁⡐⡃⠰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣟⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⢐⡀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡰⣰⠂⡈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠁⠀⠀⠀⠀⠈⠻⣶⣀⠂⢢⡙⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡆⠇⠀⠀⠀⢠⣶⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡙⣿⡇⠐⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠄⠀⠀⠀⠀⠀⠙⢿⣅⡀⠘⡓⢈⠙⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣇⠶⠀⠀⠀⠸⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⢬⣟⡀⠀⠀⠀⠀⢰⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢏⢶⠀⡉⣀⠀⢋⣙⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣇⡀⠄⠀⠀⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⠄⣠⢄⣂⣹⣧⠀⠀⣆⢰⡏⠀⠀⣐⠄⣂⠄⣄⠂⢀⠄⠀⢀⡀⡄⣤⢂⣦⣑⢮⣼⣱⢎⣶⣡⡖⣤⢢⣄⣀⢀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠫⢻⣦⠩⠀⠀⣝⢦⡹⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⢱⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⠀⢀⡒⠶⣿⣽⣿⣷⡘⠀⠀⣿⠀⠐⢰⣣⣾⢧⣻⡴⣞⡇⣼⣚⣴⣽⣺⢷⣻⣾⣽⣷⣷⣯⣿⣷⡿⣽⣷⣿⣾⣽⣮⣳⢇⡦⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠡⡙⣃⠙⣃⠻⣦⡙⣘⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣾⣿⣿⣿⣿⣿⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡆⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠠⡱⢫⣞⡽⣶⣾⣻⣿⣿⣿⣿⣷⣸⣦⣾⣿⣿⣿⣿⣷⣿⣿⣾⣿⣽⣾⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣯⣷⢯⣻⢴⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⡀⠭⠌⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢁⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠠⢀⣆⣧⣽⣳⢯⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡽⣞⣧⣝⡲⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⢿⡿⣶⡀⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⠁⣾⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠐⣢⢭⣳⣞⣧⢿⣽⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢿⣻⣽⢿⡶⣏⣷⡹⣖⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢿⣎⠛⠁⢬⡻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⢡⣿⣿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣔⢶⣯⣷⢿⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢿⣿⢿⣯⢿⣟⣾⢷⣏⡾⣥⡀⠀⠀⠐⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢻⣂⠐⠈⠩⠦⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇⣿⣿⣿⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⡼⣯⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣻⣿⢾⣻⣾⣻⢾⣽⣻⢾⣷⡳⡽⣄⠀⠀⠀⠐⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢿⣦⣢⠠⠂⡣⣌⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⢼⢿⣿⣿⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣜⣧⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⣯⣿⣻⣯⣟⣾⣽⣻⢾⣽⣻⡼⣟⡷⣝⢦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢷⡢⢀⠈⠊⠈⢣⡘⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡏⠁⣾⣿⣿⡏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣰⣻⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⣿⣯⡿⣯⣿⣳⡿⣾⣛⡾⣯⢟⡾⡷⢿⡽⣿⡽⣮⣓⢦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠐⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢿⣿⡍⠀⠀⡀⠒⡘⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠃⣤⠔⢀⡿⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠠⡑⣧⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣟⣿⣽⡿⣯⣿⡿⣯⣿⡿⣽⢯⣟⡷⣯⢿⡽⣯⢿⡽⣯⣟⣷⢻⡷⣛⣮⡳⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢿⡗⢂⡄⠀⢀⠉⡘⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡆⢘⠁⣾⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢢⣙⢾⣿⣿⣿⣿⡿⣾⢿⣾⢿⣽⣿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣿⣯⣷⣿⣿⡿⣿⣿⣯⣿⣻⣿⡾⣿⣽⣯⢿⡽⣯⢿⠷⣯⠿⣯⣿⣹⢧⡟⣮⢳⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣿⣊⠀⠀⠈⣧⡘⡆⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡆⢠⣾⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢦⣹⢻⣞⣿⣽⢯⡿⣽⡿⣾⣻⣽⣟⣿⣽⣿⣿⣿⣽⣿⢿⣯⣿⣿⣿⢿⣿⣿⣿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣽⣿⣿⣽⣿⣯⣿⣿⣿⣿⣿⣿⣿⣯⣿⣿⣷⣿⣿⡿⣿⣯⡿⣯⡿⣯⢿⡽⣾⣹⡳⣏⠾⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⣆⢐⣦⡙⠃⠰⣆⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⡜⠿⣿⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⡦⣏⣟⣿⣟⣯⠿⣽⡳⢿⡽⡽⣾⡽⣾⣻⣷⢯⣿⣿⣽⡿⣯⣷⣿⣿⣿⣯⣿⣿⣻⣯⣿⣯⣿⣽⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣽⣿⣿⣿⣯⡿⣽⢯⣷⣻⡭⣟⡼⣒⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⢗⢠⠹⠗⠐⠀⠙⠈⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⣘⣻⡿⠀⠄⣄⠀⠀⠀⠀⠀⠀⠀⠀⡙⢶⣹⣾⡳⣟⢾⣽⢳⡻⢯⣽⢻⡵⣻⣽⣳⢯⣿⣽⣾⡿⣿⢿⣟⣿⣽⣿⣿⣷⣻⣿⣽⣯⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣯⡷⣯⢷⣏⡞⡵⣩⠆⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣶⣶⢆⠨⢭⡄⠸⠌⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣇⠨⣛⡃⠀⣷⡇⠀⠀⠀⠀⠀⠀⠀⠀⡹⢎⣷⡳⣟⡽⣺⢧⢿⣹⢏⡾⡽⣽⣳⢯⣿⣻⣞⣿⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣽⣷⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣿⣯⣟⣾⡹⣜⢧⣛⡴⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢣⢙⣓⠂⠀⠛⢄⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡀⠿⢷⠀⣿⡇⠀⠀⠀⠀⠀⠀⠀⢀⢓⢯⣖⢻⣜⡳⣝⡞⣧⢯⣻⢵⣻⣵⣻⢿⣾⣻⣿⣿⣾⣿⣿⣿⣽⣿⣿⣿⣿⣿⣿⣿⣿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣽⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠿⠟⠛⠋⠛⠋⠉⠉⠉⠙⠉⠉⠙⠻⢿⣷⣟⡾⣝⣮⢳⡽⣲⡕⣢⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣧⢱⣦⡀⠁⠘⢤⡙⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣇⠙⣛⠂⢹⡇⠀⠀⠀⠀⠀⠀⠀⠀⣎⢳⢬⡓⢮⡵⣫⢾⡹⣞⡵⣛⡾⢾⣽⣻⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢿⠛⠛⠋⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠿⢿⣼⣏⣾⢳⡝⣦⢣⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣧⢻⣿⣧⠀⠀⢷⡘⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⡈⣿⡀⠁⠀⠀⠀⠀⠀⠀⠀⠐⣌⢳⢊⡝⠶⣭⢳⣏⡷⣝⣾⣹⣽⣻⣞⣿⣻⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⣟⡾⠙⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⢠⡄⣤⣔⡶⣴⢶⡽⣲⡤⢤⠤⣄⡀⠀⠀⠉⠿⣾⣹⢾⡱⣏⢞⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⣿⣿⡏⢰⠀⠀⠖⠸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠄⠿⡃⠀⠀⠀⠀⠀⠀⠀⠀⠀⡌⠶⣉⢞⡹⣜⣧⣟⣾⣽⣞⣷⣿⣷⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠛⠇⠉⠋⠃⠀⠀⠀⠀⠀⠀⠀⠀⡀⢠⠰⣌⠳⣜⣣⠟⣵⢫⣻⢭⡟⡳⡵⢬⡡⣁⡘⠖⡲⢦⣀⣀⠘⢫⣯⡽⣮⡳⡝⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⣿⡔⠀⠀⠘⣇⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣯⡄⠄⣸⡄⠀⠀⠀⠀⠀⠀⠀⠀⢌⢳⡩⢎⡷⣹⠶⣯⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⣿⣟⣿⣿⣿⣿⣿⡟⠈⠁⠛⣯⣟⣿⡳⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠠⠐⢂⠡⢃⠵⣨⠳⠜⠢⠛⡌⠣⠓⠪⢙⡱⢍⠧⣣⢆⡱⢊⠥⡤⢤⡉⣵⣆⣙⢿⣾⣝⣻⡬⣇⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢱⡘⣿⣧⣄⢩⡄⢸⣆⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⢈⣻⡇⠀⠀⠀⠀⠀⠀⠀⠀⢈⠶⣙⣎⢷⣯⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⡿⢿⢿⣻⢯⡷⢯⢷⣛⢮⠿⣽⢿⣿⣿⣧⣄⢠⣖⣯⡟⣮⢥⠀⠀⠀⠀⡐⠀⢀⠂⠄⡁⠂⠄⠡⠈⠠⠁⠂⠀⠁⣀⠀⡄⠀⠄⣀⢀⡀⠀⠈⠀⠡⢊⠜⣡⢋⠜⣣⣛⠷⣿⢯⣿⣾⣿⣯⡷⣽⣲⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢿⡜⣿⣳⣆⢡⠄⢺⠸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⡚⢻⡇⠀⠀⠀⠀⠀⠀⠀⠀⠈⢮⡱⣎⣿⣿⣿⣿⣿⠿⠟⠿⠛⠛⠋⠉⠁⠁⠀⠀⠀⠀⠀⠀⠀⠀⠁⠀⠈⠈⢙⢮⣛⡶⢿⣾⢿⣿⢯⣷⣻⣍⣈⡳⢤⠰⠈⠄⠀⢂⠈⠄⠀⠐⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀⠈⠀⠊⡜⠦⣍⠿⣽⠻⣿⣿⣷⣿⣻⡷⣽⣣⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣷⡸⣿⣷⡀⠒⠐⡇⠛⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡁⣕⣲⣧⠀⠀⠀⠀⠀⠀⠀⠀⠈⠦⣽⣹⣷⣿⠟⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠀⡀⠀⠈⠖⡹⣞⢯⢾⣻⡾⣿⡾⣽⣭⢷⡙⠦⠁⠀⠀⠐⠀⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠐⠈⠓⢉⣉⣤⣤⣾⣿⣿⣿⢿⡿⣷⢫⣗⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⣧⢹⣧⣿⣄⠀⣿⠀⢁⡘⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡆⢙⣻⡗⠀⠀⠀⠀⠀⠀⠀⠀⠀⠳⣜⢧⣟⠋⠀⠀⠀⠀⠀⣀⢤⡠⢤⡐⣤⠒⡴⢠⢂⠔⡈⢆⠱⠈⠆⠱⢀⠣⡐⢬⢓⢮⣻⣝⣯⣿⣽⣿⣯⠿⣮⢝⡢⠁⠀⠀⠀⠂⠀⠀⠀⠀⠀⠀⠀⣠⢲⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠀⠠⣀⠀⢠⢀⣈⣃⣿⣼⣿⣿⣿⣿⣿⣿⣿⣟⡿⣞⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢿⡆⠂⡀⣻⡄⠐⡆⠰⠀⡿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣇⢸⣿⡇⠂⠀⠀⠀⠀⠀⠀⠀⠀⠸⣭⡿⠁⠀⠀⠀⡤⣐⠦⣝⠦⣝⠶⣙⢦⢹⠰⣃⠎⠢⠑⠠⠂⠡⠈⡐⠈⢀⠉⠆⢭⢲⣽⣺⣿⣿⣿⣿⣿⣿⢯⢮⡱⡡⢀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠻⠛⠛⠀⢀⡀⠀⠠⠀⢀⠠⡐⣀⠔⡌⢎⡡⠥⣔⣫⢷⣿⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣻⣼⡃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⡆⢤⣷⣄⠃⣧⠐⣦⠸⢀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣟⡈⢻⡇⠃⠀⠀⠀⠀⠀⠀⠀⠀⢘⣷⠃⠀⠀⡴⣋⢶⡹⣚⢥⡛⢬⠓⠉⠂⠁⡁⣀⢀⡀⢀⠀⠀⠀⠀⠀⠀⠀⠠⠈⠄⠳⣎⣷⣿⣿⣿⣿⣿⣿⣿⣯⣳⡱⢊⠌⡡⢴⡘⠀⢀⡠⠤⠤⡐⢆⠲⠄⣌⣀⠠⢤⠰⡔⢦⠲⠱⢎⡜⣉⠦⠑⢋⣀⣤⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡽⣿⢮⢷⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⡄⣿⣿⣖⠸⠀⢽⠠⠄⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡆⣻⠂⠁⠀⠀⠀⠀⠀⠀⠀⠀⠨⣟⠀⠀⢶⡱⣙⢮⡱⢍⠂⠁⡀⠄⠂⠉⠁⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠐⡈⢄⠳⡜⣽⣿⣿⣿⣿⣿⣿⣿⣷⣳⢯⢧⡳⣍⠶⡡⢏⠱⠘⠌⠒⡈⠆⡑⢪⠰⠌⡓⢌⠓⡘⠢⠉⠓⠈⣀⣤⣴⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣻⣯⡳⡅⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⡸⣿⣿⣂⡃⢰⣆⠲⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⢿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⢀⣞⣣⠵⣩⠖⠁⠀⠀⠆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠱⣌⠲⣙⢾⣻⣿⣿⣿⣿⣿⣿⣿⣯⣻⣗⣻⣼⣳⢖⣎⢶⣱⢪⡔⡤⢤⣀⡄⣀⣀⣀⡤⣤⣤⣴⣶⣾⣿⣟⣿⣷⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣯⣟⡾⣵⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠹⣷⣹⠠⠾⠻⠔⣦⠘⠁⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⠁⠽⠀⠀⠀⠀⠆⠀⠀⠀⠀⠀⠀⡧⣿⣞⡰⣋⠖⠈⠀⠀⠀⠀⠀⠀⣤⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢀⣀⡠⢤⠰⠊⣜⢧⡽⣞⣿⣿⣿⣿⣿⣿⣿⣿⣿⣳⣞⡷⣷⣯⣿⣾⣯⣾⣟⣾⣽⣳⣟⣾⢯⣯⣿⣾⣿⣾⣿⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣞⣯⢷⣭⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢈⠐⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠻⣿⣆⡐⠄⠺⣾⠀⠄⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠐⢘⠀⡀⠀⠈⠀⠁⠀⠀⠀⠀⠀⢻⣽⢆⡳⢡⠊⠀⠀⠀⠀⠀⠀⠙⠒⠣⠀⠀⢀⡀⠤⠠⠐⠂⠉⠠⠀⠀⠀⠀⣀⡾⢧⣟⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡾⣽⡷⣿⣷⣿⣿⣷⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣞⡿⣎⡷⣎⡇⠀⠀⠀⢈⠄⠀⢀⠠⠀⠀⠀⠠⠌⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣮⣿⠻⠈⣷⠉⣥⠁⣸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇⣤⣾⠀⠀⠀⠐⠁⠂⠀⠀⠀⠀⠀⢸⣟⠮⣔⠣⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⠀⡄⠆⡐⠠⣁⠂⢌⡐⠁⠀⢀⡰⣞⣽⣟⡿⣞⣷⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣾⣻⣿⣝⡷⣳⡌⠀⠀⠀⠂⠌⠀⠀⠂⠀⠀⢀⠐⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⣿⣇⠀⠻⡦⢠⡄⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡯⠠⣿⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣯⢟⡴⣠⠀⠀⢠⡴⣋⠶⡱⢎⡳⣌⠳⡜⣘⡐⠣⠄⠉⢀⡠⣴⣚⣯⣿⣽⣷⣿⣽⣿⣻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣟⣾⣳⣏⠷⣜⠀⠀⠠⠁⠀⠀⠀⢀⡐⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣷⣶⠟⠆⠶⠘⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣇⢘⣻⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣽⣾⣱⢟⣾⣻⡼⣥⢫⢕⡋⢖⠩⠓⠘⢀⣈⣠⣔⠾⣮⣷⣯⣿⣷⣿⣾⣿⣽⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣻⣟⡿⣯⡟⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⢿⡷⣽⣞⡻⡜⡄⠀⠌⡅⠀⠀⣀⠖⡌⠰⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣿⣿⡜⢧⠙⡈⣅⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠁⢈⣿⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣿⣿⣾⣿⣯⣿⣳⡟⢧⣧⢦⣴⣴⣶⣶⣿⣯⣾⣷⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣯⣿⣞⣿⣻⣿⢮⡙⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⢿⣯⢿⡵⣏⣷⢛⡤⠀⠀⠀⢦⠹⢤⣋⠔⠀⠀⠠⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢿⣿⣆⠈⡁⣼⡀⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⠀⣌⣻⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⡽⣾⡽⣟⣿⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣯⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣾⣿⣿⣿⣿⣆⠈⢵⡺⣝⢯⢿⣻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣻⢿⣞⣿⡽⣯⣟⡷⣭⢏⡖⠀⣠⠀⠊⠙⠦⠈⠀⠀⠤⢁⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠳⣿⣿⣆⣷⡠⣶⠸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⢶⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⣿⣿⣿⡿⣽⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⡧⣿⣿⣯⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡄⠣⣟⡜⢯⢯⢽⡾⣽⢿⡿⣿⣿⢿⣿⣿⣿⢿⣿⣿⣿⡿⣿⡿⣿⣻⣿⣻⡾⣯⢿⣯⢿⡽⣿⡽⣽⠷⣯⡻⣜⠀⢲⢣⡄⡐⢦⣄⡀⠌⠐⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⣿⣿⣿⣷⣷⣤⢹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇⣘⣻⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢯⡷⡛⢀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⣟⠿⣽⡹⢯⠿⡽⣽⢻⡟⠄⢰⣯⢾⡹⣎⠷⣹⡞⣯⢿⣻⣟⡿⣽⢷⣯⢿⣯⡟⣷⢿⣽⡻⣯⣟⡾⣽⣻⡽⣯⢿⣯⢿⣯⢿⣯⢿⡯⣽⣚⠀⠩⢖⡹⢞⡤⡈⢿⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣿⣿⣐⠡⠐⣰⣀⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠆⣶⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⣿⠽⣏⠷⡁⢸⣿⣿⣿⣿⣿⣿⣿⢿⡿⣿⣟⡯⣟⢭⠛⠀⠉⠀⠀⠀⠀⠀⠨⠓⠌⢀⣼⣾⣯⣽⢞⣦⡁⠻⡹⣞⢧⢯⣻⡽⣧⣟⣯⠾⣽⣏⡿⣺⣽⣳⣏⡿⢧⡿⣽⢯⣟⣾⣯⡿⣿⣯⡿⣯⣳⣍⠂⠀⠩⢘⠡⠒⠁⠀⢿⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣿⣿⣷⡔⣸⣷⡆⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠃⠂⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣟⡿⣽⢻⡭⣏⢥⠸⣿⣿⡿⡿⠉⠿⡝⢯⢾⡵⣫⢞⡱⠊⠀⠀⠀⣀⠠⠐⠀⢀⣔⣿⢯⣿⣽⢾⣯⢳⣻⡔⣄⠉⠞⣣⠷⣹⢖⡯⣞⣻⢵⣫⢷⣛⣶⡳⢯⡽⣏⣷⢿⡽⣟⣾⣳⣿⣿⣯⣿⣳⣏⡞⠀⠀⠀⠀⠀⠀⠀⠀⣬⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⣮⡏⠠⠄⠿⣿⣄⡹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠃⡐⢰⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢿⣳⣯⣟⣼⢳⡝⣞⢮⣆⣙⢯⠓⠀⠀⠀⠀⠉⠓⣝⡣⢏⡵⢂⡒⢬⡑⢆⡲⣔⣳⣟⣾⣽⢿⣟⡿⣟⣾⣻⢶⡽⣎⡳⢆⣀⠉⠳⢎⡳⣝⢮⡳⣝⡮⣗⣳⢟⡯⣷⢏⡷⢿⡽⣟⣿⣻⣾⣿⡿⣾⣳⣏⡞⠀⠀⠀⠀⠀⠀⠀⢠⡿⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣿⣿⣌⠢⠆⠐⠗⠲⡌⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇⢀⠀⣿⡏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⣿⢷⣯⡟⣧⢷⡞⣵⢫⣞⡽⢾⣹⢯⣻⣥⣄⡀⣀⢠⠴⣩⠆⡁⠀⠀⠀⠒⡤⣙⢮⣵⣫⢷⡿⣷⣿⣿⣾⣿⣽⣞⡿⣮⣳⢯⡽⣉⠒⢥⡀⠁⠽⣬⢳⡝⣮⢳⡝⣧⢿⣱⣏⡿⣝⡿⣽⣻⣾⣻⣟⣯⣿⣟⣷⣫⡜⠀⠀⠀⠀⠀⠀⠄⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⢿⣧⡫⣄⢠⡀⠉⡄⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡏⠰⠐⢂⣿⠁⠀⠀⠀⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⣿⣿⣿⣿⣿⣿⣿⣿⣻⣿⣯⢿⣻⣯⡶⣟⡽⣧⣛⢮⡓⣾⣹⢯⣟⣯⣷⣻⣼⣳⣝⣮⢳⣱⢚⡤⣐⢆⡣⣝⢲⡹⡞⣶⢯⣟⣿⣿⣿⣿⣷⣿⣾⣝⣾⣱⡹⢶⡹⢵⡢⣄⠉⣆⠀⢪⢷⣹⡞⣯⣟⣞⣳⢻⣜⡷⣏⣷⢻⣳⢯⣷⣻⣟⣿⣟⣮⢷⡉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠻⣿⣷⡉⣤⢁⠁⠩⢈⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠁⢹⠤⣿⡟⠀⠀⠀⠀⠐⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣿⣿⣿⣿⣿⣿⣿⣻⣿⣾⣭⣿⢳⡧⣟⢷⣛⢶⡹⠂⣼⢳⣯⣻⣞⣿⢾⣳⣷⣳⣻⣞⡷⣭⣳⢞⡵⢮⣕⣮⣷⣻⠽⠟⠛⠛⠛⠉⠉⠛⠛⠛⠛⠛⠙⠃⠛⠀⠁⠀⠀⠀⠹⡸⢖⠀⣯⠷⣽⣳⣞⡞⣷⣛⣮⣗⢿⣜⣟⣯⢿⣞⡷⣟⣾⣳⢯⡞⡁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⣯⢻⡜⣷⡍⠇⠀⣈⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠅⢀⣝⢙⣿⠇⠀⠀⠀⠀⠠⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⣿⣿⣿⣿⣿⡿⣿⣷⣳⣟⣦⣟⣳⢏⡾⢭⠲⠁⡸⣜⡷⣺⡽⣾⣻⣟⣿⣾⣿⣿⣾⣿⠿⠛⠛⠛⠻⠛⠙⠀⡀⢄⠰⢠⠒⡌⢒⡉⢆⡑⠢⠐⠠⠀⠀⠀⠀⠀⠀⠀⡠⣄⡸⣝⡆⢸⡿⣷⣛⡾⣽⡞⣽⢶⣫⣞⣳⣞⣯⣟⣾⢽⣳⢷⣫⢞⡵⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠂⢻⣇⢿⡼⣷⣅⠀⠃⡌⢻⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡏⣀⠀⢁⣾⡿⠀⠀⠀⠀⠀⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢿⣿⣿⢿⣷⢿⣯⢿⡗⣿⢼⡞⣵⢫⡞⡥⠃⢠⡳⣝⡞⣷⣻⢷⣿⣿⣿⣿⠿⠛⠉⡀⢄⠢⠑⡌⠐⠄⠣⢘⠀⠎⠰⢁⠊⠀⠂⠈⠀⡀⣀⠀⡄⢠⢀⢀⢀⡠⣴⢯⠷⣏⣷⢮⡽⣽⣿⢯⡷⣻⢧⡟⣯⣞⡧⣟⢶⣛⣶⣻⣞⢯⢯⢷⡹⣎⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⠆⡻⣎⢷⡹⣿⣓⡀⠙⢀⡹⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⣴⠆⣀⣸⣿⠇⠀⠀⠀⠀⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⢿⣿⣿⢿⣻⣼⢳⡟⣽⢮⡽⣎⠷⣜⠀⢠⢳⡝⢮⣝⡳⣯⢿⡿⠟⠉⡀⢄⢢⠱⡈⢆⠣⡑⠰⠀⠎⠐⠁⠈⠀⣁⡠⣄⢠⡔⣢⠳⣔⡡⢍⡰⢁⢊⡴⣫⣽⣽⣻⡿⣿⡽⣞⡳⢷⣹⢯⡻⣭⢯⡟⣧⡻⣞⡽⢾⣹⣞⡵⣯⢻⡝⣮⠳⡌⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣧⣹⣎⠹⣶⣘⡛⣅⠀⠠⡌⢿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡏⠄⢠⣄⡉⣸⡿⠀⠀⠀⠀⠠⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⣿⢿⣳⣽⢻⣼⣛⢮⠷⣭⢳⢎⡀⢨⠷⣘⠧⡺⢵⠫⠛⠀⠀⠆⡉⠆⠢⠑⠈⠀⠀⠀⠤⠤⠀⢀⡀⣤⢛⡴⢳⡜⣧⢛⡥⡛⢤⠓⣌⢰⡱⣮⣽⡷⣿⣽⣷⢿⣳⡿⡽⣯⢏⡞⣧⢻⡵⣫⢞⡧⣟⡼⣫⣟⣵⢻⡞⣵⢻⠼⣡⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢻⣆⠈⢋⡘⠃⢲⡄⠘⣄⠻⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡏⠡⢀⣻⠓⢐⣿⡇⠀⠀⠀⠀⠐⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣿⣿⢿⣽⣟⡶⢯⢯⡟⣞⡯⢾⣱⠀⢛⣌⠂⠁⠀⠀⠀⠀⠀⠀⢀⠠⣄⢆⡖⢦⣓⣖⠲⣖⢏⠧⡝⢦⠫⡜⢣⡹⢰⡉⢖⡉⢦⢹⣴⣫⢷⣯⢷⡿⣿⢿⡽⣯⡿⣽⠿⣭⢯⡽⣞⢧⡻⣵⢫⡞⣵⢫⡗⡾⣭⡳⢯⣝⣣⠛⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⡂⢢⡻⡃⢀⠲⣦⡐⠃⢻⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠃⣤⣸⡇⠀⢚⣿⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣿⣿⢿⣿⣟⣻⢯⡽⣏⡾⣯⣟⡷⣌⢦⡫⢤⡐⢦⣄⣀⢀⡠⢍⠶⡘⢎⡜⢣⠍⣎⠳⡘⢎⡱⡘⢢⠱⢌⠣⡘⢡⠜⣠⢞⡼⣧⣟⢾⣻⡼⣿⣻⣯⣿⣻⢷⣟⡽⡿⣭⢯⡽⢮⣏⢷⣭⢳⡝⣧⢟⡾⣹⢶⡹⣓⢎⠖⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣷⡌⢿⣷⣎⠄⠣⠂⢂⣄⢿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠛⢰⣷⣿⠀⢸⣿⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣿⢿⡿⣿⣽⣯⢿⣽⡻⣷⢯⣿⡽⣞⣽⣣⣟⣳⡾⣽⣳⣟⣦⣇⡙⢦⢈⠇⡚⢄⢣⠉⡆⢱⡈⡅⢎⠤⣃⡙⣆⠻⡜⢯⣞⡵⡾⣯⣽⣻⣽⠷⣯⣷⢿⣯⢾⡽⣻⡭⣯⣽⢳⢯⣞⡼⣫⢞⡽⣎⢷⣙⠦⡝⡜⠌⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⣿⣆⢻⡿⢦⡄⠰⠆⠐⣀⠻⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠠⢀⣿⣿⡀⣺⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⣟⣯⣿⡾⣿⣞⡿⣯⢿⡼⣟⡷⣮⢗⣯⣷⣟⣯⢿⣯⢿⣻⢿⣷⢯⣶⡽⣎⡶⡭⡜⣥⠚⡜⢬⠒⣥⠚⣌⡳⣭⡳⣾⡹⣟⡶⣽⣧⢿⣻⡿⣾⣻⡾⣯⡟⣷⢯⠷⣞⢯⡗⣾⣱⢏⡿⡼⡹⢎⢮⠱⡘⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⣎⢳⣷⣄⣠⢀⠀⡹⢶⡹
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢋⣜⠛⣾⣿⠁⠰⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠐⣿⣻⣳⣟⡿⣾⡽⣭⣿⣳⢯⣷⣛⢿⣞⣷⣟⣿⣿⢾⣿⣻⠿⣯⢿⣺⣳⣏⢾⣱⣙⢦⣛⡜⣧⢻⡴⣻⣜⣳⢧⣟⣷⢻⢿⣽⢷⣻⣿⡷⣿⣻⣯⡿⣯⢿⡽⣞⡿⣭⢷⣛⢶⡹⣎⠷⣩⠳⡍⢆⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠹⣿⣆⢻⣟⡀⢈⠀⠡⠈⢵
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢡⡰⠇⣬⡿⠟⠰⣰⣿⡏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠻⣷⣯⣟⣷⡿⣽⡾⣽⣳⣗⣟⣯⣟⣷⣻⢾⣽⣿⣽⢿⣻⡿⣞⣷⣫⣞⣧⣗⣯⣞⣧⣟⢾⡳⣏⢷⣚⣭⣷⣾⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣯⣿⣻⣯⢿⡭⡷⣏⡷⣹⢎⠷⣩⠞⣡⠓⡈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⣿⡆⢻⣿⣯⣤⠧⠁⢲
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡏⣼⠇⠈⣽⣿⣿⣶⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠑⣯⣟⣾⣻⣷⣻⣳⣯⣞⣳⢷⣛⡾⣟⣿⢾⣽⣾⢿⣿⣻⣿⣾⣟⣾⣳⣞⣧⣿⣶⣿⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣾⣿⣳⣿⣞⣯⡽⣳⢏⡾⣱⢋⡞⣡⠚⠄⠁⠀⠀⠀⠀⡀⠀⢀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⣿⡀⠻⢿⣇⡄⠀⢬
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⣰⡍⠀⠀⢸⠻⢿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠻⣷⣻⢶⣯⡷⣾⣽⣳⣯⡽⣷⢿⣽⣻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣟⣿⣻⣞⣞⣧⡻⣵⢫⢖⡣⢋⠴⠁⠈⠀⠀⠀⠠⠐⠀⠄⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⣿⣄⠣⣵⣿⣆⠨
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⣭⢠⡄⠀⠄⠀⣬⢹⣿⣿⠅⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠻⣧⣷⡟⣷⢯⣷⣻⣞⣿⣻⣽⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢯⣟⣯⣷⣛⣾⢲⡻⣌⢗⢪⡑⠉⠀⠀⠀⠠⠐⢈⠀⢂⠡⠈⠄⠁⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢽⣿⣆⢱⣿⣿⣾
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢀⡏⣾⠁⠌⠀⠠⣬⣿⣿⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣶⣦⠙⢿⣯⣟⣾⣻⣾⣯⣿⢿⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢿⣽⣻⣽⢳⡾⣝⢮⢳⠱⣊⠜⠂⠀⢀⠀⠂⠡⠐⢈⠠⠈⡄⢂⠡⠈⠄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠘⡹⣿⡆⢻⠿⣽
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣯⢐⡇⠛⠇⠀⠀⢼⣿⣿⣶⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣾⣿⣿⣿⣦⣙⠻⣷⣿⣾⣿⣻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⣟⣿⣽⣾⢻⡿⣼⡳⣽⢫⡞⡭⢎⢣⠓⠈⠀⢀⠐⠠⠈⠄⠡⢈⠄⢂⠥⢐⠨⠐⡁⢂⠀⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠰⡹⣿⡄⢢⣭
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠠⢶⠈⠌⠀⣴⣟⢥⢹⣿⡏⢀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣾⣿⣿⣿⣿⣿⣿⣷⣌⠙⢿⣷⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣟⣿⣟⣯⣟⣾⣫⢯⡿⣾⢯⣿⣻⢾⣹⣽⢻⣼⢳⡝⣮⠳⡜⣑⠊⠀⠀⠄⡈⠤⠈⡄⠃⡌⠡⢂⠜⢠⠒⡈⢆⠑⡀⢂⠠⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠑⣹⣿⡄⢿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡆⢳⣀⠀⢀⣴⠀⢰⣾⣿⠃⠀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠴⠁⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⠈⠛⠿⣾⣿⣿⣽⣿⣿⣿⣿⣿⣿⣿⣯⣿⣯⣿⣻⣯⡿⣮⣟⣯⡽⣯⣟⢷⢯⣻⢳⢾⡹⢎⢧⡙⠆⠓⠈⢀⠠⠌⠌⡂⢅⠢⡑⢄⠣⢌⠱⡈⢜⠠⣃⠜⡠⢃⠐⠠⢀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠹⣿⣿⡘
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣇⡸⠷⠀⣰⠻⠂⠘⣿⡿⠀⠀⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣴⡏⢂⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡀⠘⣷⣦⡉⠛⠿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣯⣿⢿⣷⣿⣿⣽⣾⣽⢷⣯⢻⡭⣏⠟⡮⠱⠋⠂⢁⡀⠆⡱⢈⡄⠣⠜⡰⡈⢆⡱⢨⠜⠢⢥⠙⡤⠓⣌⢢⠑⣂⠉⡐⠀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⣿⣧
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠆⠛⢀⡟⢄⣔⣿⣿⡇⠀⠀⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⢶⣯⠗⢡⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⠀⢹⣿⣷⣦⠀⠀⠈⠙⠛⠾⢿⣿⣿⣯⣿⣽⣯⢿⡾⣯⢷⡻⣞⠯⠚⠧⠙⠈⠁⡀⠄⢂⡘⢄⠢⡑⠤⠣⣌⢣⡙⠴⣑⠪⡔⢣⠎⡵⢊⠵⣈⠳⣄⠣⠜⡠⢡⠀⡁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⣁⠐⢸⠇⢈⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣞⣽⡿⢀⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣇⠈⣿⣿⣿⣿⡰⡀⠀⠀⠀⠀⠀⠀⠉⠉⠁⠉⠉⠁⠉⠀⠁⠀⢀⠠⢀⠐⠠⢁⠰⢈⠂⡜⢠⠓⢬⡑⢣⠜⣢⠙⡦⢥⠳⡜⣣⡙⢖⠭⣒⠍⢶⡈⢧⠱⢄⢃⡐⢀⠁⠀⠀⠀⠀⠀⠀⠀⡀⢄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣗⢀⠉⢃⣾⣿⣾⡧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣰⣾⣿⣿⠏⣰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡆⢸⣿⣿⣿⣿⣵⡂⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⠠⠀⢂⠁⠌⠠⠐⠠⢈⠰⢈⠰⣈⠒⡌⠦⣙⠢⣜⡡⢞⡴⢋⠶⣩⢞⡡⢧⡙⣎⢣⢇⡛⢦⡙⢦⡉⢆⠢⠐⠠⠀⠀⠀⠀⠀⠀⠄⢒⡸⢀⣌⠒⡄⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠃⡐⠁⣸⣿⣿⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⣶⣾⢟⣡⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡈⣿⣿⣿⣿⣿⣿⡧⡄⠀⠀⠀⠀⠀⠀⠁⠀⠄⠡⠀⠌⠠⠁⠌⡐⢈⠰⣈⠒⡄⢣⠜⡢⢥⡓⢦⡙⢦⡍⣏⢞⡱⢎⡵⢃⠳⣌⠳⣎⠝⣦⠙⢦⠉⢆⠡⠊⠄⠐⠀⠀⠀⠀⠀⡘⢠⠵⣡⢞⡹⣤⢣⠀⣂⠀⠀⠀⢰⡃⠀⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇⠐⠷⣼⣿⣿⣿⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⣿⣿⣿⣿⣿⣿⣿⣷⡆⠀⠀⠀⠀⠀⠀⠁⡀⠂⠡⠈⠄⡑⠂⠌⠤⢑⠠⢃⠜⣢⢙⡬⢓⡜⣣⠝⣦⠹⡜⣎⠵⣫⢔⣫⢓⡎⠷⣌⢻⡐⢏⠦⡙⢄⠃⠌⡐⠀⠀⠀⠀⠀⠀⡐⢠⠻⣜⢮⣷⣏⣿⡇⢸⣦⠈⠀⠰⣏⡀⢖⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠄
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠛⠁⣠⡇⣂⡌⣩⢉⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⡀⠀⠀⠀⠁⠐⠠⢀⠡⢈⡐⠠⢑⡈⠔⡈⢆⡩⢒⠤⣃⢎⡳⡸⣅⠻⣔⢫⡜⢦⣛⠴⣋⠶⣩⢞⡹⣬⢣⡝⢎⡲⡉⢆⡘⠄⡐⠀⠀⠀⠀⠀⠀⠀⠰⡙⢼⣻⢿⣱⣿⣷⠈⣿⢳⡀⠀⠹⣆⠸⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⣿⣿⣿⣿⣿⣿⡿⠟⣉⠋⠄⠃⠤⣸⣟⠉⢹⣿⣸⠏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣾⣧⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⡀⠀⠀⠀⠈⢀⠂⠤⠁⡄⠣⢠⠐⠬⡐⢆⡒⣩⢒⡥⢎⡵⢳⡌⣷⢊⡷⣚⢧⡹⢎⡵⣋⢶⢫⡜⣖⡣⢞⡱⢢⡑⢢⠐⡂⠐⠈⠀⠀⠀⠀⠀⠀⠐⠈⠂⡝⡫⠜⣻⣿⣆⠸⣿⣷⣀⠀⠘⠄⢻⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⣿⣿⣿⣿⣿⣿⡇⠂⠀⡀⠂⠮⠁⡿⣷⣾⣿⣿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣿⣿⣷⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⡄⠀⠀⠀⠄⠂⠄⡑⠠⢃⠆⡩⢒⡩⢆⡱⢆⢯⡘⢧⡚⢧⣹⢒⡏⣶⠹⣎⡳⣏⡞⡽⣎⠷⣹⠲⡝⢮⣑⠣⡜⢠⠃⠄⡁⠂⠀⠀⠀⠀⠀⠀⠀⠈⠀⠐⢡⠫⡕⢻⣿⡄⠸⣿⣏⠻⣄⠀⠀⠟⡣⢄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⣿⣿⣿⣿⣿⣿⡧⢩⡮⠁⠀⠀⣽⣷⣿⣿⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⢈⠐⡈⠡⠌⡂⢅⠣⠔⢣⠜⡜⣢⠝⣦⢋⠷⣬⢳⡹⢖⡻⣜⡳⣭⢞⡵⣫⡝⣧⡛⣝⢦⡙⢦⡑⢢⠑⠠⠐⠀⠁⠀⠀⠀⠀⠀⠀⠀⠁⠀⢀⠓⠜⡢⢽⣻⢆⡘⢻⣷⣼⣅⠄⠀⠜⣦⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⣿⣿⣿⣿⡿⠋⣠⡊⠣⠠⣸⣾⣿⣿⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⢠⣀⣀⠀⠀⠄⡁⠢⠑⢌⠒⡩⢆⡹⢰⢣⠞⡴⣋⠷⣜⣣⠟⣭⢳⣭⢳⡝⣮⢳⢧⡻⣴⢛⡼⢢⡝⢢⠜⡠⠌⠡⠈⠄⢀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠂⡁⠆⣉⠛⠾⠢⡈⢕⡘⢷⣄⠀⠈⠊⠆⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⣿⣿⡿⠛⢠⡘⢀⣢⣥⣿⣿⣿⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣇⣿⣿⣿⣿⣶⣦⣅⡈⠢⢡⠱⣈⠖⡩⢖⡹⢲⡍⣞⡱⢎⡟⣜⠳⣎⡳⣝⢮⣛⣎⢷⡱⢯⡜⣣⠎⡥⢊⠔⡈⠡⠈⠄⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⡐⡐⠾⣽⠿⣷⣶⣶⣦⣤⣄⣉⠳⢄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⣷⠉⠁⣻⠃⠈⠜⣿⣿⣿⡟⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣦⣄⡁⠪⢑⢎⡱⢣⠞⡴⣙⠞⡼⣸⡙⢶⡹⣬⢳⣣⢞⣣⡝⡶⣙⠦⡙⠤⣁⠒⡈⠡⢈⠐⠀⠠⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡱⣹⢶⣿⣿⣿⣿⣿⣿⣿⣷⣜⢿⣆⣄⠂⠀⠀⠐⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠰⠖⠁⢀⣢⣶⣿⡿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⣬⣐⡉⠎⡵⣉⠞⣥⢣⡝⣲⢣⠳⣝⡲⢏⡶⣙⠶⣉⠖⣩⠒⢄⠡⠐⡁⠂⠄⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⢳⣝⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⡝⢿⠆⢲⠀⢀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⡿⠁⣀⣰⣾⣿⡿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⣴⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣤⣉⠚⠴⣃⢞⡡⢏⡝⢦⢏⡳⢼⣡⢛⡜⡸⢄⠩⡀⠎⡐⠠⢁⠈⡀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⢈⡾⢽⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⠀⢨⠅⢢⠐⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⡀⠀⣾⣿⡟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣦⣍⣈⠳⢩⢞⡱⢎⡝⢦⢣⢋⡴⠱⡈⠆⣁⠂⠄⡁⠂⠄⠠⠐⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣃⢠⢏⠤⣣⠐⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⣶⣿⣿⠋⠀⠀⠀⠀⢠⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣌⡑⠫⡜⢣⠣⣍⢒⡡⢑⠨⢀⠌⡐⠠⠁⠌⡀⠄⠂⠀⠀⠀⠀⣀⣤⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡅⢚⣮⢳⣧⠸⡄⢂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⣿⣿⡁⠀⠀⠀⡀⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣦⣅⠓⢌⠢⡐⢡⠈⡄⠂⠤⠁⠌⡐⠀⠄⠂⣈⣤⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⡄⣻⡼⣷⣏⣿⡔⡡⠂⠀⠀⠐⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⣿⠃⠀⠀⠀⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⣀⠑⠂⠡⠠⠑⠠⢁⠂⢀⣤⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠃⢴⣻⣽⣿⣯⣷⣞⣡⢃⠀⠀⡀⠣⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣠⣤⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣦⣥⣀⣡⣤⣤⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠁⢌⣺⣿⣿⣿⣿⣿⣮⢳⠎⡄⠀⢱⡄⢫⠄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+      </pre>
+    </div>
+    <p style="color:#942e44; font-style:italic; margin-top:1rem;">Love you so much payro maxey</p>
+  </section>
+
+  <script>
+    (function() {
+      // ----- FLOATING HEARTS BACKGROUND (preserved) -----
+      function createFloatingHeartsBG() {
+        const container = document.getElementById('heartsContainer');
+        if (!container) return;
+        const symbols = ['❤️', '💕', '💖', '💗', '💝', '💘'];
+        for (let i = 0; i < 20; i++) {
+          const heart = document.createElement('div');
+          heart.className = 'heart-bg';
+          heart.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+          heart.style.left = Math.random() * 100 + '%';
+          heart.style.animationDelay = Math.random() * 15 + 's';
+          heart.style.animationDuration = (15 + Math.random() * 10) + 's';
+          container.appendChild(heart);
+        }
+      }
+
+      // ----- COUNTDOWN -----
+      function updateCountdown() {
+        const target = new Date('February 14, 2026 00:00:00').getTime();
+        const now = new Date().getTime();
+        const diff = target - now;
+        const el = document.getElementById('countdown');
+        if (!el) return;
+        if (diff <= 0) { el.innerText = '♥ आज २ फागुन २०८२ ♥'; return; }
+        const days = Math.floor(diff / (86400000));
+        const hours = Math.floor((diff % 86400000) / 3600000);
+        const minutes = Math.floor((diff % 3600000) / 60000);
+        const seconds = Math.floor((diff % 60000) / 1000);
+        el.innerText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+      }
+      updateCountdown(); setInterval(updateCountdown, 1000);
+
+      // ----- FLOATING HEARTS (on click) -----
+      function createHeart(x, y) {
+        const heart = document.createElement('div');
+        heart.classList.add('float-heart');
+        heart.innerHTML = Math.random() > 0.5 ? '❤️' : '💖';
+        heart.style.left = x + 'px'; heart.style.top = y + 'px';
+        heart.style.fontSize = (1.5 + Math.random() * 2) + 'rem';
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 4000);
+      }
+      function createMultipleHearts(e, count=8) {
+        for (let i=0; i<count; i++) setTimeout(() => createHeart(e.clientX+(Math.random()*60-30), e.clientY+(Math.random()*60-30)), i*50);
+      }
+      document.getElementById('sendLoveBtn')?.addEventListener('click', (e) => {
+        const rect = e.target.getBoundingClientRect();
+        const x = rect.left + rect.width/2, y = rect.top + rect.height/2;
+        for (let i=0; i<15; i++) setTimeout(() => createHeart(x+(Math.random()*100-50), y+(Math.random()*100-50)), i*50);
+      });
+      document.querySelectorAll('.section').forEach(s => {
+        s.addEventListener('click', (e) => { if (!e.target.closest('button,label,input,.gift-box')) createMultipleHearts(e, 6); });
+      });
+
+      // ----- SECTION TOGGLING (7 sections) -----
+      const sections = Array.from(document.querySelectorAll('.section'));
+      const navLinks = document.querySelectorAll('.nav-links a[data-section]');
+      let currentIndex = 0;
+      function showSection(index) {
+        if (index < 0) index = 0;
+        if (index >= sections.length) index = sections.length - 1;
+        sections.forEach((sec, i) => sec.classList.toggle('active', i === index));
+        currentIndex = index;
+      }
+      navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetId = link.getAttribute('data-section');
+          const target = document.getElementById(targetId);
+          if (target) showSection(sections.indexOf(target));
+        });
+      });
+      document.getElementById('prevSection')?.addEventListener('click', () => showSection(currentIndex-1));
+      document.getElementById('nextSection')?.addEventListener('click', () => showSection(currentIndex+1));
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') { showSection(currentIndex-1); e.preventDefault(); }
+        else if (e.key === 'ArrowRight') { showSection(currentIndex+1); e.preventDefault(); }
+      });
+
+      // ----- SURPRISE REVEAL (preserved) -----
+      window.revealSurprise = function() {
+        const msg = document.getElementById('hiddenMessage');
+        const gift = document.querySelector('.gift-box');
+        if (!msg || !gift) return;
+        if (!msg.classList.contains('show')) {
+          msg.classList.add('show');
+          gift.textContent = '💐';
+          // confetti effect
+          const colors = ['#E63946', '#F4A6B2', '#FFD6E8', '#D4AF37', '#8E5B9F'];
+          for (let i=0; i<50; i++) {
+            const confetti = document.createElement('div');
+            confetti.style.position = 'fixed'; confetti.style.width = '10px'; confetti.style.height = '10px';
+            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.left = Math.random() * 100 + '%'; confetti.style.top = '-10px';
+            confetti.style.zIndex = '9999'; confetti.style.borderRadius = '50%';
+            document.body.appendChild(confetti);
+            confetti.animate([
+              { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
+              { transform: `translateY(${window.innerHeight+10}px) rotate(${360 * (Math.random()*3)}deg)`, opacity: 0 }
+            ], { duration: 3000 + Math.random()*2000, easing: 'cubic-bezier(0.25,0.46,0.45,0.94)' }).onfinish = () => confetti.remove();
+          }
+        }
+      };
+
+      // ----- INIT -----
+      createFloatingHeartsBG();
+    })();
+  </script>
+</body>
+</html>

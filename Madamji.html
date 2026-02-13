@@ -65,15 +65,38 @@
       opacity: 0.95;
     }
 
-    .ascii-container {
-      background-color: #030a03;
-      border-radius: 16px;
-      padding: 1.2rem 0.8rem;
-      border: 1px solid #2e6b2e;
-      box-shadow: inset 0 0 18px #001a00, 0 6px 10px #000000;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-    }
+    ..ascii-container {
+  background-color: #030a03;
+  border-radius: 50px;
+  padding: 1.2rem 0.8rem;
+  border: 1px solid #2e6b2e;
+  box-shadow: inset 0 0 18px #001a00, 0 6px 10px #000000;
+  
+  /* Make the container itself responsive */
+  width: 100%;
+  height: 100%;          /* adjust as needed – may be vh, auto, or inherit */
+  
+  /* Scrollable both axes if content overflows */
+  overflow-x: auto;
+  overflow-y: auto;
+  
+  /* Disable pinch/double‑tap zoom on this element */
+  touch-action: pan-x pan-y;      /* modern browsers */
+  -ms-touch-action: pan-x pan-y;  /* IE11 */
+  
+  /* Prevent mobile font inflation (keeps ASCII proportions) */
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+}
+
+/* Force any direct child to fill the container completely */
+.ascii-container > * {
+  width: 100%;
+  height: 100%;
+  display: block;       /* removes extra inline spacing */
+  margin: 0;
+  padding: 0;
+}
 
     pre {
       margin: 0;

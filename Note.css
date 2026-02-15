@@ -251,40 +251,78 @@ section {
 }
 
 /* Additional Components */
+/* Style for the TOC container */
 .toc {
-    background-color: #f4f4f4;
-    padding: 15px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    max-width: 800px;          /* Limits width for better readability */
+    margin: 2rem auto;         /* Centers the container */
+    padding: 1.5rem;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* Heading style */
 .toc h2 {
     text-align: center;
-    margin-bottom: 10px;
-    color: var(--dark-green);
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 0.5rem;
 }
 
-.toc ul {
-    list-style: none;
-    padding: 0;
-    columns: 2;
+/* Grid container for buttons */
+.toc-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive columns */
+    gap: 1rem;                     /* Equal space between rows and columns */
+    justify-content: center;
+    align-items: stretch;          /* Makes all buttons equal height */
 }
 
-.toc ul li {
-    margin-bottom: 8px;
+/* Button styling */
+.toc-buttons button {
+    background-color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 1rem 0.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #2c3e50;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid #e0e0e0;     /* Subtle border */
+    width: 100%;                    /* Ensures button fills grid cell */
+    text-align: center;
+    line-height: 1.4;
+    word-wrap: break-word;          /* Handles long text */
 }
 
-.toc ul li a {
-    text-decoration: none;
-    color: var(--primary-green);
-    font-weight: bold;
+/* Hover effect for buttons */
+.toc-buttons button:hover {
+    background-color: #3498db;
+    color: white;
+    border-color: #3498db;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(52, 152, 219, 0.3);
 }
 
-.toc ul li a:hover {
-    text-decoration: underline;
+/* Optional focus style for accessibility */
+.toc-buttons button:focus {
+    outline: 2px solid #3498db;
+    outline-offset: 2px;
 }
-.button{
+
+/* Responsive adjustment for very small screens */
+@media (max-width: 480px) {
+    .toc-buttons {
+        grid-template-columns: 1fr;  /* Single column on narrow devices */
+    }
+    }.button{
     display: inline-block;
     padding: 14px 24px;
     background: linear-gradient(45deg, var(--primary-green), var(--dark-green));

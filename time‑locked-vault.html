@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>10‑minute secure vault · reveal</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: radial-gradient(circle at 30% 10%, #0b1a33, #0a0f1f);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      margin: 0;
+      color: #ffffff;
+    }
+
+    .glass-panel {
+      background: rgba(15, 25, 45, 0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 2.5rem;
+      padding: 2.5rem 2rem;
+      max-width: 700px;
+      width: 100%;
+      box-shadow: 0 30px 50px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.03) inset;
+      transition: transform 0.2s ease;
+      animation: fadeIn 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(15px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+      font-size: 2.4rem;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #ffffff, #c0d0ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 0 2px 5px rgba(0, 20, 50, 0.6);
+    }
+
+    h1 span {
+      font-size: 2.2rem;
+      filter: drop-shadow(0 4px 6px #00000040);
+    }
+
+    .subhead {
+      font-size: 1rem;
+      font-weight: 400;
+      color: #9bb5ff;
+      margin-bottom: 2.8rem;
+      border-left: 3px solid #3e6bff;
+      padding-left: 1.2rem;
+      background: linear-gradient(90deg, rgba(62, 107, 255, 0.2), transparent);
+    }
+
+    /* Countdown circle (modern ring) */
+    .countdown-wrapper {
+      display: flex;
+      justify-content: center;
+      margin: 1.5rem 0 2.5rem;
+    }
+
+    .timer-ring {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .timer-ring svg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      transform: rotate(-90deg);
+    }
+
+    .timer-ring circle {
+      fill: none;
+      stroke-width: 6px;
+      stroke-linecap: round;
+      stroke-dasharray: 565.48; /* 2 * pi * 90 ≈ 565.48 */
+      stroke-dashoffset: 0;
+      transition: stroke-dashoffset 1s linear;
+    }
+
+    .timer-ring .bg-circle {
+      stroke: rgba(255, 255, 255, 0.1);
+      stroke-width: 6px;
+    }
+
+    .timer-ring .progress-circle {
+      stroke: url(#gradient);
+      filter: drop-shadow(0 0 8px #3e6bff);
+    }
+
+    .timer-text {
+      position: relative;
+      z-index: 5;
+      font-size: 3.5rem;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      background: linear-gradient(135deg, #f0f4ff, #bfd6ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 0 0 20px #3e6bff;
+      line-height: 1;
+    }
+
+    .timer-label {
+      text-align: center;
+      margin-top: -1rem;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: #9bb5ff80;
+    }
+
+    /* Password reveal box */
+    .vault-section {
+      margin-top: 2rem;
+    }
+
+    .password-box {
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 2rem;
+      padding: 1.6rem 1.8rem;
+      font-family: 'Fira Mono', 'Cascadia Code', 'Courier New', monospace;
+      font-size: 1.7rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+      word-break: break-all;
+      text-align: center;
+      box-shadow: 0 15px 30px -10px #00000080, 0 0 0 1px #3e6bff inset;
+      backdrop-filter: blur(8px);
+      display: none;
+      color: #ffffff;
+      text-shadow: 0 0 8px cyan;
+      animation: glowPulse 2s infinite alternate;
+      margin-bottom: 2rem;
+    }
+
+    @keyframes glowPulse {
+      0% { box-shadow: 0 15px 30px -10px #000, 0 0 0 1px #3e6bff, 0 0 10px #3e6bff; }
+      100% { box-shadow: 0 15px 30px -10px #000, 0 0 0 2px #6f9eff, 0 0 25px #3e6bff; }
+    }
+
+    .copy-btn {
+      background: linear-gradient(145deg, #1f3a7a, #122956);
+      border: 1px solid #6f9eff;
+      color: white;
+      font-size: 1.3rem;
+      font-weight: 500;
+      padding: 1rem 2.5rem;
+      border-radius: 60px;
+      cursor: pointer;
+      width: fit-content;
+      margin: 0 auto 1.5rem;
+      display: none;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 12px 25px -8px #000c33, 0 0 0 1px #a0c0ff inset;
+      transition: all 0.2s ease;
+      backdrop-filter: blur(5px);
+    }
+
+    .copy-btn:hover {
+      background: linear-gradient(145deg, #2a4a9e, #1a3470);
+      box-shadow: 0 18px 30px -8px #000, 0 0 0 2px #bfd6ff inset;
+      transform: scale(1.02);
+      border-color: white;
+    }
+
+    .copy-btn:active {
+      transform: scale(0.98);
+    }
+
+    .copy-btn i {
+      font-size: 1.5rem;
+      filter: drop-shadow(0 2px 3px black);
+    }
+
+    .footer-note {
+      font-size: 0.95rem;
+      color: #96abdd;
+      background: rgba(0, 5, 20, 0.4);
+      padding: 0.9rem 1.8rem;
+      border-radius: 60px;
+      text-align: center;
+      border: 1px dashed #5f7bbf;
+      margin-top: 2rem;
+      backdrop-filter: blur(4px);
+    }
+
+    .footer-note strong {
+      color: white;
+      font-weight: 600;
+      background: #1e3266;
+      padding: 0.2rem 1rem;
+      border-radius: 30px;
+      margin-left: 6px;
+    }
+
+    /* utility */
+    .hidden {
+      display: none;
+    }
+
+    .flex-center {
+      display: flex;
+      justify-content: center;
+    }
+
+    /* inline SVG gradient */
+    .timer-ring svg defs linearGradient stop {
+      transition: stop-color 0.2s;
+    }
+  </style>
+</head>
+<body>
+  <div class="glass-panel">
+    <h1>
+      <span>🔐</span> 
+      time‑locked vault
+    </h1>
+    <div class="subhead">
+      Your access code will appear when the ring completes · exactly 10 minutes
+    </div>
+
+    <!-- circular countdown with dynamic progress -->
+    <div class="countdown-wrapper">
+      <div class="timer-ring">
+        <svg viewBox="0 0 200 200">
+          <defs>
+            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#5f9eff" />
+              <stop offset="100%" stop-color="#bf7aff" />
+            </linearGradient>
+          </defs>
+          <!-- background ring -->
+          <circle class="bg-circle" cx="100" cy="100" r="90"></circle>
+          <!-- progress ring (starts full, offset decreases) -->
+          <circle class="progress-circle" cx="100" cy="100" r="90" 
+                  stroke-dashoffset="0" id="progressRing"></circle>
+        </svg>
+        <div class="timer-text" id="countdown">10:00</div>
+      </div>
+    </div>
+    <div class="timer-label">time remaining</div>
+
+    <!-- vault section: password & copy -->
+    <div class="vault-section">
+      <div class="password-box" id="password">
+        X9!aT7#qLm2$VpZr4@wYc8^BdF6*GhJk0+NsQeR1%Ux
+      </div>
+      <div class="flex-center">
+        <button class="copy-btn" id="copyBtn">
+          <i>📋</i> copy & restart 10 min
+        </button>
+      </div>
+    </div>
+
+    <div class="footer-note">
+      ⏳ copy = instant refresh · timer resets back to 10 minutes
+      <strong>vault reload</strong>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      // Total time: 10 minutes = 600 seconds
+      let timeLeft = 600;          
+      const totalTime = 600;       
+
+      const countdownEl = document.getElementById('countdown');
+      const passwordEl = document.getElementById('password');
+      const copyBtn = document.getElementById('copyBtn');
+      const progressRing = document.getElementById('progressRing');
+
+      // circumference for r=90 : 2 * π * 90 ≈ 565.48
+      const circumference = 2 * Math.PI * 90; // 565.48...
+      progressRing.style.strokeDasharray = circumference;
+
+      // function to update both timer text and ring offset
+      function updateDisplay() {
+        const mins = Math.floor(timeLeft / 60);
+        const secs = timeLeft % 60;
+        countdownEl.textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+
+        // Update ring progress: when timeLeft = total => offset = 0 (full ring)
+        // when timeLeft = 0 => offset = circumference (empty ring)
+        const progress = timeLeft / totalTime;  // 1 down to 0
+        const dashOffset = circumference * (1 - progress);
+        progressRing.style.strokeDashoffset = dashOffset;
+      }
+
+      // main countdown logic
+      function tick() {
+        if (timeLeft <= 0) {
+          // stop timer, reveal password & copy button
+          clearInterval(timerInterval);
+          countdownEl.parentElement.parentElement.style.opacity = '0.5'; // optional visual hint
+          // hide the countdown ring area but keep layout? we hide whole wrapper?
+          // Better: keep visible but show 00:00 and disable? We'll hide ring/text and show password.
+          // But we want to hide countdown section? For clarity, hide the timer wrapper & label
+          document.querySelector('.countdown-wrapper').style.display = 'none';
+          document.querySelector('.timer-label').style.display = 'none';
+          // reveal password and copy button
+          passwordEl.style.display = 'block';
+          copyBtn.style.display = 'inline-flex';
+          return;
+        }
+
+        // update numbers and ring
+        updateDisplay();
+        timeLeft--;
+      }
+
+      // initial display
+      updateDisplay();
+
+      // set interval with proper 1000ms (fixed from original 000 bug)
+      const timerInterval = setInterval(tick, 1000);
+
+      // Copy + reload functionality (exactly as requested: refresh page to restart timer)
+      copyBtn.addEventListener('click', () => {
+        const passwordText = passwordEl.textContent;  // get the password string
+        // copy to clipboard
+        navigator.clipboard.writeText(passwordText).then(() => {
+          // tiny visual feedback before reload (better than alert)
+          copyBtn.textContent = '✓ copied! reloading...';
+          copyBtn.style.background = '#1f5f3a';
+          copyBtn.disabled = true;
+          setTimeout(() => {
+            location.reload();  // refresh to restart timer (back to 10 minutes)
+          }, 300);
+        }).catch(err => {
+          alert('Clipboard error, but page will reload anyway.');
+          location.reload();  // fallback reload
+        });
+      });
+
+      // Edge: if the timer already hit zero before? (timeLeft could be 0 after reload? no, fresh start)
+      // But if user stays on page and timer expires, we already hide the countdown wrapper.
+      // Also we need to ensure that after password reveal, the copy button reloads.
+      // That's done.
+
+      // Additional touch: make sure password box is hidden initially (already via CSS)
+      // But if timeLeft somehow zero at start (unlikely), we call tick once to adjust.
+      // we can call tick() immediately to handle the case timeLeft = 0? no, it's 600.
+      // but for completeness, we handle:
+      if (timeLeft <= 0) {
+        // this won't run, but if someone changes totalTime to 0
+        document.querySelector('.countdown-wrapper').style.display = 'none';
+        document.querySelector('.timer-label').style.display = 'none';
+        passwordEl.style.display = 'block';
+        copyBtn.style.display = 'inline-flex';
+        clearInterval(timerInterval);
+      }
+
+      // optional: animate the gradient on ring?
+      // Not needed, but we add a little dynamic pulse to progress circle
+      setInterval(() => {
+        if (timeLeft > 0) {
+          progressRing.style.filter = 'drop-shadow(0 0 12px #6f9eff)';
+          setTimeout(() => progressRing.style.filter = 'drop-shadow(0 0 5px #3e6bff)', 200);
+        }
+      }, 1200);
+    })();
+  </script>
+</body>
+</html>

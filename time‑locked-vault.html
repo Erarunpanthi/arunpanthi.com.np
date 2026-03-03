@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>10‑minute secure vault · reveal</title>
   <style>
-    /* (your existing styles, unchanged) */
     * {
       margin: 0;
       padding: 0;
@@ -461,15 +460,8 @@
         } else if (e.key === 'F12') {
           e.preventDefault();
           applyPunishment('open developer tools');
-        } else if (e.key === 'PrintScreen') {
-          e.preventDefault();
-          applyPunishment('take a screenshot');
         }
-      });
-
-      // Detect window blur (possible screenshot attempt)
-      window.addEventListener('blur', () => {
-        applyPunishment('switch window (possible screenshot)');
+        // PrintScreen and window blur handlers removed as requested
       });
 
       // Optional: pulse effect

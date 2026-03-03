@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>10‑minute secure vault · reveal</title>
   <style>
+    /* (your existing styles, unchanged) */
     * {
       margin: 0;
       padding: 0;
@@ -237,19 +238,68 @@
     .timer-ring svg defs linearGradient stop {
       transition: stop-color 0.2s;
     }
+
+    /* modal styling (dark theme) */
+    .modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 9998;
+      display: none;
+    }
+    .modal-card {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #1a2645;
+      padding: 25px 35px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 0 1px #3e6bff inset;
+      z-index: 9999;
+      text-align: center;
+      display: none;
+      color: white;
+      border: 1px solid #5f7bbf;
+    }
+    .modal-card h1 {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+      -webkit-text-fill-color: white;
+      background: none;
+      text-shadow: none;
+      color: #ffaa5e;
+    }
+    .modal-card p {
+      font-size: 1rem;
+      margin-bottom: 20px;
+      color: #cfd9ff;
+    }
+    .modal-card .close-btn {
+      background: #3e6bff;
+      color: white;
+      border: none;
+      padding: 8px 25px;
+      border-radius: 40px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 5px 15px #00000040;
+    }
+    .modal-card .close-btn:hover {
+      background: #5f7bff;
+      transform: scale(1.05);
+    }
   </style>
 </head>
 <body>
   <div class="glass-panel">
-    <h1>
-      <span>🔐</span> 
-      time‑locked vault
-    </h1>
-    <div class="subhead">
-      Your access code will appear when the ring completes · exactly 10 minutes
-    </div>
+    <h1><span>🔐</span> time‑locked vault</h1>
+    <div class="subhead">Your access code will appear when the ring completes · exactly 10 minutes</div>
 
-    <!-- circular countdown with dynamic progress -->
     <div class="countdown-wrapper">
       <div class="timer-ring">
         <svg viewBox="0 0 200 200">
@@ -259,129 +309,170 @@
               <stop offset="100%" stop-color="#bf7aff" />
             </linearGradient>
           </defs>
-          <!-- background ring -->
           <circle class="bg-circle" cx="100" cy="100" r="90"></circle>
-          <!-- progress ring (starts full, offset decreases) -->
-          <circle class="progress-circle" cx="100" cy="100" r="90" 
-                  stroke-dashoffset="0" id="progressRing"></circle>
+          <circle class="progress-circle" cx="100" cy="100" r="90" stroke-dashoffset="0" id="progressRing"></circle>
         </svg>
         <div class="timer-text" id="countdown">10:00</div>
       </div>
     </div>
     <div class="timer-label">time remaining</div>
 
-    <!-- vault section: password & copy -->
     <div class="vault-section">
-      <div class="password-box" id="password">
-        X9!aT7#qLm2$VpZr4@wYc8^BdF6*GhJk0+NsQeR1%Ux
-      </div>
+      <div class="password-box" id="password">X9!aT7#qLm2$VpZr4@wYc8^BdF6*GhJk0+NsQeR1%Ux</div>
       <div class="flex-center">
-        <button class="copy-btn" id="copyBtn">
-          <i>📋</i> copy & restart 10 min
-        </button>
+        <button class="copy-btn" id="copyBtn"><i>📋</i> copy & restart 10 min</button>
       </div>
     </div>
 
-    <div class="footer-note">
-      ⏳ copy = instant refresh · timer resets back to 10 minutes
-      <strong>vault reload</strong>
-    </div>
+    <div class="footer-note">⏳ copy = instant refresh · timer resets back to 10 minutes <strong>vault reload</strong></div>
   </div>
 
   <script>
     (function() {
-      // Total time: 10 minutes = 600 seconds
-      let timeLeft = 600;          
-      const totalTime = 600;       
+      // ---------- Timer variables ----------
+      let timeLeft = 600;               // current seconds left
+      let totalTime = 600;               // maximum time (changes to 1800 on punishment)
+      const PUNISH_TIME = 1800;           // 30 minutes
 
       const countdownEl = document.getElementById('countdown');
       const passwordEl = document.getElementById('password');
       const copyBtn = document.getElementById('copyBtn');
       const progressRing = document.getElementById('progressRing');
 
-      // circumference for r=90 : 2 * π * 90 ≈ 565.48
       const circumference = 2 * Math.PI * 90; // 565.48...
       progressRing.style.strokeDasharray = circumference;
 
-      // function to update both timer text and ring offset
       function updateDisplay() {
         const mins = Math.floor(timeLeft / 60);
         const secs = timeLeft % 60;
         countdownEl.textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
 
-        // Update ring progress: when timeLeft = total => offset = 0 (full ring)
-        // when timeLeft = 0 => offset = circumference (empty ring)
-        const progress = timeLeft / totalTime;  // 1 down to 0
+        const progress = timeLeft / totalTime;
         const dashOffset = circumference * (1 - progress);
         progressRing.style.strokeDashoffset = dashOffset;
       }
 
-      // main countdown logic
       function tick() {
         if (timeLeft <= 0) {
-          // stop timer, reveal password & copy button
           clearInterval(timerInterval);
-          countdownEl.parentElement.parentElement.style.opacity = '0.5'; // optional visual hint
-          // hide the countdown ring area but keep layout? we hide whole wrapper?
-          // Better: keep visible but show 00:00 and disable? We'll hide ring/text and show password.
-          // But we want to hide countdown section? For clarity, hide the timer wrapper & label
           document.querySelector('.countdown-wrapper').style.display = 'none';
           document.querySelector('.timer-label').style.display = 'none';
-          // reveal password and copy button
           passwordEl.style.display = 'block';
           copyBtn.style.display = 'inline-flex';
           return;
         }
-
-        // update numbers and ring
         updateDisplay();
         timeLeft--;
       }
 
-      // initial display
       updateDisplay();
+      let timerInterval = setInterval(tick, 1000);
 
-      // set interval with proper 1000ms (fixed from original 000 bug)
-      const timerInterval = setInterval(tick, 1000);
-
-      // Copy + reload functionality (exactly as requested: refresh page to restart timer)
+      // ---------- Copy button (works only after reveal) ----------
       copyBtn.addEventListener('click', () => {
-        const passwordText = passwordEl.textContent;  // get the password string
-        // copy to clipboard
+        const passwordText = passwordEl.textContent;
         navigator.clipboard.writeText(passwordText).then(() => {
-          // tiny visual feedback before reload (better than alert)
           copyBtn.textContent = '✓ copied! reloading...';
           copyBtn.style.background = '#1f5f3a';
           copyBtn.disabled = true;
-          setTimeout(() => {
-            location.reload();  // refresh to restart timer (back to 10 minutes)
-          }, 300);
-        }).catch(err => {
+          setTimeout(() => location.reload(), 300);
+        }).catch(() => {
           alert('Clipboard error, but page will reload anyway.');
-          location.reload();  // fallback reload
+          location.reload();
         });
       });
 
-      // Edge: if the timer already hit zero before? (timeLeft could be 0 after reload? no, fresh start)
-      // But if user stays on page and timer expires, we already hide the countdown wrapper.
-      // Also we need to ensure that after password reveal, the copy button reloads.
-      // That's done.
-
-      // Additional touch: make sure password box is hidden initially (already via CSS)
-      // But if timeLeft somehow zero at start (unlikely), we call tick once to adjust.
-      // we can call tick() immediately to handle the case timeLeft = 0? no, it's 600.
-      // but for completeness, we handle:
-      if (timeLeft <= 0) {
-        // this won't run, but if someone changes totalTime to 0
-        document.querySelector('.countdown-wrapper').style.display = 'none';
-        document.querySelector('.timer-label').style.display = 'none';
-        passwordEl.style.display = 'block';
-        copyBtn.style.display = 'inline-flex';
-        clearInterval(timerInterval);
+      // ---------- Punishment function ----------
+      function applyPunishment(actionMessage) {
+        if (timeLeft > 0) {   // only punish if timer still running
+          timeLeft = PUNISH_TIME;
+          totalTime = PUNISH_TIME;
+          updateDisplay();
+          showModal('⏰ Time Increased!', `You tried to ${actionMessage}. Timer is now 30 minutes.`);
+        } else {
+          // If already revealed, just show a warning without punishment
+          showModal('Action Blocked', `You cannot ${actionMessage} after the password is revealed.`);
+        }
       }
 
-      // optional: animate the gradient on ring?
-      // Not needed, but we add a little dynamic pulse to progress circle
+      // ---------- Modal creation ----------
+      function createModal() {
+        const backdrop = document.createElement('div');
+        backdrop.className = 'modal-backdrop';
+        document.body.appendChild(backdrop);
+
+        const modal = document.createElement('div');
+        modal.className = 'modal-card';
+        modal.innerHTML = `
+          <h1 id="modal-title">Action Blocked</h1>
+          <p id="modal-message">This action is not allowed on this page.</p>
+          <button class="close-btn" id="modal-close">Close</button>
+        `;
+        document.body.appendChild(modal);
+
+        document.getElementById('modal-close').onclick = () => {
+          backdrop.style.display = 'none';
+          modal.style.display = 'none';
+        };
+      }
+      createModal();
+
+      function showModal(title, message) {
+        document.getElementById('modal-title').textContent = title;
+        document.getElementById('modal-message').textContent = message;
+        document.querySelector('.modal-backdrop').style.display = 'block';
+        document.querySelector('.modal-card').style.display = 'block';
+      }
+
+      // ---------- Blocking event listeners with punishment ----------
+      document.addEventListener('contextmenu', (e) => {
+        e.preventDefault();
+        applyPunishment('right-click');
+      });
+
+      document.addEventListener('selectstart', (e) => {
+        e.preventDefault();
+        applyPunishment('select text');
+      });
+
+      document.addEventListener('copy', (e) => {
+        e.preventDefault();
+        applyPunishment('copy content');
+      });
+
+      document.addEventListener('dragstart', (e) => {
+        e.preventDefault();
+        applyPunishment('drag and drop');
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.ctrlKey && e.key === 'p') {
+          e.preventDefault();
+          applyPunishment('print the page');
+        } else if (e.ctrlKey && e.shiftKey && e.key === 'i') {
+          e.preventDefault();
+          applyPunishment('open developer tools');
+        } else if (e.ctrlKey && e.key === 'u') {
+          e.preventDefault();
+          applyPunishment('view source');
+        } else if (e.ctrlKey && e.key === 's') {
+          e.preventDefault();
+          applyPunishment('save the page');
+        } else if (e.key === 'F12') {
+          e.preventDefault();
+          applyPunishment('open developer tools');
+        } else if (e.key === 'PrintScreen') {
+          e.preventDefault();
+          applyPunishment('take a screenshot');
+        }
+      });
+
+      // Detect window blur (possible screenshot attempt)
+      window.addEventListener('blur', () => {
+        applyPunishment('switch window (possible screenshot)');
+      });
+
+      // Optional: pulse effect
       setInterval(() => {
         if (timeLeft > 0) {
           progressRing.style.filter = 'drop-shadow(0 0 12px #6f9eff)';
@@ -389,153 +480,6 @@
         }
       }, 1200);
     })();
-    
-  </script>
-  <script>// Create and append the modal and its backdrop dynamically
-function createModal() {
-    // Create modal backdrop
-    const backdrop = document.createElement("div");
-    backdrop.className = "modal-backdrop";
-    backdrop.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.6);
-        z-index: 9998;
-        display: none;
-    `;
-    document.body.appendChild(backdrop);
-
-    // Create modal card
-    const modal = document.createElement("div");
-    modal.className = "modal-card";
-    modal.style.cssText = `
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: white;
-        padding: 20px 30px;
-        border-radius: 10px;
-        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
-        z-index: 9999;
-        text-align: center;
-        display: none;
-    `;
-
-    // Modal title
-    const title = document.createElement("h1");
-    title.id = "modal-title";
-    title.style.cssText = `
-        font-size: 18px;
-        color: #ff4757;
-        margin: 0 0 10px;
-    `;
-    title.textContent = "Action Blocked";
-    modal.appendChild(title);
-
-    // Modal message
-    const message = document.createElement("p");
-    message.id = "modal-message";
-    message.style.cssText = `
-        font-size: 14px;
-        color: #333;
-        margin: 0 0 20px;
-    `;
-    message.textContent = "This action is not allowed on this page.";
-    modal.appendChild(message);
-
-    // Close button
-    const closeButton = document.createElement("button");
-    closeButton.className = "close-btn";
-    closeButton.style.cssText = `
-        display: inline-block;
-        background: #ff4757;
-        color: white;
-        padding: 5px 15px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 14px;
-    `;
-    closeButton.textContent = "Close";
-    closeButton.onclick = closeModal;
-    modal.appendChild(closeButton);
-
-    // Add hover effect for button
-    closeButton.onmouseover = () => (closeButton.style.background = "#ff6f61");
-    closeButton.onmouseout = () => (closeButton.style.background = "#ff4757");
-
-    document.body.appendChild(modal);
-}
-
-// Show the modal with dynamic content
-function showModal(title, message) {
-    document.getElementById("modal-title").textContent = title;
-    document.getElementById("modal-message").textContent = message;
-
-    document.querySelector(".modal-backdrop").style.display = "block";
-    document.querySelector(".modal-card").style.display = "block";
-}
-
-// Close the modal
-function closeModal() {
-    document.querySelector(".modal-backdrop").style.display = "none";
-    document.querySelector(".modal-card").style.display = "none";
-}
-
-// Initialize modal on page load
-createModal();
-
-// Event listeners for blocking actions
-document.addEventListener("contextmenu", function (e) {
-    e.preventDefault();
-    showModal("Right-Click Disabled", "Right-click is not allowed on this page.");
-});
-
-document.addEventListener("selectstart", function (e) {
-    e.preventDefault();
-    showModal("Text Selection Disabled", "Text selection is restricted on this page.");
-});
-
-document.addEventListener("copy", function (e) {
-    e.preventDefault();
-    showModal("Copying Disabled", "Copying content is not permitted on this page.");
-});
-
-document.addEventListener("dragstart", function (e) {
-    e.preventDefault();
-    showModal("Drag-and-Drop Disabled", "Dragging and dropping content is restricted.");
-});
-
-document.addEventListener("keydown", function (e) {
-    if (e.ctrlKey && e.key === "p") {
-        e.preventDefault();
-        showModal("Printing Disabled", "Printing this page is not allowed.");
-    } else if (e.ctrlKey && e.shiftKey && e.key === "i") {
-        e.preventDefault();
-        showModal("Developer Tools Disabled", "Inspect Element is disabled.");
-    } else if (e.ctrlKey && e.key === "u") {
-        e.preventDefault();
-        showModal("View Source Disabled", "Viewing the source code is not allowed.");
-    } else if (e.ctrlKey && e.key === "s") {
-        e.preventDefault();
-        showModal("Saving Disabled", "Saving this page is restricted.");
-    } else if (e.key === "F12") {
-        e.preventDefault();
-        showModal("Developer Tools Disabled", "Accessing Developer Tools is not allowed.");
-    } else if (e.key === "PrintScreen") {
-        e.preventDefault();
-        showModal("Screenshots Disabled", "Taking screenshots is not permitted.");
-    }
-});
-
-// Detect window blur to warn about screenshots
-window.addEventListener("blur", () => {
-    showModal("Warning!", "Screenshots may have been taken. Content is protected.");
-});
   </script>
 </body>
 </html>

@@ -1,57 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<script>
-// Load the favicon injector on all pages
-const faviconScript = document.createElement('script');
-faviconScript.src = '/auto-favicon.js';
-faviconScript.onload = function() {
-    // After loading, inject it into all iframes too
-    const iframes = document.getElementsByTagName('iframe');
-    for (let iframe of iframes) {
-        try {
-            const script = iframe.contentDocument.createElement('script');
-            script.src = '/auto-favicon.js';
-            iframe.contentDocument.head.appendChild(script);
-        } catch (e) {
-            // Cross-origin iframe protection
-        }
-    }
-};
-document.head.appendChild(faviconScript);
-</script>
-    <meta charset="UTF-8">
-   <!-- Standard Favicon (Works in all browsers) -->
-<link rel="icon" href="https://arunpanthi.com.np/logo.ico" type="image/x-icon">
 
-<!-- Optional: For better compatibility across devices -->
-<link rel="shortcut icon" href="https://arunpanthi.com.np/logo.ico">
-<link rel="apple-touch-icon" href="https://arunpanthi.com.np/logo.ico">
-<meta name="msapplication-TileImage" content="https://arunpanthi.com.np/logo.ico">
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Language" content="en">
+
+    <!-- SEO Meta Tags -->
     <meta name="description" content="CivPrepMaster: The ultimate resource hub for civil engineering students and professionals in Nepal. Find notes, past exam questions, books, and solutions for your academic success.">
     <meta name="keywords" content="CivPrepMaster, Civil Engineering, Nepal, Notes, Exam Questions, Engineering Books, Solutions, PSC Preparation, License Preparation">
     <meta name="author" content="Arun Panthi">
     <meta name="robots" content="index, follow">
+
+    <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="CivPrepMaster: Your Ultimate Resource Hub for Civil Engineering in Nepal">
     <meta property="og:description" content="Access comprehensive notes, past exam questions, and engineering books to excel in your civil engineering journey.">
     <meta property="og:url" content="https://arunpanthi.com.np/">
     <meta property="og:image" content="https://arunpanthi.com.np/assets/preview.jpg">
     <meta property="og:type" content="website">
+
+    <!-- Twitter Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="CivPrepMaster">
     <meta name="twitter:description" content="Your one-stop hub for civil engineering resources in Nepal.">
     <meta name="twitter:image" content="https://arunpanthi.com.np/assets/preview.jpg">
+
+    <!-- Canonical Link -->
     <link rel="canonical" href="https://arunpanthi.com.np/">
-<title>CivPrepMaster: Your Ultimate Resource Hub for Civil Engineering in Nepal</title>
-    <!-- External CSS and Fonts -->
+
+    <!-- Favicon -->
+    <link rel="icon" href="https://arunpanthi.com.np/logo.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="https://arunpanthi.com.np/logo.ico">
+    <link rel="apple-touch-icon" href="https://arunpanthi.com.np/logo.ico">
+    <meta name="msapplication-TileImage" content="https://arunpanthi.com.np/logo.ico">
+
+    <!-- Title -->
+    <title>CivPrepMaster: Your Ultimate Resource Hub for Civil Engineering in Nepal</title>
+
+    <!-- External CSS -->
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <title>STUDY MATERIAL FOR CIVIL ENGINEERS</title>
-    
-    
+
+    <script>
+        // Load the favicon injector on all pages
+        const faviconScript = document.createElement('script');
+        faviconScript.src = '/auto-favicon.js';
+        faviconScript.onload = function() {
+            // After loading, inject it into all iframes too
+            const iframes = document.getElementsByTagName('iframe');
+            for (let iframe of iframes) {
+                try {
+                    const script = iframe.contentDocument.createElement('script');
+                    script.src = '/auto-favicon.js';
+                    iframe.contentDocument.head.appendChild(script);
+                } catch (e) {
+                    // Cross-origin iframe protection
+                }
+            }
+        };
+        document.head.appendChild(faviconScript);
+    </script>
 </head>
+
+<body>
+    <!-- Navbar -->
     <div class="navbar">
         <a href="Home"><i class="fas fa-home"></i> Home</a>
         <a href="resources"><i class="fas fa-book"></i> Resources</a>
@@ -61,11 +73,14 @@ document.head.appendChild(faviconScript);
         <a href="contactus"><i class="fas fa-envelope"></i> Contact Us</a>
     </div>
 
+    <!-- Hero Section -->
     <header class="hero">
         <h1>Welcome to CivPrepMaster</h1>
         <p>Your ultimate resource hub for civil engineering students and professionals in Nepal!</p>
         <a href="#note-solution-books" class="cta-button">Explore Now</a>
     </header>
+
+    <!-- Main Content -->
     <main>
         <section class="section" id="note-solution-books">
             <h2><i class="fas fa-pencil-alt"></i> Notes</h2>
@@ -91,22 +106,26 @@ document.head.appendChild(faviconScript);
             <a href="solutions" class="cta-button">View Solutions</a>
         </section>
 
+        <!-- Social Media Section -->
         <div class="social-media">
             <h2><i class="fab fa-connectdevelop"></i> Connect with Us</h2>
             <p>Follow us on social media to stay updated with the latest resources and news.</p>
             <div class="icons">
-                 <a href="https://www.facebook.com/arun.panthi27" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.facebook.com/arun.panthi27" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
                 <a href="https://www.tiktok.com/@er.arunpanthi" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
                 <a href="https://www.youtube.com/@erarunpanthi" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
                 <a href="mailto:info@arunpanthi.com.np" target="_blank" aria-label="Email"><i class="fas fa-envelope"></i></a>
             </div>
         </div>
     </main>
-    
+
+    <!-- Footer -->
     <footer>
         <p>© 2024 CivPrepMaster. All rights reserved. | 
-        <a href="PrivacyPolicy">Privacy Policy</a> | 
-        <a href="TermsofService">Terms of Service</a></p>
+            <a href="PrivacyPolicy">Privacy Policy</a> | 
+            <a href="TermsofService">Terms of Service</a>
+        </p>
     </footer>
 </body>
+
 </html>

@@ -1,3 +1,15 @@
+function addFavicon() {
+    const existing = document.querySelector("link[rel='icon']");
+    if (existing) return;
+
+    const link = document.createElement("link");
+    link.rel = "icon";
+    link.href = "https://arunpanthi.com.np/logo.ico";
+    link.type = "image/x-icon";
+
+    document.head.appendChild(link);
+}
+
 async function loadSection(id, filePath) {
     const element = document.getElementById(id);
 
@@ -5,10 +17,14 @@ async function loadSection(id, filePath) {
 
     try {
         const response = await fetch(filePath);
+
+        if (!response.ok) {
+            throw new Error(`Failed to load ${filePath}`);
+        }
+
         const html = await response.text();
         element.innerHTML = html;
 
-        // After footer loads, set the year
         if (id === "footer") {
             const yearElement = document.getElementById("year");
             if (yearElement) {
@@ -21,8 +37,12 @@ async function loadSection(id, filePath) {
     }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    loadSection("navbar", "partials/navbar.html");
-    loadSection("social-section", "partials/social.html");
-    loadSection("footer", "partials/footer.html");
+document.addEventListener("DOMContentLoaded", async () => {
+
+    addFavicon();
+
+    await loadSection("navbar", "partials/navbar.html");
+    await loadSection("social-section", "partials/social.html");
+    await loadSection("footer", "partials/footer.html");
+
 });

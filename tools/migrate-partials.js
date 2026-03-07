@@ -1,103 +1,54 @@
-const fs = require("fs");
-const path = require("path");
+const fs = require('fs');
+const path = require('path');
 
-const rootDir = path.resolve(__dirname, "..");
-
-function walk(dir, files = []) {
-    const items = fs.readdirSync(dir, { withFileTypes: true });
-
-    for (const item of items) {
-        const fullPath = path.join(dir, item.name);
-
-        if (
-            item.name === ".git" ||
-            item.name === "node_modules" ||
-            item.name === "partials" ||
-            item.name === "js" ||
-            item.name === "tools"
-        ) {
-            continue;
-        }
-
-        if (item.isDirectory()) {
-            walk(fullPath, files);
-        } else if (item.isFile() && item.name.toLowerCase().endsWith(".html")) {
-            files.push(fullPath);
-        }
-    }
-
-    return files;
+// Helper function to inject CSS into the head
+function injectCSS(filePath, cssLink) {
+    const fileContent = fs.readFileSync(filePath, 'utf-8');
+    const updatedContent = fileContent.replace('<head>', `<head>\n    <link rel="stylesheet" href="${cssLink}">`);
+    fs.writeFileSync(filePath, updatedContent, 'utf-8');
 }
 
-function ensureLayoutScript(html) {
-    if (html.includes('src="js/layout.js"')) {
-        return html;
-    }
-
-    return html.replace(
-        /<\/body>/i,
-        '    <script src="js/layout.js"></script>\n</body>'
-    );
+// Helper function to inject partial HTML
+function injectPartial(filePath, partialPath, placeholder) {
+    const fileContent = fs.readFileSync(filePath, 'utf-8');
+    const partialContent = fs.readFileSync(partialPath, 'utf-8');
+    
+    const updatedContent = fileContent.replace(placeholder, partialContent);
+    fs.writeFileSync(filePath, updatedContent, 'utf-8');
 }
 
-function replaceNavbar(html) {
-    return html.replace(
-        /<div class="navbar">[\s\S]*?<\/div>/i,
-        '<div id="navbar"></div>'
-    );
-}
+// List of pages to update
+const pages = [
+    'index.html',
+    'aboutus.html',
+    'contactus.html',
+    'resources.html',
+    // Add more pages as needed
+];
 
-function replaceSocial(html) {
-    return html.replace(
-        /<div class="social-media">[\s\S]*?<div class="icons">[\s\S]*?<\/div>\s*<\/div>/i,
-        '<div id="social-section"></div>'
-    );
-}
+// Paths to the partials and CSS file
+const navbarPath = path.join(__dirname, '../partials/navbar.html');
+const socialPath = path.join(__dirname, '../partials/social.html');
+const footerPath = path.join(__dirname, '../partials/footer.html');
+const cssLink = 'https://arunpanthi.com.np/styles.css'; // Path to your external CSS file
 
-function replaceFooter(html) {
-    return html.replace(
-        /<footer>[\s\S]*?<\/footer>/i,
-        '<div id="footer"></div>'
-    );
-}
+// Placeholder identifiers to inject the partials
+const navbarPlaceholder = '<!-- navbar-placeholder -->';
+const socialPlaceholder = '<!-- social-placeholder -->';
+const footerPlaceholder = '<!-- footer-placeholder -->';
 
-function fixAdContainer(html) {
-    const adDiv = '<div id="container-d950250f5a43c6c3f4942d50c5cb9461"></div>';
+// Iterate through all the pages and inject the partials and CSS
+pages.forEach(page => {
+    const pagePath = path.join(__dirname, `../${page}`);
+    
+    // Inject CSS link into the head
+    injectCSS(pagePath, cssLink);
+    
+    // Inject navbar, social, and footer into the respective placeholders
+    injectPartial(pagePath, navbarPath, navbarPlaceholder);
+    injectPartial(pagePath, socialPath, socialPlaceholder);
+    injectPartial(pagePath, footerPath, footerPlaceholder);
 
-    html = html.replace(
-        /<head>([\s\S]*?)<div id="container-d950250f5a43c6c3f4942d50c5cb9461"><\/div>([\s\S]*?)<\/head>/i,
-        (match, before, after) => `<head>${before}${after}</head>`
-    );
+    console.log(`Updated ${page}`);
+});
 
-    if (!html.includes(adDiv)) {
-        html = html.replace(/<body[^>]*>/i, match => `${match}\n    ${adDiv}`);
-    }
-
-    return html;
-}
-
-function processFile(filePath) {
-    let html = fs.readFileSync(filePath, "utf8");
-    const original = html;
-
-    html = replaceNavbar(html);
-    html = replaceSocial(html);
-    html = replaceFooter(html);
-    html = fixAdContainer(html);
-    html = ensureLayoutScript(html);
-
-    if (html !== original) {
-        fs.writeFileSync(filePath, html, "utf8");
-        console.log(`Updated: ${path.relative(rootDir, filePath)}`);
-    } else {
-        console.log(`No change: ${path.relative(rootDir, filePath)}`);
-    }
-}
-
-const htmlFiles = walk(rootDir);
-
-for (const file of htmlFiles) {
-    processFile(file);
-}
-
-console.log("Done.");

@@ -1,44 +1,40 @@
 const fs = require('fs');
 const path = require('path');
 
-// Function to get all HTML files in the repository folder
-function getAllHtmlPages(directoryPath) {
-    const files = fs.readdirSync(directoryPath); // Read files in the directory
-    const htmlFiles = [];
+// Helper function to inject JavaScript code before the closing </body> tag
+function injectJS(filePath, scriptTag) {
+    const fileContent = fs.readFileSync(filePath, 'utf-8');
+    const updatedContent = fileContent.replace('</body>', `${scriptTag}\n</body>`);
+    fs.writeFileSync(filePath, updatedContent, 'utf-8');
+}
+
+// Path to your hide-links.js file
+const scriptTag = '<script src="js/hide-links.js"></script>';
+
+// Function to recursively find all HTML files in a directory
+function findHtmlFiles(directory) {
+    let htmlFiles = [];
+    const files = fs.readdirSync(directory);
 
     files.forEach(file => {
-        const filePath = path.join(directoryPath, file);
-        const fileStat = fs.statSync(filePath); // Get file stats
+        const fullPath = path.join(directory, file);
+        const stat = fs.statSync(fullPath);
 
-        // Check if it's an HTML file
-        if (fileStat.isFile() && file.endsWith('.html')) {
-            htmlFiles.push(file); // Add to the array if it's an HTML file
+        if (stat.isDirectory()) {
+            htmlFiles = htmlFiles.concat(findHtmlFiles(fullPath)); // Recursively add HTML files
+        } else if (fullPath.endsWith('.html')) {
+            htmlFiles.push(fullPath); // Add HTML files to the array
         }
     });
 
-    return htmlFiles; // Return the list of HTML files
+    return htmlFiles;
 }
 
-// Directory path of the HTML files
-const directoryPath = path.join(__dirname, '../'); // Path to your project folder
+// Get all HTML files in the project
+const htmlFiles = findHtmlFiles(path.join(__dirname, '../')); // Assuming your project root is one level up
 
-// Get all HTML pages dynamically
-const pages = getAllHtmlPages(directoryPath);
-
-// Path to the hide-links.js script (assumes it's in the 'js' folder)
-const scriptTag = '<script src="js/hide-links.js"></script>';
-
-// Function to add the script tag before the closing </body> tag
-function addScriptTagToPage(filePath) {
-    console.log(`Processing file: ${filePath}`); // Log the files being processed
-    const fileContent = fs.readFileSync(filePath, 'utf-8');
-    const updatedContent = fileContent.replace('</body>', `${scriptTag}\n</body>`); // Inject the script before </body>
-    fs.writeFileSync(filePath, updatedContent, 'utf-8');
-    console.log(`Updated ${filePath}`); // Log the update confirmation
-}
-
-// Loop through each page and update it
-pages.forEach(page => {
-    const pagePath = path.join(directoryPath, page);
-    addScriptTagToPage(pagePath);
+// Loop through all the HTML files and inject the JavaScript code
+htmlFiles.forEach(filePath => {
+    injectJS(filePath, scriptTag);
+    console.log(`Updated ${filePath}`);
 });

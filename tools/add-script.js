@@ -1,40 +1,60 @@
+// tools/add-script.js
 const fs = require('fs');
 const path = require('path');
 
-// Helper function to inject JavaScript code before the closing </body> tag
+/**
+ * Injects a <script> tag into an HTML file just before </body>
+ * @param {string} filePath - Path to the HTML file
+ * @param {string} scriptTag - The full <script> tag to inject
+ */
 function injectJS(filePath, scriptTag) {
-    const fileContent = fs.readFileSync(filePath, 'utf-8');
-    const updatedContent = fileContent.replace('</body>', `${scriptTag}\n</body>`);
-    fs.writeFileSync(filePath, updatedContent, 'utf-8');
+    try {
+        const fileContent = fs.readFileSync(filePath, 'utf-8');
+        if (fileContent.includes(scriptTag)) {
+            console.log(`Skipped ${filePath} – already contains the script.`);
+            return;
+        }
+        const updatedContent = fileContent.replace('</body>', `${scriptTag}\n</body>`);
+        fs.writeFileSync(filePath, updatedContent, 'utf-8');
+        console.log(`✅ Updated ${filePath}`);
+    } catch (err) {
+        console.error(`❌ Error processing ${filePath}:`, err.message);
+    }
 }
 
-// Path to your hide-links.js file
-const scriptTag = '<script src="js/hide-links.js"></script>';
-
-// Function to recursively find all HTML files in a directory
+/**
+ * Recursively finds all .html files in a directory
+ * @param {string} directory - Directory to search
+ * @returns {string[]} Array of file paths
+ */
 function findHtmlFiles(directory) {
     let htmlFiles = [];
-    const files = fs.readdirSync(directory);
-
-    files.forEach(file => {
-        const fullPath = path.join(directory, file);
-        const stat = fs.statSync(fullPath);
-
-        if (stat.isDirectory()) {
-            htmlFiles = htmlFiles.concat(findHtmlFiles(fullPath)); // Recursively add HTML files
-        } else if (fullPath.endsWith('.html')) {
-            htmlFiles.push(fullPath); // Add HTML files to the array
-        }
-    });
-
+    try {
+        const files = fs.readdirSync(directory);
+        files.forEach(file => {
+            const fullPath = path.join(directory, file);
+            const stat = fs.statSync(fullPath);
+            if (stat.isDirectory()) {
+                htmlFiles = htmlFiles.concat(findHtmlFiles(fullPath));
+            } else if (fullPath.endsWith('.html')) {
+                htmlFiles.push(fullPath);
+            }
+        });
+    } catch (err) {
+        console.error(`❌ Error reading directory ${directory}:`, err.message);
+    }
     return htmlFiles;
 }
 
-// Get all HTML files in the project
-const htmlFiles = findHtmlFiles(path.join(__dirname, '../')); // Assuming your project root is one level up
+// Configuration
+const scriptTag = '<script src="js/hide-links.js"></script>';
+const projectRoot = path.join(__dirname, '..'); // Assumes tools/ is inside project root
 
-// Loop through all the HTML files and inject the JavaScript code
-htmlFiles.forEach(filePath => {
-    injectJS(filePath, scriptTag);
-    console.log(`Updated ${filePath}`);
-});
+// Find all HTML files
+const htmlFiles = findHtmlFiles(projectRoot);
+console.log(`Found ${htmlFiles.length} HTML file(s).`);
+
+// Inject the script into each file
+htmlFiles.forEach(filePath => injectJS(filePath, scriptTag));
+
+console.log('🎉 Done!');

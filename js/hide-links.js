@@ -1,8 +1,12 @@
-// hide-links.js
 window.addEventListener('DOMContentLoaded', (event) => {
-    // Select all elements with class 'cta-button' and hide them
+    // Select all elements with class 'cta-button'
     const buttons = document.querySelectorAll('.cta-button');
+
     buttons.forEach(button => {
-        button.style.display = 'none';  // Hide the link
+        // Find the <a> tag inside the button and hide it
+        const link = button.querySelector('a');
+        if (link) {
+            link.style.display = 'none';  // Hide the <a> tag inside the button
+        }
     });
 });

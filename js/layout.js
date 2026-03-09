@@ -46,3 +46,32 @@ document.addEventListener("DOMContentLoaded", async () => {
     await loadSection("footer", "partials/footer.html");
 
 });
+(function () {
+  var cssFile = 'style.css'; // or 'css/style.css'
+
+  function getBasePath() {
+    var path = location.pathname;
+    var parts = path.split('/').filter(Boolean);
+
+    if (location.hostname.endsWith('github.io') && parts.length > 0) {
+      return '/' + parts[0] + '/';
+    }
+
+    return '/';
+  }
+
+  function insertGlobalCss(filePath) {
+    if (document.querySelector('link[data-global-css="true"]')) return;
+
+    var basePath = getBasePath();
+    var cssHref = (basePath + filePath.replace(/^\/+/, '')).replace(/\/+/g, '/');
+
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = cssHref;
+    link.setAttribute('data-global-css', 'true');
+    document.head.appendChild(link);
+  }
+
+  insertGlobalCss(cssFile);
+})();

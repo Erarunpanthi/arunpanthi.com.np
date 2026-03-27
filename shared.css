@@ -655,7 +655,17 @@ main > article > p {
         width: 120px;
         height: 120px;
     }
+.hero-about h1 {
+    color: #fef08a;
+}
 
+.hero-terms h1 {
+    color: #bfdbfe;
+}
+
+.hero-privacy h1 {
+    color: #a7f3d0;
+    }
     .breadcrumb {
         padding: 0 16px;
     }

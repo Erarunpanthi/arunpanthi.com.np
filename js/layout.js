@@ -19,40 +19,59 @@
 
     // ═════════════════════════════════════════
     //  0. CLEAN URL — runs IMMEDIATELY
-    //     Strips: trailing "/", "/index.html", "/index"
-    //
-    //     /NEC-license-preparation/           →  /NEC-license-preparation
-    //     /NEC-license-preparation/index.html →  /NEC-license-preparation
-    //     /NEC-license-preparation/index      →  /NEC-license-preparation
-    //     /BE_CIVIL/semester-1/index.html     →  /BE_CIVIL/semester-1
-    //     /                                   →  /  (root untouched)
     // ═════════════════════════════════════════
+    //
+    //  Handles THREE cases:
+    //    A) Normal visit with trailing slash:
+    //       /NEC-license-preparation/  →  /NEC-license-preparation
+    //    B) 404.html redirect with ?p= param:
+    //       /NEC-license-preparation/?p=%2FNEC-license-preparation
+    //       →  /NEC-license-preparation  (strips ?p= from URL bar)
+    //    C) /index.html or /index in URL:
+    //       /NEC-license-preparation/index.html  →  /NEC-license-preparation
 
     function cleanPath(path) {
-        // Remove /index.html or /index from the end
+        // Remove /index.html or /index from end
         path = path.replace(/\/index\.html$/i, "");
         path = path.replace(/\/index$/i, "");
 
-        // Remove trailing slash (but keep root "/")
+        // Remove trailing slash (keep root "/")
         if (path !== "/" && path.endsWith("/")) {
             path = path.slice(0, -1);
         }
 
-        // If we stripped everything, it's root
         return path || "/";
     }
 
     function cleanURLBar() {
-        var cleaned = cleanPath(location.pathname);
+        var path    = location.pathname;
+        var search  = location.search;
+        var hash    = location.hash;
 
-        // Only update if something actually changed
-        if (cleaned !== location.pathname) {
-            var newURL = cleaned + location.search + location.hash;
-            history.replaceState(null, "", newURL);
+        // If 404.html redirected us, read the ?p= param
+        var params  = new URLSearchParams(search);
+        var pParam  = params.get("p");
+
+        if (pParam) {
+            // Remove the ?p= param, keep any other params
+            params.delete("p");
+            var remaining = params.toString();
+            var cleanSearch = remaining ? "?" + remaining : "";
+
+            var cleanURL = cleanPath(pParam) + cleanSearch + hash;
+            history.replaceState(null, "", cleanURL);
+            return;
+        }
+
+        // Normal case: just strip trailing slash / index.html
+        var cleaned = cleanPath(path);
+
+        if (cleaned !== path) {
+            history.replaceState(null, "", cleaned + search + hash);
         }
     }
 
-    cleanURLBar();   // ← fires instantly, before DOM
+    cleanURLBar();   // ← fires instantly
 
 
     // ═════════════════════════════════════════
@@ -61,12 +80,10 @@
     function getBasePath() {
         var parts = location.pathname.split("/").filter(Boolean);
 
-        // GitHub Pages project site: https://user.github.io/repo-name/
         if (location.hostname.endsWith("github.io") && parts.length > 0) {
             return "/" + parts[0] + "/";
         }
 
-        // Custom domain (e.g. arunpanthi.com.np)
         return "/";
     }
 
@@ -79,7 +96,6 @@
     // ═════════════════════════════════════════
     //  2. HEAD INJECTIONS
     // ═════════════════════════════════════════
-
     function addFavicon() {
         if (document.querySelector("link[rel='icon']")) return;
         var link  = document.createElement("link");
@@ -130,20 +146,20 @@
 
 
     // ═════════════════════════════════════════
-    //  4. FIX ALL <a> LINKS IN THE PAGE
-    //     - Makes relative links absolute (from root)
-    //     - Strips /index.html, /index, trailing /
-    //     - navbar links become UNIVERSAL
+    //  4. FIX ALL <a> LINKS
+    //     - Relative → absolute
+    //     - Strip /index.html, /index, trailing /
+    //     - Works from ANY page depth
     // ═════════════════════════════════════════
     function fixAllLinks() {
         var basePath = getBasePath();
         var links    = document.querySelectorAll("a[href]");
 
         for (var i = 0; i < links.length; i++) {
-            var raw  = links[i].getAttribute("href");
-
-            // Skip external links, anchors, mailto, tel, javascript
+            var raw = links[i].getAttribute("href");
             if (!raw) continue;
+
+            // Skip external, anchors, special protocols
             if (raw.startsWith("http"))        continue;
             if (raw.startsWith("//"))          continue;
             if (raw.startsWith("#"))           continue;
@@ -154,15 +170,10 @@
             var cleaned;
 
             if (raw.startsWith("/")) {
-                // ── Already absolute: just clean it ──
-                //    "/BE_CIVIL/index.html"  →  "/BE_CIVIL"
-                //    "/BE_CIVIL/"            →  "/BE_CIVIL"
+                // Already absolute
                 cleaned = cleanPath(raw);
             } else {
-                // ── Relative link: make it absolute from base ──
-                //    "resources"       →  "/resources"
-                //    "semester-1/"     →  "/semester-1"
-                //    "index.html"      →  "/"  (or base path)
+                // Relative → make absolute from base
                 cleaned = cleanPath(basePath + raw);
             }
 
@@ -176,7 +187,6 @@
     // ═════════════════════════════════════════
     function initNavbar() {
 
-        // ── Mobile hamburger toggle ─────────
         var toggler = document.querySelector(".menu-toggle");
         var navMenu = document.querySelector(".nav-links");
 
@@ -186,7 +196,7 @@
             });
         }
 
-        // ── Highlight current page link ─────
+        // Active link detection
         var currentPath = cleanPath(location.pathname);
         var allLinks    = document.querySelectorAll(".nav-links a");
 
@@ -222,12 +232,12 @@
     // ═════════════════════════════════════════
     document.addEventListener("DOMContentLoaded", async function () {
 
-        // Step 1 — Inject <head> resources
+        // Step 1 — Head resources
         addFavicon();
         addGlobalCSS();
         addFontAwesome();
 
-        // Step 2 — Load all partials in parallel
+        // Step 2 — Load partials in parallel
         var keys     = Object.keys(PARTIALS);
         var promises = [];
         for (var i = 0; i < keys.length; i++) {
@@ -235,7 +245,7 @@
         }
         await Promise.all(promises);
 
-        // Step 3 — Fix ALL links (partials are now in DOM)
+        // Step 3 — Fix all links (partials now in DOM)
         fixAllLinks();
 
         // Step 4 — Init interactivity

@@ -1,5 +1,5 @@
 // ============================================
-//  /js/layout.js — Complete Clean Version
+//  /js/layout.js — Complete Fixed Version
 // ============================================
 
 (function () {
@@ -18,22 +18,41 @@
 
 
     // ═════════════════════════════════════════
-    //  0. TRAILING SLASH FIX (runs immediately)
-    //     /BE_CIVIL/  →  /BE_CIVIL
-    //     /           →  /  (root untouched)
+    //  0. CLEAN URL — runs IMMEDIATELY
+    //     Strips: trailing "/", "/index.html", "/index"
+    //
+    //     /NEC-license-preparation/           →  /NEC-license-preparation
+    //     /NEC-license-preparation/index.html →  /NEC-license-preparation
+    //     /NEC-license-preparation/index      →  /NEC-license-preparation
+    //     /BE_CIVIL/semester-1/index.html     →  /BE_CIVIL/semester-1
+    //     /                                   →  /  (root untouched)
     // ═════════════════════════════════════════
-    function stripTrailingSlash() {
-        var path   = location.pathname;
-        var search = location.search;
-        var hash   = location.hash;
 
+    function cleanPath(path) {
+        // Remove /index.html or /index from the end
+        path = path.replace(/\/index\.html$/i, "");
+        path = path.replace(/\/index$/i, "");
+
+        // Remove trailing slash (but keep root "/")
         if (path !== "/" && path.endsWith("/")) {
-            var clean = path.slice(0, -1) + search + hash;
-            history.replaceState(null, "", clean);
+            path = path.slice(0, -1);
+        }
+
+        // If we stripped everything, it's root
+        return path || "/";
+    }
+
+    function cleanURLBar() {
+        var cleaned = cleanPath(location.pathname);
+
+        // Only update if something actually changed
+        if (cleaned !== location.pathname) {
+            var newURL = cleaned + location.search + location.hash;
+            history.replaceState(null, "", newURL);
         }
     }
 
-    stripTrailingSlash();   // ← fires instantly, no DOM needed
+    cleanURLBar();   // ← fires instantly, before DOM
 
 
     // ═════════════════════════════════════════
@@ -42,7 +61,7 @@
     function getBasePath() {
         var parts = location.pathname.split("/").filter(Boolean);
 
-        // GitHub Pages project site: https://user.github.io/repo-name/…
+        // GitHub Pages project site: https://user.github.io/repo-name/
         if (location.hostname.endsWith("github.io") && parts.length > 0) {
             return "/" + parts[0] + "/";
         }
@@ -51,7 +70,6 @@
         return "/";
     }
 
-    // Builds a clean absolute path from base + relative file
     function buildPath(relativePath) {
         var base = getBasePath();
         return (base + relativePath.replace(/^\/+/, "")).replace(/\/+/g, "/");
@@ -62,10 +80,8 @@
     //  2. HEAD INJECTIONS
     // ═════════════════════════════════════════
 
-    // ── FAVICON ─────────────────────────────
     function addFavicon() {
         if (document.querySelector("link[rel='icon']")) return;
-
         var link  = document.createElement("link");
         link.rel  = "icon";
         link.type = "image/x-icon";
@@ -73,10 +89,8 @@
         document.head.appendChild(link);
     }
 
-    // ── GLOBAL CSS ──────────────────────────
     function addGlobalCSS() {
         if (document.querySelector("link[data-global-css]")) return;
-
         var link = document.createElement("link");
         link.rel  = "stylesheet";
         link.href = buildPath(CSS_FILE);
@@ -84,10 +98,8 @@
         document.head.appendChild(link);
     }
 
-    // ── FONT AWESOME ────────────────────────
     function addFontAwesome() {
         if (document.querySelector("link[data-font-awesome]")) return;
-
         var link = document.createElement("link");
         link.rel  = "stylesheet";
         link.href = FONT_AWESOME;
@@ -118,7 +130,49 @@
 
 
     // ═════════════════════════════════════════
-    //  4. NAVBAR: TOGGLE + ACTIVE LINK
+    //  4. FIX ALL <a> LINKS IN THE PAGE
+    //     - Makes relative links absolute (from root)
+    //     - Strips /index.html, /index, trailing /
+    //     - navbar links become UNIVERSAL
+    // ═════════════════════════════════════════
+    function fixAllLinks() {
+        var basePath = getBasePath();
+        var links    = document.querySelectorAll("a[href]");
+
+        for (var i = 0; i < links.length; i++) {
+            var raw  = links[i].getAttribute("href");
+
+            // Skip external links, anchors, mailto, tel, javascript
+            if (!raw) continue;
+            if (raw.startsWith("http"))        continue;
+            if (raw.startsWith("//"))          continue;
+            if (raw.startsWith("#"))           continue;
+            if (raw.startsWith("mailto:"))     continue;
+            if (raw.startsWith("tel:"))        continue;
+            if (raw.startsWith("javascript:")) continue;
+
+            var cleaned;
+
+            if (raw.startsWith("/")) {
+                // ── Already absolute: just clean it ──
+                //    "/BE_CIVIL/index.html"  →  "/BE_CIVIL"
+                //    "/BE_CIVIL/"            →  "/BE_CIVIL"
+                cleaned = cleanPath(raw);
+            } else {
+                // ── Relative link: make it absolute from base ──
+                //    "resources"       →  "/resources"
+                //    "semester-1/"     →  "/semester-1"
+                //    "index.html"      →  "/"  (or base path)
+                cleaned = cleanPath(basePath + raw);
+            }
+
+            links[i].setAttribute("href", cleaned);
+        }
+    }
+
+
+    // ═════════════════════════════════════════
+    //  5. NAVBAR: TOGGLE + ACTIVE LINK
     // ═════════════════════════════════════════
     function initNavbar() {
 
@@ -133,46 +187,20 @@
         }
 
         // ── Highlight current page link ─────
-        var currentPath = location.pathname;
-
-        // Normalize: strip trailing slash for comparison
-        if (currentPath !== "/" && currentPath.endsWith("/")) {
-            currentPath = currentPath.slice(0, -1);
-        }
-
-        var allLinks = document.querySelectorAll(".nav-links a");
+        var currentPath = cleanPath(location.pathname);
+        var allLinks    = document.querySelectorAll(".nav-links a");
 
         for (var j = 0; j < allLinks.length; j++) {
             var href = allLinks[j].getAttribute("href");
             if (!href) continue;
 
-            // Normalize href too
-            if (href !== "/" && href.endsWith("/")) {
-                href = href.slice(0, -1);
-            }
+            href = cleanPath(href);
 
             var isExact  = (currentPath === href);
             var isParent = (href !== "/" && currentPath.startsWith(href + "/"));
 
             if (isExact || isParent) {
                 allLinks[j].classList.add("active-link");
-            }
-        }
-    }
-
-
-    // ═════════════════════════════════════════
-    //  5. FIX ALL INTERNAL <a> TRAILING SLASHES
-    // ═════════════════════════════════════════
-    function fixInternalLinks() {
-        var links = document.querySelectorAll("a[href]");
-
-        for (var i = 0; i < links.length; i++) {
-            var href = links[i].getAttribute("href");
-
-            // Only fix local absolute paths like "/BE_CIVIL/"
-            if (href.startsWith("/") && href !== "/" && href.endsWith("/")) {
-                links[i].setAttribute("href", href.slice(0, -1));
             }
         }
     }
@@ -202,19 +230,17 @@
         // Step 2 — Load all partials in parallel
         var keys     = Object.keys(PARTIALS);
         var promises = [];
-
         for (var i = 0; i < keys.length; i++) {
             promises.push(loadSection(keys[i], PARTIALS[keys[i]]));
         }
-
         await Promise.all(promises);
 
-        // Step 3 — Init interactivity (partials are now in the DOM)
+        // Step 3 — Fix ALL links (partials are now in DOM)
+        fixAllLinks();
+
+        // Step 4 — Init interactivity
         initNavbar();
         initFooter();
-
-        // Step 4 — Clean every <a> href in the full page
-        fixInternalLinks();
     });
 
 })();

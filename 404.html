@@ -402,7 +402,32 @@
   </script>
 
   <script src="js/layout.js"></script>
-  <script src="js/hide-links.js"></script>
+    <script>
+        // ─── GitHub Pages SPA redirect trick ───
+        // When GitHub can't find /NEC-license-preparation (no slash),
+        // instead of showing 404, we redirect to the SAME page
+        // but store the path so index.html can pick it up.
+
+        (function () {
+            var path = location.pathname;
+
+            // Don't redirect if it's a real file (has extension)
+            if (/\.\w+$/.test(path)) return;
+
+            // Store the clean path (no trailing slash, no index.html)
+            var cleanPath = path
+                .replace(/\/index\.html$/i, "")
+                .replace(/\/index$/i, "")
+                .replace(/\/+$/, "") || "/";
+
+            // Redirect using a query param that layout.js will read
+            var newURL = cleanPath + "/?p=" + encodeURIComponent(cleanPath)
+                         + location.search.replace("?", "&")
+                         + location.hash;
+
+            location.replace(newURL);
+        })();
+    </script>
 </body>
 </html>
 

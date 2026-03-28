@@ -64,7 +64,35 @@ input, select, textarea {
     transition: border-color 0.3s;
     box-sizing: border-box;
 }
+.lazy,
+.lazy-section,
+.lazy-bg {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
 
+.lazy.loaded,
+.lazy-section.loaded,
+.lazy-bg.loaded {
+  opacity: 1;
+}
+
+img.lazy {
+  background: #f0f0f0;
+  min-height: 200px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.lazy-section {
+  min-height: 100px;
+}
+
+.lazy-bg {
+  min-height: 300px;
+  background-size: cover;
+  background-position: center;
+}
 input:focus, select:focus, textarea:focus {
     border-color: #2E7D32;
     outline: none;

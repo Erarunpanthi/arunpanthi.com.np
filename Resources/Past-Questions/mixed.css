@@ -1,33 +1,41 @@
 /* ============================================
    CivPrepMaster – Past Questions Stylesheet
    Applied to: /Resources/Past-Questions
+   Color Palette: Green (#2E7D32) · White · Black
    ============================================ */
 
 /* ──────────────── CSS Variables ──────────────── */
 :root {
-    --primary: #1a56db;
-    --primary-dark: #1342a8;
-    --primary-light: #e8effc;
-    --accent: #f59e0b;
-    --accent-dark: #d97706;
-    --accent-light: #fef3c7;
-    --text-dark: #1e293b;
-    --text-medium: #475569;
-    --text-light: #64748b;
-    --bg-white: #ffffff;
-    --bg-light: #f8fafc;
-    --bg-subtle: #f1f5f9;
-    --border-light: #e2e8f0;
-    --border-medium: #cbd5e1;
-    --success: #059669;
-    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
-    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
-    --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.12);
-    --shadow-glow: 0 0 20px rgba(26, 86, 219, 0.15);
+    --green-900: #1B5E20;
+    --green-800: #2E7D32;
+    --green-700: #388E3C;
+    --green-600: #43A047;
+    --green-500: #4CAF50;
+    --green-400: #66BB6A;
+    --green-300: #81C784;
+    --green-200: #A5D6A7;
+    --green-100: #C8E6C9;
+    --green-50: #E8F5E9;
+    --black-900: #0a0a0a;
+    --black-800: #171717;
+    --black-700: #262626;
+    --black-600: #404040;
+    --black-500: #525252;
+    --black-400: #737373;
+    --black-300: #a3a3a3;
+    --black-200: #d4d4d4;
+    --black-100: #e5e5e5;
+    --black-50: #f5f5f5;
+    --white: #ffffff;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.1);
+    --shadow-glow: 0 0 24px rgba(46, 125, 50, 0.14);
     --radius-sm: 8px;
     --radius-md: 12px;
     --radius-lg: 16px;
     --radius-xl: 20px;
+    --radius-full: 50px;
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --font-body: 'Segoe UI', system-ui, -apple-system, sans-serif;
     --font-heading: 'Segoe UI', system-ui, -apple-system, sans-serif;
@@ -53,23 +61,23 @@ body {
     font-family: var(--font-body);
     font-size: 16.5px;
     line-height: 1.75;
-    color: var(--text-dark);
-    background-color: var(--bg-light);
+    color: var(--black-800);
+    background-color: var(--black-50);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
 ::selection {
-    background: var(--primary);
-    color: #fff;
+    background: var(--green-800);
+    color: var(--white);
 }
 
-/* ──────────────── Page Header (Hero) ──────────────── */
+/* ──────────────── Page Header ──────────────── */
 .page-header {
-    background: linear-gradient(135deg, #1a56db 0%, #0f3a8e 50%, #0c2d6e 100%);
-    color: #fff;
+    background: linear-gradient(160deg, var(--green-900) 0%, var(--green-800) 50%, var(--green-700) 100%);
+    color: var(--white);
     text-align: center;
-    padding: 60px 24px 50px;
+    padding: 64px 24px 56px;
     position: relative;
     overflow: hidden;
 }
@@ -77,19 +85,19 @@ body {
 .page-header::before {
     content: '';
     position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle at 30% 40%, rgba(245, 158, 11, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 70% 60%, rgba(255, 255, 255, 0.05) 0%, transparent 40%);
-    animation: heroShimmer 8s ease-in-out infinite alternate;
+    top: -60%;
+    left: -40%;
+    width: 180%;
+    height: 180%;
+    background: radial-gradient(circle at 25% 35%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 75% 65%, rgba(255, 255, 255, 0.03) 0%, transparent 40%);
+    animation: headerFloat 10s ease-in-out infinite alternate;
     pointer-events: none;
 }
 
-@keyframes heroShimmer {
-    0% { transform: translate(0, 0) rotate(0deg); }
-    100% { transform: translate(-2%, -1%) rotate(1deg); }
+@keyframes headerFloat {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(-1.5%, -1%); }
 }
 
 .page-header::after {
@@ -99,7 +107,7 @@ body {
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(90deg, var(--primary), var(--accent), var(--primary));
+    background: linear-gradient(90deg, var(--green-400), var(--green-300), var(--green-400));
 }
 
 .page-header h1 {
@@ -110,32 +118,31 @@ body {
     margin-bottom: 16px;
     position: relative;
     z-index: 1;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
     letter-spacing: -0.3px;
 }
 
 .page-header p {
     font-size: clamp(1rem, 2.2vw, 1.15rem);
-    line-height: 1.7;
-    color: rgba(255, 255, 255, 0.9);
-    max-width: 720px;
+    line-height: 1.75;
+    color: rgba(255, 255, 255, 0.88);
+    max-width: 680px;
     margin: 0 auto;
     position: relative;
     z-index: 1;
 }
 
 .page-header p strong {
-    color: #fff;
+    color: var(--white);
     font-weight: 700;
 }
 
-/* ──────────────── Breadcrumb Navigation ──────────────── */
+/* ──────────────── Breadcrumb ──────────────── */
 .breadcrumb {
     max-width: var(--max-width-wide);
     margin: 0 auto;
-    padding: 16px 24px;
-    background: var(--bg-white);
-    border-bottom: 1px solid var(--border-light);
+    padding: 14px 24px;
+    background: var(--white);
+    border-bottom: 1px solid var(--black-100);
 }
 
 .breadcrumb ol {
@@ -143,6 +150,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    justify-content: center;
     gap: 6px;
     padding: 0;
 }
@@ -151,31 +159,31 @@ body {
     display: flex;
     align-items: center;
     gap: 6px;
-    font-size: 0.88rem;
-    color: var(--text-light);
+    font-size: 0.86rem;
+    color: var(--black-400);
 }
 
 .breadcrumb ol li:not(:last-child)::after {
     content: '/';
-    color: var(--border-medium);
+    color: var(--black-200);
     margin-left: 2px;
     font-weight: 300;
 }
 
 .breadcrumb ol li a {
-    color: var(--primary);
+    color: var(--green-800);
     text-decoration: none;
     font-weight: 500;
     transition: var(--transition);
 }
 
 .breadcrumb ol li a:hover {
-    color: var(--primary-dark);
+    color: var(--green-900);
     text-decoration: underline;
 }
 
 .breadcrumb ol li:last-child {
-    color: var(--text-medium);
+    color: var(--black-600);
     font-weight: 600;
 }
 
@@ -183,25 +191,26 @@ body {
 .card-container {
     max-width: var(--max-width-wide);
     margin: 0 auto;
-    padding: 32px 24px 16px;
+    padding: 36px 24px 20px;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-    gap: 22px;
+    gap: 24px;
 }
 
-/* ──────────────── Subject Section Cards ──────────────── */
+/* ──────────────── Section Cards ──────────────── */
 .section {
-    background: var(--bg-white);
-    border: 1px solid var(--border-light);
+    background: var(--white);
+    border: 1px solid var(--black-100);
     border-radius: var(--radius-lg);
-    padding: 32px 28px 28px;
+    padding: 36px 28px 32px;
     transition: var(--transition);
     position: relative;
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 6px;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
 }
 
 .section::before {
@@ -209,10 +218,9 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    width: 4px;
-    height: 100%;
-    background: linear-gradient(180deg, var(--primary), var(--accent));
-    border-radius: 4px 0 0 4px;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--green-800), var(--green-500), var(--green-800));
     opacity: 0;
     transition: var(--transition);
 }
@@ -220,18 +228,19 @@ body {
 .section::after {
     content: '';
     position: absolute;
-    top: 0;
-    right: 0;
-    width: 80px;
-    height: 80px;
-    background: radial-gradient(circle at top right, var(--primary-light) 0%, transparent 70%);
+    bottom: -60px;
+    right: -60px;
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle, var(--green-50) 0%, transparent 70%);
     opacity: 0;
     transition: var(--transition);
     pointer-events: none;
+    border-radius: 50%;
 }
 
 .section:hover {
-    border-color: var(--primary);
+    border-color: var(--green-800);
     box-shadow: var(--shadow-lg), var(--shadow-glow);
     transform: translateY(-4px);
 }
@@ -249,57 +258,58 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, var(--primary-light) 0%, #dce7fb 100%);
-    color: var(--primary-dark);
+    background: var(--green-50);
+    color: var(--green-900);
     font-family: var(--font-heading);
-    font-size: 0.72rem;
+    font-size: 0.7rem;
     font-weight: 800;
-    padding: 4px 14px;
-    border-radius: 50px;
-    letter-spacing: 0.8px;
+    padding: 4px 16px;
+    border-radius: var(--radius-full);
+    letter-spacing: 1px;
     text-transform: uppercase;
-    border: 1px solid #c7d6f5;
+    border: 1px solid var(--green-200);
     transition: var(--transition);
     line-height: 1.6;
 }
 
 .section:hover .semester-badge {
-    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-    color: #fff;
-    border-color: var(--primary);
-    box-shadow: 0 2px 8px rgba(26, 86, 219, 0.25);
+    background: var(--green-800);
+    color: var(--white);
+    border-color: var(--green-800);
+    box-shadow: 0 2px 10px rgba(46, 125, 50, 0.25);
 }
 
-/* ──────────────── Subject Heading (H2) ──────────────── */
+/* ──────────────── Subject Heading ──────────────── */
 .section h2 {
     font-family: var(--font-heading);
-    font-size: clamp(1.1rem, 2.8vw, 1.3rem);
+    font-size: clamp(1.08rem, 2.8vw, 1.25rem);
     font-weight: 700;
-    color: var(--text-dark);
+    color: var(--black-800);
     line-height: 1.45;
-    margin-top: 4px;
-    margin-bottom: 4px;
+    margin-top: 2px;
+    margin-bottom: 2px;
     transition: var(--transition);
 }
 
 .section:hover h2 {
-    color: var(--primary-dark);
+    color: var(--green-900);
 }
 
 /* ──────────────── CTA Button ──────────────── */
 .section .cta-button {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 9px;
-    background: var(--primary);
-    color: #fff;
+    background: var(--green-800);
+    color: var(--white);
     font-weight: 600;
     font-size: 0.92rem;
-    padding: 11px 26px;
-    border-radius: 50px;
+    padding: 12px 30px;
+    border-radius: var(--radius-full);
     text-decoration: none;
     transition: var(--transition);
-    box-shadow: 0 3px 10px rgba(26, 86, 219, 0.25);
+    box-shadow: 0 3px 12px rgba(46, 125, 50, 0.2);
     margin-top: auto;
     position: relative;
     overflow: hidden;
@@ -313,7 +323,7 @@ body {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent);
     transition: left 0.5s ease;
 }
 
@@ -325,9 +335,9 @@ body {
 }
 
 .section .cta-button:hover {
-    background: var(--primary-dark);
+    background: var(--green-900);
     transform: translateY(-2px);
-    box-shadow: 0 5px 20px rgba(26, 86, 219, 0.4);
+    box-shadow: 0 6px 24px rgba(27, 94, 32, 0.3);
 }
 
 .section .cta-button:hover::before {
@@ -339,39 +349,41 @@ body {
 }
 
 .section .cta-button i {
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     flex-shrink: 0;
 }
 
 /* ──────────────── SEO Content Section ──────────────── */
 .seo-content {
     max-width: var(--max-width);
-    margin: 20px auto 40px;
+    margin: 28px auto 48px;
     padding: 0 24px;
+    text-align: center;
 }
 
 .seo-content h2 {
     font-family: var(--font-heading);
-    font-size: clamp(1.2rem, 3vw, 1.45rem);
+    font-size: clamp(1.2rem, 3vw, 1.4rem);
     font-weight: 700;
-    color: var(--text-dark);
+    color: var(--black-800);
     margin-bottom: 14px;
-    margin-top: 36px;
-    padding-bottom: 10px;
-    border-bottom: 2px solid var(--primary-light);
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    margin-top: 40px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--green-100);
     line-height: 1.4;
+    position: relative;
 }
 
-.seo-content h2::before {
+.seo-content h2::after {
     content: '';
-    width: 4px;
-    height: 24px;
-    background: linear-gradient(180deg, var(--primary), var(--accent));
-    border-radius: 4px;
-    flex-shrink: 0;
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 2px;
+    background: var(--green-800);
+    border-radius: 2px;
 }
 
 .seo-content h2:first-child {
@@ -379,89 +391,93 @@ body {
 }
 
 .seo-content p {
-    color: var(--text-medium);
+    color: var(--black-500);
     font-size: 1rem;
     line-height: 1.85;
     margin-bottom: 10px;
+    max-width: 760px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .seo-content p strong {
-    color: var(--text-dark);
+    color: var(--black-700);
     font-weight: 600;
 }
 
-/* ──────────────── Scrollbar Styling ──────────────── */
+/* ──────────────── Scrollbar ──────────────── */
 ::-webkit-scrollbar {
-    width: 8px;
+    width: 7px;
 }
 
 ::-webkit-scrollbar-track {
-    background: var(--bg-light);
+    background: var(--black-50);
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--border-medium);
+    background: var(--black-200);
     border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--text-light);
+    background: var(--black-400);
 }
 
-/* ──────────────── Focus Styles (Accessibility) ──────────────── */
+/* ──────────────── Accessibility ──────────────── */
 a:focus-visible,
 button:focus-visible {
-    outline: 3px solid var(--accent);
+    outline: 3px solid var(--green-500);
     outline-offset: 3px;
     border-radius: var(--radius-sm);
 }
 
 .section:focus-within {
-    border-color: var(--primary);
-    box-shadow: var(--shadow-md), 0 0 0 3px rgba(26, 86, 219, 0.1);
+    border-color: var(--green-800);
+    box-shadow: var(--shadow-md), 0 0 0 3px rgba(46, 125, 50, 0.1);
 }
 
 /* ──────────────── Responsive – Tablet ──────────────── */
 @media (max-width: 1024px) {
     .card-container {
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 18px;
-        padding: 28px 20px 14px;
+        gap: 20px;
+        padding: 30px 20px 16px;
     }
 }
 
 /* ──────────────── Responsive – Mobile Large ──────────────── */
 @media (max-width: 768px) {
     .page-header {
-        padding: 44px 18px 38px;
+        padding: 48px 18px 40px;
     }
 
     .page-header h1 {
-        font-size: clamp(1.4rem, 5vw, 1.9rem);
+        font-size: clamp(1.35rem, 5vw, 1.85rem);
     }
 
     .card-container {
         grid-template-columns: 1fr;
         gap: 16px;
-        padding: 22px 16px 12px;
+        padding: 24px 16px 14px;
     }
 
     .section {
-        padding: 26px 22px 24px;
+        padding: 28px 22px 26px;
         border-radius: var(--radius-md);
     }
 
     .section h2 {
-        font-size: 1.15rem;
+        font-size: 1.12rem;
     }
 
     .seo-content {
         padding: 0 16px;
-        margin: 16px auto 32px;
+        margin: 20px auto 36px;
     }
 
     .seo-content h2 {
-        font-size: 1.18rem;
+        font-size: 1.15rem;
+        margin-top: 32px;
     }
 
     .seo-content p {
@@ -480,16 +496,15 @@ button:focus-visible {
     }
 
     .page-header {
-        padding: 36px 14px 30px;
+        padding: 38px 14px 32px;
     }
 
     .page-header h1 {
-        font-size: 1.35rem;
-        letter-spacing: -0.2px;
+        font-size: 1.3rem;
     }
 
     .page-header p {
-        font-size: 0.93rem;
+        font-size: 0.92rem;
     }
 
     .card-container {
@@ -498,22 +513,21 @@ button:focus-visible {
     }
 
     .section {
-        padding: 22px 18px 20px;
+        padding: 24px 16px 22px;
     }
 
     .section h2 {
-        font-size: 1.05rem;
+        font-size: 1.02rem;
     }
 
     .section .cta-button {
-        padding: 10px 22px;
+        padding: 11px 24px;
         font-size: 0.88rem;
         width: 100%;
-        justify-content: center;
     }
 
     .semester-badge {
-        font-size: 0.68rem;
+        font-size: 0.66rem;
         padding: 3px 12px;
     }
 
@@ -522,11 +536,11 @@ button:focus-visible {
     }
 
     .seo-content h2 {
-        font-size: 1.1rem;
+        font-size: 1.08rem;
     }
 
     .seo-content p {
-        font-size: 0.92rem;
+        font-size: 0.91rem;
         line-height: 1.75;
     }
 
@@ -535,31 +549,31 @@ button:focus-visible {
     }
 
     .breadcrumb ol li {
-        font-size: 0.82rem;
+        font-size: 0.8rem;
     }
 }
 
 /* ──────────────── Responsive – Ultra Small ──────────────── */
 @media (max-width: 360px) {
     .page-header {
-        padding: 30px 12px 26px;
+        padding: 32px 12px 26px;
     }
 
     .page-header h1 {
-        font-size: 1.2rem;
+        font-size: 1.15rem;
     }
 
     .section {
-        padding: 18px 14px 18px;
+        padding: 20px 14px 18px;
     }
 
     .section h2 {
-        font-size: 0.98rem;
+        font-size: 0.96rem;
     }
 
     .section .cta-button {
-        padding: 9px 18px;
-        font-size: 0.85rem;
+        padding: 10px 18px;
+        font-size: 0.84rem;
         gap: 6px;
     }
 }
@@ -568,7 +582,7 @@ button:focus-visible {
 @media print {
     .page-header {
         background: none;
-        color: #000;
+        color: var(--black-900);
         padding: 20px 0;
     }
 
@@ -578,12 +592,11 @@ button:focus-visible {
     }
 
     .page-header h1 {
-        text-shadow: none;
-        color: #000;
+        color: var(--black-900);
     }
 
     .page-header p {
-        color: #333;
+        color: var(--black-600);
     }
 
     .section .cta-button,
@@ -602,7 +615,7 @@ button:focus-visible {
 
     .section {
         box-shadow: none;
-        border: 1px solid #ccc;
+        border: 1px solid var(--black-300);
         break-inside: avoid;
         page-break-inside: avoid;
         margin-bottom: 12px;
@@ -614,22 +627,26 @@ button:focus-visible {
         display: none;
     }
 
-    .semester-badge {
-        border: 1px solid #999;
-        background: #eee;
-        color: #333;
+    .section h2 {
+        color: var(--black-900);
     }
 
-    .seo-content {
-        margin-top: 30px;
+    .semester-badge {
+        border: 1px solid var(--black-400);
+        background: var(--black-50);
+        color: var(--black-800);
     }
 
     .seo-content h2 {
-        border-bottom-color: #999;
+        border-bottom-color: var(--black-300);
     }
 
-    .seo-content h2::before {
-        background: #333;
+    .seo-content h2::after {
+        background: var(--black-600);
+    }
+
+    .seo-content p {
+        color: var(--black-700);
     }
 }
 
@@ -666,63 +683,4 @@ button:focus-visible {
     .section .cta-button:hover::after {
         transform: none;
     }
-}
-
-/* ──────────────── Dark Mode Support ──────────────── */
-@media (prefers-color-scheme: dark) {
-    :root {
-        --text-dark: #e2e8f0;
-        --text-medium: #94a3b8;
-        --text-light: #64748b;
-        --bg-white: #1e293b;
-        --bg-light: #0f172a;
-        --bg-subtle: #1e293b;
-        --border-light: #334155;
-        --border-medium: #475569;
-        --primary-light: rgba(26, 86, 219, 0.15);
-        --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
-        --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
-        --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.5);
-        --shadow-glow: 0 0 20px rgba(26, 86, 219, 0.2);
-    }
-
-    .page-header {
-        background: linear-gradient(135deg, #0f2b6e 0%, #091d4e 50%, #060f2e 100%);
-    }
-
-    .breadcrumb {
-        background: var(--bg-subtle);
-        border-bottom-color: var(--border-light);
-    }
-
-    .semester-badge {
-        background: linear-gradient(135deg, rgba(26, 86, 219, 0.2) 0%, rgba(26, 86, 219, 0.1) 100%);
-        border-color: rgba(26, 86, 219, 0.3);
-        color: #93b4f5;
-    }
-
-    .section:hover .semester-badge {
-        background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-        color: #fff;
-    }
-
-    .section:hover h2 {
-        color: #93b4f5;
-    }
-
-    .seo-content h2 {
-        border-bottom-color: var(--border-light);
-    }
-
-    ::-webkit-scrollbar-track {
-        background: var(--bg-light);
-    }
-
-    ::-webkit-scrollbar-thumb {
-        background: var(--border-light);
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-        background: var(--border-medium);
-    }
-}
+       }

@@ -112,6 +112,7 @@ body {
 
 .page-header h1 {
     font-family: var(--font-heading);
+     color: var(--white);
     font-size: clamp(1.6rem, 4.5vw, 2.5rem);
     font-weight: 800;
     line-height: 1.3;

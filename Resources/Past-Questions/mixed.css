@@ -1,0 +1,728 @@
+/* ============================================
+   CivPrepMaster – Past Questions Stylesheet
+   Applied to: /Resources/Past-Questions
+   ============================================ */
+
+/* ──────────────── CSS Variables ──────────────── */
+:root {
+    --primary: #1a56db;
+    --primary-dark: #1342a8;
+    --primary-light: #e8effc;
+    --accent: #f59e0b;
+    --accent-dark: #d97706;
+    --accent-light: #fef3c7;
+    --text-dark: #1e293b;
+    --text-medium: #475569;
+    --text-light: #64748b;
+    --bg-white: #ffffff;
+    --bg-light: #f8fafc;
+    --bg-subtle: #f1f5f9;
+    --border-light: #e2e8f0;
+    --border-medium: #cbd5e1;
+    --success: #059669;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.12);
+    --shadow-glow: 0 0 20px rgba(26, 86, 219, 0.15);
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 20px;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --font-body: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    --font-heading: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    --max-width: 900px;
+    --max-width-wide: 1200px;
+}
+
+/* ──────────────── Reset & Base ──────────────── */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    font-family: var(--font-body);
+    font-size: 16.5px;
+    line-height: 1.75;
+    color: var(--text-dark);
+    background-color: var(--bg-light);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+    background: var(--primary);
+    color: #fff;
+}
+
+/* ──────────────── Page Header (Hero) ──────────────── */
+.page-header {
+    background: linear-gradient(135deg, #1a56db 0%, #0f3a8e 50%, #0c2d6e 100%);
+    color: #fff;
+    text-align: center;
+    padding: 60px 24px 50px;
+    position: relative;
+    overflow: hidden;
+}
+
+.page-header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 30% 40%, rgba(245, 158, 11, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 60%, rgba(255, 255, 255, 0.05) 0%, transparent 40%);
+    animation: heroShimmer 8s ease-in-out infinite alternate;
+    pointer-events: none;
+}
+
+@keyframes heroShimmer {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    100% { transform: translate(-2%, -1%) rotate(1deg); }
+}
+
+.page-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--accent), var(--primary));
+}
+
+.page-header h1 {
+    font-family: var(--font-heading);
+    font-size: clamp(1.6rem, 4.5vw, 2.5rem);
+    font-weight: 800;
+    line-height: 1.3;
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+    letter-spacing: -0.3px;
+}
+
+.page-header p {
+    font-size: clamp(1rem, 2.2vw, 1.15rem);
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 720px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.page-header p strong {
+    color: #fff;
+    font-weight: 700;
+}
+
+/* ──────────────── Breadcrumb Navigation ──────────────── */
+.breadcrumb {
+    max-width: var(--max-width-wide);
+    margin: 0 auto;
+    padding: 16px 24px;
+    background: var(--bg-white);
+    border-bottom: 1px solid var(--border-light);
+}
+
+.breadcrumb ol {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    padding: 0;
+}
+
+.breadcrumb ol li {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.88rem;
+    color: var(--text-light);
+}
+
+.breadcrumb ol li:not(:last-child)::after {
+    content: '/';
+    color: var(--border-medium);
+    margin-left: 2px;
+    font-weight: 300;
+}
+
+.breadcrumb ol li a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.breadcrumb ol li a:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
+}
+
+.breadcrumb ol li:last-child {
+    color: var(--text-medium);
+    font-weight: 600;
+}
+
+/* ──────────────── Card Container Grid ──────────────── */
+.card-container {
+    max-width: var(--max-width-wide);
+    margin: 0 auto;
+    padding: 32px 24px 16px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 22px;
+}
+
+/* ──────────────── Subject Section Cards ──────────────── */
+.section {
+    background: var(--bg-white);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: 32px 28px 28px;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+}
+
+.section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--primary), var(--accent));
+    border-radius: 4px 0 0 4px;
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle at top right, var(--primary-light) 0%, transparent 70%);
+    opacity: 0;
+    transition: var(--transition);
+    pointer-events: none;
+}
+
+.section:hover {
+    border-color: var(--primary);
+    box-shadow: var(--shadow-lg), var(--shadow-glow);
+    transform: translateY(-4px);
+}
+
+.section:hover::before {
+    opacity: 1;
+}
+
+.section:hover::after {
+    opacity: 1;
+}
+
+/* ──────────────── Semester Badge ──────────────── */
+.semester-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--primary-light) 0%, #dce7fb 100%);
+    color: var(--primary-dark);
+    font-family: var(--font-heading);
+    font-size: 0.72rem;
+    font-weight: 800;
+    padding: 4px 14px;
+    border-radius: 50px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    border: 1px solid #c7d6f5;
+    transition: var(--transition);
+    line-height: 1.6;
+}
+
+.section:hover .semester-badge {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: #fff;
+    border-color: var(--primary);
+    box-shadow: 0 2px 8px rgba(26, 86, 219, 0.25);
+}
+
+/* ──────────────── Subject Heading (H2) ──────────────── */
+.section h2 {
+    font-family: var(--font-heading);
+    font-size: clamp(1.1rem, 2.8vw, 1.3rem);
+    font-weight: 700;
+    color: var(--text-dark);
+    line-height: 1.45;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    transition: var(--transition);
+}
+
+.section:hover h2 {
+    color: var(--primary-dark);
+}
+
+/* ──────────────── CTA Button ──────────────── */
+.section .cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    background: var(--primary);
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.92rem;
+    padding: 11px 26px;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: var(--transition);
+    box-shadow: 0 3px 10px rgba(26, 86, 219, 0.25);
+    margin-top: auto;
+    position: relative;
+    overflow: hidden;
+    letter-spacing: 0.2px;
+}
+
+.section .cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+    transition: left 0.5s ease;
+}
+
+.section .cta-button::after {
+    content: '→';
+    font-size: 1.1rem;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+}
+
+.section .cta-button:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(26, 86, 219, 0.4);
+}
+
+.section .cta-button:hover::before {
+    left: 100%;
+}
+
+.section .cta-button:hover::after {
+    transform: translateX(4px);
+}
+
+.section .cta-button i {
+    font-size: 0.9rem;
+    flex-shrink: 0;
+}
+
+/* ──────────────── SEO Content Section ──────────────── */
+.seo-content {
+    max-width: var(--max-width);
+    margin: 20px auto 40px;
+    padding: 0 24px;
+}
+
+.seo-content h2 {
+    font-family: var(--font-heading);
+    font-size: clamp(1.2rem, 3vw, 1.45rem);
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 14px;
+    margin-top: 36px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--primary-light);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    line-height: 1.4;
+}
+
+.seo-content h2::before {
+    content: '';
+    width: 4px;
+    height: 24px;
+    background: linear-gradient(180deg, var(--primary), var(--accent));
+    border-radius: 4px;
+    flex-shrink: 0;
+}
+
+.seo-content h2:first-child {
+    margin-top: 0;
+}
+
+.seo-content p {
+    color: var(--text-medium);
+    font-size: 1rem;
+    line-height: 1.85;
+    margin-bottom: 10px;
+}
+
+.seo-content p strong {
+    color: var(--text-dark);
+    font-weight: 600;
+}
+
+/* ──────────────── Scrollbar Styling ──────────────── */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-light);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border-medium);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--text-light);
+}
+
+/* ──────────────── Focus Styles (Accessibility) ──────────────── */
+a:focus-visible,
+button:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: var(--radius-sm);
+}
+
+.section:focus-within {
+    border-color: var(--primary);
+    box-shadow: var(--shadow-md), 0 0 0 3px rgba(26, 86, 219, 0.1);
+}
+
+/* ──────────────── Responsive – Tablet ──────────────── */
+@media (max-width: 1024px) {
+    .card-container {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 18px;
+        padding: 28px 20px 14px;
+    }
+}
+
+/* ──────────────── Responsive – Mobile Large ──────────────── */
+@media (max-width: 768px) {
+    .page-header {
+        padding: 44px 18px 38px;
+    }
+
+    .page-header h1 {
+        font-size: clamp(1.4rem, 5vw, 1.9rem);
+    }
+
+    .card-container {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        padding: 22px 16px 12px;
+    }
+
+    .section {
+        padding: 26px 22px 24px;
+        border-radius: var(--radius-md);
+    }
+
+    .section h2 {
+        font-size: 1.15rem;
+    }
+
+    .seo-content {
+        padding: 0 16px;
+        margin: 16px auto 32px;
+    }
+
+    .seo-content h2 {
+        font-size: 1.18rem;
+    }
+
+    .seo-content p {
+        font-size: 0.95rem;
+    }
+
+    .breadcrumb {
+        padding: 12px 16px;
+    }
+}
+
+/* ──────────────── Responsive – Mobile Small ──────────────── */
+@media (max-width: 480px) {
+    body {
+        font-size: 15.5px;
+    }
+
+    .page-header {
+        padding: 36px 14px 30px;
+    }
+
+    .page-header h1 {
+        font-size: 1.35rem;
+        letter-spacing: -0.2px;
+    }
+
+    .page-header p {
+        font-size: 0.93rem;
+    }
+
+    .card-container {
+        padding: 18px 12px 10px;
+        gap: 14px;
+    }
+
+    .section {
+        padding: 22px 18px 20px;
+    }
+
+    .section h2 {
+        font-size: 1.05rem;
+    }
+
+    .section .cta-button {
+        padding: 10px 22px;
+        font-size: 0.88rem;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .semester-badge {
+        font-size: 0.68rem;
+        padding: 3px 12px;
+    }
+
+    .seo-content {
+        padding: 0 12px;
+    }
+
+    .seo-content h2 {
+        font-size: 1.1rem;
+    }
+
+    .seo-content p {
+        font-size: 0.92rem;
+        line-height: 1.75;
+    }
+
+    .breadcrumb {
+        padding: 10px 12px;
+    }
+
+    .breadcrumb ol li {
+        font-size: 0.82rem;
+    }
+}
+
+/* ──────────────── Responsive – Ultra Small ──────────────── */
+@media (max-width: 360px) {
+    .page-header {
+        padding: 30px 12px 26px;
+    }
+
+    .page-header h1 {
+        font-size: 1.2rem;
+    }
+
+    .section {
+        padding: 18px 14px 18px;
+    }
+
+    .section h2 {
+        font-size: 0.98rem;
+    }
+
+    .section .cta-button {
+        padding: 9px 18px;
+        font-size: 0.85rem;
+        gap: 6px;
+    }
+}
+
+/* ──────────────── Print Styles ──────────────── */
+@media print {
+    .page-header {
+        background: none;
+        color: #000;
+        padding: 20px 0;
+    }
+
+    .page-header::before,
+    .page-header::after {
+        display: none;
+    }
+
+    .page-header h1 {
+        text-shadow: none;
+        color: #000;
+    }
+
+    .page-header p {
+        color: #333;
+    }
+
+    .section .cta-button,
+    #navbar,
+    #footer,
+    #social-section,
+    .breadcrumb,
+    #container-d950250f5a43c6c3f4942d50c5cb9461 {
+        display: none;
+    }
+
+    .card-container {
+        display: block;
+        padding: 10px 0;
+    }
+
+    .section {
+        box-shadow: none;
+        border: 1px solid #ccc;
+        break-inside: avoid;
+        page-break-inside: avoid;
+        margin-bottom: 12px;
+        border-radius: 0;
+    }
+
+    .section::before,
+    .section::after {
+        display: none;
+    }
+
+    .semester-badge {
+        border: 1px solid #999;
+        background: #eee;
+        color: #333;
+    }
+
+    .seo-content {
+        margin-top: 30px;
+    }
+
+    .seo-content h2 {
+        border-bottom-color: #999;
+    }
+
+    .seo-content h2::before {
+        background: #333;
+    }
+}
+
+/* ──────────────── Reduced Motion ──────────────── */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    .section,
+    .section::before,
+    .section::after,
+    .section h2,
+    .section .cta-button,
+    .section .cta-button::before,
+    .section .cta-button::after,
+    .semester-badge,
+    .breadcrumb ol li a {
+        transition: none;
+    }
+
+    .page-header::before {
+        animation: none;
+    }
+
+    .section:hover {
+        transform: none;
+    }
+
+    .section .cta-button:hover {
+        transform: none;
+    }
+
+    .section .cta-button:hover::after {
+        transform: none;
+    }
+}
+
+/* ──────────────── Dark Mode Support ──────────────── */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --text-dark: #e2e8f0;
+        --text-medium: #94a3b8;
+        --text-light: #64748b;
+        --bg-white: #1e293b;
+        --bg-light: #0f172a;
+        --bg-subtle: #1e293b;
+        --border-light: #334155;
+        --border-medium: #475569;
+        --primary-light: rgba(26, 86, 219, 0.15);
+        --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+        --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+        --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.5);
+        --shadow-glow: 0 0 20px rgba(26, 86, 219, 0.2);
+    }
+
+    .page-header {
+        background: linear-gradient(135deg, #0f2b6e 0%, #091d4e 50%, #060f2e 100%);
+    }
+
+    .breadcrumb {
+        background: var(--bg-subtle);
+        border-bottom-color: var(--border-light);
+    }
+
+    .semester-badge {
+        background: linear-gradient(135deg, rgba(26, 86, 219, 0.2) 0%, rgba(26, 86, 219, 0.1) 100%);
+        border-color: rgba(26, 86, 219, 0.3);
+        color: #93b4f5;
+    }
+
+    .section:hover .semester-badge {
+        background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+        color: #fff;
+    }
+
+    .section:hover h2 {
+        color: #93b4f5;
+    }
+
+    .seo-content h2 {
+        border-bottom-color: var(--border-light);
+    }
+
+    ::-webkit-scrollbar-track {
+        background: var(--bg-light);
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: var(--border-light);
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: var(--border-medium);
+    }
+}

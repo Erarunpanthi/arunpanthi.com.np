@@ -1,18 +1,3 @@
-/*  ============================================================
-    text-protect.js  —  Content Protection Shield
-    Usage: <script src="/js/text-protect.js"></script>
-
-    Protections Enabled:
-    ✦ Right-click / context menu         → blocked
-    ✦ Text selection & copy              → blocked
-    ✦ Keyboard shortcuts (Ctrl+C/U/S/P) → blocked
-    ✦ Developer tools (F12, Ctrl+Shift+I/J/C) → blocked
-    ✦ Printing (Ctrl+P & window.print)   → blocked
-    ✦ Drag-and-drop of text              → blocked
-    ✦ View-source prefix                 → redirected
-    ✦ Screenshot (Page Visibility API)   → overlay on blur
-    ✦ DevTools open detection (size+debug) → overlay warning
-    ============================================================ */
 
 ;(function () {
     "use strict";

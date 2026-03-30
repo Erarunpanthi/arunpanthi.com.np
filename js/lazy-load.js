@@ -1,413 +1,381 @@
-/**
- * ============================================
- *  ULTIMATE LAZY LOADER v2.0
- *  Intersection Observer-based Lazy Loading
- *  Drop-in script for any webpage
- * ============================================
+/*!
+ * Auto Lazy Loader
+ * Drop-in: <script src="/js/lazy-load.js" defer></script>
+ * No extra HTML/JS required.
  */
 
 (function () {
   "use strict";
 
-  /* ── Configuration ── */
+  // ---------- CONFIG ----------
   const CONFIG = {
-    rootMargin: "200px 0px",   // Start loading 200px before element is visible
-    threshold: [0, 0.25, 0.5, 0.75, 1],
-    animationDuration: "0.6s",
-    animationEasing: "cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-    placeholderColor: "#f0f0f0",
-    retryAttempts: 3,
-    retryDelay: 1500,
+    rootMargin: "120px 0px",          // start loading a bit before visible
+    threshold: 0.12,
+    animationDuration: 0.55,          // seconds
+    animationEasing: "cubic-bezier(0.22, 0.61, 0.36, 1)",
+    minElementSize: 12,               // ignore tiny elements
+    lazyMediaOffset: 100,             // how far below viewport to lazy media
   };
 
-  /* ── Inject Required CSS ── */
-  const injectStyles = () => {
+  const SKIP_TAGS = new Set([
+    "HTML", "HEAD", "BODY",
+    "SCRIPT", "STYLE", "LINK", "META", "TITLE",
+    "BR", "HR", "WBR", "NOSCRIPT", "TEMPLATE"
+  ]);
+
+  // Main "content-like" tags to lazy
+  const CONTENT_TAGS = new Set([
+    "SECTION", "ARTICLE", "MAIN", "ASIDE",
+    "HEADER", "FOOTER", "NAV",
+    "DIV", "P", "SPAN",
+    "H1", "H2", "H3", "H4", "H5", "H6",
+    "UL", "OL", "LI",
+    "FIGURE", "FIGCAPTION",
+    "TABLE", "THEAD", "TBODY", "TFOOT", "TR", "TD", "TH",
+    "FORM", "FIELDSET",
+    "IMG", "PICTURE", "CANVAS",
+    "IFRAME", "VIDEO"
+  ]);
+
+  let observer;
+  const processed = new WeakSet();
+
+  // ---------- STYLE INJECTION ----------
+  function injectStyles() {
+    if (document.getElementById("auto-lazy-styles")) return;
+
     const style = document.createElement("style");
-    style.id = "lazy-loader-styles";
+    style.id = "auto-lazy-styles";
     style.textContent = `
-      /* ---- Lazy Element Base ---- */
-      [data-lazy] {
+      .ll-lazy {
         opacity: 0;
-        transition: opacity ${CONFIG.animationDuration} ${CONFIG.animationEasing},
-                    transform ${CONFIG.animationDuration} ${CONFIG.animationEasing};
+        transform: translateY(18px);
+        will-change: opacity, transform;
       }
-      [data-lazy].lazy-loaded {
+      .ll-visible {
         opacity: 1 !important;
         transform: none !important;
+        transition:
+          opacity ${CONFIG.animationDuration}s ${CONFIG.animationEasing},
+          transform ${CONFIG.animationDuration}s ${CONFIG.animationEasing};
       }
-
-      /* ---- Animation Variants ---- */
-      [data-lazy="fade"] { opacity: 0; }
-      [data-lazy="fade-up"] { opacity: 0; transform: translateY(50px); }
-      [data-lazy="fade-down"] { opacity: 0; transform: translateY(-50px); }
-      [data-lazy="fade-left"] { opacity: 0; transform: translateX(50px); }
-      [data-lazy="fade-right"] { opacity: 0; transform: translateX(-50px); }
-      [data-lazy="zoom-in"] { opacity: 0; transform: scale(0.85); }
-      [data-lazy="zoom-out"] { opacity: 0; transform: scale(1.15); }
-      [data-lazy="flip-up"] { opacity: 0; transform: perspective(600px) rotateX(15deg); }
-      [data-lazy="slide-up"] { opacity: 0; transform: translateY(100px); }
-
-      /* ---- Image / Media Placeholder ---- */
-      .lazy-img-wrapper {
-        background: ${CONFIG.placeholderColor};
-        overflow: hidden;
+      /* simple shimmer for deferred images */
+      .ll-shimmer-wrap {
         position: relative;
+        overflow: hidden;
+        background: #f0f0f0;
       }
-      .lazy-img-wrapper::before {
+      .ll-shimmer-wrap::after {
         content: "";
         position: absolute;
-        top: 0; left: -150%;
-        width: 150%; height: 100%;
+        inset: 0;
         background: linear-gradient(
           90deg,
-          transparent,
-          rgba(255,255,255,0.4),
-          transparent
+          rgba(255,255,255,0),
+          rgba(255,255,255,0.5),
+          rgba(255,255,255,0)
         );
-        animation: shimmer 1.5s infinite;
+        transform: translateX(-100%);
+        animation: ll-shimmer 1.4s infinite;
       }
-      @keyframes shimmer {
-        100% { left: 150%; }
-      }
-
-      /* ---- Lazy Skeleton Blocks ---- */
-      .lazy-skeleton {
-        background: linear-gradient(90deg, #eee 25%, #e0e0e0 50%, #eee 75%);
-        background-size: 200% 100%;
-        animation: skeleton-pulse 1.5s ease-in-out infinite;
-        border-radius: 6px;
-        min-height: 20px;
-      }
-      @keyframes skeleton-pulse {
-        0% { background-position: 200% 0; }
-        100% { background-position: -200% 0; }
-      }
-
-      /* ---- Staggered Children ---- */
-      [data-lazy-stagger] > * {
-        opacity: 0;
-        transform: translateY(30px);
-        transition: opacity 0.5s ease, transform 0.5s ease;
-      }
-      [data-lazy-stagger].lazy-loaded > * {
-        opacity: 1;
-        transform: none;
-      }
-
-      /* ---- Progress Indicator ---- */
-      #lazy-progress-bar {
-        position: fixed;
-        top: 0; left: 0;
-        height: 3px;
-        background: linear-gradient(90deg, #4f46e5, #06b6d4);
-        z-index: 99999;
-        transition: width 0.4s ease;
-        border-radius: 0 2px 2px 0;
-        box-shadow: 0 0 8px rgba(79,70,229,0.4);
+      @keyframes ll-shimmer {
+        100% { transform: translateX(100%); }
       }
     `;
     document.head.appendChild(style);
-  };
+  }
 
-  /* ── Progress Bar ── */
-  const ProgressBar = {
-    bar: null,
-    total: 0,
-    loaded: 0,
-    init(total) {
-      this.total = total;
-      this.loaded = 0;
-      this.bar = document.createElement("div");
-      this.bar.id = "lazy-progress-bar";
-      this.bar.style.width = "0%";
-      document.body.appendChild(this.bar);
-    },
-    update() {
-      this.loaded++;
-      const pct = Math.min((this.loaded / this.total) * 100, 100);
-      if (this.bar) {
-        this.bar.style.width = pct + "%";
-        if (pct >= 100) {
-          setTimeout(() => {
-            this.bar.style.opacity = "0";
-            setTimeout(() => this.bar.remove(), 400);
-          }, 600);
-        }
-      }
-    },
-  };
+  // ---------- HELPERS ----------
+  function inInitialViewport(rect) {
+    const vh = window.innerHeight || document.documentElement.clientHeight || 0;
+    return rect.top < vh + 20 && rect.bottom > -20;
+  }
 
-  /* ── Utility: Load image with retry ── */
-  const loadImageWithRetry = (src, attempts = CONFIG.retryAttempts) => {
-    return new Promise((resolve, reject) => {
-      const img = new Image();
-      img.onload = () => resolve(src);
-      img.onerror = () => {
-        if (attempts > 0) {
-          setTimeout(() => {
-            loadImageWithRetry(src, attempts - 1).then(resolve).catch(reject);
-          }, CONFIG.retryDelay);
-        } else {
-          reject(new Error(`Failed to load: ${src}`));
-        }
-      };
+  function isBelowInitialViewport(rect) {
+    const vh = window.innerHeight || document.documentElement.clientHeight || 0;
+    return rect.top > vh + CONFIG.lazyMediaOffset;
+  }
+
+  function isCandidateElement(el) {
+    if (el.nodeType !== 1) return false;
+    if (processed.has(el)) return false;
+    if (SKIP_TAGS.has(el.tagName)) return false;
+    if (!CONTENT_TAGS.has(el.tagName)) return false;
+    if (el.closest(".no-lazy,[data-no-lazy]")) return false;
+    const rect = el.getBoundingClientRect();
+    if (rect.width < CONFIG.minElementSize && rect.height < CONFIG.minElementSize) return false;
+    return true;
+  }
+
+  // ---------- MEDIA DEFERRING ----------
+  function makeImageLazy(img, rect) {
+    if (img.dataset.llSrc || img.dataset.llSrcset) return;
+    const src = img.getAttribute("src");
+    const srcset = img.getAttribute("srcset");
+    if (!src && !srcset) return;
+    if (!isBelowInitialViewport(rect)) return; // only defer if below first screen
+
+    if (src) {
+      img.dataset.llSrc = src;
+      img.removeAttribute("src");
+    }
+    if (srcset) {
+      img.dataset.llSrcset = srcset;
+      img.removeAttribute("srcset");
+    }
+
+    // tiny transparent placeholder so layout keeps size
+    img.src =
+      "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1'%3E%3C/svg%3E";
+
+    // simple shimmer wrapper
+    if (!img.parentElement.classList.contains("ll-shimmer-wrap")) {
+      const w = img.getAttribute("width") || img.style.width || "100%";
+      const h = img.getAttribute("height") || img.style.height || "200";
+      const wrap = document.createElement("div");
+      wrap.className = "ll-shimmer-wrap";
+      wrap.style.width = isNaN(w) ? w : w + "px";
+      wrap.style.height = isNaN(h) ? h : h + "px";
+      img.parentNode.insertBefore(wrap, img);
+      wrap.appendChild(img);
+    }
+  }
+
+  function restoreImage(img) {
+    const src = img.dataset.llSrc;
+    const srcset = img.dataset.llSrcset;
+    if (src) {
       img.src = src;
-    });
-  };
+      delete img.dataset.llSrc;
+    }
+    if (srcset) {
+      img.srcset = srcset;
+      delete img.dataset.llSrcset;
+    }
+    const wrap = img.parentElement;
+    if (wrap && wrap.classList.contains("ll-shimmer-wrap")) {
+      wrap.parentNode.insertBefore(img, wrap);
+      wrap.remove();
+    }
+  }
 
-  /* ── Handle: Images (img[data-src]) ── */
-  const handleImage = async (el) => {
-    const src = el.getAttribute("data-src");
-    const srcset = el.getAttribute("data-srcset");
-    const sizes = el.getAttribute("data-sizes");
+  function makeIframeLazy(iframe, rect) {
+    if (iframe.dataset.llSrc) return;
+    const src = iframe.getAttribute("src");
+    if (!src) return;
+    if (!isBelowInitialViewport(rect)) return;
+    iframe.dataset.llSrc = src;
+    iframe.removeAttribute("src");
+  }
+
+  function restoreIframe(iframe) {
+    const src = iframe.dataset.llSrc;
+    if (!src) return;
+    iframe.src = src;
+    delete iframe.dataset.llSrc;
+  }
+
+  function makeVideoLazy(video, rect) {
+    if (video.dataset.llSrc || video.querySelector("source[data-ll-src]")) return;
+    const src = video.getAttribute("src");
+    if (!src && !video.querySelector("source[src]")) return;
+    if (!isBelowInitialViewport(rect)) return;
 
     if (src) {
-      try {
-        await loadImageWithRetry(src);
-        el.src = src;
-        if (srcset) el.srcset = srcset;
-        if (sizes) el.sizes = sizes;
-        el.removeAttribute("data-src");
-        el.removeAttribute("data-srcset");
-        el.removeAttribute("data-sizes");
-        el.classList.add("lazy-loaded");
-      } catch (err) {
-        console.warn("[LazyLoader]", err.message);
-        el.alt = "Image failed to load";
-      }
+      video.dataset.llSrc = src;
+      video.removeAttribute("src");
     }
-  };
+    video.querySelectorAll("source[src]").forEach((s) => {
+      s.dataset.llSrc = s.getAttribute("src");
+      s.removeAttribute("src");
+    });
+    video.preload = "none";
+  }
 
-  /* ── Handle: Background Images (data-bg) ── */
-  const handleBackground = async (el) => {
-    const bg = el.getAttribute("data-bg");
-    if (bg) {
-      try {
-        await loadImageWithRetry(bg);
-        el.style.backgroundImage = `url('${bg}')`;
-        el.removeAttribute("data-bg");
-        el.classList.add("lazy-loaded");
-      } catch (err) {
-        console.warn("[LazyLoader] BG failed:", err.message);
-      }
-    }
-  };
-
-  /* ── Handle: Video (video[data-src]) ── */
-  const handleVideo = (el) => {
-    const src = el.getAttribute("data-src");
-    const poster = el.getAttribute("data-poster");
-    if (poster) el.poster = poster;
-
+  function restoreVideo(video) {
+    const src = video.dataset.llSrc;
     if (src) {
-      el.src = src;
-      el.removeAttribute("data-src");
+      video.src = src;
+      delete video.dataset.llSrc;
     }
-
-    // Handle <source> children
-    el.querySelectorAll("source[data-src]").forEach((source) => {
-      source.src = source.getAttribute("data-src");
-      source.removeAttribute("data-src");
+    video.querySelectorAll("source[data-ll-src]").forEach((s) => {
+      s.src = s.dataset.llSrc;
+      delete s.dataset.llSrc;
     });
+    try { video.load(); } catch (e) {}
+  }
 
-    el.load();
-    el.classList.add("lazy-loaded");
-  };
+  function makeBackgroundLazy(el, rect) {
+    if (el.dataset.llBg) return;
+    const inlineBg = el.style.backgroundImage;
+    if (!inlineBg || inlineBg === "none") return;
+    if (!isBelowInitialViewport(rect)) return;
+    el.dataset.llBg = inlineBg;
+    el.style.backgroundImage = "none";
+  }
 
-  /* ── Handle: Iframe (iframe[data-src]) ── */
-  const handleIframe = (el) => {
-    const src = el.getAttribute("data-src");
-    if (src) {
-      el.src = src;
-      el.removeAttribute("data-src");
-      el.classList.add("lazy-loaded");
+  function restoreBackground(el) {
+    if (!el.dataset.llBg) return;
+    el.style.backgroundImage = el.dataset.llBg;
+    delete el.dataset.llBg;
+  }
+
+  function makeMediaLazy(el, rect) {
+    const tag = el.tagName;
+    if (tag === "IMG") {
+      makeImageLazy(el, rect);
+    } else if (tag === "IFRAME") {
+      makeIframeLazy(el, rect);
+    } else if (tag === "VIDEO") {
+      makeVideoLazy(el, rect);
     }
-  };
+    makeBackgroundLazy(el, rect);
+  }
 
-  /* ── Handle: Generic Sections ([data-lazy]) ── */
-  const handleSection = (el) => {
-    el.classList.add("lazy-loaded");
-  };
+  function restoreMedia(el) {
+    const tag = el.tagName;
+    if (tag === "IMG") restoreImage(el);
+    else if (tag === "IFRAME") restoreIframe(el);
+    else if (tag === "VIDEO") restoreVideo(el);
+    restoreBackground(el);
 
-  /* ── Handle: Staggered Children ([data-lazy-stagger]) ── */
-  const handleStagger = (el) => {
-    const delay = parseInt(el.getAttribute("data-lazy-stagger")) || 100;
-    el.classList.add("lazy-loaded");
-    Array.from(el.children).forEach((child, i) => {
-      child.style.transitionDelay = `${i * delay}ms`;
-    });
-  };
+    // Also restore any lazy media inside this element
+    el.querySelectorAll("img[data-ll-src], iframe[data-ll-src], video[data-ll-src]").forEach(restoreMedia);
+    el.querySelectorAll("[data-ll-bg]").forEach(restoreBackground);
+  }
 
-  /* ── Handle: HTML Injection ([data-lazy-html]) ── */
-  const handleHTMLInjection = async (el) => {
-    const url = el.getAttribute("data-lazy-html");
-    if (url) {
-      try {
-        const response = await fetch(url);
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
-        const html = await response.text();
-        el.innerHTML = html;
-        el.removeAttribute("data-lazy-html");
-        el.classList.add("lazy-loaded");
+  // ---------- ELEMENT PREP / REVEAL ----------
+  function prepareElement(el, rect) {
+    if (processed.has(el)) return;
+    processed.add(el);
 
-        // Re-scan injected content for nested lazy elements
-        scanElement(el);
-      } catch (err) {
-        console.warn("[LazyLoader] HTML inject failed:", err.message);
-        el.innerHTML = `<p style="color:red;">Content failed to load.</p>`;
+    // store original inline styles in case they exist
+    if (!el.dataset.llOrigOpacity) el.dataset.llOrigOpacity = el.style.opacity || "";
+    if (!el.dataset.llOrigTransform) el.dataset.llOrigTransform = el.style.transform || "";
+
+    el.classList.add("ll-lazy");
+
+    // set up lazy media ONLY for elements starting below first screen
+    if (isBelowInitialViewport(rect)) {
+      makeMediaLazy(el, rect);
+      observer.observe(el);
+    } else {
+      // already in viewport at load -> reveal shortly (no network delay)
+      requestAnimationFrame(() => revealElement(el));
+    }
+  }
+
+  function revealElement(el) {
+    if (el.classList.contains("ll-visible")) return;
+
+    // restore any deferred media
+    restoreMedia(el);
+
+    // trigger CSS animation by toggling classes
+    el.classList.add("ll-visible");
+    el.classList.remove("ll-lazy");
+
+    // optional: cleanup after animation
+    const t = (CONFIG.animationDuration + 0.1) * 1000;
+    setTimeout(() => {
+      // restore original inline styles if any
+      if (el.dataset.llOrigOpacity !== undefined) {
+        el.style.opacity = el.dataset.llOrigOpacity;
+        delete el.dataset.llOrigOpacity;
       }
-    }
-  };
-
-  /* ── Handle: Script Loading ([data-lazy-script]) ── */
-  const handleScript = (el) => {
-    const src = el.getAttribute("data-lazy-script");
-    if (src && !document.querySelector(`script[src="${src}"]`)) {
-      const script = document.createElement("script");
-      script.src = src;
-      script.async = true;
-      document.body.appendChild(script);
-      el.removeAttribute("data-lazy-script");
-    }
-    el.classList.add("lazy-loaded");
-  };
-
-  /* ── Master Intersection Callback ── */
-  const onIntersect = (entries, observer) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-
-      const el = entry.target;
-
-      // Apply custom delay if specified
-      const delay = parseInt(el.getAttribute("data-lazy-delay")) || 0;
-
-      setTimeout(() => {
-        const tag = el.tagName.toLowerCase();
-
-        // Route to correct handler
-        if (el.hasAttribute("data-lazy-html")) {
-          handleHTMLInjection(el);
-        } else if (el.hasAttribute("data-lazy-script")) {
-          handleScript(el);
-        } else if (el.hasAttribute("data-lazy-stagger")) {
-          handleStagger(el);
-        } else if (tag === "img" && el.hasAttribute("data-src")) {
-          handleImage(el);
-        } else if (tag === "video") {
-          handleVideo(el);
-        } else if (tag === "iframe" && el.hasAttribute("data-src")) {
-          handleIframe(el);
-        } else if (el.hasAttribute("data-bg")) {
-          handleBackground(el);
-        } else {
-          handleSection(el);
-        }
-
-        ProgressBar.update();
-      }, delay);
-
-      observer.unobserve(el);
-    });
-  };
-
-  /* ── Create Observer ── */
-  const createObserver = () => {
-    return new IntersectionObserver(onIntersect, {
-      rootMargin: CONFIG.rootMargin,
-      threshold: CONFIG.threshold,
-    });
-  };
-
-  /* ── Scan & Observe Elements ── */
-  let observer;
-
-  const scanElement = (root = document) => {
-    const selectors = [
-      "[data-lazy]",
-      "img[data-src]",
-      "video[data-src]",
-      "iframe[data-src]",
-      "[data-bg]",
-      "[data-lazy-html]",
-      "[data-lazy-script]",
-      "[data-lazy-stagger]",
-    ];
-
-    const elements = root.querySelectorAll(selectors.join(","));
-    elements.forEach((el) => {
-      if (!el.classList.contains("lazy-loaded")) {
-        observer.observe(el);
+      if (el.dataset.llOrigTransform !== undefined) {
+        el.style.transform = el.dataset.llOrigTransform;
+        delete el.dataset.llOrigTransform;
       }
-    });
-    return elements.length;
-  };
+      el.style.willChange = "";
+    }, t);
+  }
 
-  /* ── Mutation Observer for Dynamic Content ── */
-  const watchDOM = () => {
-    const mutationObs = new MutationObserver((mutations) => {
-      let hasNew = false;
+  // ---------- SCANNING ----------
+  function scan(root = document.body) {
+    if (!root) return;
+
+    const walker = document.createTreeWalker(
+      root,
+      NodeFilter.SHOW_ELEMENT,
+      null,
+      false
+    );
+
+    let node;
+    while ((node = walker.nextNode())) {
+      if (!isCandidateElement(node)) continue;
+
+      const rect = node.getBoundingClientRect();
+      if (!rect || (rect.width < CONFIG.minElementSize && rect.height < CONFIG.minElementSize)) {
+        continue;
+      }
+      prepareElement(node, rect);
+    }
+  }
+
+  // ---------- OBSERVERS ----------
+  function createIntersectionObserver() {
+    if (!("IntersectionObserver" in window)) {
+      // fallback: show everything & restore media
+      document.querySelectorAll(".ll-lazy").forEach((el) => revealElement(el));
+      return null;
+    }
+
+    return new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const el = entry.target;
+          revealElement(el);
+          observer.unobserve(el);
+        });
+      },
+      {
+        rootMargin: CONFIG.rootMargin,
+        threshold: CONFIG.threshold
+      }
+    );
+  }
+
+  function watchDOMChanges() {
+    if (!("MutationObserver" in window)) return;
+
+    const mo = new MutationObserver((mutations) => {
       mutations.forEach((m) => {
-        m.addedNodes.forEach((node) => {
-          if (node.nodeType === 1) {
-            if (
-              node.hasAttribute("data-lazy") ||
-              node.hasAttribute("data-src") ||
-              node.hasAttribute("data-bg") ||
-              node.hasAttribute("data-lazy-html")
-            ) {
-              observer.observe(node);
-              hasNew = true;
-            }
-            // Also scan children of added node
-            const count = scanElement(node);
-            if (count > 0) hasNew = true;
-          }
+        m.addedNodes.forEach((n) => {
+          if (n.nodeType !== 1) return;
+          if (SKIP_TAGS.has(n.tagName)) return;
+          // scan the new subtree
+          scan(n);
         });
       });
     });
 
-    mutationObs.observe(document.body, {
+    mo.observe(document.body, {
       childList: true,
-      subtree: true,
+      subtree: true
     });
+  }
+
+  // ---------- PUBLIC API ----------
+  window.AutoLazy = {
+    refresh() {
+      scan(document.body);
+    },
+    revealAll() {
+      document.querySelectorAll(".ll-lazy").forEach((el) => revealElement(el));
+    }
   };
 
-  /* ── Initialization ── */
-  const init = () => {
-    // Check for Intersection Observer support
-    if (!("IntersectionObserver" in window)) {
-      console.warn("[LazyLoader] IntersectionObserver not supported. Loading all content immediately.");
-      document.querySelectorAll("[data-src]").forEach((el) => {
-        el.src = el.getAttribute("data-src");
-      });
-      document.querySelectorAll("[data-lazy]").forEach((el) => {
-        el.classList.add("lazy-loaded");
-      });
-      return;
-    }
-
+  // ---------- INIT ----------
+  function init() {
     injectStyles();
-    observer = createObserver();
-    const totalElements = scanElement(document);
-    if (totalElements > 0) {
-      ProgressBar.init(totalElements);
-    }
-    watchDOM();
+    observer = createIntersectionObserver();
+    scan(document.body);
+    watchDOMChanges();
+  }
 
-    console.log(
-      `%c[LazyLoader] ✅ Initialized — Tracking ${totalElements} elements`,
-      "color: #4f46e5; font-weight: bold;"
-    );
-  };
-
-  /* ── Public API ── */
-  window.LazyLoader = {
-    refresh: () => scanElement(document),
-    config: CONFIG,
-  };
-
-  /* ── Start on DOM Ready ── */
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", init);
   } else {

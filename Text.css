@@ -464,7 +464,9 @@ h5.sub-topic {
     .syllabus-wrapper td {
         padding: 4px 5px;
     }
-
+ .top-btn{position:fixed;bottom:24px;right:24px;width:42px;height:42px;background:#1B5E20;color:#fff;border:none;border-radius:50%;font-size:1.2rem;cursor:pointer;box-shadow:0 3px 10px rgba(27,94,32,.4);z-index:999;display:flex;align-items:center;justify-content:center}
+        .top-btn:hover{background:#0d3310}
+       
     .page-divider {
         font-size: 12px;
     }

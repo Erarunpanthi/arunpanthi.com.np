@@ -585,104 +585,11 @@
         </div>
     </section>
 
-    <!-- Social Media Section -->
-    <section class="social-media lazy-section" aria-label="Social Media">
-        <h2><i class="fas fa-share-alt"></i> Stay Connected with Lok Sewa Updates</h2>
-        <p>Follow us for the latest Lok Sewa notices, results, syllabus updates, and preparation tips.</p>
-        <div class="icons">
-            <a href="https://www.facebook.com/arunpanthi" target="_blank" rel="noopener noreferrer" title="Follow on Facebook" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://www.youtube.com/@arunpanthi" target="_blank" rel="noopener noreferrer" title="Subscribe on YouTube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-            <a href="https://twitter.com/arunpanthi" target="_blank" rel="noopener noreferrer" title="Follow on Twitter" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-            <a href="https://t.me/arunpanthi" target="_blank" rel="noopener noreferrer" title="Join Telegram Channel" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer role="contentinfo">
-        <p>&copy; 2026 <a href="https://arunpanthi.com.np" title="Arun Panthi">ArunPanthi.com.np</a> — All Rights Reserved.</p>
-        <p>
-            <a href="https://arunpanthi.com.np/Psc-preparation" title="PSC Preparation">PSC Preparation</a> |
-            <a href="https://arunpanthi.com.np/Psc-preparation/loksewa-websites" title="Lok Sewa Websites">Lok Sewa Websites</a> |
-            <a href="https://arunpanthi.com.np/privacy-policy" title="Privacy Policy">Privacy Policy</a> |
-            <a href="https://arunpanthi.com.np/contact" title="Contact Us">Contact</a>
-        </p>
-        <p style="font-size: 12px; margin-top: 10px; opacity: 0.8;">Disclaimer: This is an informational resource page. All official website links belong to their respective government organizations. We are not affiliated with any government body.</p>
-    </footer>
-
-    <!-- Lazy Loading Script -->
-    <script>
-        // Lazy load images
-        document.addEventListener("DOMContentLoaded", function () {
-            const lazyImages = document.querySelectorAll("img.lazy");
-            if ("IntersectionObserver" in window) {
-                const imageObserver = new IntersectionObserver(function (entries, observer) {
-                    entries.forEach(function (entry) {
-                        if (entry.isIntersecting) {
-                            const image = entry.target;
-                            image.src = image.dataset.src;
-                            image.onload = function () {
-                                image.classList.add("loaded");
-                            };
-                            image.onerror = function () {
-                                // Fallback: show a placeholder with the commission name
-                                image.style.minHeight = "120px";
-                                image.style.background = "linear-gradient(135deg, #4CAF50, #2E7D32)";
-                                image.style.display = "flex";
-                                image.style.alignItems = "center";
-                                image.style.justifyContent = "center";
-                                image.classList.add("loaded");
-                            };
-                            imageObserver.unobserve(image);
-                        }
-                    });
-                });
-                lazyImages.forEach(function (image) {
-                    imageObserver.observe(image);
-                });
-            } else {
-                // Fallback for browsers without IntersectionObserver
-                lazyImages.forEach(function (image) {
-                    image.src = image.dataset.src;
-                    image.classList.add("loaded");
-                });
-            }
-
-            // Lazy load sections
-            const lazySections = document.querySelectorAll(".lazy-section");
-            if ("IntersectionObserver" in window) {
-                const sectionObserver = new IntersectionObserver(function (entries) {
-                    entries.forEach(function (entry) {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add("loaded");
-                            sectionObserver.unobserve(entry.target);
-                        }
-                    });
-                }, { rootMargin: "50px" });
-                lazySections.forEach(function (section) {
-                    sectionObserver.observe(section);
-                });
-            } else {
-                lazySections.forEach(function (section) {
-                    section.classList.add("loaded");
-                });
-            }
-        });
-
-        // FAQ Toggle Function
-        function toggleFAQ(element) {
-            const subjects = element.querySelector(".subjects");
-            const icon = element.querySelector("h2 i");
-            if (subjects.style.display === "none" || subjects.style.display === "") {
-                subjects.style.display = "block";
-                icon.classList.remove("fa-chevron-right");
-                icon.classList.add("fa-chevron-down");
-            } else {
-                subjects.style.display = "none";
-                icon.classList.remove("fa-chevron-down");
-                icon.classList.add("fa-chevron-right");
-            }
-        }
-    </script>
-
+ <div id="social-section"></div>
+  
+  <div id="footer"></div>
+  <script src="/js/layout.js"></script>
+      <script src="/js/lazy-load.js" defer></script>
+  
 </body>
-  </html>
+</html>

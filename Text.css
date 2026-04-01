@@ -288,6 +288,31 @@ h5.sub-topic {
     background: #2E7D32;
 }
 
+/* ✅ Floating Top Button */
+.top-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 42px;
+    height: 42px;
+    background: #1B5E20;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgba(27,94,32,.4);
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color .2s;
+}
+
+.top-btn:hover {
+    background: #0d3310;
+}
+
 @media print {
     body {
         background: #fff;
@@ -348,139 +373,4 @@ h5.sub-topic {
     }
 
     h3.sub-title {
-        font-size: 14px;
-    }
-
-    h4.topic-title {
-        font-size: 13px;
-    }
-
-    .mcq-options {
-        margin-left: 10px;
-    }
-}
-
-@media (max-width: 600px) {
-    .syllabus-wrapper {
-        margin: 10px;
-        padding: 12px;
-        border-radius: 6px;
-    }
-
-    .syllabus-wrapper table {
-        font-size: 12px;
-        display: block;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-    }
-
-    .syllabus-wrapper th,
-    .syllabus-wrapper td {
-        padding: 5px 6px;
-        white-space: nowrap;
-    }
-
-    .doc-header h1 {
-        font-size: 15px;
-    }
-
-    .doc-header h2 {
-        font-size: 12px;
-    }
-
-    .doc-header h3 {
-        font-size: 13px;
-    }
-
-    .page-divider {
-        font-size: 13px;
-        padding: 8px 6px;
-        border-radius: 6px;
-    }
-
-    h2.section-title {
-        font-size: 14px;
-        margin: 20px 0 8px;
-    }
-
-    h3.sub-title {
-        font-size: 13px;
-        margin: 16px 0 6px;
-    }
-
-    h4.topic-title,
-    h5.sub-topic {
-        font-size: 13px;
-    }
-
-    .syllabus-wrapper p,
-    .syllabus-wrapper ul li,
-    .syllabus-wrapper ol li {
-        font-size: 13px;
-    }
-
-    .syllabus-wrapper ul,
-    .syllabus-wrapper ol {
-        margin-left: 18px;
-    }
-
-    .note-box {
-        padding: 10px 12px;
-        margin: 14px 0;
-    }
-
-    .mcq-question {
-        margin-bottom: 12px;
-        padding: 8px;
-    }
-
-    .mcq-question p,
-    .mcq-options {
-        font-size: 13px;
-    }
-
-    .mcq-options {
-        margin-left: 8px;
-        line-height: 1.7;
-    }
-
-    .breadcrumb {
-        padding: 6px 12px;
-        font-size: 11px;
-    }
-}
-
-@media (max-width: 400px) {
-    .syllabus-wrapper {
-        margin: 6px;
-        padding: 10px;
-    }
-
-    .syllabus-wrapper table {
-        font-size: 11px;
-    }
-
-    .syllabus-wrapper th,
-    .syllabus-wrapper td {
-        padding: 4px 5px;
-    }
- .top-btn{position:fixed;bottom:24px;right:24px;width:42px;height:42px;background:#1B5E20;color:#fff;border:none;border-radius:50%;font-size:1.2rem;cursor:pointer;box-shadow:0 3px 10px rgba(27,94,32,.4);z-index:999;display:flex;align-items:center;justify-content:center}
-        .top-btn:hover{background:#0d3310}
-       
-    .page-divider {
-        font-size: 12px;
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-        transition-duration: 0s !important;
-        animation-duration: 0s !important;
-    }
-
-    html {
-        scroll-behavior: auto;
-    }
-}
+        font-size:

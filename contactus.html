@@ -1,125 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="https://arunpanthi.com.np/styles.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - CivPrepMaster</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-        <link rel="stylesheet" href="/css/contract.css">
-      <link rel="canonical" href="https://arunpanthi.com.np/contactus">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-      <div id="navbar"></div>
+    
+    <link rel="stylesheet" href="https://arunpanthi.com.np/styles.css">
+    <link rel="stylesheet" href="css/contract.css"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="canonical" href="https://arunpanthi.com.np/contactus">
+
     <style>
-        /* Modernized Form Styling */
-        .Binitacontainer { max-width: 600px; margin: 20px auto; padding: 20px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        .form-group { margin-bottom: 15px; }
-        .name-row { display: flex; gap: 10px; }
-        .name-row input { flex: 1; padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
-        input, select, textarea { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }
-        
-        /* Validation Checklist Styling */
-        .validation-box {
-            background: #f9f9f9;
-            padding: 15px;
-            border-radius: 6px;
+        /* Main Container */
+        .Binitacontainer { 
+            max-width: 600px; 
+            margin: 20px auto; 
+            padding: 20px; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
             border: 1px solid #eee;
-            margin-top: 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
-        .rule { font-size: 0.85em; color: #e74c3c; margin: 5px 0; transition: all 0.3s ease; }
+        
+        .form-group { margin-bottom: 20px; }
+        .name-row { display: flex; gap: 10px; margin-top: 5px; }
+        .name-row input { flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 4px; }
+        input, select, textarea { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }
+
+        /* Requirement Message Styling */
+        .requirement-message {
+            background-color: #f0f7ff;
+            border-left: 5px solid #3498db;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+        }
+        .message-header { color: #2c3e50; font-weight: bold; margin-bottom: 8px; display: block; }
+        .rule-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+        .rule { font-size: 0.85em; color: #e74c3c; transition: 0.3s; display: flex; align-items: center; }
         .rule.valid { color: #27ae60; }
         .rule i { margin-right: 8px; }
-        
-        #submit-btn { background: #2c3e50; color: white; border: none; padding: 12px 20px; cursor: pointer; width: 100%; border-radius: 4px; font-size: 16px; margin-top: 10px; }
+
+        /* Button Styling */
+        #submit-btn { 
+            background: #2c3e50; 
+            color: white; 
+            border: none; 
+            padding: 15px; 
+            cursor: pointer; 
+            width: 100%; 
+            border-radius: 4px; 
+            font-size: 16px; 
+            font-weight: bold;
+            transition: background 0.3s;
+        }
         #submit-btn:disabled { background: #95a5a6; cursor: not-allowed; }
-        .hidden-field { display: none; }
+        #submit-btn:hover:not(:disabled) { background: #34495e; }
     </style>
 </head>
 <body>
-    <div class="Binitacontainer">
-        <h1>Contact Us</h1>
-        <form id="contact-form">
-            <div class="form-group">
-                <label><i class="fas fa-user"></i> Full Name<span style="color:red;">*</span>:</label>
-                <div class="name-row">
-                    <input type="text" name="first-name" placeholder="First Name" required>
-                    <input type="text" name="middle-name" placeholder="Middle Name">
-                    <input type="text" id="main-last-name" name="last-name" placeholder="Last Name" required>
-                </div>
-            </div>
 
-            <div class="form-group">
-                <label><i class="fas fa-user"></i> Father's Name<span style="color:red;">*</span>:</label>
-                <div class="name-row">
-                    <input type="text" name="father-first-name" placeholder="First Name" required>
-                    <input type="text" id="father-last-name" name="father-last-name" placeholder="Last Name" required>
-                </div>
-            </div>
+<div id="navbar"></div>
 
-            <div class="form-group">
-                <label><i class="fas fa-user"></i> Mother's Name<span style="color:red;">*</span>:</label>
-                <div class="name-row">
-                    <input type="text" name="mother-first-name" placeholder="First Name" required>
-                    <input type="text" id="mother-last-name" name="mother-last-name" placeholder="Last Name" required>
-                </div>
+<div class="Binitacontainer">
+    <h1>Contact Us</h1>
+    <form id="contact-form">
+        <div class="form-group">
+            <label><i class="fas fa-user"></i> Full Name <span style="color:red;">*</span></label>
+            <div class="name-row">
+                <input type="text" name="first-name" placeholder="First Name" required>
+                <input type="text" name="middle-name" placeholder="Middle Name">
+                <input type="text" id="main-last-name" name="last-name" placeholder="Last Name" required>
             </div>
+        </div>
 
-            <div class="form-group">
-                <label><i class="fas fa-phone"></i> Mobile Number (10 Digits)<span style="color:red;">*</span>:</label>
-                <input type="tel" name="mobile" placeholder="98XXXXXXXX" maxlength="10" 
-                       oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10);" required>
+        <div class="form-group">
+            <label><i class="fas fa-user-friends"></i> Father's Name <span style="color:red;">*</span></label>
+            <div class="name-row">
+                <input type="text" name="father-first-name" placeholder="First Name" required>
+                <input type="text" id="father-last-name" name="father-last-name" placeholder="Last Name" required readonly>
             </div>
+        </div>
 
-            <div class="form-group">
-                <label for="email"><i class="fas fa-envelope"></i> Email ID (@gmail.com)<span style="color:red;">*</span>:</label>
-                <input type="email" name="email" placeholder="example@gmail.com" required 
-                       pattern="^[a-zA-Z0-9._%+-]+@gmail\.com$">
+        <div class="form-group">
+            <label><i class="fas fa-user-friends"></i> Mother's Name <span style="color:red;">*</span></label>
+            <div class="name-row">
+                <input type="text" name="mother-first-name" placeholder="First Name" required>
+                <input type="text" id="mother-last-name" name="mother-last-name" placeholder="Last Name" required readonly>
             </div>
+        </div>
 
-            <div class="form-group">
-                <label><i class="fas fa-map"></i> Province & District<span style="color:red;">*</span>:</label>
-                <div class="name-row">
-                    <select id="province" name="province" required>
-                        <option value="" disabled selected>Province</option>
-                        <option value="Koshi">Koshi</option>
-                        <option value="Madhesh">Madhesh</option>
-                        <option value="Bagmati">Bagmati</option>
-                        <option value="Gandaki">Gandaki</option>
-                        <option value="Lumbini">Lumbini</option>
-                        <option value="Karnali">Karnali</option>
-                        <option value="Sudurpashchim">Sudurpashchim</option>
-                    </select>
-                    <select id="district" name="district" required>
-                        <option value="" disabled selected>District</option>
-                    </select>
-                </div>
-            </div>
+        <div class="form-group">
+            <label><i class="fas fa-phone"></i> Mobile Number (10 Digits) <span style="color:red;">*</span></label>
+            <input type="tel" name="mobile" placeholder="98XXXXXXXX" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '');" required>
+        </div>
 
-            <div class="form-group">
-                <label><i class="fas fa-graduation-cap"></i> Semester<span style="color:red;">*</span>:</label>
-                <select name="semester" required>
-                    <option value="" disabled selected>Select Semester</option>
-                    <option value="1">1st Semester</option><option value="2">2nd Semester</option>
-                    <option value="3">3rd Semester</option><option value="4">4th Semester</option>
-                    <option value="5">5th Semester</option><option value="6">6th Semester</option>
-                    <option value="7">7th Semester</option><option value="8">8th Semester</option>
+        <div class="form-group">
+            <label><i class="fas fa-envelope"></i> Email ID (@gmail.com) <span style="color:red;">*</span></label>
+            <input type="email" name="email" placeholder="example@gmail.com" required pattern="^[a-zA-Z0-9._%+-]+@gmail\.com$">
+        </div>
+
+        <div class="form-group">
+            <label><i class="fas fa-map-marker-alt"></i> Location <span style="color:red;">*</span></label>
+            <div class="name-row">
+                <select id="province" name="province" required>
+                    <option value="" disabled selected>Province</option>
+                    <option value="Koshi">Koshi</option>
+                    <option value="Madhesh">Madhesh</option>
+                    <option value="Bagmati">Bagmati</option>
+                    <option value="Gandaki">Gandaki</option>
+                    <option value="Lumbini">Lumbini</option>
+                    <option value="Karnali">Karnali</option>
+                    <option value="Sudurpashchim">Sudurpashchim</option>
+                </select>
+                <select id="district" name="district" required>
+                    <option value="" disabled selected>District</option>
                 </select>
             </div>
+        </div>
 
-            <div class="form-group">
-                <label for="message"><i class="fas fa-comment"></i> Your Message<span style="color:red;">*</span>:</label>
-                <textarea id="message" name="message" rows="5" placeholder="Enter your detailed query..."></textarea>
-                
-                           </div>
+        <div class="form-group">
+            <label><i class="fas fa-graduation-cap"></i> Semester <span style="color:red;">*</span></label>
+            <select name="semester" required>
+                <option value="" disabled selected>Select Semester</option>
+                <option value="1">1st Semester</option><option value="2">2nd Semester</option>
+                <option value="3">3rd Semester</option><option value="4">4th Semester</option>
+                <option value="5">5th Semester</option><option value="6">6th Semester</option>
+                <option value="7">7th Semester</option><option value="8">8th Semester</option>
+            </select>
+        </div>
 
-            <input type="hidden" name="zone" value="N/A">
-            <button type="submit" id="submit-btn" disabled>Submit Details</button>
-        </form>
+        <div class="form-group">
+            <div class="requirement-message">
+                <span class="message-header"><i class="fas fa-shield-alt"></i> Message Requirements</span>
+                <div class="rule-grid">
+                    <div id="rule-length" class="rule"><i class="fas fa-times-circle"></i> 50+ Characters</div>
+                    <div id="rule-upper" class="rule"><i class="fas fa-times-circle"></i> Uppercase Letter</div>
+                    <div id="rule-lower" class="rule"><i class="fas fa-times-circle"></i> Lowercase Letter</div>
+                    <div id="rule-space" class="rule"><i class="fas fa-times-circle"></i> A Space</div>
+                    <div id="rule-dot" class="rule"><i class="fas fa-times-circle"></i> A Period (.)</div>
+                </div>
+            </div>
+            <label for="message"><i class="fas fa-comment"></i> Your Message <span style="color:red;">*</span></label>
+            <textarea id="message" name="message" rows="5" placeholder="Please write your detailed query here..." required></textarea>
+        </div>
 
-        <div id="thank-you-message" style="display:none; text-align: center; padding: 40px;">
-            <i class="fas fa-check-circle" style="font-size: 50px; color: #27ae60;"></i>
-            <h2>Submission Successful!</h2>
-        <div style="font-family: sans-serif; line-height: 1.6;">
+        <input type="hidden" name="zone" value="N/A">
+        <button type="submit" id="submit-btn" disabled>Submit Details</button>
+    </form>
+
+    <div id="thank-you-message" style="display:none; text-align: center; padding: 40px;">
+        <i class="fas fa-check-circle" style="font-size: 50px; color: #27ae60;"></i>
+      <div style="font-family: sans-serif; line-height: 1.6;">
   <h2 style="color: #2c3e50;">Thank You for Your Time!</h2>
   <p>Your message has been successfully delivered to <strong>Er. Arun Panthi</strong>. We appreciate you providing your details.</p>
   
@@ -131,87 +162,94 @@
   </ul>
 
   <p style="font-size: 0.9em; color: #7f8c8d;"><em>Please note: To maintain the integrity of our services, fraudulent submissions will not receive a response.</em></p>
-        </div>
-            <a href="/" style="color: #2c3e50; font-weight: bold;">Return Home</a>
-        </div>
+
+      </div>    <a href="Home" class="cta-button"><i class="fas fa-home"></i> Go to Home</a>
     </div>
-
-    <script>
-        const provinceDistricts = {
-            "Koshi": ["Bhojpur", "Dhankuta", "Ilam", "Jhapa", "Khotang", "Morang", "Okhaldhunga", "Panchthar", "Sankhuwasabha", "Solukhumbu", "Sunsari", "Taplejung", "Terhathum", "Udayapur"],
-            "Madhesh": ["Bara", "Dhanusha", "Mahottari", "Parsa", "Rautahat", "Saptari", "Sarlahi", "Siraha"],
-            "Bagmati": ["Bhaktapur", "Chitwan", "Dhading", "Dolakha", "Kathmandu", "Kavrepalanchok", "Lalitpur", "Makwanpur", "Nuwakot", "Ramechhap", "Rasuwa", "Sindhuli", "Sindhupalchok"],
-            "Gandaki": ["Baglung", "Gorkha", "Kaski", "Lamjung", "Manang", "Mustang", "Myagdi", "Nawalpur (Nawalparasi East)", "Parbat", "Syangja", "Tanahun"],
-            "Lumbini": ["Arghakhanchi", "Banke", "Bardiya", "Dang", "Eastern Rukum", "Gulmi", "Kapilvastu", "Parasi (Nawalparasi West)", "Palpa", "Pyuthan", "Rolpa", "Rupandehi"],
-            "Karnali": ["Dailekh", "Dolpa", "Humla", "Jajarkot", "Jumla", "Kalikot", "Mugu", "Salyan", "Surkhet", "Western Rukum"],
-            "Sudurpashchim": ["Achham", "Baitadi", "Bajhang", "Bajura", "Dadeldhura", "Darchula", "Doti", "Kailali", "Kanchanpur"]
-        };
-
-
-        document.getElementById('province').addEventListener('change', function() {
-            const d = document.getElementById('district');
-            d.innerHTML = '<option value="" disabled selected>District</option>';
-            if(provinceDistricts[this.value]) {
-                provinceDistricts[this.value].forEach(dist => {
-                    const o = document.createElement('option');
-                    o.value = o.textContent = dist;
-                    d.appendChild(o);
-                });
-            }
-        });
-
-        // Last Name Sync
-        const mainLN = document.getElementById('main-last-name');
-        mainLN.addEventListener('input', () => {
-            document.getElementById('father-last-name').value = mainLN.value;
-            document.getElementById('mother-last-name').value = mainLN.value;
-        });
-
-        // Message Logic & Live Checklist
-        const msg = document.getElementById('message');
-        const submitBtn = document.getElementById('submit-btn');
-        
-        const rules = {
-            length: { el: document.getElementById('rule-length'), check: (v) => v.length >= 50 },
-            upper: { el: document.getElementById('rule-upper'), check: (v) => /[A-Z]/.test(v) },
-            lower: { el: document.getElementById('rule-lower'), check: (v) => /[a-z]/.test(v) },
-            space: { el: document.getElementById('rule-space'), check: (v) => /\s/.test(v) },
-            dot: { el: document.getElementById('rule-dot'), check: (v) => /\./.test(v) }
-        };
-
-        msg.addEventListener('input', function() {
-            const val = this.value;
-            let allValid = true;
-
-            for (let key in rules) {
-                const isValid = rules[key].check(val);
-                rules[key].el.className = isValid ? 'rule valid' : 'rule';
-                rules[key].el.querySelector('i').className = isValid ? 'fas fa-check-circle' : 'fas fa-times-circle';
-                if (!isValid) allValid = false;
-            }
-
-            submitBtn.disabled = !allValid;
-        });
-
-        // Form Submission
-        document.getElementById('contact-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            submitBtn.textContent = "Processing...";
-            
-            fetch('https://script.google.com/macros/s/AKfycbxiZcn0WbHICpp1igRiJ7i7e91IozZLERTtyqX5rlSS-3VH0tCxxtHLNIhlu6w1m4EG6w/exec', {
-                method: 'POST',
-                body: new FormData(this)
-            }).then(() => {
-                document.getElementById('thank-you-message').style.display = 'block';
-                this.style.display = 'none';
-            });
-        });
-    </script>
 </div>
-    
-        <div id="social-section"></div>
 
-      <div id="footer"></div>
-        <script src="js/layout.js"></script>
+<div id="footer"></div>
+
+<script>
+    // 1. Province & District Data
+    const provinceDistricts = {
+        "Koshi": ["Bhojpur", "Dhankuta", "Ilam", "Jhapa", "Khotang", "Morang", "Okhaldhunga", "Panchthar", "Sankhuwasabha", "Solukhumbu", "Sunsari", "Taplejung", "Terhathum", "Udayapur"],
+        "Madhesh": ["Bara", "Dhanusha", "Mahottari", "Parsa", "Rautahat", "Saptari", "Sarlahi", "Siraha"],
+        "Bagmati": ["Bhaktapur", "Chitwan", "Dhading", "Dolakha", "Kathmandu", "Kavrepalanchok", "Lalitpur", "Makwanpur", "Nuwakot", "Ramechhap", "Rasuwa", "Sindhuli", "Sindhupalchok"],
+        "Gandaki": ["Baglung", "Gorkha", "Kaski", "Lamjung", "Manang", "Mustang", "Myagdi", "Nawalpur (Nawalparasi East)", "Parbat", "Syangja", "Tanahun"],
+        "Lumbini": ["Arghakhanchi", "Banke", "Bardiya", "Dang", "Eastern Rukum", "Gulmi", "Kapilvastu", "Parasi (Nawalparasi West)", "Palpa", "Pyuthan", "Rolpa", "Rupandehi"],
+        "Karnali": ["Dailekh", "Dolpa", "Humla", "Jajarkot", "Jumla", "Kalikot", "Mugu", "Salyan", "Surkhet", "Western Rukum"],
+        "Sudurpashchim": ["Achham", "Baitadi", "Bajhang", "Bajura", "Dadeldhura", "Darchula", "Doti", "Kailali", "Kanchanpur"]
+    };
+
+    document.getElementById('province').addEventListener('change', function() {
+        const d = document.getElementById('district');
+        d.innerHTML = '<option value="" disabled selected>District</option>';
+        if(provinceDistricts[this.value]) {
+            provinceDistricts[this.value].forEach(dist => {
+                const o = document.createElement('option');
+                o.value = o.textContent = dist;
+                d.appendChild(o);
+            });
+        }
+    });
+
+    // 2. Last Name Sync
+    const mainLN = document.getElementById('main-last-name');
+    mainLN.addEventListener('input', () => {
+        document.getElementById('father-last-name').value = mainLN.value;
+        document.getElementById('mother-last-name').value = mainLN.value;
+    });
+
+    // 3. Validation Logic
+    const msg = document.getElementById('message');
+    const submitBtn = document.getElementById('submit-btn');
+    
+    const rules = {
+        length: { el: document.getElementById('rule-length'), check: (v) => v.length >= 50 },
+        upper: { el: document.getElementById('rule-upper'), check: (v) => /[A-Z]/.test(v) },
+        lower: { el: document.getElementById('rule-lower'), check: (v) => /[a-z]/.test(v) },
+        space: { el: document.getElementById('rule-space'), check: (v) => /\s/.test(v) },
+        dot: { el: document.getElementById('rule-dot'), check: (v) => /\./.test(v) }
+    };
+
+    msg.addEventListener('input', function() {
+        const val = this.value;
+        let allValid = true;
+
+        for (let key in rules) {
+            const isValid = rules[key].check(val);
+            const element = rules[key].el;
+            
+            if (element) {
+                element.className = isValid ? 'rule valid' : 'rule';
+                element.querySelector('i').className = isValid ? 'fas fa-check-circle' : 'fas fa-times-circle';
+            }
+            
+            if (!isValid) allValid = false;
+        }
+
+        submitBtn.disabled = !allValid;
+    });
+
+    // 4. Form Submission
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        submitBtn.textContent = "Processing...";
+        submitBtn.disabled = true;
+        
+        fetch('https://script.google.com/macros/s/AKfycbxiZcn0WbHICpp1igRiJ7i7e91IozZLERTtyqX5rlSS-3VH0tCxxtHLNIhlu6w1m4EG6w/exec', {
+            method: 'POST',
+            body: new FormData(this)
+        }).then(() => {
+            document.getElementById('thank-you-message').style.display = 'block';
+            this.style.display = 'none';
+        }).catch(err => {
+            alert("Error submitting form. Please try again.");
+            submitBtn.textContent = "Submit Details";
+            submitBtn.disabled = false;
+        });
+    });
+</script>
+
 </body>
-    </html>
+            </html>

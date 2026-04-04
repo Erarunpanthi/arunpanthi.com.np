@@ -5,314 +5,121 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - CivPrepMaster</title>
-    <link rel="canonical" href="https://arunpanthi.com.np/contactus">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="/css/contract.css">
+        <link rel="stylesheet" href="/css/contract.css">
+      <link rel="canonical" href="https://arunpanthi.com.np/contactus">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+      <div id="navbar"></div>
+    <style>
+        /* Modernized Form Styling */
+        .Binitacontainer { max-width: 600px; margin: 20px auto; padding: 20px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        .form-group { margin-bottom: 15px; }
+        .name-row { display: flex; gap: 10px; }
+        .name-row input { flex: 1; padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
+        input, select, textarea { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }
+        
+        /* Validation Checklist Styling */
+        .validation-box {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px solid #eee;
+            margin-top: 10px;
+        }
+        .rule { font-size: 0.85em; color: #e74c3c; margin: 5px 0; transition: all 0.3s ease; }
+        .rule.valid { color: #27ae60; }
+        .rule i { margin-right: 8px; }
+        
+        #submit-btn { background: #2c3e50; color: white; border: none; padding: 12px 20px; cursor: pointer; width: 100%; border-radius: 4px; font-size: 16px; margin-top: 10px; }
+        #submit-btn:disabled { background: #95a5a6; cursor: not-allowed; }
+        .hidden-field { display: none; }
+    </style>
 </head>
 <body>
-    <div id="container-d950250f5a43c6c3f4942d50c5cb9461"></div>
-    
-    <div id="navbar"></div>
-
-    <!-- Contact Form -->
     <div class="Binitacontainer">
         <h1>Contact Us</h1>
-        <form id="contact-form" action="https://script.google.com/macros/s/AKfycbxiZcn0WbHICpp1igRiJ7i7e91IozZLERTtyqX5rlSS-3VH0tCxxtHLNIhlu6w1m4EG6w/exec" method="POST" onsubmit="return showThankYouMessage(event);">
+        <form id="contact-form">
             <div class="form-group">
-                <label for="full-name"><i class="fas fa-user"></i> Full Name<span style="color:red;">*</span>:</label>
+                <label><i class="fas fa-user"></i> Full Name<span style="color:red;">*</span>:</label>
                 <div class="name-row">
-                    <input type="text" id="first-name" name="first-name" placeholder="First Name" required>
-                    <input type="text" id="middle-name" name="middle-name" placeholder="Middle Name">
-                    <input type="text" id="last-name" name="last-name" placeholder="Last Name" required>
+                    <input type="text" name="first-name" placeholder="First Name" required>
+                    <input type="text" name="middle-name" placeholder="Middle Name">
+                    <input type="text" id="main-last-name" name="last-name" placeholder="Last Name" required>
                 </div>
             </div>
-            <div class="form-group">
-                <label for="father-name"><i class="fas fa-user"></i> Father's Name<span style="color:red;">*</span>:</label>
-                <div class="name-row">
-                    <input type="text" id="father-first-name" name="father-first-name" placeholder="Father's First Name" required>
-                    <input type="text" id="father-middle-name" name="father-middle-name" placeholder="Father's Middle Name">
-                    <input type="text" id="father-last-name" name="father-last-name" placeholder="Father's Last Name" required>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="mother-name"><i class="fas fa-user"></i> Mother's Name<span style="color:red;">*</span>:</label>
-                <div class="name-row">
-                    <input type="text" id="mother-first-name" name="mother-first-name" placeholder="Mother's First Name" required>
-                    <input type="text" id="mother-middle-name" name="mother-middle-name" placeholder="Mother's Middle Name">
-                    <input type="text" id="mother-last-name" name="mother-last-name" placeholder="Mother's Last Name" required>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="mobile"><i class="fas fa-phone"></i> Mobile Number<span style="color:red;">*</span>:</label>
-                <div class="phone-number">
-                    <select class="country-code" id="country-code" name="country-code">
-                        <option value="+977">+977</option>
-                    </select>
-                    <input type="tel" id="mobile" name="mobile" placeholder="XXXXXXXXXX" pattern="[0-9]{10}" required>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="email"><i class="fas fa-envelope"></i> Email ID<span style="color:red;">*</span>:</label>
-                <input type="email" id="email" name="email" placeholder="example@gmail.com" required pattern="^[a-zA-Z0-9._%+-]+@gmail\.com$">
-            </div>
-            <div class="form-group">
-                <label for="address"><i class="fas fa-map-marker-alt"></i> Address<span style="color:red;">*</span>:</label>
-                <input type="text" id="address" name="address" placeholder="Enter your address" required>
-            </div>
-            <div class="form-group">
-                <label for="university"><i class="fas fa-university"></i> University<span style="color:red;">*</span>:</label>
-                <select id="university" name="university" required>
-                    <option value="" disabled selected>Select your university</option>
-                     <option value="Tribhuvan University">Tribhuvan University</option>
-<option value="Pokhara University">Pokhara University</option>
-<option value="Mid-West University">Mid-West University</option>
-<option value="Purbanchal University">Purbanchal University</option>
-<option value="Kathmandu University">Kathmandu University</option>
-<option value="Nepal Engineering College">Nepal Engineering College</option>
-<option value="Kathmandu Engineering College">Kathmandu Engineering College</option>
-<option value="Kantipur Engineering College">Kantipur Engineering College</option>
-<option value="Himalaya College of Engineering">Himalaya College of Engineering</option>
-<option value="National College of Engineering">National College of Engineering</option>
-<option value="Advanced College of Engineering and Management">Advanced College of Engineering and Management</option>
-<option value="Pulchowk Campus, Institute of Engineering">Pulchowk Campus, Institute of Engineering</option>
-<option value="Khwopa College of Engineering">Khwopa College of Engineering</option>
-<option value="Madan Bhandari Memorial College of Engineering">Madan Bhandari Memorial College of Engineering</option>
-<option value="Nepal College of Information Technology">Nepal College of Information Technology</option>
-<option value="Thapathali Campus, Institute of Engineering">Thapathali Campus, Institute of Engineering</option>
-<option value="Nepal College of Computer Science">Nepal College of Computer Science</option>
-<option value="Ace Institute of Management">Ace Institute of Management</option>
-<option value="Eastern Region Campus, TU">Eastern Region Campus, TU</option>
-<option value="Buddha Engineering College">Buddha Engineering College</option>
-<option value="Central Campus of Technology, Dharan">Central Campus of Technology, Dharan</option>
-<option value="Himalayan Institute of Engineering and Technology">Himalayan Institute of Engineering and Technology</option>
-<option value="Lumbini Engineering College">Lumbini Engineering College</option>
-<option value="Pashupati Engineering College">Pashupati Engineering College</option>
-<option value="Siddhartha Engineering College">Siddhartha Engineering College</option>
-<option value="KIST College of Management and Technology">KIST College of Management and Technology</option>
-<option value="Nepal Academy of Science and Technology (NAST)">Nepal Academy of Science and Technology (NAST)</option>
-<option value="Nepal Institute of Technology (NIT)">Nepal Institute of Technology (NIT)</option>
-<option value="Shree Harsha Engineering College">Shree Harsha Engineering College</option>
-<option value="National College of Arts and Technology">National College of Arts and Technology</option>
-<option value="Siddhartha Technical Institute">Siddhartha Technical Institute</option>
-<option value="Techno Nepal Institute of Technology">Techno Nepal Institute of Technology</option>
-<option value="Universal College of Engineering">Universal College of Engineering</option>
-<option value="Global College of Engineering and Technology">Global College of Engineering and Technology</option>
-<option value="Kathmandu Model College">Kathmandu Model College</option>
-<option value="Oxford College of Engineering">Oxford College of Engineering</option>
-<option value="Patan College for Professional Studies">Patan College for Professional Studies</option>
-<option value="International College of Engineering and Management">International College of Engineering and Management</option>
-<option value="Sagarmatha Engineering College">Sagarmatha Engineering College</option>
-<option value="Whitehouse Institute of Management and Technology">Whitehouse Institute of Management and Technology</option>
-<option value="Nepal Engineering Institute">Nepal Engineering Institute</option>
-<option value="Bhaktapur Multiple Campus">Bhaktapur Multiple Campus</option>
-<option value="Bhairahawa College of Engineering">Bhairahawa College of Engineering</option>
-<option value="South Asian Institute of Technology and Management">South Asian Institute of Technology and Management</option>
-<option value="Lumbini Engineering College">Lumbini Engineering College</option>
-<option value="Buddha Engineering College">Buddha Engineering College</option>
-<option value="Bhairahawa College of Engineering and Technology">Bhairahawa College of Engineering and Technology</option>
-<option value="Himalaya College of Engineering">Himalaya College of Engineering</option>
-<option value="Golden Gate International College">Golden Gate International College</option>
-<option value="Rajasthan College of Engineering">Rajasthan College of Engineering</option>
-<option value="National College of Engineering">National College of Engineering</option>
-<option value="Buddha Institute of Engineering and Technology">Buddha Institute of Engineering and Technology</option>
-<option value="Mahalaxmi Engineering College">Mahalaxmi Engineering College</option>
-<option value="National College of Engineering and Management">National College of Engineering and Management</option>
-<option value="Shree Chaitanya College of Engineering">Shree Chaitanya College of Engineering</option>
-<option value="Narayani Engineering College">Narayani Engineering College</option>
-<option value="Central Engineering College">Central Engineering College</option>
-<option value="Sikkim Manipal Institute of Technology">Sikkim Manipal Institute of Technology</option>
-<option value="Institute of Engineering, TU">Institute of Engineering, TU</option>
-<option value="Biratnagar Engineering College">Biratnagar Engineering College</option>
-<option value="Janakpur Engineering College">Janakpur Engineering College</option>
-<option value="Gorkha College of Engineering">Gorkha College of Engineering</option>
-<option value="Rai Engineering College">Rai Engineering College</option>
-<option value="Shree Krishna College of Engineering">Shree Krishna College of Engineering</option>
-<option value="Himalaya College of Engineering and Management">Himalaya College of Engineering and Management</option>
-<option value="Pashupati Engineering College">Pashupati Engineering College</option>
-<option value="Eastern University, Nepal">Eastern University, Nepal</option>
-<option value="Nepal College of Engineering">Nepal College of Engineering</option>
-<option value="Kantipur Engineering College">Kantipur Engineering College</option>
-<option value="Cedar College of Engineering">Cedar College of Engineering</option>
-<option value="Dharan Engineering College">Dharan Engineering College</option>
-<option value="International Institute of Science and Technology">International Institute of Science and Technology</option>
-<option value="Rural Development College of Engineering">Rural Development College of Engineering</option>
-<option value="Siddhartha College of Engineering">Siddhartha College of Engineering</option>
-<option value="Global College of Technology">Global College of Technology</option>
-<option value="Institute of Advanced Engineering and Management">Institute of Advanced Engineering and Management</option>
-<option value="Universal College of Engineering and Management">Universal College of Engineering and Management</option>
-<option value="Chetan College of Engineering">Chetan College of Engineering</option>
-<option value="Nepal College of Management and Technology">Nepal College of Management and Technology</option>
-<option value="Techno Science Institute">Techno Science Institute</option>
-<option value="Asian Institute of Technology and Management">Asian Institute of Technology and Management</option>
-<option value="Gorkha College of Engineering and Management">Gorkha College of Engineering and Management</option>
-<option value="Golden Gate International College">Golden Gate International College</option>
-<option value="Himalayan College of Engineering">Himalayan College of Engineering</option>
-<option value="Shree Siddhi College of Engineering">Shree Siddhi College of Engineering</option>
-<option value="Himalaya Institute of Science and Technology">Himalaya Institute of Science and Technology</option>
-<option value="Western Region Campus, TU">Western Region Campus, TU</option>
-<option value="Narayani Engineering College">Narayani Engineering College</option>
-<option value="Gandaki College of Engineering and Technology">Gandaki College of Engineering and Technology</option>
-<option value="Nepal College of Engineering and Management">Nepal College of Engineering and Management</option>
-<option value="Himalayan College of Science and Technology">Himalayan College of Science and Technology</option>
-<option value="Apex College of Engineering">Apex College of Engineering</option>
-<option value="Shree Janakalyan College of Engineering">Shree Janakalyan College of Engineering</option>
-<option value="Nepal Polytechnic Institute">Nepal Polytechnic Institute</option>
-<option value="Siddhartha Institute of Science and Technology">Siddhartha Institute of Science and Technology</option>
-<option value="Advanced College of Engineering">Advanced College of Engineering</option>
-<option value="Imperial College of Engineering">Imperial College of Engineering</option>
-<option value="Bluebird College of Engineering and Management">Bluebird College of Engineering and Management</option>
-<option value="Chetan College of Engineering and Management">Chetan College of Engineering and Management</option>
-<option value="Janakpur Engineering College">Janakpur Engineering College</option>
-<option value="Bhairahawa Institute of Technology">Bhairahawa Institute of Technology</option>
-<option value="Sajilo College of Engineering">Sajilo College of Engineering</option>
-<option value="Nepal College of Engineering and Technology">Nepal College of Engineering and Technology</option>
-<option value="Shree Gorkha College of Engineering">Shree Gorkha College of Engineering</option>
-<option value="Nai Duniya Engineering College">Nai Duniya Engineering College</option>
-<option value="Prime College of Engineering">Prime College of Engineering</option>
-<option value="Siddhartha Institute of Engineering and Technology">Siddhartha Institute of Engineering and Technology</option>
-<option value="South Asia Institute of Technology and Management">South Asia Institute of Technology and Management</option>
-<option value="Shree Krishna College of Engineering and Management">Shree Krishna College of Engineering and Management</option>
-<option value="Global College of Engineering">Global College of Engineering</option>
-<option value="Nepal Academy of Science and Engineering">Nepal Academy of Science and Engineering</option>
-<option value="Shree Ram College of Engineering">Shree Ram College of Engineering</option>
-<option value="Cedar College of Engineering and Technology">Cedar College of Engineering and Technology</option>
-<option value="Engineering College of Management">Engineering College of Management</option>
-<option value="Himalaya Engineering College">Himalaya Engineering College</option>
-<option value="Golden College of Engineering">Golden College of Engineering</option>
-<option value="Shree Technical College">Shree Technical College</option>
-<option value="Nepal Institute of Engineering and Management">Nepal Institute of Engineering and Management</option>
-<option value="Kandari College of Engineering">Kandari College of Engineering</option>
-<option value="Himalayan Institute of Engineering">Himalayan Institute of Engineering</option>
-<option value="Siddhartha Academy of Engineering">Siddhartha Academy of Engineering</option>
-<option value="Advanced College of Engineering and Management">Advanced College of Engineering and Management</option>
-<option value="Eastern Engineering College">Eastern Engineering College</option>
-<option value="Universal College of Technology">Universal College of Technology</option>
-<option value="International College of Technology and Management">International College of Technology and Management</option>
-<option value="Himalaya Institute of Engineering">Himalaya Institute of Engineering</option>
-<option value="Sagarmatha Engineering College">Sagarmatha Engineering College</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="zone"><i class="fas fa-map"></i> Zone<span style="color:red;">*</span>:</label>
-                <select id="zone" name="zone" required>
-                    <option value="" disabled selected>Select your zone</option>
-             <option value="Mechi">Mechi</option>
-  <option value="Koshi">Koshi</option>
-  <option value="Sagarmatha">Sagarmatha</option>
-  <option value="Janakpur">Janakpur</option>
-  <option value="Narayani">Narayani</option>
-  <option value="Bagmati">Bagmati</option>
-  <option value="Gandaki">Gandaki</option>
-  <option value="Dhawalagiri">Dhawalagiri</option>
-  <option value="Lumbini">Lumbini</option>
-  <option value="Rapti">Rapti</option>
-  <option value="Bheri">Bheri</option>
-  <option value="Karnali">Karnali</option> 
-  <option value="Seti">Seti</option>
-  <option value="Mahakali">Mahakali</option>
-</select> 
 
-                             </div>
             <div class="form-group">
-                <label for="province"><i class="fas fa-map"></i> Province<span style="color:red;">*</span>:</label>
-                <select id="province" name="province" required>
-                    <option value="" disabled selected>Select your province</option>
-                      <option value="Sudurpashchim">सुदूरपश्चिम</option>
-  <option value="Karnali">कर्णाली</option>
-  <option value="Lumbini">लुम्बिनी</option>
-  <option value="Gandaki">गण्डकी</option>
-  <option value="Bagmati">बागमती</option>
-  <option value="Madhesh">मधेस</option>
-               </select>
+                <label><i class="fas fa-user"></i> Father's Name<span style="color:red;">*</span>:</label>
+                <div class="name-row">
+                    <input type="text" name="father-first-name" placeholder="First Name" required>
+                    <input type="text" id="father-last-name" name="father-last-name" placeholder="Last Name" required>
+                </div>
             </div>
+
             <div class="form-group">
-                <label for="district"><i class="fas fa-map"></i> District<span style="color:red;">*</span>:</label>
-                <select id="district" name="district" required>
-                    <option value="" disabled selected>Select your district</option>
-                   <option value="Achham">Achham</option>
-<option value="Arghakhanchi">Arghakhanchi</option>
-<option value="Baglung">Baglung</option>
-<option value="Baitadi">Baitadi</option>
-<option value="Bardiya">Bardiya</option>
-<option value="Bhaktapur">Bhaktapur</option>
-<option value="Bhojpur">Bhojpur</option>
-<option value="Chitwan">Chitwan</option>
-<option value="Dailekh">Dailekh</option>
-<option value="Dang">Dang</option>
-<option value="Darchula">Darchula</option>
-<option value="Dhading">Dhading</option>
-<option value="Dhankuta">Dhankuta</option>
-<option value="Dhanusha">Dhanusha</option>
-<option value="Dolakha">Dolakha</option>
-<option value="Dolpa">Dolpa</option>
-<option value="Gorkha">Gorkha</option>
-<option value="Gulmi">Gulmi</option>
-<option value="Humla">Humla</option>
-<option value="Jajarkot">Jajarkot</option>
-<option value="Jamalpur">Jamalpur</option>
-<option value="Kailali">Kailali</option>
-<option value="Kanchanpur">Kanchanpur</option>
-<option value="Kapilvastu">Kapilvastu</option>
-<option value="Kaski">Kaski</option>
-<option value="Kathmandu">Kathmandu</option>
-<option value="Kavrepalanchok">Kavrepalanchok</option>
-<option value="Khotang">Khotang</option>
-<option value="Lalitpur">Lalitpur</option>
-<option value="Lamjung">Lamjung</option>
-<option value="Mahottari">Mahottari</option>
-<option value="Makwanpur">Makwanpur</option>
-<option value="Manang">Manang</option>
-<option value="Morang">Morang</option>
-<option value="Mustang">Mustang</option>
-<option value="Myagdi">Myagdi</option>
-<option value="Nawalparasi (East)">Nawalparasi (East)</option>
-<option value="Nawalparasi (West)">Nawalparasi (West)</option>
-<option value="Nepalgunj">Nepalgunj</option>
-<option value="Okhaldhunga">Okhaldhunga</option>
-<option value="Palpa">Palpa</option>
-<option value="Panchthar">Panchthar</option>
-<option value="Parbat">Parbat</option>
-<option value="Parsa">Parsa</option>
-<option value="Pyuthan">Pyuthan</option>
-<option value="Rautahat">Rautahat</option>
-<option value="Rukum (East)">Rukum (East)</option>
-<option value="Rukum (West)">Rukum (West)</option>
-<option value="Rupandehi">Rupandehi</option>
-<option value="Salyan">Salyan</option>
-<option value="Sankhuwasabha">Sankhuwasabha</option>
-<option value="Sarlahi">Sarlahi</option>
-<option value="Sindhuli">Sindhuli</option>
-<option value="Sindhupalchowk">Sindhupalchowk</option>
-<option value="Surkhet">Surkhet</option>
-<option value="Tanahun">Tanahun</option>
-<option value="Udayapur">Udayapur</option>
-                    
+                <label><i class="fas fa-user"></i> Mother's Name<span style="color:red;">*</span>:</label>
+                <div class="name-row">
+                    <input type="text" name="mother-first-name" placeholder="First Name" required>
+                    <input type="text" id="mother-last-name" name="mother-last-name" placeholder="Last Name" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label><i class="fas fa-phone"></i> Mobile Number (10 Digits)<span style="color:red;">*</span>:</label>
+                <input type="tel" name="mobile" placeholder="98XXXXXXXX" maxlength="10" 
+                       oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10);" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email"><i class="fas fa-envelope"></i> Email ID (@gmail.com)<span style="color:red;">*</span>:</label>
+                <input type="email" name="email" placeholder="example@gmail.com" required 
+                       pattern="^[a-zA-Z0-9._%+-]+@gmail\.com$">
+            </div>
+
+            <div class="form-group">
+                <label><i class="fas fa-map"></i> Province & District<span style="color:red;">*</span>:</label>
+                <div class="name-row">
+                    <select id="province" name="province" required>
+                        <option value="" disabled selected>Province</option>
+                        <option value="Koshi">Koshi</option>
+                        <option value="Madhesh">Madhesh</option>
+                        <option value="Bagmati">Bagmati</option>
+                        <option value="Gandaki">Gandaki</option>
+                        <option value="Lumbini">Lumbini</option>
+                        <option value="Karnali">Karnali</option>
+                        <option value="Sudurpashchim">Sudurpashchim</option>
+                    </select>
+                    <select id="district" name="district" required>
+                        <option value="" disabled selected>District</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label><i class="fas fa-graduation-cap"></i> Semester<span style="color:red;">*</span>:</label>
+                <select name="semester" required>
+                    <option value="" disabled selected>Select Semester</option>
+                    <option value="1">1st Semester</option><option value="2">2nd Semester</option>
+                    <option value="3">3rd Semester</option><option value="4">4th Semester</option>
+                    <option value="5">5th Semester</option><option value="6">6th Semester</option>
+                    <option value="7">7th Semester</option><option value="8">8th Semester</option>
                 </select>
             </div>
+
             <div class="form-group">
-                <label for="semester"><i class="fas fa-graduation-cap"></i> Semester<span style="color:red;">*</span>:</label>
-                <select id="semester" name="semester" required>
-                    <option value="" disabled selected>Select your semester</option>
-                    <option value="1">First Semester</option>
-  <option value="2">Second Semester</option>
-  <option value="3">Third Semester</option>
-  <option value="4">Fourth Semester</option>
-  <option value="5">Fifth Semester</option>
-  <option value="6">Sixth Semester</option>
-  <option value="7">Seventh Semester</option>
-  <option value="8">Eighth Semester</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="message"><i class="fas fa-comment"></i> Message:</label>
-                <textarea id="message" name="message" rows="5" placeholder="Write your message here..."></textarea>
-            </div>
-            <button type="submit">Submit</button>
+                <label for="message"><i class="fas fa-comment"></i> Your Message<span style="color:red;">*</span>:</label>
+                <textarea id="message" name="message" rows="5" placeholder="Enter your detailed query..."></textarea>
+                
+                           </div>
+
+            <input type="hidden" name="zone" value="N/A">
+            <button type="submit" id="submit-btn" disabled>Submit Details</button>
         </form>
 
-                <div class="thank-you-message" id="thank-you-message" style="display:none; margin-top: 30px; text-align: align; ">
-        <div>
-<div style="font-family: sans-serif; line-height: 1.6;">
+        <div id="thank-you-message" style="display:none; text-align: center; padding: 40px;">
+            <i class="fas fa-check-circle" style="font-size: 50px; color: #27ae60;"></i>
+            <h2>Submission Successful!</h2>
+        <div style="font-family: sans-serif; line-height: 1.6;">
   <h2 style="color: #2c3e50;">Thank You for Your Time!</h2>
   <p>Your message has been successfully delivered to <strong>Er. Arun Panthi</strong>. We appreciate you providing your details.</p>
   
@@ -324,50 +131,86 @@
   </ul>
 
   <p style="font-size: 0.9em; color: #7f8c8d;"><em>Please note: To maintain the integrity of our services, fraudulent submissions will not receive a response.</em></p>
-</div>
-        
-                    <a href="Home" class="cta-button"><i class="fas fa-home"></i> Go to Home</a>
+        </div>
+            <a href="/" style="color: #2c3e50; font-weight: bold;">Return Home</a>
         </div>
     </div>
 
+    <script>
+        const provinceDistricts = {
+            "Koshi": ["Bhojpur", "Dhankuta", "Ilam", "Jhapa", "Khotang", "Morang", "Okhaldhunga", "Panchthar", "Sankhuwasabha", "Solukhumbu", "Sunsari", "Taplejung", "Terhathum", "Udayapur"],
+            "Madhesh": ["Bara", "Dhanusha", "Mahottari", "Parsa", "Rautahat", "Saptari", "Sarlahi", "Siraha"],
+            "Bagmati": ["Bhaktapur", "Chitwan", "Dhading", "Dolakha", "Kathmandu", "Kavrepalanchok", "Lalitpur", "Makwanpur", "Nuwakot", "Ramechhap", "Rasuwa", "Sindhuli", "Sindhupalchok"],
+            "Gandaki": ["Baglung", "Gorkha", "Kaski", "Lamjung", "Manang", "Mustang", "Myagdi", "Nawalpur (Nawalparasi East)", "Parbat", "Syangja", "Tanahun"],
+            "Lumbini": ["Arghakhanchi", "Banke", "Bardiya", "Dang", "Eastern Rukum", "Gulmi", "Kapilvastu", "Parasi (Nawalparasi West)", "Palpa", "Pyuthan", "Rolpa", "Rupandehi"],
+            "Karnali": ["Dailekh", "Dolpa", "Humla", "Jajarkot", "Jumla", "Kalikot", "Mugu", "Salyan", "Surkhet", "Western Rukum"],
+            "Sudurpashchim": ["Achham", "Baitadi", "Bajhang", "Bajura", "Dadeldhura", "Darchula", "Doti", "Kailali", "Kanchanpur"]
+        };
+
+
+        document.getElementById('province').addEventListener('change', function() {
+            const d = document.getElementById('district');
+            d.innerHTML = '<option value="" disabled selected>District</option>';
+            if(provinceDistricts[this.value]) {
+                provinceDistricts[this.value].forEach(dist => {
+                    const o = document.createElement('option');
+                    o.value = o.textContent = dist;
+                    d.appendChild(o);
+                });
+            }
+        });
+
+        // Last Name Sync
+        const mainLN = document.getElementById('main-last-name');
+        mainLN.addEventListener('input', () => {
+            document.getElementById('father-last-name').value = mainLN.value;
+            document.getElementById('mother-last-name').value = mainLN.value;
+        });
+
+        // Message Logic & Live Checklist
+        const msg = document.getElementById('message');
+        const submitBtn = document.getElementById('submit-btn');
+        
+        const rules = {
+            length: { el: document.getElementById('rule-length'), check: (v) => v.length >= 50 },
+            upper: { el: document.getElementById('rule-upper'), check: (v) => /[A-Z]/.test(v) },
+            lower: { el: document.getElementById('rule-lower'), check: (v) => /[a-z]/.test(v) },
+            space: { el: document.getElementById('rule-space'), check: (v) => /\s/.test(v) },
+            dot: { el: document.getElementById('rule-dot'), check: (v) => /\./.test(v) }
+        };
+
+        msg.addEventListener('input', function() {
+            const val = this.value;
+            let allValid = true;
+
+            for (let key in rules) {
+                const isValid = rules[key].check(val);
+                rules[key].el.className = isValid ? 'rule valid' : 'rule';
+                rules[key].el.querySelector('i').className = isValid ? 'fas fa-check-circle' : 'fas fa-times-circle';
+                if (!isValid) allValid = false;
+            }
+
+            submitBtn.disabled = !allValid;
+        });
+
+        // Form Submission
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            submitBtn.textContent = "Processing...";
+            
+            fetch('https://script.google.com/macros/s/AKfycbxiZcn0WbHICpp1igRiJ7i7e91IozZLERTtyqX5rlSS-3VH0tCxxtHLNIhlu6w1m4EG6w/exec', {
+                method: 'POST',
+                body: new FormData(this)
+            }).then(() => {
+                document.getElementById('thank-you-message').style.display = 'block';
+                this.style.display = 'none';
+            });
+        });
+    </script>
+    
         <div id="social-section"></div>
 
       <div id="footer"></div>
-
-    <script>
-        function showThankYouMessage(event) {
-            event.preventDefault(); // Prevent form submission
-            const form = document.getElementById('contact-form');
-            const thankYouMessage = document.getElementById('thank-you-message');
-
-            // Validate the form before showing the thank-you message
-            if (form.checkValidity()) {
-                thankYouMessage.style.display = 'block';
-                form.style.display = 'none'; // Hide the form
-                submitForm(form); // Submit the form data
-            }
-        }
-
-        function submitForm(form) {
-            const formData = new FormData(form);
-            fetch(form.action, {
-                method: 'POST',
-                body: formData,
-            })
-            .then(response => {
-                if (response.ok) {
-                    console.log('Form submitted successfully');
-                } else {
-                    console.error('Form submission failed');
-                }
-            })
-            .catch(error => console.error('Error:', error));
-        }
-    </script>
-    <script src="js/layout.js"></script>
-
-
-
+        <script src="js/layout.js"></script>
 </body>
-</html>
-
+    </html>

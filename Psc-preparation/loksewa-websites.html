@@ -248,19 +248,6 @@
     <div id="footer"></div>
     <script src="/js/layout.js"></script>
 
-    <script>
-    document.addEventListener("DOMContentLoaded",function(){
-        var imgs=document.querySelectorAll("img.lazy");
-        if("IntersectionObserver"in window){
-            var o=new IntersectionObserver(function(e){e.forEach(function(entry){
-                if(entry.isIntersecting){var i=entry.target;i.src=i.dataset.src;
-                i.onload=function(){i.classList.add("loaded")};
-                i.onerror=function(){i.style.background="linear-gradient(135deg,#4CAF50,#2E7D32)";i.classList.add("loaded")};
-                o.unobserve(i)}})},{rootMargin:"100px"});
-            imgs.forEach(function(i){o.observe(i)});
-        }else{imgs.forEach(function(i){i.src=i.dataset.src;i.classList.add("loaded")})}
-    });
-    </script>
-
+  
 </body>
     </html>

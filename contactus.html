@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - CivPrepMaster</title>
     
-    <link rel="stylesheet" href="https://arunpanthi.com.np/styles.css">
-    <link rel="stylesheet" href="css/contract.css"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://arunpanthi.com.np/css/styles.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="canonical" href="https://arunpanthi.com.np/contactus">
 
     <style>
         /* Main Container */
-        .Binitacontainer { 
+        .container { 
             max-width: 600px; 
             margin: 20px auto; 
             padding: 20px; 
@@ -19,26 +19,51 @@
             border: 1px solid #eee;
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            background: #fff;
         }
         
         .form-group { margin-bottom: 20px; }
         .name-row { display: flex; gap: 10px; margin-top: 5px; }
         .name-row input { flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 4px; }
-        input, select, textarea { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }
-
-        /* Requirement Message Styling */
-        .requirement-message {
-            background-color: #f0f7ff;
-            border-left: 5px solid #3498db;
-            padding: 15px;
-            margin-bottom: 15px;
-            border-radius: 4px;
+        input, select, textarea { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; font-family: inherit; }
+        input:focus, select:focus, textarea:focus { outline: none; border-color: #3498db; box-shadow: 0 0 0 2px rgba(52,152,219,0.2); }
+        
+        /* Error message styles */
+        .error-msg {
+            color: #e74c3c;
+            font-size: 0.8rem;
+            margin-top: 5px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
-        .message-header { color: #2c3e50; font-weight: bold; margin-bottom: 8px; display: block; }
-        .rule-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-        .rule { font-size: 0.85em; color: #e74c3c; transition: 0.3s; display: flex; align-items: center; }
-        .rule.valid { color: #27ae60; }
-        .rule i { margin-right: 8px; }
+        .error-msg i {
+            font-size: 0.75rem;
+        }
+        .message-error-list {
+            background: #fff5f5;
+            border-left: 3px solid #e74c3c;
+            padding: 8px 12px;
+            border-radius: 4px;
+            margin-top: 8px;
+        }
+        .message-error-list .error-item {
+            font-size: 0.8rem;
+            color: #c0392b;
+            margin: 5px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .message-error-list .error-item i {
+            width: 16px;
+            font-size: 0.7rem;
+        }
+        .field-note {
+            font-size: 0.75rem;
+            color: #7f8c8d;
+            margin-top: 4px;
+        }
 
         /* Button Styling */
         #submit-btn { 
@@ -55,52 +80,91 @@
         }
         #submit-btn:disabled { background: #95a5a6; cursor: not-allowed; }
         #submit-btn:hover:not(:disabled) { background: #34495e; }
+        
+        .required-star {
+            color: #e74c3c;
+        }
+        
+        .thankyou-box {
+            background: #f0fff4;
+            border-radius: 12px;
+            padding: 20px;
+        }
+        .cta-button {
+            display: inline-block;
+            background: #2c3e50;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 40px;
+            text-decoration: none;
+            margin-top: 20px;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+        .cta-button:hover {
+            background: #1e2b38;
+        }
+        .university-other-input {
+            margin-top: 10px;
+            transition: all 0.2s;
+        }
+        .hidden {
+            display: none;
+        }
     </style>
 </head>
 <body>
 
 <div id="navbar"></div>
 
-<div class="Binitacontainer">
-    <h1>Contact Us</h1>
+<div class="container">
+    <h1><i class="fas fa-envelope-open-text"></i> Contact Us</h1>
     <form id="contact-form">
+        <!-- Full Name -->
         <div class="form-group">
-            <label><i class="fas fa-user"></i> Full Name <span style="color:red;">*</span></label>
+            <label><i class="fas fa-user"></i> Full Name <span class="required-star">*</span></label>
             <div class="name-row">
-                <input type="text" name="first-name" placeholder="First Name" required>
+                <input type="text" name="first-name" id="first-name" placeholder="First Name" required>
                 <input type="text" name="middle-name" placeholder="Middle Name">
                 <input type="text" id="main-last-name" name="last-name" placeholder="Last Name" required>
             </div>
         </div>
 
+        <!-- Father's Name -->
         <div class="form-group">
-            <label><i class="fas fa-user-friends"></i> Father's Name <span style="color:red;">*</span></label>
+            <label><i class="fas fa-user-friends"></i> Father's Name <span class="required-star">*</span></label>
             <div class="name-row">
-                <input type="text" name="father-first-name" placeholder="First Name" required>
+                <input type="text" id="father-first-name" name="father-first-name" placeholder="First Name" required>
                 <input type="text" id="father-last-name" name="father-last-name" placeholder="Last Name" required readonly>
             </div>
         </div>
 
+        <!-- Mother's Name -->
         <div class="form-group">
-            <label><i class="fas fa-user-friends"></i> Mother's Name <span style="color:red;">*</span></label>
+            <label><i class="fas fa-user-friends"></i> Mother's Name <span class="required-star">*</span></label>
             <div class="name-row">
-                <input type="text" name="mother-first-name" placeholder="First Name" required>
+                <input type="text" id="mother-first-name" name="mother-first-name" placeholder="First Name" required>
                 <input type="text" id="mother-last-name" name="mother-last-name" placeholder="Last Name" required readonly>
             </div>
         </div>
 
+        <!-- Mobile Number -->
         <div class="form-group">
-            <label><i class="fas fa-phone"></i> Mobile Number (10 Digits) <span style="color:red;">*</span></label>
-            <input type="tel" name="mobile" placeholder="98XXXXXXXX" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '');" required>
+            <label><i class="fas fa-phone"></i> Mobile Number (10 Digits) <span class="required-star">*</span></label>
+            <input type="tel" name="mobile" id="mobile" placeholder="98XXXXXXXX" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '');" required>
+            <div id="mobile-error" class="error-msg" style="display: none;"><i class="fas fa-exclamation-circle"></i> Mobile must be exactly 10 digits</div>
         </div>
 
+        <!-- Email -->
         <div class="form-group">
-            <label><i class="fas fa-envelope"></i> Email ID (@gmail.com) <span style="color:red;">*</span></label>
-            <input type="email" name="email" placeholder="example@gmail.com" required pattern="^[a-zA-Z0-9._%+-]+@gmail\.com$">
+            <label><i class="fas fa-envelope"></i> Email ID (@gmail.com) <span class="required-star">*</span></label>
+            <input type="email" name="email" id="email" placeholder="example@gmail.com" required>
+            <div id="email-error" class="error-msg" style="display: none;"><i class="fas fa-exclamation-circle"></i> Must be a valid @gmail.com address</div>
         </div>
 
+        <!-- Location -->
         <div class="form-group">
-            <label><i class="fas fa-map-marker-alt"></i> Location <span style="color:red;">*</span></label>
+            <label><i class="fas fa-map-marker-alt"></i> Location <span class="required-star">*</span></label>
             <div class="name-row">
                 <select id="province" name="province" required>
                     <option value="" disabled selected>Province</option>
@@ -118,9 +182,10 @@
             </div>
         </div>
 
+        <!-- Semester -->
         <div class="form-group">
-            <label><i class="fas fa-graduation-cap"></i> Semester <span style="color:red;">*</span></label>
-            <select name="semester" required>
+            <label><i class="fas fa-graduation-cap"></i> Semester <span class="required-star">*</span></label>
+            <select name="semester" id="semester" required>
                 <option value="" disabled selected>Select Semester</option>
                 <option value="1">1st Semester</option><option value="2">2nd Semester</option>
                 <option value="3">3rd Semester</option><option value="4">4th Semester</option>
@@ -129,48 +194,70 @@
             </select>
         </div>
 
+        <!-- UNIVERSITY: Dropdown + Other text input -->
         <div class="form-group">
-            <div class="requirement-message">
-                <span class="message-header"><i class="fas fa-shield-alt"></i> Message Requirements</span>
-                <div class="rule-grid">
-                    <div id="rule-length" class="rule"><i class="fas fa-times-circle"></i> 50+ Characters</div>
-                    <div id="rule-upper" class="rule"><i class="fas fa-times-circle"></i> Uppercase Letter</div>
-                    <div id="rule-lower" class="rule"><i class="fas fa-times-circle"></i> Lowercase Letter</div>
-                    <div id="rule-space" class="rule"><i class="fas fa-times-circle"></i> A Space</div>
-                    <div id="rule-dot" class="rule"><i class="fas fa-times-circle"></i> A Period (.)</div>
-                </div>
+            <label><i class="fas fa-university"></i> University / Institution <span class="required-star">*</span></label>
+            <select id="university-select" name="university-select" required>
+                <option value="" disabled selected>Select your University</option>
+                <option value="Tribhuvan University (TU)">Tribhuvan University (TU)</option>
+                <option value="Purbanchal University (PU)">Purbanchal University (PU)</option>
+                <option value="Pokhara University (PoU)">Pokhara University (PoU)</option>
+                <option value="Kathmandu University (KU)">Kathmandu University (KU)</option>
+                <option value="Nepal Sanskrit University">Nepal Sanskrit University</option>
+                <option value="Mid-Western University">Mid-Western University</option>
+                <option value="Far-Western University">Far-Western University</option>
+                <option value="Agriculture and Forestry University (AFU)">Agriculture and Forestry University (AFU)</option>
+                <option value="Lumbini Buddhist University">Lumbini Buddhist University</option>
+                <option value="Other">Other (Please specify)</option>
+            </select>
+            <div id="other-university-container" class="university-other-input hidden">
+                <input type="text" id="other-university-name" name="other_university" placeholder="Please enter your university name" autocomplete="off">
+                <div class="field-note"><i class="fas fa-edit"></i> Specify your institution</div>
             </div>
-            <label for="message"><i class="fas fa-comment"></i> Your Message <span style="color:red;">*</span></label>
-            <textarea id="message" name="message" rows="5" placeholder="Please write your detailed query here..." required></textarea>
+            <!-- hidden field to store final value for submission -->
+            <input type="hidden" name="university" id="final-university-value">
+            <div id="university-error" class="error-msg" style="display: none;"><i class="fas fa-exclamation-circle"></i> Please select a university or specify the name.</div>
+        </div>
+
+        <!-- Message Field with dynamic error messages -->
+        <div class="form-group">
+            <label for="message"><i class="fas fa-comment"></i> Your Message <span class="required-star">*</span></label>
+            <textarea id="message" name="message" rows="5" placeholder="Please write your detailed query here... (Minimum 50 characters, must include uppercase, lowercase, a space, and a period)" required></textarea>
+            <div id="message-error-container" class="message-error-list" style="display: none;"></div>
+            <div class="field-note"><i class="fas fa-shield-alt"></i> Requirements: 50+ chars, at least 1 uppercase, 1 lowercase, 1 space ( ), 1 period (.)</div>
         </div>
 
         <input type="hidden" name="zone" value="N/A">
         <button type="submit" id="submit-btn" disabled>Submit Details</button>
     </form>
 
-    <div id="thank-you-message" style="display:none; text-align: center; padding: 40px;">
-        <i class="fas fa-check-circle" style="font-size: 50px; color: #27ae60;"></i>
-      <div style="font-family: sans-serif; line-height: 1.6;">
-  <h2 style="color: #2c3e50;">Thank You for Your Time!</h2>
-  <p>Your message has been successfully delivered to <strong>Er. Arun Panthi</strong>. We appreciate you providing your details.</p>
-  
-  <p><strong>Next Steps:</strong></p>
-  <ul>
-    <li>Our team will review your submission for authenticity.</li>
-    <li>If the details are genuine, we will contact you via email within <strong>3 to 4 hours</strong>.</li>
-    <li>We value your coordination during this process.</li>
-  </ul>
-
-  <p style="font-size: 0.9em; color: #7f8c8d;"><em>Please note: To maintain the integrity of our services, fraudulent submissions will not receive a response.</em></p>
-
-      </div>    <a href="Home" class="cta-button"><i class="fas fa-home"></i> Go to Home</a>
+    <!-- Thank you message (hidden initially) -->
+    <div id="thank-you-message" style="display:none; text-align: center; padding: 20px;">
+        <div class="thankyou-box">
+            <i class="fas fa-check-circle" style="font-size: 60px; color: #27ae60;"></i>
+            <h2 style="color: #2c3e50;">Thank You for Your Time!</h2>
+            <p>Your message has been successfully delivered to <strong>Er. Arun Panthi</strong>. We appreciate you providing your details.</p>
+            <p><strong>Next Steps:</strong></p>
+            <ul style="text-align: left; display: inline-block;">
+                <li>Our team will review your submission for authenticity.</li>
+                <li>If the details are genuine, we will contact you via email within <strong>3 to 4 hours</strong>.</li>
+                <li>We value your coordination during this process.</li>
+            </ul>
+            <p style="font-size: 0.9em; color: #7f8c8d;"><em>Please note: To maintain the integrity of our services, fraudulent submissions will not receive a response.</em></p>
+            <a href="Home" class="cta-button"><i class="fas fa-home"></i> Go to Home</a>
+        </div>
     </div>
 </div>
 
+<div id="social-section"></div>
+<div id="footer"></div>
 
+<script src="/js/layout.js"></script>
 
 <script>
+    // -------------------------------
     // 1. Province & District Data
+    // -------------------------------
     const provinceDistricts = {
         "Koshi": ["Bhojpur", "Dhankuta", "Ilam", "Jhapa", "Khotang", "Morang", "Okhaldhunga", "Panchthar", "Sankhuwasabha", "Solukhumbu", "Sunsari", "Taplejung", "Terhathum", "Udayapur"],
         "Madhesh": ["Bara", "Dhanusha", "Mahottari", "Parsa", "Rautahat", "Saptari", "Sarlahi", "Siraha"],
@@ -181,78 +268,275 @@
         "Sudurpashchim": ["Achham", "Baitadi", "Bajhang", "Bajura", "Dadeldhura", "Darchula", "Doti", "Kailali", "Kanchanpur"]
     };
 
-    document.getElementById('province').addEventListener('change', function() {
-        const d = document.getElementById('district');
-        d.innerHTML = '<option value="" disabled selected>District</option>';
-        if(provinceDistricts[this.value]) {
-            provinceDistricts[this.value].forEach(dist => {
-                const o = document.createElement('option');
-                o.value = o.textContent = dist;
-                d.appendChild(o);
+    const provinceSelect = document.getElementById('province');
+    const districtSelect = document.getElementById('district');
+
+    function populateDistricts() {
+        districtSelect.innerHTML = '<option value="" disabled selected>District</option>';
+        const selectedProvince = provinceSelect.value;
+        if (selectedProvince && provinceDistricts[selectedProvince]) {
+            provinceDistricts[selectedProvince].forEach(dist => {
+                const option = document.createElement('option');
+                option.value = dist;
+                option.textContent = dist;
+                districtSelect.appendChild(option);
             });
         }
+    }
+    provinceSelect.addEventListener('change', () => {
+        populateDistricts();
+        validateAllFields();
     });
 
     // 2. Last Name Sync
-    const mainLN = document.getElementById('main-last-name');
-    mainLN.addEventListener('input', () => {
-        document.getElementById('father-last-name').value = mainLN.value;
-        document.getElementById('mother-last-name').value = mainLN.value;
+    const mainLastName = document.getElementById('main-last-name');
+    const fatherLastName = document.getElementById('father-last-name');
+    const motherLastName = document.getElementById('mother-last-name');
+    
+    mainLastName.addEventListener('input', () => {
+        const val = mainLastName.value;
+        fatherLastName.value = val;
+        motherLastName.value = val;
+        validateAllFields();
     });
 
-    // 3. Validation Logic
-    const msg = document.getElementById('message');
+    // 3. University dropdown logic: show/hide "other" text field, set hidden final value
+    const uniSelect = document.getElementById('university-select');
+    const otherContainer = document.getElementById('other-university-container');
+    const otherInput = document.getElementById('other-university-name');
+    const finalUniHidden = document.getElementById('final-university-value');
+    const uniErrorDiv = document.getElementById('university-error');
+
+    function updateUniversityValue() {
+        const selected = uniSelect.value;
+        if (selected === "Other") {
+            otherContainer.classList.remove('hidden');
+            const customVal = otherInput.value.trim();
+            if (customVal !== "") {
+                finalUniHidden.value = customVal;
+            } else {
+                finalUniHidden.value = "";  // not valid until filled
+            }
+        } else if (selected && selected !== "") {
+            otherContainer.classList.add('hidden');
+            finalUniHidden.value = selected;
+            otherInput.value = ""; // reset other field
+        } else {
+            otherContainer.classList.add('hidden');
+            finalUniHidden.value = "";
+        }
+        validateAllFields(); // trigger validation
+    }
+
+    uniSelect.addEventListener('change', updateUniversityValue);
+    otherInput.addEventListener('input', () => {
+        if (uniSelect.value === "Other") {
+            finalUniHidden.value = otherInput.value.trim();
+            validateAllFields();
+        }
+    });
+
+    // 4. Message validation: dynamic error list
+    const messageTextarea = document.getElementById('message');
+    const messageErrorContainer = document.getElementById('message-error-container');
+    
+    function getMessageErrors(msg) {
+        const errors = [];
+        if (msg.length < 50) errors.push(`Message must contain at least 50 characters (currently ${msg.length})`);
+        if (!/[A-Z]/.test(msg)) errors.push("Message must contain at least one uppercase letter (A-Z)");
+        if (!/[a-z]/.test(msg)) errors.push("Message must contain at least one lowercase letter (a-z)");
+        if (!/\s/.test(msg)) errors.push("Message must contain at least one space");
+        if (!/\./.test(msg)) errors.push("Message must contain at least one period (.)");
+        return errors;
+    }
+    
+    function updateMessageErrorsDisplay() {
+        const msg = messageTextarea.value;
+        const errors = getMessageErrors(msg);
+        if (errors.length === 0) {
+            messageErrorContainer.style.display = "none";
+            messageErrorContainer.innerHTML = "";
+            return true;
+        } else {
+            messageErrorContainer.style.display = "block";
+            const errorHtml = errors.map(err => `<div class="error-item"><i class="fas fa-times-circle"></i> ${err}</div>`).join('');
+            messageErrorContainer.innerHTML = errorHtml;
+            return false;
+        }
+    }
+    
+    // 5. Full Form Validation (includes university logic)
+    function isMobileValid(mobile) {
+        return /^[0-9]{10}$/.test(mobile);
+    }
+    
+    function isEmailValid(email) {
+        return /^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(email);
+    }
+    
+    function isFieldNotEmpty(value) {
+        return value && value.trim().length > 0;
+    }
+    
+    function isUniversityValid() {
+        const selected = uniSelect.value;
+        if (!selected || selected === "") return false;
+        if (selected === "Other") {
+            const custom = otherInput.value.trim();
+            return custom !== "";
+        }
+        return true;
+    }
+    
+    function validateAllFields() {
+        // Basic fields
+        const firstName = document.getElementById('first-name')?.value.trim() || '';
+        const lastName = mainLastName.value.trim();
+        const fatherFirst = document.getElementById('father-first-name')?.value.trim() || '';
+        const motherFirst = document.getElementById('mother-first-name')?.value.trim() || '';
+        const mobile = document.getElementById('mobile')?.value.trim() || '';
+        const email = document.getElementById('email')?.value.trim() || '';
+        const province = provinceSelect.value;
+        const district = districtSelect.value;
+        const semester = document.getElementById('semester')?.value || '';
+        
+        // University validation
+        const uniValid = isUniversityValid();
+        
+        // Message validation
+        const msgValid = updateMessageErrorsDisplay();
+        
+        // individual error flags
+        const isFirstNameOk = isFieldNotEmpty(firstName);
+        const isLastNameOk = isFieldNotEmpty(lastName);
+        const isFatherFirstOk = isFieldNotEmpty(fatherFirst);
+        const isMotherFirstOk = isFieldNotEmpty(motherFirst);
+        const isMobileOk = isMobileValid(mobile);
+        const isEmailOk = isEmailValid(email);
+        const isProvinceOk = province && province !== "";
+        const isDistrictOk = district && district !== "";
+        const isSemesterOk = semester && semester !== "";
+        
+        // Show/hide mobile & email inline errors
+        const mobileErrorDiv = document.getElementById('mobile-error');
+        const emailErrorDiv = document.getElementById('email-error');
+        
+        if (!isMobileOk && mobile.length > 0) mobileErrorDiv.style.display = 'flex';
+        else if (!isMobileOk && mobile.length === 0) mobileErrorDiv.style.display = 'flex';
+        else mobileErrorDiv.style.display = 'none';
+        
+        if (!isEmailOk && email.length > 0) emailErrorDiv.style.display = 'flex';
+        else if (!isEmailOk && email.length === 0) emailErrorDiv.style.display = 'flex';
+        else emailErrorDiv.style.display = 'none';
+        
+        // University specific error
+        if (!uniValid) {
+            uniErrorDiv.style.display = 'flex';
+            if (uniSelect.value === "Other" && otherInput.value.trim() === "") {
+                uniErrorDiv.innerHTML = '<i class="fas fa-exclamation-circle"></i> Please specify your university name.';
+            } else if (!uniSelect.value) {
+                uniErrorDiv.innerHTML = '<i class="fas fa-exclamation-circle"></i> Please select a university.';
+            } else {
+                uniErrorDiv.innerHTML = '<i class="fas fa-exclamation-circle"></i> Please provide a valid university.';
+            }
+        } else {
+            uniErrorDiv.style.display = 'none';
+        }
+        
+        const allValid = isFirstNameOk && isLastNameOk && isFatherFirstOk && isMotherFirstOk &&
+                         isMobileOk && isEmailOk && isProvinceOk && isDistrictOk && 
+                         isSemesterOk && uniValid && msgValid;
+        
+        const submitBtn = document.getElementById('submit-btn');
+        submitBtn.disabled = !allValid;
+        return allValid;
+    }
+    
+    // Attach events to all relevant inputs
+    function attachValidationEvents() {
+        document.getElementById('first-name')?.addEventListener('input', validateAllFields);
+        mainLastName.addEventListener('input', validateAllFields);
+        document.getElementById('father-first-name')?.addEventListener('input', validateAllFields);
+        document.getElementById('mother-first-name')?.addEventListener('input', validateAllFields);
+        document.getElementById('mobile')?.addEventListener('input', validateAllFields);
+        document.getElementById('email')?.addEventListener('input', validateAllFields);
+        messageTextarea.addEventListener('input', validateAllFields);
+        document.getElementById('semester')?.addEventListener('change', validateAllFields);
+        provinceSelect.addEventListener('change', validateAllFields);
+        districtSelect.addEventListener('change', validateAllFields);
+        // University events already handled
+    }
+    
+    // Additional blur validations for mobile/email for better UX
+    const mobileInput = document.getElementById('mobile');
+    mobileInput.addEventListener('blur', validateAllFields);
+    const emailInput = document.getElementById('email');
+    emailInput.addEventListener('blur', validateAllFields);
+    
+    // Initial setup
+    document.addEventListener('DOMContentLoaded', () => {
+        populateDistricts();
+        attachValidationEvents();
+        updateUniversityValue();  // set initial hidden value if any default
+        validateAllFields();
+        
+        // Sync father/mother last names if prefilled
+        if (mainLastName.value) {
+            fatherLastName.value = mainLastName.value;
+            motherLastName.value = mainLastName.value;
+        }
+    });
+    
+    // 6. Form submission (Google Sheets) - ensure university final value is submitted
+    const contactForm = document.getElementById('contact-form');
+    const thankYouDiv = document.getElementById('thank-you-message');
     const submitBtn = document.getElementById('submit-btn');
     
-    const rules = {
-        length: { el: document.getElementById('rule-length'), check: (v) => v.length >= 50 },
-        upper: { el: document.getElementById('rule-upper'), check: (v) => /[A-Z]/.test(v) },
-        lower: { el: document.getElementById('rule-lower'), check: (v) => /[a-z]/.test(v) },
-        space: { el: document.getElementById('rule-space'), check: (v) => /\s/.test(v) },
-        dot: { el: document.getElementById('rule-dot'), check: (v) => /\./.test(v) }
-    };
-
-    msg.addEventListener('input', function() {
-        const val = this.value;
-        let allValid = true;
-
-        for (let key in rules) {
-            const isValid = rules[key].check(val);
-            const element = rules[key].el;
-            
-            if (element) {
-                element.className = isValid ? 'rule valid' : 'rule';
-                element.querySelector('i').className = isValid ? 'fas fa-check-circle' : 'fas fa-times-circle';
-            }
-            
-            if (!isValid) allValid = false;
-        }
-
-        submitBtn.disabled = !allValid;
-    });
-
-    // 4. Form Submission
-    document.getElementById('contact-form').addEventListener('submit', function(e) {
+    contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
+        
+        // Ensure university final value is updated before submit
+        updateUniversityValue();
+        if (!validateAllFields()) {
+            alert("Please fill all required fields correctly and ensure your message meets the requirements (50+ chars, uppercase, lowercase, space, period).");
+            return;
+        }
+        
         submitBtn.textContent = "Processing...";
         submitBtn.disabled = true;
         
+        // Build FormData
+        const formData = new FormData(contactForm);
+        // Remove the select field and other placeholder, use final-university-value as 'university'
+        formData.delete('university-select');
+        formData.delete('other_university');
+        const finalUni = finalUniHidden.value;
+        formData.append('university', finalUni);
+        
+        // Ensure father & mother last names are set
+        formData.set('father-last-name', fatherLastName.value);
+        formData.set('mother-last-name', motherLastName.value);
+        
         fetch('https://script.google.com/macros/s/AKfycbxiZcn0WbHICpp1igRiJ7i7e91IozZLERTtyqX5rlSS-3VH0tCxxtHLNIhlu6w1m4EG6w/exec', {
             method: 'POST',
-            body: new FormData(this)
+            mode: 'no-cors',
+            body: formData
         }).then(() => {
-            document.getElementById('thank-you-message').style.display = 'block';
-            this.style.display = 'none';
+            contactForm.style.display = 'none';
+            thankYouDiv.style.display = 'block';
         }).catch(err => {
-            alert("Error submitting form. Please try again.");
+            console.error("Submission error:", err);
+            alert("There was an error submitting the form. Please check your internet and try again.");
             submitBtn.textContent = "Submit Details";
             submitBtn.disabled = false;
         });
     });
 </script>
- <div id="social-section"></div>
 
-      <div id="footer"></div>
-    <script src="/js/layout.js"></script>
+    <div id="social-section"></div>
+  </main>
+
+  <div id="footer"></div>
+  <script src="/js/layout.js"></script>
 </body>
-            </html>
+</html>

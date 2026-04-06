@@ -124,7 +124,7 @@ button:hover{background:var(--green-700)}
   max-width:800px;
 }
 
-.hero h1{font-size:36px;margin:10px 0}
+.hero h1 { font-size: 36px; margin: 10px 0; color: white; }
 .hero p{margin:10px 0}
 
 .cta-button,

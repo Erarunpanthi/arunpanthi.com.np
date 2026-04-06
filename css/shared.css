@@ -10,7 +10,20 @@ a:hover{color:var(--color-primary-dark)}
 .breadcrumb a{color:var(--color-primary)}
 .breadcrumb a:hover{text-decoration:underline}
 .hero-section{color:var(--color-white);text-align:center;padding:80px 24px 60px;position:relative;overflow:hidden}
-.hero-section::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='m36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");opacity:.4}
+.hero::before {
+    content: '';
+    position: absolute;
+    top: -120%;   
+    left: -120%;  
+    width: 250%;  
+    height: 250%;
+    background: radial-gradient(circle at 20% 30%, rgba(245,158,11,.05) 0%, transparent 40%);
+    pointer-events: none;
+}
+
+
+
+
 .hero-section::after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:60px;background:var(--color-bg);clip-path:ellipse(55% 100% at 50% 100%)}
 .hero-section h1{font-family:var(--font-display);font-size:clamp(1.85rem,5vw,3rem);font-weight:700;margin-bottom:14px}
 .hero-section p{font-size:1.15rem;max-width:650px;margin:0 auto;opacity:.92}

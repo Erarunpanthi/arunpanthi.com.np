@@ -285,12 +285,3 @@ img.lazy{background:#f0f0f0;min-height:200px;width:100%;object-fit:cover}
   .hero h1{font-size:28px}
 }
 
-.section h1{
-  font-size:16px;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
-  width:100%;
-  text-align:center;
-  padding:5px;
-}

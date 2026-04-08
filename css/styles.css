@@ -48,6 +48,22 @@ a{color:inherit;text-decoration:none}
   background-color:var(--green-600);
   padding:10px 0;
 }
+#site-header{position:fixed;top:0;left:0;right:0;z-index:1000;height:var(--hh);
+  background:#fff;border-bottom:2px solid var(--bdr);
+  display:flex;align-items:center;gap:16px;padding:0 24px;
+  box-shadow:0 2px 16px rgba(0,0,0,.07)}
+.brand{display:flex;align-items:center;gap:9px;font-size:1.35rem;font-weight:900;
+  color:var(--pri);white-space:nowrap;flex-shrink:0}
+.brand i{font-size:1.5rem;color:var(--acc)}
+.brand span{color:var(--acc)}
+.card{background:var(--card);border-radius:var(--rad);box-shadow:var(--sh);
+  border:1.5px solid var(--bdr);overflow:hidden;
+  transition:transform var(--tr),box-shadow var(--tr),border-color var(--tr);cursor:pointer}
+.card:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(26,115,232,.14);border-color:var(--pri)}
+.cit{height:76px;display:flex;align-items:center;justify-content:center;font-size:2.2rem}
+.cb{padding:16px 18px 4px}
+.cb h3{font-size:.97rem;font-weight:800;margin-bottom:7px;color:var(--txt)}
+.cb p{font-size:.83rem;color:var(--muted);line-height:1.6}
 
 .navbar a{
   color:#fff;

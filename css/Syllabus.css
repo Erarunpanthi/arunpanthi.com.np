@@ -1,0 +1,54 @@
+   .nepali { font-family: 'Noto Sans Devanagari', sans-serif; }
+
+        /* Syllabus page container */
+        .syllabus-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .doc-header {
+            text-align: center;
+            border-bottom: 2px solid #000;
+            padding-bottom: 16px;
+            margin-bottom: 20px;
+        }
+        .doc-header h1 { color: #388E3C; font-size: 18px; font-weight: 700; margin-bottom: 6px; }
+        .doc-header h2 { color: #000; font-size: 14px; font-weight: 400; margin-bottom: 4px; }
+        .doc-header h3 { color: #388E3C; font-size: 15px; font-weight: 700; }
+
+        h2.section-title { color: #388E3C; font-size: 16px; font-weight: 700; margin: 28px 0 10px; text-decoration: underline; }
+        h3.sub-title { color: #388E3C; font-size: 15px; font-weight: 700; margin: 20px 0 8px; }
+        h4.topic-title { color: #388E3C; font-size: 14px; font-weight: 700; margin: 16px 0 6px; }
+        h5.sub-topic { color: #000; font-size: 14px; font-weight: 700; margin: 12px 0 4px; }
+
+        .marks { font-weight: 700; float: right; }
+        .center { text-align: center; }
+
+        .syllabus-wrapper table { width: 100%; border-collapse: collapse; margin: 12px 0 20px; font-size: 14px; }
+        .syllabus-wrapper th, .syllabus-wrapper td { border: 1px solid #000; padding: 8px 10px; text-align: left; vertical-align: top; }
+        .syllabus-wrapper th { background: #388E3C; color: #fff; font-weight: 600; }
+
+        .syllabus-wrapper ul, .syllabus-wrapper ol { margin: 6px 0 12px 28px; }
+        .syllabus-wrapper ul li, .syllabus-wrapper ol li { margin-bottom: 4px; font-size: 14px; }
+        .syllabus-wrapper ul { list-style-type: disc; }
+        .syllabus-wrapper p { margin: 6px 0; font-size: 14px; }
+
+        .note-box { border: 1px solid #388E3C; padding: 14px 18px; margin: 20px 0; background: #f6fdf6; border-radius: 8px; }
+        .note-box h3 { color: #388E3C; margin-bottom: 8px; }
+
+        .page-divider { text-align: center; margin: 30px 0 10px; padding: 10px; background: #388E3C; color: #fff; font-weight: 700; font-size: 16px; border-radius: 8px; }
+
+        .syllabus-wrapper hr { border: none; border-top: 1px solid #ccc; margin: 30px 0; }
+
+        @media (max-width: 600px) {
+            .syllabus-wrapper { margin: 10px; padding: 12px; }
+            .syllabus-wrapper table { font-size: 12px; }
+            .syllabus-wrapper th, .syllabus-wrapper td { padding: 5px 6px; }
+            .syllabus-wrapper { overflow-x: auto; }
+        }

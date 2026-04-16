@@ -1,4 +1,4 @@
-
+// watermark.js
 (function () {
   "use strict";
 
@@ -13,11 +13,19 @@
     wm.style.width = "100%";
     wm.style.height = "100%";
     wm.style.pointerEvents = "none";
-    wm.style.background = "url('" + WATERMARK_LOGO + "') center center no-repeat";
-    wm.style.backgroundSize = "100%";
+    wm.style.backgroundImage = "url('" + WATERMARK_LOGO + "')";
+    wm.style.backgroundRepeat = "no-repeat";
+    wm.style.backgroundSize = "cover";   // makes image fit whole page
+    wm.style.backgroundPosition = "center";
     wm.style.opacity = "0.5";
     wm.style.zIndex = "9999";
     document.body.appendChild(wm);
+
+    // Ensure text remains smooth and black
+    document.body.style.color = "#000";
+    document.body.style.textRendering = "optimizeLegibility";
+    document.body.style.webkitFontSmoothing = "antialiased";
+    document.body.style.mozOsxFontSmoothing = "grayscale";
   }
 
   document.addEventListener("DOMContentLoaded", addWatermark);

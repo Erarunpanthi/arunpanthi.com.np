@@ -2,7 +2,7 @@
 (function () {
   "use strict";
 
-  var WATERMARK_LOGO = "https://arunpanthi.com.np/Photos/logo.png";
+  var WATERMARK_LOGO = "https://arunpanthi.com.np/Photos/watermark.png";
 
   function addWatermark() {
     var wm = document.createElement("div");

@@ -15,7 +15,7 @@
     wm.style.pointerEvents = "none";
     wm.style.backgroundImage = "url('" + WATERMARK_LOGO + "')";
     wm.style.backgroundRepeat = "no-repeat";
-    wm.style.backgroundSize = "cover";   // makes image fit whole page
+    wm.style.backgroundSize = "fit";   // makes image fit whole page
     wm.style.backgroundPosition = "center";
     wm.style.opacity = "0.5";
     wm.style.zIndex = "9999";

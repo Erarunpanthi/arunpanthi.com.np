@@ -16,7 +16,7 @@
     wm.style.backgroundImage = "url('" + WATERMARK_LOGO + "')";
     wm.style.backgroundRepeat = "no-repeat";
     wm.style.backgroundPosition = "center";
-    wm.style.backgroundSize = "48vh";   // scales logo to 48% of viewport height
+    wm.style.backgroundSize = "1000vh";   // scales logo to 48% of viewport height
     wm.style.opacity = "0.1";
     wm.style.zIndex = "9999";
     document.body.appendChild(wm);

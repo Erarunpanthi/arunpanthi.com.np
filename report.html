@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔧 HTML Page Manager Report</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #0d1117;
+            color: #e6edf3;
+            min-height: 100vh;
+        }
+
+        header {
+            background: linear-gradient(135deg, #161b22, #21262d);
+            padding: 40px 30px;
+            text-align: center;
+            border-bottom: 1px solid #30363d;
+        }
+
+        header h1 { font-size: 2.4rem; margin-bottom: 8px; }
+        header p  { color: #8b949e; font-size: 1rem; }
+
+        .stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            padding: 40px 30px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .stat-card {
+            flex: 1;
+            min-width: 180px;
+            background: #161b22;
+            border-radius: 16px;
+            padding: 28px 20px;
+            text-align: center;
+            border: 1px solid #30363d;
+            transition: transform 0.2s;
+        }
+
+        .stat-card:hover { transform: translateY(-5px); }
+
+        .stat-card .number {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .stat-card .label {
+            font-size: 0.9rem;
+            color: #8b949e;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .green  { color: #4ade80; border-color: #4ade8044; }
+        .orange { color: #fb923c; border-color: #fb923c44; }
+        .blue   { color: #60a5fa; border-color: #60a5fa44; }
+        .gray   { color: #94a3b8; border-color: #94a3b844; }
+        .purple { color: #c084fc; border-color: #c084fc44; }
+
+        .sections {
+            max-width: 1100px;
+            margin: 20px auto 60px;
+            padding: 0 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+            gap: 24px;
+        }
+
+        .section {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .section-header {
+            padding: 18px 24px;
+            font-size: 1rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid #30363d;
+        }
+
+        .section-body {
+            padding: 16px 24px;
+            max-height: 350px;
+            overflow-y: auto;
+        }
+
+        .section-body::-webkit-scrollbar { width: 5px; }
+        .section-body::-webkit-scrollbar-thumb { background: #30363d; border-radius: 10px; }
+
+        .section-body ul { list-style: none; }
+
+        .section-body li {
+            padding: 8px 0;
+            border-bottom: 1px solid #21262d;
+            font-size: 0.88rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            word-break: break-all;
+        }
+
+        .section-body li:last-child { border-bottom: none; }
+
+        code {
+            font-family: 'Courier New', monospace;
+            background: #21262d;
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 0.82rem;
+        }
+
+        .icon { font-size: 1rem; flex-shrink: 0; }
+
+        .empty-msg {
+            color: #8b949e;
+            font-style: italic;
+            font-size: 0.9rem;
+            padding: 10px 0;
+        }
+
+        .hdr-green  { background: #4ade8015; color: #4ade80; }
+        .hdr-orange { background: #fb923c15; color: #fb923c; }
+        .hdr-blue   { background: #60a5fa15; color: #60a5fa; }
+        .hdr-gray   { background: #94a3b815; color: #94a3b8; }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #8b949e;
+            font-size: 0.85rem;
+            border-top: 1px solid #30363d;
+        }
+
+        .run-again {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 35px;
+            background: linear-gradient(90deg, #f093fb, #f5576c);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .timestamp {
+            color: #8b949e;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>🔧 HTML Page Manager Report</h1>
+    <p>Automatic scan, create & fix of all linked HTML pages</p>
+    <p class="timestamp">📅 Generated: 2026-04-18 17:37:17</p>
+    <p class="timestamp">📂 Root: /c/Users/Administrator/Desktop/arunpanthi.com.np</p>
+</header>
+
+<!-- ── STATS CARDS ── -->
+<div class="stats">
+    <div class="stat-card purple">
+        <div class="number">105</div>
+        <div class="label">Total Links Scanned</div>
+    </div>
+    <div class="stat-card green">
+        <div class="number">33</div>
+        <div class="label">New Files Created</div>
+    </div>
+    <div class="stat-card orange">
+        <div class="number">0</div>
+        <div class="label">Blank Files Fixed</div>
+    </div>
+    <div class="stat-card blue">
+        <div class="number">61</div>
+        <div class="label">Already OK</div>
+    </div>
+    <div class="stat-card gray">
+        <div class="number">11</div>
+        <div class="label">Skipped</div>
+    </div>
+</div>
+
+<!-- ── SECTIONS ── -->
+<div class="sections">
+
+    <!-- Created -->
+    <div class="section">
+        <div class="section-header hdr-green">✅ Newly Created Files (33)</div>
+        <div class="section-body">
+            <ul>
+                <li><span class='icon'>✅</span><code>/contactus/index.html</code></li>
+<li><span class='icon'>✅</span><code>/NEC-license-preparation/Notes/NEC-license-preparation/Notes/Engineering-Drawing/index.html</code></li>
+<li><span class='icon'>✅</span><code>/NEC-license-preparation/Notes/NEC-license-preparation/Notes/Construction-Materials/index.html</code></li>
+<li><span class='icon'>✅</span><code>/NEC-license-preparation/Notes//NEC-license-preparation/Notes/Building-Construction-and-Drawings/index.html</code></li>
+<li><span class='icon'>✅</span><code>/Psc-preparation/loksewa-websites/index.html</code></li>
+<li><span class='icon'>✅</span><code>/Psc-preparation/MCQ/index.html</code></li>
+<li><span class='icon'>✅</span><code>/Psc-preparation/Test/index.html</code></li>
+<li><span class='icon'>✅</span><code>Past-Questions/Engineering-Drawing/index.html</code></li>
+<li><span class='icon'>✅</span><code>Past-Questions/Construction-Materials/index.html</code></li>
+<li><span class='icon'>✅</span><code>Past-Questions/Strength-of-Materials/index.html</code></li>
+<li><span class='icon'>✅</span><code>Past-Questions/Fluid-Mechanics/index.html</code></li>
+<li><span class='icon'>✅</span><code>Past-Questions/Surveying/index.html</code></li>
+<li><span class='icon'>✅</span><code>Past-Questions/Engineering-Geology/index.html</code></li>
+<li><span class='icon'>✅</span><code>Past-Questions/Building-Construction/index.html</code></li>
+<li><span class='icon'>✅</span><code>Past-Questions/Theory-of-Structures/index.html</code></li>
+<li><span class='icon'>✅</span><code>Past-Questions/Hydraulics/index.html</code></li>
+<li><span class='icon'>✅</span><code>Past-Questions/Soil-Mechanics/index.html</code></li>
+<li><span class='icon'>✅</span><code>Past-Questions/Concrete-Technology/index.html</code></li>
+<li><span class='icon'>✅</span><code>Past-Questions/Engineering-Economics/index.html</code></li>
+<li><span class='icon'>✅</span><code>Past-Questions/Foundation-Engineering/index.html</code></li>
+<li><span class='icon'>✅</span><code>Past-Questions/Transportation-Engineering/index.html</code></li>
+<li><span class='icon'>✅</span><code>Past-Questions/Estimation-Valuation/index.html</code></li>
+<li><span class='icon'>✅</span><code>Past-Questions/Engineering-Hydrology/index.html</code></li>
+<li><span class='icon'>✅</span><code>Past-Questions/Steel-Timber-Design/index.html</code></li>
+<li><span class='icon'>✅</span><code>Past-Questions/Water-Supply/index.html</code></li>
+<li><span class='icon'>✅</span><code>Past-Questions/Irrigation-Engineering/index.html</code></li>
+<li><span class='icon'>✅</span><code>Past-Questions/Project-Management/index.html</code></li>
+<li><span class='icon'>✅</span><code>Past-Questions/Professional-Practices/index.html</code></li>
+<li><span class='icon'>✅</span><code>Past-Questions/Hydropower-Engineering/index.html</code></li>
+<li><span class='icon'>✅</span><code>Past-Questions/Construction-Management/index.html</code></li>
+<li><span class='icon'>✅</span><code>Past-Questions/RCC-Design/index.html</code></li>
+<li><span class='icon'>✅</span><code>Past-Questions/Sanitation-Engineering/index.html</code></li>
+<li><span class='icon'>✅</span><code>Past-Questions/Airport-Engineering/index.html</code></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Cleared & Fixed -->
+    <div class="section">
+        <div class="section-header hdr-orange">🔄 Blank Files Cleared & Fixed (0)</div>
+        <div class="section-body">
+            <ul>
+                <p class='empty-msg'>No blank files were found.</p>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Already OK -->
+    <div class="section">
+        <div class="section-header hdr-blue">✔️ Already Existing & OK (61)</div>
+        <div class="section-body">
+            <ul>
+                <li><span class='icon'>✔️</span><code>Home/</code></li>
+<li><span class='icon'>✔️</span><code>//</code></li>
+<li><span class='icon'>✔️</span><code>/Home/Notes/</code></li>
+<li><span class='icon'>✔️</span><code>/Home/past-questions/</code></li>
+<li><span class='icon'>✔️</span><code>/Home/Solutions/</code></li>
+<li><span class='icon'>✔️</span><code>NEC-license-preparation/</code></li>
+<li><span class='icon'>✔️</span><code>Psc-preparation/</code></li>
+<li><span class='icon'>✔️</span><code>/NEC-license-preparation/Syllabus/</code></li>
+<li><span class='icon'>✔️</span><code>/NEC-license-preparation/Notes/</code></li>
+<li><span class='icon'>✔️</span><code>/NEC-license-preparation/exam-preparation/</code></li>
+<li><span class='icon'>✔️</span><code>/NEC-license-preparation/MCQ/</code></li>
+<li><span class='icon'>✔️</span><code>/NEC-license-preparation/Test/</code></li>
+<li><span class='icon'>✔️</span><code>/NEC-license-preparation/Notes/Strength-of-Materials/</code></li>
+<li><span class='icon'>✔️</span><code>/NEC-license-preparation/Notes/Fluid-Mechanics/</code></li>
+<li><span class='icon'>✔️</span><code>/NEC-license-preparation/Notes/Surveying/</code></li>
+<li><span class='icon'>✔️</span><code>/NEC-license-preparation/Notes/Engineering-Geology/</code></li>
+<li><span class='icon'>✔️</span><code>/NEC-license-preparation/Notes/Theory-of-Structures/</code></li>
+<li><span class='icon'>✔️</span><code>/NEC-license-preparation/Notes/Hydraulics/</code></li>
+<li><span class='icon'>✔️</span><code>/NEC-license-preparation/Notes/Soil-Mechanics/</code></li>
+<li><span class='icon'>✔️</span><code>/NEC-license-preparation/Notes/Concrete-Technology-and-Masonry-Structures/</code></li>
+<li><span class='icon'>✔️</span><code>/NEC-license-preparation/Notes/Engineering-Economics/</code></li>
+<li><span class='icon'>✔️</span><code>/NEC-license-preparation/Notes/Foundation-Engineering/</code></li>
+<li><span class='icon'>✔️</span><code>/NEC-license-preparation/Notes/Transportation-Engineering/</code></li>
+<li><span class='icon'>✔️</span><code>/NEC-license-preparation/Notes/Estimation-and-Valuation/</code></li>
+<li><span class='icon'>✔️</span><code>/NEC-license-preparation/Notes/Engineering-Hydrology/</code></li>
+<li><span class='icon'>✔️</span><code>/NEC-license-preparation/Notes/Design-of-Steel-and-Timber-Structures/</code></li>
+<li><span class='icon'>✔️</span><code>/NEC-license-preparation/Notes/Water-Supply-Engineering/</code></li>
+<li><span class='icon'>✔️</span><code>/NEC-license-preparation/Notes/Irrigation-Engineering/</code></li>
+<li><span class='icon'>✔️</span><code>/NEC-license-preparation/Notes/Project-Management/</code></li>
+<li><span class='icon'>✔️</span><code>/NEC-license-preparation/Notes/Engineering-Professional-Practices/</code></li>
+<li><span class='icon'>✔️</span><code>/NEC-license-preparation/Notes/Hydropower-Engineering/</code></li>
+<li><span class='icon'>✔️</span><code>/NEC-license-preparation/Notes/Construction-Management/</code></li>
+<li><span class='icon'>✔️</span><code>/NEC-license-preparation/Notes/Design-of-RCC-Structures/</code></li>
+<li><span class='icon'>✔️</span><code>/NEC-license-preparation/Notes/Sanitation-Engineering/</code></li>
+<li><span class='icon'>✔️</span><code>/NEC-license-preparation/Notes/Airport-Engineering/</code></li>
+<li><span class='icon'>✔️</span><code>PrivacyPolicy/</code></li>
+<li><span class='icon'>✔️</span><code>TermsofService/</code></li>
+<li><span class='icon'>✔️</span><code>index/</code></li>
+<li><span class='icon'>✔️</span><code>Resources/</code></li>
+<li><span class='icon'>✔️</span><code>aboutus/</code></li>
+<li><span class='icon'>✔️</span><code>contactus/</code></li>
+<li><span class='icon'>✔️</span><code>/Psc-preparation/Syllabus/</code></li>
+<li><span class='icon'>✔️</span><code>/Psc-preparation/Mock-Test//</code></li>
+<li><span class='icon'>✔️</span><code>/Psc-preparation/first-paper-notes/</code></li>
+<li><span class='icon'>✔️</span><code>/Psc-preparation/Subjective-Note/</code></li>
+<li><span class='icon'>✔️</span><code>/Psc-preparation/Psc-video/</code></li>
+<li><span class='icon'>✔️</span><code>/Psc-preparation/Past-question/</code></li>
+<li><span class='icon'>✔️</span><code>/Psc-preparation/Mock-Test/General/</code></li>
+<li><span class='icon'>✔️</span><code>/Psc-preparation/Mock-Test/Hydrology//</code></li>
+<li><span class='icon'>✔️</span><code>/Psc-preparation/Syllabus/General/</code></li>
+<li><span class='icon'>✔️</span><code>/Psc-preparation/Syllabus/Hydrology/</code></li>
+<li><span class='icon'>✔️</span><code>nepal-telecom-syllabus/</code></li>
+<li><span class='icon'>✔️</span><code>nepal-oil-corporation-syllabus/</code></li>
+<li><span class='icon'>✔️</span><code>nea-syllabus/</code></li>
+<li><span class='icon'>✔️</span><code>road-department-syllabus/</code></li>
+<li><span class='icon'>✔️</span><code>ministry-physical-infrastructure-syllabus/</code></li>
+<li><span class='icon'>✔️</span><code>caan-syllabus/</code></li>
+<li><span class='icon'>✔️</span><code>General/</code></li>
+<li><span class='icon'>✔️</span><code>/Resources/Syllabus/</code></li>
+<li><span class='icon'>✔️</span><code>/Resources/BE-notes/</code></li>
+<li><span class='icon'>✔️</span><code>/Resources/Past-Questions/</code></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Skipped -->
+    <div class="section">
+        <div class="section-header hdr-gray">⚠️ Skipped Links (11)</div>
+        <div class="section-body">
+            <ul>
+                <li><span class='icon'>⚠️</span><code>css/shared.css</code></li>
+<li><span class='icon'>⚠️</span><code>css/styles.css</code></li>
+<li><span class='icon'>⚠️</span><code>/css/styles.css</code></li>
+<li><span class='icon'>⚠️</span><code>/css/Text.css</code></li>
+<li><span class='icon'>⚠️</span><code>style.css</code></li>
+<li><span class='icon'>⚠️</span><code>/css/shared.css</code></li>
+<li><span class='icon'>⚠️</span><code>${SITE_TEST_PATH}${encodeURIComponent(file.name)}</code></li>
+<li><span class='icon'>⚠️</span><code>/css/grid.css</code></li>
+<li><span class='icon'>⚠️</span><code>/css/Syllabus.css</code></li>
+<li><span class='icon'>⚠️</span><code>/favicon.ico</code></li>
+<li><span class='icon'>⚠️</span><code>/css/style.css</code></li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+<footer>
+    <p>🔧 HTML Page Manager — All tasks completed successfully</p>
+    <br>
+    <p>📂 Root Directory: <code>/c/Users/Administrator/Desktop/arunpanthi.com.np</code></p>
+</footer>
+
+</body>
+</html>

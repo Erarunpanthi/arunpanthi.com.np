@@ -17,6 +17,8 @@
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Hydrology Mock Test | Online Practice Sets" />
   <meta name="twitter:description" content="Practice Hydrology mock tests online with all available sets." />
+<link rel="stylesheet" href="css/styles.css">
+  
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
@@ -30,185 +32,40 @@
   }
   </script>
 
-  <style>
-    :root {
-      --primary: #0d6efd;
-      --primary-dark: #0a58ca;
-      --text: #1e293b;
-      --muted: #64748b;
-      --bg: #f6faff;
-      --card: #ffffff;
-      --border: #dbe7f5;
-      --shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      color: var(--text);
-      background: linear-gradient(180deg, #eef5ff 0%, #f8fbff 40%, #ffffff 100%);
-      line-height: 1.6;
-    }
-
-    .wrapper {
-      width: min(1100px, 92%);
-      margin: auto;
-    }
-
-    .hero {
-      padding: 40px 0 20px;
-    }
-
-    .breadcrumbs {
-      font-size: 14px;
-      color: var(--muted);
-      margin-bottom: 12px;
-    }
-
-    .breadcrumbs a {
-      color: var(--primary);
-      text-decoration: none;
-    }
-
-    .breadcrumbs a:hover {
-      text-decoration: underline;
-    }
-
-    h1 {
-      margin: 0 0 12px;
-      font-size: clamp(2rem, 4vw, 3rem);
-      line-height: 1.2;
-    }
-
-    .intro {
-      max-width: 820px;
-      color: var(--muted);
-      margin-bottom: 18px;
-    }
-
-    .count-box {
-      display: inline-block;
-      background: #e7f0ff;
-      color: var(--primary-dark);
-      padding: 10px 16px;
-      border-radius: 999px;
-      font-weight: bold;
-    }
-
-    .card-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 22px;
-      padding: 26px 0;
-    }
-
-    .section {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 24px;
-      box-shadow: var(--shadow);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .section:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 16px 30px rgba(0, 0, 0, 0.12);
-    }
-
-    .section h2 {
-      margin: 0 0 10px;
-      font-size: 22px;
-    }
-
-    .section p {
-      margin: 0 0 18px;
-      color: var(--muted);
-    }
-
-    .cta-button {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--primary);
-      color: #fff;
-      text-decoration: none;
-      padding: 12px 18px;
-      border-radius: 10px;
-      font-weight: bold;
-      transition: background 0.2s ease;
-    }
-
-    .cta-button:hover {
-      background: var(--primary-dark);
-    }
-
-    .message {
-      margin: 14px 0 22px;
-      padding: 14px 16px;
-      border-radius: 12px;
-      background: #fff3cd;
-      color: #856404;
-      border: 1px solid #ffe69c;
-    }
-
-    .content-block {
-      padding: 10px 0 40px;
-    }
-
-    footer {
-      text-align: center;
-      color: var(--muted);
-      padding: 20px 0 40px;
-      font-size: 14px;
-    }
-  </style>
+ 
 </head>
 <body>
-
-  <header class="hero">
-    <div class="wrapper">
-      <div class="breadcrumbs">
-        <a href="/">Home</a> ›
-        <a href="/Psc-preparation/">PSC Preparation</a> ›
-        <a href="/Psc-preparation/Mock-Test/">Mock Test</a> ›
-        <span>Hydrology</span>
-      </div>
-
-      <h1>Hydrology Mock Test</h1>
-      <p class="intro">
-        Practice Hydrology with all available online test sets. This page automatically lists the tests uploaded in the Hydrology Test folder.
-      </p>
-
+ <div id="navbar"></div>
+   <header class="hero">
+        <h1>Hydrology Mock Tests</h1>
+        <p>A complete collection of practice sets for <strong>PSC Civil 7<sup>th</sup> Loksewa</strong> exam success. Test your knowledge, identify weak areas, and build confidence.</p>
+        <a href="#test-sets" class="cta-button" aria-label="Go to the test sets">View Test Sets</a>
+    </header>
       <div id="setCount" class="count-box">Loading test sets...</div>
     </div>
   </header>
 
-  <main class="wrapper">
-    <div class="card-container" id="testContainer"></div>
-    <div id="errorBox" class="message" style="display:none;"></div>
+  <main>
+        
+        <section class="test-section" id="test-sets" aria-labelledby="tests-heading">
+            <h2 id="tests-heading">Available Practice Sets</h2>
+            
+            <div class="card-container" id="test-container">
+                <!-- The "Loading" message appears here initially -->
+                <div id="loading-message">
+                    <p><i class="fas fa-spinner fa-spin"></i> Finding available test sets...</p>
+                </div>
+            </div>
+            
+            <!-- This message is shown if no tests are found -->
+            <div id="no-tests-message" style="display: none;">
+                <p>No test sets found. More will be added soon!</p>
+            </div>
+        </section>
+    </main> 
+ </noscript>
+  
 
-    <section class="content-block">
-      <h2>Hydrology Practice Sets</h2>
-      <p>
-        Start any Hydrology set below and improve your preparation, speed, and confidence for exams.
-      </p>
-    </section>
-
-    <noscript>
-      <div class="message">
-        JavaScript is required to load available Hydrology test sets automatically.
-      </div>
-    </noscript>
-  </main>
-
-  <footer>
-    © 2026 Arun Panthi | Hydrology Mock Test
-  </footer>
 
   <script>
     const GITHUB_OWNER = "Erarunpanthi";
@@ -294,5 +151,10 @@
     loadTests();
   </script>
 
+ <div id="social-section"></div>
+  </main>
+
+  <div id="footer"></div>
+  <script src="/js/layout.js"></script>
 </body>
-</html>
+    </html>

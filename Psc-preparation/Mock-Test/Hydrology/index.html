@@ -35,37 +35,47 @@
  
 </head>
 <body>
- <div id="navbar"></div>
-   <header class="hero">
-        <h1>Hydrology Mock Tests</h1>
-        <p>A complete collection of practice sets for <strong>PSC Civil 7<sup>th</sup> Loksewa</strong> exam success. Test your knowledge, identify weak areas, and build confidence.</p>
-        <a href="#test-sets" class="cta-button" aria-label="Go to the test sets">View Test Sets</a>
-    </header>
-      <div id="setCount" class="count-box">Loading test sets...</div>
-    </div>
+  <div id="navbar"></div>
+
+  <header class="hero">
+    <h1>Hydrology Mock Tests</h1>
+    <p>
+      A complete collection of practice sets for
+      <strong>PSC Civil 7<sup>th</sup> Loksewa</strong>
+      exam success. Test your knowledge, identify weak areas, and build confidence.
+    </p>
+    <a href="#test-sets" class="cta-button" aria-label="Go to the test sets">View Test Sets</a>
+    <div id="setCount" class="count-box">Loading test sets...</div>
   </header>
 
   <main>
-        
-        <section class="test-section" id="test-sets" aria-labelledby="tests-heading">
-            <h2 id="tests-heading">Available Practice Sets</h2>
-            
-            <div class="card-container" id="test-container">
-                <!-- The "Loading" message appears here initially -->
-                <div id="loading-message">
-                    <p><i class="fas fa-spinner fa-spin"></i> Finding available test sets...</p>
-                </div>
-            </div>
-            
-            <!-- This message is shown if no tests are found -->
-            <div id="no-tests-message" style="display: none;">
-                <p>No test sets found. More will be added soon!</p>
-            </div>
-        </section>
-    </main> 
- </noscript>
-  
+    <section class="test-section" id="test-sets" aria-labelledby="tests-heading">
+      <h2 id="tests-heading">Available Practice Sets</h2>
 
+      <div class="card-container" id="testContainer">
+        <div id="loading-message">
+          <p><i class="fas fa-spinner fa-spin"></i> Finding available test sets...</p>
+        </div>
+      </div>
+
+      <div id="no-tests-message" style="display: none;">
+        <p>No test sets found. More will be added soon!</p>
+      </div>
+
+      <div id="errorBox" style="display: none;">
+        <p>There was a problem loading the test sets.</p>
+      </div>
+    </section>
+
+    <noscript>
+      <p>JavaScript is required to load available test sets.</p>
+    </noscript>
+
+    <div id="social-section"></div>
+  </main>
+
+  <div id="footer"></div>
+  <script src="/js/layout.js"></script>
 
   <script>
     const GITHUB_OWNER = "Erarunpanthi";
@@ -78,6 +88,7 @@
     const testContainer = document.getElementById("testContainer");
     const setCount = document.getElementById("setCount");
     const errorBox = document.getElementById("errorBox");
+    const noTestsMessage = document.getElementById("no-tests-message");
 
     function encodeFolderPath(path) {
       return path.split("/").map(part => encodeURIComponent(part)).join("/");
@@ -127,11 +138,12 @@
           .sort((a, b) => getSetNumber(a.name) - getSetNumber(b.name));
 
         testContainer.innerHTML = "";
+        errorBox.style.display = "none";
+        noTestsMessage.style.display = "none";
 
         if (testFiles.length === 0) {
           setCount.textContent = "No test sets found";
-          errorBox.style.display = "block";
-          errorBox.textContent = "No test files like set1.htm, set-1.htm, set2.htm, or set-3.html were found in the Hydrology Test folder.";
+          noTestsMessage.style.display = "block";
           return;
         }
 
@@ -150,11 +162,5 @@
 
     loadTests();
   </script>
-
- <div id="social-section"></div>
-  </main>
-
-  <div id="footer"></div>
-  <script src="/js/layout.js"></script>
 </body>
-    </html>
+</html>

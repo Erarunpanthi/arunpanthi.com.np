@@ -1,153 +1,292 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://arunpanthi.com.np/404</loc>
-    <lastmod>2026-04-08</lastmod>
-    <priority></priority>
-  </url>
-  <url>
-    <loc>https://arunpanthi.com.np/aboutus</loc>
-    <lastmod>2026-04-12</lastmod>
-    <priority></priority>
-  </url>
-  <url>
-    <loc>https://arunpanthi.com.np/contactus</loc>
-    <lastmod>2026-04-08</lastmod>
-    <priority></priority>
-  </url>
-  <url>
-    <loc>https://arunpanthi.com.np/Home/Notes/</loc>
-    <lastmod>2026-04-12</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://arunpanthi.com.np/Home/past-questions/</loc>
-    <lastmod>2026-04-12</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://arunpanthi.com.np/Home/Solutions/</loc>
-    <lastmod>2026-04-12</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://arunpanthi.com.np/Home</loc>
-    <lastmod>2026-04-12</lastmod>
-    <priority></priority>
-  </url>
-  <url>
-    <loc>https://arunpanthi.com.np/</loc>
-    <lastmod>2026-04-12</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://arunpanthi.com.np/NEC-license-preparation/</loc>
-    <lastmod>2026-04-08</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://arunpanthi.com.np/NEC-license-preparation/Notes/Construction-Materials</loc>
-    <lastmod>2026-04-10</lastmod>
-    <priority></priority>
-  </url>
-  <url>
-    <loc>https://arunpanthi.com.np/NEC-license-preparation/Notes/Engineering-Drawing</loc>
-    <lastmod>2026-04-10</lastmod>
-    <priority></priority>
-  </url>
-  <url>
-    <loc>https://arunpanthi.com.np/NEC-license-preparation/Notes/</loc>
-    <lastmod>2026-04-10</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://arunpanthi.com.np/NEC-license-preparation/Syllabus</loc>
-    <lastmod>2026-04-10</lastmod>
-    <priority></priority>
-  </url>
-  <url>
-    <loc>https://arunpanthi.com.np/partials/footer</loc>
-    <lastmod>2026-04-08</lastmod>
-    <priority></priority>
-  </url>
-  <url>
-    <loc>https://arunpanthi.com.np/partials/navbar</loc>
-    <lastmod>2026-04-08</lastmod>
-    <priority></priority>
-  </url>
-  <url>
-    <loc>https://arunpanthi.com.np/partials/social</loc>
-    <lastmod>2026-04-08</lastmod>
-    <priority></priority>
-  </url>
-  <url>
-    <loc>https://arunpanthi.com.np/PrivacyPolicy</loc>
-    <lastmod>2026-04-08</lastmod>
-    <priority></priority>
-  </url>
-  <url>
-    <loc>https://arunpanthi.com.np/Psc-preparation/</loc>
-    <lastmod>2026-04-09</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://arunpanthi.com.np/Psc-preparation/loksewa-websites</loc>
-    <lastmod>2026-04-09</lastmod>
-    <priority></priority>
-  </url>
-  <url>
-    <loc>https://arunpanthi.com.np/Psc-preparation/Past-question/</loc>
-    <lastmod>2026-04-09</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://arunpanthi.com.np/Psc-preparation/Syllabus/General</loc>
-    <lastmod>2026-04-09</lastmod>
-    <priority></priority>
-  </url>
-  <url>
-    <loc>https://arunpanthi.com.np/Psc-preparation/Syllabus/</loc>
-    <lastmod>2026-04-09</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://arunpanthi.com.np/Resources/BE-past-questions</loc>
-    <lastmod>2026-04-08</lastmod>
-    <priority></priority>
-  </url>
-  <url>
-    <loc>https://arunpanthi.com.np/Resources/</loc>
-    <lastmod>2026-04-08</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://arunpanthi.com.np/Resources/Past-Questions/</loc>
-    <lastmod>2026-04-08</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://arunpanthi.com.np/Resources/Syllabus/</loc>
-    <lastmod>2026-04-08</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://arunpanthi.com.np/Resources/Syllabus/TU-syllabus</loc>
-    <lastmod>2026-04-09</lastmod>
-    <priority></priority>
-  </url>
-  <url>
-    <loc>https://arunpanthi.com.np/sani</loc>
-    <lastmod>2026-04-08</lastmod>
-    <priority></priority>
-  </url>
-  <url>
-    <loc>https://arunpanthi.com.np/TermsofService</loc>
-    <lastmod>2026-04-08</lastmod>
-    <priority></priority>
-  </url>
-  <url>
-    <loc>https://arunpanthi.com.np/Time</loc>
-    <lastmod>2026-04-08</lastmod>
-    <priority></priority>
-  </url>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>https://arunpanthi.com.np/</loc>
+  <lastmod>2026-04-18T20:01:45+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://arunpanthi.com.np/Home/Notes/</loc>
+  <lastmod>2026-04-18T20:01:45+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://arunpanthi.com.np/Home/past-questions/</loc>
+  <lastmod>2026-04-18T20:01:45+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://arunpanthi.com.np/Home/Solutions/</loc>
+  <lastmod>2026-04-18T20:01:45+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://arunpanthi.com.np/NEC-license-preparation/</loc>
+  <lastmod>2026-04-18T20:01:45+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://arunpanthi.com.np/Psc-preparation/</loc>
+  <lastmod>2026-04-18T20:01:45+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://arunpanthi.com.np/NEC-license-preparation/Syllabus</loc>
+  <lastmod>2026-04-18T20:01:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://arunpanthi.com.np/NEC-license-preparation/Notes/</loc>
+  <lastmod>2026-04-18T20:01:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://arunpanthi.com.np/NEC-license-preparation/exam-preparation/</loc>
+  <lastmod>2026-04-18T20:01:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://arunpanthi.com.np/NEC-license-preparation/MCQ/</loc>
+  <lastmod>2026-04-18T20:01:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://arunpanthi.com.np/NEC-license-preparation/Test/</loc>
+  <lastmod>2026-04-18T20:01:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://arunpanthi.com.np/Psc-preparation/Syllabus/</loc>
+  <lastmod>2026-04-18T20:01:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://arunpanthi.com.np/Psc-preparation/loksewa-websites</loc>
+  <lastmod>2026-04-18T20:01:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://arunpanthi.com.np/Psc-preparation/Mock-Test/</loc>
+  <lastmod>2026-04-18T20:01:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://arunpanthi.com.np/Psc-preparation/first-paper-notes/</loc>
+  <lastmod>2026-04-18T20:01:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://arunpanthi.com.np/Psc-preparation/Subjective-Note/</loc>
+  <lastmod>2026-04-18T20:01:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://arunpanthi.com.np/Psc-preparation/Psc-video/</loc>
+  <lastmod>2026-04-18T20:01:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://arunpanthi.com.np/Psc-preparation/MCQ/</loc>
+  <lastmod>2026-04-18T20:01:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://arunpanthi.com.np/Psc-preparation/Test/</loc>
+  <lastmod>2026-04-18T20:01:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://arunpanthi.com.np/Psc-preparation/Past-question/</loc>
+  <lastmod>2026-04-18T20:01:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://arunpanthi.com.np/NEC-license-preparation/Notes/NEC-license-preparation/Notes/Engineering-Drawing/</loc>
+  <lastmod>2026-04-18T20:01:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://arunpanthi.com.np/NEC-license-preparation/Notes/Construction-Materials</loc>
+  <lastmod>2026-04-18T20:01:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://arunpanthi.com.np/NEC-license-preparation/Notes/Strength-of-Materials/</loc>
+  <lastmod>2026-04-18T20:01:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://arunpanthi.com.np/NEC-license-preparation/Notes/Fluid-Mechanics/</loc>
+  <lastmod>2026-04-18T20:01:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://arunpanthi.com.np/NEC-license-preparation/Notes/Surveying/</loc>
+  <lastmod>2026-04-18T20:01:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://arunpanthi.com.np/NEC-license-preparation/Notes/Engineering-Geology/</loc>
+  <lastmod>2026-04-18T20:01:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://arunpanthi.com.np/NEC-license-preparation/Notes/Building-Construction-and-Drawings/</loc>
+  <lastmod>2026-04-18T20:01:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://arunpanthi.com.np/NEC-license-preparation/Notes/Theory-of-Structures/</loc>
+  <lastmod>2026-04-18T20:01:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://arunpanthi.com.np/NEC-license-preparation/Notes/Hydraulics/</loc>
+  <lastmod>2026-04-18T20:01:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://arunpanthi.com.np/NEC-license-preparation/Notes/Soil-Mechanics/</loc>
+  <lastmod>2026-04-18T20:01:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://arunpanthi.com.np/NEC-license-preparation/Notes/Concrete-Technology-and-Masonry-Structures/</loc>
+  <lastmod>2026-04-18T20:01:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://arunpanthi.com.np/NEC-license-preparation/Notes/Engineering-Economics/</loc>
+  <lastmod>2026-04-18T20:01:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://arunpanthi.com.np/NEC-license-preparation/Notes/Foundation-Engineering/</loc>
+  <lastmod>2026-04-18T20:01:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://arunpanthi.com.np/NEC-license-preparation/Notes/Transportation-Engineering/</loc>
+  <lastmod>2026-04-18T20:01:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://arunpanthi.com.np/NEC-license-preparation/Notes/Estimation-and-Valuation/</loc>
+  <lastmod>2026-04-18T20:01:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://arunpanthi.com.np/NEC-license-preparation/Notes/Engineering-Hydrology/</loc>
+  <lastmod>2026-04-18T20:01:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://arunpanthi.com.np/NEC-license-preparation/Notes/Design-of-Steel-and-Timber-Structures/</loc>
+  <lastmod>2026-04-18T20:01:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://arunpanthi.com.np/NEC-license-preparation/Notes/Water-Supply-Engineering/</loc>
+  <lastmod>2026-04-18T20:01:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://arunpanthi.com.np/NEC-license-preparation/Notes/Irrigation-Engineering/</loc>
+  <lastmod>2026-04-18T20:01:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://arunpanthi.com.np/NEC-license-preparation/Notes/Project-Management/</loc>
+  <lastmod>2026-04-18T20:01:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://arunpanthi.com.np/NEC-license-preparation/Notes/Engineering-Professional-Practices/</loc>
+  <lastmod>2026-04-18T20:01:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://arunpanthi.com.np/NEC-license-preparation/Notes/Hydropower-Engineering/</loc>
+  <lastmod>2026-04-18T20:01:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://arunpanthi.com.np/NEC-license-preparation/Notes/Construction-Management/</loc>
+  <lastmod>2026-04-18T20:01:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://arunpanthi.com.np/NEC-license-preparation/Notes/Design-of-RCC-Structures/</loc>
+  <lastmod>2026-04-18T20:01:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://arunpanthi.com.np/NEC-license-preparation/Notes/Sanitation-Engineering/</loc>
+  <lastmod>2026-04-18T20:01:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://arunpanthi.com.np/NEC-license-preparation/Notes/Airport-Engineering/</loc>
+  <lastmod>2026-04-18T20:01:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://arunpanthi.com.np/Psc-preparation/Syllabus/General</loc>
+  <lastmod>2026-04-18T20:01:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://arunpanthi.com.np/Psc-preparation/Syllabus/Hydrology</loc>
+  <lastmod>2026-04-18T20:01:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://arunpanthi.com.np/Psc-preparation/Syllabus/nepal-telecom-syllabus/</loc>
+  <lastmod>2026-04-18T20:01:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://arunpanthi.com.np/Psc-preparation/Syllabus/nepal-oil-corporation-syllabus/</loc>
+  <lastmod>2026-04-18T20:01:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://arunpanthi.com.np/Psc-preparation/Syllabus/nea-syllabus/</loc>
+  <lastmod>2026-04-18T20:01:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://arunpanthi.com.np/Psc-preparation/Syllabus/road-department-syllabus/</loc>
+  <lastmod>2026-04-18T20:01:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://arunpanthi.com.np/Psc-preparation/Syllabus/ministry-physical-infrastructure-syllabus/</loc>
+  <lastmod>2026-04-18T20:01:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://arunpanthi.com.np/Psc-preparation/Syllabus/caan-syllabus/</loc>
+  <lastmod>2026-04-18T20:01:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://arunpanthi.com.np/Psc-preparation/Mock-Test/General/</loc>
+  <lastmod>2026-04-18T20:01:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://arunpanthi.com.np/Psc-preparation/Mock-Test/Hydrology/</loc>
+  <lastmod>2026-04-18T20:01:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+
+
 </urlset>

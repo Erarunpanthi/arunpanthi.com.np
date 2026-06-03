@@ -674,7 +674,7 @@
             let timerInterval = null;
             let isRunning = false;
             let completedWorkSessions = 0;
-            let MAX_WORK_SESSIONS = 500; // editable by user
+            let MAX_WORK_SESSIONS = 100; // editable by user
 
             // ─────────────────────────────────────
             // Functions
@@ -766,11 +766,11 @@
             }
 
             function handleSessionCountChange(newValue) {
-                const parsed = parseInt(newValue, 500);
+                const parsed = parseInt(newValue, 50);
                 if (isNaN(parsed) || parsed < 1) {
                     MAX_WORK_SESSIONS = 1;
                 } else if (parsed > 500) {
-                    MAX_WORK_SESSIONS = 10000;
+                    MAX_WORK_SESSIONS = 1000;
                 } else {
                     MAX_WORK_SESSIONS = parsed;
                 }

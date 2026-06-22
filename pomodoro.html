@@ -96,7 +96,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 2rem;
+            gap: 1.8rem;
             width: 100%;
             backdrop-filter: blur(10px);
             position: relative;
@@ -159,6 +159,18 @@
         .time.paused {
             color: var(--text-secondary);
             opacity: 0.7;
+        }
+        .time.auto-paused-indicator {
+            animation: subtle-blink 2s ease-in-out infinite;
+        }
+        @keyframes subtle-blink {
+            0%,
+            100% {
+                opacity: 0.7;
+            }
+            50% {
+                opacity: 0.45;
+            }
         }
         .session-label {
             font-size: 0.85rem;
@@ -368,6 +380,66 @@
             color: var(--text);
         }
 
+        /* ── Total Timer Section ── */
+        .total-timer-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            flex-wrap: wrap;
+            justify-content: center;
+            padding-top: 0.6rem;
+            margin-top: 0.2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            width: 100%;
+        }
+        .total-timer-item {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            white-space: nowrap;
+            background: var(--surface-2);
+            padding: 0.35rem 0.7rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            transition: all var(--transition);
+        }
+        .total-timer-item .tt-icon {
+            font-size: 0.85rem;
+        }
+        .total-timer-item .tt-value {
+            font-weight: 600;
+            color: #d0d0d0;
+            font-variant-numeric: tabular-nums;
+            font-family: 'SF Mono', 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+            letter-spacing: -0.02em;
+        }
+        .total-timer-item.focus-total .tt-icon {
+            color: var(--accent-work);
+        }
+        .total-timer-item.break-total .tt-icon {
+            color: var(--accent-break);
+        }
+        .total-timer-reset {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 0.7rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            transition: all var(--transition);
+            white-space: nowrap;
+            opacity: 0.6;
+            font-family: inherit;
+        }
+        .total-timer-reset:hover {
+            opacity: 1;
+            color: #ff6b6b;
+            background: rgba(255, 107, 107, 0.08);
+        }
+
         /* Toast notification */
         .toast {
             position: fixed;
@@ -395,6 +467,10 @@
             border-color: rgba(78, 205, 196, 0.4);
             background: #1a2a28;
         }
+        .toast.warning-toast {
+            border-color: rgba(255, 180, 60, 0.5);
+            background: #2a2418;
+        }
 
         /* Responsive */
         @media (max-width: 480px) {
@@ -404,7 +480,7 @@
             }
             .timer-card {
                 padding: 1.8rem 1.2rem 1.5rem;
-                gap: 1.5rem;
+                gap: 1.4rem;
                 border-radius: 20px;
             }
             .ring-container {
@@ -433,6 +509,13 @@
             }
             .session-settings {
                 padding: 0.2rem 0.4rem;
+            }
+            .total-timer-section {
+                gap: 0.5rem;
+                font-size: 0.68rem;
+            }
+            .total-timer-item {
+                padding: 0.28rem 0.5rem;
             }
         }
     </style>
@@ -502,6 +585,22 @@
                     <button class="session-btn" id="sessionIncrement" aria-label="Increase sessions">+</button>
                 </div>
             </div>
+
+            <!-- ── Total Timer Section ── -->
+            <div class="total-timer-section" id="totalTimerSection">
+                <span style="opacity:0.6;font-size:0.7rem;letter-spacing:0.04em;">Today</span>
+                <div class="total-timer-item focus-total">
+                    <span class="tt-icon">⏱</span>
+                    <span class="tt-label">Focus</span>
+                    <span class="tt-value" id="totalFocusDisplay">0m</span>
+                </div>
+                <div class="total-timer-item break-total">
+                    <span class="tt-icon">☕</span>
+                    <span class="tt-label">Break</span>
+                    <span class="tt-value" id="totalBreakDisplay">0m</span>
+                </div>
+                <button class="total-timer-reset" id="totalTimerReset" title="Reset today's totals" aria-label="Reset total timers">↺</button>
+            </div>
         </div>
     </div>
 
@@ -530,6 +629,9 @@
             const sessionInput = document.getElementById('sessionInput');
             const sessionDecrement = document.getElementById('sessionDecrement');
             const sessionIncrement = document.getElementById('sessionIncrement');
+            const totalFocusDisplay = document.getElementById('totalFocusDisplay');
+            const totalBreakDisplay = document.getElementById('totalBreakDisplay');
+            const totalTimerReset = document.getElementById('totalTimerReset');
 
             const CIRCUMFERENCE = 2 * Math.PI * 120; // ≈ 753.98
             ringProgress.style.strokeDasharray = CIRCUMFERENCE;
@@ -652,20 +754,13 @@
                 }
             }
 
-            // Re-acquire wake lock if the page becomes visible again and timer is running
-            document.addEventListener('visibilitychange', async () => {
-                if (document.visibilityState === 'visible' && isRunning && !wakeLockSentinel) {
-                    await requestWakeLock();
-                }
-            });
-
             // ─────────────────────────────────────
             // State
             // ─────────────────────────────────────
             const MODES = {
-                work: { label: 'Focus', duration: 5 * 60, accent: '#ff6b6b' },
+                work: { label: 'Focus', duration: 25 * 60, accent: '#ff6b6b' },
                 'short-break': { label: 'Short Break', duration: 5 * 60, accent: '#4ecdc4' },
-                'long-break': { label: 'Long Break', duration: 5 * 60, accent: '#5b8def' },
+                'long-break': { label: 'Long Break', duration: 15 * 60, accent: '#5b8def' },
             };
 
             let currentMode = 'work';
@@ -674,7 +769,71 @@
             let timerInterval = null;
             let isRunning = false;
             let completedWorkSessions = 0;
-            let MAX_WORK_SESSIONS = 100; // editable by user
+            let MAX_WORK_SESSIONS = 4; // editable by user, default matches input
+            let wasAutoPaused = false; // flag for tab-inactivity auto-pause
+
+            // Total accumulated timers for today
+            let totalFocusSeconds = 0;
+            let totalBreakSeconds = 0;
+
+            // ─────────────────────────────────────
+            // localStorage helpers for total timers
+            // ─────────────────────────────────────
+            function getTodayDateString() {
+                const now = new Date();
+                return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+            }
+
+            function getStorageKey() {
+                return `pomodoro-totals-${getTodayDateString()}`;
+            }
+
+            function loadTotalsFromStorage() {
+                try {
+                    const key = getStorageKey();
+                    const raw = localStorage.getItem(key);
+                    if (raw) {
+                        const data = JSON.parse(raw);
+                        totalFocusSeconds = Math.max(0, parseInt(data.focus, 10) || 0);
+                        totalBreakSeconds = Math.max(0, parseInt(data.break, 10) || 0);
+                    } else {
+                        // Clean up old keys from previous days
+                        const allKeys = Object.keys(localStorage);
+                        allKeys.forEach(k => {
+                            if (k.startsWith('pomodoro-totals-') && k !== key) {
+                                localStorage.removeItem(k);
+                            }
+                        });
+                        totalFocusSeconds = 0;
+                        totalBreakSeconds = 0;
+                    }
+                } catch (e) {
+                    console.warn('Failed to load totals from localStorage:', e.message);
+                    totalFocusSeconds = 0;
+                    totalBreakSeconds = 0;
+                }
+            }
+
+            function saveTotalsToStorage() {
+                try {
+                    const key = getStorageKey();
+                    const data = {
+                        focus: totalFocusSeconds,
+                        break: totalBreakSeconds,
+                    };
+                    localStorage.setItem(key, JSON.stringify(data));
+                } catch (e) {
+                    console.warn('Failed to save totals to localStorage:', e.message);
+                }
+            }
+
+            function resetTodayTotals() {
+                totalFocusSeconds = 0;
+                totalBreakSeconds = 0;
+                saveTotalsToStorage();
+                updateTotalTimerDisplay();
+                showToast('Today\'s totals reset', false);
+            }
 
             // ─────────────────────────────────────
             // Functions
@@ -683,6 +842,21 @@
                 const mins = Math.floor(seconds / 60);
                 const secs = seconds % 60;
                 return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+            }
+
+            function formatTotalTime(seconds) {
+                if (seconds <= 0) return '0m';
+                const hours = Math.floor(seconds / 3600);
+                const minutes = Math.floor((seconds % 3600) / 60);
+                if (hours > 0) {
+                    return `${hours}h ${minutes}m`;
+                }
+                return `${minutes}m`;
+            }
+
+            function updateTotalTimerDisplay() {
+                totalFocusDisplay.textContent = formatTotalTime(totalFocusSeconds);
+                totalBreakDisplay.textContent = formatTotalTime(totalBreakSeconds);
             }
 
             function updateTitle() {
@@ -699,12 +873,17 @@
                 ringProgress.style.strokeDashoffset = offset;
                 ringGlow.style.strokeDashoffset = offset;
 
+                // Handle paused/auto-paused visual states
+                timeDisplay.classList.remove('paused', 'auto-paused-indicator');
                 if (!isRunning && remainingSeconds < totalSeconds) {
-                    timeDisplay.classList.add('paused');
-                } else {
-                    timeDisplay.classList.remove('paused');
+                    if (wasAutoPaused) {
+                        timeDisplay.classList.add('auto-paused-indicator');
+                    } else {
+                        timeDisplay.classList.add('paused');
+                    }
                 }
                 updateTitle();
+                updateTotalTimerDisplay();
             }
 
             function setAccent(color) {
@@ -737,7 +916,8 @@
                     if (i < completedWorkSessions) {
                         dot.classList.add('completed');
                     }
-                    if (currentMode === 'work' && isRunning && i === completedWorkSessions) {
+                    if (currentMode === 'work' && isRunning && i === completedWorkSessions && completedWorkSessions <
+                        MAX_WORK_SESSIONS) {
                         dot.classList.add('current');
                     }
                     sessionDotsContainer.appendChild(dot);
@@ -747,7 +927,6 @@
 
             function updateSessionDots() {
                 const dots = sessionDotsContainer.querySelectorAll('.session-dot');
-                // If number of dots changed, re-render
                 if (dots.length !== MAX_WORK_SESSIONS) {
                     renderSessionDots();
                     return;
@@ -766,22 +945,19 @@
             }
 
             function handleSessionCountChange(newValue) {
-                const parsed = parseInt(newValue, 50);
+                const parsed = parseInt(newValue, 10);
                 if (isNaN(parsed) || parsed < 1) {
                     MAX_WORK_SESSIONS = 1;
                 } else if (parsed > 500) {
-                    MAX_WORK_SESSIONS = 1000;
+                    MAX_WORK_SESSIONS = 500;
                 } else {
                     MAX_WORK_SESSIONS = parsed;
                 }
-                // Clamp completedWorkSessions if needed
                 if (completedWorkSessions > MAX_WORK_SESSIONS) {
                     completedWorkSessions = MAX_WORK_SESSIONS;
                 }
                 sessionInput.value = MAX_WORK_SESSIONS;
                 renderSessionDots();
-                // If timer is not running and we're in a break that was triggered by sessions, reset if needed
-                // Better: just update the display
                 updateTitle();
             }
 
@@ -797,12 +973,20 @@
                 }, 2200);
             }
 
+            function clearAutoPausedFlag() {
+                if (wasAutoPaused) {
+                    wasAutoPaused = false;
+                    timeDisplay.classList.remove('auto-paused-indicator');
+                }
+            }
+
             function stopTimer(keepWakeLock = false) {
                 if (timerInterval) {
                     clearInterval(timerInterval);
                     timerInterval = null;
                 }
                 isRunning = false;
+                clearAutoPausedFlag();
                 iconPlay.style.display = 'block';
                 iconPause.style.display = 'none';
                 btnPlay.classList.remove('running');
@@ -813,21 +997,24 @@
                 if (!keepWakeLock) {
                     releaseWakeLock();
                 }
+                saveTotalsToStorage();
             }
 
             function resetTimer() {
                 stopTimer();
                 remainingSeconds = MODES[currentMode].duration;
                 totalSeconds = remainingSeconds;
+                clearAutoPausedFlag();
                 updateDisplay();
                 updateSessionDots();
-                timeDisplay.classList.remove('paused');
+                timeDisplay.classList.remove('paused', 'auto-paused-indicator');
             }
 
             function switchMode(mode) {
                 if (isRunning) {
                     stopTimer();
                 }
+                clearAutoPausedFlag();
                 currentMode = mode;
                 totalSeconds = MODES[mode].duration;
                 remainingSeconds = totalSeconds;
@@ -835,12 +1022,13 @@
                 setAccent(MODES[mode].accent);
                 updateDisplay();
                 updateSessionDots();
-                timeDisplay.classList.remove('paused');
+                timeDisplay.classList.remove('paused', 'auto-paused-indicator');
                 document.querySelectorAll('.mode-tab').forEach(tab => {
                     tab.classList.remove('active');
                     if (tab.dataset.mode === mode) tab.classList.add('active');
                 });
                 updateTitle();
+                saveTotalsToStorage();
             }
 
             function startTimer() {
@@ -850,6 +1038,7 @@
                     totalSeconds = remainingSeconds;
                 }
                 totalSeconds = MODES[currentMode].duration;
+                clearAutoPausedFlag();
 
                 getAudioContext();
 
@@ -859,7 +1048,7 @@
                 btnPlay.classList.add('running');
                 btnPlay.style.background = '#3a3a3a';
                 btnPlay.style.boxShadow = '0 4px 16px rgba(0,0,0,0.3)';
-                timeDisplay.classList.remove('paused');
+                timeDisplay.classList.remove('paused', 'auto-paused-indicator');
                 updateSessionDots();
                 updateTitle();
                 playStartSound();
@@ -872,10 +1061,21 @@
                     remainingSeconds--;
                     updateDisplay();
 
+                    // Increment total timers based on current mode
+                    if (currentMode === 'work') {
+                        totalFocusSeconds++;
+                    } else {
+                        totalBreakSeconds++;
+                    }
+                    // Save totals periodically (every tick for reliability)
+                    saveTotalsToStorage();
+                    updateTotalTimerDisplay();
+
                     if (remainingSeconds <= 0) {
                         clearInterval(timerInterval);
                         timerInterval = null;
                         isRunning = false;
+                        clearAutoPausedFlag();
                         iconPlay.style.display = 'block';
                         iconPause.style.display = 'none';
                         btnPlay.classList.remove('running');
@@ -883,6 +1083,7 @@
                         btnPlay.style.boxShadow = `0 8px 28px ${MODES[currentMode].accent}55`;
                         updateDisplay();
                         releaseWakeLock();
+                        saveTotalsToStorage();
                         playEndSound();
 
                         if (currentMode === 'work') {
@@ -917,7 +1118,7 @@
                 }, 1000);
             }
 
-            function pauseTimer() {
+            function pauseTimer(triggeredByTabSwitch = false) {
                 if (!isRunning) return;
                 clearInterval(timerInterval);
                 timerInterval = null;
@@ -929,8 +1130,16 @@
                 btnPlay.style.boxShadow = `0 8px 28px ${MODES[currentMode].accent}55`;
                 updateDisplay();
                 updateSessionDots();
-                timeDisplay.classList.add('paused');
+                if (triggeredByTabSwitch) {
+                    wasAutoPaused = true;
+                    timeDisplay.classList.add('auto-paused-indicator');
+                    timeDisplay.classList.remove('paused');
+                } else {
+                    timeDisplay.classList.add('paused');
+                    timeDisplay.classList.remove('auto-paused-indicator');
+                }
                 releaseWakeLock();
+                saveTotalsToStorage();
             }
 
             function skipSession() {
@@ -944,8 +1153,10 @@
                     btnPlay.classList.remove('running');
                     releaseWakeLock();
                 }
+                clearAutoPausedFlag();
                 remainingSeconds = 0;
                 updateDisplay();
+                saveTotalsToStorage();
                 if (currentMode === 'work') {
                     completedWorkSessions++;
                     updateSessionDots();
@@ -964,7 +1175,7 @@
                 updateSessionDots();
                 btnPlay.style.background = MODES[currentMode].accent;
                 btnPlay.style.boxShadow = `0 8px 28px ${MODES[currentMode].accent}55`;
-                timeDisplay.classList.remove('paused');
+                timeDisplay.classList.remove('paused', 'auto-paused-indicator');
             }
 
             // ─────────────────────────────────────
@@ -973,7 +1184,7 @@
             btnPlay.addEventListener('click', () => {
                 playClickSound();
                 if (isRunning) {
-                    pauseTimer();
+                    pauseTimer(false);
                 } else {
                     startTimer();
                 }
@@ -1007,7 +1218,6 @@
                 handleSessionCountChange(e.target.value);
             });
             sessionInput.addEventListener('blur', () => {
-                // Ensure value is displayed correctly
                 sessionInput.value = MAX_WORK_SESSIONS;
             });
             sessionDecrement.addEventListener('click', () => {
@@ -1016,18 +1226,58 @@
                 }
             });
             sessionIncrement.addEventListener('click', () => {
-                if (MAX_WORK_SESSIONS < 10) {
+                if (MAX_WORK_SESSIONS < 500) {
                     handleSessionCountChange(MAX_WORK_SESSIONS + 1);
                 }
             });
 
+            // Total timer reset button
+            totalTimerReset.addEventListener('click', () => {
+                resetTodayTotals();
+            });
+
+            // ─────────────────────────────────────
+            // Tab Visibility — Auto-Pause & Wake Lock
+            // ─────────────────────────────────────
+            document.addEventListener('visibilitychange', async () => {
+                if (document.visibilityState === 'hidden' && isRunning) {
+                    // Auto-pause when the user switches away
+                    pauseTimer(true); // true = triggered by tab switch
+                    saveTotalsToStorage();
+                }
+                if (document.visibilityState === 'visible') {
+                    // If the timer was auto-paused, notify the user
+                    if (wasAutoPaused && !isRunning) {
+                        showToast('⏸ Timer paused — tab was inactive', false);
+                        // Keep wasAutoPaused flag so the display shows the indicator
+                        // It will be cleared when the user manually resumes or resets
+                    }
+                    // Re-acquire wake lock if timer is running
+                    if (isRunning && !wakeLockSentinel) {
+                        await requestWakeLock();
+                    }
+                    // Check if stored totals need refresh (in case date changed while tab was open)
+                    const storedKey = getStorageKey();
+                    const storedRaw = localStorage.getItem(storedKey);
+                    if (!storedRaw && (totalFocusSeconds > 0 || totalBreakSeconds > 0)) {
+                        // Date likely changed — reset in-memory totals
+                        totalFocusSeconds = 0;
+                        totalBreakSeconds = 0;
+                        updateTotalTimerDisplay();
+                    }
+                    updateTotalTimerDisplay();
+                }
+            });
+
+            // ─────────────────────────────────────
             // Keyboard shortcuts
+            // ─────────────────────────────────────
             document.addEventListener('keydown', (e) => {
                 if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
                 switch (e.code) {
                     case 'Space':
                         e.preventDefault();
-                        if (isRunning) pauseTimer();
+                        if (isRunning) pauseTimer(false);
                         else startTimer();
                         break;
                     case 'KeyR':
@@ -1060,10 +1310,12 @@
             // ─────────────────────────────────────
             // Initialize
             // ─────────────────────────────────────
+            loadTotalsFromStorage();
             setAccent(MODES['work'].accent);
             renderSessionDots();
             updateDisplay();
             updateSessionDots();
+            updateTotalTimerDisplay();
             sessionLabel.textContent = MODES['work'].label;
             sessionInput.value = MAX_WORK_SESSIONS;
 
@@ -1073,6 +1325,8 @@
             console.log('  S     — Skip');
             console.log('  1/2/3 — Switch modes');
             console.log('  Wake Lock active when timer runs');
+            console.log('  Auto-pause when tab is inactive');
+            console.log(`  Today's totals loaded: Focus=${formatTotalTime(totalFocusSeconds)}, Break=${formatTotalTime(totalBreakSeconds)}`);
         })();
     </script>
 </body>

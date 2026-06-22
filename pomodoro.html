@@ -54,7 +54,6 @@
             max-width: 500px;
         }
 
-        /* Header / Logo area */
         .header {
             display: flex;
             align-items: center;
@@ -71,13 +70,8 @@
             animation: pulse-dot 2s ease-in-out infinite;
         }
         @keyframes pulse-dot {
-            0%,
-            100% {
-                box-shadow: 0 0 8px var(--accent-work);
-            }
-            50% {
-                box-shadow: 0 0 20px var(--accent-work), 0 0 36px rgba(255, 107, 107, 0.5);
-            }
+            0%, 100% { box-shadow: 0 0 8px var(--accent-work); }
+            50% { box-shadow: 0 0 20px var(--accent-work), 0 0 36px rgba(255, 107, 107, 0.5); }
         }
         .header h1 {
             font-size: 1.3rem;
@@ -86,7 +80,6 @@
             color: var(--text);
         }
 
-        /* Timer Card */
         .timer-card {
             background: var(--surface);
             border: 1px solid rgba(255, 255, 255, 0.06);
@@ -103,7 +96,6 @@
             transition: all var(--transition);
         }
 
-        /* Ring Container */
         .ring-container {
             position: relative;
             width: 260px;
@@ -136,7 +128,6 @@
             transition: stroke-dashoffset 0.5s linear, stroke var(--transition);
         }
 
-        /* Timer Display inside ring */
         .timer-display {
             position: absolute;
             inset: 0;
@@ -164,13 +155,8 @@
             animation: subtle-blink 2s ease-in-out infinite;
         }
         @keyframes subtle-blink {
-            0%,
-            100% {
-                opacity: 0.7;
-            }
-            50% {
-                opacity: 0.45;
-            }
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 0.45; }
         }
         .session-label {
             font-size: 0.85rem;
@@ -181,7 +167,6 @@
             transition: color var(--transition);
         }
 
-        /* Mode Tabs */
         .mode-tabs {
             display: flex;
             gap: 0.4rem;
@@ -205,7 +190,6 @@
             transition: all var(--transition);
             white-space: nowrap;
             font-family: inherit;
-            position: relative;
         }
         .mode-tab:hover {
             color: var(--text);
@@ -217,19 +201,10 @@
             font-weight: 600;
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
         }
-        .mode-tab.active[data-mode="work"] {
-            background: var(--accent-work);
-        }
-        .mode-tab.active[data-mode="short-break"] {
-            background: var(--accent-break);
-            color: #1a1a1a;
-        }
-        .mode-tab.active[data-mode="long-break"] {
-            background: var(--accent-long-break);
-            color: #1a1a1a;
-        }
+        .mode-tab.active[data-mode="work"] { background: var(--accent-work); }
+        .mode-tab.active[data-mode="short-break"] { background: var(--accent-break); color: #1a1a1a; }
+        .mode-tab.active[data-mode="long-break"] { background: var(--accent-long-break); color: #1a1a1a; }
 
-        /* Controls */
         .controls {
             display: flex;
             align-items: center;
@@ -247,7 +222,6 @@
             justify-content: center;
             transition: all var(--transition);
             font-family: inherit;
-            position: relative;
             outline: none;
         }
         .btn-play {
@@ -257,7 +231,6 @@
             color: #fff;
             font-size: 1.6rem;
             box-shadow: 0 8px 28px rgba(255, 107, 107, 0.35);
-            border-radius: 50%;
         }
         .btn-play:hover {
             transform: scale(1.06);
@@ -290,11 +263,8 @@
             color: var(--text);
             border-color: rgba(255, 255, 255, 0.15);
         }
-        .btn-secondary:active {
-            transform: scale(0.93);
-        }
+        .btn-secondary:active { transform: scale(0.93); }
 
-        /* Session Counter & Settings */
         .session-info {
             display: flex;
             align-items: center;
@@ -327,13 +297,8 @@
             animation: pulse-dot-sm 1.5s ease-in-out infinite;
         }
         @keyframes pulse-dot-sm {
-            0%,
-            100% {
-                box-shadow: 0 0 8px rgba(255, 107, 107, 0.5);
-            }
-            50% {
-                box-shadow: 0 0 18px rgba(255, 107, 107, 0.9);
-            }
+            0%, 100% { box-shadow: 0 0 8px rgba(255, 107, 107, 0.5); }
+            50% { box-shadow: 0 0 18px rgba(255, 107, 107, 0.9); }
         }
         .session-settings {
             display: flex;
@@ -348,7 +313,6 @@
             font-size: 0.7rem;
             color: var(--text-secondary);
             opacity: 0.8;
-            white-space: nowrap;
         }
         .session-input {
             width: 40px;
@@ -363,9 +327,7 @@
             padding: 0.2rem;
         }
         .session-input::-webkit-inner-spin-button,
-        .session-input::-webkit-outer-spin-button {
-            opacity: 0.6;
-        }
+        .session-input::-webkit-outer-spin-button { opacity: 0.6; }
         .session-btn {
             background: none;
             border: none;
@@ -376,15 +338,13 @@
             padding: 0 0.15rem;
             transition: color var(--transition);
         }
-        .session-btn:hover {
-            color: var(--text);
-        }
+        .session-btn:hover { color: var(--text); }
 
-        /* ── Total Timer Section ── */
+        /* Total Timer Section */
         .total-timer-section {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 0.8rem;
             font-size: 0.75rem;
             color: var(--text-secondary);
             flex-wrap: wrap;
@@ -415,11 +375,16 @@
             font-family: 'SF Mono', 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
             letter-spacing: -0.02em;
         }
-        .total-timer-item.focus-total .tt-icon {
-            color: var(--accent-work);
+        .total-timer-item.focus-total .tt-icon { color: var(--accent-work); }
+        .total-timer-item.break-total .tt-icon { color: var(--accent-break); }
+        .total-timer-item.total-sum {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            cursor: default;
         }
-        .total-timer-item.break-total .tt-icon {
-            color: var(--accent-break);
+        .total-timer-item.total-sum .tt-value {
+            color: #ffffff;
+            font-weight: 700;
         }
         .total-timer-reset {
             background: none;
@@ -440,7 +405,6 @@
             background: rgba(255, 107, 107, 0.08);
         }
 
-        /* Toast notification */
         .toast {
             position: fixed;
             top: 2rem;
@@ -467,70 +431,30 @@
             border-color: rgba(78, 205, 196, 0.4);
             background: #1a2a28;
         }
-        .toast.warning-toast {
-            border-color: rgba(255, 180, 60, 0.5);
-            background: #2a2418;
-        }
 
-        /* Responsive */
         @media (max-width: 480px) {
-            .container {
-                padding: 1rem;
-                gap: 1.5rem;
-            }
-            .timer-card {
-                padding: 1.8rem 1.2rem 1.5rem;
-                gap: 1.4rem;
-                border-radius: 20px;
-            }
-            .ring-container {
-                width: 210px;
-                height: 210px;
-            }
-            .time {
-                font-size: 3.2rem;
-            }
-            .btn-play {
-                width: 58px;
-                height: 58px;
-                font-size: 1.3rem;
-            }
-            .btn-secondary {
-                width: 38px;
-                height: 38px;
-                font-size: 0.85rem;
-            }
-            .mode-tab {
-                font-size: 0.7rem;
-                padding: 0.55rem 0.35rem;
-            }
-            .session-label {
-                font-size: 0.7rem;
-            }
-            .session-settings {
-                padding: 0.2rem 0.4rem;
-            }
-            .total-timer-section {
-                gap: 0.5rem;
-                font-size: 0.68rem;
-            }
-            .total-timer-item {
-                padding: 0.28rem 0.5rem;
-            }
+            .container { padding: 1rem; gap: 1.5rem; }
+            .timer-card { padding: 1.8rem 1.2rem 1.5rem; gap: 1.4rem; border-radius: 20px; }
+            .ring-container { width: 210px; height: 210px; }
+            .time { font-size: 3.2rem; }
+            .btn-play { width: 58px; height: 58px; font-size: 1.3rem; }
+            .btn-secondary { width: 38px; height: 38px; font-size: 0.85rem; }
+            .mode-tab { font-size: 0.7rem; padding: 0.55rem 0.35rem; }
+            .session-label { font-size: 0.7rem; }
+            .session-settings { padding: 0.2rem 0.4rem; }
+            .total-timer-section { gap: 0.5rem; font-size: 0.68rem; }
+            .total-timer-item { padding: 0.28rem 0.5rem; }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Header -->
         <div class="header">
             <div class="dot"></div>
             <h1>Pomodoro</h1>
         </div>
 
-        <!-- Timer Card -->
         <div class="timer-card" id="timerCard">
-            <!-- Ring -->
             <div class="ring-container">
                 <svg viewBox="0 0 260 260">
                     <circle class="ring-bg" cx="130" cy="130" r="120"/>
@@ -545,14 +469,12 @@
                 </div>
             </div>
 
-            <!-- Mode Tabs -->
             <div class="mode-tabs" id="modeTabs">
                 <button class="mode-tab active" data-mode="work" data-duration="25">Focus</button>
                 <button class="mode-tab" data-mode="short-break" data-duration="5">Short Break</button>
                 <button class="mode-tab" data-mode="long-break" data-duration="15">Long Break</button>
             </div>
 
-            <!-- Controls -->
             <div class="controls">
                 <button class="btn btn-secondary" id="btnReset" title="Reset" aria-label="Reset timer">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
@@ -571,12 +493,9 @@
                 </button>
             </div>
 
-            <!-- Session counter with editable sessions -->
             <div class="session-info">
                 <span>Sessions</span>
-                <div class="session-dots" id="sessionDots">
-                    <!-- dynamically filled -->
-                </div>
+                <div class="session-dots" id="sessionDots"></div>
                 <span id="sessionCount">0 / 4</span>
                 <div class="session-settings">
                     <label for="sessionInput">🔁</label>
@@ -586,7 +505,6 @@
                 </div>
             </div>
 
-            <!-- ── Total Timer Section ── -->
             <div class="total-timer-section" id="totalTimerSection">
                 <span style="opacity:0.6;font-size:0.7rem;letter-spacing:0.04em;">Today</span>
                 <div class="total-timer-item focus-total">
@@ -599,19 +517,22 @@
                     <span class="tt-label">Break</span>
                     <span class="tt-value" id="totalBreakDisplay">0m</span>
                 </div>
+                <!-- New total combined button -->
+                <div class="total-timer-item total-sum" id="totalCombinedDisplay" title="Total combined time in hours">
+                    <span class="tt-icon">⏳</span>
+                    <span class="tt-label">Total</span>
+                    <span class="tt-value" id="totalHoursValue">0.0h</span>
+                </div>
                 <button class="total-timer-reset" id="totalTimerReset" title="Reset today's totals" aria-label="Reset total timers">↺</button>
             </div>
         </div>
     </div>
 
-    <!-- Toast -->
     <div class="toast" id="toast"></div>
 
     <script>
         (function() {
-            // ─────────────────────────────────────
-            // DOM Elements
-            // ─────────────────────────────────────
+            // DOM elements
             const timeDisplay = document.getElementById('timeDisplay');
             const sessionLabel = document.getElementById('sessionLabel');
             const ringProgress = document.getElementById('ringProgress');
@@ -625,262 +546,167 @@
             const sessionDotsContainer = document.getElementById('sessionDots');
             const sessionCount = document.getElementById('sessionCount');
             const toast = document.getElementById('toast');
-            const timerCard = document.getElementById('timerCard');
             const sessionInput = document.getElementById('sessionInput');
             const sessionDecrement = document.getElementById('sessionDecrement');
             const sessionIncrement = document.getElementById('sessionIncrement');
             const totalFocusDisplay = document.getElementById('totalFocusDisplay');
             const totalBreakDisplay = document.getElementById('totalBreakDisplay');
+            const totalHoursValue = document.getElementById('totalHoursValue');
             const totalTimerReset = document.getElementById('totalTimerReset');
 
-            const CIRCUMFERENCE = 2 * Math.PI * 120; // ≈ 753.98
+            const CIRCUMFERENCE = 2 * Math.PI * 120;
             ringProgress.style.strokeDasharray = CIRCUMFERENCE;
             ringGlow.style.strokeDasharray = CIRCUMFERENCE;
             ringProgress.style.strokeDashoffset = '0';
             ringGlow.style.strokeDashoffset = '0';
 
-            // ─────────────────────────────────────
-            // Audio Engine (Web Audio API)
-            // ─────────────────────────────────────
+            // Audio
             let audioCtx = null;
-
             function getAudioContext() {
-                if (!audioCtx) {
-                    audioCtx = new(window.AudioContext || window.webkitAudioContext)();
-                }
-                if (audioCtx.state === 'suspended') {
-                    audioCtx.resume();
-                }
+                if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                if (audioCtx.state === 'suspended') audioCtx.resume();
                 return audioCtx;
             }
-
-            function playTone(frequency, duration, type = 'sine', volume = 0.3, rampDown = true) {
+            function playTone(f, d, type='sine', vol=0.3, ramp=true) {
                 try {
                     const ctx = getAudioContext();
-                    const now = ctx.currentTime;
                     const osc = ctx.createOscillator();
                     const gain = ctx.createGain();
-
                     osc.type = type;
-                    osc.frequency.setValueAtTime(frequency, now);
-                    gain.gain.setValueAtTime(volume, now);
-                    if (rampDown) {
-                        gain.gain.exponentialRampToValueAtTime(0.001, now + duration);
-                    } else {
-                        gain.gain.setValueAtTime(volume, now);
-                        gain.gain.setValueAtTime(0, now + duration);
-                    }
-
+                    osc.frequency.setValueAtTime(f, ctx.currentTime);
+                    gain.gain.setValueAtTime(vol, ctx.currentTime);
+                    if (ramp) gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + d);
+                    else gain.gain.setValueAtTime(0, ctx.currentTime + d);
                     osc.connect(gain);
                     gain.connect(ctx.destination);
-                    osc.start(now);
-                    osc.stop(now + duration);
-                } catch (e) {
-                    console.warn('Audio play failed:', e.message);
-                }
+                    osc.start();
+                    osc.stop(ctx.currentTime + d);
+                } catch(e) { console.warn('Audio error:', e.message); }
             }
-
             function playStartSound() {
                 const ctx = getAudioContext();
-                const now = ctx.currentTime;
-                const notes = [523.25, 659.25, 783.99];
-                notes.forEach((freq, i) => {
-                    const osc = ctx.createOscillator();
-                    const gain = ctx.createGain();
-                    osc.type = 'sine';
-                    osc.frequency.setValueAtTime(freq, now + i * 0.12);
-                    gain.gain.setValueAtTime(0.25, now + i * 0.12);
-                    gain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.12 + 0.35);
-                    osc.connect(gain);
-                    gain.connect(ctx.destination);
-                    osc.start(now + i * 0.12);
-                    osc.stop(now + i * 0.12 + 0.4);
+                [523.25, 659.25, 783.99].forEach((f,i) => {
+                    const osc = ctx.createOscillator(), gain = ctx.createGain();
+                    osc.type='sine'; osc.frequency.setValueAtTime(f, ctx.currentTime + i*0.12);
+                    gain.gain.setValueAtTime(0.25, ctx.currentTime + i*0.12);
+                    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i*0.12 + 0.35);
+                    osc.connect(gain); gain.connect(ctx.destination);
+                    osc.start(ctx.currentTime + i*0.12); osc.stop(ctx.currentTime + i*0.12 + 0.4);
                 });
-                playTone(80, 0.5, 'sine', 0.2, true);
+                playTone(80, 0.5, 'sine', 0.2);
             }
-
             function playEndSound() {
                 const ctx = getAudioContext();
-                const now = ctx.currentTime;
-                const notes = [880, 1046.5];
-                notes.forEach((freq, i) => {
-                    const osc = ctx.createOscillator();
-                    const gain = ctx.createGain();
-                    osc.type = 'triangle';
-                    osc.frequency.setValueAtTime(freq, now + i * 0.18);
-                    gain.gain.setValueAtTime(0.35, now + i * 0.18);
-                    gain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.18 + 0.5);
-                    osc.connect(gain);
-                    gain.connect(ctx.destination);
-                    osc.start(now + i * 0.18);
-                    osc.stop(now + i * 0.18 + 0.55);
+                [880, 1046.5].forEach((f,i) => {
+                    const osc = ctx.createOscillator(), gain = ctx.createGain();
+                    osc.type='triangle'; osc.frequency.setValueAtTime(f, ctx.currentTime + i*0.18);
+                    gain.gain.setValueAtTime(0.35, ctx.currentTime + i*0.18);
+                    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i*0.18 + 0.5);
+                    osc.connect(gain); gain.connect(ctx.destination);
+                    osc.start(ctx.currentTime + i*0.18); osc.stop(ctx.currentTime + i*0.18 + 0.55);
                 });
-                setTimeout(() => playTone(1200, 0.6, 'sine', 0.2, true), 400);
+                setTimeout(() => playTone(1200, 0.6, 'sine', 0.2), 400);
             }
+            function playClickSound() { playTone(600, 0.08, 'sine', 0.15, false); }
+            function playSkipSound() { playTone(400, 0.12, 'square', 0.08, false); }
 
-            function playClickSound() {
-                playTone(600, 0.08, 'sine', 0.15, false);
-            }
-
-            function playSkipSound() {
-                playTone(400, 0.12, 'square', 0.08, false);
-            }
-
-            // ─────────────────────────────────────
-            // Wake Lock (keep screen awake)
-            // ─────────────────────────────────────
+            // Wake Lock
             let wakeLockSentinel = null;
-
             async function requestWakeLock() {
                 if (!('wakeLock' in navigator)) return;
                 try {
                     wakeLockSentinel = await navigator.wakeLock.request('screen');
-                    wakeLockSentinel.addEventListener('release', () => {
-                        wakeLockSentinel = null;
-                    });
-                } catch (err) {
-                    console.warn('Wake Lock request failed:', err);
-                }
+                    wakeLockSentinel.addEventListener('release', () => wakeLockSentinel = null);
+                } catch(e) {}
             }
-
             async function releaseWakeLock() {
                 if (wakeLockSentinel) {
-                    try {
-                        await wakeLockSentinel.release();
-                    } catch (err) {
-                        console.warn('Wake Lock release error:', err);
-                    }
+                    try { await wakeLockSentinel.release(); } catch(e) {}
                     wakeLockSentinel = null;
                 }
             }
 
-            // ─────────────────────────────────────
             // State
-            // ─────────────────────────────────────
             const MODES = {
-                work: { label: 'Focus', duration: 25 * 60, accent: '#ff6b6b' },
-                'short-break': { label: 'Short Break', duration: 5 * 60, accent: '#4ecdc4' },
-                'long-break': { label: 'Long Break', duration: 15 * 60, accent: '#5b8def' },
+                work: { label: 'Focus', duration: 25*60, accent: '#ff6b6b' },
+                'short-break': { label: 'Short Break', duration: 5*60, accent: '#4ecdc4' },
+                'long-break': { label: 'Long Break', duration: 15*60, accent: '#5b8def' }
             };
-
             let currentMode = 'work';
-            let totalSeconds = MODES['work'].duration;
+            let totalSeconds = MODES.work.duration;
             let remainingSeconds = totalSeconds;
             let timerInterval = null;
             let isRunning = false;
             let completedWorkSessions = 0;
-            let MAX_WORK_SESSIONS = 4; // editable by user, default matches input
-            let wasAutoPaused = false; // flag for tab-inactivity auto-pause
-
-            // Total accumulated timers for today
+            let MAX_WORK_SESSIONS = 4;
+            let wasAutoPaused = false;
             let totalFocusSeconds = 0;
             let totalBreakSeconds = 0;
 
-            // ─────────────────────────────────────
-            // localStorage helpers for total timers
-            // ─────────────────────────────────────
+            // localStorage helpers
             function getTodayDateString() {
-                const now = new Date();
-                return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+                const d = new Date();
+                return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
             }
-
-            function getStorageKey() {
-                return `pomodoro-totals-${getTodayDateString()}`;
-            }
-
+            function getStorageKey() { return `pomodoro-totals-${getTodayDateString()}`; }
             function loadTotalsFromStorage() {
                 try {
                     const key = getStorageKey();
                     const raw = localStorage.getItem(key);
                     if (raw) {
                         const data = JSON.parse(raw);
-                        totalFocusSeconds = Math.max(0, parseInt(data.focus, 10) || 0);
-                        totalBreakSeconds = Math.max(0, parseInt(data.break, 10) || 0);
+                        totalFocusSeconds = Math.max(0, parseInt(data.focus,10) || 0);
+                        totalBreakSeconds = Math.max(0, parseInt(data.break,10) || 0);
                     } else {
-                        // Clean up old keys from previous days
-                        const allKeys = Object.keys(localStorage);
-                        allKeys.forEach(k => {
-                            if (k.startsWith('pomodoro-totals-') && k !== key) {
-                                localStorage.removeItem(k);
-                            }
-                        });
-                        totalFocusSeconds = 0;
-                        totalBreakSeconds = 0;
+                        Object.keys(localStorage).forEach(k => { if(k.startsWith('pomodoro-totals-') && k!==key) localStorage.removeItem(k); });
+                        totalFocusSeconds = 0; totalBreakSeconds = 0;
                     }
-                } catch (e) {
-                    console.warn('Failed to load totals from localStorage:', e.message);
-                    totalFocusSeconds = 0;
-                    totalBreakSeconds = 0;
-                }
+                } catch(e) { totalFocusSeconds = 0; totalBreakSeconds = 0; }
             }
-
             function saveTotalsToStorage() {
                 try {
-                    const key = getStorageKey();
-                    const data = {
-                        focus: totalFocusSeconds,
-                        break: totalBreakSeconds,
-                    };
-                    localStorage.setItem(key, JSON.stringify(data));
-                } catch (e) {
-                    console.warn('Failed to save totals to localStorage:', e.message);
-                }
+                    localStorage.setItem(getStorageKey(), JSON.stringify({focus: totalFocusSeconds, break: totalBreakSeconds}));
+                } catch(e) {}
             }
-
             function resetTodayTotals() {
-                totalFocusSeconds = 0;
-                totalBreakSeconds = 0;
+                totalFocusSeconds = 0; totalBreakSeconds = 0;
                 saveTotalsToStorage();
                 updateTotalTimerDisplay();
-                showToast('Today\'s totals reset', false);
+                showToast('Today\'s totals reset');
             }
 
-            // ─────────────────────────────────────
-            // Functions
-            // ─────────────────────────────────────
-            function formatTime(seconds) {
-                const mins = Math.floor(seconds / 60);
-                const secs = seconds % 60;
-                return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+            function formatTime(sec) {
+                const m = Math.floor(sec/60), s = sec%60;
+                return `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
             }
-
-            function formatTotalTime(seconds) {
-                if (seconds <= 0) return '0m';
-                const hours = Math.floor(seconds / 3600);
-                const minutes = Math.floor((seconds % 3600) / 60);
-                if (hours > 0) {
-                    return `${hours}h ${minutes}m`;
-                }
-                return `${minutes}m`;
+            function formatMinutes(sec) {
+                const mins = Math.round(sec/60);
+                return `${mins}m`;
+            }
+            function formatHours(sec) {
+                return (sec/3600).toFixed(1) + 'h';
             }
 
             function updateTotalTimerDisplay() {
-                totalFocusDisplay.textContent = formatTotalTime(totalFocusSeconds);
-                totalBreakDisplay.textContent = formatTotalTime(totalBreakSeconds);
+                totalFocusDisplay.textContent = formatMinutes(totalFocusSeconds);
+                totalBreakDisplay.textContent = formatMinutes(totalBreakSeconds);
+                totalHoursValue.textContent = formatHours(totalFocusSeconds + totalBreakSeconds);
             }
 
             function updateTitle() {
-                const modeLabel = MODES[currentMode].label;
-                const timeStr = formatTime(remainingSeconds);
-                const pausedIndicator = (!isRunning && remainingSeconds < totalSeconds) ? ' ⏸' : '';
-                document.title = `${timeStr} - ${modeLabel}${pausedIndicator}`;
+                const paused = (!isRunning && remainingSeconds < totalSeconds) ? ' ⏸' : '';
+                document.title = `${formatTime(remainingSeconds)} - ${MODES[currentMode].label}${paused}`;
             }
 
             function updateDisplay() {
                 timeDisplay.textContent = formatTime(remainingSeconds);
-                const fraction = totalSeconds > 0 ? remainingSeconds / totalSeconds : 1;
+                const fraction = totalSeconds>0 ? remainingSeconds/totalSeconds : 1;
                 const offset = CIRCUMFERENCE * (1 - fraction);
                 ringProgress.style.strokeDashoffset = offset;
                 ringGlow.style.strokeDashoffset = offset;
-
-                // Handle paused/auto-paused visual states
-                timeDisplay.classList.remove('paused', 'auto-paused-indicator');
+                timeDisplay.classList.remove('paused','auto-paused-indicator');
                 if (!isRunning && remainingSeconds < totalSeconds) {
-                    if (wasAutoPaused) {
-                        timeDisplay.classList.add('auto-paused-indicator');
-                    } else {
-                        timeDisplay.classList.add('paused');
-                    }
+                    timeDisplay.classList.add(wasAutoPaused ? 'auto-paused-indicator' : 'paused');
                 }
                 updateTitle();
                 updateTotalTimerDisplay();
@@ -891,112 +717,73 @@
                 ringProgress.style.stroke = color;
                 ringGlow.style.stroke = color;
                 btnPlay.style.background = isRunning ? '#3a3a3a' : color;
-                if (!isRunning) {
-                    btnPlay.style.boxShadow = `0 8px 28px ${color}55`;
-                }
-                const dot = document.querySelector('.header .dot');
-                if (dot) {
-                    dot.style.background = color;
-                    dot.style.boxShadow = `0 0 12px ${color}`;
-                }
+                if (!isRunning) btnPlay.style.boxShadow = `0 8px 28px ${color}55`;
+                document.querySelector('.header .dot').style.background = color;
+                document.querySelector('.header .dot').style.boxShadow = `0 0 12px ${color}`;
                 document.querySelectorAll('.mode-tab').forEach(tab => {
-                    tab.classList.remove('active');
-                    if (tab.dataset.mode === currentMode) {
-                        tab.classList.add('active');
-                    }
+                    tab.classList.toggle('active', tab.dataset.mode === currentMode);
                 });
                 updateTitle();
             }
 
             function renderSessionDots() {
                 sessionDotsContainer.innerHTML = '';
-                for (let i = 0; i < MAX_WORK_SESSIONS; i++) {
+                for (let i=0; i<MAX_WORK_SESSIONS; i++) {
                     const dot = document.createElement('span');
                     dot.className = 'session-dot';
-                    if (i < completedWorkSessions) {
-                        dot.classList.add('completed');
-                    }
-                    if (currentMode === 'work' && isRunning && i === completedWorkSessions && completedWorkSessions <
-                        MAX_WORK_SESSIONS) {
-                        dot.classList.add('current');
-                    }
+                    if (i<completedWorkSessions) dot.classList.add('completed');
+                    if (currentMode==='work' && isRunning && i===completedWorkSessions && completedWorkSessions<MAX_WORK_SESSIONS) dot.classList.add('current');
                     sessionDotsContainer.appendChild(dot);
                 }
                 sessionCount.textContent = `${completedWorkSessions} / ${MAX_WORK_SESSIONS}`;
             }
 
             function updateSessionDots() {
-                const dots = sessionDotsContainer.querySelectorAll('.session-dot');
-                if (dots.length !== MAX_WORK_SESSIONS) {
-                    renderSessionDots();
-                    return;
+                if (sessionDotsContainer.children.length !== MAX_WORK_SESSIONS) {
+                    renderSessionDots(); return;
                 }
-                dots.forEach((dot, i) => {
-                    dot.classList.remove('completed', 'current');
-                    if (i < completedWorkSessions) {
-                        dot.classList.add('completed');
-                    }
-                    if (currentMode === 'work' && isRunning && i === completedWorkSessions && completedWorkSessions <
-                        MAX_WORK_SESSIONS) {
-                        dot.classList.add('current');
-                    }
+                [...sessionDotsContainer.children].forEach((dot,i) => {
+                    dot.classList.remove('completed','current');
+                    if (i<completedWorkSessions) dot.classList.add('completed');
+                    if (currentMode==='work' && isRunning && i===completedWorkSessions && completedWorkSessions<MAX_WORK_SESSIONS) dot.classList.add('current');
                 });
                 sessionCount.textContent = `${completedWorkSessions} / ${MAX_WORK_SESSIONS}`;
             }
 
-            function handleSessionCountChange(newValue) {
-                const parsed = parseInt(newValue, 10);
-                if (isNaN(parsed) || parsed < 1) {
-                    MAX_WORK_SESSIONS = 1;
-                } else if (parsed > 500) {
-                    MAX_WORK_SESSIONS = 500;
-                } else {
-                    MAX_WORK_SESSIONS = parsed;
-                }
-                if (completedWorkSessions > MAX_WORK_SESSIONS) {
-                    completedWorkSessions = MAX_WORK_SESSIONS;
-                }
+            function handleSessionCountChange(val) {
+                const parsed = parseInt(val,10);
+                if (isNaN(parsed) || parsed<1) MAX_WORK_SESSIONS = 1;
+                else if (parsed>500) MAX_WORK_SESSIONS = 500;
+                else MAX_WORK_SESSIONS = parsed;
+                if (completedWorkSessions > MAX_WORK_SESSIONS) completedWorkSessions = MAX_WORK_SESSIONS;
                 sessionInput.value = MAX_WORK_SESSIONS;
                 renderSessionDots();
                 updateTitle();
             }
 
-            function showToast(message, isBreak = false) {
-                toast.textContent = message;
-                toast.className = 'toast';
-                if (isBreak) toast.classList.add('break-toast');
+            function showToast(msg, isBreak=false) {
+                toast.textContent = msg;
+                toast.className = 'toast' + (isBreak ? ' break-toast' : '');
                 void toast.offsetWidth;
                 toast.classList.add('show');
                 clearTimeout(toast._timeout);
-                toast._timeout = setTimeout(() => {
-                    toast.classList.remove('show');
-                }, 2200);
+                toast._timeout = setTimeout(() => toast.classList.remove('show'), 2200);
             }
 
             function clearAutoPausedFlag() {
-                if (wasAutoPaused) {
-                    wasAutoPaused = false;
-                    timeDisplay.classList.remove('auto-paused-indicator');
-                }
+                if (wasAutoPaused) { wasAutoPaused = false; timeDisplay.classList.remove('auto-paused-indicator'); }
             }
 
-            function stopTimer(keepWakeLock = false) {
-                if (timerInterval) {
-                    clearInterval(timerInterval);
-                    timerInterval = null;
-                }
+            function stopTimer(keepWakeLock=false) {
+                if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
                 isRunning = false;
                 clearAutoPausedFlag();
-                iconPlay.style.display = 'block';
-                iconPause.style.display = 'none';
+                iconPlay.style.display='block'; iconPause.style.display='none';
                 btnPlay.classList.remove('running');
                 btnPlay.style.background = MODES[currentMode].accent;
                 btnPlay.style.boxShadow = `0 8px 28px ${MODES[currentMode].accent}55`;
-                updateDisplay();
-                updateSessionDots();
-                if (!keepWakeLock) {
-                    releaseWakeLock();
-                }
+                updateDisplay(); updateSessionDots();
+                if (!keepWakeLock) releaseWakeLock();
                 saveTotalsToStorage();
             }
 
@@ -1005,29 +792,21 @@
                 remainingSeconds = MODES[currentMode].duration;
                 totalSeconds = remainingSeconds;
                 clearAutoPausedFlag();
-                updateDisplay();
-                updateSessionDots();
-                timeDisplay.classList.remove('paused', 'auto-paused-indicator');
+                updateDisplay(); updateSessionDots();
+                timeDisplay.classList.remove('paused','auto-paused-indicator');
             }
 
             function switchMode(mode) {
-                if (isRunning) {
-                    stopTimer();
-                }
+                if (isRunning) stopTimer();
                 clearAutoPausedFlag();
                 currentMode = mode;
                 totalSeconds = MODES[mode].duration;
                 remainingSeconds = totalSeconds;
                 sessionLabel.textContent = MODES[mode].label;
                 setAccent(MODES[mode].accent);
-                updateDisplay();
-                updateSessionDots();
-                timeDisplay.classList.remove('paused', 'auto-paused-indicator');
-                document.querySelectorAll('.mode-tab').forEach(tab => {
-                    tab.classList.remove('active');
-                    if (tab.dataset.mode === mode) tab.classList.add('active');
-                });
-                updateTitle();
+                updateDisplay(); updateSessionDots();
+                timeDisplay.classList.remove('paused','auto-paused-indicator');
+                document.querySelectorAll('.mode-tab').forEach(t => t.classList.toggle('active', t.dataset.mode===mode));
                 saveTotalsToStorage();
             }
 
@@ -1039,135 +818,94 @@
                 }
                 totalSeconds = MODES[currentMode].duration;
                 clearAutoPausedFlag();
-
                 getAudioContext();
 
                 isRunning = true;
-                iconPlay.style.display = 'none';
-                iconPause.style.display = 'block';
+                iconPlay.style.display='none'; iconPause.style.display='block';
                 btnPlay.classList.add('running');
                 btnPlay.style.background = '#3a3a3a';
                 btnPlay.style.boxShadow = '0 4px 16px rgba(0,0,0,0.3)';
-                timeDisplay.classList.remove('paused', 'auto-paused-indicator');
-                updateSessionDots();
-                updateTitle();
+                timeDisplay.classList.remove('paused','auto-paused-indicator');
+                updateSessionDots(); updateTitle();
                 playStartSound();
                 requestWakeLock();
-
-                const modeLabel = MODES[currentMode].label;
-                showToast(`${modeLabel} session started · ${formatTime(remainingSeconds)}`, currentMode !== 'work');
+                showToast(`${MODES[currentMode].label} session started · ${formatTime(remainingSeconds)}`, currentMode!=='work');
 
                 timerInterval = setInterval(() => {
                     remainingSeconds--;
                     updateDisplay();
-
-                    // Increment total timers based on current mode
-                    if (currentMode === 'work') {
-                        totalFocusSeconds++;
-                    } else {
-                        totalBreakSeconds++;
-                    }
-                    // Save totals periodically (every tick for reliability)
+                    if (currentMode==='work') totalFocusSeconds++; else totalBreakSeconds++;
                     saveTotalsToStorage();
-                    updateTotalTimerDisplay();
 
                     if (remainingSeconds <= 0) {
-                        clearInterval(timerInterval);
-                        timerInterval = null;
+                        clearInterval(timerInterval); timerInterval = null;
                         isRunning = false;
                         clearAutoPausedFlag();
-                        iconPlay.style.display = 'block';
-                        iconPause.style.display = 'none';
+                        iconPlay.style.display='block'; iconPause.style.display='none';
                         btnPlay.classList.remove('running');
                         btnPlay.style.background = MODES[currentMode].accent;
                         btnPlay.style.boxShadow = `0 8px 28px ${MODES[currentMode].accent}55`;
-                        updateDisplay();
-                        releaseWakeLock();
-                        saveTotalsToStorage();
+                        updateDisplay(); releaseWakeLock(); saveTotalsToStorage();
                         playEndSound();
 
-                        if (currentMode === 'work') {
+                        if (currentMode==='work') {
                             completedWorkSessions++;
                             updateSessionDots();
                             showToast('🎉 Focus session complete! Take a break.', true);
-
                             if (completedWorkSessions >= MAX_WORK_SESSIONS) {
-                                completedWorkSessions = 0;
-                                updateSessionDots();
+                                completedWorkSessions = 0; updateSessionDots();
                                 switchMode('long-break');
                                 showToast('Great work! Time for a long break ☕', true);
-                            } else {
-                                switchMode('short-break');
-                            }
-                            setTimeout(() => {
-                                if (!isRunning && remainingSeconds === MODES[currentMode].duration) {
-                                    startTimer();
-                                }
-                            }, 1500);
+                            } else switchMode('short-break');
                         } else {
                             showToast('Break over! Ready to focus?', false);
                             switchMode('work');
                             updateSessionDots();
-                            setTimeout(() => {
-                                if (!isRunning && remainingSeconds === MODES[currentMode].duration) {
-                                    startTimer();
-                                }
-                            }, 1800);
                         }
+                        // Auto-start next after delay (if not manually changed)
+                        setTimeout(() => {
+                            if (!isRunning && remainingSeconds === MODES[currentMode].duration) startTimer();
+                        }, currentMode==='work' ? 1500 : 1800);
                     }
                 }, 1000);
             }
 
-            function pauseTimer(triggeredByTabSwitch = false) {
+            function pauseTimer(triggeredByTabSwitch=false) {
                 if (!isRunning) return;
-                clearInterval(timerInterval);
-                timerInterval = null;
+                clearInterval(timerInterval); timerInterval = null;
                 isRunning = false;
-                iconPlay.style.display = 'block';
-                iconPause.style.display = 'none';
+                iconPlay.style.display='block'; iconPause.style.display='none';
                 btnPlay.classList.remove('running');
                 btnPlay.style.background = MODES[currentMode].accent;
                 btnPlay.style.boxShadow = `0 8px 28px ${MODES[currentMode].accent}55`;
-                updateDisplay();
-                updateSessionDots();
+                updateDisplay(); updateSessionDots();
                 if (triggeredByTabSwitch) {
                     wasAutoPaused = true;
                     timeDisplay.classList.add('auto-paused-indicator');
-                    timeDisplay.classList.remove('paused');
                 } else {
                     timeDisplay.classList.add('paused');
-                    timeDisplay.classList.remove('auto-paused-indicator');
                 }
-                releaseWakeLock();
-                saveTotalsToStorage();
+                releaseWakeLock(); saveTotalsToStorage();
             }
 
             function skipSession() {
                 playSkipSound();
                 if (isRunning) {
-                    clearInterval(timerInterval);
-                    timerInterval = null;
+                    clearInterval(timerInterval); timerInterval = null;
                     isRunning = false;
-                    iconPlay.style.display = 'block';
-                    iconPause.style.display = 'none';
+                    iconPlay.style.display='block'; iconPause.style.display='none';
                     btnPlay.classList.remove('running');
                     releaseWakeLock();
                 }
                 clearAutoPausedFlag();
-                remainingSeconds = 0;
-                updateDisplay();
-                saveTotalsToStorage();
-                if (currentMode === 'work') {
-                    completedWorkSessions++;
-                    updateSessionDots();
+                remainingSeconds = 0; updateDisplay(); saveTotalsToStorage();
+                if (currentMode==='work') {
+                    completedWorkSessions++; updateSessionDots();
                     showToast('Focus skipped · Take a break', true);
                     if (completedWorkSessions >= MAX_WORK_SESSIONS) {
-                        completedWorkSessions = 0;
-                        updateSessionDots();
+                        completedWorkSessions = 0; updateSessionDots();
                         switchMode('long-break');
-                    } else {
-                        switchMode('short-break');
-                    }
+                    } else switchMode('short-break');
                 } else {
                     showToast('Break skipped · Back to focus', false);
                     switchMode('work');
@@ -1175,158 +913,61 @@
                 updateSessionDots();
                 btnPlay.style.background = MODES[currentMode].accent;
                 btnPlay.style.boxShadow = `0 8px 28px ${MODES[currentMode].accent}55`;
-                timeDisplay.classList.remove('paused', 'auto-paused-indicator');
+                timeDisplay.classList.remove('paused','auto-paused-indicator');
             }
 
-            // ─────────────────────────────────────
-            // Event Listeners
-            // ─────────────────────────────────────
-            btnPlay.addEventListener('click', () => {
-                playClickSound();
-                if (isRunning) {
-                    pauseTimer(false);
-                } else {
-                    startTimer();
-                }
-            });
-
-            btnReset.addEventListener('click', () => {
-                playClickSound();
-                resetTimer();
-                showToast('Timer reset');
-            });
-
-            btnSkip.addEventListener('click', () => {
-                skipSession();
-            });
-
+            // Event listeners
+            btnPlay.addEventListener('click', () => { playClickSound(); isRunning ? pauseTimer(false) : startTimer(); });
+            btnReset.addEventListener('click', () => { playClickSound(); resetTimer(); showToast('Timer reset'); });
+            btnSkip.addEventListener('click', skipSession);
             modeTabs.addEventListener('click', (e) => {
                 const tab = e.target.closest('.mode-tab');
                 if (!tab) return;
-                if (tab.dataset.mode === currentMode && !isRunning && remainingSeconds === MODES[currentMode]
-                    .duration) {
-                    return;
-                }
+                if (tab.dataset.mode === currentMode && !isRunning && remainingSeconds === MODES[currentMode].duration) return;
                 playClickSound();
-                const mode = tab.dataset.mode;
-                switchMode(mode);
-                showToast(`Switched to ${MODES[mode].label.toLowerCase()}`);
+                switchMode(tab.dataset.mode);
+                showToast(`Switched to ${MODES[tab.dataset.mode].label.toLowerCase()}`);
             });
+            sessionInput.addEventListener('input', e => handleSessionCountChange(e.target.value));
+            sessionInput.addEventListener('blur', () => sessionInput.value = MAX_WORK_SESSIONS);
+            sessionDecrement.addEventListener('click', () => { if (MAX_WORK_SESSIONS>1) handleSessionCountChange(MAX_WORK_SESSIONS-1); });
+            sessionIncrement.addEventListener('click', () => { if (MAX_WORK_SESSIONS<500) handleSessionCountChange(MAX_WORK_SESSIONS+1); });
+            totalTimerReset.addEventListener('click', resetTodayTotals);
 
-            // Session count editing
-            sessionInput.addEventListener('input', (e) => {
-                handleSessionCountChange(e.target.value);
-            });
-            sessionInput.addEventListener('blur', () => {
-                sessionInput.value = MAX_WORK_SESSIONS;
-            });
-            sessionDecrement.addEventListener('click', () => {
-                if (MAX_WORK_SESSIONS > 1) {
-                    handleSessionCountChange(MAX_WORK_SESSIONS - 1);
-                }
-            });
-            sessionIncrement.addEventListener('click', () => {
-                if (MAX_WORK_SESSIONS < 500) {
-                    handleSessionCountChange(MAX_WORK_SESSIONS + 1);
-                }
-            });
-
-            // Total timer reset button
-            totalTimerReset.addEventListener('click', () => {
-                resetTodayTotals();
-            });
-
-            // ─────────────────────────────────────
-            // Tab Visibility — Auto-Pause & Wake Lock
-            // ─────────────────────────────────────
             document.addEventListener('visibilitychange', async () => {
-                if (document.visibilityState === 'hidden' && isRunning) {
-                    // Auto-pause when the user switches away
-                    pauseTimer(true); // true = triggered by tab switch
-                    saveTotalsToStorage();
-                }
+                if (document.visibilityState === 'hidden' && isRunning) pauseTimer(true);
                 if (document.visibilityState === 'visible') {
-                    // If the timer was auto-paused, notify the user
-                    if (wasAutoPaused && !isRunning) {
-                        showToast('⏸ Timer paused — tab was inactive', false);
-                        // Keep wasAutoPaused flag so the display shows the indicator
-                        // It will be cleared when the user manually resumes or resets
-                    }
-                    // Re-acquire wake lock if timer is running
-                    if (isRunning && !wakeLockSentinel) {
-                        await requestWakeLock();
-                    }
-                    // Check if stored totals need refresh (in case date changed while tab was open)
+                    if (wasAutoPaused && !isRunning && remainingSeconds>0 && remainingSeconds<totalSeconds) startTimer();
+                    if (isRunning && !wakeLockSentinel) await requestWakeLock();
                     const storedKey = getStorageKey();
-                    const storedRaw = localStorage.getItem(storedKey);
-                    if (!storedRaw && (totalFocusSeconds > 0 || totalBreakSeconds > 0)) {
-                        // Date likely changed — reset in-memory totals
-                        totalFocusSeconds = 0;
-                        totalBreakSeconds = 0;
-                        updateTotalTimerDisplay();
+                    if (!localStorage.getItem(storedKey) && (totalFocusSeconds>0||totalBreakSeconds>0)) {
+                        totalFocusSeconds=0; totalBreakSeconds=0; updateTotalTimerDisplay();
                     }
                     updateTotalTimerDisplay();
                 }
             });
 
-            // ─────────────────────────────────────
-            // Keyboard shortcuts
-            // ─────────────────────────────────────
             document.addEventListener('keydown', (e) => {
-                if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
-                switch (e.code) {
-                    case 'Space':
-                        e.preventDefault();
-                        if (isRunning) pauseTimer(false);
-                        else startTimer();
-                        break;
-                    case 'KeyR':
-                        if (!e.ctrlKey && !e.metaKey) {
-                            e.preventDefault();
-                            resetTimer();
-                        }
-                        break;
-                    case 'KeyS':
-                        if (!e.ctrlKey && !e.metaKey) {
-                            e.preventDefault();
-                            skipSession();
-                        }
-                        break;
-                    case 'Digit1':
-                        e.preventDefault();
-                        switchMode('work');
-                        break;
-                    case 'Digit2':
-                        e.preventDefault();
-                        switchMode('short-break');
-                        break;
-                    case 'Digit3':
-                        e.preventDefault();
-                        switchMode('long-break');
-                        break;
+                if (e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA') return;
+                switch(e.code) {
+                    case 'Space': e.preventDefault(); isRunning ? pauseTimer(false) : startTimer(); break;
+                    case 'KeyR': if(!e.ctrlKey&&!e.metaKey){ e.preventDefault(); resetTimer(); } break;
+                    case 'KeyS': if(!e.ctrlKey&&!e.metaKey){ e.preventDefault(); skipSession(); } break;
+                    case 'Digit1': e.preventDefault(); switchMode('work'); break;
+                    case 'Digit2': e.preventDefault(); switchMode('short-break'); break;
+                    case 'Digit3': e.preventDefault(); switchMode('long-break'); break;
                 }
             });
 
-            // ─────────────────────────────────────
-            // Initialize
-            // ─────────────────────────────────────
+            // Init
             loadTotalsFromStorage();
-            setAccent(MODES['work'].accent);
+            setAccent(MODES.work.accent);
             renderSessionDots();
             updateDisplay();
             updateSessionDots();
             updateTotalTimerDisplay();
-            sessionLabel.textContent = MODES['work'].label;
+            sessionLabel.textContent = MODES.work.label;
             sessionInput.value = MAX_WORK_SESSIONS;
-
-            console.log('🍅 Pomodoro Timer Ready');
-            console.log('  Space — Start/Pause');
-            console.log('  R     — Reset');
-            console.log('  S     — Skip');
-            console.log('  1/2/3 — Switch modes');
-            console.log('  Wake Lock active when timer runs');
-            console.log('  Auto-pause when tab is inactive');
-            console.log(`  Today's totals loaded: Focus=${formatTotalTime(totalFocusSeconds)}, Break=${formatTotalTime(totalBreakSeconds)}`);
         })();
     </script>
 </body>

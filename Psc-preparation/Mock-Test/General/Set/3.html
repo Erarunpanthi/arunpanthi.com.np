@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engineering Economics Quiz</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #000;
+            color: #fff;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: #1a1a1a;
+            border: 3px solid #00ff00;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: #00ff00;
+            color: #000;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .timer {
+            font-size: 36px;
+            font-weight: bold;
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #000;
+            color: #00ff00;
+            border-radius: 8px;
+            display: inline-block;
+            min-width: 180px;
+        }
+
+        .timer.warning {
+            background-color: #ff0000;
+            color: #fff;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        .quiz-content {
+            padding: 30px;
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+
+        .quiz-content::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        .quiz-content::-webkit-scrollbar-track {
+            background: #000;
+        }
+
+        .quiz-content::-webkit-scrollbar-thumb {
+            background: #00ff00;
+            border-radius: 5px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 12px;
+            background-color: #333;
+            border-radius: 6px;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background-color: #00ff00;
+            transition: width 0.3s ease;
+            width: 0%;
+        }
+
+        .question-block {
+            margin-bottom: 25px;
+            padding: 20px;
+            background-color: #000;
+            border: 2px solid #00ff00;
+            border-radius: 8px;
+        }
+
+        .question-block.submitted {
+            pointer-events: none;
+        }
+
+        .question-text {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .question-number {
+            color: #00ff00;
+            margin-right: 8px;
+            font-size: 18px;
+        }
+
+        .options {
+            display: grid;
+            gap: 10px;
+        }
+
+        .option {
+            padding: 12px;
+            background-color: #1a1a1a;
+            border: 2px solid #333;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #fff;
+            font-size: 14px;
+        }
+
+        .option:hover {
+            border-color: #00ff00;
+            background-color: #2a2a2a;
+        }
+
+        .option input[type="radio"] {
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .option.selected {
+            background-color: #00ff00;
+            border-color: #00ff00;
+            color: #000;
+            font-weight: bold;
+        }
+
+        .option.correct {
+            background-color: #00ff00;
+            border-color: #00ff00;
+            color: #000;
+            font-weight: bold;
+        }
+
+        .option.incorrect {
+            background-color: #fff;
+            border-color: #fff;
+            color: #000;
+            text-decoration: line-through;
+        }
+
+        .option.correct::after {
+            content: " ✓";
+            float: right;
+            font-size: 20px;
+            color: #000;
+        }
+
+        .option.incorrect::after {
+            content: " ✗";
+            float: right;
+            font-size: 20px;
+            color: #000;
+        }
+
+        .submit-btn {
+            background-color: #00ff00;
+            color: #000;
+            border: none;
+            padding: 18px 60px;
+            font-size: 22px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            display: block;
+            margin: 30px auto;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: #00cc00;
+            transform: scale(1.05);
+        }
+
+        .submit-btn:disabled {
+            background-color: #666;
+            cursor: not-allowed;
+            transform: scale(1);
+        }
+
+        .result {
+            display: none;
+            text-align: center;
+            padding: 40px;
+            background-color: #000;
+            border: 3px solid #00ff00;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+
+        .result.show {
+            display: block;
+        }
+
+        .result h2 {
+            font-size: 38px;
+            margin-bottom: 20px;
+            color: #00ff00;
+        }
+
+        .score {
+            font-size: 60px;
+            font-weight: bold;
+            color: #00ff00;
+            margin: 20px 0;
+        }
+
+        .result-message {
+            font-size: 24px;
+            color: #fff;
+            margin: 15px 0;
+        }
+
+        .locked-message {
+            text-align: center;
+            padding: 100px 30px;
+            color: #00ff00;
+        }
+
+        .locked-message h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .locked-message p {
+            font-size: 20px;
+            margin: 10px 0;
+        }
+
+        .your-score {
+            font-size: 48px;
+            color: #00ff00;
+            margin: 30px 0;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 Engineering Economics Quiz</h1>
+            <p>100 Questions | Time Limit: 120 Minutes | Single Attempt Only</p>
+            <div class="timer" id="timer">120:00</div>
+        </div>
+
+        <div class="quiz-content" id="quizContent">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress"></div>
+            </div>
+
+            <form id="quizForm">
+                <!-- Questions will be inserted here by JavaScript -->
+            </form>
+
+            <button type="button" class="submit-btn" id="submitBtn" onclick="submitQuiz()">Submit Quiz</button>
+
+            <div class="result" id="result">
+                <h2>Quiz Completed!</h2>
+                <div class="score" id="scoreDisplay"></div>
+                <div class="result-message" id="resultMessage"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Check if quiz has been taken before
+        if (localStorage.getItem('economicsQuizCompleted') === 'true') {
+            const score = localStorage.getItem('economicsQuizScore');
+            const total = localStorage.getItem('economicsQuizTotal');
+            document.getElementById('quizContent').innerHTML = `
+                <div class="locked-message">
+                    <h2>⚠️ Quiz Already Completed</h2>
+                    <p>You have already taken this quiz.</p>
+                    <p>Retakes are not allowed.</p>
+                    <div class="your-score">Your Score: ${score}/${total}</div>
+                    <p style="margin-top: 20px;">Percentage: ${((score/total)*100).toFixed(2)}%</p>
+                </div>
+            `;
+        }
+
+        // Quiz data - questions and correct answers
+        const quizData = [
+            {q: "If market interest rate is 8% and inflation rate is 6%, then market free interest rate is", options: ["a. 2%", "b. 14%", "c. > 2%", "d. < 2%"], answer: "a"},
+            {q: "If monthly interest rate is 0.5% the nominal interest rate is", options: ["a. 0.06", "b. >6%", "c. <6%", "d. All of the above"], answer: "b"},
+            {q: "If net present value of a project is zero at a discount rate of 12% then IRR of project is ........", options: ["a. 0.13", "b. 0.12", "c. 0.1", "d. difficult to tell"], answer: "b"},
+            {q: "Construction company it sufficiently able to meet current obligation using liquid assets, then the acid test ratio of firm should be ........", options: ["a. 1", "b. >1", "c. < 1", "d. all of the above"], answer: "b"},
+            {q: "In breakeven analysis, how many variables are assumed?", options: ["a. 1", "b. 2", "c. 3", "d. >4"], answer: "b"},
+            {q: "A person took a loan of Rs 100,000 for 10 years at 11% compound interest. The person desires to pay off the amount in 10 equal annual installments. The amount of installments is:", options: ["a. 5368", "b. 6638", "c. 7738", "d. None of the above"], answer: "a"},
+            {q: "If you need Rs 50,00,000 in 5 years the sinking fund annuity required per year is", options: ["a. 1000000", "b. > 1000000", "c. < 1000000", "d. None of the above"], answer: "c"},
+            {q: "If P is principal amount, i is the rate of interest per annum and n is the number of periods in years, the compound amount factor (CAF) is", options: ["a. (1 + i)n", "b. (1+i)", "c. ni", "d. None of the above"], answer: "a"},
+            {q: "Increase in price of commodity with increase in price of fuel is known as", options: ["a. Demand pull inflation", "b. Demand Push inflation", "c. Cost pull inflation", "d. Cost push inflation"], answer: "d"},
+            {q: "The ratio of % change in demand to % Change in price is known as", options: ["a. Elasticity of demand", "b. Income elasticity of demand", "c. Price Elasticity of demand", "d. All of the above"], answer: "c"},
+            {q: "The main drawback of Internal Rate of return method is..", options: ["a. It may give multiple values", "b. It is not accurate", "c. It is not reliable", "d. All of the above"], answer: "a"},
+            {q: "Project is feasible if ……. Value of Cost Benefit Ratio (CBR) is 1", options: ["a. minimum", "b. maximum", "c. Both A and B", "d. None of the above"], answer: "b"},
+            {q: "Which one of the following statements in correct?", options: ["a. The number of years required to recover the initial cash investment in a project, is called Pay Back period (PBP)", "b. The discount rate that equates the present value of the expected Net Cash Flows (CFS) with the Initial Cash Outflow (ICO) is known as internal rate of return.", "c. The present value of the proposal's net cash flows, less the proposal's initial cash outflow is known as the Net Present Value (N/PV)", "d. All of the above"], answer: "d"},
+            {q: "In a cash-flow :", options: ["a. Time 0 is considered to be the present", "b. A vertical arrow pointing up indicates a positive cash flow", "c. An arrow pointing downward indicates a negative cash flow", "d. All of these"], answer: "d"},
+            {q: "If Conventional B/C is 1.25, Modified benefit ratio is …", options: ["a. < 1.25", "b. nan", "c. > 1.25", "d. All of the above"], answer: "c"},
+            {q: "If MARR = 12% and IRR = 15 %, ERR is", options: ["a. < 12%", "b. > 15%", "c. Between 12% to 15%", "d. All of the above"], answer: "c"},
+            {q: "If IRR is < MARR, Payback period is", options: ["a. > standard PB period", "b. < Standard Payback period", "c. nan", "d. None of the above"], answer: "a"},
+            {q: "If P is the principal amount,I is the ratio of interest and n is the number of periods in a year then the interest factor is …….", options: ["a. 1+ni", "b. ni-1", "c. ni", "d. none of these"], answer: "c"},
+            {q: "In economic marginal cost is change in total cost that arises when the quantity produced changed by …….", options: ["a. 100 unit", "b. 0.01 unit", "c. 0.1 unit", "d. 1 unit"], answer: "d"},
+            {q: "If a is the base amount expenditure is the increase in the operation cost year over a period of n years. The total cost of maintenance is …….", options: ["a. a +(n+1)b", "b. a +(n-1)b", "c. a *(n-1)b", "d. a (n+1)b"], answer: "b"},
+            {q: "Each financial ratio is generally compared by …….", options: ["a. a past ratio calculated from the past financial standard of the firm", "b. a ratio developed by using the projected financial statement of the firm", "c. a ratio of some selected firms most progressive and successful at the point of consideration", "d. all of the above"], answer: "d"},
+            {q: "Annuities involve ........", options: ["a. all payment of equal amount", "b. a series of payment", "c. payment at equal interval", "d. all of these"], answer: "d"},
+            {q: "Simple payback period is ……… Discounted Payback period", options: ["a. Always equal to", "b. Greater than", "c. Less than", "d. All of the above"], answer: "c"},
+            {q: "Pick up the correct statement from the following", options: ["a. An annuity is a series of equal payments occurring at equal period of time.", "b. Annuity is called an equal payment or uniform payment series", "c. Annuity may have periods of time of any length but should always be of equal length", "d. All of the above"], answer: "d"},
+            {q: "For a financial institution the most important study of the project to be taken for risk management", options: ["a. appraisal", "b. environment and social", "c. technical", "d. financial and economical"], answer: "d"},
+            {q: "For selection of any project which of the following is mostly used ........", options: ["a. B/C ratio", "b. IRR", "c. NPV", "d. all of these"], answer: "c"},
+            {q: "Value of an asset at any time after purchase is known as", options: ["a. Book Value", "b. Market Value", "c. Salvage Value", "d. Scrap Value"], answer: "a"},
+            {q: "The discount rate that makes the net present value equal to zero is known as …….", options: ["a. breakeven point", "b. internal rate of return", "c. external rate of return", "d. none of the above"], answer: "b"},
+            {q: "The annuity which refers to debt payment for recovering the initial amount or capital in equal periodical payments, is known as …….", options: ["a. capital recovery annuity", "b. present worth annuity", "c. sinking fund annuity", "d. compound annuity"], answer: "a"},
+            {q: "The economic system in which ownership and allocation of resources, goods and services produced lies on national government is called ........", options: ["a. capitalist economic system", "b. communist economic system", "c. mixed economic system", "d. all of these"], answer: "b"},
+            {q: "Future is unpredictable but if the probability of occurrence of the outcome can be calculated then the situation is", options: ["a. Certain", "b. Uncertain", "c. Risky", "d. Unpredictable"], answer: "c"},
+            {q: "The cost that differs to alternatives is called …….", options: ["a. common cost", "b. variable cost", "c. differential cost", "d. opportunity cost"], answer: "c"},
+            {q: "For a government funded development project the most important factor to be considered is …….", options: ["a. cost benefit", "b. social and political benefit", "c. job creation", "d. economic rate of return"], answer: "b"},
+            {q: "Opportunity Cost is", options: ["a. Cost of opportunity foregone", "b. Cost of best rejected opportunity", "c. Both A and B", "d. None of the above"], answer: "c"},
+            {q: "Current assets less the inventory is known as .......", options: ["a. current assets", "b. stock", "c. inventory", "d. quick asset"], answer: "d"},
+            {q: "Current assets that we presumably can be quickly converted to cash at a close to their book value is called ........", options: ["a. current assets", "b. stock", "c. inventory", "d. quick asset"], answer: "d"},
+            {q: "A decrease in asset's value caused by unfavorable market condition is called........", options: ["a. deflation", "b. depreciation", "c. preference share", "d. dividend fund"], answer: "b"},
+            {q: "A state in which the value of money is rising that is prices are falling is called........", options: ["a. deflation", "b. depreciation", "c. degradation", "d. decline"], answer: "a"},
+            {q: "According to Law of demand", options: ["a. Demand increases if price increases", "b. Demand decrease if price increases", "c. Price increases if Demand increases", "d. Price decreases is demand increases"], answer: "b"},
+            {q: "Excessive spending power of consumers that pulls prices up is called …….", options: ["a. demand pull inflation", "b. cost pull inflation", "c. cost pull inflation", "d. demand push inflation"], answer: "a"},
+            {q: "The loss in value of an asset with decrease in its volume is known as", options: ["a. Depreciation", "b. Depletion", "c. Inflation", "d. obsolescence"], answer: "b"},
+            {q: "Cost of the material is …… cost", options: ["a. Direct cost", "b. Indirect Cost", "c. Both A and B", "d. None of the above"], answer: "a"},
+            {q: "Labour cost is concerned with ........", options: ["a. direct cost", "b. indirect cost", "c. both 'a' and 'b'", "d. contingency"], answer: "c"},
+            {q: "Material cost is concerned with ........", options: ["a. direct cost", "b. indirect cost", "c. both 'a' and 'b'", "d. contingency"], answer: "a"},
+            {q: "Pick up the element of cost from the following …….", options: ["a. direct material", "b. direct labour", "c. overhead", "d. all of the above"], answer: "d"},
+            {q: "The benefit cost ratio is …….", options: ["a. directly proportional to discount rate", "b. inversely proportional to discount rate", "c. not related to discount rate", "d. superior to all of the above method"], answer: "b"},
+            {q: "In Government Projects which of the following is carried out", options: ["a. Economic analysis", "b. Financial Analysis", "c. Both A and B", "d. None of the above"], answer: "a"},
+            {q: "The ratio analysis of construction firm is used for the analysis by …….", options: ["a. financial analysis", "b. shareholder of the form", "c. management group of construction firm", "d. all of the above"], answer: "d"},
+            {q: "A stage when all the condition of a financing agreements are fulfilled prior to initial availability of a fund is called ........", options: ["a. financial clearing", "b. financial closure", "c. financial cloud off", "d. financial wellbeing"], answer: "b"},
+            {q: "If benefit cost ratio of a proposed project is 0.95 then project is ........", options: ["a. financially viable", "b. economically viable", "c. financially not feasible but may or may not economically viable", "d. difficult to tell"], answer: "c"},
+            {q: "Total cost of project is sum of ........", options: ["a. fixed and variable cost", "b. average cost and fixed cost", "c. both 'a' and 'b'", "d. none of the above"], answer: "a"},
+            {q: "Both architect and engineer makes use of the cost estimate of the project ........", options: ["a. for site selection", "b. for designing of the project", "c. for choosing alternatives", "d. all of the above"], answer: "d"},
+            {q: "The project contractor relies on the cost of estimates", options: ["a. for the submission of competitive bid for a lump sum contract", "b. for unit price contract", "c. for preparation of a definitive estimate to help negotiate contract", "d. all of the above"], answer: "d"},
+            {q: "For any project to be feasible …….", options: ["a. future work should be negative", "b. present worth should be positive", "c. annual worth should be equal to zero", "d. payback period should be equal to or less than 5 year"], answer: "b"},
+            {q: "The sinking fund factor is …….", options: ["a. i/(1+i)^n-1", "b. i(1+i)^n/(1-i)^n-1", "c. i(1+i)^n-1/(1+i)^n-1", "d. i(1+i)^n-1/i"], answer: "a"},
+            {q: "According to law of demand if the price of good increase than the demand of articles ........", options: ["a. increase", "b. decrease", "c. constant", "d. all of the above"], answer: "b"},
+            {q: "According to law of supply if the price of goods increases then the supply of goods ........", options: ["a. increase", "b. decrease", "c. constant", "d. all of the above"], answer: "a"},
+            {q: "As Bank interest rate increases the Internal Rate of Return (IRR) …", options: ["a. Increases", "b. Decreases", "c. Remain Constant", "d. All of the above"], answer: "c"},
+            {q: "If bank interest rate increases MARR …", options: ["a. increases", "b. decreases", "c. Remain Constant", "d. None of the above"], answer: "a"},
+            {q: "A state in which the value of money is decreasing that is prices are falling is called........", options: ["a. inflation", "b. depreciation", "c. degradation", "d. decline"], answer: "a"},
+            {q: "Which of the following is not construction estimate?", options: ["a. Initial feasibility estimate", "b. Conceptual preliminary budget", "c. Definite estimate", "d. None of these"], answer: "d"},
+            {q: "The annual periodic payment for repayment for repayment of capital invested over definite period is ........", options: ["a. interest certain", "b. annuity certain", "c. due interest", "d. due annuity"], answer: "b"},
+            {q: "Engineering economics is mainly concerned with ........", options: ["a. IRR", "b. ERR", "c. B/C ratio", "d. profit"], answer: "d"},
+            {q: "Probabilistic estimate of a construction project includes ........", options: ["a. labour", "b. productivity", "c. wage scale", "d. all of the above"], answer: "d"},
+            {q: "The economic resources means ........", options: ["a. land", "b. labour", "c. capital", "d. all of these"], answer: "d"},
+            {q: "For attractive project payback period must be …….", options: ["a. less as possible", "b. more as possible", "c. both 'a' and 'b'", "d. none of these"], answer: "a"},
+            {q: "The more critical (or severe) test of the firm liquidity can be judged by ........", options: ["a. liquidity ratio", "b. current ratio", "c. acid test (or quick ratio)ratio", "d. debts ratio"], answer: "c"},
+            {q: "The state at which economic forces are balanced is called ........", options: ["a. lost potential", "b. economical equilibrium", "c. profit potential", "d. demand business"], answer: "b"},
+            {q: "Which of the following statement is correct?", options: ["a. Marginal Utility increases with increase in use", "b. Marginal Utility decreases with decrease in use", "c. Marginal Utility remain constant with use", "d. All of the above"], answer: "b"},
+            {q: "The interest rate corresponding to zero NPV is ........", options: ["a. MARR", "b. IRR", "c. SDR", "d. all of the above"], answer: "b"},
+            {q: "In Sensitivity analysis, most sensitive parameter is the one with …. Slope in Sensitivity graph", options: ["a. minimum", "b. maximum", "c. Both A and B", "d. None of the above"], answer: "b"},
+            {q: "Inflation is normal phenomenon in which .........", options: ["a. normal price of goods is decreased", "b. normal price of goods is remain constant", "c. normal price of goods is raised", "d. all of the above"], answer: "c"},
+            {q: "The wages of supervisor and material handlers are charged as …….", options: ["a. overhead", "b. direct labour cost", "c. indirect labour cost", "d. none of these"], answer: "a"},
+            {q: "The construction estimate of project is used by …….", options: ["a. owner of the facility", "b. the consulting architect/engineer", "c. the contractor of the project", "d. all of the above"], answer: "d"},
+            {q: "If P is principle amount, I is the interest rate per year, N is the number of periods in years, the interest amount is:", options: ["a. P (1 + i)N – 1", "b. P (1 + i) – 1", "c. P (1 + i)N – P", "d. PN – P"], answer: "c"},
+            {q: "The sunk cost include ………", options: ["a. past expenditure", "b. unrecovered balance", "c. an invested capital that cannot be retrieved", "d. all of the above"], answer: "d"},
+            {q: "The most reliable method of evaluating project financially is", options: ["a. Pay back period", "b. Net Present Value", "c. Internal Rate of Return", "d. External rate of return"], answer: "b"},
+            {q: "Simplest method of evaluating Project is", options: ["a. Payback period method", "b. Net Present Value", "c. Internal Rate of Return", "d. Benefit Cost Ratio"], answer: "a"},
+            {q: "If Net Present value is negative , Net future value is", options: ["a. positive", "b. zero", "c. negative", "d. All of the above"], answer: "c"},
+            {q: "Present worth annuity (PWA) is generally is generally known as …….", options: ["a. premium annuities", "b. income annuities", "c. future annuities", "d. all of the above"], answer: "b"},
+            {q: "The cost associated with the project which can not be calculated accurately is known as …", options: ["a. Prime cost", "b. Overhead Cost", "c. Associated Cost", "d. Premium Cost"], answer: "b"},
+            {q: "Investment less the discounted benefit is called ........", options: ["a. PV", "b. NPV", "c. PW", "d. all of the above"], answer: "b"},
+            {q: "To critically examine the detail feasibility study report of any project is to ........", options: ["a. review", "b. appraise", "c. check through readiness filter", "d. all of the above"], answer: "b"},
+            {q: "The situation at which production of good just sufficient to consumption is called .........", options: ["a. satisfaction point", "b. breakeven point", "c. equivalent point", "d. all of the above"], answer: "b"},
+            {q: "Company stock with dividends that are paid to stockholders after common stock dividends are paid out is called ........", options: ["a. share", "b. priority share", "c. preference share", "d. dividend fund"], answer: "c"},
+            {q: "Earning per share is most important ratio for …….", options: ["a. shareholder", "b. banks", "c. company's management", "d. all of the above"], answer: "a"},
+            {q: "The inverse of sinking fund factor is …….", options: ["a. single payment present worth factor", "b. series compound amount factor", "c. series present worth factor", "d. sinking fund factor"], answer: "b"},
+            {q: "Annual income amount required to recover the invested capital is known as", options: ["a. Sinking fund", "b. Capital budget", "c. Capital Recovery amount", "d. nan"], answer: "c"},
+            {q: "In a project equal investment is done for the future value then it is known as ........", options: ["a. sinking fund", "b. capital recovery", "c. future annuity", "d. deferred annuity"], answer: "a"},
+            {q: "The fund gradually accumulated by periodic deposit for replacement of a structure at the end of its life cycle is called ........", options: ["a. sinking fund", "b. capital fund", "c. revolving fund", "d. treasury"], answer: "a"},
+            {q: "Method of Depreciation in which the amount of depreciation increases with time is", options: ["a. Straight line", "b. Declining Balance", "c. Sum of year digit", "d. Sinking fund"], answer: "d"},
+            {q: "In which of the following method of depreciation salvage value is not given", options: ["a. Straight line", "b. Sum of year digit", "c. Declining balance", "d. Sinking fund method"], answer: "d"},
+            {q: "According to Law of Supply", options: ["a. Supply increases if price increases", "b. Supply decrease if price increases", "c. Price increases if Supply increases", "d. Price decreases is Supply increases"], answer: "a"},
+            {q: "A project construction cost includes …….", options: ["a. the labour and material cost", "b. the equivalent and overhead cost", "c. the profit of the contractor", "d. all of the above"], answer: "d"},
+            {q: "If the percentage fall in the quantity demanded is greater than the percentage rise in the price changed …….", options: ["a. the revenue will rise", "b. the revenue will fall", "c. is not related with the discount rate", "d. none of the above"], answer: "b"},
+            {q: "In a cash flow diagram …….", options: ["a. time 0 is considered to be present", "b. time 1 is considered to be end of the past period 1", "c. a vertical arrow pointing up indicates a positive cash flow", "d. all of the above"], answer: "d"},
+            {q: "In a cash flow series …….", options: ["a. uniform gradient signifies that an income or disbursement changed by the same amount in each interest period", "b. either an increase or decrease in the amount of cash flow is called the gradient", "c. the gradient in a cash flow may be positive or negative", "d. all of these"], answer: "d"},
+            {q: "In economic the change in total cost that arises when the quantity produced changes by 1 unit is called …….", options: ["a. variable cost", "b. added cost", "c. marginal cost", "d. cost without profit"], answer: "c"},
+            {q: "If IRR is equal to MARR , Net Present Value NPV is", options: ["a. Zero", "b. Positive", "c. Negative", "d. Also equal to MARR"], answer: "a"},
+            {q: "Gross Domestic Product (GDP) measures:", options: ["a. The total value of all goods and services produced by the citizens of a country, regardless of location", "b. The total value of all goods and services consumed within a country in a given period", "c. The total value of all intermediate goods and services produced within a country in a given period", "d. The total market value of all final goods and services produced within a country in a given period"], answer: "d"}
+        ];
+
+        // Generate quiz HTML
+        const formElement = document.getElementById('quizForm');
+        let questionsHTML = '';
+        
+        quizData.forEach((item, index) => {
+            const qNum = index + 1;
+            questionsHTML += `
+                <div class="question-block">
+                    <div class="question-text">
+                        <span class="question-number">${qNum}.</span>
+                        ${item.q}
+                    </div>
+                    <div class="options">
+                        ${item.options.map((opt, i) => `
+                            <label class="option">
+                                <input type="radio" name="q${qNum}" value="${String.fromCharCode(97 + i)}">
+                                ${opt}
+                            </label>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        });
+        
+        formElement.innerHTML = questionsHTML;
+
+        // Timer setup (120 minutes)
+        let timeLeft = 120 * 60;
+        let timerInterval;
+
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                updateTimerDisplay();
+                
+                if (timeLeft <= 300) {
+                    document.getElementById('timer').classList.add('warning');
+                }
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    submitQuiz();
+                }
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            document.getElementById('timer').textContent = 
+                `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        // Option selection
+        document.querySelectorAll('.option').forEach(option => {
+            option.addEventListener('click', function() {
+                const radio = this.querySelector('input[type="radio"]');
+                radio.checked = true;
+                
+                const parent = this.parentElement;
+                parent.querySelectorAll('.option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                
+                this.classList.add('selected');
+                updateProgress();
+            });
+        });
+
+        // Update progress bar
+        function updateProgress() {
+            const totalQuestions = quizData.length;
+            let answered = 0;
+            
+            for (let i = 1; i <= totalQuestions; i++) {
+                if (document.querySelector(`input[name="q${i}"]:checked`)) {
+                    answered++;
+                }
+            }
+            
+            const progress = (answered / totalQuestions) * 100;
+            document.getElementById('progress').style.width = progress + '%';
+        }
+
+        // Submit quiz
+        function submitQuiz() {
+            clearInterval(timerInterval);
+            
+            let score = 0;
+            const totalQuestions = quizData.length;
+            
+            quizData.forEach((item, index) => {
+                const qNum = index + 1;
+                const selectedOption = document.querySelector(`input[name="q${qNum}"]:checked`);
+                const correctAnswer = item.answer;
+                
+                const options = document.querySelectorAll(`input[name="q${qNum}"]`);
+                
+                options.forEach(option => {
+                    const label = option.parentElement;
+                    
+                    if (option.value === correctAnswer) {
+                        label.classList.add('correct');
+                    }
+                    
+                    if (selectedOption && option === selectedOption && option.value !== correctAnswer) {
+                        label.classList.add('incorrect');
+                    }
+                });
+                
+                if (selectedOption && selectedOption.value === correctAnswer) {
+                    score++;
+                }
+            });
+            
+            // Mark quiz as completed in localStorage
+            localStorage.setItem('economicsQuizCompleted', 'true');
+            localStorage.setItem('economicsQuizScore', score);
+            localStorage.setItem('economicsQuizTotal', totalQuestions);
+            
+            document.querySelectorAll('.question-block').forEach(block => {
+                block.classList.add('submitted');
+            });
+            
+            document.getElementById('submitBtn').style.display = 'none';
+            
+            const percentage = (score / totalQuestions * 100).toFixed(2);
+            document.getElementById('scoreDisplay').textContent = `${score} / ${totalQuestions}`;
+            
+            let message = '';
+            if (percentage >= 90) {
+                message = '🌟 Outstanding! Excellent Performance!';
+            } else if (percentage >= 75) {
+                message = '👍 Very Good! Well Done!';
+            } else if (percentage >= 60) {
+                message = '📚 Good! Keep Learning!';
+            } else if (percentage >= 40) {
+                message = '💪 Fair! Need More Study!';
+            } else {
+                message = '📖 Keep Working Hard!';
+            }
+            
+            document.getElementById('resultMessage').innerHTML = `
+                <p>${message}</p>
+                <p style="margin-top: 15px;">Percentage: ${percentage}%</p>
+                <p style="margin-top: 10px; font-size: 18px;">⚠️ This quiz cannot be retaken</p>
+            `;
+            document.getElementById('result').classList.add('show');
+            
+            document.getElementById('result').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Start timer when page loads (only if quiz not completed)
+        window.addEventListener('load', () => {
+            if (localStorage.getItem('economicsQuizCompleted') !== 'true') {
+                startTimer();
+            }
+        });
+
+        // Prevent page refresh during quiz
+        window.addEventListener('beforeunload', function (e) {
+            if (localStorage.getItem('economicsQuizCompleted') !== 'true') {
+                e.preventDefault();
+                e.returnValue = '';
+            }
+        });
+    </script>
+</body>
+</html>

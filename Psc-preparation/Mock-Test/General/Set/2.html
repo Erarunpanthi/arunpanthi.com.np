@@ -4,1187 +4,353 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UN & International Organizations Quiz</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #000;
-            color: #fff;
-            padding: 20px;
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background-color: #1a1a1a;
-            border: 2px solid #00ff00;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .header {
-            background-color: #00ff00;
-            color: #000;
-            padding: 25px;
-            text-align: center;
-        }
-
-        .header h1 {
-            font-size: 28px;
-            margin-bottom: 10px;
-            font-weight: bold;
-        }
-
-        .timer {
-            font-size: 32px;
-            font-weight: bold;
-            margin-top: 15px;
-            padding: 15px;
-            background-color: #000;
-            color: #00ff00;
-            border-radius: 8px;
-            display: inline-block;
-            min-width: 150px;
-        }
-
-        .timer.warning {
-            background-color: #ff0000;
-            color: #fff;
-            animation: blink 1s infinite;
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
-        }
-
-        .quiz-content {
-            padding: 30px;
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 10px;
-            background-color: #333;
-            border-radius: 5px;
-            overflow: hidden;
-            margin-bottom: 30px;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background-color: #00ff00;
-            transition: width 0.3s ease;
-            width: 0%;
-        }
-
-        .question-block {
-            margin-bottom: 25px;
-            padding: 20px;
-            background-color: #000;
-            border: 1px solid #00ff00;
-            border-radius: 8px;
-        }
-
-        .question-block.submitted {
-            pointer-events: none;
-        }
-
-        .question-text {
-            font-size: 17px;
-            font-weight: bold;
-            margin-bottom: 15px;
-            color: #fff;
-        }
-
-        .question-number {
-            color: #00ff00;
-            margin-right: 8px;
-        }
-
-        .options {
-            display: grid;
-            gap: 12px;
-        }
-
-        .option {
-            padding: 14px;
-            background-color: #1a1a1a;
-            border: 2px solid #333;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            color: #fff;
-        }
-
-        .option:hover {
-            border-color: #00ff00;
-            background-color: #2a2a2a;
-        }
-
-        .option input[type="radio"] {
-            margin-right: 10px;
-            cursor: pointer;
-        }
-
-        .option.selected {
-            background-color: #00ff00;
-            border-color: #00ff00;
-            color: #000;
-            font-weight: bold;
-        }
-
-        .option.correct {
-            background-color: #00ff00;
-            border-color: #00ff00;
-            color: #000;
-            font-weight: bold;
-        }
-
-        .option.incorrect {
-            background-color: #fff;
-            border-color: #fff;
-            color: #000;
-            text-decoration: line-through;
-        }
-
-        .option.correct::after {
-            content: " ✓";
-            float: right;
-            font-size: 20px;
-            color: #000;
-        }
-
-        .option.incorrect::after {
-            content: " ✗";
-            float: right;
-            font-size: 20px;
-            color: #000;
-        }
-
-        .submit-btn {
-            background-color: #00ff00;
-            color: #000;
-            border: none;
-            padding: 16px 50px;
-            font-size: 20px;
-            font-weight: bold;
-            border-radius: 8px;
-            cursor: pointer;
-            display: block;
-            margin: 30px auto;
-            transition: all 0.3s ease;
-        }
-
-        .submit-btn:hover {
-            background-color: #00cc00;
-            transform: scale(1.05);
-        }
-
-        .submit-btn:disabled {
-            background-color: #666;
-            cursor: not-allowed;
-            transform: scale(1);
-        }
-
-        .result {
-            display: none;
-            text-align: center;
-            padding: 40px;
-            background-color: #000;
-            border: 3px solid #00ff00;
-            border-radius: 10px;
-            margin-top: 30px;
-        }
-
-        .result.show {
-            display: block;
-        }
-
-        .result h2 {
-            font-size: 36px;
-            margin-bottom: 20px;
-            color: #00ff00;
-        }
-
-        .score {
-            font-size: 56px;
-            font-weight: bold;
-            color: #00ff00;
-            margin: 20px 0;
-        }
-
-        .result-message {
-            font-size: 22px;
-            color: #fff;
-            margin: 15px 0;
-        }
-
-        .locked-message {
-            text-align: center;
-            padding: 100px 30px;
-            color: #00ff00;
-        }
-
-        .locked-message h2 {
-            font-size: 32px;
-            margin-bottom: 20px;
-        }
-
-        .locked-message p {
-            font-size: 18px;
-        }
-
-        .your-score {
-            font-size: 42px;
-            color: #00ff00;
-            margin: 30px 0;
-        }
-    </style>
+   <link rel="stylesheet" href="/css/Mock_Test.css">
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>🌍 UN & International Organizations Quiz</h1>
-            <p>50 Questions | Time Limit: 60 Minutes | Single Attempt Only</p>
-            <div class="timer" id="timer">60:00</div>
-        </div>
+    
+    <nav class="navbar">
+        <span class="nav-title">🌍 UN & International Organizations</span>
+        <div class="timer" id="timer">60:00</div>
+    </nav>
 
-        <div class="quiz-content" id="quizContent">
-            <div class="progress-bar">
-                <div class="progress-fill" id="progress"></div>
+    <div class="main-area">
+                <aside class="sidebar" id="sidebar">
+            <h3>📋 Questions</h3>
+            <div class="question-grid" id="questionGrid"></div>
+        </aside>
+
+        <!-- Main content -->
+        <main class="content">
+            <div class="container">
+                <div class="header">
+                    <h1>UN & International Organizations Quiz</h1>
+                    <p>50 Questions • Time Limit: 60 Minutes</p>
+                </div>
+
+                <div class="quiz-content" id="quizContent">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress"></div>
+                    </div>
+
+                    <form id="quizForm">
+                        <!-- Questions 1-50 (same as original) -->
+                        <div class="question-block" id="qblock1"><div class="question-text"><span class="question-number">1.</span>The largest budget provider of UN Budget is USA (22%). Nepal contributes …..% of budget of UN.</div><div class="options"><label class="option"><input type="radio" name="q1" value="a"> a. 0.6</label><label class="option"><input type="radio" name="q1" value="b"> b. 0.006</label><label class="option"><input type="radio" name="q1" value="c"> c. 0.0006</label><label class="option"><input type="radio" name="q1" value="d"> d. 0.06</label></div></div>
+                        <div class="question-block" id="qblock2"><div class="question-text"><span class="question-number">2.</span>Nepal had been the temporary member of UN Security Council for ………. Tenure.</div><div class="options"><label class="option"><input type="radio" name="q2" value="a"> a. 1</label><label class="option"><input type="radio" name="q2" value="b"> b. 2</label><label class="option"><input type="radio" name="q2" value="c"> c. 3</label><label class="option"><input type="radio" name="q2" value="d"> d. 4</label></div></div>
+                        <div class="question-block" id="qblock3"><div class="question-text"><span class="question-number">3.</span>How many members of the United Nation's Security Council have veto power?</div><div class="options"><label class="option"><input type="radio" name="q3" value="a"> a. 3</label><label class="option"><input type="radio" name="q3" value="b"> b. 4</label><label class="option"><input type="radio" name="q3" value="c"> c. 5</label><label class="option"><input type="radio" name="q3" value="d"> d. 6</label></div></div>
+                        <div class="question-block" id="qblock4"><div class="question-text"><span class="question-number">4.</span>Nepal signed the Paris Agreement on climate change as part of its commitment to the UNFCCC in which year?</div><div class="options"><label class="option"><input type="radio" name="q4" value="a"> a. 2012</label><label class="option"><input type="radio" name="q4" value="b"> b. 2016</label><label class="option"><input type="radio" name="q4" value="c"> c. 2020</label><label class="option"><input type="radio" name="q4" value="d"> d. 2024</label></div></div>
+                        <div class="question-block" id="qblock5"><div class="question-text"><span class="question-number">5.</span>The UNO was founded on</div><div class="options"><label class="option"><input type="radio" name="q5" value="a"> a. 1945-10-24</label><label class="option"><input type="radio" name="q5" value="b"> b. 1985-12-08</label><label class="option"><input type="radio" name="q5" value="c"> c. 1997-06-06</label><label class="option"><input type="radio" name="q5" value="d"> d. 1995-11-07</label></div></div>
+                        <div class="question-block" id="qblock6"><div class="question-text"><span class="question-number">6.</span>How are the financial contributions to the United Nations budget determined for each member state?</div><div class="options"><label class="option"><input type="radio" name="q6" value="a"> a. Based on each member state's capacity to pay</label><label class="option"><input type="radio" name="q6" value="b"> b. Based on the member state's geographic location</label><label class="option"><input type="radio" name="q6" value="c"> c. Based on each member state's population size</label><label class="option"><input type="radio" name="q6" value="d"> d. Equally among all member states</label></div></div>
+                        <div class="question-block" id="qblock7"><div class="question-text"><span class="question-number">7.</span>Nepal is a member of which major UN body</div><div class="options"><label class="option"><input type="radio" name="q7" value="a"> a. United Nations Security Council</label><label class="option"><input type="radio" name="q7" value="b"> b. United Nations International Court of Justice (ICJ)</label><label class="option"><input type="radio" name="q7" value="c"> c. United Nations Human Rights Council</label><label class="option"><input type="radio" name="q7" value="d"> d. United Nations Economic and Social Council (ECOSOC)</label></div></div>
+                        <div class="question-block" id="qblock8"><div class="question-text"><span class="question-number">8.</span>Afghanistan participated as the 8th member of SAARC in?</div><div class="options"><label class="option"><input type="radio" name="q8" value="a"> a. 15th Summit</label><label class="option"><input type="radio" name="q8" value="b"> b. 18th Summit</label><label class="option"><input type="radio" name="q8" value="c"> c. 14th Summit</label><label class="option"><input type="radio" name="q8" value="d"> d. 16th Summit</label></div></div>
+                        <div class="question-block" id="qblock9"><div class="question-text"><span class="question-number">9.</span>Which SAARC Summit decided to reduce regional centre to from 11 to 5?</div><div class="options"><label class="option"><input type="radio" name="q9" value="a"> a. 15th</label><label class="option"><input type="radio" name="q9" value="b"> b. 16th</label><label class="option"><input type="radio" name="q9" value="c"> c. 17th</label><label class="option"><input type="radio" name="q9" value="d"> d. 18th</label></div></div>
+                        <div class="question-block" id="qblock10"><div class="question-text"><span class="question-number">10.</span>When did ILO received the Nobel peace prize?</div><div class="options"><label class="option"><input type="radio" name="q10" value="a"> a. 1969 AD</label><label class="option"><input type="radio" name="q10" value="b"> b. 1970 AD</label><label class="option"><input type="radio" name="q10" value="c"> c. 1972 AD</label><label class="option"><input type="radio" name="q10" value="d"> d. 1981 AD</label></div></div>
+                        <div class="question-block" id="qblock11"><div class="question-text"><span class="question-number">11.</span>Trusteeship Council suspended its operation since ……………..</div><div class="options"><label class="option"><input type="radio" name="q11" value="a"> a. 1990 AD</label><label class="option"><input type="radio" name="q11" value="b"> b. 1991 AD</label><label class="option"><input type="radio" name="q11" value="c"> c. 1993 AD</label><label class="option"><input type="radio" name="q11" value="d"> d. 1994 AD</label></div></div>
+                        <div class="question-block" id="qblock12"><div class="question-text"><span class="question-number">12.</span>When did Nepal formally get membership of BIMSTEC?</div><div class="options"><label class="option"><input type="radio" name="q12" value="a"> a. 2004, June</label><label class="option"><input type="radio" name="q12" value="b"> b. 2004, February</label><label class="option"><input type="radio" name="q12" value="c"> c. 2006, May</label><label class="option"><input type="radio" name="q12" value="d"> d. 2003, March</label></div></div>
+                        <div class="question-block" id="qblock13"><div class="question-text"><span class="question-number">13.</span>How many times that the SAARC summits held in Nepal?</div><div class="options"><label class="option"><input type="radio" name="q13" value="a"> a. 3rd, 11th, 18th</label><label class="option"><input type="radio" name="q13" value="b"> b. 1st, 9th, 18th</label><label class="option"><input type="radio" name="q13" value="c"> c. 2nd, 8th, 15th</label><label class="option"><input type="radio" name="q13" value="d"> d. 4th, 11th, 18th</label></div></div>
+                        <div class="question-block" id="qblock14"><div class="question-text"><span class="question-number">14.</span>Which of the following countries is a member of SAARC but does not share a land border with India?</div><div class="options"><label class="option"><input type="radio" name="q14" value="a"> a. Bhutan</label><label class="option"><input type="radio" name="q14" value="b"> b. Maldives</label><label class="option"><input type="radio" name="q14" value="c"> c. Afghanistan</label><label class="option"><input type="radio" name="q14" value="d"> d. Nepal</label></div></div>
+                        <div class="question-block" id="qblock15"><div class="question-text"><span class="question-number">15.</span>Which of the following is the only SAARC member country to have never hosted a SAARC summit?</div><div class="options"><label class="option"><input type="radio" name="q15" value="a"> a. India</label><label class="option"><input type="radio" name="q15" value="b"> b. Pakistan</label><label class="option"><input type="radio" name="q15" value="c"> c. Afghanistan</label><label class="option"><input type="radio" name="q15" value="d"> d. Maldives</label></div></div>
+                        <div class="question-block" id="qblock16"><div class="question-text"><span class="question-number">16.</span>Which of the following countries did NOT participate in the 16th SAARC Summit held in 2014?</div><div class="options"><label class="option"><input type="radio" name="q16" value="a"> a. India</label><label class="option"><input type="radio" name="q16" value="b"> b. Pakistan</label><label class="option"><input type="radio" name="q16" value="c"> c. Afghanistan</label><label class="option"><input type="radio" name="q16" value="d"> d. Maldives</label></div></div>
+                        <div class="question-block" id="qblock17"><div class="question-text"><span class="question-number">17.</span>Current Secretary-General of the United Nation is</div><div class="options"><label class="option"><input type="radio" name="q17" value="a"> a. Trygve Lie</label><label class="option"><input type="radio" name="q17" value="b"> b. Abdul Mehmood</label><label class="option"><input type="radio" name="q17" value="c"> c. Antonio Guterres</label><label class="option"><input type="radio" name="q17" value="d"> d. Siddhartha Chatterjee</label></div></div>
+                        <div class="question-block" id="qblock18"><div class="question-text"><span class="question-number">18.</span>Which SAARC country has accepted the policy of dual Citizenship?</div><div class="options"><label class="option"><input type="radio" name="q18" value="a"> a. Nepal</label><label class="option"><input type="radio" name="q18" value="b"> b. India</label><label class="option"><input type="radio" name="q18" value="c"> c. Bhutan</label><label class="option"><input type="radio" name="q18" value="d"> d. Bangladesh</label></div></div>
+                        <div class="question-block" id="qblock19"><div class="question-text"><span class="question-number">19.</span>Where was the 3rd BIMSTEC summit held in 2014 A. D.?</div><div class="options"><label class="option"><input type="radio" name="q19" value="a"> a. Myanmar</label><label class="option"><input type="radio" name="q19" value="b"> b. Sri Lanka</label><label class="option"><input type="radio" name="q19" value="c"> c. Bhutan</label><label class="option"><input type="radio" name="q19" value="d"> d. Nepal</label></div></div>
+                        <div class="question-block" id="qblock20"><div class="question-text"><span class="question-number">20.</span>What is the regional initiative comprising 7 member states of both SAARC and ASEAN called?</div><div class="options"><label class="option"><input type="radio" name="q20" value="a"> a. SAFTA</label><label class="option"><input type="radio" name="q20" value="b"> b. ADB</label><label class="option"><input type="radio" name="q20" value="c"> c. BIMSTEC</label><label class="option"><input type="radio" name="q20" value="d"> d. APEC</label></div></div>
+                        <div class="question-block" id="qblock21"><div class="question-text"><span class="question-number">21.</span>Secretary General of United Nations, whom was awarded with the Nobel Prize in Peace for the year 1961 A. D.?</div><div class="options"><label class="option"><input type="radio" name="q21" value="a"> a. U Thant</label><label class="option"><input type="radio" name="q21" value="b"> b. Dag Hammarskjold</label><label class="option"><input type="radio" name="q21" value="c"> c. Boutros Boutros Ghali</label><label class="option"><input type="radio" name="q21" value="d"> d. Trygve Lie</label></div></div>
+                        <div class="question-block" id="qblock22"><div class="question-text"><span class="question-number">22.</span>The Charter of UNO consists of …………</div><div class="options"><label class="option"><input type="radio" name="q22" value="a"> a. Chapter 21, Article 121</label><label class="option"><input type="radio" name="q22" value="b"> b. Chapter 19, Articles 111</label><label class="option"><input type="radio" name="q22" value="c"> c. Chapter 9, Article 99</label><label class="option"><input type="radio" name="q22" value="d"> d. Chapter 20, Articles 109</label></div></div>
+                        <div class="question-block" id="qblock23"><div class="question-text"><span class="question-number">23.</span>Which country is NOT a permanent member of the UN Security Council?</div><div class="options"><label class="option"><input type="radio" name="q23" value="a"> a. United States</label><label class="option"><input type="radio" name="q23" value="b"> b. India</label><label class="option"><input type="radio" name="q23" value="c"> c. China</label><label class="option"><input type="radio" name="q23" value="d"> d. Russia</label></div></div>
+                        <div class="question-block" id="qblock24"><div class="question-text"><span class="question-number">24.</span>Which sector of BIMSTEC is leading by Nepal?</div><div class="options"><label class="option"><input type="radio" name="q24" value="a"> a. People-to-People Contact</label><label class="option"><input type="radio" name="q24" value="b"> b. Agriculture and Food Security</label><label class="option"><input type="radio" name="q24" value="c"> c. Connectivity</label><label class="option"><input type="radio" name="q24" value="d"> d. Environment and Climate Change</label></div></div>
+                        <div class="question-block" id="qblock25"><div class="question-text"><span class="question-number">25.</span>Who was the prime minister of Nepal at the time of diplomacy with Pakistan?</div><div class="options"><label class="option"><input type="radio" name="q25" value="a"> a. B. P. Koirala</label><label class="option"><input type="radio" name="q25" value="b"> b. Tanka Prasad Acharya</label><label class="option"><input type="radio" name="q25" value="c"> c. Dr. K. I. Singh</label><label class="option"><input type="radio" name="q25" value="d"> d. Surya Bahadur Thapa</label></div></div>
+                        <div class="question-block" id="qblock26"><div class="question-text"><span class="question-number">26.</span>Human Rights Council in the United Nations is the subsidiary organ of …………..</div><div class="options"><label class="option"><input type="radio" name="q26" value="a"> a. Security Council</label><label class="option"><input type="radio" name="q26" value="b"> b. Economic and Social Council</label><label class="option"><input type="radio" name="q26" value="c"> c. General Assembly</label><label class="option"><input type="radio" name="q26" value="d"> d. International Court of Justice</label></div></div>
+                        <div class="question-block" id="qblock27"><div class="question-text"><span class="question-number">27.</span>The first lady to chair the General Assembly of UN is:</div><div class="options"><label class="option"><input type="radio" name="q27" value="a"> a. Vijaya Lakshmi Pandit</label><label class="option"><input type="radio" name="q27" value="b"> b. Wangi Brooks</label><label class="option"><input type="radio" name="q27" value="c"> c. Haya Rashed Al-Khalifa</label><label class="option"><input type="radio" name="q27" value="d"> d. Maria Fernanda Espinosa</label></div></div>
+                        <div class="question-block" id="qblock28"><div class="question-text"><span class="question-number">28.</span>Which of the following is NOT a principal organ of the United Nations?</div><div class="options"><label class="option"><input type="radio" name="q28" value="a"> a. General Assembly</label><label class="option"><input type="radio" name="q28" value="b"> b. Security Council</label><label class="option"><input type="radio" name="q28" value="c"> c. International Court of Justice</label><label class="option"><input type="radio" name="q28" value="d"> d. Union Council</label></div></div>
+                        <div class="question-block" id="qblock29"><div class="question-text"><span class="question-number">29.</span>The United Nations General Assembly has declared 2023 as the ……</div><div class="options"><label class="option"><input type="radio" name="q29" value="a"> a. International Year of Plant Health</label><label class="option"><input type="radio" name="q29" value="b"> b. International Year of Indigenous Languages</label><label class="option"><input type="radio" name="q29" value="c"> c. International Year of Millets</label><label class="option"><input type="radio" name="q29" value="d"> d. International Year of Fruits and Vegetables</label></div></div>
+                        <div class="question-block" id="qblock30"><div class="question-text"><span class="question-number">30.</span>Which of the following is not the observer of SAARC?</div><div class="options"><label class="option"><input type="radio" name="q30" value="a"> a. USA</label><label class="option"><input type="radio" name="q30" value="b"> b. UK</label><label class="option"><input type="radio" name="q30" value="c"> c. Japan</label><label class="option"><input type="radio" name="q30" value="d"> d. South Korea</label></div></div>
+                        <div class="question-block" id="qblock31"><div class="question-text"><span class="question-number">31.</span>Who is the present permanent representative of Nepal in UN General Assembly?</div><div class="options"><label class="option"><input type="radio" name="q31" value="a"> a. Jaya Raj Acharya</label><label class="option"><input type="radio" name="q31" value="b"> b. Kausal Kishwor Ray</label><label class="option"><input type="radio" name="q31" value="c"> c. Lok Bahadur Thapa</label><label class="option"><input type="radio" name="q31" value="d"> d. Gyan Prasad Acharya</label></div></div>
+                        <div class="question-block" id="qblock32"><div class="question-text"><span class="question-number">32.</span>The first Prime minister of Nepal to address UN General Assembly is</div><div class="options"><label class="option"><input type="radio" name="q32" value="a"> a. BP Koirala</label><label class="option"><input type="radio" name="q32" value="b"> b. Rishikesh Shah</label><label class="option"><input type="radio" name="q32" value="c"> c. Lok Bahadur Thapa</label><label class="option"><input type="radio" name="q32" value="d"> d. Matrika Prasad Koirala</label></div></div>
+                        <div class="question-block" id="qblock33"><div class="question-text"><span class="question-number">33.</span>Who is Current 4th Secretary General of BIMSTEC?</div><div class="options"><label class="option"><input type="radio" name="q33" value="a"> a. Arjun Bahadur Thapa</label><label class="option"><input type="radio" name="q33" value="b"> b. Indra Mani Pandey</label><label class="option"><input type="radio" name="q33" value="c"> c. Mr. Abdul Motaleb Sarkert</label><label class="option"><input type="radio" name="q33" value="d"> d. Tenzin Lekphell</label></div></div>
+                        <div class="question-block" id="qblock34"><div class="question-text"><span class="question-number">34.</span>Which country is not the founder member of the BIMSTEC?</div><div class="options"><label class="option"><input type="radio" name="q34" value="a"> a. Thailand</label><label class="option"><input type="radio" name="q34" value="b"> b. Sri Lanka</label><label class="option"><input type="radio" name="q34" value="c"> c. Nepal</label><label class="option"><input type="radio" name="q34" value="d"> d. India</label></div></div>
+                        <div class="question-block" id="qblock35"><div class="question-text"><span class="question-number">35.</span>What is the official language used in the SAARC Secretariat in Kathmandu for communication and documentation?</div><div class="options"><label class="option"><input type="radio" name="q35" value="a"> a. Hindi</label><label class="option"><input type="radio" name="q35" value="b"> b. English</label><label class="option"><input type="radio" name="q35" value="c"> c. Nepali</label><label class="option"><input type="radio" name="q35" value="d"> d. Bengali</label></div></div>
+                        <div class="question-block" id="qblock36"><div class="question-text"><span class="question-number">36.</span>The headquarters of WIPO is located in …………</div><div class="options"><label class="option"><input type="radio" name="q36" value="a"> a. Paris</label><label class="option"><input type="radio" name="q36" value="b"> b. Madrid</label><label class="option"><input type="radio" name="q36" value="c"> c. New York</label><label class="option"><input type="radio" name="q36" value="d"> d. Geneva</label></div></div>
+                        <div class="question-block" id="qblock37"><div class="question-text"><span class="question-number">37.</span>Which of the following does not come under the five principles Panchasheel?</div><div class="options"><label class="option"><input type="radio" name="q37" value="a"> a. Non-Interference</label><label class="option"><input type="radio" name="q37" value="b"> b. Security Council</label><label class="option"><input type="radio" name="q37" value="c"> c. Non-aggression</label><label class="option"><input type="radio" name="q37" value="d"> d. Peaceful co-existence</label></div></div>
+                        <div class="question-block" id="qblock38"><div class="question-text"><span class="question-number">38.</span>Which of the following was not constructed by the Russian government's assistance?</div><div class="options"><label class="option"><input type="radio" name="q38" value="a"> a. Panauti Hydropower Station</label><label class="option"><input type="radio" name="q38" value="b"> b. Construction of Kanti Children Hospital</label><label class="option"><input type="radio" name="q38" value="c"> c. Pathalaiya-Dhalkebar Segment of Mahendra Highway</label><label class="option"><input type="radio" name="q38" value="d"> d. Farping Hydropower</label></div></div>
+                        <div class="question-block" id="qblock39"><div class="question-text"><span class="question-number">39.</span>Which Prime Minister of Nepal virtually attended the 5th BIMSTEC Summit?</div><div class="options"><label class="option"><input type="radio" name="q39" value="a"> a. Sher Bahadur Deuba</label><label class="option"><input type="radio" name="q39" value="b"> b. K. P. Sharma Oli</label><label class="option"><input type="radio" name="q39" value="c"> c. Pushpa Kamal Dahal</label><label class="option"><input type="radio" name="q39" value="d"> d. Sushil Koirala</label></div></div>
+                        <div class="question-block" id="qblock40"><div class="question-text"><span class="question-number">40.</span>What is the currency of the 'Republic of Maldives'?</div><div class="options"><label class="option"><input type="radio" name="q40" value="a"> a. Riyal</label><label class="option"><input type="radio" name="q40" value="b"> b. Rupee</label><label class="option"><input type="radio" name="q40" value="c"> c. Ringgit</label><label class="option"><input type="radio" name="q40" value="d"> d. Rufiyaa</label></div></div>
+                        <div class="question-block" id="qblock41"><div class="question-text"><span class="question-number">41.</span>Which countries are the Permanent of the Security Council of UNO?</div><div class="options"><label class="option"><input type="radio" name="q41" value="a"> a. China, Russia, America, Britain, and Germany</label><label class="option"><input type="radio" name="q41" value="b"> b. China, Russia, America, Britain and France</label><label class="option"><input type="radio" name="q41" value="c"> c. Russia, America, Britain, France and Japan</label><label class="option"><input type="radio" name="q41" value="d"> d. America, Japan, Germany, France and Britain</label></div></div>
+                        <div class="question-block" id="qblock42"><div class="question-text"><span class="question-number">42.</span>The United Nations Charter was signed in which of the following cities?</div><div class="options"><label class="option"><input type="radio" name="q42" value="a"> a. New York</label><label class="option"><input type="radio" name="q42" value="b"> b. London</label><label class="option"><input type="radio" name="q42" value="c"> c. San Francisco</label><label class="option"><input type="radio" name="q42" value="d"> d. Moscow</label></div></div>
+                        <div class="question-block" id="qblock43"><div class="question-text"><span class="question-number">43.</span>Where is SAARC cultural centre located?</div><div class="options"><label class="option"><input type="radio" name="q43" value="a"> a. Nepal</label><label class="option"><input type="radio" name="q43" value="b"> b. India</label><label class="option"><input type="radio" name="q43" value="c"> c. Sri Lanka</label><label class="option"><input type="radio" name="q43" value="d"> d. Pakistan</label></div></div>
+                        <div class="question-block" id="qblock44"><div class="question-text"><span class="question-number">44.</span>Who is the Nepali artist to design the SAARC emblem?</div><div class="options"><label class="option"><input type="radio" name="q44" value="a"> a. Shailendra Kumar Maharjan</label><label class="option"><input type="radio" name="q44" value="b"> b. Sakri Ali</label><label class="option"><input type="radio" name="q44" value="c"> c. Surya Bahadur K. C.</label><label class="option"><input type="radio" name="q44" value="d"> d. Kiran Maharjan</label></div></div>
+                        <div class="question-block" id="qblock45"><div class="question-text"><span class="question-number">45.</span>The mission to which nation has been declared as the UN's most dangerous Peace keeping Mission ………….</div><div class="options"><label class="option"><input type="radio" name="q45" value="a"> a. Sudan</label><label class="option"><input type="radio" name="q45" value="b"> b. Haiti</label><label class="option"><input type="radio" name="q45" value="c"> c. Syria</label><label class="option"><input type="radio" name="q45" value="d"> d. Mali</label></div></div>
+                        <div class="question-block" id="qblock46"><div class="question-text"><span class="question-number">46.</span>Last Member (193) of UN is ….</div><div class="options"><label class="option"><input type="radio" name="q46" value="a"> a. Montenegro</label><label class="option"><input type="radio" name="q46" value="b"> b. South Sudan</label><label class="option"><input type="radio" name="q46" value="c"> c. Timor Leste</label><label class="option"><input type="radio" name="q46" value="d"> d. Nepal</label></div></div>
+                        <div class="question-block" id="qblock47"><div class="question-text"><span class="question-number">47.</span>According to the United Nations Charter, what is one of the main purposes of the organization?</div><div class="options"><label class="option"><input type="radio" name="q47" value="a"> a. To encourage countries to increase military spending</label><label class="option"><input type="radio" name="q47" value="b"> b. To control global trade policies</label><label class="option"><input type="radio" name="q47" value="c"> c. To regulate the internet and telecommunications</label><label class="option"><input type="radio" name="q47" value="d"> d. To promote friendly relations among nations</label></div></div>
+                        <div class="question-block" id="qblock48"><div class="question-text"><span class="question-number">48.</span>Which of the following UN agencies has its headquarters at Paris…..</div><div class="options"><label class="option"><input type="radio" name="q48" value="a"> a. ILO</label><label class="option"><input type="radio" name="q48" value="b"> b. FAO</label><label class="option"><input type="radio" name="q48" value="c"> c. UNWTO</label><label class="option"><input type="radio" name="q48" value="d"> d. UNESCO</label></div></div>
+                        <div class="question-block" id="qblock49"><div class="question-text"><span class="question-number">49.</span>The headquarters of International Atomic Energy Agency is located in…</div><div class="options"><label class="option"><input type="radio" name="q49" value="a"> a. Washington</label><label class="option"><input type="radio" name="q49" value="b"> b. Geneva</label><label class="option"><input type="radio" name="q49" value="c"> c. Vienna</label><label class="option"><input type="radio" name="q49" value="d"> d. London</label></div></div>
+                        <div class="question-block" id="qblock50"><div class="question-text"><span class="question-number">50.</span>Which of the following given dignitaries is/are not the signatories on the Charter of SAARC?</div><div class="options"><label class="option"><input type="radio" name="q50" value="a"> a. King Birendra</label><label class="option"><input type="radio" name="q50" value="b"> b. Rajiv Gandhi</label><label class="option"><input type="radio" name="q50" value="c"> c. Ziaur Rahman</label><label class="option"><input type="radio" name="q50" value="d"> d. Jigme Singye Wangchuk</label></div></div>
+
+                        <button type="submit" class="submit-btn" id="submitBtn">Submit Quiz</button>
+                    </form>
+
+                    <div class="result" id="result">
+                        <h2>Quiz Completed!</h2>
+                        <div class="score" id="scoreDisplay"></div>
+                        <div class="result-message" id="resultMessage"></div>
+                    </div>
+                </div>
             </div>
-
-            <form id="quizForm">
-                <!-- Question 1 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">1.</span>
-                        The largest budget provider of UN Budget is USA (22%). Nepal contributes …..% of budget of UN.
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q1" value="a"> a. 0.6</label>
-                        <label class="option"><input type="radio" name="q1" value="b"> b. 0.006</label>
-                        <label class="option"><input type="radio" name="q1" value="c"> c. 0.0006</label>
-                        <label class="option"><input type="radio" name="q1" value="d"> d. 0.06</label>
-                    </div>
-                </div>
-
-                <!-- Question 2 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">2.</span>
-                        Nepal had been the temporary member of UN Security Council for ………. Tenure.
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q2" value="a"> a. 1</label>
-                        <label class="option"><input type="radio" name="q2" value="b"> b. 2</label>
-                        <label class="option"><input type="radio" name="q2" value="c"> c. 3</label>
-                        <label class="option"><input type="radio" name="q2" value="d"> d. 4</label>
-                    </div>
-                </div>
-
-                <!-- Question 3 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">3.</span>
-                        How many members of the United Nation's Security Council have veto power?
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q3" value="a"> a. 3</label>
-                        <label class="option"><input type="radio" name="q3" value="b"> b. 4</label>
-                        <label class="option"><input type="radio" name="q3" value="c"> c. 5</label>
-                        <label class="option"><input type="radio" name="q3" value="d"> d. 6</label>
-                    </div>
-                </div>
-
-                <!-- Question 4 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">4.</span>
-                        Nepal signed the Paris Agreement on climate change as part of its commitment to the UNFCCC in which year?
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q4" value="a"> a. 2012</label>
-                        <label class="option"><input type="radio" name="q4" value="b"> b. 2016</label>
-                        <label class="option"><input type="radio" name="q4" value="c"> c. 2020</label>
-                        <label class="option"><input type="radio" name="q4" value="d"> d. 2024</label>
-                    </div>
-                </div>
-
-                <!-- Question 5 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">5.</span>
-                        The UNO was founded on
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q5" value="a"> a. 1945-10-24</label>
-                        <label class="option"><input type="radio" name="q5" value="b"> b. 1985-12-08</label>
-                        <label class="option"><input type="radio" name="q5" value="c"> c. 1997-06-06</label>
-                        <label class="option"><input type="radio" name="q5" value="d"> d. 1995-11-07</label>
-                    </div>
-                </div>
-
-                <!-- Question 6 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">6.</span>
-                        How are the financial contributions to the United Nations budget determined for each member state?
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q6" value="a"> a. Based on each member state's capacity to pay</label>
-                        <label class="option"><input type="radio" name="q6" value="b"> b. Based on the member state's geographic location</label>
-                        <label class="option"><input type="radio" name="q6" value="c"> c. Based on each member state's population size</label>
-                        <label class="option"><input type="radio" name="q6" value="d"> d. Equally among all member states</label>
-                    </div>
-                </div>
-
-                <!-- Question 7 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">7.</span>
-                        Nepal is a member of which major UN body
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q7" value="a"> a. United Nations Security Council</label>
-                        <label class="option"><input type="radio" name="q7" value="b"> b. United Nations International Court of Justice (ICJ)</label>
-                        <label class="option"><input type="radio" name="q7" value="c"> c. United Nations Human Rights Council</label>
-                        <label class="option"><input type="radio" name="q7" value="d"> d. United Nations Economic and Social Council (ECOSOC)</label>
-                    </div>
-                </div>
-
-                <!-- Question 8 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">8.</span>
-                        Afghanistan participated as the 8th member of SAARC in?
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q8" value="a"> a. 15th Summit</label>
-                        <label class="option"><input type="radio" name="q8" value="b"> b. 18th Summit</label>
-                        <label class="option"><input type="radio" name="q8" value="c"> c. 14th Summit</label>
-                        <label class="option"><input type="radio" name="q8" value="d"> d. 16th Summit</label>
-                    </div>
-                </div>
-
-                <!-- Question 9 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">9.</span>
-                        Which SAARC Summit decided to reduce regional centre to from 11 to 5?
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q9" value="a"> a. 15th</label>
-                        <label class="option"><input type="radio" name="q9" value="b"> b. 16th</label>
-                        <label class="option"><input type="radio" name="q9" value="c"> c. 17th</label>
-                        <label class="option"><input type="radio" name="q9" value="d"> d. 18th</label>
-                    </div>
-                </div>
-
-                <!-- Question 10 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">10.</span>
-                        When did ILO received the Nobel peace prize?
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q10" value="a"> a. 1969 AD</label>
-                        <label class="option"><input type="radio" name="q10" value="b"> b. 1970 AD</label>
-                        <label class="option"><input type="radio" name="q10" value="c"> c. 1972 AD</label>
-                        <label class="option"><input type="radio" name="q10" value="d"> d. 1981 AD</label>
-                    </div>
-                </div>
-
-                <!-- Question 11 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">11.</span>
-                        Trusteeship Council suspended its operation since ……………..
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q11" value="a"> a. 1990 AD</label>
-                        <label class="option"><input type="radio" name="q11" value="b"> b. 1991 AD</label>
-                        <label class="option"><input type="radio" name="q11" value="c"> c. 1993 AD</label>
-                        <label class="option"><input type="radio" name="q11" value="d"> d. 1994 AD</label>
-                    </div>
-                </div>
-
-                <!-- Question 12 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">12.</span>
-                        When did Nepal formally get membership of BIMSTEC?
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q12" value="a"> a. 2004, June</label>
-                        <label class="option"><input type="radio" name="q12" value="b"> b. 2004, February</label>
-                        <label class="option"><input type="radio" name="q12" value="c"> c. 2006, May</label>
-                        <label class="option"><input type="radio" name="q12" value="d"> d. 2003, March</label>
-                    </div>
-                </div>
-
-                <!-- Question 13 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">13.</span>
-                        How many times that the SAARC summits held in Nepal?
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q13" value="a"> a. 3rd, 11th, 18th</label>
-                        <label class="option"><input type="radio" name="q13" value="b"> b. 1st, 9th, 18th</label>
-                        <label class="option"><input type="radio" name="q13" value="c"> c. 2nd, 8th, 15th</label>
-                        <label class="option"><input type="radio" name="q13" value="d"> d. 4th, 11th, 18th</label>
-                    </div>
-                </div>
-
-                <!-- Question 14 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">14.</span>
-                        Which of the following countries is a member of SAARC but does not share a land border with India?
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q14" value="a"> a. Bhutan</label>
-                        <label class="option"><input type="radio" name="q14" value="b"> b. Maldives</label>
-                        <label class="option"><input type="radio" name="q14" value="c"> c. Afghanistan</label>
-                        <label class="option"><input type="radio" name="q14" value="d"> d. Nepal</label>
-                    </div>
-                </div>
-
-                <!-- Question 15 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">15.</span>
-                        Which of the following is the only SAARC member country to have never hosted a SAARC summit?
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q15" value="a"> a. India</label>
-                        <label class="option"><input type="radio" name="q15" value="b"> b. Pakistan</label>
-                        <label class="option"><input type="radio" name="q15" value="c"> c. Afghanistan</label>
-                        <label class="option"><input type="radio" name="q15" value="d"> d. Maldives</label>
-                    </div>
-                </div>
-
-                <!-- Question 16 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">16.</span>
-                        Which of the following countries did NOT participate in the 16th SAARC Summit held in 2014?
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q16" value="a"> a. India</label>
-                        <label class="option"><input type="radio" name="q16" value="b"> b. Pakistan</label>
-                        <label class="option"><input type="radio" name="q16" value="c"> c. Afghanistan</label>
-                        <label class="option"><input type="radio" name="q16" value="d"> d. Maldives</label>
-                    </div>
-                </div>
-
-                <!-- Question 17 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">17.</span>
-                        Current Secretary-General of the United Nation is
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q17" value="a"> a. Trygve Lie</label>
-                        <label class="option"><input type="radio" name="q17" value="b"> b. Abdul Mehmood</label>
-                        <label class="option"><input type="radio" name="q17" value="c"> c. Antonio Guterres</label>
-                        <label class="option"><input type="radio" name="q17" value="d"> d. Siddhartha Chatterjee</label>
-                    </div>
-                </div>
-
-                <!-- Question 18 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">18.</span>
-                        Which SAARC country has accepted the policy of dual Citizenship?
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q18" value="a"> a. Nepal</label>
-                        <label class="option"><input type="radio" name="q18" value="b"> b. India</label>
-                        <label class="option"><input type="radio" name="q18" value="c"> c. Bhutan</label>
-                        <label class="option"><input type="radio" name="q18" value="d"> d. Bangladesh</label>
-                    </div>
-                </div>
-
-                <!-- Question 19 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">19.</span>
-                        Where was the 3rd BIMSTEC summit held in 2014 A. D.?
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q19" value="a"> a. Myanmar</label>
-                        <label class="option"><input type="radio" name="q19" value="b"> b. Sri Lanka</label>
-                        <label class="option"><input type="radio" name="q19" value="c"> c. Bhutan</label>
-                        <label class="option"><input type="radio" name="q19" value="d"> d. Nepal</label>
-                    </div>
-                </div>
-
-                <!-- Question 20 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">20.</span>
-                        What is the regional initiative comprising 7 member states of both SAARC and ASEAN called?
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q20" value="a"> a. SAFTA</label>
-                        <label class="option"><input type="radio" name="q20" value="b"> b. ADB</label>
-                        <label class="option"><input type="radio" name="q20" value="c"> c. BIMSTEC</label>
-                        <label class="option"><input type="radio" name="q20" value="d"> d. APEC</label>
-                    </div>
-                </div>
-
-                <!-- Question 21 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">21.</span>
-                        Secretary General of United Nations, whom was awarded with the Nobel Prize in Peace for the year 1961 A. D.?
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q21" value="a"> a. U Thant</label>
-                        <label class="option"><input type="radio" name="q21" value="b"> b. Dag Hammarskjold</label>
-                        <label class="option"><input type="radio" name="q21" value="c"> c. Boutros Boutros Ghali</label>
-                        <label class="option"><input type="radio" name="q21" value="d"> d. Trygve Lie</label>
-                    </div>
-                </div>
-
-                <!-- Question 22 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">22.</span>
-                        The Charter of UNO consists of …………
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q22" value="a"> a. Chapter 21, Article 121</label>
-                        <label class="option"><input type="radio" name="q22" value="b"> b. Chapter 19, Articles 111</label>
-                        <label class="option"><input type="radio" name="q22" value="c"> c. Chapter 9, Article 99</label>
-                        <label class="option"><input type="radio" name="q22" value="d"> d. Chapter 20, Articles 109</label>
-                    </div>
-                </div>
-
-                <!-- Question 23 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">23.</span>
-                        Which country is NOT a permanent member of the UN Security Council?
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q23" value="a"> a. United States</label>
-                        <label class="option"><input type="radio" name="q23" value="b"> b. India</label>
-                        <label class="option"><input type="radio" name="q23" value="c"> c. China</label>
-                        <label class="option"><input type="radio" name="q23" value="d"> d. Russia</label>
-                    </div>
-                </div>
-
-                <!-- Question 24 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">24.</span>
-                        Which sector of BIMSTEC is leading by Nepal?
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q24" value="a"> a. People-to-People Contact</label>
-                        <label class="option"><input type="radio" name="q24" value="b"> b. Agriculture and Food Security</label>
-                        <label class="option"><input type="radio" name="q24" value="c"> c. Connectivity</label>
-                        <label class="option"><input type="radio" name="q24" value="d"> d. Environment and Climate Change</label>
-                    </div>
-                </div>
-
-                <!-- Question 25 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">25.</span>
-                        Who was the prime minister of Nepal at the time of diplomacy with Pakistan?
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q25" value="a"> a. B. P. Koirala</label>
-                        <label class="option"><input type="radio" name="q25" value="b"> b. Tanka Prasad Acharya</label>
-                        <label class="option"><input type="radio" name="q25" value="c"> c. Dr. K. I. Singh</label>
-                        <label class="option"><input type="radio" name="q25" value="d"> d. Surya Bahadur Thapa</label>
-                    </div>
-                </div>
-
-                <!-- Question 26 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">26.</span>
-                        Human Rights Council in the United Nations is the subsidiary organ of …………..
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q26" value="a"> a. Security Council</label>
-                        <label class="option"><input type="radio" name="q26" value="b"> b. Economic and Social Council</label>
-                        <label class="option"><input type="radio" name="q26" value="c"> c. General Assembly</label>
-                        <label class="option"><input type="radio" name="q26" value="d"> d. International Court of Justice</label>
-                    </div>
-                </div>
-
-                <!-- Question 27 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">27.</span>
-                        The first lady to chair the General Assembly of UN is:
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q27" value="a"> a. Vijaya Lakshmi Pandit</label>
-                        <label class="option"><input type="radio" name="q27" value="b"> b. Wangi Brooks</label>
-                        <label class="option"><input type="radio" name="q27" value="c"> c. Haya Rashed Al-Khalifa</label>
-                        <label class="option"><input type="radio" name="q27" value="d"> d. Maria Fernanda Espinosa</label>
-                    </div>
-                </div>
-
-                <!-- Question 28 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">28.</span>
-                        Which of the following is NOT a principal organ of the United Nations?
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q28" value="a"> a. General Assembly</label>
-                        <label class="option"><input type="radio" name="q28" value="b"> b. Security Council</label>
-                        <label class="option"><input type="radio" name="q28" value="c"> c. International Court of Justice</label>
-                        <label class="option"><input type="radio" name="q28" value="d"> d. Union Council</label>
-                    </div>
-                </div>
-
-                <!-- Question 29 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">29.</span>
-                        The United Nations General Assembly has declared 2023 as the ……
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q29" value="a"> a. International Year of Plant Health</label>
-                        <label class="option"><input type="radio" name="q29" value="b"> b. International Year of Indigenous Languages</label>
-                        <label class="option"><input type="radio" name="q29" value="c"> c. International Year of Millets</label>
-                        <label class="option"><input type="radio" name="q29" value="d"> d. International Year of Fruits and Vegetables</label>
-                    </div>
-                </div>
-
-                <!-- Question 30 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">30.</span>
-                        Which of the following is not the observer of SAARC?
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q30" value="a"> a. USA</label>
-                        <label class="option"><input type="radio" name="q30" value="b"> b. UK</label>
-                        <label class="option"><input type="radio" name="q30" value="c"> c. Japan</label>
-                        <label class="option"><input type="radio" name="q30" value="d"> d. South Korea</label>
-                    </div>
-                </div>
-
-                <!-- Question 31 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">31.</span>
-                        Who is the present permanent representative of Nepal in UN General Assembly?
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q31" value="a"> a. Jaya Raj Acharya</label>
-                        <label class="option"><input type="radio" name="q31" value="b"> b. Kausal Kishwor Ray</label>
-                        <label class="option"><input type="radio" name="q31" value="c"> c. Lok Bahadur Thapa</label>
-                        <label class="option"><input type="radio" name="q31" value="d"> d. Gyan Prasad Acharya</label>
-                    </div>
-                </div>
-
-                <!-- Question 32 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">32.</span>
-                        The first Prime minister of Nepal to address UN General Assembly is
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q32" value="a"> a. BP Koirala</label>
-                        <label class="option"><input type="radio" name="q32" value="b"> b. Rishikesh Shah</label>
-                        <label class="option"><input type="radio" name="q32" value="c"> c. Lok Bahadur Thapa</label>
-                        <label class="option"><input type="radio" name="q32" value="d"> d. Matrika Prasad Koirala</label>
-                    </div>
-                </div>
-
-                <!-- Question 33 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">33.</span>
-                        Who is Current 4th Secretary General of BIMSTEC?
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q33" value="a"> a. Arjun Bahadur Thapa</label>
-                        <label class="option"><input type="radio" name="q33" value="b"> b. Indra Mani Pandey</label>
-                        <label class="option"><input type="radio" name="q33" value="c"> c. Mr. Abdul Motaleb Sarkert</label>
-                        <label class="option"><input type="radio" name="q33" value="d"> d. Tenzin Lekphell</label>
-                    </div>
-                </div>
-
-                <!-- Question 34 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">34.</span>
-                        Which country is not the founder member of the BIMSTEC?
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q34" value="a"> a. Thailand</label>
-                        <label class="option"><input type="radio" name="q34" value="b"> b. Sri Lanka</label>
-                        <label class="option"><input type="radio" name="q34" value="c"> c. Nepal</label>
-                        <label class="option"><input type="radio" name="q34" value="d"> d. India</label>
-                    </div>
-                </div>
-
-                <!-- Question 35 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">35.</span>
-                        What is the official language used in the SAARC Secretariat in Kathmandu for communication and documentation?
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q35" value="a"> a. Hindi</label>
-                        <label class="option"><input type="radio" name="q35" value="b"> b. English</label>
-                        <label class="option"><input type="radio" name="q35" value="c"> c. Nepali</label>
-                        <label class="option"><input type="radio" name="q35" value="d"> d. Bengali</label>
-                    </div>
-                </div>
-
-                <!-- Question 36 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">36.</span>
-                        The headquarters of WIPO is located in …………
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q36" value="a"> a. Paris</label>
-                        <label class="option"><input type="radio" name="q36" value="b"> b. Madrid</label>
-                        <label class="option"><input type="radio" name="q36" value="c"> c. New York</label>
-                        <label class="option"><input type="radio" name="q36" value="d"> d. Geneva</label>
-                    </div>
-                </div>
-
-                <!-- Question 37 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">37.</span>
-                        Which of the following does not come under the five principles Panchasheel?
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q37" value="a"> a. Non-Interference</label>
-                        <label class="option"><input type="radio" name="q37" value="b"> b. Security Council</label>
-                        <label class="option"><input type="radio" name="q37" value="c"> c. Non-aggression</label>
-                        <label class="option"><input type="radio" name="q37" value="d"> d. Peaceful co-existence</label>
-                    </div>
-                </div>
-
-                <!-- Question 38 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">38.</span>
-                        Which of the following was not constructed by the Russian government's assistance?
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q38" value="a"> a. Panauti Hydropower Station</label>
-                        <label class="option"><input type="radio" name="q38" value="b"> b. Construction of Kanti Children Hospital</label>
-                        <label class="option"><input type="radio" name="q38" value="c"> c. Pathalaiya-Dhalkebar Segment of Mahendra Highway</label>
-                        <label class="option"><input type="radio" name="q38" value="d"> d. Farping Hydropower</label>
-                    </div>
-                </div>
-
-                <!-- Question 39 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">39.</span>
-                        Which Prime Minister of Nepal virtually attended the 5th BIMSTEC Summit?
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q39" value="a"> a. Sher Bahadur Deuba</label>
-                        <label class="option"><input type="radio" name="q39" value="b"> b. K. P. Sharma Oli</label>
-                        <label class="option"><input type="radio" name="q39" value="c"> c. Pushpa Kamal Dahal</label>
-                        <label class="option"><input type="radio" name="q39" value="d"> d. Sushil Koirala</label>
-                    </div>
-                </div>
-
-                <!-- Question 40 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">40.</span>
-                        What is the currency of the 'Republic of Maldives'?
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q40" value="a"> a. Riyal</label>
-                        <label class="option"><input type="radio" name="q40" value="b"> b. Rupee</label>
-                        <label class="option"><input type="radio" name="q40" value="c"> c. Ringgit</label>
-                        <label class="option"><input type="radio" name="q40" value="d"> d. Rufiyaa</label>
-                    </div>
-                </div>
-
-                <!-- Question 41 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">41.</span>
-                        Which countries are the Permanent of the Security Council of UNO?
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q41" value="a"> a. China, Russia, America, Britain, and Germany</label>
-                        <label class="option"><input type="radio" name="q41" value="b"> b. China, Russia, America, Britain and France</label>
-                        <label class="option"><input type="radio" name="q41" value="c"> c. Russia, America, Britain, France and Japan</label>
-                        <label class="option"><input type="radio" name="q41" value="d"> d. America, Japan, Germany, France and Britain</label>
-                    </div>
-                </div>
-
-                <!-- Question 42 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">42.</span>
-                        The United Nations Charter was signed in which of the following cities?
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q42" value="a"> a. New York</label>
-                        <label class="option"><input type="radio" name="q42" value="b"> b. London</label>
-                        <label class="option"><input type="radio" name="q42" value="c"> c. San Francisco</label>
-                        <label class="option"><input type="radio" name="q42" value="d"> d. Moscow</label>
-                    </div>
-                </div>
-
-                <!-- Question 43 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">43.</span>
-                        Where is SAARC cultural centre located?
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q43" value="a"> a. Nepal</label>
-                        <label class="option"><input type="radio" name="q43" value="b"> b. India</label>
-                        <label class="option"><input type="radio" name="q43" value="c"> c. Sri Lanka</label>
-                        <label class="option"><input type="radio" name="q43" value="d"> d. Pakistan</label>
-                    </div>
-                </div>
-
-                <!-- Question 44 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">44.</span>
-                        Who is the Nepali artist to design the SAARC emblem?
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q44" value="a"> a. Shailendra Kumar Maharjan</label>
-                        <label class="option"><input type="radio" name="q44" value="b"> b. Sakri Ali</label>
-                        <label class="option"><input type="radio" name="q44" value="c"> c. Surya Bahadur K. C.</label>
-                        <label class="option"><input type="radio" name="q44" value="d"> d. Kiran Maharjan</label>
-                    </div>
-                </div>
-
-                <!-- Question 45 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">45.</span>
-                        The mission to which nation has been declared as the UN's most dangerous Peace keeping Mission ………….
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q45" value="a"> a. Sudan</label>
-                        <label class="option"><input type="radio" name="q45" value="b"> b. Haiti</label>
-                        <label class="option"><input type="radio" name="q45" value="c"> c. Syria</label>
-                        <label class="option"><input type="radio" name="q45" value="d"> d. Mali</label>
-                    </div>
-                </div>
-
-                <!-- Question 46 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">46.</span>
-                        Last Member (193) of UN is ….
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q46" value="a"> a. Montenegro</label>
-                        <label class="option"><input type="radio" name="q46" value="b"> b. South Sudan</label>
-                        <label class="option"><input type="radio" name="q46" value="c"> c. Timor Leste</label>
-                        <label class="option"><input type="radio" name="q46" value="d"> d. Nepal</label>
-                    </div>
-                </div>
-
-                <!-- Question 47 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">47.</span>
-                        According to the United Nations Charter, what is one of the main purposes of the organization?
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q47" value="a"> a. To encourage countries to increase military spending</label>
-                        <label class="option"><input type="radio" name="q47" value="b"> b. To control global trade policies</label>
-                        <label class="option"><input type="radio" name="q47" value="c"> c. To regulate the internet and telecommunications</label>
-                        <label class="option"><input type="radio" name="q47" value="d"> d. To promote friendly relations among nations</label>
-                    </div>
-                </div>
-
-                <!-- Question 48 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">48.</span>
-                        Which of the following UN agencies has its headquarters at Paris…..
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q48" value="a"> a. ILO</label>
-                        <label class="option"><input type="radio" name="q48" value="b"> b. FAO</label>
-                        <label class="option"><input type="radio" name="q48" value="c"> c. UNWTO</label>
-                        <label class="option"><input type="radio" name="q48" value="d"> d. UNESCO</label>
-                    </div>
-                </div>
-
-                <!-- Question 49 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">49.</span>
-                        The headquarters of International Atomic Energy Agency is located in…
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q49" value="a"> a. Washington</label>
-                        <label class="option"><input type="radio" name="q49" value="b"> b. Geneva</label>
-                        <label class="option"><input type="radio" name="q49" value="c"> c. Vienna</label>
-                        <label class="option"><input type="radio" name="q49" value="d"> d. London</label>
-                    </div>
-                </div>
-
-                <!-- Question 50 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">50.</span>
-                        Which of the following given dignitaries is/are not the signatories on the Charter of SAARC?
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q50" value="a"> a. King Birendra</label>
-                        <label class="option"><input type="radio" name="q50" value="b"> b. Rajiv Gandhi</label>
-                        <label class="option"><input type="radio" name="q50" value="c"> c. Ziaur Rahman</label>
-                        <label class="option"><input type="radio" name="q50" value="d"> d. Jigme Singye Wangchuk</label>
-                    </div>
-                </div>
-
-                <button type="submit" class="submit-btn" id="submitBtn">Submit Quiz</button>
-            </form>
-
-            <div class="result" id="result">
-                <h2>Quiz Completed!</h2>
-                <div class="score" id="scoreDisplay"></div>
-                <div class="result-message" id="resultMessage"></div>
-            </div>
-        </div>
+        </main>
     </div>
 
     <script>
-        // Check if quiz has been taken before
-        if (localStorage.getItem('quizCompleted') === 'true') {
-            const score = localStorage.getItem('quizScore');
-            const total = localStorage.getItem('quizTotal');
-            document.getElementById('quizContent').innerHTML = `
-                <div class="locked-message">
-                    <h2>⚠️ Quiz Already Completed</h2>
-                    <p>You have already taken this quiz. Retakes are not allowed.</p>
-                    <div class="your-score">Your Score: ${score}/${total}</div>
-                    <p style="margin-top: 20px;">Percentage: ${((score/total)*100).toFixed(1)}%</p>
-                </div>
-            `;
-        }
-
-        // Correct answers based on the provided image
-        const answers = {
-            q1: 'b',   // 0.006
-            q2: 'b',   // 2
-            q3: 'c',   // 5
-            q4: 'b',   // 2016
-            q5: 'a',   // 1945-10-24
-            q6: 'a',   // Based on capacity to pay
-            q7: 'c',   // UN Human Rights Council
-            q8: 'c',   // 14th Summit
-            q9: 'c',   // 17th
-            q10: 'a',  // 1969 AD
-            q11: 'd',  // 1994 AD
-            q12: 'b',  // 2004, February
-            q13: 'a',  // 3rd, 11th, 18th
-            q14: 'b',  // Maldives
-            q15: 'c',  // Afghanistan
-            q16: 'c',  // Afghanistan
-            q17: 'c',  // Antonio Guterres
-            q18: 'b',  // India
-            q19: 'a',  // Myanmar
-            q20: 'c',  // BIMSTEC
-            q21: 'b',  // Dag Hammarskjold
-            q22: 'b',  // Chapter 19, Articles 111
-            q23: 'b',  // India
-            q24: 'a',  // People-to-People Contact
-            q25: 'c',  // Dr. K. I. Singh
-            q26: 'c',  // General Assembly
-            q27: 'a',  // Vijaya Lakshmi Pandit
-            q28: 'd',  // Union Council
-            q29: 'c',  // International Year of Millets
-            q30: 'd',  // South Korea
-            q31: 'd',  // Gyan Prasad Acharya
-            q32: 'd',  // Matrika Prasad Koirala
-            q33: 'd',  // Tenzin Lekphell
-            q34: 'c',  // Nepal
-            q35: 'b',  // English
-            q36: 'd',  // Geneva
-            q37: 'b',  // Security Council
-            q38: 'c',  // Pathalaiya-Dhalkebar Segment
-            q39: 'a',  // Sher Bahadur Deuba
-            q40: 'd',  // Rufiyaa
-            q41: 'b',  // China, Russia, America, Britain and France
-            q42: 'c',  // San Francisco
-            q43: 'c',  // Sri Lanka
-            q44: 'a',  // Shailendra Kumar Maharjan
-            q45: 'd',  // Mali
-            q46: 'b',  // South Sudan
-            q47: 'd',  // To promote friendly relations among nations
-            q48: 'd',  // UNESCO
-            q49: 'c',  // Vienna
-            q50: 'b'   // Rajiv Gandhi
-        };
-
-        // Timer setup (60 minutes)
-        let timeLeft = 60 * 60;
-        let timerInterval;
-
-        function startTimer() {
-            timerInterval = setInterval(() => {
-                timeLeft--;
-                updateTimerDisplay();
-                
-                if (timeLeft <= 300) {
-                    document.getElementById('timer').classList.add('warning');
-                }
-                
-                if (timeLeft <= 0) {
-                    clearInterval(timerInterval);
-                    submitQuiz();
-                }
-            }, 1000);
-        }
-
-        function updateTimerDisplay() {
-            const minutes = Math.floor(timeLeft / 60);
-            const seconds = timeLeft % 60;
-            document.getElementById('timer').textContent = 
-                `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-        }
-
-        // Option selection
-        document.querySelectorAll('.option').forEach(option => {
-            option.addEventListener('click', function() {
-                const radio = this.querySelector('input[type="radio"]');
-                radio.checked = true;
-                
-                const parent = this.parentElement;
-                parent.querySelectorAll('.option').forEach(opt => {
-                    opt.classList.remove('selected');
-                });
-                
-                this.classList.add('selected');
-                updateProgress();
-            });
-        });
-
-        // Update progress bar
-        function updateProgress() {
+        (function() {
+            const answers = {
+                q1: 'b', q2: 'b', q3: 'c', q4: 'b', q5: 'a',
+                q6: 'a', q7: 'c', q8: 'c', q9: 'c', q10: 'a',
+                q11: 'd', q12: 'b', q13: 'a', q14: 'b', q15: 'c',
+                q16: 'c', q17: 'c', q18: 'b', q19: 'a', q20: 'c',
+                q21: 'b', q22: 'b', q23: 'b', q24: 'a', q25: 'c',
+                q26: 'c', q27: 'a', q28: 'd', q29: 'c', q30: 'd',
+                q31: 'd', q32: 'd', q33: 'd', q34: 'c', q35: 'b',
+                q36: 'd', q37: 'b', q38: 'c', q39: 'a', q40: 'd',
+                q41: 'b', q42: 'c', q43: 'c', q44: 'a', q45: 'd',
+                q46: 'b', q47: 'd', q48: 'd', q49: 'c', q50: 'b'
+            };
             const totalQuestions = 50;
-            let answered = 0;
-            
-            for (let i = 1; i <= totalQuestions; i++) {
-                if (document.querySelector(`input[name="q${i}"]:checked`)) {
-                    answered++;
+            let timeLeft = 60 * 60; // 60 minutes in seconds
+            let timerInterval = null;
+
+            const timerEl = document.getElementById('timer');
+            const quizForm = document.getElementById('quizForm');
+            const submitBtn = document.getElementById('submitBtn');
+            const resultDiv = document.getElementById('result');
+            const scoreDisplay = document.getElementById('scoreDisplay');
+            const resultMessage = document.getElementById('resultMessage');
+            const progressFill = document.getElementById('progress');
+            const questionGrid = document.getElementById('questionGrid');
+
+            // Build sidebar question boxes
+            function buildSidebar() {
+                questionGrid.innerHTML = '';
+                for (let i = 1; i <= totalQuestions; i++) {
+                    const box = document.createElement('div');
+                    box.className = 'q-box';
+                    box.id = `qbox-${i}`;
+                    box.textContent = i;
+                    box.addEventListener('click', () => {
+                        const target = document.getElementById(`qblock${i}`);
+                        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    });
+                    questionGrid.appendChild(box);
                 }
             }
-            
-            const progress = (answered / totalQuestions) * 100;
-            document.getElementById('progress').style.width = progress + '%';
-        }
 
-        // Submit quiz
-        document.getElementById('quizForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            submitQuiz();
-        });
-
-        function submitQuiz() {
-            clearInterval(timerInterval);
-            
-            let score = 0;
-            const totalQuestions = 50;
-            
-            for (let i = 1; i <= totalQuestions; i++) {
-                const questionName = `q${i}`;
-                const selectedOption = document.querySelector(`input[name="${questionName}"]:checked`);
-                const correctAnswer = answers[questionName];
-                
-                const options = document.querySelectorAll(`input[name="${questionName}"]`);
-                
-                options.forEach(option => {
-                    const label = option.parentElement;
-                    
-                    if (option.value === correctAnswer) {
-                        label.classList.add('correct');
+            // Update sidebar highlights based on answered questions
+            function updateSidebarHighlights() {
+                for (let i = 1; i <= totalQuestions; i++) {
+                    const selected = document.querySelector(`input[name="q${i}"]:checked`);
+                    const box = document.getElementById(`qbox-${i}`);
+                    if (box) {
+                        if (selected) box.classList.add('answered');
+                        else box.classList.remove('answered');
                     }
-                    
-                    if (selectedOption && option === selectedOption && option.value !== correctAnswer) {
-                        label.classList.add('incorrect');
+                }
+            }
+
+            // Update progress bar
+            function updateProgress() {
+                let answered = 0;
+                for (let i = 1; i <= totalQuestions; i++) {
+                    if (document.querySelector(`input[name="q${i}"]:checked`)) answered++;
+                }
+                const percent = (answered / totalQuestions) * 100;
+                progressFill.style.width = percent + '%';
+            }
+
+            // Timer functions
+            function updateTimerDisplay() {
+                const mins = Math.floor(timeLeft / 60);
+                const secs = timeLeft % 60;
+                timerEl.textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+            }
+
+            function startTimer() {
+                timerInterval = setInterval(() => {
+                    timeLeft--;
+                    updateTimerDisplay();
+                    if (timeLeft <= 300) {
+                        timerEl.classList.add('warning');
+                    }
+                    if (timeLeft <= 0) {
+                        clearInterval(timerInterval);
+                        submitQuiz();
+                    }
+                }, 1000);
+            }
+
+            // Submit quiz handler
+            function submitQuiz() {
+                clearInterval(timerInterval);
+                timerEl.classList.remove('warning');
+                timerEl.classList.add('completed');
+                localStorage.setItem('quizTimeLeft', timeLeft);
+
+                let score = 0;
+                const selectedAnswers = {};
+
+                for (let i = 1; i <= totalQuestions; i++) {
+                    const qName = `q${i}`;
+                    const selected = document.querySelector(`input[name="${qName}"]:checked`);
+                    const correct = answers[qName];
+                    const options = document.querySelectorAll(`input[name="${qName}"]`);
+
+                    if (selected) {
+                        selectedAnswers[qName] = selected.value;
+                    }
+
+                    options.forEach(opt => {
+                        const label = opt.parentElement;
+                        if (opt.value === correct) label.classList.add('correct');
+                        if (selected && opt === selected && opt.value !== correct) {
+                            label.classList.add('incorrect');
+                        }
+                    });
+
+                    if (selected && selected.value === correct) score++;
+                }
+
+                // Disable all questions
+                document.querySelectorAll('.question-block').forEach(block => block.classList.add('submitted'));
+                submitBtn.style.display = 'none';
+
+                // Save results to localStorage
+                localStorage.setItem('quizCompleted', 'true');
+                localStorage.setItem('quizScore', score);
+                localStorage.setItem('quizTotal', totalQuestions);
+                localStorage.setItem('quizAnswers', JSON.stringify(selectedAnswers));
+
+                // Show result
+                const percentage = (score / totalQuestions * 100).toFixed(1);
+                scoreDisplay.textContent = `${score} / ${totalQuestions}`;
+                let message = '';
+                if (percentage >= 80) message = '🌟 Excellent! Outstanding performance!';
+                else if (percentage >= 60) message = '👍 Good job! Well done!';
+                else if (percentage >= 40) message = '📚 Fair performance. Keep studying!';
+                else message = '💪 Need more preparation. Study harder!';
+
+                resultMessage.innerHTML = `
+                    <p>${message}</p>
+                    <p style="margin-top:15px;">Percentage: ${percentage}%</p>
+                    <p style="margin-top:10px; font-size:16px;">⚠️ This quiz cannot be retaken</p>
+                `;
+                resultDiv.classList.add('show');
+                resultDiv.scrollIntoView({ behavior: 'smooth' });
+
+                updateSidebarHighlights();
+            }
+
+            // Restore completed quiz state from localStorage
+            function restoreCompletedState() {
+                const storedAnswers = JSON.parse(localStorage.getItem('quizAnswers') || '{}');
+                const storedScore = localStorage.getItem('quizScore');
+                const storedTime = localStorage.getItem('quizTimeLeft');
+
+                // Set radio buttons
+                for (let i = 1; i <= totalQuestions; i++) {
+                    const qName = `q${i}`;
+                    const val = storedAnswers[qName];
+                    if (val) {
+                        const radio = document.querySelector(`input[name="${qName}"][value="${val}"]`);
+                        if (radio) radio.checked = true;
+                    }
+                }
+
+                // Disable all inputs
+                document.querySelectorAll('.question-block').forEach(block => block.classList.add('submitted'));
+                submitBtn.style.display = 'none';
+
+                // Mark correct/incorrect
+                for (let i = 1; i <= totalQuestions; i++) {
+                    const qName = `q${i}`;
+                    const correct = answers[qName];
+                    const options = document.querySelectorAll(`input[name="${qName}"]`);
+                    const selectedRadio = document.querySelector(`input[name="${qName}"]:checked`);
+                    options.forEach(opt => {
+                        const label = opt.parentElement;
+                        if (opt.value === correct) label.classList.add('correct');
+                        if (selectedRadio && opt === selectedRadio && opt.value !== correct) {
+                            label.classList.add('incorrect');
+                        }
+                    });
+                }
+
+                // Timer display
+                if (storedTime !== null) {
+                    timeLeft = parseInt(storedTime, 10);
+                    updateTimerDisplay();
+                } else {
+                    timerEl.textContent = '00:00';
+                }
+                timerEl.classList.add('completed');
+
+                // Show result
+                if (storedScore !== null) {
+                    const total = localStorage.getItem('quizTotal') || totalQuestions;
+                    const percentage = (storedScore / total * 100).toFixed(1);
+                    scoreDisplay.textContent = `${storedScore} / ${total}`;
+                    let message = '';
+                    if (percentage >= 80) message = '🌟 Excellent! Outstanding performance!';
+                    else if (percentage >= 60) message = '👍 Good job! Well done!';
+                    else if (percentage >= 40) message = '📚 Fair performance. Keep studying!';
+                    else message = '💪 Need more preparation. Study harder!';
+                    resultMessage.innerHTML = `
+                        <p>${message}</p>
+                        <p style="margin-top:15px;">Percentage: ${percentage}%</p>
+                        <p style="margin-top:10px; font-size:16px;">⚠️ This quiz cannot be retaken</p>
+                    `;
+                }
+                resultDiv.classList.add('show');
+                updateSidebarHighlights();
+            }
+
+            // Initialize page
+            window.addEventListener('load', () => {
+                buildSidebar();
+
+                const quizCompleted = localStorage.getItem('quizCompleted') === 'true';
+
+                if (quizCompleted) {
+                    restoreCompletedState();
+                } else {
+                    // Fresh quiz
+                    updateTimerDisplay();
+                    startTimer();
+
+                    // Attach event listeners for sidebar highlight & progress
+                    quizForm.addEventListener('change', (e) => {
+                        if (e.target.matches('input[type="radio"]')) {
+                            updateSidebarHighlights();
+                            updateProgress();
+                        }
+                    });
+
+                    updateProgress();
+                }
+
+                // Form submit
+                quizForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    if (localStorage.getItem('quizCompleted') !== 'true') {
+                        submitQuiz();
                     }
                 });
-                
-                if (selectedOption && selectedOption.value === correctAnswer) {
-                    score++;
-                }
-            }
-            
-            // Mark quiz as completed in localStorage
-            localStorage.setItem('quizCompleted', 'true');
-            localStorage.setItem('quizScore', score);
-            localStorage.setItem('quizTotal', totalQuestions);
-            
-            document.querySelectorAll('.question-block').forEach(block => {
-                block.classList.add('submitted');
+
+                // Warn before leaving if quiz active
+                window.addEventListener('beforeunload', (e) => {
+                    if (localStorage.getItem('quizCompleted') !== 'true') {
+                        e.preventDefault();
+                        e.returnValue = '';
+                    }
+                });
             });
-            
-            document.getElementById('submitBtn').style.display = 'none';
-            
-            const percentage = (score / totalQuestions * 100).toFixed(1);
-            document.getElementById('scoreDisplay').textContent = `${score} / ${totalQuestions}`;
-            
-            let message = '';
-            if (percentage >= 80) {
-                message = '🌟 Excellent! Outstanding performance!';
-            } else if (percentage >= 60) {
-                message = '👍 Good job! Well done!';
-            } else if (percentage >= 40) {
-                message = '📚 Fair performance. Keep studying!';
-            } else {
-                message = '💪 Need more preparation. Study harder!';
-            }
-            
-            document.getElementById('resultMessage').innerHTML = `
-                <p>${message}</p>
-                <p style="margin-top: 15px;">Percentage: ${percentage}%</p>
-                <p style="margin-top: 10px; font-size: 16px;">⚠️ This quiz cannot be retaken</p>
-            `;
-            document.getElementById('result').classList.add('show');
-            
-            document.getElementById('result').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        // Start timer when page loads (only if quiz not completed)
-        window.addEventListener('load', () => {
-            if (localStorage.getItem('quizCompleted') !== 'true') {
-                startTimer();
-            }
-        });
-
-        // Prevent page refresh during quiz
-        window.addEventListener('beforeunload', function (e) {
-            if (localStorage.getItem('quizCompleted') !== 'true') {
-                e.preventDefault();
-                e.returnValue = '';
-            }
-        });
+        })();
     </script>
+    
 </body>
 </html>

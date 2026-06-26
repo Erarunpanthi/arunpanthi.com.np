@@ -36,48 +36,27 @@
   </section>
 
   <script>
-    // Array of 20 mock test sets
-    const mockTests = [
-      { setNo: 1, link: "https://arunpanthi.com.np/Psc-preparation/Mock-Test/General/Set/1" },
-      { setNo: 2, link: "https://arunpanthi.com.np/Psc-preparation/Mock-Test/General/Set/2" },
-      { setNo: 3, link: "https://arunpanthi.com.np/Psc-preparation/Mock-Test/Building/" },
-      { setNo: 4, link: "https://arunpanthi.com.np/Psc-preparation/Mock-Test/Architecture/" },
-      { setNo: 5, link: "https://arunpanthi.com.np/Psc-preparation/Mock-Test/Survey/" },
-      { setNo: 6, link: "https://arunpanthi.com.np/Psc-preparation/Mock-Test/Structural/" },
-      { setNo: 7, link: "https://arunpanthi.com.np/Psc-preparation/Mock-Test/Transportation/" },
-      { setNo: 8, link: "https://arunpanthi.com.np/Psc-preparation/Mock-Test/WaterSupply/" },
-      { setNo: 9, link: "https://arunpanthi.com.np/Psc-preparation/Mock-Test/Sanitation/" },
-      { setNo: 10, link: "https://arunpanthi.com.np/Psc-preparation/Mock-Test/SoilMechanics/" },
-      { setNo: 11, link: "https://arunpanthi.com.np/Psc-preparation/Mock-Test/Foundation/" },
-      { setNo: 12, link: "https://arunpanthi.com.np/Psc-preparation/Mock-Test/Hydraulic/" },
-      { setNo: 13, link: "https://arunpanthi.com.np/Psc-preparation/Mock-Test/Environmental/" },
-      { setNo: 14, link: "https://arunpanthi.com.np/Psc-preparation/Mock-Test/Geotechnical/" },
-      { setNo: 15, link: "https://arunpanthi.com.np/Psc-preparation/Mock-Test/Concrete/" },
-      { setNo: 16, link: "https://arunpanthi.com.np/Psc-preparation/Mock-Test/SteelStructures/" },
-      { setNo: 17, link: "https://arunpanthi.com.np/Psc-preparation/Mock-Test/Earthquake/" },
-      { setNo: 18, link: "https://arunpanthi.com.np/Psc-preparation/Mock-Test/Hydropower/" },
-      { setNo: 19, link: "https://arunpanthi.com.np/Psc-preparation/Mock-Test/ProjectManagement/" },
-      { setNo: 20, link: "https://arunpanthi.com.np/Psc-preparation/Mock-Test/CivilGK/" }
-    ];
-
+    // Total sets (dynamic generation)
+    const totalSets = 20;
     const bookList = document.getElementById("book-list");
 
-    mockTests.forEach(test => {
+    for (let i = 1; i <= totalSets; i++) {
       const article = document.createElement("article");
       article.className = "book";
+
+      // Dynamic link pattern
+      const link = `https://arunpanthi.com.np/Psc-preparation/Mock-Test/General/Set/${i}`;
+
       article.innerHTML = `
-        <h2>Set No: ${test.setNo}</h2>
-        <a href="${test.link}" class="test-button">Select Set ${test.setNo}</a>
+        <h2>Set No: ${i}</h2>
+        <a href="${link}" class="test-button">Start Exam</a>
       `;
       bookList.appendChild(article);
-    });
-    
+    }
   </script>
   
-    <div id="social-section"></div>
-  </main>
-
+  <div id="social-section"></div>
   <div id="footer"></div>
   <script src="/js/layout.js"></script>
 </body>
-    </html>
+</html>

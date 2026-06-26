@@ -1,62 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>General</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-            color: white;
-        }
-        .card {
-            text-align: center;
-            padding: 60px 50px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 24px;
-            border: 1px solid rgba(255,255,255,0.15);
-            backdrop-filter: blur(12px);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-            max-width: 500px;
-        }
-        .icon { font-size: 4rem; margin-bottom: 20px; }
-        h1 {
-            font-size: 2.2rem;
-            margin-bottom: 12px;
-            background: linear-gradient(90deg, #f093fb, #f5576c);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        p { font-size: 1rem; color: #a8b2d8; margin-bottom: 30px; line-height: 1.6; }
-        a {
-            display: inline-block;
-            padding: 12px 35px;
-            background: linear-gradient(90deg, #f093fb, #f5576c);
-            color: white;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 0.95rem;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        a:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(245,87,108,0.4);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="description" content="PSC Civil Engineering Mock Tests for Nepal - Highway, Hydrology, Building, Architecture, and more.">
+  <meta name="keywords" content="PSC Nepal, Civil Engineering, Mock Test, Highway, Hydrology, Building, Architecture, Irrigation, Sanitation">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PSC Civil Engineering Mock Tests</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/grid.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous">
 </head>
 <body>
-    <div class="card">
-        <div class="icon">🚧</div>
-        <h1>General</h1>
-        <p>This page is currently under construction.<br>We're working hard to bring it to you soon!</p>
-        <a href="/">⬅ Back to Home</a>
-    </div>
+  <div id="navbar"></div>
+
+  <div class="container" id="mocktest-cards">
+    <h1 style="text-align: center;">Available Mock Tests</h1>
+    <div class="book-list" id="book-list"></div>
+  </div>
+
+  <!-- FAQ Section -->
+  <section class="faq">
+    <h2>Frequently Asked Questions</h2>
+    <details>
+      <summary>How can I prepare for PSC Civil Engineering exams?</summary>
+      <p>Practice mock tests regularly, review past papers, and study official PSC syllabus.</p>
+    </details>
+    <details>
+      <summary>Are these mock tests free?</summary>
+      <p>Yes, all mock tests provided here are free for students preparing for PSC exams.</p>
+    </details>
+    <details>
+      <summary>Do these tests follow the official PSC syllabus?</summary>
+      <p>Yes, each mock test is designed based on the official PSC syllabus for civil engineering positions.</p>
+    </details>
+  </section>
+
+  <div id="social-section"></div>
+  <div id="footer"></div>
+
+  <script>
+    // Array of 20 mock test sets
+    const mockTests = [
+      { setNo: 1, link: "https://arunpanthi.com.np/Psc-preparation/Mock-Test/General/" },
+      { setNo: 2, link: "https://arunpanthi.com.np/Psc-preparation/Mock-Test/Hydrology/" },
+      { setNo: 3, link: "https://arunpanthi.com.np/Psc-preparation/Mock-Test/Building/" },
+      { setNo: 4, link: "https://arunpanthi.com.np/Psc-preparation/Mock-Test/Architecture/" },
+      { setNo: 5, link: "https://arunpanthi.com.np/Psc-preparation/Mock-Test/Survey/" },
+      { setNo: 6, link: "https://arunpanthi.com.np/Psc-preparation/Mock-Test/Structural/" },
+      { setNo: 7, link: "https://arunpanthi.com.np/Psc-preparation/Mock-Test/Transportation/" },
+      { setNo: 8, link: "https://arunpanthi.com.np/Psc-preparation/Mock-Test/WaterSupply/" },
+      { setNo: 9, link: "https://arunpanthi.com.np/Psc-preparation/Mock-Test/Sanitation/" },
+      { setNo: 10, link: "https://arunpanthi.com.np/Psc-preparation/Mock-Test/SoilMechanics/" },
+      { setNo: 11, link: "https://arunpanthi.com.np/Psc-preparation/Mock-Test/Foundation/" },
+      { setNo: 12, link: "https://arunpanthi.com.np/Psc-preparation/Mock-Test/Hydraulic/" },
+      { setNo: 13, link: "https://arunpanthi.com.np/Psc-preparation/Mock-Test/Environmental/" },
+      { setNo: 14, link: "https://arunpanthi.com.np/Psc-preparation/Mock-Test/Geotechnical/" },
+      { setNo: 15, link: "https://arunpanthi.com.np/Psc-preparation/Mock-Test/Concrete/" },
+      { setNo: 16, link: "https://arunpanthi.com.np/Psc-preparation/Mock-Test/SteelStructures/" },
+      { setNo: 17, link: "https://arunpanthi.com.np/Psc-preparation/Mock-Test/Earthquake/" },
+      { setNo: 18, link: "https://arunpanthi.com.np/Psc-preparation/Mock-Test/Hydropower/" },
+      { setNo: 19, link: "https://arunpanthi.com.np/Psc-preparation/Mock-Test/ProjectManagement/" },
+      { setNo: 20, link: "https://arunpanthi.com.np/Psc-preparation/Mock-Test/CivilGK/" }
+    ];
+
+    const bookList = document.getElementById("book-list");
+
+    mockTests.forEach(test => {
+      const article = document.createElement("article");
+      article.className = "book";
+      article.innerHTML = `
+        <h2>Set No: ${test.setNo}</h2>
+        <a href="${test.link}" class="test-button">Select Set ${test.setNo}</a>
+      `;
+      bookList.appendChild(article);
+    });
+  </script>
 </body>
 </html>

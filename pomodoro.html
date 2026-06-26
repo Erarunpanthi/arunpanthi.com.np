@@ -200,7 +200,7 @@
 
 <script>
     (function() {
-        // DOM elements
+        // DOM
         const timeDisplay=document.getElementById('timeDisplay');
         const sessionLabel=document.getElementById('sessionLabel');
         const ringProgress=document.getElementById('ringProgress');
@@ -430,7 +430,36 @@
             }
         });
 
-        // Report button - opens popup with historical data and chart
+        // Improved AD to BS converter using base date BS 2000/01/01 = AD 1943/04/14
+        function adToBs(adYear, adMonth, adDay) {
+            const baseAD = new Date(1943, 3, 14); // April 14, 1943
+            const targetAD = new Date(adYear, adMonth-1, adDay);
+            let diffDays = Math.floor((targetAD - baseAD) / (1000 * 60 * 60 * 24));
+            let bsYear = 2000, bsMonth = 1, bsDay = 1;
+            
+            const monthDaysNormal = [31,31,32,31,31,31,30,29,30,29,30,30];
+            function isBsLeapYear(y) { return y % 4 === 0; }
+            function getMonthDays(y, m) {
+                let days = monthDaysNormal[m-1];
+                if (m === 2 && isBsLeapYear(y)) days = 32; // Jeth gets 32 in leap years
+                return days;
+            }
+            
+            while (diffDays > 0) {
+                const dim = getMonthDays(bsYear, bsMonth);
+                if (diffDays >= dim) {
+                    diffDays -= dim;
+                    bsMonth++;
+                    if (bsMonth > 12) { bsMonth = 1; bsYear++; }
+                } else {
+                    bsDay += diffDays;
+                    diffDays = 0;
+                }
+            }
+            return { year: bsYear, month: bsMonth, day: bsDay };
+        }
+
+        // Report button - opens popup with historical data and chart using correct BS dates
         btnReport.addEventListener('click',()=>{
             const historyData=[];
             Object.keys(localStorage).forEach(key=>{
@@ -446,32 +475,9 @@
             });
             historyData.sort((a,b)=>a.dateStr.localeCompare(b.dateStr));
 
-            // AD to BS converter (approximate)
-            function ad2bs(y,m,d){
-                const bsMonthDays=[31,31,32,31,31,31,30,29,30,29,30,30];
-                const baseAD=new Date(1970,0,1);
-                const baseBS={y:2026,m:9,d:17};
-                let diffDays=Math.floor((new Date(y,m-1,d)-baseAD)/86400000);
-                let bsY=baseBS.y,bsM=baseBS.m,bsD=baseBS.d;
-                while(diffDays>0){
-                    const yearDays=bsMonthDays.reduce((a,b)=>a+b,0);
-                    if(diffDays>=yearDays){diffDays-=yearDays;bsY++;continue;}
-                    let mIdx=bsM-1;
-                    while(diffDays>0){
-                        const dim=bsMonthDays[mIdx];
-                        if(diffDays>=dim){diffDays-=dim;mIdx++;continue;}
-                        break;
-                    }
-                    bsM=mIdx+1;
-                    bsD=diffDays+1;
-                    break;
-                }
-                return {year:bsY,month:bsM,day:bsD};
-            }
-
             const rows=historyData.map((entry,idx)=>{
                 const [y,m,d]=entry.dateStr.split('-').map(Number);
-                const bs=ad2bs(y,m,d);
+                const bs=adToBs(y,m,d);
                 const adDate=new Date(y,m-1,d);
                 const nepalLocaleDate=adDate.toLocaleDateString('ne-NP',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
                 const totalHours=(entry.totalSec/3600).toFixed(1)+' hr';

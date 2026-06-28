@@ -1,4 +1,4 @@
- :root {
+:root {
             --navbar-bg: #2E7D32;
             --hero-bg: #4CAF50;
             --body-bg: #e8f5e9;
@@ -403,12 +403,3 @@
             .sidebar .q-grid .q-dot { font-size: 0.65rem; min-width: 24px; }
             .hero .set-meta { flex-direction: column; gap: 8px; align-items: center; }
         }
-.nav-buttons {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-top: 8px;
-}
-.nav-left { flex: 1; text-align: left; }
-.nav-center { flex: 0 0 auto; text-align: center; }
-.nav-right { flex: 1; text-align: right; }

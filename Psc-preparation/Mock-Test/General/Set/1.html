@@ -1,340 +1,1021 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nepal General Knowledge Quiz</title>
-  <link rel="stylesheet" href="/css/Mock_Test.css">
- 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCQ Test - Single Set</title>
+    <style>
+        :root {
+            --navbar-bg: #2E7D32;
+            --hero-bg: #4CAF50;
+            --body-bg: #e8f5e9;
+            --btn-bg: #2E7D32;
+            --text-dark: #333;
+            --text-light: #fff;
+            --sidebar-answered: #1E88E5;
+            --sidebar-unanswered: #e0e0e0;
+            --sidebar-current-border: #1565C0;
+            --warning-yellow: #F9A825;
+            --danger-red: #D32F2F;
+            --correct-green: #2E7D32;
+            --incorrect-red: #C62828;
+            --card-bg: #fff;
+            --shadow: 0 2px 12px rgba(0,0,0,0.1);
+            --shadow-lg: 0 8px 32px rgba(0,0,0,0.15);
+            --radius: 10px;
+            --radius-sm: 5px;
+            --transition: 0.3s;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #e8f5e9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        .navbar {
+            background-color: #2E7D32;
+            color: #fff;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar .brand { font-size: 1.3rem; font-weight: 700; letter-spacing: 0.5px; }
+        .navbar .timer-display {
+            font-size: 1.4rem;
+            font-weight: 700;
+            font-family: 'Courier New', monospace;
+            padding: 6px 16px;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.15);
+            min-width: 90px;
+            text-align: center;
+            transition: all 0.4s;
+        }
+        .navbar .timer-display.warning-yellow {
+            background: #F9A825; color: #333; animation: pulse-yellow 1s infinite;
+        }
+        .navbar .timer-display.warning-red {
+            background: #D32F2F; color: #fff; animation: pulse-red 0.6s infinite;
+        }
+        @keyframes pulse-yellow {
+            0%,100%{ box-shadow: 0 0 0 0 rgba(249,168,37,0.6); }
+            50%{ box-shadow: 0 0 0 14px rgba(249,168,37,0); }
+        }
+        @keyframes pulse-red {
+            0%,100%{ box-shadow: 0 0 0 0 rgba(211,47,47,0.7); }
+            50%{ box-shadow: 0 0 0 16px rgba(211,47,47,0); }
+        }
+        .hero {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            margin: 30px auto;
+            max-width: 800px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+        }
+        .hero h1 { font-size: 2rem; margin-bottom: 10px; }
+        .hero .set-details { font-size: 1rem; opacity: 0.9; margin-bottom: 6px; }
+        .hero .set-meta {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin: 16px 0;
+        }
+        .hero .meta-item {
+            background: rgba(255,255,255,0.2);
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        .hero .meta-item span { display: block; font-size: 1.6rem; font-weight: 700; }
+        .hero .btn-start {
+            display: inline-block;
+            width: auto;
+            min-width: 200px;
+            padding: 14px 40px;
+            background: #fff;
+            color: #2E7D32;
+            border: 2px solid #fff;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .hero .btn-start:hover {
+            background: #2E7D32;
+            color: #fff;
+            border-color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+        }
+        .hero .btn-start:disabled { opacity: 0.5; cursor: not-allowed; pointer-events: none; }
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #2E7D32;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+        button:hover { background: #1B5E20; }
+        button:active { transform: scale(0.98); }
+        button.btn-nav { width: auto; padding: 10px 22px; border-radius: 25px; font-size: 0.95rem; }
+        button.btn-submit {
+            width: auto;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 1rem;
+            background: #F57C00;
+            letter-spacing: 1px;
+        }
+        button.btn-submit:hover { background: #E65100; }
+        button:disabled { opacity: 0.55; cursor: not-allowed; }
+
+        /* ========== CUSTOM MODAL ========== */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.55);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            animation: fadeIn 0.2s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .modal-dialog {
+            background: #fff;
+            border-radius: 16px;
+            padding: 30px 28px;
+            max-width: 450px;
+            width: 90%;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            text-align: center;
+            animation: slideUp 0.25s ease;
+        }
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .modal-dialog .warning-icon {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+        }
+        .modal-dialog h3 {
+            font-size: 1.4rem;
+            color: #D32F2F;
+            margin-bottom: 8px;
+        }
+        .modal-dialog p {
+            font-size: 0.95rem;
+            color: #555;
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+        .modal-dialog .modal-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        .modal-dialog .modal-buttons button {
+            flex: 1;
+            padding: 12px 20px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        .btn-cancel {
+            background: #e0e0e0;
+            color: #333;
+            border: 2px solid #ccc;
+        }
+        .btn-cancel:hover { background: #d0d0d0; }
+        .btn-submit-warning {
+            background: #D32F2F;
+            color: #fff;
+            border: 2px solid #B71C1C;
+        }
+        .btn-submit-warning:hover {
+            background: #B71C1C;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(211,47,47,0.4);
+        }
+        .modal-dialog .unanswered-count {
+            font-weight: 700;
+            color: #E65100;
+            background: #FFF3E0;
+            display: inline-block;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin: 6px 0;
+        }
+
+        .test-container {
+            display: flex;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+            min-height: calc(100vh - 160px);
+        }
+        .question-area { flex: 1; min-width: 0; }
+        .question-card {
+            background: #fff;
+            border-radius: 10px;
+            padding: 28px 24px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            margin-bottom: 16px;
+            border-left: 5px solid #4CAF50;
+            transition: all 0.3s;
+        }
+        .question-card .q-number { font-weight: 700; color: #2E7D32; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+        .question-card .q-text { font-size: 1.15rem; font-weight: 600; color: #222; margin-bottom: 18px; line-height: 1.5; }
+        .options-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+        .options-list li {
+            padding: 13px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #fafafa;
+            user-select: none;
+        }
+        .options-list li:hover { border-color: #4CAF50; background: #f1f8e9; box-shadow: 0 2px 8px rgba(76,175,80,0.15); }
+        .options-list li.selected {
+            border-color: #2E7D32;
+            background: #e8f5e9;
+            font-weight: 600;
+            box-shadow: 0 0 0 3px rgba(46,125,50,0.2);
+        }
+        .options-list li .option-letter {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #e0e0e0;
+            font-weight: 700;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+            transition: all 0.2s;
+        }
+        .options-list li.selected .option-letter { background: #2E7D32; color: #fff; }
+        .nav-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 8px;
+        }
+        .nav-buttons .spacer { flex: 1; }
+        .sidebar {
+            width: 260px;
+            flex-shrink: 0;
+            background: #fff;
+            border-radius: 10px;
+            padding: 20px 16px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            align-self: flex-start;
+            position: sticky;
+            top: 80px;
+            max-height: calc(100vh - 100px);
+            overflow-y: auto;
+        }
+        .sidebar h3 { text-align: center; color: #2E7D32; margin-bottom: 6px; font-size: 1rem; }
+        .sidebar .total-questions { text-align: center; font-weight: 700; font-size: 1.3rem; color: #333; margin-bottom: 4px; }
+        .sidebar .answered-count { text-align: center; font-size: 0.85rem; color: #666; margin-bottom: 14px; }
+        .sidebar .answered-count strong { color: #1E88E5; }
+        .sidebar .q-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 7px; }
+        .sidebar .q-grid .q-dot {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 2px solid transparent;
+            background: #e0e0e0;
+            color: #555;
+            min-width: 36px;
+            user-select: none;
+        }
+        .sidebar .q-grid .q-dot.answered { background: #1E88E5; color: #fff; border-color: #1565C0; box-shadow: 0 2px 6px rgba(30,136,229,0.35); }
+        .sidebar .q-grid .q-dot.current {
+            border-color: #1565C0;
+            box-shadow: 0 0 0 4px rgba(21,101,192,0.3);
+            transform: scale(1.08);
+            z-index: 2;
+            position: relative;
+        }
+        .sidebar .q-grid .q-dot:hover { transform: scale(1.1); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+        .sidebar .legend { display: flex; gap: 16px; justify-content: center; margin-top: 14px; font-size: 0.75rem; color: #666; }
+        .sidebar .legend span { display: flex; align-items: center; gap: 5px; }
+        .sidebar .legend .dot-sample { width: 14px; height: 14px; border-radius: 3px; display: inline-block; }
+        .sidebar .legend .dot-sample.blue { background: #1E88E5; }
+        .sidebar .legend .dot-sample.gray { background: #e0e0e0; }
+        .results-container { max-width: 900px; margin: 20px auto; padding: 0 20px 40px; }
+        .results-header {
+            background: #fff;
+            border-radius: 10px;
+            padding: 24px 28px;
+            text-align: center;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .results-header .score-circle {
+            display: inline-block;
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            background: #e8f5e9;
+            border: 6px solid #4CAF50;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 10px auto;
+        }
+        .results-header .score-circle .score-num { font-size: 2.6rem; font-weight: 700; color: #2E7D32; }
+        .results-header .score-circle .score-denom { font-size: 0.95rem; color: #666; }
+        .results-header .percentage { font-size: 1.3rem; font-weight: 600; color: #2E7D32; margin-top: 6px; }
+        .result-card {
+            background: #fff;
+            border-radius: 10px;
+            padding: 20px 24px;
+            margin-bottom: 12px;
+            box-shadow: 0 1px 8px rgba(0,0,0,0.06);
+            border-left: 5px solid #e0e0e0;
+            transition: all 0.3s;
+        }
+        .result-card.correct { border-left-color: #4CAF50; background: #f9fdf9; }
+        .result-card.incorrect { border-left-color: #D32F2F; background: #fef9f9; }
+        .result-card .r-q-text { font-weight: 600; margin-bottom: 10px; font-size: 1rem; }
+        .result-card .r-options { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 4px; font-size: 0.9rem; }
+        .result-card .r-options li { padding: 7px 12px; border-radius: 5px; background: #f5f5f5; display: flex; align-items: center; gap: 8px; }
+        .result-card .r-options li.user-answer { font-weight: 700; border: 2px solid #D32F2F; background: #ffebee; }
+        .result-card .r-options li.correct-answer { font-weight: 700; border: 2px solid #4CAF50; background: #e8f5e9; }
+        .result-card .r-options li.both-correct { font-weight: 700; border: 2px solid #4CAF50; background: #c8e6c9; }
+        .result-card .r-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+        .result-card .r-badge.correct-badge { background: #c8e6c9; color: #2E7D32; }
+        .result-card .r-badge.incorrect-badge { background: #ffcdd2; color: #C62828; }
+
+        @media (max-width: 768px) {
+            .test-container { flex-direction: column-reverse; padding: 0 10px; margin: 10px auto; }
+            .sidebar { width: 100%; position: static; max-height: none; padding: 14px 10px; border-radius: 8px; }
+            .sidebar .q-grid { grid-template-columns: repeat(8, 1fr); gap: 5px; }
+            .sidebar .q-grid .q-dot { font-size: 0.7rem; min-width: 28px; border-radius: 4px; }
+            .hero { margin: 15px 10px; padding: 16px 14px; }
+            .hero h1 { font-size: 1.4rem; }
+            .hero .set-meta { gap: 12px; }
+            .hero .meta-item { padding: 8px 12px; font-size: 0.85rem; }
+            .hero .meta-item span { font-size: 1.2rem; }
+            .navbar { padding: 10px 14px; gap: 8px; }
+            .navbar .brand { font-size: 1rem; }
+            .navbar .timer-display { font-size: 1.1rem; padding: 5px 12px; min-width: 70px; }
+            .question-card { padding: 18px 14px; }
+            .question-card .q-text { font-size: 1rem; }
+            .nav-buttons { gap: 8px; }
+            button.btn-nav { padding: 8px 14px; font-size: 0.85rem; }
+            button.btn-submit { padding: 10px 20px; font-size: 0.9rem; }
+            .results-container { padding: 0 10px 30px; }
+            .results-header .score-circle { width: 100px; height: 100px; }
+            .results-header .score-circle .score-num { font-size: 2rem; }
+            .modal-dialog { padding: 24px 18px; }
+        }
+        @media (max-width: 400px) {
+            .sidebar .q-grid { grid-template-columns: repeat(6, 1fr); gap: 4px; }
+            .sidebar .q-grid .q-dot { font-size: 0.65rem; min-width: 24px; }
+            .hero .set-meta { flex-direction: column; gap: 8px; align-items: center; }
+        }
+    </style>
 </head>
 <body>
-  <!-- fixed navigation bar -->
-  <nav class="navbar">
-    <span class="nav-title">🇳🇵 Nepal GK Quiz</span>
-    <div class="timer" id="timer">30:00</div>
-  </nav>
+    <nav class="navbar" id="navbar">
+        <span class="brand" id="navbar-brand">📝 MCQ Test</span>
+        <span class="timer-display" id="timer-display" style="display:none;">--:--</span>
+    </nav>
 
-  <div class="main-area">
-    <!-- sidebar with question numbers -->
-    <aside class="sidebar" id="sidebar">
-      <div class="sidebar-sticky">
-        <h3>📋 Questions</h3>
-        <div class="question-grid" id="questionGrid"></div>
-      </div>
-    </aside>
-
-    <!-- main quiz content -->
-    <main class="content">
-      <div class="container">
-        <div class="header">
-          <h1>Nepal General Knowledge</h1>
-          <p>25 Questions • Time Limit: 30 Minutes</p>
-        </div>
-
-        <div class="quiz-content">
-          <div class="progress-bar">
-            <div class="progress-fill" id="progress" style="width: 0%;"></div>
-          </div>
-
-          <form id="quizForm">
-            <!-- Questions 1 to 25 (same as original) -->
-            <div class="question-block" id="qblock1"><div class="question-text"><span class="question-number">1.</span>When first Nepal is Selected as UN Security Council Member?</div><div class="options"><label class="option"><input type="radio" name="q1" value="a"> a. 1969-1970</label><label class="option"><input type="radio" name="q1" value="b"> b. 1988-1989</label><label class="option"><input type="radio" name="q1" value="c"> c. 1978-1979</label><label class="option"><input type="radio" name="q1" value="d"> d. 1958-1959</label></div></div>
-            <div class="question-block" id="qblock2"><div class="question-text"><span class="question-number">2.</span>When did Nepal become a founding member of BIMSTEC?</div><div class="options"><label class="option"><input type="radio" name="q2" value="a"> a. 2004 Feb 8</label><label class="option"><input type="radio" name="q2" value="b"> b. 2003 Feb 4</label><label class="option"><input type="radio" name="q2" value="c"> c. 2004 Feb 4</label><label class="option"><input type="radio" name="q2" value="d"> d. 2006 Feb 4</label></div></div>
-            <div class="question-block" id="qblock3"><div class="question-text"><span class="question-number">3.</span>Which mountain is nearest to Kathmandu?</div><div class="options"><label class="option"><input type="radio" name="q3" value="a"> a. Jugal</label><label class="option"><input type="radio" name="q3" value="b"> b. Ganesh Himal</label><label class="option"><input type="radio" name="q3" value="c"> c. Gaurishankhar Himal</label><label class="option"><input type="radio" name="q3" value="d"> d. Manaslu</label></div></div>
-            <div class="question-block" id="qblock4"><div class="question-text"><span class="question-number">4.</span>Which of the following is not Sub Metropolitan of Nepal?</div><div class="options"><label class="option"><input type="radio" name="q4" value="a"> a. Biratnagar</label><label class="option"><input type="radio" name="q4" value="b"> b. Butwal</label><label class="option"><input type="radio" name="q4" value="c"> c. Hetauda</label><label class="option"><input type="radio" name="q4" value="d"> d. Ghorahi</label></div></div>
-            <div class="question-block" id="qblock5"><div class="question-text"><span class="question-number">5.</span>When did Nepal Signed Betrawati Sandhi with China?</div><div class="options"><label class="option"><input type="radio" name="q5" value="a"> a. 1848</label><label class="option"><input type="radio" name="q5" value="b"> b. 1842</label><label class="option"><input type="radio" name="q5" value="c"> c. 1860</label><label class="option"><input type="radio" name="q5" value="d"> d. 1890</label></div></div>
-            <div class="question-block" id="qblock6"><div class="question-text"><span class="question-number">6.</span>Dho Valley lies in Which District?</div><div class="options"><label class="option"><input type="radio" name="q6" value="a"> a. Manang</label><label class="option"><input type="radio" name="q6" value="b"> b. Mustang</label><label class="option"><input type="radio" name="q6" value="c"> c. Mugu</label><label class="option"><input type="radio" name="q6" value="d"> d. Dolpa</label></div></div>
-            <div class="question-block" id="qblock7"><div class="question-text"><span class="question-number">7.</span>Per Capita Income of Nepal at the end of 16th Plan is?</div><div class="options"><label class="option"><input type="radio" name="q7" value="a"> a. 2250</label><label class="option"><input type="radio" name="q7" value="b"> b. 2351</label><label class="option"><input type="radio" name="q7" value="c"> c. 2450</label><label class="option"><input type="radio" name="q7" value="d"> d. 2500</label></div></div>
-            <div class="question-block" id="qblock8"><div class="question-text"><span class="question-number">8.</span>Winter Olympic 2026 will be hosted by:</div><div class="options"><label class="option"><input type="radio" name="q8" value="a"> a. France</label><label class="option"><input type="radio" name="q8" value="b"> b. Switzerland</label><label class="option"><input type="radio" name="q8" value="c"> c. Italy</label><label class="option"><input type="radio" name="q8" value="d"> d. Spain</label></div></div>
-            <div class="question-block" id="qblock9"><div class="question-text"><span class="question-number">9.</span>Salpa Pokhari lies on which District?</div><div class="options"><label class="option"><input type="radio" name="q9" value="a"> a. Solukhumbu</label><label class="option"><input type="radio" name="q9" value="b"> b. Bhojpur</label><label class="option"><input type="radio" name="q9" value="c"> c. Taplejung</label><label class="option"><input type="radio" name="q9" value="d"> d. Dhankuta</label></div></div>
-            <div class="question-block" id="qblock10"><div class="question-text"><span class="question-number">10.</span>13th Goal of Sustainable Development is:</div><div class="options"><label class="option"><input type="radio" name="q10" value="a"> a. Life Below Water</label><label class="option"><input type="radio" name="q10" value="b"> b. Life on Land</label><label class="option"><input type="radio" name="q10" value="c"> c. Responsible Consumption and Production</label><label class="option"><input type="radio" name="q10" value="d"> d. Climate Action</label></div></div>
-            <div class="question-block" id="qblock11"><div class="question-text"><span class="question-number">11.</span>29th COP Conference was held on … Country.</div><div class="options"><label class="option"><input type="radio" name="q11" value="a"> a. Brazil</label><label class="option"><input type="radio" name="q11" value="b"> b. Azerbaijan</label><label class="option"><input type="radio" name="q11" value="c"> c. Egypt</label><label class="option"><input type="radio" name="q11" value="d"> d. Nepal</label></div></div>
-            <div class="question-block" id="qblock12"><div class="question-text"><span class="question-number">12.</span>According to Civil Service Act 2049, Maximum Evaluation mark to be given to Employee is ..by Supervisor.</div><div class="options"><label class="option"><input type="radio" name="q12" value="a"> a. 5</label><label class="option"><input type="radio" name="q12" value="b"> b. 10</label><label class="option"><input type="radio" name="q12" value="c"> c. 25</label><label class="option"><input type="radio" name="q12" value="d"> d. 40</label></div></div>
-            <div class="question-block" id="qblock13"><div class="question-text"><span class="question-number">13.</span>Motivation Hierarchy Theory is Given by:</div><div class="options"><label class="option"><input type="radio" name="q13" value="a"> a. Maslow</label><label class="option"><input type="radio" name="q13" value="b"> b. FW Taylor</label><label class="option"><input type="radio" name="q13" value="c"> c. Wright Man</label><label class="option"><input type="radio" name="q13" value="d"> d. Luther Gulick</label></div></div>
-            <div class="question-block" id="qblock14"><div class="question-text"><span class="question-number">14.</span>The POSDCORB theory is given by:</div><div class="options"><label class="option"><input type="radio" name="q14" value="a"> a. Maslow</label><label class="option"><input type="radio" name="q14" value="b"> b. FW Taylor</label><label class="option"><input type="radio" name="q14" value="c"> c. Wright Man</label><label class="option"><input type="radio" name="q14" value="d"> d. Luther Gulick</label></div></div>
-            <div class="question-block" id="qblock15"><div class="question-text"><span class="question-number">15.</span>The list of Power of Local government of Nepal is ……. types.</div><div class="options"><label class="option"><input type="radio" name="q15" value="a"> a. 22</label><label class="option"><input type="radio" name="q15" value="b"> b. 25</label><label class="option"><input type="radio" name="q15" value="c"> c. 21</label><label class="option"><input type="radio" name="q15" value="d"> d. 18</label></div></div>
-            <div class="question-block" id="qblock16"><div class="question-text"><span class="question-number">16.</span>Which of the following is source of Deficit Budget?</div><div class="options"><label class="option"><input type="radio" name="q16" value="a"> a. Revenue in the Budget</label><label class="option"><input type="radio" name="q16" value="b"> b. Grant</label><label class="option"><input type="radio" name="q16" value="c"> c. Internal Borrowing</label><label class="option"><input type="radio" name="q16" value="d"> d. Principle Repayment</label></div></div>
-            <div class="question-block" id="qblock17"><div class="question-text"><span class="question-number">17.</span>Which of the following river is not Originated from Mountain?</div><div class="options"><label class="option"><input type="radio" name="q17" value="a"> a. Bagmati</label><label class="option"><input type="radio" name="q17" value="b"> b. Budi Gandaki</label><label class="option"><input type="radio" name="q17" value="c"> c. Karnali</label><label class="option"><input type="radio" name="q17" value="d"> d. Madi</label></div></div>
-            <div class="question-block" id="qblock18"><div class="question-text"><span class="question-number">18.</span>Public Service Charter is initiated from:</div><div class="options"><label class="option"><input type="radio" name="q18" value="a"> a. France</label><label class="option"><input type="radio" name="q18" value="b"> b. UK</label><label class="option"><input type="radio" name="q18" value="c"> c. USA</label><label class="option"><input type="radio" name="q18" value="d"> d. China</label></div></div>
-            <div class="question-block" id="qblock19"><div class="question-text"><span class="question-number">19.</span>Jiudo Sahid of Nepal</div><div class="options"><label class="option"><input type="radio" name="q19" value="a"> a. Amar Singh Thapa</label><label class="option"><input type="radio" name="q19" value="b"> b. Lakhan Thapa</label><label class="option"><input type="radio" name="q19" value="c"> c. Tanka Prasad Acharya</label><label class="option"><input type="radio" name="q19" value="d"> d. Gangalal</label></div></div>
-            <div class="question-block" id="qblock20"><div class="question-text"><span class="question-number">20.</span>Residual Power is Vested to</div><div class="options"><label class="option"><input type="radio" name="q20" value="a"> a. Federal</label><label class="option"><input type="radio" name="q20" value="b"> b. Provincial</label><label class="option"><input type="radio" name="q20" value="c"> c. Local</label><label class="option"><input type="radio" name="q20" value="d"> d. All Combined</label></div></div>
-            <div class="question-block" id="qblock21"><div class="question-text"><span class="question-number">21.</span>Percentage of Nepali Language Spoken according to Census 2078:</div><div class="options"><label class="option"><input type="radio" name="q21" value="a"> a. 62</label><label class="option"><input type="radio" name="q21" value="b"> b. 45</label><label class="option"><input type="radio" name="q21" value="c"> c. 55</label><label class="option"><input type="radio" name="q21" value="d"> d. 49</label></div></div>
-            <div class="question-block" id="qblock22"><div class="question-text"><span class="question-number">22.</span>Population Percentage of Age group 15 to 59 in Nepal is (Census 2078)</div><div class="options"><label class="option"><input type="radio" name="q22" value="a"> a. 61.96</label><label class="option"><input type="radio" name="q22" value="b"> b. 65.96</label><label class="option"><input type="radio" name="q22" value="c"> c. 56.96</label><label class="option"><input type="radio" name="q22" value="d"> d. 53.41</label></div></div>
-            <div class="question-block" id="qblock23"><div class="question-text"><span class="question-number">23.</span>Agriculture dependent Population of Nepal is .. (Census 2078)</div><div class="options"><label class="option"><input type="radio" name="q23" value="a"> a. 61</label><label class="option"><input type="radio" name="q23" value="b"> b. 62</label><label class="option"><input type="radio" name="q23" value="c"> c. 63</label><label class="option"><input type="radio" name="q23" value="d"> d. 64</label></div></div>
-            <div class="question-block" id="qblock24"><div class="question-text"><span class="question-number">24.</span>The Tree found in 2000 m to 3000 m is</div><div class="options"><label class="option"><input type="radio" name="q24" value="a"> a. Gobre Salla</label><label class="option"><input type="radio" name="q24" value="b"> b. Khotesalla</label><label class="option"><input type="radio" name="q24" value="c"> c. Sal</label><label class="option"><input type="radio" name="q24" value="d"> d. Khayer</label></div></div>
-            <div class="question-block" id="qblock25"><div class="question-text"><span class="question-number">25.</span>The New Public Management System is introduced by:</div><div class="options"><label class="option"><input type="radio" name="q25" value="a"> a. Taylor</label><label class="option"><input type="radio" name="q25" value="b"> b. Christopher Hood</label><label class="option"><input type="radio" name="q25" value="c"> c. Ronald Reagan</label><label class="option"><input type="radio" name="q25" value="d"> d. Margaret Thatcher</label></div></div>
-
-            <button type="submit" class="submit-btn" id="submitBtn">Submit Quiz</button>
-          </form>
-
-          <div class="result" id="result">
-            <h2>Quiz Completed! 🎉</h2>
-            <div class="score" id="scoreDisplay"></div>
-            <p id="resultMessage"></p>
-            <button class="restart-btn" onclick="location.reload()">Restart Quiz</button>
-          </div>
-        </div>
-      </div>
-    </main>
+    <!-- ========== CUSTOM WARNING MODAL ========== -->
+    <div id="warning-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-dialog">
+            <div class="warning-modal">
+  <div class="warning-icon">⚠️</div>
+  <h2>Submission Warning</h2>
+  <p>You have not answered all the questions in this test.</p>
+  
+  <div class="unanswered-status">
+    <strong>Unanswered Questions:</strong> 
+    <span id="modal-unanswered-count">0</span>
   </div>
+  
+  <p class="critical-note">
+    <strong>⚠ Important:</strong> Once submitted, this test cannot be retaken.
+  </p>
+  
+  <div class="modal-actions">
+    <button class="btn-cancel" id="btn-modal-cancel">Cancel</button>
+    <button class="btn-submit-warning" id="btn-modal-submit">Submit Anyway</button>
+  </div>
+</div>
+</div>
+        </div>
+    </div>
 
-  <script>
-    (function() {
-      // Correct answers
-      const answers = {
-        q1: 'a', q2: 'c', q3: 'a', q4: 'a', q5: 'a',
-        q6: 'd', q7: 'b', q8: 'c', q9: 'b', q10: 'd',
-        q11: 'b', q12: 'c', q13: 'a', q14: 'd', q15: 'a',
-        q16: 'a', q17: 'a', q18: 'b', q19: 'c', q20: 'a',
-        q21: 'b', q22: 'a', q23: 'b', q24: 'a', q25: 'b'
-      };
-      const totalQuestions = 25;
-      let timeLeft = 0.8*25 * 60;
-      let timerInterval = null;
+    <div id="pre-test-section">
+        <div class="hero" id="hero-card">
+            <h1 id="hero-set-name">Loading...</h1>
+            <p class="set-details" id="hero-details"></p>
+            <div class="set-meta">
+                <div class="meta-item">
+                    <span id="hero-q-count">0</span> Questions
+                </div>
+                <div class="meta-item">
+                    <span id="hero-time">0:00</span> Time (min)
+                </div>
+            </div>
+            <button class="btn-start" id="btn-start-test">🚀 Start Test</button>
+            <p style="margin-top:10px;font-size:0.85rem;opacity:0.8;" id="hero-note"></p>
+        </div>
+    </div>
 
-      // DOM elements
-      const timerEl = document.getElementById('timer');
-      const quizForm = document.getElementById('quizForm');
-      const submitBtn = document.getElementById('submitBtn');
-      const resultDiv = document.getElementById('result');
-      const scoreDisplay = document.getElementById('scoreDisplay');
-      const resultMessage = document.getElementById('resultMessage');
-      const progressFill = document.getElementById('progress');
-      const questionGrid = document.getElementById('questionGrid');
+    <div id="test-section" style="display:none;">
+        <div class="test-container">
+            <div class="question-area" id="question-area">
+                <div class="question-card" id="question-card">
+                    <div class="q-number" id="q-number-label">QUESTION 1</div>
+                    <div class="q-text" id="q-text">Loading question...</div>
+                    <ul class="options-list" id="options-list"></ul>
+                </div>
+                <div class="nav-buttons">
+                    <button class="btn-nav" id="btn-prev">◀ Previous</button>
+                    <span style="font-weight:600;color:#555;" id="q-progress-indicator">1 / 1</span>
+                    <button class="btn-nav" id="btn-next">Next ▶</button>
+                    <span class="spacer"></span>
+                    <button class="btn-submit" id="btn-submit-test">✅ Submit Test</button>
+                </div>
+            </div>
+            <aside class="sidebar" id="sidebar">
+                <h3>📋 Question Palette</h3>
+                <div class="total-questions" id="sidebar-total">Total: 0</div>
+                <div class="answered-count">
+                    Answered: <strong id="sidebar-answered-num">0</strong>
+                </div>
+                <div class="q-grid" id="q-grid"></div>
+                <div class="legend">
+                    <span><span class="dot-sample blue"></span> Answered</span>
+                    <span><span class="dot-sample gray"></span> Unanswered</span>
+                </div>
+            </aside>
+        </div>
+    </div>
 
-      // Generate sidebar question boxes
-      function buildSidebar() {
-        questionGrid.innerHTML = '';
-        for (let i = 1; i <= totalQuestions; i++) {
-          const box = document.createElement('div');
-          box.className = 'q-box';
-          box.id = `qbox-${i}`;
-          box.textContent = i;
-          box.addEventListener('click', () => {
-            document.getElementById(`qblock${i}`).scrollIntoView({ behavior: 'smooth', block: 'center' });
-          });
-          questionGrid.appendChild(box);
-        }
-      }
+    <div id="results-section" style="display:none;">
+        <div class="results-container" id="results-container">
+            <div class="results-header" id="results-header">
+                <h2 style="color:#2E7D32;">📊 Test Results</h2>
+                <p style="color:#666;" id="results-set-name"></p>
+                <div class="score-circle">
+                    <span class="score-num" id="results-score">0</span>
+                    <span class="score-denom" id="results-denom">/ 0</span>
+                </div>
+                <div class="percentage" id="results-percentage">0%</div>
+                <p style="margin-top:8px;color:#888;font-size:0.9rem;" id="results-time-taken"></p>
+            </div>
+            <div id="results-detail"></div>
+        </div>
+    </div>
 
-      // Update sidebar highlights based on answered questions
-      function updateSidebarHighlights() {
-        for (let i = 1; i <= totalQuestions; i++) {
-          const selected = document.querySelector(`input[name="q${i}"]:checked`);
-          const box = document.getElementById(`qbox-${i}`);
-          if (box) {
-            if (selected) {
-              box.classList.add('answered');
-            } else {
-              box.classList.remove('answered');
+    <script>
+        (function() {
+          ```javascript
+const questionSet = {
+    name: 'Nepal General Knowledge - Set 1',
+    details: 'Covers Nepal\'s history, geography, politics, and current affairs.',
+    questions: [
+        { question: 'When first Nepal is Selected as UN Security Council Member?', options: ['1969–1970', '1988–1989', '1978–1979', '1958–1959'], correct: 0 },
+        { question: 'When did Nepal become a founding member of BIMSTEC (Bay of Bengal Initiative for Multi-Sectoral Technical and Economic Cooperation)?', options: ['2004 Feb 8', '2003 Feb 4', '2004 Feb 4', '2006 Feb 4'], correct: 2 },
+        { question: 'Which mountain is nearest to Kathmandu?', options: ['Jugal', 'Ganesh Himal', 'Gaurishankhar Himal', 'Manaslu'], correct: 0 },
+        { question: 'Which of the following is not Sub Metropolitan of Nepal?', options: ['Biratnagar', 'Butwal', 'Hetauda', 'Ghorahi'], correct: 3 },
+        { question: 'When did Nepal Signed Betrawati Sandhi with China?', options: ['1848', '1842', '1860', '1890'], correct: 0 },
+        { question: 'Dho Valley lies in Which District?', options: ['Manang', 'Mustang', 'Mugu', 'Dolpa'], correct: 3 },
+        { question: 'Per Capita Income of Nepal at the end of 16th Plan is', options: ['2250', '2351', '2450', '2500'], correct: 1 },
+        { question: 'Winter Olympic 2026 will hosted by:', options: ['France', 'Switzerland', 'Italy', 'Spain'], correct: 2 },
+        { question: 'Salpa Pokhari lies on which District?', options: ['Solukhumbu', 'Bhojpur', 'Taplejung', 'Dhankuta'], correct: 1 },
+        { question: '13th Goal of Sustainable Development is:', options: ['Life Below Water', 'Life on Land', 'Responsible Consumption and Production', 'Climate Action'], correct: 3 },
+        { question: '29th COP Conference was held on … Country.', options: ['Brazil', 'Azerbaijan', 'Egypt', 'Nepal'], correct: 1 },
+        { question: 'According to Civil Service Act 2049, Maximum Evaluation mark to be given to Employee is ..by Supervisor.', options: ['5', '10', '25', '40'], correct: 2 },
+        { question: 'Motivation Hierarchy Theory is Given by:', options: ['Maslow', 'FW Taylor', 'Wright Man', 'Luther Gulick'], correct: 0 },
+        { question: 'The POSDCORB theory is given by:', options: ['Maslow', 'FW Taylor', 'Wright Man', 'Luther Gulick'], correct: 3 },
+        { question: 'The list of Power of Local government of Nepal is ……. types.', options: ['22', '25', '21', '18'], correct: 0 },
+        { question: 'Which of the following is source of Deficit Budget.', options: ['Revenue in the Budget', 'Grant', 'Internal Borrowing', 'Principle Repayment'], correct: 2 },
+        { question: 'Which of the following river is not Originated from Mountain?', options: ['Bagmati', 'Budi Gandaki', 'Karnali', 'Madi'], correct: 0 },
+        { question: 'Public Service Charter is initiated from:', options: ['France', 'UK', 'USA', 'China'], correct: 1 },
+        { question: 'Jiudo Sahid of Nepal', options: ['Amar Singh Thapa', 'Lakhan Thapa', 'Tanka Prasad Acharya', 'Gangalal'], correct: 1 },
+        { question: 'Residual Power is Vested to', options: ['Federal', 'Provincial', 'Local', 'All Combined'], correct: 0 },
+        { question: 'Percentage of Nepali Language Spoken according to Census 2078:', options: ['62', '45', '55', '49'], correct: 3 },
+        { question: 'Population Percentage of Age group 15 to 59 in Nepal is (Census 2078)', options: ['61.96', '65.96', '56.96', '53.41'], correct: 3 },
+        { question: 'Agriculture dependent Population of Nepal is .. (Census 2078)', options: ['61', '62', '63', '64'], correct: 1 },
+        { question: 'The Tree found in 2000 m to 3000 m is', options: ['Gobre Salla', 'Khotesalla', 'Sal', 'Khayer'], correct: 0 },
+        { question: 'The New Public Management System is introduced by:', options: ['Taylor', 'Christopher Hood', 'Ronald Reagan', 'Margaret Thatcher'], correct: 1 }
+    ]
+};
+```
+            const TOTAL_QUESTIONS = questionSet.questions.length;
+            const TOTAL_TIME_SECONDS = Math.floor(TOTAL_QUESTIONS * 0.8 * 60);
+            const TOTAL_TIME_MINUTES = TOTAL_TIME_SECONDS / 60;
+
+            const STORAGE_KEY_STATUS = 'mcq_single_set_status';
+            const STORAGE_KEY_ANSWERS = 'mcq_single_set_answers';
+            const STORAGE_KEY_START_TIME = 'mcq_single_set_startTime';
+            const STORAGE_KEY_END_TIME = 'mcq_single_set_endTime';
+            const STORAGE_KEY_MARKS = 'mcq_single_set_marks';
+            const STORAGE_KEY_SUBMITTED_AT = 'mcq_single_set_submittedAt';
+
+            let currentQuestionIndex = 0;
+            let userAnswers = {};
+            let testActive = false;
+            let timerInterval = null;
+            let timeRemainingSeconds = TOTAL_TIME_SECONDS;
+
+            // DOM elements
+            const $preTest = document.getElementById('pre-test-section');
+            const $test = document.getElementById('test-section');
+            const $results = document.getElementById('results-section');
+            const $timerDisplay = document.getElementById('timer-display');
+            const $navbarBrand = document.getElementById('navbar-brand');
+            const $heroSetName = document.getElementById('hero-set-name');
+            const $heroDetails = document.getElementById('hero-details');
+            const $heroQCount = document.getElementById('hero-q-count');
+            const $heroTime = document.getElementById('hero-time');
+            const $heroNote = document.getElementById('hero-note');
+            const $btnStart = document.getElementById('btn-start-test');
+            const $qNumberLabel = document.getElementById('q-number-label');
+            const $qText = document.getElementById('q-text');
+            const $optionsList = document.getElementById('options-list');
+            const $qProgress = document.getElementById('q-progress-indicator');
+            const $btnPrev = document.getElementById('btn-prev');
+            const $btnNext = document.getElementById('btn-next');
+            const $btnSubmit = document.getElementById('btn-submit-test');
+            const $qGrid = document.getElementById('q-grid');
+            const $sidebarTotal = document.getElementById('sidebar-total');
+            const $sidebarAnsweredNum = document.getElementById('sidebar-answered-num');
+            const $resultsSetName = document.getElementById('results-set-name');
+            const $resultsScore = document.getElementById('results-score');
+            const $resultsDenom = document.getElementById('results-denom');
+            const $resultsPercentage = document.getElementById('results-percentage');
+            const $resultsTimeTaken = document.getElementById('results-time-taken');
+            const $resultsDetail = document.getElementById('results-detail');
+
+            // Modal elements
+            const $warningModal = document.getElementById('warning-modal');
+            const $modalUnansweredCount = document.getElementById('modal-unanswered-count');
+            const $btnModalCancel = document.getElementById('btn-modal-cancel');
+            const $btnModalSubmit = document.getElementById('btn-modal-submit');
+
+            // Helper functions
+            function LSget(k) { try { return localStorage.getItem(k); } catch(e) { return null; } }
+            function LSset(k,v) { try { localStorage.setItem(k,v); return true; } catch(e) { return false; } }
+            function formatTime(sec) {
+                if (sec < 0) sec = 0;
+                const m = Math.floor(sec / 60);
+                const s = Math.floor(sec % 60);
+                return `${m}:${s.toString().padStart(2,'0')}`;
             }
-          }
-        }
-      }
-
-      // Update progress bar
-      function updateProgress() {
-        let answered = 0;
-        for (let i = 1; i <= totalQuestions; i++) {
-          if (document.querySelector(`input[name="q${i}"]:checked`)) answered++;
-        }
-        const percent = (answered / totalQuestions) * 100;
-        progressFill.style.width = percent + '%';
-      }
-
-      // Timer functions
-      function updateTimerDisplay() {
-        const mins = Math.floor(timeLeft / 60);
-        const secs = timeLeft % 60;
-        timerEl.textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-      }
-
-      function startTimer() {
-        timerInterval = setInterval(() => {
-          timeLeft--;
-          updateTimerDisplay();
-          if (timeLeft <= 300) {
-            timerEl.classList.add('warning');
-          }
-          if (timeLeft <= 0) {
-            clearInterval(timerInterval);
-            submitQuiz();
-          }
-        }, 1000);
-      }
-
-      // Submit quiz handler
-      function submitQuiz() {
-        clearInterval(timerInterval);
-        timerEl.classList.remove('warning');
-        timerEl.classList.add('completed');
-        // Save final time
-        localStorage.setItem('quizTimeLeft', timeLeft);
-
-        let score = 0;
-        const selectedAnswers = {};
-
-        for (let i = 1; i <= totalQuestions; i++) {
-          const qName = `q${i}`;
-          const selected = document.querySelector(`input[name="${qName}"]:checked`);
-          const correct = answers[qName];
-          const options = document.querySelectorAll(`input[name="${qName}"]`);
-
-          // record selection
-          if (selected) {
-            selectedAnswers[qName] = selected.value;
-          }
-
-          // highlight correct/incorrect
-          options.forEach(opt => {
-            const label = opt.parentElement;
-            if (opt.value === correct) label.classList.add('correct');
-            if (selected && opt === selected && opt.value !== correct) {
-              label.classList.add('incorrect');
+            function formatTimeLong(sec) {
+                if (sec < 0) sec = 0;
+                const m = Math.floor(sec / 60);
+                const s = Math.floor(sec % 60);
+                return m > 0 ? `${m} min ${s} sec` : `${s} seconds`;
             }
-          });
-
-          if (selected && selected.value === correct) score++;
-        }
-
-        // Disable all questions
-        document.querySelectorAll('.question-block').forEach(block => block.classList.add('submitted'));
-        submitBtn.style.display = 'none';
-
-        // Save results to localStorage
-        localStorage.setItem('quizCompleted', 'true');
-        localStorage.setItem('quizScore', score);
-        localStorage.setItem('quizTotal', totalQuestions);
-        localStorage.setItem('quizAnswers', JSON.stringify(selectedAnswers));
-
-        // Show result
-        const percentage = (score / totalQuestions * 100).toFixed(1);
-        scoreDisplay.textContent = `${score} / ${totalQuestions}`;
-        let message = '';
-        if (percentage >= 80) message = '🌟 Excellent! Outstanding performance!';
-        else if (percentage >= 60) message = '👍 Good job! Well done!';
-        else if (percentage >= 40) message = '📚 Fair performance. Keep studying!';
-        else message = '💪 Need more preparation. Study harder!';
-
-        resultMessage.innerHTML = `
-          <p>${message}</p>
-          <p style="margin-top:15px;">Percentage: ${percentage}%</p>
-          <p style="margin-top:10px; font-size:16px;">⚠️ This quiz cannot be retaken</p>
-        `;
-        resultDiv.classList.add('show');
-        resultDiv.scrollIntoView({ behavior: 'smooth' });
-
-        updateSidebarHighlights();
-      }
-
-      // Restore quiz state from localStorage if already completed
-      function restoreCompletedState() {
-        const storedAnswers = JSON.parse(localStorage.getItem('quizAnswers') || '{}');
-        const storedScore = localStorage.getItem('quizScore');
-        const storedTime = localStorage.getItem('quizTimeLeft');
-
-        // Set radio buttons
-        for (let i = 1; i <= totalQuestions; i++) {
-          const qName = `q${i}`;
-          const val = storedAnswers[qName];
-          if (val) {
-            const radio = document.querySelector(`input[name="${qName}"][value="${val}"]`);
-            if (radio) radio.checked = true;
-          }
-        }
-
-        // Disable all inputs
-        document.querySelectorAll('.question-block').forEach(block => block.classList.add('submitted'));
-        submitBtn.style.display = 'none';
-
-        // Mark correct/incorrect (same logic as submit)
-        for (let i = 1; i <= totalQuestions; i++) {
-          const qName = `q${i}`;
-          const correct = answers[qName];
-          const options = document.querySelectorAll(`input[name="${qName}"]`);
-          const selectedRadio = document.querySelector(`input[name="${qName}"]:checked`);
-          options.forEach(opt => {
-            const label = opt.parentElement;
-            if (opt.value === correct) label.classList.add('correct');
-            if (selectedRadio && opt === selectedRadio && opt.value !== correct) {
-              label.classList.add('incorrect');
+            function answeredCount() {
+                return Object.keys(userAnswers).filter(k => userAnswers[k] !== undefined && userAnswers[k] !== null).length;
             }
-          });
-        }
-
-        // Timer display
-        if (storedTime !== null) {
-          timeLeft = parseInt(storedTime, 10);
-          updateTimerDisplay();
-        } else {
-          timerEl.textContent = '00:00';
-        }
-        timerEl.classList.add('completed');
-
-        // Show result
-        if (storedScore !== null) {
-          const total = localStorage.getItem('quizTotal') || totalQuestions;
-          const percentage = (storedScore / total * 100).toFixed(1);
-          scoreDisplay.textContent = `${storedScore} / ${total}`;
-          let message = '';
-          if (percentage >= 80) message = '🌟 Excellent! Outstanding performance!';
-          else if (percentage >= 60) message = '👍 Good job! Well done!';
-          else if (percentage >= 40) message = '📚 Fair performance. Keep studying!';
-          else message = '💪 Need more preparation. Study harder!';
-          resultMessage.innerHTML = `
-            <p>${message}</p>
-            <p style="margin-top:15px;">Percentage: ${percentage}%</p>
-            <p style="margin-top:10px; font-size:16px;">⚠️ This quiz cannot be retaken</p>
-          `;
-        }
-        resultDiv.classList.add('show');
-        updateSidebarHighlights();
-      }
-
-      // Initialize page
-      window.addEventListener('load', () => {
-        buildSidebar();
-
-        const quizCompleted = localStorage.getItem('quizCompleted') === 'true';
-
-        if (quizCompleted) {
-          restoreCompletedState();
-        } else {
-          // Fresh quiz
-          updateTimerDisplay();
-          startTimer();
-
-          // Attach event listeners for sidebar highlight & progress
-          quizForm.addEventListener('change', (e) => {
-            if (e.target.matches('input[type="radio"]')) {
-              updateSidebarHighlights();
-              updateProgress();
+            function calcMarks() {
+                let correct = 0;
+                for (let i = 0; i < TOTAL_QUESTIONS; i++) {
+                    if (userAnswers[i] === questionSet.questions[i].correct) correct++;
+                }
+                return correct;
             }
-          });
 
-          // Initial progress
-          updateProgress();
-        }
+            // Modal control
+            function showWarningModal() {
+                const unanswered = TOTAL_QUESTIONS - answeredCount();
+                $modalUnansweredCount.textContent = `${unanswered} unanswered question(s)`;
+                $warningModal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
 
-        // Form submit
-        quizForm.addEventListener('submit', (e) => {
-          e.preventDefault();
-          if (localStorage.getItem('quizCompleted') !== 'true') {
-            submitQuiz();
-          }
-        });
+            function hideWarningModal() {
+                $warningModal.style.display = 'none';
+                document.body.style.overflow = '';
+            }
 
-        // Warn before leaving if quiz active and not completed
-        window.addEventListener('beforeunload', (e) => {
-          if (localStorage.getItem('quizCompleted') !== 'true') {
-            e.preventDefault();
-            e.returnValue = '';
-          }
-        });
-      });
-    })();
-  </script>
-  <script src="/js/logo.js"></script>
-  <script src="/js/text-protect.js" defer></script>
+            // UI rendering
+            function showPreTest() {
+                $preTest.style.display = 'block';
+                $test.style.display = 'none';
+                $results.style.display = 'none';
+                $timerDisplay.style.display = 'none';
+                $navbarBrand.textContent = '📝 MCQ Test';
+                $heroSetName.textContent = questionSet.name;
+                $heroDetails.textContent = questionSet.details || '';
+                $heroQCount.textContent = TOTAL_QUESTIONS;
+                $heroTime.textContent = `${TOTAL_TIME_MINUTES}:00`;
+                $heroNote.textContent = '⚠️ This test can only be taken once. Make sure you are ready before starting.';
+                $btnStart.disabled = false;
+                $btnStart.textContent = '🚀 Start Test';
+            }
+
+            function showTestInterface() {
+                $preTest.style.display = 'none';
+                $test.style.display = 'block';
+                $results.style.display = 'none';
+                $timerDisplay.style.display = 'inline-block';
+                $navbarBrand.textContent = questionSet.name;
+                $sidebarTotal.textContent = `Total: ${TOTAL_QUESTIONS}`;
+                $qGrid.innerHTML = '';
+                for (let i = 0; i < TOTAL_QUESTIONS; i++) {
+                    const dot = document.createElement('span');
+                    dot.className = 'q-dot';
+                    dot.textContent = i + 1;
+                    dot.dataset.index = i;
+                    dot.addEventListener('click', () => {
+                        currentQuestionIndex = i;
+                        renderQuestion();
+                        updateSidebarHighlight();
+                    });
+                    $qGrid.appendChild(dot);
+                }
+                updateSidebarHighlight();
+                updateAnsweredCount();
+                renderQuestion();
+            }
+
+            function renderQuestion() {
+                const q = questionSet.questions[currentQuestionIndex];
+                if (!q) return;
+                $qNumberLabel.textContent = `QUESTION ${currentQuestionIndex + 1}`;
+                $qText.textContent = q.question;
+                $qProgress.textContent = `${currentQuestionIndex + 1} / ${TOTAL_QUESTIONS}`;
+                $optionsList.innerHTML = '';
+                const letters = ['A','B','C','D','E','F','G','H'];
+                q.options.forEach((opt, idx) => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `<span class="option-letter">${letters[idx] || idx+1}</span> <span>${opt}</span>`;
+                    li.dataset.optionIndex = idx;
+                    li.addEventListener('click', () => selectOption(idx));
+                    if (userAnswers[currentQuestionIndex] === idx) li.classList.add('selected');
+                    $optionsList.appendChild(li);
+                });
+                $btnPrev.disabled = (currentQuestionIndex === 0);
+                $btnNext.disabled = (currentQuestionIndex >= TOTAL_QUESTIONS - 1);
+                updateSidebarHighlight();
+                updateAnsweredCount();
+            }
+
+            function selectOption(idx) {
+                if (!testActive) return;
+                userAnswers[currentQuestionIndex] = idx;
+                LSset(STORAGE_KEY_ANSWERS, JSON.stringify(userAnswers));
+                renderQuestion();
+            }
+
+            function navigateQuestion(dir) {
+                const newIdx = currentQuestionIndex + dir;
+                if (newIdx >= 0 && newIdx < TOTAL_QUESTIONS) {
+                    currentQuestionIndex = newIdx;
+                    renderQuestion();
+                }
+            }
+
+            function updateSidebarHighlight() {
+                const dots = $qGrid.querySelectorAll('.q-dot');
+                dots.forEach(dot => {
+                    const i = parseInt(dot.dataset.index);
+                    dot.classList.remove('answered', 'current');
+                    if (userAnswers[i] !== undefined && userAnswers[i] !== null) dot.classList.add('answered');
+                    if (i === currentQuestionIndex) dot.classList.add('current');
+                });
+            }
+
+            function updateAnsweredCount() {
+                $sidebarAnsweredNum.textContent = answeredCount();
+            }
+
+            function updateTimerDisplay() {
+                $timerDisplay.textContent = formatTime(timeRemainingSeconds);
+                $timerDisplay.classList.remove('warning-yellow', 'warning-red');
+                if (timeRemainingSeconds <= 300 && timeRemainingSeconds > 0) {
+                    $timerDisplay.classList.add('warning-red');
+                } else if (timeRemainingSeconds <= 600 && timeRemainingSeconds > 0) {
+                    $timerDisplay.classList.add('warning-yellow');
+                }
+            }
+
+            function startTimer() {
+                timeRemainingSeconds = TOTAL_TIME_SECONDS;
+                updateTimerDisplay();
+                timerInterval = setInterval(() => {
+                    timeRemainingSeconds--;
+                    updateTimerDisplay();
+                    if (timeRemainingSeconds <= 0) {
+                        clearInterval(timerInterval);
+                        timerInterval = null;
+                        autoSubmit();
+                    }
+                }, 1000);
+            }
+
+            function restoreTimerFromStorage() {
+                const startStr = LSget(STORAGE_KEY_START_TIME);
+                const endStr = LSget(STORAGE_KEY_END_TIME);
+                if (startStr && endStr) {
+                    const start = parseInt(startStr);
+                    const end = parseInt(endStr);
+                    const remaining = Math.floor((end - Date.now()) / 1000);
+                    timeRemainingSeconds = Math.max(0, remaining);
+                    return remaining > 0;
+                }
+                return false;
+            }
+
+            function startTest() {
+                const status = LSget(STORAGE_KEY_STATUS);
+                if (status === 'completed' || status === 'submitted') {
+                    alert('You have already taken this test. Results are shown below.');
+                    showResults();
+                    return;
+                }
+                if (status === 'in_progress') {
+                    resumeTest();
+                    return;
+                }
+                const now = Date.now();
+                const endTime = now + TOTAL_TIME_SECONDS * 1000;
+                LSset(STORAGE_KEY_STATUS, 'in_progress');
+                LSset(STORAGE_KEY_START_TIME, now.toString());
+                LSset(STORAGE_KEY_END_TIME, endTime.toString());
+                LSset(STORAGE_KEY_ANSWERS, JSON.stringify({}));
+                userAnswers = {};
+                currentQuestionIndex = 0;
+                timeRemainingSeconds = TOTAL_TIME_SECONDS;
+                testActive = true;
+                showTestInterface();
+                startTimer();
+                updateTimerDisplay();
+            }
+
+            function resumeTest() {
+                const ans = LSget(STORAGE_KEY_ANSWERS);
+                if (ans) { try { userAnswers = JSON.parse(ans); } catch(e) { userAnswers = {}; } }
+                const hasTime = restoreTimerFromStorage();
+                currentQuestionIndex = 0;
+                testActive = true;
+                showTestInterface();
+                updateTimerDisplay();
+                if (hasTime && timeRemainingSeconds > 0) {
+                    startTimer();
+                } else if (timeRemainingSeconds <= 0) {
+                    timeRemainingSeconds = 0;
+                    updateTimerDisplay();
+                    autoSubmit();
+                }
+            }
+
+            function submitTest() {
+                if (!testActive) return;
+                testActive = false;
+                if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
+                const marks = calcMarks();
+                const now = Date.now();
+                const startStr = LSget(STORAGE_KEY_START_TIME);
+                const start = startStr ? parseInt(startStr) : now;
+                const timeTaken = Math.floor((now - start) / 1000);
+                LSset(STORAGE_KEY_STATUS, 'completed');
+                LSset(STORAGE_KEY_MARKS, marks.toString());
+                LSset(STORAGE_KEY_SUBMITTED_AT, now.toString());
+                LSset(STORAGE_KEY_ANSWERS, JSON.stringify(userAnswers));
+                $timerDisplay.style.display = 'none';
+                hideWarningModal();
+                showResults(marks, timeTaken);
+            }
+
+            function autoSubmit() {
+                if (!testActive && LSget(STORAGE_KEY_STATUS) === 'completed') return;
+                testActive = false;
+                if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
+                timeRemainingSeconds = 0;
+                updateTimerDisplay();
+                const marks = calcMarks();
+                const now = Date.now();
+                const startStr = LSget(STORAGE_KEY_START_TIME);
+                const start = startStr ? parseInt(startStr) : now;
+                const timeTaken = Math.floor((now - start) / 1000);
+                LSset(STORAGE_KEY_STATUS, 'completed');
+                LSset(STORAGE_KEY_MARKS, marks.toString());
+                LSset(STORAGE_KEY_SUBMITTED_AT, now.toString());
+                LSset(STORAGE_KEY_ANSWERS, JSON.stringify(userAnswers));
+                $timerDisplay.style.display = 'none';
+                showResults(marks, timeTaken, true);
+            }
+
+            function showResults(marksOverride, timeOverride, auto = false) {
+                $preTest.style.display = 'none';
+                $test.style.display = 'none';
+                $results.style.display = 'block';
+                $timerDisplay.style.display = 'none';
+                $navbarBrand.textContent = '📊 Results - ' + questionSet.name;
+                const marks = marksOverride !== undefined ? marksOverride : parseInt(LSget(STORAGE_KEY_MARKS) || '0');
+                const submittedStr = LSget(STORAGE_KEY_SUBMITTED_AT);
+                const startStr = LSget(STORAGE_KEY_START_TIME);
+                let timeTaken = timeOverride;
+                if (timeTaken === undefined && submittedStr && startStr) {
+                    timeTaken = Math.floor((parseInt(submittedStr) - parseInt(startStr)) / 1000);
+                }
+                if (timeTaken === undefined || timeTaken < 0) timeTaken = 0;
+                const ans = LSget(STORAGE_KEY_ANSWERS);
+                if (ans) { try { userAnswers = JSON.parse(ans); } catch(e) { userAnswers = {}; } }
+                const percent = TOTAL_QUESTIONS > 0 ? Math.round((marks / TOTAL_QUESTIONS) * 100) : 0;
+                $resultsSetName.textContent = questionSet.name;
+                $resultsScore.textContent = marks;
+                $resultsDenom.textContent = `/ ${TOTAL_QUESTIONS}`;
+                $resultsPercentage.textContent = `${percent}%`;
+                $resultsTimeTaken.textContent = `⏱️ Time taken: ${formatTimeLong(timeTaken)}` + (auto ? ' (Auto-submitted)' : '');
+                $resultsDetail.innerHTML = '';
+                const letters = ['A','B','C','D','E','F','G','H'];
+                questionSet.questions.forEach((q, idx) => {
+                    const userAns = userAnswers[idx];
+                    const correctAns = q.correct;
+                    const isCorrect = (userAns === correctAns);
+                    const wasAnswered = (userAns !== undefined && userAns !== null);
+                    const card = document.createElement('div');
+                    card.className = 'result-card';
+                    if (wasAnswered) card.classList.add(isCorrect ? 'correct' : 'incorrect');
+                    let badge = '';
+                    if (!wasAnswered) {
+                        badge = '<span class="r-badge" style="background:#fff3e0;color:#E65100;">⚠️ NOT ANSWERED</span>';
+                    } else if (isCorrect) {
+                        badge = '<span class="r-badge correct-badge">✅ CORRECT</span>';
+                    } else {
+                        badge = '<span class="r-badge incorrect-badge">❌ INCORRECT</span>';
+                    }
+                    let optsHTML = '';
+                    q.options.forEach((opt, optIdx) => {
+                        let liClass = '';
+                        if (optIdx === correctAns && optIdx === userAns) liClass = 'both-correct';
+                        else if (optIdx === correctAns) liClass = 'correct-answer';
+                        else if (optIdx === userAns && !isCorrect) liClass = 'user-answer';
+                        const label = letters[optIdx] || (optIdx+1);
+                        let prefix = '';
+                        if (optIdx === correctAns && optIdx === userAns) prefix = '✅ ';
+                        else if (optIdx === correctAns) prefix = '✅ ';
+                        else if (optIdx === userAns && !isCorrect) prefix = '❌ ';
+                        optsHTML += `<li class="${liClass}"><strong>${label}.</strong> ${prefix}${opt}</li>`;
+                    });
+                    card.innerHTML = `${badge}<div class="r-q-text">Q${idx+1}: ${q.question}</div><ul class="r-options">${optsHTML}</ul>`;
+                    $resultsDetail.appendChild(card);
+                });
+                $results.scrollIntoView({ behavior: 'smooth' });
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            // Event listeners
+            $btnStart.addEventListener('click', startTest);
+            $btnPrev.addEventListener('click', () => navigateQuestion(-1));
+            $btnNext.addEventListener('click', () => navigateQuestion(1));
+
+            $btnSubmit.addEventListener('click', function() {
+                if (!testActive) return;
+                const unanswered = TOTAL_QUESTIONS - answeredCount();
+                if (unanswered > 0) {
+                    showWarningModal();
+                } else {
+                    submitTest();
+                }
+            });
+
+            // Modal button handlers
+            $btnModalCancel.addEventListener('click', hideWarningModal);
+            $btnModalSubmit.addEventListener('click', function() {
+                submitTest();
+            });
+
+            // Close modal on overlay click
+            $warningModal.addEventListener('click', function(e) {
+                if (e.target === $warningModal) hideWarningModal();
+            });
+
+            // Close modal on Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && $warningModal.style.display === 'flex') {
+                    hideWarningModal();
+                }
+            });
+
+            // Keyboard shortcuts for test
+            document.addEventListener('keydown', function(e) {
+                if (!testActive) return;
+                // Ignore if modal is open
+                if ($warningModal.style.display === 'flex') return;
+                if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); navigateQuestion(-1); }
+                else if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); navigateQuestion(1); }
+                else if (e.key >= '1' && e.key <= '9') {
+                    const idx = parseInt(e.key) - 1;
+                    if (idx < questionSet.questions[currentQuestionIndex].options.length) {
+                        e.preventDefault();
+                        selectOption(idx);
+                    }
+                }
+                else if (e.key === 'a' || e.key === 'A') selectOption(0);
+                else if (e.key === 'b' || e.key === 'B') selectOption(1);
+                else if (e.key === 'c' || e.key === 'C') selectOption(2);
+                else if (e.key === 'd' || e.key === 'D') selectOption(3);
+                else if (e.key === 'e' || e.key === 'E') selectOption(4);
+            });
+
+            // Init
+            function init() {
+                const status = LSget(STORAGE_KEY_STATUS);
+                if (status === 'completed' || status === 'submitted') {
+                    const ans = LSget(STORAGE_KEY_ANSWERS);
+                    if (ans) { try { userAnswers = JSON.parse(ans); } catch(e) { userAnswers = {}; } }
+                    showResults();
+                } else if (status === 'in_progress') {
+                    const hasTime = restoreTimerFromStorage();
+                    const ans = LSget(STORAGE_KEY_ANSWERS);
+                    if (ans) { try { userAnswers = JSON.parse(ans); } catch(e) { userAnswers = {}; } }
+                    if (hasTime && timeRemainingSeconds > 0) {
+                        currentQuestionIndex = 0;
+                        testActive = true;
+                        showTestInterface();
+                        updateTimerDisplay();
+                        startTimer();
+                    } else {
+                        timeRemainingSeconds = 0;
+                        testActive = true;
+                        showTestInterface();
+                        updateTimerDisplay();
+                        autoSubmit();
+                    }
+                } else {
+                    showPreTest();
+                }
+            }
+            init();
+        })();
+    </script>
 </body>
 </html>

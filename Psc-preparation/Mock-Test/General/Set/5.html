@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Building Materials & Construction </title>
+<link rel="icon" href="https://arunpanthi.com.np/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="/css/Mock_Test.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar" id="navbar">
+<span class="brand" id="navbar-brand">Building Materials & Construction </span>
+<span class="timer-display" id="timer-display" style="display:none;">--:--</span>
+</nav>
+
+<!-- Warning modal -->
+<div id="warning-modal" class="modal-overlay" style="display: none;">
+<div class="modal-dialog">
+<div class="warning-icon">⚠️</div>
+<h3>Unanswered Questions</h3>
+<p>You haven't answered all the questions.</p>
+<span class="unanswered-count" id="modal-unanswered-count">0 unanswered</span>
+<p style="margin-top:8px;"><strong>⚠ This test cannot be retaken once submitted!</strong></p>
+<div class="modal-buttons">
+<button class="btn-cancel" id="btn-modal-cancel">Cancel</button>
+<button class="btn-submit-warning" id="btn-modal-submit">Submit Anyway</button>
+</div>
+</div>
+</div>
+
+<div id="pre-test-section">
+<div class="hero" id="hero-card">
+<h1 id="hero-set-name">Loading...</h1>
+<p class="set-details" id="hero-details"></p>
+<div class="set-meta">
+<div class="meta-item"><span id="hero-q-count">0</span> Questions</div>
+<div class="meta-item"><span id="hero-time">0:00</span> Time (min)</div>
+</div>
+<button class="btn-start" id="btn-start-test">🚀 Start Test</button>
+<p style="margin-top:10px;font-size:0.85rem;opacity:0.8;" id="hero-note"></p>
+</div>
+</div>
+
+<div id="test-section" style="display:none;">
+<div class="test-container">
+<div class="question-area">
+<div class="question-card">
+<div class="q-number" id="q-number-label">QUESTION 1</div>
+<div class="q-text" id="q-text">Loading question...</div>
+<ul class="options-list" id="options-list"></ul>
+</div>
+<div class="nav-buttons">
+<div class="nav-left"><button class="btn-nav" id="btn-prev">◀ Previous</button></div>
+<div class="nav-center"><button class="btn-submit" id="btn-submit-test">✅ Submit Test</button></div>
+<div class="nav-right"><button class="btn-nav" id="btn-next">Next ▶</button></div>
+</div>
+</div>
+<aside class="sidebar">
+<h3>📋 Question </h3>
+<div class="total-questions" id="sidebar-total">Total: 0</div>
+<div class="answered-count">Answered: <strong id="sidebar-answered-num">0</strong></div>
+<div class="q-grid" id="q-grid"></div>
+<div class="legend">
+<span><span class="dot-sample blue"></span> Answered</span>
+<span><span class="dot-sample gray"></span> Unanswered</span>
+</div>
+</aside>
+</div>
+</div>
+
+<div id="results-section" style="display:none;">
+<div class="results-container">
+<div class="results-header">
+<h2 style="color:#2E7D32;">📊 Test Results</h2>
+<p style="color:#666;" id="results-set-name"></p>
+<div class="score-circle">
+<span class="score-num" id="results-score">0</span>
+<span class="score-denom" id="results-denom">/ 0</span>
+</div>
+<div class="percentage" id="results-percentage">0%</div>
+<p style="margin-top:8px;color:#888;font-size:0.9rem;" id="results-time-taken"></p>
+</div>
+<div id="results-detail"></div>
+</div>
+</div>
+
+<script>
+(function() {
+const questionSet = {
+name: 'Building Materials & Construction ',
+details: 'Covers stones, rocks, minerals, and construction materials.',
+questions: [
+{ question: 'In the process of blasting rocks:', options: ['A blasting powder and dynamite commonly known as gun powder is used.', 'The gun powder is a mechanical mixture of charcoal, saltpetre (KNO3) and sulphur.', 'The proportion of charcoal, saltpetre and sulphur in gun powder are 15, 75 and 10 respectively.', 'All of these are used'], correct: 3 },
+{ question: 'Stones having toughness index:', options: ['below 13 are treated not tough stones.', 'between 13 and 19 are treated moderately tough.', 'more than 19 are said to be of highly tough.', 'All of these are true.'], correct: 3 },
+{ question: 'Pick up the correct statement from the following:', options: ['The acid test is done with a solution of hydrochloric acid (1% strength) on sand stones to detect the presence of calcium carbonate.', 'Attrition test is carried out to find the rate of wear of stones to be used in road construction.', 'Attrition test of stone is carried out in Deval\'s attrition machine which contains two cylinders of diameter 20 cm and length 34 cm.', 'All of these are correct.'], correct: 3 },
+{ question: 'In the process of blasting rocks:', options: ['Detonators are used', 'Detonators are copper cylinders whose diameter is 6 mm and length 25 mm.', 'Detonators are closed at one end and has a projecting fuse at the other end.', 'All of these are correct.'], correct: 3 },
+{ question: 'Pick up the correct statement from the following.', options: ['Granite rocks possess extremely grained crystalline structure.', 'Dolerite rocks possess finely grained crystalline structure.', 'Basalt rocks extremely fine-grained in structure may frequently contain non-crystalline glass.', 'All of these are correct.'], correct: 3 },
+{ question: 'The Dolomite:', options: ['consists of brittle crystals.', 'is not soluble in ordinary water.', 'is stronger and heavier than calcite.', 'All of these are correct.'], correct: 3 },
+{ question: 'Pick up the correct statement from the following:', options: ['Mica is silicate of aluminium with potassium.', 'Muscovite mica is popularly known as white mica.', 'Biotite mica is popularly known as black mica.', 'All of these are correct.'], correct: 3 },
+{ question: 'Pick up the correct statement from the following:', options: ['Orthoclase felspar is the main source of clay in nature.', 'Orthoclase felspar when decomposes produces kaolinite which is free from iron oxide and alkalis.', 'Alumina and silica compounds in kaolin remain in colloidal state to form the basic compounds of all clays.', 'All of these are correct.'], correct: 3 },
+{ question: 'Pick up the correct statement from the following:', options: ['Quartz is the crystalline form of silica.', 'Quartz is weather-proof and resists the acid attack with the exception of hydrochloric acid.', 'Quartz\'s transparent crystal is known as rock crystal.', 'All of these are correct.'], correct: 3 },
+{ question: 'Pick up the correct statement from the following.', options: ['The portion of the weathered product that remains at the site of its origin, is known as residual deposit.', 'The insoluble products of weathering carried away in suspension, when they get deposited, are called the sedimentary deposits.', 'The soluble products of weathering carried away and get deposit by some physio-chemical processes such as evaporation precipitations etc are known as chemical deposit.', 'All of these are correct.'], correct: 3 },
+{ question: 'Pick up the correct statement from the following?', options: ['The stones fresh from a quarry contain quarry sap.', 'The lime stone splits in CaO and CO2 at about 800°C', 'The stones should be seasoned before using them as structural material for a period of 6 to 12 months.', 'All of these are correct.'], correct: 3 },
+{ question: 'Pick up the correct statement from the following:', options: ['The distinct plane of division in stones along which stone can be easily split, is known as natural bed of the stone.', 'The natural bed of stone indicates the plane in which the sedimentary stone was initially deposited', 'The natural bed of stone lies along the planes of stratification in sedimentary rocks.', 'All of these are correct.'], correct: 3 },
+{ question: 'In wedging process of quarrying stones, the steps taken are:', options: ['A line of holes of diameter 12 mm at 10 to 15 cm distance apart are drilled on the rock surface.', 'The plug and feathers are placed in the holes at depth 20 to 25 cm.', 'The plugs are conical steel wedges whereas feathers are flat steel wedges with upper end slightly curved.', 'All of these are correct.'], correct: 3 },
+{ question: 'Pick up the correct statement from the following:', options: ['In stone arches, the stones are placed with their natural beds radially.', 'The stones are placed in cornices with the direction of natural bed vertical.', 'The stones are placed in walls with the direction of their natural beds horizontal.', 'All of these are correct.'], correct: 3 },
+{ question: 'Augite (Pyroxene) is a mineral', options: ['which contains octagonal crystals.', 'which changes to chlorite by hydration.', 'having density between 2.3 to 3.6 g/cm³.', 'All of these are correct.'], correct: 3 },
+{ question: 'Which one of the following is classified as a solid material', options: ['stones', 'bricks', 'iron', 'All of these are correct'], correct: 3 },
+{ question: 'Pick up the correct statement from the following:', options: ['Clay occurs plenty in nature.', 'Clay is a distinct product of chemical weathering of igneous rocks.', 'The orthoclase felspar is mainly responsible for the production of clays in nature.', 'All of these are correct.'], correct: 3 },
+{ question: 'To face shortage of conventional building materials, construction engineers are manufacturing building materials which are:', options: ['cheap', 'environment friendly', 'energy efficient', 'all of these are correct'], correct: 3 },
+{ question: 'If W₁ is the actual weight of the cube from the stone sample W2 is the weight of the cube after immersing in distilled water, W3 is the weight of the sample cube in water and W₁ to the weight of the sample stone, after keeping in boiling water for 5 hours, then which one of the following statement is correct?', options: ['percentage of absorption by weight after 24 hrs = (W2 - W1)/W1 * 100', 'Percentage absorption by volume after 24 hrs (W2 - W1)/(W2 - W3) * 100', 'Percentage porosity by volume (W4-W1)/(W2-W3)Xkg/m^3', 'All of these are correct'], correct: 3 },
+{ question: 'Which one of the following qualities of a good building structural stone is correct?', options: ['The crushing strength should be greater than 1000 Kg/cm²', 'The stone should be durable.', 'The stone should be easily carved, moulded and dressed.', 'All of these are correct'], correct: 3 },
+{ question: 'Lime stone comes under the category of…….', options: ['aqueous rock', 'stratified rock', 'sedimentary rock', 'All of the above'], correct: 3 },
+{ question: 'Sandstone is a (i) sedimentary rock (ii) aqueous rock (iii) silicious rock The correct answer is', options: ['only (i)', 'both (i) and (ii)', 'both (i) and (iii)', 'All are Correct'], correct: 2 },
+{ question: 'Pick up the correct statement from the following:', options: ['An excess amount of alumina with inadequate quantity of sand causes the raw bricks to shrink and warp.', 'The excess of silica destroys the cohesion between particles and makes the bricks brittle.', 'The excess of lime causes the bricks to melt and thus disturbs their shape.', 'All of these.'], correct: 3 },
+{ question: 'The fracture of a stone may be…..', options: ['even', 'uneven', 'concoidal', 'any of the above'], correct: 3 },
+{ question: 'The crushing strength of a stone depends upon its……', options: ['texture', 'specific gravity', 'lustre', 'both \'a\' and \'b\''], correct: 3 }
+]
+};
+const TOTAL_QUESTIONS = questionSet.questions.length;
+const TOTAL_TIME_SECONDS = Math.floor(TOTAL_QUESTIONS * 0.8 * 60);
+const TOTAL_TIME_MINUTES = TOTAL_TIME_SECONDS / 60;
+
+const STORAGE_KEY_STATUS = 'mcq_single_set_status';
+const STORAGE_KEY_ANSWERS = 'mcq_single_set_answers';
+const STORAGE_KEY_START_TIME = 'mcq_single_set_startTime';
+const STORAGE_KEY_END_TIME = 'mcq_single_set_endTime';
+const STORAGE_KEY_MARKS = 'mcq_single_set_marks';
+const STORAGE_KEY_SUBMITTED_AT = 'mcq_single_set_submittedAt';
+
+let currentQuestionIndex = 0;
+let userAnswers = {};
+let testActive = false;
+let timerInterval = null;
+let deadline = null; // end time in ms
+
+// DOM elements
+const $preTest = document.getElementById('pre-test-section');
+const $test = document.getElementById('test-section');
+const $results = document.getElementById('results-section');
+const $timerDisplay = document.getElementById('timer-display');
+const $navbarBrand = document.getElementById('navbar-brand');
+const $heroSetName = document.getElementById('hero-set-name');
+const $heroDetails = document.getElementById('hero-details');
+const $heroQCount = document.getElementById('hero-q-count');
+const $heroTime = document.getElementById('hero-time');
+const $heroNote = document.getElementById('hero-note');
+const $btnStart = document.getElementById('btn-start-test');
+const $qNumberLabel = document.getElementById('q-number-label');
+const $qText = document.getElementById('q-text');
+const $optionsList = document.getElementById('options-list');
+const $btnPrev = document.getElementById('btn-prev');
+const $btnNext = document.getElementById('btn-next');
+const $btnSubmit = document.getElementById('btn-submit-test');
+const $qGrid = document.getElementById('q-grid');
+const $sidebarTotal = document.getElementById('sidebar-total');
+const $sidebarAnsweredNum = document.getElementById('sidebar-answered-num');
+const $resultsSetName = document.getElementById('results-set-name');
+const $resultsScore = document.getElementById('results-score');
+const $resultsDenom = document.getElementById('results-denom');
+const $resultsPercentage = document.getElementById('results-percentage');
+const $resultsTimeTaken = document.getElementById('results-time-taken');
+const $resultsDetail = document.getElementById('results-detail');
+const $warningModal = document.getElementById('warning-modal');
+const $modalUnansweredCount = document.getElementById('modal-unanswered-count');
+const $btnModalCancel = document.getElementById('btn-modal-cancel');
+const $btnModalSubmit = document.getElementById('btn-modal-submit');
+
+function LSget(k) { try { return localStorage.getItem(k); } catch(e) { return null; } }
+function LSset(k,v) { try { localStorage.setItem(k,v); return true; } catch(e) { return false; } }
+function formatTime(sec) {
+if (sec < 0) sec = 0;
+const m = Math.floor(sec / 60);
+const s = Math.floor(sec % 60);
+return `${m}:${s.toString().padStart(2,'0')}`;
+}
+function formatTimeLong(sec) {
+if (sec < 0) sec = 0;
+const m = Math.floor(sec / 60);
+const s = Math.floor(sec % 60);
+return m > 0 ? `${m} min ${s} sec` : `${s} seconds`;
+}
+function answeredCount() {
+return Object.keys(userAnswers).filter(k => userAnswers[k] !== undefined && userAnswers[k] !== null).length;
+}
+function calcMarks() {
+let correct = 0;
+for (let i = 0; i < TOTAL_QUESTIONS; i++) {
+if (userAnswers[i] === questionSet.questions[i].correct) correct++;
+}
+return correct;
+}
+function getRemainingSeconds() {
+if (!deadline) return 0;
+return Math.max(0, Math.floor((deadline - Date.now()) / 1000));
+}
+
+// Disable copy/selection during test
+function preventCopy(e) {
+if (testActive) {
+e.preventDefault();
+return false;
+}
+}
+function enableTestRestrictions() {
+document.body.classList.add('test-active');
+document.addEventListener('copy', preventCopy);
+document.addEventListener('cut', preventCopy);
+document.addEventListener('contextmenu', e => { if (testActive) e.preventDefault(); });
+document.addEventListener('selectstart', e => { if (testActive) e.preventDefault(); });
+}
+function disableTestRestrictions() {
+document.body.classList.remove('test-active');
+document.removeEventListener('copy', preventCopy);
+document.removeEventListener('cut', preventCopy);
+// Contextmenu and selectstart remain blocked? We'll just allow after test.
+// For simplicity, we remove the listeners but keep them inactive when testActive is false.
+// Actually, we'll rely on testActive flag in the listeners.
+}
+
+// Fullscreen
+function requestFullscreen() {
+const el = document.documentElement;
+if (el.requestFullscreen) {
+el.requestFullscreen().catch(() => {});
+} else if (el.webkitRequestFullscreen) {
+el.webkitRequestFullscreen();
+} else if (el.msRequestFullscreen) {
+el.msRequestFullscreen();
+}
+}
+
+// Timer using deadline
+function updateTimerFromDeadline() {
+const remaining = getRemainingSeconds();
+$timerDisplay.textContent = formatTime(remaining);
+$timerDisplay.classList.remove('warning-yellow', 'warning-red');
+if (remaining <= 300 && remaining > 0) {
+$timerDisplay.classList.add('warning-red');
+} else if (remaining <= 600 && remaining > 0) {
+$timerDisplay.classList.add('warning-yellow');
+}
+return remaining;
+}
+
+function startTimerWithDeadline() {
+const now = Date.now();
+deadline = now + TOTAL_TIME_SECONDS * 1000;
+LSset(STORAGE_KEY_END_TIME, deadline.toString());
+LSset(STORAGE_KEY_START_TIME, now.toString());
+updateTimerFromDeadline();
+
+timerInterval = setInterval(() => {
+const remaining = updateTimerFromDeadline();
+if (remaining <= 0) {
+clearInterval(timerInterval);
+timerInterval = null;
+autoSubmit();
+}
+}, 1000);
+}
+
+function resumeTimerFromStoredDeadline() {
+const startStr = LSget(STORAGE_KEY_START_TIME);
+const endStr = LSget(STORAGE_KEY_END_TIME);
+if (startStr && endStr) {
+deadline = parseInt(endStr);
+const remaining = getRemainingSeconds();
+if (remaining > 0) {
+startTimerWithExistingDeadline();
+return true;
+} else {
+deadline = parseInt(endStr);
+return false; // time already up
+}
+}
+return false;
+}
+
+function startTimerWithExistingDeadline() {
+timerInterval = setInterval(() => {
+const remaining = updateTimerFromDeadline();
+if (remaining <= 0) {
+clearInterval(timerInterval);
+timerInterval = null;
+autoSubmit();
+}
+}, 1000);
+}
+
+// Handle page visibility (timer never stops even when hidden)
+document.addEventListener('visibilitychange', () => {
+if (testActive && deadline) {
+const remaining = updateTimerFromDeadline();
+if (remaining <= 0) {
+clearInterval(timerInterval);
+timerInterval = null;
+autoSubmit();
+}
+}
+});
+
+// UI functions
+function showPreTest() {
+$preTest.style.display = 'block';
+$test.style.display = 'none';
+$results.style.display = 'none';
+$timerDisplay.style.display = 'none';
+$navbarBrand.textContent = '📝 MCQ Test';
+$heroSetName.textContent = questionSet.name;
+$heroDetails.textContent = questionSet.details || '';
+$heroQCount.textContent = TOTAL_QUESTIONS;
+$heroTime.textContent = `${TOTAL_TIME_MINUTES}:00`;
+$heroNote.textContent = '⚠️ This test can only be taken once. Make sure you are ready before starting.';
+$btnStart.disabled = false;
+$btnStart.textContent = '🚀 Start Test';
+disableTestRestrictions();
+}
+
+function showTestInterface() {
+$preTest.style.display = 'none';
+$test.style.display = 'block';
+$results.style.display = 'none';
+$timerDisplay.style.display = 'inline-block';
+$navbarBrand.textContent = questionSet.name;
+$sidebarTotal.textContent = `Total: ${TOTAL_QUESTIONS}`;
+$qGrid.innerHTML = '';
+for (let i = 0; i < TOTAL_QUESTIONS; i++) {
+const dot = document.createElement('span');
+dot.className = 'q-dot';
+dot.textContent = i + 1;
+dot.dataset.index = i;
+dot.addEventListener('click', () => {
+currentQuestionIndex = i;
+renderQuestion();
+updateSidebarHighlight();
+});
+$qGrid.appendChild(dot);
+}
+updateSidebarHighlight();
+updateAnsweredCount();
+renderQuestion();
+}
+
+function renderQuestion() {
+const q = questionSet.questions[currentQuestionIndex];
+if (!q) return;
+$qNumberLabel.textContent = `QUESTION ${currentQuestionIndex + 1} / ${TOTAL_QUESTIONS}`;
+$qText.textContent = q.question;
+$optionsList.innerHTML = '';
+const letters = ['A','B','C','D','E','F','G','H'];
+q.options.forEach((opt, idx) => {
+const li = document.createElement('li');
+li.innerHTML = `<span class="option-letter">${letters[idx] || idx+1}</span> <span>${opt}</span>`;
+li.dataset.optionIndex = idx;
+li.addEventListener('click', () => selectOption(idx));
+if (userAnswers[currentQuestionIndex] === idx) li.classList.add('selected');
+$optionsList.appendChild(li);
+});
+$btnPrev.disabled = (currentQuestionIndex === 0);
+$btnNext.disabled = (currentQuestionIndex >= TOTAL_QUESTIONS - 1);
+updateSidebarHighlight();
+updateAnsweredCount();
+}
+
+function selectOption(idx) {
+if (!testActive) return;
+userAnswers[currentQuestionIndex] = idx;
+LSset(STORAGE_KEY_ANSWERS, JSON.stringify(userAnswers));
+renderQuestion();
+}
+
+function navigateQuestion(dir) {
+const newIdx = currentQuestionIndex + dir;
+if (newIdx >= 0 && newIdx < TOTAL_QUESTIONS) {
+currentQuestionIndex = newIdx;
+renderQuestion();
+}
+}
+
+function updateSidebarHighlight() {
+const dots = $qGrid.querySelectorAll('.q-dot');
+dots.forEach(dot => {
+const i = parseInt(dot.dataset.index);
+dot.classList.remove('answered', 'current');
+if (userAnswers[i] !== undefined && userAnswers[i] !== null) dot.classList.add('answered');
+if (i === currentQuestionIndex) dot.classList.add('current');
+});
+}
+
+function updateAnsweredCount() {
+$sidebarAnsweredNum.textContent = answeredCount();
+}
+
+// Test lifecycle
+function startTest() {
+const status = LSget(STORAGE_KEY_STATUS);
+if (status === 'completed' || status === 'submitted') {
+alert('You have already taken this test. Results are shown below.');
+showResults();
+return;
+}
+if (status === 'in_progress') {
+resumeTest();
+return;
+}
+
+// Fresh start
+const now = Date.now();
+deadline = now + TOTAL_TIME_SECONDS * 1000;
+LSset(STORAGE_KEY_STATUS, 'in_progress');
+LSset(STORAGE_KEY_START_TIME, now.toString());
+LSset(STORAGE_KEY_END_TIME, deadline.toString());
+LSset(STORAGE_KEY_ANSWERS, JSON.stringify({}));
+userAnswers = {};
+currentQuestionIndex = 0;
+testActive = true;
+enableTestRestrictions();
+requestFullscreen();
+showTestInterface();
+startTimerWithDeadline();
+}
+
+function resumeTest() {
+const ans = LSget(STORAGE_KEY_ANSWERS);
+if (ans) { try { userAnswers = JSON.parse(ans); } catch(e) { userAnswers = {}; } }
+const hasTime = resumeTimerFromStoredDeadline();
+testActive = true;
+enableTestRestrictions();
+showTestInterface();
+if (!hasTime) {
+// Time already expired while away
+autoSubmit();
+}
+}
+
+function submitTest() {
+if (!testActive) return;
+testActive = false;
+if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
+disableTestRestrictions();
+const marks = calcMarks();
+const now = Date.now();
+const startStr = LSget(STORAGE_KEY_START_TIME);
+const start = startStr ? parseInt(startStr) : now;
+const timeTaken = Math.floor((now - start) / 1000);
+LSset(STORAGE_KEY_STATUS, 'completed');
+LSset(STORAGE_KEY_MARKS, marks.toString());
+LSset(STORAGE_KEY_SUBMITTED_AT, now.toString());
+LSset(STORAGE_KEY_ANSWERS, JSON.stringify(userAnswers));
+$timerDisplay.style.display = 'none';
+hideWarningModal();
+showResults(marks, timeTaken);
+}
+
+function autoSubmit() {
+if (!testActive && LSget(STORAGE_KEY_STATUS) === 'completed') return;
+testActive = false;
+if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
+disableTestRestrictions();
+const marks = calcMarks();
+const now = Date.now();
+const startStr = LSget(STORAGE_KEY_START_TIME);
+const start = startStr ? parseInt(startStr) : now;
+const timeTaken = Math.floor((now - start) / 1000);
+LSset(STORAGE_KEY_STATUS, 'completed');
+LSset(STORAGE_KEY_MARKS, marks.toString());
+LSset(STORAGE_KEY_SUBMITTED_AT, now.toString());
+LSset(STORAGE_KEY_ANSWERS, JSON.stringify(userAnswers));
+$timerDisplay.style.display = 'none';
+showResults(marks, timeTaken, true);
+}
+
+function showResults(marksOverride, timeOverride, auto = false) {
+$preTest.style.display = 'none';
+$test.style.display = 'none';
+$results.style.display = 'block';
+$timerDisplay.style.display = 'none';
+$navbarBrand.textContent = '📊 Results - ' + questionSet.name;
+const marks = marksOverride !== undefined ? marksOverride : parseInt(LSget(STORAGE_KEY_MARKS) || '0');
+const submittedStr = LSget(STORAGE_KEY_SUBMITTED_AT);
+const startStr = LSget(STORAGE_KEY_START_TIME);
+let timeTaken = timeOverride;
+if (timeTaken === undefined && submittedStr && startStr) {
+timeTaken = Math.floor((parseInt(submittedStr) - parseInt(startStr)) / 1000);
+}
+if (timeTaken === undefined || timeTaken < 0) timeTaken = 0;
+const ans = LSget(STORAGE_KEY_ANSWERS);
+if (ans) { try { userAnswers = JSON.parse(ans); } catch(e) { userAnswers = {}; } }
+const percent = TOTAL_QUESTIONS > 0 ? Math.round((marks / TOTAL_QUESTIONS) * 100) : 0;
+$resultsSetName.textContent = questionSet.name;
+$resultsScore.textContent = marks;
+$resultsDenom.textContent = `/ ${TOTAL_QUESTIONS}`;
+$resultsPercentage.textContent = `${percent}%`;
+$resultsTimeTaken.textContent = `⏱️ Time taken: ${formatTimeLong(timeTaken)}` + (auto ? ' (Auto-submitted)' : '');
+$resultsDetail.innerHTML = '';
+const letters = ['A','B','C','D','E','F','G','H'];
+questionSet.questions.forEach((q, idx) => {
+const userAns = userAnswers[idx];
+const correctAns = q.correct;
+const isCorrect = (userAns === correctAns);
+const wasAnswered = (userAns !== undefined && userAns !== null);
+const card = document.createElement('div');
+card.className = 'result-card';
+if (wasAnswered) card.classList.add(isCorrect ? 'correct' : 'incorrect');
+let badge = '';
+if (!wasAnswered) badge = '<span class="r-badge" style="background:#fff3e0;color:#E65100;">⚠️ NOT ANSWERED</span>';
+else if (isCorrect) badge = '<span class="r-badge correct-badge">✅ CORRECT</span>';
+else badge = '<span class="r-badge incorrect-badge">❌ INCORRECT</span>';
+let optsHTML = '';
+q.options.forEach((opt, optIdx) => {
+let liClass = '';
+if (optIdx === correctAns && optIdx === userAns) liClass = 'both-correct';
+else if (optIdx === correctAns) liClass = 'correct-answer';
+else if (optIdx === userAns && !isCorrect) liClass = 'user-answer';
+const label = letters[optIdx] || (optIdx+1);
+let prefix = '';
+if (optIdx === correctAns && optIdx === userAns) prefix = '✅ ';
+else if (optIdx === correctAns) prefix = '✅ ';
+else if (optIdx === userAns && !isCorrect) prefix = '❌ ';
+optsHTML += `<li class="${liClass}"><strong>${label}.</strong> ${prefix}${opt}</li>`;
+});
+card.innerHTML = `${badge}<div class="r-q-text">Q${idx+1}: ${q.question}</div><ul class="r-options">${optsHTML}</ul>`;
+$resultsDetail.appendChild(card);
+});
+$results.scrollIntoView({ behavior: 'smooth' });
+window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function showWarningModal() {
+const unanswered = TOTAL_QUESTIONS - answeredCount();
+$modalUnansweredCount.textContent = `${unanswered} unanswered question(s)`;
+$warningModal.style.display = 'flex';
+document.body.style.overflow = 'hidden';
+}
+
+function hideWarningModal() {
+$warningModal.style.display = 'none';
+document.body.style.overflow = '';
+}
+
+// Event listeners
+$btnStart.addEventListener('click', startTest);
+$btnPrev.addEventListener('click', () => navigateQuestion(-1));
+$btnNext.addEventListener('click', () => navigateQuestion(1));
+
+$btnSubmit.addEventListener('click', function() {
+if (!testActive) return;
+const unanswered = TOTAL_QUESTIONS - answeredCount();
+if (unanswered > 0) {
+showWarningModal();
+} else {
+submitTest();
+}
+});
+
+$btnModalCancel.addEventListener('click', hideWarningModal);
+$btnModalSubmit.addEventListener('click', function() {
+submitTest();
+});
+$warningModal.addEventListener('click', function(e) {
+if (e.target === $warningModal) hideWarningModal();
+});
+document.addEventListener('keydown', function(e) {
+if (e.key === 'Escape' && $warningModal.style.display === 'flex') {
+hideWarningModal();
+}
+});
+
+// Keyboard navigation
+document.addEventListener('keydown', function(e) {
+if (!testActive) return;
+if ($warningModal.style.display === 'flex') return;
+if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); navigateQuestion(-1); }
+else if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); navigateQuestion(1); }
+else if (e.key >= '1' && e.key <= '9') {
+const idx = parseInt(e.key) - 1;
+if (idx < questionSet.questions[currentQuestionIndex].options.length) {
+e.preventDefault();
+selectOption(idx);
+}
+}
+else if (e.key === 'a' || e.key === 'A') selectOption(0);
+else if (e.key === 'b' || e.key === 'B') selectOption(1);
+else if (e.key === 'c' || e.key === 'C') selectOption(2);
+else if (e.key === 'd' || e.key === 'D') selectOption(3);
+else if (e.key === 'e' || e.key === 'E') selectOption(4);
+});
+
+// Initialization
+function init() {
+const status = LSget(STORAGE_KEY_STATUS);
+if (status === 'completed' || status === 'submitted') {
+const ans = LSget(STORAGE_KEY_ANSWERS);
+if (ans) { try { userAnswers = JSON.parse(ans); } catch(e) { userAnswers = {}; } }
+showResults();
+} else if (status === 'in_progress') {
+const ans = LSget(STORAGE_KEY_ANSWERS);
+if (ans) { try { userAnswers = JSON.parse(ans); } catch(e) { userAnswers = {}; } }
+const hasTime = resumeTimerFromStoredDeadline();
+if (hasTime) {
+testActive = true;
+enableTestRestrictions();
+showTestInterface();
+} else {
+// Time expired, auto submit
+testActive = true;
+enableTestRestrictions();
+showTestInterface();
+autoSubmit();
+}
+} else {
+showPreTest();
+}
+}
+init();
+})();
+</script>
+<script src="/js/logo.js"></script>
+<script src="/js/text-protect.js" defer></script>
+</body>
+</html>

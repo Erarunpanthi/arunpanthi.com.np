@@ -1,621 +1,649 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UNO, SAARC & BIMSTEC
-</title>
- <link rel="icon" href="https://arunpanthi.com.np/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="/css/Mock_Test.css">
-    
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UNO, SAARC & BIMSTEC</title>
+<link rel="icon" href="https://arunpanthi.com.np/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="/css/Mock_Test.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous">
 </head>
 <body>
-    <nav class="navbar" id="navbar">
-        <span class="brand" id="navbar-brand">UNO, SAARC & BIMSTEC
-</span>
-        <span class="timer-display" id="timer-display" style="display:none;">--:--</span>
-    </nav>
+<nav class="navbar" id="navbar">
+<span class="brand" id="navbar-brand">UNO, SAARC & BIMSTEC</span>
+<span class="timer-display" id="timer-display" style="display:none;">--:--</span>
+</nav>
 
-    <!-- ========== CUSTOM WARNING MODAL ========== -->
-    <div id="warning-modal" class="modal-overlay" style="display: none;">
-        <div class="modal-dialog">
-            <div class="warning-modal">
-  <div class="warning-icon">⚠️</div>
-  <h2>Submission Warning</h2>
-  <p>You have not answered all the questions in this test.</p>
-  
-  <div class="unanswered-status">
-    <strong>Unanswered Questions:</strong> 
-    <span id="modal-unanswered-count">0</span>
-  </div>
-  
-  <p class="critical-note">
-    <strong>⚠ Important:</strong> Once submitted, this test cannot be retaken.
-  </p>
-  
-  <div class="modal-actions">
-    <button class="btn-cancel" id="btn-modal-cancel">Cancel</button>
-    <button class="btn-submit-warning" id="btn-modal-submit">Submit Anyway</button>
-  </div>
+<!-- Warning modal -->
+<div id="warning-modal" class="modal-overlay" style="display: none;">
+<div class="modal-dialog">
+<div class="warning-icon">⚠️</div>
+<h3>Unanswered Questions</h3>
+<p>You haven't answered all the questions.</p>
+<span class="unanswered-count" id="modal-unanswered-count">0 unanswered</span>
+<p style="margin-top:8px;"><strong>⚠ This test cannot be retaken once submitted!</strong></p>
+<div class="modal-buttons">
+<button class="btn-cancel" id="btn-modal-cancel">Cancel</button>
+<button class="btn-submit-warning" id="btn-modal-submit">Submit Anyway</button>
 </div>
 </div>
-        </div>
-    </div>
+</div>
 
-    <div id="pre-test-section">
-        <div class="hero" id="hero-card">
-            <h1 id="hero-set-name">Loading...</h1>
-            <p class="set-details" id="hero-details"></p>
-            <div class="set-meta">
-                <div class="meta-item">
-                    <span id="hero-q-count">0</span> Questions
-                </div>
-                <div class="meta-item">
-                    <span id="hero-time">0:00</span> Time (min)
-                </div>
-            </div>
-            <button class="btn-start" id="btn-start-test">🚀 Start Test</button>
-            <p style="margin-top:10px;font-size:0.85rem;opacity:0.8;" id="hero-note"></p>
-        </div>
-    </div>
+<div id="pre-test-section">
+<div class="hero" id="hero-card">
+<h1 id="hero-set-name">Loading...</h1>
+<p class="set-details" id="hero-details"></p>
+<div class="set-meta">
+<div class="meta-item"><span id="hero-q-count">0</span> Questions</div>
+<div class="meta-item"><span id="hero-time">0:00</span> Time (min)</div>
+</div>
+<button class="btn-start" id="btn-start-test">🚀 Start Test</button>
+<p style="margin-top:10px;font-size:0.85rem;opacity:0.8;" id="hero-note"></p>
+</div>
+</div>
 
-    <div id="test-section" style="display:none;">
-        <div class="test-container">
-            <div class="question-area" id="question-area">
-                <div class="question-card" id="question-card">
-                    <div class="q-number" id="q-number-label">QUESTION 1</div>
-                    <div class="q-text" id="q-text">Loading question...</div>
-                    <ul class="options-list" id="options-list"></ul>
-                </div>
-                <div class="nav-buttons">
-                    <button class="btn-nav" id="btn-prev">◀ Previous</button>
-                    <span style="font-weight:600;color:#555;" id="q-progress-indicator">1 / 1</span>
-                     <span class="spacer"></span>
-                    <span class="spacer"></span>
-                    <span class="spacer"></span>
-                    <span class="spacer"></span>
-                                        <button class="btn-submit" id="btn-submit-test">✅ Submit Test</button>
-                    <span class="spacer"></span><span class="spacer"></span><span class="spacer"></span><span class="spacer"></span>
-                    <button class="btn-nav" id="btn-next">Next ▶</button>
-                   
-                </div>
-            </div>
-            <aside class="sidebar" id="sidebar">
-                <h3>📋 Question Palette</h3>
-                <div class="total-questions" id="sidebar-total">Total: 0</div>
-                <div class="answered-count">
-                    Answered: <strong id="sidebar-answered-num">0</strong>
-                </div>
-                <div class="q-grid" id="q-grid"></div>
-                <div class="legend">
-                    <span><span class="dot-sample blue"></span> Answered</span>
-                    <span><span class="dot-sample gray"></span> Unanswered</span>
-                </div>
-            </aside>
-        </div>
-    </div>
+<div id="test-section" style="display:none;">
+<div class="test-container">
+<div class="question-area">
+<div class="question-card">
+<div class="q-number" id="q-number-label">QUESTION 1</div>
+<div class="q-text" id="q-text">Loading question...</div>
+<ul class="options-list" id="options-list"></ul>
+</div>
+<div class="nav-buttons">
+<div class="nav-left"><button class="btn-nav" id="btn-prev">◀ Previous</button></div>
+<div class="nav-center"><button class="btn-submit" id="btn-submit-test">✅ Submit Test</button></div>
+<div class="nav-right"><button class="btn-nav" id="btn-next">Next ▶</button></div>
+</div>
+</div>
+<aside class="sidebar">
+<h3>📋 Question </h3>
+<div class="total-questions" id="sidebar-total">Total: 0</div>
+<div class="answered-count">Answered: <strong id="sidebar-answered-num">0</strong></div>
+<div class="q-grid" id="q-grid"></div>
+<div class="legend">
+<span><span class="dot-sample blue"></span> Answered</span>
+<span><span class="dot-sample gray"></span> Unanswered</span>
+</div>
+</aside>
+</div>
+</div>
 
-    <div id="results-section" style="display:none;">
-        <div class="results-container" id="results-container">
-            <div class="results-header" id="results-header">
-                <h2 style="color:#2E7D32;">📊 Test Results</h2>
-                <p style="color:#666;" id="results-set-name"></p>
-                <div class="score-circle">
-                    <span class="score-num" id="results-score">0</span>
-                    <span class="score-denom" id="results-denom">/ 0</span>
-                </div>
-                <div class="percentage" id="results-percentage">0%</div>
-                <p style="margin-top:8px;color:#888;font-size:0.9rem;" id="results-time-taken"></p>
-            </div>
-            <div id="results-detail"></div>
-        </div>
-    </div>
+<div id="results-section" style="display:none;">
+<div class="results-container">
+<div class="results-header">
+<h2 style="color:#2E7D32;">📊 Test Results</h2>
+<p style="color:#666;" id="results-set-name"></p>
+<div class="score-circle">
+<span class="score-num" id="results-score">0</span>
+<span class="score-denom" id="results-denom">/ 0</span>
+</div>
+<div class="percentage" id="results-percentage">0%</div>
+<p style="margin-top:8px;color:#888;font-size:0.9rem;" id="results-time-taken"></p>
+</div>
+<div id="results-detail"></div>
+</div>
+</div>
 
-    <script>
-        (function() {
-        const questionSet = {
-    name: 'UN & International Organizations - Set 1',
-    details: 'Covers United Nations, SAARC, BIMSTEC, and international relations.',
-    questions: [
-        { question: 'The largest budget provider of UN Budget is USA (22%). Nepal contributes …..% of budget of UN.', options: ['0.6', '0.006', '0.0006', '0.06'], correct: 1 },
-        { question: 'Nepal had been the temporary member of UN Security Council for ………. Tenure.', options: ['1', '2', '3', '4'], correct: 1 },
-        { question: 'How many members of the United Nation\'s Security Council have veto power?', options: ['3', '4', '5', '6'], correct: 2 },
-        { question: 'Nepal signed the Paris Agreement on climate change as part of its commitment to the UNFCCC in which year?', options: ['2012', '2016', '2020', '2024'], correct: 1 },
-        { question: 'The UNO was founded on', options: ['1945-10-24', '1985-12-08', '1997-06-06', '1995-11-07'], correct: 0 },
-        { question: 'How are the financial contributions to the United Nations budget determined for each member state?', options: ['Based on each member state\'s capacity to pay', 'Based on the member state\'s geographic location', 'Based on each member state\'s population size', 'Equally among all member states'], correct: 0 },
-        { question: 'Nepal is a member of which major UN body', options: ['United Nations Security Council', 'United Nations International Court of Justice (ICJ)', 'United Nations Human Rights Council', 'United Nations Economic and Social Council (ECOSOC)'], correct: 2 },
-        { question: 'Afghanistan participated as the 8th member of SAARC in?', options: ['15th Summit', '18th Summit', '14th Summit', '16th Summit'], correct: 2 },
-        { question: 'Which SAARC Summit decided to reduce regional centre to from 11 to 5?', options: ['15th', '16th', '17th', '18th'], correct: 2 },
-        { question: 'When did ILO received the Nobel peace prize?', options: ['1969 AD', '1970 AD', '1972 AD', '1981 AD'], correct: 0 },
-        { question: 'Trusteeship Council suspended its operation since ……………..', options: ['1990 AD', '1991 AD', '1993 AD', '1994 AD'], correct: 3 },
-        { question: 'When did Nepal formally get membership of BIMSTEC?', options: ['2004, June', '2004, February', '2006, May', '2003, March'], correct: 1 },
-        { question: 'How many times that the SAARC summits held in Nepal?', options: ['3rd, 11th, 18th', '1st, 9th, 18th', '2nd, 8th, 15th', '4th, 11th, 18th'], correct: 0 },
-        { question: 'Which of the following countries is a member of SAARC but does not share a land border with India?', options: ['Bhutan', 'Maldives', 'Afghanistan', 'Nepal'], correct: 1 },
-        { question: 'Which of the following is the only SAARC member country to have never hosted a SAARC summit?', options: ['India', 'Pakistan', 'Afghanistan', 'Maldives'], correct: 2 },
-        { question: 'Which of the following countries did NOT participate in the 16th SAARC Summit held in 2014?', options: ['India', 'Pakistan', 'Afghanistan', 'Maldives'], correct: 2 },
-        { question: 'Current Secretary-General of the United Nation is', options: ['Trygve Lie', 'Abdul Mehmood', 'Antonio Guterres', 'Siddhartha Chatterjee'], correct: 2 },
-        { question: 'Which SAARC country has accepted the policy of dual Citizenship?', options: ['Nepal', 'India', 'Bhutan', 'Bangladesh'], correct: 1 },
-        { question: 'Where was the 3rd BIMSTEC summit held in 2014 A.D.?', options: ['Myanmar', 'Sri Lanka', 'Bhutan', 'Nepal'], correct: 0 },
-        { question: 'What is the regional initiative comprising 7 member states of both SAARC and ASEAN called?', options: ['SAFTA', 'ADB', 'BIMSTEC', 'APEC'], correct: 2 },
-        { question: 'Secretary General of United Nations, whom was awarded with the Nobel Prize in Peace for the year 1961 A.D.?', options: ['U Thant', 'Dag Hammarskjold', 'Boutros Boutros Ghali', 'Trygve Lie'], correct: 1 },
-        { question: 'The Charter of UNO consists of …………', options: ['Chapter 21, Article 121', 'Chapter 19, Articles 111', 'Chapter 9, Article 99', 'Chapter 20, Articles 109'], correct: 1 },
-        { question: 'Which country is NOT a permanent member of the UN Security Council?', options: ['United States', 'India', 'China', 'Russia'], correct: 1 },
-        { question: 'Which sector of BIMSTEC is leading by Nepal?', options: ['People-to-People Contact', 'Agriculture and Food Security', 'Connectivity', 'Environment and Climate Change'], correct: 0 },
-        { question: 'Who was the prime minister of Nepal at the time of diplomacy with Pakistan?', options: ['B. P. Koirala', 'Tanka Prasad Acharya', 'Dr. K. I. Singh', 'Surya Bahadur Thapa'], correct: 2 },
-        { question: 'Human Rights Council in the United Nations is the subsidiary organ of …………..', options: ['Security Council', 'Economic and Social Council', 'General Assembly', 'International Court of Justice'], correct: 2 },
-        { question: 'The first lady to chair the General Assembly of UN is:', options: ['Vijaya Lakshmi Pandit', 'Wangi Brooks', 'Haya Rashed Al-Khalifa', 'Maria Fernanda Espinosa'], correct: 0 },
-        { question: 'Which of the following is NOT a principal organ of the United Nations?', options: ['General Assembly', 'Security Council', 'International Court of Justice', 'Union Council'], correct: 3 },
-        { question: 'The United Nations General Assembly has declared 2023 as the …….', options: ['International Year of Plant Health', 'International Year of Indigenous Languages', 'International Year of Millets', 'International Year of Fruits and Vegetables'], correct: 2 },
-        { question: 'Which of the following is not the observer of SAARC?', options: ['USA', 'UK', 'Japan', 'South Korea'], correct: 3 },
-        { question: 'Who is the present permanent representative of Nepal in UN General Assembly?', options: ['Jaya Raj Acharya', 'Kausal Kishwor Ray', 'Lok Bahadur Thapa', 'Gyan Prasad Acharya'], correct: 3 },
-        { question: 'The first Prime minister of Nepal to address UN General Assembly is', options: ['BP Koirala', 'Rishikesh Shah', 'Lok Bahadur Thapa', 'Matrika Prasad Koirala'], correct: 3 },
-        { question: 'Who is Current 4th Secretary General of BIMSTEC?', options: ['Arjun Bahadur Thapa', 'Indra Mani Pandey', 'Mr. Abdul Motaleb Sarkert', 'Tenzin Lekphell'], correct: 3 },
-        { question: 'Which country is not the founder member of the BIMSTEC?', options: ['Thailand', 'Sri Lanka', 'Nepal', 'India'], correct: 2 },
-        { question: 'What is the official language used in the SAARC Secretariat in Kathmandu for communication and documentation?', options: ['Hindi', 'English', 'Nepali', 'Bengali'], correct: 1 },
-        { question: 'The headquarters of WIPO is located in …………', options: ['Paris', 'Madrid', 'New York', 'Geneva'], correct: 3 },
-        { question: 'Which of the following does not come under the five principles Panchasheel?', options: ['Non-Interference', 'Security Council', 'Non-aggression', 'Peaceful co-existence'], correct: 1 },
-        { question: 'Which of the following was not constructed by the Russian government\'s assistance?', options: ['Panauti Hydropower Station', 'Construction of Kanti Children Hospital', 'Pathalaiya-Dhalkebar Segment of Mahendra Highway', 'Farping Hydropower'], correct: 2 },
-        { question: 'Which Prime Minister of Nepal virtually attended the 5th BIMSTEC Summit?', options: ['Sher Bahadur Deuba', 'K. P. Sharma Oli', 'Pushpa Kamal Dahal', 'Sushil Koirala'], correct: 0 },
-        { question: 'What is the currency of the \'Republic of Maldives\'?', options: ['Riyal', 'Rupee', 'Ringgit', 'Rufiyaa'], correct: 3 },
-        { question: 'Which countries are the Permanent of the Security Council of UNO?', options: ['China, Russia, America, Britain, and Germany', 'China, Russia, America, Britain and France', 'Russia, America, Britain, France and Japan', 'America, Japan, Germany, France and Britain'], correct: 1 },
-        { question: 'The United Nations Charter was signed in which of the following cities?', options: ['New York', 'London', 'San Francisco', 'Moscow'], correct: 2 },
-        { question: 'Where is SAARC cultural centre located?', options: ['Nepal', 'India', 'Sri Lanka', 'Pakistan'], correct: 2 },
-        { question: 'Who is the Nepali artist to design the SAARC emblem?', options: ['Shailendra Kumar Maharjan', 'Sakri Ali', 'Surya Bahadur K. C.', 'Kiran Maharjan'], correct: 0 },
-        { question: 'The mission to which nation has been declared as the UN\'s most dangerous Peace keeping Mission ………….', options: ['Sudan', 'Haiti', 'Syria', 'Mali'], correct: 3 },
-        { question: 'Last Member (193) of UN is ….', options: ['Montenegro', 'South Sudan', 'Timor Leste', 'Nepal'], correct: 1 },
-        { question: 'According to the United Nations Charter, what is one of the main purposes of the organization?', options: ['To encourage countries to increase military spending', 'To control global trade policies', 'To regulate the internet and telecommunications', 'To promote friendly relations among nations'], correct: 3 },
-        { question: 'Which of the following UN agencies has its headquarters at Paris…..', options: ['ILO', 'FAO', 'UNWTO', 'UNESCO'], correct: 3 },
-        { question: 'The headquarters of International Atomic Energy Agency is located in…', options: ['Washington', 'Geneva', 'Vienna', 'London'], correct: 2 },
-        { question: 'Which of the following given dignitaries is/are not the signatories on the Charter of SAARC?', options: ['King Birendra', 'Rajiv Gandhi', 'Ziaur Rahman', 'Jigme Singye Wangchuk'], correct: 1 }
-    ]
+<script>
+(function() {
+const questionSet = {
+name: 'UN & International Organizations ',
+details: 'Covers United Nations, SAARC, BIMSTEC, and international relations.',
+questions: [
+{ question: 'The largest budget provider of UN Budget is USA (22%). Nepal contributes …..% of budget of UN.', options: ['0.6', '0.006', '0.0006', '0.06'], correct: 1 },
+{ question: 'Nepal had been the temporary member of UN Security Council for ………. Tenure.', options: ['1', '2', '3', '4'], correct: 1 },
+{ question: 'How many members of the United Nation\'s Security Council have veto power?', options: ['3', '4', '5', '6'], correct: 2 },
+{ question: 'Nepal signed the Paris Agreement on climate change as part of its commitment to the UNFCCC in which year?', options: ['2012', '2016', '2020', '2024'], correct: 1 },
+{ question: 'The UNO was founded on', options: ['1945-10-24', '1985-12-08', '1997-06-06', '1995-11-07'], correct: 0 },
+{ question: 'How are the financial contributions to the United Nations budget determined for each member state?', options: ['Based on each member state\'s capacity to pay', 'Based on the member state\'s geographic location', 'Based on each member state\'s population size', 'Equally among all member states'], correct: 0 },
+{ question: 'Nepal is a member of which major UN body', options: ['United Nations Security Council', 'United Nations International Court of Justice (ICJ)', 'United Nations Human Rights Council', 'United Nations Economic and Social Council (ECOSOC)'], correct: 2 },
+{ question: 'Afghanistan participated as the 8th member of SAARC in?', options: ['15th Summit', '18th Summit', '14th Summit', '16th Summit'], correct: 2 },
+{ question: 'Which SAARC Summit decided to reduce regional centre to from 11 to 5?', options: ['15th', '16th', '17th', '18th'], correct: 2 },
+{ question: 'When did ILO received the Nobel peace prize?', options: ['1969 AD', '1970 AD', '1972 AD', '1981 AD'], correct: 0 },
+{ question: 'Trusteeship Council suspended its operation since ……………..', options: ['1990 AD', '1991 AD', '1993 AD', '1994 AD'], correct: 3 },
+{ question: 'When did Nepal formally get membership of BIMSTEC?', options: ['2004, June', '2004, February', '2006, May', '2003, March'], correct: 1 },
+{ question: 'How many times that the SAARC summits held in Nepal?', options: ['3rd, 11th, 18th', '1st, 9th, 18th', '2nd, 8th, 15th', '4th, 11th, 18th'], correct: 0 },
+{ question: 'Which of the following countries is a member of SAARC but does not share a land border with India?', options: ['Bhutan', 'Maldives', 'Afghanistan', 'Nepal'], correct: 1 },
+{ question: 'Which of the following is the only SAARC member country to have never hosted a SAARC summit?', options: ['India', 'Pakistan', 'Afghanistan', 'Maldives'], correct: 2 },
+{ question: 'Which of the following countries did NOT participate in the 16th SAARC Summit held in 2014?', options: ['India', 'Pakistan', 'Afghanistan', 'Maldives'], correct: 2 },
+{ question: 'Current Secretary-General of the United Nation is', options: ['Trygve Lie', 'Abdul Mehmood', 'Antonio Guterres', 'Siddhartha Chatterjee'], correct: 2 },
+{ question: 'Which SAARC country has accepted the policy of dual Citizenship?', options: ['Nepal', 'India', 'Bhutan', 'Bangladesh'], correct: 1 },
+{ question: 'Where was the 3rd BIMSTEC summit held in 2014 A.D.?', options: ['Myanmar', 'Sri Lanka', 'Bhutan', 'Nepal'], correct: 0 },
+{ question: 'What is the regional initiative comprising 7 member states of both SAARC and ASEAN called?', options: ['SAFTA', 'ADB', 'BIMSTEC', 'APEC'], correct: 2 },
+{ question: 'Secretary General of United Nations, whom was awarded with the Nobel Prize in Peace for the year 1961 A.D.?', options: ['U Thant', 'Dag Hammarskjold', 'Boutros Boutros Ghali', 'Trygve Lie'], correct: 1 },
+{ question: 'The Charter of UNO consists of …………', options: ['Chapter 21, Article 121', 'Chapter 19, Articles 111', 'Chapter 9, Article 99', 'Chapter 20, Articles 109'], correct: 1 },
+{ question: 'Which country is NOT a permanent member of the UN Security Council?', options: ['United States', 'India', 'China', 'Russia'], correct: 1 },
+{ question: 'Which sector of BIMSTEC is leading by Nepal?', options: ['People-to-People Contact', 'Agriculture and Food Security', 'Connectivity', 'Environment and Climate Change'], correct: 0 },
+{ question: 'Who was the prime minister of Nepal at the time of diplomacy with Pakistan?', options: ['B. P. Koirala', 'Tanka Prasad Acharya', 'Dr. K. I. Singh', 'Surya Bahadur Thapa'], correct: 2 },
+{ question: 'Human Rights Council in the United Nations is the subsidiary organ of …………..', options: ['Security Council', 'Economic and Social Council', 'General Assembly', 'International Court of Justice'], correct: 2 },
+{ question: 'The first lady to chair the General Assembly of UN is:', options: ['Vijaya Lakshmi Pandit', 'Wangi Brooks', 'Haya Rashed Al-Khalifa', 'Maria Fernanda Espinosa'], correct: 0 },
+{ question: 'Which of the following is NOT a principal organ of the United Nations?', options: ['General Assembly', 'Security Council', 'International Court of Justice', 'Union Council'], correct: 3 },
+{ question: 'The United Nations General Assembly has declared 2023 as the …….', options: ['International Year of Plant Health', 'International Year of Indigenous Languages', 'International Year of Millets', 'International Year of Fruits and Vegetables'], correct: 2 },
+{ question: 'Which of the following is not the observer of SAARC?', options: ['USA', 'UK', 'Japan', 'South Korea'], correct: 3 },
+{ question: 'Who is the present permanent representative of Nepal in UN General Assembly?', options: ['Jaya Raj Acharya', 'Kausal Kishwor Ray', 'Lok Bahadur Thapa', 'Gyan Prasad Acharya'], correct: 3 },
+{ question: 'The first Prime minister of Nepal to address UN General Assembly is', options: ['BP Koirala', 'Rishikesh Shah', 'Lok Bahadur Thapa', 'Matrika Prasad Koirala'], correct: 3 },
+{ question: 'Who is Current 4th Secretary General of BIMSTEC?', options: ['Arjun Bahadur Thapa', 'Indra Mani Pandey', 'Mr. Abdul Motaleb Sarkert', 'Tenzin Lekphell'], correct: 3 },
+{ question: 'Which country is not the founder member of the BIMSTEC?', options: ['Thailand', 'Sri Lanka', 'Nepal', 'India'], correct: 2 },
+{ question: 'What is the official language used in the SAARC Secretariat in Kathmandu for communication and documentation?', options: ['Hindi', 'English', 'Nepali', 'Bengali'], correct: 1 },
+{ question: 'The headquarters of WIPO is located in …………', options: ['Paris', 'Madrid', 'New York', 'Geneva'], correct: 3 },
+{ question: 'Which of the following does not come under the five principles Panchasheel?', options: ['Non-Interference', 'Security Council', 'Non-aggression', 'Peaceful co-existence'], correct: 1 },
+{ question: 'Which of the following was not constructed by the Russian government\'s assistance?', options: ['Panauti Hydropower Station', 'Construction of Kanti Children Hospital', 'Pathalaiya-Dhalkebar Segment of Mahendra Highway', 'Farping Hydropower'], correct: 2 },
+{ question: 'Which Prime Minister of Nepal virtually attended the 5th BIMSTEC Summit?', options: ['Sher Bahadur Deuba', 'K. P. Sharma Oli', 'Pushpa Kamal Dahal', 'Sushil Koirala'], correct: 0 },
+{ question: 'What is the currency of the \'Republic of Maldives\'?', options: ['Riyal', 'Rupee', 'Ringgit', 'Rufiyaa'], correct: 3 },
+{ question: 'Which countries are the Permanent of the Security Council of UNO?', options: ['China, Russia, America, Britain, and Germany', 'China, Russia, America, Britain and France', 'Russia, America, Britain, France and Japan', 'America, Japan, Germany, France and Britain'], correct: 1 },
+{ question: 'The United Nations Charter was signed in which of the following cities?', options: ['New York', 'London', 'San Francisco', 'Moscow'], correct: 2 },
+{ question: 'Where is SAARC cultural centre located?', options: ['Nepal', 'India', 'Sri Lanka', 'Pakistan'], correct: 2 },
+{ question: 'Who is the Nepali artist to design the SAARC emblem?', options: ['Shailendra Kumar Maharjan', 'Sakri Ali', 'Surya Bahadur K. C.', 'Kiran Maharjan'], correct: 0 },
+{ question: 'The mission to which nation has been declared as the UN\'s most dangerous Peace keeping Mission ………….', options: ['Sudan', 'Haiti', 'Syria', 'Mali'], correct: 3 },
+{ question: 'Last Member (193) of UN is ….', options: ['Montenegro', 'South Sudan', 'Timor Leste', 'Nepal'], correct: 1 },
+{ question: 'According to the United Nations Charter, what is one of the main purposes of the organization?', options: ['To encourage countries to increase military spending', 'To control global trade policies', 'To regulate the internet and telecommunications', 'To promote friendly relations among nations'], correct: 3 },
+{ question: 'Which of the following UN agencies has its headquarters at Paris…..', options: ['ILO', 'FAO', 'UNWTO', 'UNESCO'], correct: 3 },
+{ question: 'The headquarters of International Atomic Energy Agency is located in…', options: ['Washington', 'Geneva', 'Vienna', 'London'], correct: 2 },
+{ question: 'Which of the following given dignitaries is/are not the signatories on the Charter of SAARC?', options: ['King Birendra', 'Rajiv Gandhi', 'Ziaur Rahman', 'Jigme Singye Wangchuk'], correct: 1 }
+]
 };
-            const TOTAL_QUESTIONS = questionSet.questions.length;
-            const TOTAL_TIME_SECONDS = Math.floor(TOTAL_QUESTIONS * 0.8 * 60);
-            const TOTAL_TIME_MINUTES = TOTAL_TIME_SECONDS / 60;
+const TOTAL_QUESTIONS = questionSet.questions.length;
+const TOTAL_TIME_SECONDS = Math.floor(TOTAL_QUESTIONS * 0.8 * 60);
+const TOTAL_TIME_MINUTES = TOTAL_TIME_SECONDS / 60;
 
-            const STORAGE_KEY_STATUS = 'mcq_single_set_status';
-            const STORAGE_KEY_ANSWERS = 'mcq_single_set_answers';
-            const STORAGE_KEY_START_TIME = 'mcq_single_set_startTime';
-            const STORAGE_KEY_END_TIME = 'mcq_single_set_endTime';
-            const STORAGE_KEY_MARKS = 'mcq_single_set_marks';
-            const STORAGE_KEY_SUBMITTED_AT = 'mcq_single_set_submittedAt';
+const STORAGE_KEY_STATUS = 'mcq_single_set_status';
+const STORAGE_KEY_ANSWERS = 'mcq_single_set_answers';
+const STORAGE_KEY_START_TIME = 'mcq_single_set_startTime';
+const STORAGE_KEY_END_TIME = 'mcq_single_set_endTime';
+const STORAGE_KEY_MARKS = 'mcq_single_set_marks';
+const STORAGE_KEY_SUBMITTED_AT = 'mcq_single_set_submittedAt';
 
-            let currentQuestionIndex = 0;
-            let userAnswers = {};
-            let testActive = false;
-            let timerInterval = null;
-            let timeRemainingSeconds = TOTAL_TIME_SECONDS;
+let currentQuestionIndex = 0;
+let userAnswers = {};
+let testActive = false;
+let timerInterval = null;
+let deadline = null; // end time in ms
 
-            // DOM elements
-            const $preTest = document.getElementById('pre-test-section');
-            const $test = document.getElementById('test-section');
-            const $results = document.getElementById('results-section');
-            const $timerDisplay = document.getElementById('timer-display');
-            const $navbarBrand = document.getElementById('navbar-brand');
-            const $heroSetName = document.getElementById('hero-set-name');
-            const $heroDetails = document.getElementById('hero-details');
-            const $heroQCount = document.getElementById('hero-q-count');
-            const $heroTime = document.getElementById('hero-time');
-            const $heroNote = document.getElementById('hero-note');
-            const $btnStart = document.getElementById('btn-start-test');
-            const $qNumberLabel = document.getElementById('q-number-label');
-            const $qText = document.getElementById('q-text');
-            const $optionsList = document.getElementById('options-list');
-            const $qProgress = document.getElementById('q-progress-indicator');
-            const $btnPrev = document.getElementById('btn-prev');
-            const $btnNext = document.getElementById('btn-next');
-            const $btnSubmit = document.getElementById('btn-submit-test');
-            const $qGrid = document.getElementById('q-grid');
-            const $sidebarTotal = document.getElementById('sidebar-total');
-            const $sidebarAnsweredNum = document.getElementById('sidebar-answered-num');
-            const $resultsSetName = document.getElementById('results-set-name');
-            const $resultsScore = document.getElementById('results-score');
-            const $resultsDenom = document.getElementById('results-denom');
-            const $resultsPercentage = document.getElementById('results-percentage');
-            const $resultsTimeTaken = document.getElementById('results-time-taken');
-            const $resultsDetail = document.getElementById('results-detail');
+// DOM elements
+const $preTest = document.getElementById('pre-test-section');
+const $test = document.getElementById('test-section');
+const $results = document.getElementById('results-section');
+const $timerDisplay = document.getElementById('timer-display');
+const $navbarBrand = document.getElementById('navbar-brand');
+const $heroSetName = document.getElementById('hero-set-name');
+const $heroDetails = document.getElementById('hero-details');
+const $heroQCount = document.getElementById('hero-q-count');
+const $heroTime = document.getElementById('hero-time');
+const $heroNote = document.getElementById('hero-note');
+const $btnStart = document.getElementById('btn-start-test');
+const $qNumberLabel = document.getElementById('q-number-label');
+const $qText = document.getElementById('q-text');
+const $optionsList = document.getElementById('options-list');
+const $btnPrev = document.getElementById('btn-prev');
+const $btnNext = document.getElementById('btn-next');
+const $btnSubmit = document.getElementById('btn-submit-test');
+const $qGrid = document.getElementById('q-grid');
+const $sidebarTotal = document.getElementById('sidebar-total');
+const $sidebarAnsweredNum = document.getElementById('sidebar-answered-num');
+const $resultsSetName = document.getElementById('results-set-name');
+const $resultsScore = document.getElementById('results-score');
+const $resultsDenom = document.getElementById('results-denom');
+const $resultsPercentage = document.getElementById('results-percentage');
+const $resultsTimeTaken = document.getElementById('results-time-taken');
+const $resultsDetail = document.getElementById('results-detail');
+const $warningModal = document.getElementById('warning-modal');
+const $modalUnansweredCount = document.getElementById('modal-unanswered-count');
+const $btnModalCancel = document.getElementById('btn-modal-cancel');
+const $btnModalSubmit = document.getElementById('btn-modal-submit');
 
-            // Modal elements
-            const $warningModal = document.getElementById('warning-modal');
-            const $modalUnansweredCount = document.getElementById('modal-unanswered-count');
-            const $btnModalCancel = document.getElementById('btn-modal-cancel');
-            const $btnModalSubmit = document.getElementById('btn-modal-submit');
+function LSget(k) { try { return localStorage.getItem(k); } catch(e) { return null; } }
+function LSset(k,v) { try { localStorage.setItem(k,v); return true; } catch(e) { return false; } }
+function formatTime(sec) {
+if (sec < 0) sec = 0;
+const m = Math.floor(sec / 60);
+const s = Math.floor(sec % 60);
+return `${m}:${s.toString().padStart(2,'0')}`;
+}
+function formatTimeLong(sec) {
+if (sec < 0) sec = 0;
+const m = Math.floor(sec / 60);
+const s = Math.floor(sec % 60);
+return m > 0 ? `${m} min ${s} sec` : `${s} seconds`;
+}
+function answeredCount() {
+return Object.keys(userAnswers).filter(k => userAnswers[k] !== undefined && userAnswers[k] !== null).length;
+}
+function calcMarks() {
+let correct = 0;
+for (let i = 0; i < TOTAL_QUESTIONS; i++) {
+if (userAnswers[i] === questionSet.questions[i].correct) correct++;
+}
+return correct;
+}
+function getRemainingSeconds() {
+if (!deadline) return 0;
+return Math.max(0, Math.floor((deadline - Date.now()) / 1000));
+}
 
-            // Helper functions
-            function LSget(k) { try { return localStorage.getItem(k); } catch(e) { return null; } }
-            function LSset(k,v) { try { localStorage.setItem(k,v); return true; } catch(e) { return false; } }
-            function formatTime(sec) {
-                if (sec < 0) sec = 0;
-                const m = Math.floor(sec / 60);
-                const s = Math.floor(sec % 60);
-                return `${m}:${s.toString().padStart(2,'0')}`;
-            }
-            function formatTimeLong(sec) {
-                if (sec < 0) sec = 0;
-                const m = Math.floor(sec / 60);
-                const s = Math.floor(sec % 60);
-                return m > 0 ? `${m} min ${s} sec` : `${s} seconds`;
-            }
-            function answeredCount() {
-                return Object.keys(userAnswers).filter(k => userAnswers[k] !== undefined && userAnswers[k] !== null).length;
-            }
-            function calcMarks() {
-                let correct = 0;
-                for (let i = 0; i < TOTAL_QUESTIONS; i++) {
-                    if (userAnswers[i] === questionSet.questions[i].correct) correct++;
-                }
-                return correct;
-            }
+// Disable copy/selection during test
+function preventCopy(e) {
+if (testActive) {
+e.preventDefault();
+return false;
+}
+}
+function enableTestRestrictions() {
+document.body.classList.add('test-active');
+document.addEventListener('copy', preventCopy);
+document.addEventListener('cut', preventCopy);
+document.addEventListener('contextmenu', e => { if (testActive) e.preventDefault(); });
+document.addEventListener('selectstart', e => { if (testActive) e.preventDefault(); });
+}
+function disableTestRestrictions() {
+document.body.classList.remove('test-active');
+document.removeEventListener('copy', preventCopy);
+document.removeEventListener('cut', preventCopy);
+// Contextmenu and selectstart remain blocked? We'll just allow after test.
+// For simplicity, we remove the listeners but keep them inactive when testActive is false.
+// Actually, we'll rely on testActive flag in the listeners.
+}
 
-            // Modal control
-            function showWarningModal() {
-                const unanswered = TOTAL_QUESTIONS - answeredCount();
-                $modalUnansweredCount.textContent = `${unanswered} unanswered question(s)`;
-                $warningModal.style.display = 'flex';
-                document.body.style.overflow = 'hidden';
-            }
+// Fullscreen
+function requestFullscreen() {
+const el = document.documentElement;
+if (el.requestFullscreen) {
+el.requestFullscreen().catch(() => {});
+} else if (el.webkitRequestFullscreen) {
+el.webkitRequestFullscreen();
+} else if (el.msRequestFullscreen) {
+el.msRequestFullscreen();
+}
+}
 
-            function hideWarningModal() {
-                $warningModal.style.display = 'none';
-                document.body.style.overflow = '';
-            }
+// Timer using deadline
+function updateTimerFromDeadline() {
+const remaining = getRemainingSeconds();
+$timerDisplay.textContent = formatTime(remaining);
+$timerDisplay.classList.remove('warning-yellow', 'warning-red');
+if (remaining <= 300 && remaining > 0) {
+$timerDisplay.classList.add('warning-red');
+} else if (remaining <= 600 && remaining > 0) {
+$timerDisplay.classList.add('warning-yellow');
+}
+return remaining;
+}
 
-            // UI rendering
-            function showPreTest() {
-                $preTest.style.display = 'block';
-                $test.style.display = 'none';
-                $results.style.display = 'none';
-                $timerDisplay.style.display = 'none';
-                $navbarBrand.textContent = '📝 MCQ Test';
-                $heroSetName.textContent = questionSet.name;
-                $heroDetails.textContent = questionSet.details || '';
-                $heroQCount.textContent = TOTAL_QUESTIONS;
-                $heroTime.textContent = `${TOTAL_TIME_MINUTES}:00`;
-                $heroNote.textContent = '⚠️ This test can only be taken once. Make sure you are ready before starting.';
-                $btnStart.disabled = false;
-                $btnStart.textContent = '🚀 Start Test';
-            }
+function startTimerWithDeadline() {
+const now = Date.now();
+deadline = now + TOTAL_TIME_SECONDS * 1000;
+LSset(STORAGE_KEY_END_TIME, deadline.toString());
+LSset(STORAGE_KEY_START_TIME, now.toString());
+updateTimerFromDeadline();
 
-            function showTestInterface() {
-                $preTest.style.display = 'none';
-                $test.style.display = 'block';
-                $results.style.display = 'none';
-                $timerDisplay.style.display = 'inline-block';
-                $navbarBrand.textContent = questionSet.name;
-                $sidebarTotal.textContent = `Total: ${TOTAL_QUESTIONS}`;
-                $qGrid.innerHTML = '';
-                for (let i = 0; i < TOTAL_QUESTIONS; i++) {
-                    const dot = document.createElement('span');
-                    dot.className = 'q-dot';
-                    dot.textContent = i + 1;
-                    dot.dataset.index = i;
-                    dot.addEventListener('click', () => {
-                        currentQuestionIndex = i;
-                        renderQuestion();
-                        updateSidebarHighlight();
-                    });
-                    $qGrid.appendChild(dot);
-                }
-                updateSidebarHighlight();
-                updateAnsweredCount();
-                renderQuestion();
-            }
+timerInterval = setInterval(() => {
+const remaining = updateTimerFromDeadline();
+if (remaining <= 0) {
+clearInterval(timerInterval);
+timerInterval = null;
+autoSubmit();
+}
+}, 1000);
+}
 
-            function renderQuestion() {
-                const q = questionSet.questions[currentQuestionIndex];
-                if (!q) return;
-                $qNumberLabel.textContent = `QUESTION ${currentQuestionIndex + 1}`;
-                $qText.textContent = q.question;
-                $qProgress.textContent = `${currentQuestionIndex + 1} / ${TOTAL_QUESTIONS}`;
-                $optionsList.innerHTML = '';
-                const letters = ['A','B','C','D','E','F','G','H'];
-                q.options.forEach((opt, idx) => {
-                    const li = document.createElement('li');
-                    li.innerHTML = `<span class="option-letter">${letters[idx] || idx+1}</span> <span>${opt}</span>`;
-                    li.dataset.optionIndex = idx;
-                    li.addEventListener('click', () => selectOption(idx));
-                    if (userAnswers[currentQuestionIndex] === idx) li.classList.add('selected');
-                    $optionsList.appendChild(li);
-                });
-                $btnPrev.disabled = (currentQuestionIndex === 0);
-                $btnNext.disabled = (currentQuestionIndex >= TOTAL_QUESTIONS - 1);
-                updateSidebarHighlight();
-                updateAnsweredCount();
-            }
+function resumeTimerFromStoredDeadline() {
+const startStr = LSget(STORAGE_KEY_START_TIME);
+const endStr = LSget(STORAGE_KEY_END_TIME);
+if (startStr && endStr) {
+deadline = parseInt(endStr);
+const remaining = getRemainingSeconds();
+if (remaining > 0) {
+startTimerWithExistingDeadline();
+return true;
+} else {
+deadline = parseInt(endStr);
+return false; // time already up
+}
+}
+return false;
+}
 
-            function selectOption(idx) {
-                if (!testActive) return;
-                userAnswers[currentQuestionIndex] = idx;
-                LSset(STORAGE_KEY_ANSWERS, JSON.stringify(userAnswers));
-                renderQuestion();
-            }
+function startTimerWithExistingDeadline() {
+timerInterval = setInterval(() => {
+const remaining = updateTimerFromDeadline();
+if (remaining <= 0) {
+clearInterval(timerInterval);
+timerInterval = null;
+autoSubmit();
+}
+}, 1000);
+}
 
-            function navigateQuestion(dir) {
-                const newIdx = currentQuestionIndex + dir;
-                if (newIdx >= 0 && newIdx < TOTAL_QUESTIONS) {
-                    currentQuestionIndex = newIdx;
-                    renderQuestion();
-                }
-            }
+// Handle page visibility (timer never stops even when hidden)
+document.addEventListener('visibilitychange', () => {
+if (testActive && deadline) {
+const remaining = updateTimerFromDeadline();
+if (remaining <= 0) {
+clearInterval(timerInterval);
+timerInterval = null;
+autoSubmit();
+}
+}
+});
 
-            function updateSidebarHighlight() {
-                const dots = $qGrid.querySelectorAll('.q-dot');
-                dots.forEach(dot => {
-                    const i = parseInt(dot.dataset.index);
-                    dot.classList.remove('answered', 'current');
-                    if (userAnswers[i] !== undefined && userAnswers[i] !== null) dot.classList.add('answered');
-                    if (i === currentQuestionIndex) dot.classList.add('current');
-                });
-            }
+// UI functions
+function showPreTest() {
+$preTest.style.display = 'block';
+$test.style.display = 'none';
+$results.style.display = 'none';
+$timerDisplay.style.display = 'none';
+$navbarBrand.textContent = '📝 MCQ Test';
+$heroSetName.textContent = questionSet.name;
+$heroDetails.textContent = questionSet.details || '';
+$heroQCount.textContent = TOTAL_QUESTIONS;
+$heroTime.textContent = `${TOTAL_TIME_MINUTES}:00`;
+$heroNote.textContent = '⚠️ This test can only be taken once. Make sure you are ready before starting.';
+$btnStart.disabled = false;
+$btnStart.textContent = '🚀 Start Test';
+disableTestRestrictions();
+}
 
-            function updateAnsweredCount() {
-                $sidebarAnsweredNum.textContent = answeredCount();
-            }
+function showTestInterface() {
+$preTest.style.display = 'none';
+$test.style.display = 'block';
+$results.style.display = 'none';
+$timerDisplay.style.display = 'inline-block';
+$navbarBrand.textContent = questionSet.name;
+$sidebarTotal.textContent = `Total: ${TOTAL_QUESTIONS}`;
+$qGrid.innerHTML = '';
+for (let i = 0; i < TOTAL_QUESTIONS; i++) {
+const dot = document.createElement('span');
+dot.className = 'q-dot';
+dot.textContent = i + 1;
+dot.dataset.index = i;
+dot.addEventListener('click', () => {
+currentQuestionIndex = i;
+renderQuestion();
+updateSidebarHighlight();
+});
+$qGrid.appendChild(dot);
+}
+updateSidebarHighlight();
+updateAnsweredCount();
+renderQuestion();
+}
 
-            function updateTimerDisplay() {
-                $timerDisplay.textContent = formatTime(timeRemainingSeconds);
-                $timerDisplay.classList.remove('warning-yellow', 'warning-red');
-                if (timeRemainingSeconds <= 300 && timeRemainingSeconds > 0) {
-                    $timerDisplay.classList.add('warning-red');
-                } else if (timeRemainingSeconds <= 600 && timeRemainingSeconds > 0) {
-                    $timerDisplay.classList.add('warning-yellow');
-                }
-            }
+function renderQuestion() {
+const q = questionSet.questions[currentQuestionIndex];
+if (!q) return;
+$qNumberLabel.textContent = `QUESTION ${currentQuestionIndex + 1} / ${TOTAL_QUESTIONS}`;
+$qText.textContent = q.question;
+$optionsList.innerHTML = '';
+const letters = ['A','B','C','D','E','F','G','H'];
+q.options.forEach((opt, idx) => {
+const li = document.createElement('li');
+li.innerHTML = `<span class="option-letter">${letters[idx] || idx+1}</span> <span>${opt}</span>`;
+li.dataset.optionIndex = idx;
+li.addEventListener('click', () => selectOption(idx));
+if (userAnswers[currentQuestionIndex] === idx) li.classList.add('selected');
+$optionsList.appendChild(li);
+});
+$btnPrev.disabled = (currentQuestionIndex === 0);
+$btnNext.disabled = (currentQuestionIndex >= TOTAL_QUESTIONS - 1);
+updateSidebarHighlight();
+updateAnsweredCount();
+}
 
-            function startTimer() {
-                timeRemainingSeconds = TOTAL_TIME_SECONDS;
-                updateTimerDisplay();
-                timerInterval = setInterval(() => {
-                    timeRemainingSeconds--;
-                    updateTimerDisplay();
-                    if (timeRemainingSeconds <= 0) {
-                        clearInterval(timerInterval);
-                        timerInterval = null;
-                        autoSubmit();
-                    }
-                }, 1000);
-            }
+function selectOption(idx) {
+if (!testActive) return;
+userAnswers[currentQuestionIndex] = idx;
+LSset(STORAGE_KEY_ANSWERS, JSON.stringify(userAnswers));
+renderQuestion();
+}
 
-            function restoreTimerFromStorage() {
-                const startStr = LSget(STORAGE_KEY_START_TIME);
-                const endStr = LSget(STORAGE_KEY_END_TIME);
-                if (startStr && endStr) {
-                    const start = parseInt(startStr);
-                    const end = parseInt(endStr);
-                    const remaining = Math.floor((end - Date.now()) / 1000);
-                    timeRemainingSeconds = Math.max(0, remaining);
-                    return remaining > 0;
-                }
-                return false;
-            }
+function navigateQuestion(dir) {
+const newIdx = currentQuestionIndex + dir;
+if (newIdx >= 0 && newIdx < TOTAL_QUESTIONS) {
+currentQuestionIndex = newIdx;
+renderQuestion();
+}
+}
 
-            function startTest() {
-                const status = LSget(STORAGE_KEY_STATUS);
-                if (status === 'completed' || status === 'submitted') {
-                    alert('You have already taken this test. Results are shown below.');
-                    showResults();
-                    return;
-                }
-                if (status === 'in_progress') {
-                    resumeTest();
-                    return;
-                }
-                const now = Date.now();
-                const endTime = now + TOTAL_TIME_SECONDS * 1000;
-                LSset(STORAGE_KEY_STATUS, 'in_progress');
-                LSset(STORAGE_KEY_START_TIME, now.toString());
-                LSset(STORAGE_KEY_END_TIME, endTime.toString());
-                LSset(STORAGE_KEY_ANSWERS, JSON.stringify({}));
-                userAnswers = {};
-                currentQuestionIndex = 0;
-                timeRemainingSeconds = TOTAL_TIME_SECONDS;
-                testActive = true;
-                showTestInterface();
-                startTimer();
-                updateTimerDisplay();
-            }
+function updateSidebarHighlight() {
+const dots = $qGrid.querySelectorAll('.q-dot');
+dots.forEach(dot => {
+const i = parseInt(dot.dataset.index);
+dot.classList.remove('answered', 'current');
+if (userAnswers[i] !== undefined && userAnswers[i] !== null) dot.classList.add('answered');
+if (i === currentQuestionIndex) dot.classList.add('current');
+});
+}
 
-            function resumeTest() {
-                const ans = LSget(STORAGE_KEY_ANSWERS);
-                if (ans) { try { userAnswers = JSON.parse(ans); } catch(e) { userAnswers = {}; } }
-                const hasTime = restoreTimerFromStorage();
-                currentQuestionIndex = 0;
-                testActive = true;
-                showTestInterface();
-                updateTimerDisplay();
-                if (hasTime && timeRemainingSeconds > 0) {
-                    startTimer();
-                } else if (timeRemainingSeconds <= 0) {
-                    timeRemainingSeconds = 0;
-                    updateTimerDisplay();
-                    autoSubmit();
-                }
-            }
+function updateAnsweredCount() {
+$sidebarAnsweredNum.textContent = answeredCount();
+}
 
-            function submitTest() {
-                if (!testActive) return;
-                testActive = false;
-                if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
-                const marks = calcMarks();
-                const now = Date.now();
-                const startStr = LSget(STORAGE_KEY_START_TIME);
-                const start = startStr ? parseInt(startStr) : now;
-                const timeTaken = Math.floor((now - start) / 1000);
-                LSset(STORAGE_KEY_STATUS, 'completed');
-                LSset(STORAGE_KEY_MARKS, marks.toString());
-                LSset(STORAGE_KEY_SUBMITTED_AT, now.toString());
-                LSset(STORAGE_KEY_ANSWERS, JSON.stringify(userAnswers));
-                $timerDisplay.style.display = 'none';
-                hideWarningModal();
-                showResults(marks, timeTaken);
-            }
+// Test lifecycle
+function startTest() {
+const status = LSget(STORAGE_KEY_STATUS);
+if (status === 'completed' || status === 'submitted') {
+alert('You have already taken this test. Results are shown below.');
+showResults();
+return;
+}
+if (status === 'in_progress') {
+resumeTest();
+return;
+}
 
-            function autoSubmit() {
-                if (!testActive && LSget(STORAGE_KEY_STATUS) === 'completed') return;
-                testActive = false;
-                if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
-                timeRemainingSeconds = 0;
-                updateTimerDisplay();
-                const marks = calcMarks();
-                const now = Date.now();
-                const startStr = LSget(STORAGE_KEY_START_TIME);
-                const start = startStr ? parseInt(startStr) : now;
-                const timeTaken = Math.floor((now - start) / 1000);
-                LSset(STORAGE_KEY_STATUS, 'completed');
-                LSset(STORAGE_KEY_MARKS, marks.toString());
-                LSset(STORAGE_KEY_SUBMITTED_AT, now.toString());
-                LSset(STORAGE_KEY_ANSWERS, JSON.stringify(userAnswers));
-                $timerDisplay.style.display = 'none';
-                showResults(marks, timeTaken, true);
-            }
+// Fresh start
+const now = Date.now();
+deadline = now + TOTAL_TIME_SECONDS * 1000;
+LSset(STORAGE_KEY_STATUS, 'in_progress');
+LSset(STORAGE_KEY_START_TIME, now.toString());
+LSset(STORAGE_KEY_END_TIME, deadline.toString());
+LSset(STORAGE_KEY_ANSWERS, JSON.stringify({}));
+userAnswers = {};
+currentQuestionIndex = 0;
+testActive = true;
+enableTestRestrictions();
+requestFullscreen();
+showTestInterface();
+startTimerWithDeadline();
+}
 
-            function showResults(marksOverride, timeOverride, auto = false) {
-                $preTest.style.display = 'none';
-                $test.style.display = 'none';
-                $results.style.display = 'block';
-                $timerDisplay.style.display = 'none';
-                $navbarBrand.textContent = '📊 Results - ' + questionSet.name;
-                const marks = marksOverride !== undefined ? marksOverride : parseInt(LSget(STORAGE_KEY_MARKS) || '0');
-                const submittedStr = LSget(STORAGE_KEY_SUBMITTED_AT);
-                const startStr = LSget(STORAGE_KEY_START_TIME);
-                let timeTaken = timeOverride;
-                if (timeTaken === undefined && submittedStr && startStr) {
-                    timeTaken = Math.floor((parseInt(submittedStr) - parseInt(startStr)) / 1000);
-                }
-                if (timeTaken === undefined || timeTaken < 0) timeTaken = 0;
-                const ans = LSget(STORAGE_KEY_ANSWERS);
-                if (ans) { try { userAnswers = JSON.parse(ans); } catch(e) { userAnswers = {}; } }
-                const percent = TOTAL_QUESTIONS > 0 ? Math.round((marks / TOTAL_QUESTIONS) * 100) : 0;
-                $resultsSetName.textContent = questionSet.name;
-                $resultsScore.textContent = marks;
-                $resultsDenom.textContent = `/ ${TOTAL_QUESTIONS}`;
-                $resultsPercentage.textContent = `${percent}%`;
-                $resultsTimeTaken.textContent = `⏱️ Time taken: ${formatTimeLong(timeTaken)}` + (auto ? ' (Auto-submitted)' : '');
-                $resultsDetail.innerHTML = '';
-                const letters = ['A','B','C','D','E','F','G','H'];
-                questionSet.questions.forEach((q, idx) => {
-                    const userAns = userAnswers[idx];
-                    const correctAns = q.correct;
-                    const isCorrect = (userAns === correctAns);
-                    const wasAnswered = (userAns !== undefined && userAns !== null);
-                    const card = document.createElement('div');
-                    card.className = 'result-card';
-                    if (wasAnswered) card.classList.add(isCorrect ? 'correct' : 'incorrect');
-                    let badge = '';
-                    if (!wasAnswered) {
-                        badge = '<span class="r-badge" style="background:#fff3e0;color:#E65100;">⚠️ NOT ANSWERED</span>';
-                    } else if (isCorrect) {
-                        badge = '<span class="r-badge correct-badge">✅ CORRECT</span>';
-                    } else {
-                        badge = '<span class="r-badge incorrect-badge">❌ INCORRECT</span>';
-                    }
-                    let optsHTML = '';
-                    q.options.forEach((opt, optIdx) => {
-                        let liClass = '';
-                        if (optIdx === correctAns && optIdx === userAns) liClass = 'both-correct';
-                        else if (optIdx === correctAns) liClass = 'correct-answer';
-                        else if (optIdx === userAns && !isCorrect) liClass = 'user-answer';
-                        const label = letters[optIdx] || (optIdx+1);
-                        let prefix = '';
-                        if (optIdx === correctAns && optIdx === userAns) prefix = '✅ ';
-                        else if (optIdx === correctAns) prefix = '✅ ';
-                        else if (optIdx === userAns && !isCorrect) prefix = '❌ ';
-                        optsHTML += `<li class="${liClass}"><strong>${label}.</strong> ${prefix}${opt}</li>`;
-                    });
-                    card.innerHTML = `${badge}<div class="r-q-text">Q${idx+1}: ${q.question}</div><ul class="r-options">${optsHTML}</ul>`;
-                    $resultsDetail.appendChild(card);
-                });
-                $results.scrollIntoView({ behavior: 'smooth' });
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
+function resumeTest() {
+const ans = LSget(STORAGE_KEY_ANSWERS);
+if (ans) { try { userAnswers = JSON.parse(ans); } catch(e) { userAnswers = {}; } }
+const hasTime = resumeTimerFromStoredDeadline();
+testActive = true;
+enableTestRestrictions();
+showTestInterface();
+if (!hasTime) {
+// Time already expired while away
+autoSubmit();
+}
+}
 
-            // Event listeners
-            $btnStart.addEventListener('click', startTest);
-            $btnPrev.addEventListener('click', () => navigateQuestion(-1));
-            $btnNext.addEventListener('click', () => navigateQuestion(1));
+function submitTest() {
+if (!testActive) return;
+testActive = false;
+if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
+disableTestRestrictions();
+const marks = calcMarks();
+const now = Date.now();
+const startStr = LSget(STORAGE_KEY_START_TIME);
+const start = startStr ? parseInt(startStr) : now;
+const timeTaken = Math.floor((now - start) / 1000);
+LSset(STORAGE_KEY_STATUS, 'completed');
+LSset(STORAGE_KEY_MARKS, marks.toString());
+LSset(STORAGE_KEY_SUBMITTED_AT, now.toString());
+LSset(STORAGE_KEY_ANSWERS, JSON.stringify(userAnswers));
+$timerDisplay.style.display = 'none';
+hideWarningModal();
+showResults(marks, timeTaken);
+}
 
-            $btnSubmit.addEventListener('click', function() {
-                if (!testActive) return;
-                const unanswered = TOTAL_QUESTIONS - answeredCount();
-                if (unanswered > 0) {
-                    showWarningModal();
-                } else {
-                    submitTest();
-                }
-            });
+function autoSubmit() {
+if (!testActive && LSget(STORAGE_KEY_STATUS) === 'completed') return;
+testActive = false;
+if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
+disableTestRestrictions();
+const marks = calcMarks();
+const now = Date.now();
+const startStr = LSget(STORAGE_KEY_START_TIME);
+const start = startStr ? parseInt(startStr) : now;
+const timeTaken = Math.floor((now - start) / 1000);
+LSset(STORAGE_KEY_STATUS, 'completed');
+LSset(STORAGE_KEY_MARKS, marks.toString());
+LSset(STORAGE_KEY_SUBMITTED_AT, now.toString());
+LSset(STORAGE_KEY_ANSWERS, JSON.stringify(userAnswers));
+$timerDisplay.style.display = 'none';
+showResults(marks, timeTaken, true);
+}
 
-            // Modal button handlers
-            $btnModalCancel.addEventListener('click', hideWarningModal);
-            $btnModalSubmit.addEventListener('click', function() {
-                submitTest();
-            });
+function showResults(marksOverride, timeOverride, auto = false) {
+$preTest.style.display = 'none';
+$test.style.display = 'none';
+$results.style.display = 'block';
+$timerDisplay.style.display = 'none';
+$navbarBrand.textContent = '📊 Results - ' + questionSet.name;
+const marks = marksOverride !== undefined ? marksOverride : parseInt(LSget(STORAGE_KEY_MARKS) || '0');
+const submittedStr = LSget(STORAGE_KEY_SUBMITTED_AT);
+const startStr = LSget(STORAGE_KEY_START_TIME);
+let timeTaken = timeOverride;
+if (timeTaken === undefined && submittedStr && startStr) {
+timeTaken = Math.floor((parseInt(submittedStr) - parseInt(startStr)) / 1000);
+}
+if (timeTaken === undefined || timeTaken < 0) timeTaken = 0;
+const ans = LSget(STORAGE_KEY_ANSWERS);
+if (ans) { try { userAnswers = JSON.parse(ans); } catch(e) { userAnswers = {}; } }
+const percent = TOTAL_QUESTIONS > 0 ? Math.round((marks / TOTAL_QUESTIONS) * 100) : 0;
+$resultsSetName.textContent = questionSet.name;
+$resultsScore.textContent = marks;
+$resultsDenom.textContent = `/ ${TOTAL_QUESTIONS}`;
+$resultsPercentage.textContent = `${percent}%`;
+$resultsTimeTaken.textContent = `⏱️ Time taken: ${formatTimeLong(timeTaken)}` + (auto ? ' (Auto-submitted)' : '');
+$resultsDetail.innerHTML = '';
+const letters = ['A','B','C','D','E','F','G','H'];
+questionSet.questions.forEach((q, idx) => {
+const userAns = userAnswers[idx];
+const correctAns = q.correct;
+const isCorrect = (userAns === correctAns);
+const wasAnswered = (userAns !== undefined && userAns !== null);
+const card = document.createElement('div');
+card.className = 'result-card';
+if (wasAnswered) card.classList.add(isCorrect ? 'correct' : 'incorrect');
+let badge = '';
+if (!wasAnswered) badge = '<span class="r-badge" style="background:#fff3e0;color:#E65100;">⚠️ NOT ANSWERED</span>';
+else if (isCorrect) badge = '<span class="r-badge correct-badge">✅ CORRECT</span>';
+else badge = '<span class="r-badge incorrect-badge">❌ INCORRECT</span>';
+let optsHTML = '';
+q.options.forEach((opt, optIdx) => {
+let liClass = '';
+if (optIdx === correctAns && optIdx === userAns) liClass = 'both-correct';
+else if (optIdx === correctAns) liClass = 'correct-answer';
+else if (optIdx === userAns && !isCorrect) liClass = 'user-answer';
+const label = letters[optIdx] || (optIdx+1);
+let prefix = '';
+if (optIdx === correctAns && optIdx === userAns) prefix = '✅ ';
+else if (optIdx === correctAns) prefix = '✅ ';
+else if (optIdx === userAns && !isCorrect) prefix = '❌ ';
+optsHTML += `<li class="${liClass}"><strong>${label}.</strong> ${prefix}${opt}</li>`;
+});
+card.innerHTML = `${badge}<div class="r-q-text">Q${idx+1}: ${q.question}</div><ul class="r-options">${optsHTML}</ul>`;
+$resultsDetail.appendChild(card);
+});
+$results.scrollIntoView({ behavior: 'smooth' });
+window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 
-            // Close modal on overlay click
-            $warningModal.addEventListener('click', function(e) {
-                if (e.target === $warningModal) hideWarningModal();
-            });
+function showWarningModal() {
+const unanswered = TOTAL_QUESTIONS - answeredCount();
+$modalUnansweredCount.textContent = `${unanswered} unanswered question(s)`;
+$warningModal.style.display = 'flex';
+document.body.style.overflow = 'hidden';
+}
 
-            // Close modal on Escape key
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && $warningModal.style.display === 'flex') {
-                    hideWarningModal();
-                }
-            });
+function hideWarningModal() {
+$warningModal.style.display = 'none';
+document.body.style.overflow = '';
+}
 
-            // Keyboard shortcuts for test
-            document.addEventListener('keydown', function(e) {
-                if (!testActive) return;
-                // Ignore if modal is open
-                if ($warningModal.style.display === 'flex') return;
-                if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); navigateQuestion(-1); }
-                else if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); navigateQuestion(1); }
-                else if (e.key >= '1' && e.key <= '9') {
-                    const idx = parseInt(e.key) - 1;
-                    if (idx < questionSet.questions[currentQuestionIndex].options.length) {
-                        e.preventDefault();
-                        selectOption(idx);
-                    }
-                }
-                else if (e.key === 'a' || e.key === 'A') selectOption(0);
-                else if (e.key === 'b' || e.key === 'B') selectOption(1);
-                else if (e.key === 'c' || e.key === 'C') selectOption(2);
-                else if (e.key === 'd' || e.key === 'D') selectOption(3);
-                else if (e.key === 'e' || e.key === 'E') selectOption(4);
-            });
+// Event listeners
+$btnStart.addEventListener('click', startTest);
+$btnPrev.addEventListener('click', () => navigateQuestion(-1));
+$btnNext.addEventListener('click', () => navigateQuestion(1));
 
-            // Init
-            function init() {
-                const status = LSget(STORAGE_KEY_STATUS);
-                if (status === 'completed' || status === 'submitted') {
-                    const ans = LSget(STORAGE_KEY_ANSWERS);
-                    if (ans) { try { userAnswers = JSON.parse(ans); } catch(e) { userAnswers = {}; } }
-                    showResults();
-                } else if (status === 'in_progress') {
-                    const hasTime = restoreTimerFromStorage();
-                    const ans = LSget(STORAGE_KEY_ANSWERS);
-                    if (ans) { try { userAnswers = JSON.parse(ans); } catch(e) { userAnswers = {}; } }
-                    if (hasTime && timeRemainingSeconds > 0) {
-                        currentQuestionIndex = 0;
-                        testActive = true;
-                        showTestInterface();
-                        updateTimerDisplay();
-                        startTimer();
-                    } else {
-                        timeRemainingSeconds = 0;
-                        testActive = true;
-                        showTestInterface();
-                        updateTimerDisplay();
-                        autoSubmit();
-                    }
-                } else {
-                    showPreTest();
-                }
-            }
-            init();
-        })();
-    </script>
-     <script src="/js/logo.js"></script>
-  <script src="/js/text-protect.js" defer></script>
+$btnSubmit.addEventListener('click', function() {
+if (!testActive) return;
+const unanswered = TOTAL_QUESTIONS - answeredCount();
+if (unanswered > 0) {
+showWarningModal();
+} else {
+submitTest();
+}
+});
+
+$btnModalCancel.addEventListener('click', hideWarningModal);
+$btnModalSubmit.addEventListener('click', function() {
+submitTest();
+});
+$warningModal.addEventListener('click', function(e) {
+if (e.target === $warningModal) hideWarningModal();
+});
+document.addEventListener('keydown', function(e) {
+if (e.key === 'Escape' && $warningModal.style.display === 'flex') {
+hideWarningModal();
+}
+});
+
+// Keyboard navigation
+document.addEventListener('keydown', function(e) {
+if (!testActive) return;
+if ($warningModal.style.display === 'flex') return;
+if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); navigateQuestion(-1); }
+else if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); navigateQuestion(1); }
+else if (e.key >= '1' && e.key <= '9') {
+const idx = parseInt(e.key) - 1;
+if (idx < questionSet.questions[currentQuestionIndex].options.length) {
+e.preventDefault();
+selectOption(idx);
+}
+}
+else if (e.key === 'a' || e.key === 'A') selectOption(0);
+else if (e.key === 'b' || e.key === 'B') selectOption(1);
+else if (e.key === 'c' || e.key === 'C') selectOption(2);
+else if (e.key === 'd' || e.key === 'D') selectOption(3);
+else if (e.key === 'e' || e.key === 'E') selectOption(4);
+});
+
+// Initialization
+function init() {
+const status = LSget(STORAGE_KEY_STATUS);
+if (status === 'completed' || status === 'submitted') {
+const ans = LSget(STORAGE_KEY_ANSWERS);
+if (ans) { try { userAnswers = JSON.parse(ans); } catch(e) { userAnswers = {}; } }
+showResults();
+} else if (status === 'in_progress') {
+const ans = LSget(STORAGE_KEY_ANSWERS);
+if (ans) { try { userAnswers = JSON.parse(ans); } catch(e) { userAnswers = {}; } }
+const hasTime = resumeTimerFromStoredDeadline();
+if (hasTime) {
+testActive = true;
+enableTestRestrictions();
+showTestInterface();
+} else {
+// Time expired, auto submit
+testActive = true;
+enableTestRestrictions();
+showTestInterface();
+autoSubmit();
+}
+} else {
+showPreTest();
+}
+}
+init();
+})();
+</script>
+<script src="/js/logo.js"></script>
+<script src="/js/text-protect.js" defer></script>
 </body>
 </html>

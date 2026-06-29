@@ -34,27 +34,11 @@
 <div class="hero" id="hero-card">
 <h1 id="hero-set-name">Loading...</h1>
 <p class="set-details" id="hero-details"></p>
-  <p style="margin-top:10px;font-size:1.1rem;opacity:0.8;" id="hero-note">
-⚠️ Important Exam Instructions:<br>
-1. Exam will automatically open in full-screen mode.<br>
-2. You can take this test only once — no re-test allowed.<br>
-3. Timer will start immediately after clicking "🚀 Start Test".<br>
-4. Time warnings will be shown at 10 minutes and 5 minutes remaining.<br>
-5. When time is over, the test will be automatically submitted.
-</p>
-
-<div class="set-meta">
+  <div class="set-meta">
 <div class="meta-item"><span id="hero-q-count">0</span> Questions</div>
 <div class="meta-item"><span id="hero-time">0:00</span> Time (min)</div>
 </div>
-  <p style="margin-top:10px;font-size:1.1rem;opacity:0.8;" id="hero-note">
-⚠️ Important Exam Instructions:<br>
-1. Exam will automatically open in full-screen mode.<br>
-2. You can take this test only once — no re-test allowed.<br>
-3. Timer will start immediately after clicking "🚀 Start Test".<br>
-4. Time warnings will be shown at 10 minutes and 5 minutes remaining.<br>
-5. When time is over, the test will be automatically submitted.
-</p>
+ 
 
 <button class="btn-start" id="btn-start-test">🚀 Start Test</button>
 
@@ -341,6 +325,18 @@ $navbarBrand.textContent = ';
 $heroSetName.textContent = questionSet.name;
 $heroDetails.textContent = questionSet.details || '';
 $heroQCount.textContent = TOTAL_QUESTIONS;
+  $heroNote.innerHTML = `
+<div style="text-align:center;">
+  <strong>Important Exam Instructions:</strong>
+  <div style="display:inline-block; text-align:left; margin-top:10px;">
+    1. Exam will automatically open in full-screen mode.<br>
+    2. You can take this test only once — no re-test allowed.<br>
+    3. Timer will start immediately after clicking "Start Test".<br>
+    4. Time warnings will be shown at 10 minutes and 5 minutes remaining.<br>
+    5. When time is over, the test will be automatically submitted.
+  </div>
+</div>
+`;
 $heroTime.textContent = `${TOTAL_TIME_MINUTES}:00`;
 $heroNote.textContent = '⚠️ This test can only be taken once. Make sure you are ready before starting.';
 $btnStart.disabled = false;

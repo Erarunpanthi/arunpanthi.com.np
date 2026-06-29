@@ -55,24 +55,27 @@ a {
   text-decoration: none;
 }
 
-/* ===== FULL-WIDTH ELEMENTS (navbar, hero, section, social-media, footer) ===== */
+/* ===== 100% WIDTH ELEMENTS (Navbar, Hero, Social, Footer) ===== */
+
+/* Navbar – Full width with gap below */
 .navbar {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   background-color: var(--green-600);
   padding: 10px 0;
-  width: 100%; /* Ensure full width */
+  width: 100%;
+  margin-bottom: 25px; /* ✅ Gap between navbar and hero */
 }
 
-/* Fixed header – if used, ensure it spans full viewport width */
+/* Fixed header (if used) */
 #site-header {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
-  height: var(--hh, 70px); /* fallback */
+  height: var(--hh, 70px);
   background: #fff;
   border-bottom: 2px solid var(--border, #e0e0e0);
   display: flex;
@@ -101,14 +104,14 @@ a {
   color: var(--accent-blue);
 }
 
-/* Hero – full width, no max-width */
+/* Hero – Full width */
 .hero {
   background-color: var(--green-400);
   color: #fff;
-  padding: 40px 20px; /* increased padding for better spacing */
+  padding: 40px 20px;
   text-align: center;
-  border-radius: 0; /* remove rounding to make it truly full-width */
-  margin: 0; /* remove auto margins */
+  border-radius: 0;
+  margin: 0;
   width: 100%;
 }
 .hero h1 {
@@ -120,25 +123,14 @@ a {
   margin: 10px 0;
 }
 
-/* Section – full width, no max-width */
-.section {
-  margin: 30px 0; /* vertical margin only */
-  padding: 30px 20px;
-  border-radius: 0; /* optional – remove rounding */
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  background-color: var(--surface);
-  width: 100%;
-  text-align: center;
-}
-
-/* Social media – full width */
+/* Social Media – Full width */
 .social-media {
   background: linear-gradient(135deg, var(--green-400), var(--green-600));
   color: #fff;
   padding: 30px 20px;
   text-align: center;
-  border-radius: 0; /* full width, no rounding */
-  margin: 0; /* no auto margin */
+  border-radius: 0;
+  margin: 0;
   width: 100%;
 }
 .social-media .icons {
@@ -155,7 +147,7 @@ a {
   transform: scale(1.2);
 }
 
-/* Footer – full width */
+/* Footer – Full width */
 footer {
   background-color: var(--green-400);
   color: #fff;
@@ -172,24 +164,41 @@ footer a:hover {
   text-decoration: underline;
 }
 
-/* ===== CONTAINER – for centered, narrow content ===== */
+/* ===== 60% WIDTH ELEMENTS (Container & Section) ===== */
+
+/* Container – 60% width, centered */
 .container {
-  max-width: 800px;
-  margin: 20px auto; /* center it horizontally */
+  width: 60%; /* ✅ exactly 60% */
+  max-width: 100%;
+  margin: 20px auto; /* centered */
   padding: 20px;
   background: var(--surface);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-2);
 }
 
-/* ===== OTHER ELEMENTS (cards, buttons, form, etc.) ===== */
+/* Section – 60% width, centered */
+.section {
+  width: 60%; /* ✅ exactly 60% */
+  max-width: 100%;
+  margin: 30px auto; /* centered */
+  padding: 30px 20px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-1);
+  background-color: var(--surface);
+  text-align: center;
+}
+
+/* ===== OTHER ELEMENTS (Cards, Buttons, Forms, etc.) ===== */
+
 .card {
   background: var(--card-bg);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-1);
   border: 1.5px solid var(--border);
   overflow: hidden;
-  transition: transform var(--transition-medium), box-shadow var(--transition-medium), border-color var(--transition-medium);
+  transition: transform var(--transition-medium), box-shadow var(--transition-medium),
+    border-color var(--transition-medium);
   cursor: pointer;
 }
 .card:hover {
@@ -229,7 +238,6 @@ footer a:hover {
   background-color: var(--green-700);
 }
 
-/* Buttons */
 .cta-button,
 .secondary-button {
   display: inline-block;
@@ -257,7 +265,6 @@ footer a:hover {
   transform: scale(1.05);
 }
 
-/* Form elements */
 .form-group {
   margin-bottom: 1.5rem;
 }
@@ -314,7 +321,6 @@ button:hover {
   text-align: center;
 }
 
-/* Book cards (syllabus cards) */
 .book-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -354,7 +360,6 @@ button:hover {
   color: var(--muted);
 }
 
-/* Semester / subject layout (if used) */
 .semester {
   background: var(--surface);
   border-radius: var(--radius-md);
@@ -408,7 +413,6 @@ button:hover {
   margin-right: 8px;
 }
 
-/* Lazy load helpers */
 .lazy,
 .lazy-section,
 .lazy-bg {
@@ -435,13 +439,15 @@ img.lazy {
   background-position: center;
 }
 
-/* Responsive adjustments */
+/* Responsive: On smaller screens, let 60% elements become wider for readability */
 @media (max-width: 768px) {
+  .container,
+  .section {
+    width: 90%; /* wider on tablets/mobiles so content isn't squished */
+    max-width: 100%;
+  }
   .hero {
     padding: 30px 15px;
-  }
-  .section {
-    padding: 20px 15px;
   }
   .social-media {
     padding: 20px;
@@ -454,16 +460,6 @@ img.lazy {
   }
   .semester h2 i {
     font-size: 1.5rem;
-  }
-  .menu {
-    width: 200px;
-  }
-  .content {
-    margin-left: 0;
-    padding: 20px;
-  }
-  .container h1 {
-    font-size: 2rem;
   }
 }
 

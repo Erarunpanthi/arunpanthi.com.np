@@ -1,527 +1,763 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Work & Time Problems Quiz</title>
-     <link rel="stylesheet" href="/css/Mock_Test.css">
-
-   </head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Work & Time Problems</title>
+<link rel="icon" href="https://arunpanthi.com.np/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="/css/Mock_Test.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous">
+</head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>⏱️ Work & Time Problems Quiz</h1>
-            <p>20 Questions | Time Limit: 40 Minutes | Single Attempt Only</p>
-            <div class="timer" id="timer">40:00</div>
-        </div>
+<nav class="navbar" id="navbar">
+<span class="brand" id="navbar-brand">Work & Time Problems</span>
+<span class="timer-display" id="timer-display" style="display:none;">--:--</span>
+</nav>
 
-        <div class="quiz-content" id="quizContent">
-            <div class="progress-bar">
-                <div class="progress-fill" id="progress"></div>
-            </div>
+<!-- Warning modal -->
+<div id="warning-modal" class="modal-overlay" style="display: none;">
+<div class="modal-dialog">
+<div class="warning-icon">⚠️</div>
+<h3>Unanswered Questions</h3>
+<p>You haven't answered all the questions.</p>
+<span class="unanswered-count" id="modal-unanswered-count">0 unanswered</span>
+<p style="margin-top:8px;"><strong>⚠ This test cannot be retaken once submitted!</strong></p>
+<div class="modal-buttons">
+<button class="btn-cancel" id="btn-modal-cancel">Cancel</button>
+<button class="btn-submit-warning" id="btn-modal-submit">Submit Anyway</button>
+</div>
+</div>
+</div>
 
-            <form id="quizForm">
-                <!-- Question 1 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">1.</span>
-                        If Hemraj and Bishal can do a piece of work in 15 days and Hemraj alone in 20 days. In how many Days can Bishal alone complete the work?
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q1" value="a"> a. 30</label>
-                        <label class="option"><input type="radio" name="q1" value="b"> b. 40</label>
-                        <label class="option"><input type="radio" name="q1" value="c"> c. 50</label>
-                        <label class="option"><input type="radio" name="q1" value="d"> d. 60</label>
-                    </div>
-                </div>
+<div id="pre-test-section">
+<div class="hero" id="hero-card">
+<h1 id="hero-set-name">Loading...</h1>
+<p class="set-details" id="hero-details"></p>
+<div class="set-meta">
+<div class="meta-item"><span id="hero-q-count">0</span> Questions</div>
+<div class="meta-item"><span id="hero-time">0:00</span> Time (min)</div>
+</div>
+<button class="btn-start" id="btn-start-test">🚀 Start Test</button>
+<p style="margin-top:10px;font-size:0.85rem;opacity:0.8;" id="hero-note"></p>
+</div>
+</div>
 
-                <!-- Question 2 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">2.</span>
-                        A can complete a piece of work of Rs 300 in 6 days but by engaging an assistant, work is completed in 4 days. Find the money received by Assistant.
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q2" value="a"> a. 50</label>
-                        <label class="option"><input type="radio" name="q2" value="b"> b. 100</label>
-                        <label class="option"><input type="radio" name="q2" value="c"> c. 150</label>
-                        <label class="option"><input type="radio" name="q2" value="d"> d. 200</label>
-                    </div>
-                </div>
+<div id="test-section" style="display:none;">
+<div class="test-container">
+<div class="question-area">
+<div class="question-card">
+<div class="q-number" id="q-number-label">QUESTION 1</div>
+<div class="q-text" id="q-text">Loading question...</div>
+<ul class="options-list" id="options-list"></ul>
+</div>
+<div class="nav-buttons">
+<div class="nav-left"><button class="btn-nav" id="btn-prev">◀ Previous</button></div>
+<div class="nav-center"><button class="btn-submit" id="btn-submit-test">✅ Submit Test</button></div>
+<div class="nav-right"><button class="btn-nav" id="btn-next">Next ▶</button></div>
+</div>
+</div>
+<aside class="sidebar">
+<h3>📋 Question </h3>
+<div class="total-questions" id="sidebar-total">Total: 0</div>
+<div class="answered-count">Answered: <strong id="sidebar-answered-num">0</strong></div>
+<div class="q-grid" id="q-grid"></div>
+<div class="legend">
+<span><span class="dot-sample blue"></span> Answered</span>
+<span><span class="dot-sample gray"></span> Unanswered</span>
+</div>
+</aside>
+</div>
+</div>
 
-                <!-- Question 3 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">3.</span>
-                        A - 7 days of daily 9 hrs. B - 6 days of daily 7 hrs. How long will they take to do it working together at rate of 42/5 hr per day?
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q3" value="a"> a. 1</label>
-                        <label class="option"><input type="radio" name="q3" value="b"> b. 2</label>
-                        <label class="option"><input type="radio" name="q3" value="c"> c. 3</label>
-                        <label class="option"><input type="radio" name="q3" value="d"> d. 4</label>
-                    </div>
-                </div>
+<div id="results-section" style="display:none;">
+<div class="results-container">
+<div class="results-header">
+<h2 style="color:#2E7D32;">📊 Test Results</h2>
+<p style="color:#666;" id="results-set-name"></p>
+<div class="score-circle">
+<span class="score-num" id="results-score">0</span>
+<span class="score-denom" id="results-denom">/ 0</span>
+</div>
+<div class="percentage" id="results-percentage">0%</div>
+<p style="margin-top:8px;color:#888;font-size:0.9rem;" id="results-time-taken"></p>
+</div>
+<div id="results-detail"></div>
+</div>
+</div>
 
-                <!-- Question 4 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">4.</span>
-                        A+B = 9 days, B+C= 12 days, A+C= 18 days. In how many days will A, B and C finish it working together and Separately by C?
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q4" value="a"> a. 8 days and 72 Days</label>
-                        <label class="option"><input type="radio" name="q4" value="b"> b. 16 Days and 24 Days</label>
-                        <label class="option"><input type="radio" name="q4" value="c"> c. 8 Days and 24 Days</label>
-                        <label class="option"><input type="radio" name="q4" value="d"> d. 16 days and 72/5 Days</label>
-                    </div>
-                </div>
+<script>
+(function() {
+const questionSet = {
+name: 'Work & Time Problems - Set 1',
+details: 'Covers time and work problems, efficiency, and combined work calculations.',
+questions: [
+{ question: 'If Hemraj and Bishal can do a piece of work in 15 days and Hemraj alone in 20 days. In how many Days can Bishal alone complete the work?', options: ['30', '40', '50', '60'], correct: 3 },
+{ question: 'A can complete a piece of work of Rs 300 in 6 days but by engaging an assistant, work is completed in 4 days. Find the money received by Assistant.', options: ['50', '100', '150', '200'], correct: 1 },
+{ question: 'A - 7 days of daily 9 hrs. B - 6 days of daily 7 hrs. How long will they take to do it working together at rate of 42/5 hr per day?', options: ['1', '2', '3', '4'], correct: 2 },
+{ question: 'A+B = 9 days, B+C= 12 days, A+C= 18 days. In how many days will A, B and C finish it working together and Separately by C?', options: ['8 days and 72 Days', '16 Days and 24 Days', '8 Days and 24 Days', '16 days and 72/5 Days'], correct: 0 },
+{ question: 'A can do a certain Job in 12 days and B is 60% more efficient than A. How many days does B alone take to do the same job?', options: ['15/2 days', '7.5 days', '9 days', '17/2 days'], correct: 1 },
+{ question: 'A can do a piece of work in 10 days and B can do it in 20 days. They work together but 2 days before the completion of work A left. In how many days the work completed?', options: ['6', '8', '10', '12'], correct: 1 },
+{ question: 'A- 10 Days, B - 12 Days, C - 15 Days. All of them begins the work together but A had to leave the work after 2 days of the start and B, 3 days before the completion of Work. How long did the work Last?', options: ['4', '5', '6', '7'], correct: 2 },
+{ question: '45 Men can complete work in 16 days. Six days after they started working, 30 more men joined them. How many days will they now take to complete the remaining Work?', options: ['4', '5', '6', '7'], correct: 2 },
+{ question: '10 person begins to work together on a Job but after some days 4 Persons leave. As a result the job which could have been completed in 40 days is completed in 50 days. How many days after the commencement of work did the 4 Persons leave?', options: ['20', '25', '30', '35'], correct: 1 },
+{ question: '2 men and 3 boys can do a piece of work in 10 Days While 3 men and 2 boys can do the same work in 8 days. In how many days can 2 men and 1 boys do the work?', options: ['25/2 Days', '12.5 Days', '29/4 Days', '7.25 Days'], correct: 0 },
+{ question: '3 men and 4 women can earn Rs 3780 in 7 days. 11 Men and 13 Women can Earn Rs.15040 in 8 days. In What Time will 7 men and 9 women earn Rs 12400?', options: ['5', '10', '15', '20'], correct: 1 },
+{ question: 'A and B can do a piece of work in 12 days, while B alone can finish it in 30 days. A alone can finish the work in?', options: ['3 days', '10 days', '15 days', '20 days'], correct: 3 },
+{ question: 'A is 30% more efficient than B. How much time will they working together take to complete a job which A alone could have done in 23 days?', options: ['11', '12', '13', '19'], correct: 2 },
+{ question: 'Two tap A and B fill a tank in 10 hour and 8 hour respectively. If both the tap are opened simultaneously, then how many hour before tap B should be closed so that tank fill in 5 hours?', options: ['2 hr', '1 hr', '4 hr', '8 hr'], correct: 0 },
+{ question: 'A sum is sufficient to pay A\'s wages for 21 days and B\'s wages for 28 days. Find for how many days, the money is sufficient to pay the wages of both', options: ['6', '9', '12', '15'], correct: 2 },
+{ question: 'A can do a piece of work in 12 days, which B can finish in 18 days. If they work on alternate days with A beginning, in how many days the work will be finished?', options: ['16/3', '19/3', '43/3', '29/3'], correct: 2 },
+{ question: 'A and B together complete a piece of work in T days. If A alone completes the work in T + 3 days and B alone completes the piece of work in T + 12 days, what is T?', options: ['6', '12', '18', '24'], correct: 0 },
+{ question: 'A can do a piece of work in X days and B can do the same work in 3X days. To finish the work together they take 12 days. What is the value of X?', options: ['15', '16', '20', '24'], correct: 1 },
+{ question: 'The rate of working of Radhika and Kamala are in the ratio 2:3. The number of days taken by them to finish the work in the ratio of', options: ['3:2', '2:3', '4:9', '9:4'], correct: 0 },
+{ question: 'A pump can fill a tank with water in 2 hours. Because of a leak, it took 7/3 hours to fill the tank. The leak can drain all the water of the tank in', options: ['11', '12', '13', '14'], correct: 3 }
+]
+};
 
-                <!-- Question 5 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">5.</span>
-                        A can do a certain Job in 12 days and B is 60% more efficient than A. How many days does B alone take to do the same job?
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q5" value="a"> a. 15/2 days</label>
-                        <label class="option"><input type="radio" name="q5" value="b"> b. 7.5 days</label>
-                        <label class="option"><input type="radio" name="q5" value="c"> c. 9 days</label>
-                        <label class="option"><input type="radio" name="q5" value="d"> d. 17/2 days</label>
-                    </div>
-                </div>
 
-                <!-- Question 6 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">6.</span>
-                        A can do a piece of work in 10 days and B can do it in 20 days. They work together but 2 days before the completion of work A left. In how many days the work completed?
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q6" value="a"> a. 6</label>
-                        <label class="option"><input type="radio" name="q6" value="b"> b. 8</label>
-                        <label class="option"><input type="radio" name="q6" value="c"> c. 10</label>
-                        <label class="option"><input type="radio" name="q6" value="d"> d. 12</label>
-                    </div>
-                </div>
 
-                <!-- Question 7 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">7.</span>
-                        A- 10 Days, B - 12 Days, C - 15 Days. All of them begins the work together but A had to leave the work after 2 days of the start and B, 3 days before the completion of Work. How long did the work Last?
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q7" value="a"> a. 4</label>
-                        <label class="option"><input type="radio" name="q7" value="b"> b. 5</label>
-                        <label class="option"><input type="radio" name="q7" value="c"> c. 6</label>
-                        <label class="option"><input type="radio" name="q7" value="d"> d. 7</label>
-                    </div>
-                </div>
 
-                <!-- Question 8 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">8.</span>
-                        45 Men can complete work in 16 days. Six days after they started working, 30 more men joined them. How many days will they now take to complete the remaining Work?
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q8" value="a"> a. 4</label>
-                        <label class="option"><input type="radio" name="q8" value="b"> b. 5</label>
-                        <label class="option"><input type="radio" name="q8" value="c"> c. 6</label>
-                        <label class="option"><input type="radio" name="q8" value="d"> d. 7</label>
-                    </div>
-                </div>
 
-                <!-- Question 9 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">9.</span>
-                        10 person begins to work together on a Job but after some days 4 Persons leave. As a result the job which could have been completed in 40 days is completed in 50 days. How many days after the commencement of work did the 4 Persons leave?
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q9" value="a"> a. 20</label>
-                        <label class="option"><input type="radio" name="q9" value="b"> b. 25</label>
-                        <label class="option"><input type="radio" name="q9" value="c"> c. 30</label>
-                        <label class="option"><input type="radio" name="q9" value="d"> d. 35</label>
-                    </div>
-                </div>
 
-                <!-- Question 10 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">10.</span>
-                        2 men and 3 boys can do a piece of work in 10 Days While 3 men and 2 boys can do the same work in 8 days. In how many days can 2 men and 1 boys do the work?
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q10" value="a"> a. 25/2 Days</label>
-                        <label class="option"><input type="radio" name="q10" value="b"> b. 12.5 Days</label>
-                        <label class="option"><input type="radio" name="q10" value="c"> c. 29/4 Days</label>
-                        <label class="option"><input type="radio" name="q10" value="d"> d. 7.25 Days</label>
-                    </div>
-                </div>
 
-                <!-- Question 11 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">11.</span>
-                        3 men and 4 women can earn Rs 3780 in 7 days. 11 Men and 13 Women can Earn Rs.15040 in 8 days. In What Time will 7 men and 9 women earn Rs 12400?
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q11" value="a"> a. 5</label>
-                        <label class="option"><input type="radio" name="q11" value="b"> b. 10</label>
-                        <label class="option"><input type="radio" name="q11" value="c"> c. 15</label>
-                        <label class="option"><input type="radio" name="q11" value="d"> d. 20</label>
-                    </div>
-                </div>
 
-                <!-- Question 12 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">12.</span>
-                        A and B can do a piece of work in 12 days, while B alone can finish it in 30 days. A alone can finish the work in?
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q12" value="a"> a. 3 days</label>
-                        <label class="option"><input type="radio" name="q12" value="b"> b. 10 days</label>
-                        <label class="option"><input type="radio" name="q12" value="c"> c. 15 days</label>
-                        <label class="option"><input type="radio" name="q12" value="d"> d. 20 days</label>
-                    </div>
-                </div>
 
-                <!-- Question 13 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">13.</span>
-                        A is 30% more efficient than B. How much time will they working together take to complete a job which A alone could have done in 23 days?
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q13" value="a"> a. 11</label>
-                        <label class="option"><input type="radio" name="q13" value="b"> b. 12</label>
-                        <label class="option"><input type="radio" name="q13" value="c"> c. 13</label>
-                        <label class="option"><input type="radio" name="q13" value="d"> d. 19</label>
-                    </div>
-                </div>
 
-                <!-- Question 14 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">14.</span>
-                        Two tap A and B fill a tank in 10 hour and 8 hour respectively. If both the tap are opened simultaneously, then how many hour before tap B should be closed so that tank fill in 5 hours?
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q14" value="a"> a. 2 hr</label>
-                        <label class="option"><input type="radio" name="q14" value="b"> b. 1 hr</label>
-                        <label class="option"><input type="radio" name="q14" value="c"> c. 4 hr</label>
-                        <label class="option"><input type="radio" name="q14" value="d"> d. 8 hr</label>
-                    </div>
-                </div>
 
-                <!-- Question 15 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">15.</span>
-                        A sum is sufficient to pay A's wages for 21 days and B's wages for 28 days. Find for how many days, the money is sufficient to pay the wages of both
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q15" value="a"> a. 6</label>
-                        <label class="option"><input type="radio" name="q15" value="b"> b. 9</label>
-                        <label class="option"><input type="radio" name="q15" value="c"> c. 12</label>
-                        <label class="option"><input type="radio" name="q15" value="d"> d. 15</label>
-                    </div>
-                </div>
 
-                <!-- Question 16 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">16.</span>
-                        A can do a piece of work in 12 days, which B can finish in 18 days. If they work on alternate days with A beginning, in how many days the work will be finished?
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q16" value="a"> a. 16/3</label>
-                        <label class="option"><input type="radio" name="q16" value="b"> b. 19/3</label>
-                        <label class="option"><input type="radio" name="q16" value="c"> c. 43/3</label>
-                        <label class="option"><input type="radio" name="q16" value="d"> d. 29/3</label>
-                    </div>
-                </div>
 
-                <!-- Question 17 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">17.</span>
-                        A and B together complete a piece of work in T days. If A alone completes the work in T + 3 days and B alone completes the piece of work in T + 12 days, what is T?
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q17" value="a"> a. 6</label>
-                        <label class="option"><input type="radio" name="q17" value="b"> b. 12</label>
-                        <label class="option"><input type="radio" name="q17" value="c"> c. 18</label>
-                        <label class="option"><input type="radio" name="q17" value="d"> d. 24</label>
-                    </div>
-                </div>
 
-                <!-- Question 18 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">18.</span>
-                        A can do a piece of work in X days and B can do the same work in 3X days. To finish the work together they take 12 days. What is the value of X?
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q18" value="a"> a. 15</label>
-                        <label class="option"><input type="radio" name="q18" value="b"> b. 16</label>
-                        <label class="option"><input type="radio" name="q18" value="c"> c. 20</label>
-                        <label class="option"><input type="radio" name="q18" value="d"> d. 24</label>
-                    </div>
-                </div>
 
-                <!-- Question 19 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">19.</span>
-                        The rate of working of Radhika and Kamala are in the ratio 2:3. The number of days taken by them to finish the work in the ratio of
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q19" value="a"> a. 3:2</label>
-                        <label class="option"><input type="radio" name="q19" value="b"> b. 2:3</label>
-                        <label class="option"><input type="radio" name="q19" value="c"> c. 4:9</label>
-                        <label class="option"><input type="radio" name="q19" value="d"> d. 9:4</label>
-                    </div>
-                </div>
 
-                <!-- Question 20 -->
-                <div class="question-block">
-                    <div class="question-text">
-                        <span class="question-number">20.</span>
-                        A pump can fill a tank with water in 2 hours. Because of a leak, it took 7/3 hours to fill the tank. The leak can drain all the water of the tank in
-                    </div>
-                    <div class="options">
-                        <label class="option"><input type="radio" name="q20" value="a"> a. 11</label>
-                        <label class="option"><input type="radio" name="q20" value="b"> b. 12</label>
-                        <label class="option"><input type="radio" name="q20" value="c"> c. 13</label>
-                        <label class="option"><input type="radio" name="q20" value="d"> d. 14</label>
-                    </div>
-                </div>
 
-                <button type="button" class="submit-btn" id="submitBtn" onclick="submitQuiz()">Submit Quiz</button>
-            </form>
 
-            <div class="result" id="result">
-                <h2>Quiz Completed!</h2>
-                <div class="score" id="scoreDisplay"></div>
-                <div class="result-message" id="resultMessage"></div>
-            </div>
-        </div>
-    </div>
 
-    <script>
-        // Check if quiz has been taken before
-        if (localStorage.getItem('workTimeQuizCompleted') === 'true') {
-            const score = localStorage.getItem('workTimeQuizScore');
-            const total = localStorage.getItem('workTimeQuizTotal');
-            document.getElementById('quizContent').innerHTML = `
-                <div class="locked-message">
-                    <h2>⚠️ Quiz Already Completed</h2>
-                    <p>You have already taken this quiz.</p>
-                    <p>Retakes are not allowed.</p>
-                    <div class="your-score">Your Score: ${score}/${total}</div>
-                    <p style="margin-top: 20px;">Percentage: ${((score/total)*100).toFixed(2)}%</p>
-                </div>
-            `;
-        }
 
-        // Correct answers based on the provided image
-        const answers = {
-            q1: 'd',   // 60
-            q2: 'b',   // 100
-            q3: 'c',   // 3
-            q4: 'a',   // 8 days and 72 Days
-            q5: 'b',   // 7.5 days
-            q6: 'b',   // 8
-            q7: 'c',   // 6
-            q8: 'c',   // 6
-            q9: 'b',   // 25
-            q10: 'a',  // 25/2 Days
-            q11: 'b',  // 10
-            q12: 'd',  // 20 days
-            q13: 'c',  // 13
-            q14: 'a',  // 2 hr
-            q15: 'c',  // 12
-            q16: 'c',  // 43/3
-            q17: 'a',  // 6
-            q18: 'b',  // 16
-            q19: 'a',  // 3:2
-            q20: 'd'   // 14
-        };
 
-        // Timer setup (40 minutes)
-        let timeLeft = 0.8*20 * 60;
-        let timerInterval;
 
-        function startTimer() {
-            timerInterval = setInterval(() => {
-                timeLeft--;
-                updateTimerDisplay();
-                
-                if (timeLeft <= 300) {
-                    document.getElementById('timer').classList.add('warning');
-                }
-                
-                if (timeLeft <= 0) {
-                    clearInterval(timerInterval);
-                    submitQuiz();
-                }
-            }, 1000);
-        }
 
-        function updateTimerDisplay() {
-            const minutes = Math.floor(timeLeft / 60);
-            const seconds = timeLeft % 60;
-            document.getElementById('timer').textContent = 
-                `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-        }
-  // Build sidebar question boxes
-            function buildSidebar() {
-                questionGrid.innerHTML = '';
-                for (let i = 1; i <= totalQuestions; i++) {
-                    const box = document.createElement('div');
-                    box.className = 'q-box';
-                    box.id = `qbox-${i}`;
-                    box.textContent = i;
-                    box.addEventListener('click', () => {
-                        const target = document.getElementById(`qblock${i}`);
-                        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    });
-                    questionGrid.appendChild(box);
-                }
-            }
 
-            // Update sidebar highlights based on answered questions
-            function updateSidebarHighlights() {
-                for (let i = 1; i <= totalQuestions; i++) {
-                    const selected = document.querySelector(`input[name="q${i}"]:checked`);
-                    const box = document.getElementById(`qbox-${i}`);
-                    if (box) {
-                        if (selected) box.classList.add('answered');
-                        else box.classList.remove('answered');
-                    }
-                }
-            }
 
-            
-        // Option selection
-        document.querySelectorAll('.option').forEach(option => {
-            option.addEventListener('click', function() {
-                const radio = this.querySelector('input[type="radio"]');
-                radio.checked = true;
-                
-                const parent = this.parentElement;
-                parent.querySelectorAll('.option').forEach(opt => {
-                    opt.classList.remove('selected');
-                });
-                
-                this.classList.add('selected');
-                updateProgress();
-            });
-        });
 
-        // Update progress bar
-        function updateProgress() {
-            const totalQuestions = 20;
-            let answered = 0;
-            
-            for (let i = 1; i <= totalQuestions; i++) {
-                if (document.querySelector(`input[name="q${i}"]:checked`)) {
-                    answered++;
-                }
-            }
-            
-            const progress = (answered / totalQuestions) * 100;
-            document.getElementById('progress').style.width = progress + '%';
-        }
 
-        // Submit quiz
-        function submitQuiz() {
-            clearInterval(timerInterval);
-            
-            let score = 0;
-            const totalQuestions = 20;
-            
-            for (let i = 1; i <= totalQuestions; i++) {
-                const questionName = `q${i}`;
-                const selectedOption = document.querySelector(`input[name="${questionName}"]:checked`);
-                const correctAnswer = answers[questionName];
-                
-                const options = document.querySelectorAll(`input[name="${questionName}"]`);
-                
-                options.forEach(option => {
-                    const label = option.parentElement;
-                    
-                    if (option.value === correctAnswer) {
-                        label.classList.add('correct');
-                    }
-                    
-                    if (selectedOption && option === selectedOption && option.value !== correctAnswer) {
-                        label.classList.add('incorrect');
-                    }
-                });
-                
-                if (selectedOption && selectedOption.value === correctAnswer) {
-                    score++;
-                }
-            }
-            
-            // Mark quiz as completed in localStorage
-            localStorage.setItem('workTimeQuizCompleted', 'true');
-            localStorage.setItem('workTimeQuizScore', score);
-            localStorage.setItem('workTimeQuizTotal', totalQuestions);
-            
-            document.querySelectorAll('.question-block').forEach(block => {
-                block.classList.add('submitted');
-            });
-            
-            document.getElementById('submitBtn').style.display = 'none';
-            
-            const percentage = (score / totalQuestions * 100).toFixed(2);
-            document.getElementById('scoreDisplay').textContent = `${score} / ${totalQuestions}`;
-            
-            let message = '';
-            if (percentage >= 90) {
-                message = '🌟 Outstanding! Excellent Performance!';
-            } else if (percentage >= 75) {
-                message = '👍 Very Good! Well Done!';
-            } else if (percentage >= 60) {
-                message = '📚 Good! Keep Learning!';
-            } else if (percentage >= 40) {
-                message = '💪 Fair! Need More Practice!';
-            } else {
-                message = '📖 Keep Working Hard!';
-            }
-            
-            document.getElementById('resultMessage').innerHTML = `
-                <p>${message}</p>
-                <p style="margin-top: 15px;">Percentage: ${percentage}%</p>
-                <p style="margin-top: 10px; font-size: 18px;">⚠️ This quiz cannot be retaken</p>
-            `;
-            document.getElementById('result').classList.add('show');
-            
-            document.getElementById('result').scrollIntoView({ behavior: 'smooth' });
-        }
 
-        // Start timer when page loads (only if quiz not completed)
-        window.addEventListener('load', () => {
-            if (localStorage.getItem('workTimeQuizCompleted') !== 'true') {
-                startTimer();
-            }
-        });
 
-        // Prevent page refresh during quiz
-        window.addEventListener('beforeunload', function (e) {
-            if (localStorage.getItem('workTimeQuizCompleted') !== 'true') {
-                e.preventDefault();
-                e.returnValue = '';
-            }
-        });
-    </script>
-   <script src="/js/logo.js"></script>
-  <script src="/js/text-protect.js" defer></script>
+
+function generateSetId() {
+const str = JSON.stringify(questionSet.questions);
+let hash = 0;
+for (let i = 0; i < str.length; i++) {
+const char = str.charCodeAt(i);
+hash = ((hash << 5) - hash) + char;
+hash |= 0;
+}
+return 'set_' + Math.abs(hash).toString(16).slice(0, 8);
+}
+const SET_ID = generateSetId();
+
+const TOTAL_QUESTIONS = questionSet.questions.length;
+const TOTAL_TIME_SECONDS = Math.floor(TOTAL_QUESTIONS * 0.8 * 60);
+const TOTAL_TIME_MINUTES = TOTAL_TIME_SECONDS / 60;
+
+const STORAGE_KEY_STATUS = `mcq_${SET_ID}_status`;
+const STORAGE_KEY_ANSWERS = `mcq_${SET_ID}_answers`;
+const STORAGE_KEY_START_TIME = `mcq_${SET_ID}_startTime`;
+const STORAGE_KEY_END_TIME = `mcq_${SET_ID}_endTime`;
+const STORAGE_KEY_MARKS = `mcq_${SET_ID}_marks`;
+const STORAGE_KEY_SUBMITTED_AT = `mcq_${SET_ID}_submittedAt`;
+
+let currentQuestionIndex = 0;
+let userAnswers = {};
+let testActive = false;
+let timerInterval = null;
+let deadline = null;
+
+// --- DOM refs with null checks ---
+function $(id) {
+const el = document.getElementById(id);
+if (!el) console.warn(`Element #${id} not found`);
+return el;
+}
+
+const $preTest = $('pre-test-section');
+const $test = $('test-section');
+const $results = $('results-section');
+const $timerDisplay = $('timer-display');
+const $navbarBrand = $('navbar-brand');
+const $heroSetName = $('hero-set-name');
+const $heroDetails = $('hero-details');
+const $heroQCount = $('hero-q-count');
+const $heroTime = $('hero-time');
+const $heroNote = $('hero-note');
+const $btnStart = $('btn-start-test');
+const $qNumberLabel = $('q-number-label');
+const $qText = $('q-text');
+const $optionsList = $('options-list');
+const $btnPrev = $('btn-prev');
+const $btnNext = $('btn-next');
+const $btnSubmit = $('btn-submit-test');
+const $qGrid = $('q-grid');
+const $sidebarTotal = $('sidebar-total');
+const $sidebarAnsweredNum = $('sidebar-answered-num');
+const $resultsSetName = $('results-set-name');
+const $resultsScore = $('results-score');
+const $resultsDenom = $('results-denom');
+const $resultsPercentage = $('results-percentage');
+const $resultsTimeTaken = $('results-time-taken');
+const $resultsDetail = $('results-detail');
+const $warningModal = $('warning-modal');
+const $modalUnansweredCount = $('modal-unanswered-count');
+const $btnModalCancel = $('btn-modal-cancel');
+const $btnModalSubmit = $('btn-modal-submit');
+
+// --- Utility ---
+function LSget(k) { try { return localStorage.getItem(k); } catch(e) { return null; } }
+function LSset(k,v) { try { localStorage.setItem(k,v); return true; } catch(e) { return false; } }
+function LSremove(k) { try { localStorage.removeItem(k); } catch(e) {} }
+function formatTime(sec) {
+if (sec < 0) sec = 0;
+const m = Math.floor(sec / 60);
+const s = Math.floor(sec % 60);
+return `${m}:${s.toString().padStart(2,'0')}`;
+}
+function formatTimeLong(sec) {
+if (sec < 0) sec = 0;
+const m = Math.floor(sec / 60);
+const s = Math.floor(sec % 60);
+return m > 0 ? `${m} min ${s} sec` : `${s} seconds`;
+}
+function answeredCount() {
+return Object.keys(userAnswers).filter(k => userAnswers[k] !== undefined && userAnswers[k] !== null).length;
+}
+function calcMarks() {
+let correct = 0;
+for (let i = 0; i < TOTAL_QUESTIONS; i++) {
+if (userAnswers[i] === questionSet.questions[i].correct) correct++;
+}
+return correct;
+}
+function getRemainingSeconds() {
+if (!deadline) return 0;
+return Math.max(0, Math.floor((deadline - Date.now()) / 1000));
+}
+
+function preventCopy(e) { if (testActive) { e.preventDefault(); return false; } }
+function enableTestRestrictions() {
+try {
+document.body.classList.add('test-active');
+document.addEventListener('copy', preventCopy);
+document.addEventListener('cut', preventCopy);
+document.addEventListener('contextmenu', e => { if (testActive) e.preventDefault(); });
+document.addEventListener('selectstart', e => { if (testActive) e.preventDefault(); });
+} catch(e) { console.error('enableTestRestrictions error:', e); }
+}
+function disableTestRestrictions() {
+try {
+document.body.classList.remove('test-active');
+document.removeEventListener('copy', preventCopy);
+document.removeEventListener('cut', preventCopy);
+} catch(e) { console.error('disableTestRestrictions error:', e); }
+}
+
+function requestFullscreen() {
+const el = document.documentElement;
+if (el.requestFullscreen) { el.requestFullscreen().catch(() => {}); }
+else if (el.webkitRequestFullscreen) { el.webkitRequestFullscreen(); }
+else if (el.msRequestFullscreen) { el.msRequestFullscreen(); }
+}
+
+// ========== BACK BUTTON REDIRECT & REFRESH WARNING ==========
+function popstateHandler(event) {
+if (testActive) {
+// Redirect to mock test general page
+window.location.href = 'https://arunpanthi.com.np/Psc-preparation/Mock-Test/General';
+}
+}
+
+function blockBackButton() {
+// Push a dummy state so that popstate fires on back
+window.history.pushState({ testActive: true }, '', location.href);
+window.addEventListener('popstate', popstateHandler);
+}
+
+function unblockBackButton() {
+window.removeEventListener('popstate', popstateHandler);
+}
+
+// Warn on page refresh or tab close
+window.addEventListener('beforeunload', function(e) {
+if (testActive) {
+e.preventDefault();
+e.returnValue = ''; // Required for Chrome
+return ''; // For older browsers
+}
+});
+
+// ========== TIMER FUNCTIONS ==========
+function updateTimerFromDeadline() {
+const remaining = getRemainingSeconds();
+if ($timerDisplay) {
+$timerDisplay.textContent = formatTime(remaining);
+$timerDisplay.classList.remove('warning-yellow', 'warning-red');
+if (remaining <= 300 && remaining > 0) {
+$timerDisplay.classList.add('warning-red');
+} else if (remaining <= 600 && remaining > 0) {
+$timerDisplay.classList.add('warning-yellow');
+}
+}
+return remaining;
+}
+
+function startTimerWithDeadline() {
+const now = Date.now();
+deadline = now + TOTAL_TIME_SECONDS * 1000;
+LSset(STORAGE_KEY_END_TIME, deadline.toString());
+LSset(STORAGE_KEY_START_TIME, now.toString());
+updateTimerFromDeadline();
+if (timerInterval) clearInterval(timerInterval);
+timerInterval = setInterval(() => {
+const remaining = updateTimerFromDeadline();
+if (remaining <= 0) {
+clearInterval(timerInterval);
+timerInterval = null;
+autoSubmit();
+}
+}, 1000);
+}
+
+function resumeTimerFromStoredDeadline() {
+const startStr = LSget(STORAGE_KEY_START_TIME);
+const endStr = LSget(STORAGE_KEY_END_TIME);
+if (startStr && endStr) {
+deadline = parseInt(endStr);
+const remaining = getRemainingSeconds();
+if (remaining > 0) {
+startTimerWithExistingDeadline();
+return true;
+} else {
+return false;
+}
+}
+return false;
+}
+
+function startTimerWithExistingDeadline() {
+if (timerInterval) clearInterval(timerInterval);
+timerInterval = setInterval(() => {
+const remaining = updateTimerFromDeadline();
+if (remaining <= 0) {
+clearInterval(timerInterval);
+timerInterval = null;
+autoSubmit();
+}
+}, 1000);
+}
+
+document.addEventListener('visibilitychange', () => {
+if (testActive && deadline) {
+const remaining = updateTimerFromDeadline();
+if (remaining <= 0) {
+clearInterval(timerInterval);
+timerInterval = null;
+autoSubmit();
+}
+}
+});
+
+function resetTestData() {
+LSremove(STORAGE_KEY_STATUS);
+LSremove(STORAGE_KEY_ANSWERS);
+LSremove(STORAGE_KEY_START_TIME);
+LSremove(STORAGE_KEY_END_TIME);
+LSremove(STORAGE_KEY_MARKS);
+LSremove(STORAGE_KEY_SUBMITTED_AT);
+testActive = false;
+if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
+deadline = null;
+userAnswers = {};
+currentQuestionIndex = 0;
+disableTestRestrictions();
+unblockBackButton();
+}
+
+function showPreTest() {
+if ($preTest) $preTest.style.display = 'block';
+if ($test) $test.style.display = 'none';
+if ($results) $results.style.display = 'none';
+if ($timerDisplay) $timerDisplay.style.display = 'none';
+if ($navbarBrand) $navbarBrand.textContent = '📝 MCQ Test';
+if ($heroSetName) $heroSetName.textContent = questionSet.name;
+if ($heroDetails) $heroDetails.textContent = questionSet.details || '';
+if ($heroQCount) $heroQCount.textContent = TOTAL_QUESTIONS;
+if ($heroTime) $heroTime.textContent = `${TOTAL_TIME_MINUTES}:00`;
+
+if ($heroNote) {
+$heroNote.innerHTML = `
+<div style="text-align:left; max-width:500px; margin:10px auto; font-size:0.9rem; line-height:1.6; background:#4caf50; padding:15px 20px; border-radius:8px; border-left:4px solid #ff9800;">
+<p><strong>📌 Exam Instructions:</strong></p>
+<ul style="list-style:none; padding-left:0; margin:5px 0;">
+<li>✅ Exam will automatically open in full-screen mode.</li>
+<li>✅ You can take this test only once — no re-test allowed.</li>
+<li>✅ Timer will start immediately after clicking "🚀 Start Test".</li>
+<li>✅ Time warnings will be shown at 10 minutes and 5 minutes remaining.</li>
+<li>✅ When time is over, the test will be automatically submitted.</li>
+</ul>
+<p style="margin-top:10px; color:red; font-weight:bold;">⚠️ This test can only be taken once. Make sure you are ready before starting.</p>
+</div>
+`;
+}
+
+if ($btnStart) {
+$btnStart.disabled = false;
+$btnStart.textContent = '🚀 Start Test';
+}
+disableTestRestrictions();
+unblockBackButton();
+}
+
+function showTestInterface() {
+if ($preTest) $preTest.style.display = 'none';
+if ($test) $test.style.display = 'block';
+if ($results) $results.style.display = 'none';
+if ($timerDisplay) {
+$timerDisplay.style.display = 'inline-block';
+$timerDisplay.textContent = formatTime(TOTAL_TIME_SECONDS);
+}
+if ($navbarBrand) $navbarBrand.textContent = questionSet.name;
+if ($sidebarTotal) $sidebarTotal.textContent = `Total: ${TOTAL_QUESTIONS}`;
+if ($qGrid) {
+$qGrid.innerHTML = '';
+for (let i = 0; i < TOTAL_QUESTIONS; i++) {
+const dot = document.createElement('span');
+dot.className = 'q-dot';
+dot.textContent = i + 1;
+dot.dataset.index = i;
+dot.addEventListener('click', () => {
+currentQuestionIndex = i;
+renderQuestion();
+updateSidebarHighlight();
+});
+$qGrid.appendChild(dot);
+}
+}
+updateSidebarHighlight();
+updateAnsweredCount();
+renderQuestion();
+}
+
+function renderQuestion() {
+if (!questionSet || !questionSet.questions) return;
+const q = questionSet.questions[currentQuestionIndex];
+if (!q) return;
+if ($qNumberLabel) $qNumberLabel.textContent = `QUESTION ${currentQuestionIndex + 1} / ${TOTAL_QUESTIONS}`;
+if ($qText) $qText.textContent = q.question;
+if ($optionsList) {
+$optionsList.innerHTML = '';
+const letters = ['A','B','C','D','E','F','G','H'];
+q.options.forEach((opt, idx) => {
+const li = document.createElement('li');
+li.innerHTML = `<span class="option-letter">${letters[idx] || idx+1}</span> <span>${opt}</span>`;
+li.dataset.optionIndex = idx;
+li.addEventListener('click', () => selectOption(idx));
+if (userAnswers[currentQuestionIndex] === idx) li.classList.add('selected');
+$optionsList.appendChild(li);
+});
+}
+if ($btnPrev) $btnPrev.disabled = (currentQuestionIndex === 0);
+if ($btnNext) $btnNext.disabled = (currentQuestionIndex >= TOTAL_QUESTIONS - 1);
+updateSidebarHighlight();
+updateAnsweredCount();
+}
+
+function selectOption(idx) {
+if (!testActive) return;
+userAnswers[currentQuestionIndex] = idx;
+LSset(STORAGE_KEY_ANSWERS, JSON.stringify(userAnswers));
+renderQuestion();
+}
+
+function navigateQuestion(dir) {
+const newIdx = currentQuestionIndex + dir;
+if (newIdx >= 0 && newIdx < TOTAL_QUESTIONS) {
+currentQuestionIndex = newIdx;
+renderQuestion();
+}
+}
+
+function updateSidebarHighlight() {
+if (!$qGrid) return;
+const dots = $qGrid.querySelectorAll('.q-dot');
+dots.forEach(dot => {
+const i = parseInt(dot.dataset.index);
+dot.classList.remove('answered', 'current');
+if (userAnswers[i] !== undefined && userAnswers[i] !== null) dot.classList.add('answered');
+if (i === currentQuestionIndex) dot.classList.add('current');
+});
+}
+
+function updateAnsweredCount() {
+if ($sidebarAnsweredNum) $sidebarAnsweredNum.textContent = answeredCount();
+}
+
+function startTest() {
+console.log('startTest called');
+try {
+const status = LSget(STORAGE_KEY_STATUS);
+if (status === 'completed' || status === 'submitted') {
+alert('You have already taken this test. Results are shown below.');
+showResults();
+return;
+}
+if (status === 'in_progress') {
+resumeTest();
+return;
+}
+const now = Date.now();
+deadline = now + TOTAL_TIME_SECONDS * 1000;
+LSset(STORAGE_KEY_STATUS, 'in_progress');
+LSset(STORAGE_KEY_START_TIME, now.toString());
+LSset(STORAGE_KEY_END_TIME, deadline.toString());
+LSset(STORAGE_KEY_ANSWERS, JSON.stringify({}));
+userAnswers = {};
+currentQuestionIndex = 0;
+testActive = true;
+enableTestRestrictions();
+blockBackButton(); // 🔒 block back button now
+requestFullscreen();
+showTestInterface();
+startTimerWithDeadline();
+console.log('Test started successfully');
+} catch(e) {
+console.error('Error in startTest:', e);
+alert('An error occurred while starting the test. Please check the console for details.');
+}
+}
+
+function resumeTest() {
+const ans = LSget(STORAGE_KEY_ANSWERS);
+if (ans) { try { userAnswers = JSON.parse(ans); } catch(e) { userAnswers = {}; } }
+const hasTime = resumeTimerFromStoredDeadline();
+testActive = true;
+enableTestRestrictions();
+blockBackButton(); // 🔒 re‑block back button
+showTestInterface();
+if (!hasTime) {
+autoSubmit();
+}
+}
+
+function submitTest() {
+if (!testActive) return;
+testActive = false;
+if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
+disableTestRestrictions();
+unblockBackButton(); // 🔓 unblock after submission
+const marks = calcMarks();
+const now = Date.now();
+const startStr = LSget(STORAGE_KEY_START_TIME);
+const start = startStr ? parseInt(startStr) : now;
+const timeTaken = Math.floor((now - start) / 1000);
+LSset(STORAGE_KEY_STATUS, 'completed');
+LSset(STORAGE_KEY_MARKS, marks.toString());
+LSset(STORAGE_KEY_SUBMITTED_AT, now.toString());
+LSset(STORAGE_KEY_ANSWERS, JSON.stringify(userAnswers));
+if ($timerDisplay) $timerDisplay.style.display = 'none';
+hideWarningModal();
+showResults(marks, timeTaken);
+}
+
+function autoSubmit() {
+if (!testActive && LSget(STORAGE_KEY_STATUS) === 'completed') return;
+testActive = false;
+if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
+disableTestRestrictions();
+unblockBackButton(); // 🔓 unblock after auto‑submit
+const marks = calcMarks();
+const now = Date.now();
+const startStr = LSget(STORAGE_KEY_START_TIME);
+const start = startStr ? parseInt(startStr) : now;
+const timeTaken = Math.floor((now - start) / 1000);
+LSset(STORAGE_KEY_STATUS, 'completed');
+LSset(STORAGE_KEY_MARKS, marks.toString());
+LSset(STORAGE_KEY_SUBMITTED_AT, now.toString());
+LSset(STORAGE_KEY_ANSWERS, JSON.stringify(userAnswers));
+if ($timerDisplay) $timerDisplay.style.display = 'none';
+showResults(marks, timeTaken, true);
+}
+
+function showResults(marksOverride, timeOverride, auto = false) {
+if ($preTest) $preTest.style.display = 'none';
+if ($test) $test.style.display = 'none';
+if ($results) $results.style.display = 'block';
+if ($timerDisplay) $timerDisplay.style.display = 'none';
+if ($navbarBrand) $navbarBrand.textContent = '📊 Results - ' + questionSet.name;
+const marks = marksOverride !== undefined ? marksOverride : parseInt(LSget(STORAGE_KEY_MARKS) || '0');
+const submittedStr = LSget(STORAGE_KEY_SUBMITTED_AT);
+const startStr = LSget(STORAGE_KEY_START_TIME);
+let timeTaken = timeOverride;
+if (timeTaken === undefined && submittedStr && startStr) {
+timeTaken = Math.floor((parseInt(submittedStr) - parseInt(startStr)) / 1000);
+}
+if (timeTaken === undefined || timeTaken < 0) timeTaken = 0;
+const ans = LSget(STORAGE_KEY_ANSWERS);
+if (ans) { try { userAnswers = JSON.parse(ans); } catch(e) { userAnswers = {}; } }
+const percent = TOTAL_QUESTIONS > 0 ? Math.round((marks / TOTAL_QUESTIONS) * 100) : 0;
+if ($resultsSetName) $resultsSetName.textContent = questionSet.name;
+if ($resultsScore) $resultsScore.textContent = marks;
+if ($resultsDenom) $resultsDenom.textContent = `/ ${TOTAL_QUESTIONS}`;
+if ($resultsPercentage) $resultsPercentage.textContent = `${percent}%`;
+if ($resultsTimeTaken) $resultsTimeTaken.textContent = `⏱️ Time taken: ${formatTimeLong(timeTaken)}` + (auto ? ' (Auto-submitted)' : '');
+if ($resultsDetail) {
+$resultsDetail.innerHTML = '';
+const letters = ['A','B','C','D','E','F','G','H'];
+questionSet.questions.forEach((q, idx) => {
+const userAns = userAnswers[idx];
+const correctAns = q.correct;
+const isCorrect = (userAns === correctAns);
+const wasAnswered = (userAns !== undefined && userAns !== null);
+const card = document.createElement('div');
+card.className = 'result-card';
+if (wasAnswered) card.classList.add(isCorrect ? 'correct' : 'incorrect');
+let badge = '';
+if (!wasAnswered) badge = '<span class="r-badge" style="background:#fff3e0;color:#E65100;">⚠️ NOT ANSWERED</span>';
+else if (isCorrect) badge = '<span class="r-badge correct-badge">✅ CORRECT</span>';
+else badge = '<span class="r-badge incorrect-badge">❌ INCORRECT</span>';
+let optsHTML = '';
+q.options.forEach((opt, optIdx) => {
+let liClass = '';
+if (optIdx === correctAns && optIdx === userAns) liClass = 'both-correct';
+else if (optIdx === correctAns) liClass = 'correct-answer';
+else if (optIdx === userAns && !isCorrect) liClass = 'user-answer';
+const label = letters[optIdx] || (optIdx+1);
+let prefix = '';
+if (optIdx === correctAns && optIdx === userAns) prefix = '✅ ';
+else if (optIdx === correctAns) prefix = '✅ ';
+else if (optIdx === userAns && !isCorrect) prefix = '❌ ';
+optsHTML += `<li class="${liClass}"><strong>${label}.</strong> ${prefix}${opt}</li>`;
+});
+card.innerHTML = `${badge}<div class="r-q-text">Q${idx+1}: ${q.question}</div><ul class="r-options">${optsHTML}</ul>`;
+$resultsDetail.appendChild(card);
+});
+}
+if ($results) $results.scrollIntoView({ behavior: 'smooth' });
+window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function showWarningModal() {
+const unanswered = TOTAL_QUESTIONS - answeredCount();
+if ($modalUnansweredCount) $modalUnansweredCount.textContent = `${unanswered} unanswered question(s)`;
+if ($warningModal) {
+$warningModal.style.display = 'flex';
+document.body.style.overflow = 'hidden';
+}
+}
+
+function hideWarningModal() {
+if ($warningModal) {
+$warningModal.style.display = 'none';
+document.body.style.overflow = '';
+}
+}
+
+// URL-based reset
+function checkAndApplyReset() {
+const url = new URL(window.location.href);
+if (url.searchParams.has('reset') && url.searchParams.get('reset') === '1') {
+resetTestData();
+url.searchParams.delete('reset');
+window.location.replace(url.toString());
+return true;
+}
+return false;
+}
+
+// --- Event Listeners ---
+if ($btnStart) $btnStart.addEventListener('click', startTest);
+else console.error('Start button not found');
+
+if ($btnPrev) $btnPrev.addEventListener('click', () => navigateQuestion(-1));
+if ($btnNext) $btnNext.addEventListener('click', () => navigateQuestion(1));
+if ($btnSubmit) {
+$btnSubmit.addEventListener('click', function() {
+if (!testActive) return;
+const unanswered = TOTAL_QUESTIONS - answeredCount();
+if (unanswered > 0) {
+showWarningModal();
+} else {
+submitTest();
+}
+});
+}
+if ($btnModalCancel) $btnModalCancel.addEventListener('click', hideWarningModal);
+if ($btnModalSubmit) $btnModalSubmit.addEventListener('click', function() { submitTest(); });
+if ($warningModal) {
+$warningModal.addEventListener('click', function(e) {
+if (e.target === $warningModal) hideWarningModal();
+});
+}
+
+document.addEventListener('keydown', function(e) {
+if (e.key === 'Escape' && $warningModal && $warningModal.style.display === 'flex') {
+hideWarningModal();
+}
+});
+
+document.addEventListener('keydown', function(e) {
+if (!testActive) return;
+if ($warningModal && $warningModal.style.display === 'flex') return;
+if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); navigateQuestion(-1); }
+else if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); navigateQuestion(1); }
+else if (e.key >= '1' && e.key <= '9') {
+const idx = parseInt(e.key) - 1;
+if (idx < questionSet.questions[currentQuestionIndex].options.length) {
+e.preventDefault();
+selectOption(idx);
+}
+}
+else if (e.key === 'a' || e.key === 'A') selectOption(0);
+else if (e.key === 'b' || e.key === 'B') selectOption(1);
+else if (e.key === 'c' || e.key === 'C') selectOption(2);
+else if (e.key === 'd' || e.key === 'D') selectOption(3);
+else if (e.key === 'e' || e.key === 'E') selectOption(4);
+});
+
+// --- Initialisation ---
+function init() {
+if (checkAndApplyReset()) return;
+const status = LSget(STORAGE_KEY_STATUS);
+if (status === 'completed' || status === 'submitted') {
+const ans = LSget(STORAGE_KEY_ANSWERS);
+if (ans) { try { userAnswers = JSON.parse(ans); } catch(e) { userAnswers = {}; } }
+showResults();
+} else if (status === 'in_progress') {
+const ans = LSget(STORAGE_KEY_ANSWERS);
+if (ans) { try { userAnswers = JSON.parse(ans); } catch(e) { userAnswers = {}; } }
+const hasTime = resumeTimerFromStoredDeadline();
+if (hasTime) {
+testActive = true;
+enableTestRestrictions();
+blockBackButton(); // re‑block on resume
+showTestInterface();
+} else {
+testActive = true;
+enableTestRestrictions();
+blockBackButton();
+showTestInterface();
+autoSubmit();
+}
+} else {
+showPreTest();
+}
+}
+
+if (document.readyState === 'loading') {
+document.addEventListener('DOMContentLoaded', init);
+} else {
+init();
+}
+})();
+</script>
+<script src="/js/text-protect.js" defer></script>
+<script src="/js/logo.js"></script>
 </body>
 </html>

@@ -5,7 +5,7 @@
 
   // Configuration
   var CSS_FILE     = "styles.css";
-  var FAVICON_FILE = "logo.ico";
+  var FAVICON_FILE = "favicon.ico";
   var FONT_AWESOME = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css";
 
   var PARTIALS = {

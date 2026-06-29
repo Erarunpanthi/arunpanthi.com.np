@@ -1,591 +1,705 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2081 PSC Exam Question
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2081 PSC Exam Question
 </title>
- <link rel="icon" href="https://arunpanthi.com.np/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="/css/Mock_Test.css">
-    
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous">
+<link rel="icon" href="https://arunpanthi.com.np/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="/css/Mock_Test.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous">
 </head>
 <body>
-    <nav class="navbar" id="navbar">
-        <span class="brand" id="navbar-brand">2081 PSC Exam Question
-</span>
-        <span class="timer-display" id="timer-display" style="display:none;">--:--</span>
-    </nav>
+<nav class="navbar" id="navbar">
+<span class="brand" id="navbar-brand">2081 PSC Exam Question </span>
+<span class="timer-display" id="timer-display" style="display:none;">--:--</span>
+</nav>
 
-    <!-- ========== CUSTOM WARNING MODAL ========== -->
-    <div id="warning-modal" class="modal-overlay" style="display: none;">
-        <div class="modal-dialog">
-            <div class="warning-modal">
-  <div class="warning-icon">⚠️</div>
-  <h2>Submission Warning</h2>
-  <p>You have not answered all the questions in this test.</p>
-  
-  <div class="unanswered-status">
-    <strong>Unanswered Questions:</strong> 
-    <span id="modal-unanswered-count">0</span>
-  </div>
-  
-  <p class="critical-note">
-    <strong>⚠ Important:</strong> Once submitted, this test cannot be retaken.
-  </p>
-  
-  <div class="modal-actions">
-    <button class="btn-cancel" id="btn-modal-cancel">Cancel</button>
-    <button class="btn-submit-warning" id="btn-modal-submit">Submit Anyway</button>
-  </div>
+<!-- Warning modal -->
+<div id="warning-modal" class="modal-overlay" style="display: none;">
+<div class="modal-dialog">
+<div class="warning-icon">⚠️</div>
+<h3>Unanswered Questions</h3>
+<p>You haven't answered all the questions.</p>
+<span class="unanswered-count" id="modal-unanswered-count">0 unanswered</span>
+<p style="margin-top:8px;"><strong>⚠ This test cannot be retaken once submitted!</strong></p>
+<div class="modal-buttons">
+<button class="btn-cancel" id="btn-modal-cancel">Cancel</button>
+<button class="btn-submit-warning" id="btn-modal-submit">Submit Anyway</button>
 </div>
 </div>
-        </div>
-    </div>
+</div>
 
-    <div id="pre-test-section">
-        <div class="hero" id="hero-card">
-            <h1 id="hero-set-name">Loading...</h1>
-            <p class="set-details" id="hero-details"></p>
-            <div class="set-meta">
-                <div class="meta-item">
-                    <span id="hero-q-count">0</span> Questions
-                </div>
-                <div class="meta-item">
-                    <span id="hero-time">0:00</span> Time (min)
-                </div>
-            </div>
-            <button class="btn-start" id="btn-start-test">🚀 Start Test</button>
-            <p style="margin-top:10px;font-size:0.85rem;opacity:0.8;" id="hero-note"></p>
-        </div>
-    </div>
+<div id="pre-test-section">
+<div class="hero" id="hero-card">
+<h1 id="hero-set-name">Loading...</h1>
+<p class="set-details" id="hero-details"></p>
+<div class="set-meta">
+<div class="meta-item"><span id="hero-q-count">0</span> Questions</div>
+<div class="meta-item"><span id="hero-time">0:00</span> Time (min)</div>
+</div>
+<button class="btn-start" id="btn-start-test">🚀 Start Test</button>
+<p style="margin-top:10px;font-size:0.85rem;opacity:0.8;" id="hero-note"></p>
+</div>
+</div>
 
-    <div id="test-section" style="display:none;">
-        <div class="test-container">
-            <div class="question-area" id="question-area">
-                <div class="question-card" id="question-card">
-                    <div class="q-number" id="q-number-label">QUESTION 1</div>
-                    <div class="q-text" id="q-text">Loading question...</div>
-                    <ul class="options-list" id="options-list"></ul>
-                </div>
-                <div class="nav-buttons">
-                    <button class="btn-nav" id="btn-prev">◀ Previous</button>
-                    <span style="font-weight:600;color:#555;" id="q-progress-indicator">1 / 1</span>
-                    <button class="btn-nav" id="btn-next">Next ▶</button>
-                    <span class="spacer"></span>
-                    <button class="btn-submit" id="btn-submit-test">✅ Submit Test</button>
-                </div>
-            </div>
-            <aside class="sidebar" id="sidebar">
-                <h3>📋 Question Palette</h3>
-                <div class="total-questions" id="sidebar-total">Total: 0</div>
-                <div class="answered-count">
-                    Answered: <strong id="sidebar-answered-num">0</strong>
-                </div>
-                <div class="q-grid" id="q-grid"></div>
-                <div class="legend">
-                    <span><span class="dot-sample blue"></span> Answered</span>
-                    <span><span class="dot-sample gray"></span> Unanswered</span>
-                </div>
-            </aside>
-        </div>
-    </div>
+<div id="test-section" style="display:none;">
+<div class="test-container">
+<div class="question-area">
+<div class="question-card">
+<div class="q-number" id="q-number-label">QUESTION 1</div>
+<div class="q-text" id="q-text">Loading question...</div>
+<ul class="options-list" id="options-list"></ul>
+</div>
+<div class="nav-buttons">
+<div class="nav-left"><button class="btn-nav" id="btn-prev">◀ Previous</button></div>
+<div class="nav-center"><button class="btn-submit" id="btn-submit-test">✅ Submit Test</button></div>
+<div class="nav-right"><button class="btn-nav" id="btn-next">Next ▶</button></div>
+</div>
+</div>
+<aside class="sidebar">
+<h3>📋 Question </h3>
+<div class="total-questions" id="sidebar-total">Total: 0</div>
+<div class="answered-count">Answered: <strong id="sidebar-answered-num">0</strong></div>
+<div class="q-grid" id="q-grid"></div>
+<div class="legend">
+<span><span class="dot-sample blue"></span> Answered</span>
+<span><span class="dot-sample gray"></span> Unanswered</span>
+</div>
+</aside>
+</div>
+</div>
 
-    <div id="results-section" style="display:none;">
-        <div class="results-container" id="results-container">
-            <div class="results-header" id="results-header">
-                <h2 style="color:#2E7D32;">📊 Test Results</h2>
-                <p style="color:#666;" id="results-set-name"></p>
-                <div class="score-circle">
-                    <span class="score-num" id="results-score">0</span>
-                    <span class="score-denom" id="results-denom">/ 0</span>
-                </div>
-                <div class="percentage" id="results-percentage">0%</div>
-                <p style="margin-top:8px;color:#888;font-size:0.9rem;" id="results-time-taken"></p>
-            </div>
-            <div id="results-detail"></div>
-        </div>
-    </div>
+<div id="results-section" style="display:none;">
+<div class="results-container">
+<div class="results-header">
+<h2 style="color:#2E7D32;">📊 Test Results</h2>
+<p style="color:#666;" id="results-set-name"></p>
+<div class="score-circle">
+<span class="score-num" id="results-score">0</span>
+<span class="score-denom" id="results-denom">/ 0</span>
+</div>
+<div class="percentage" id="results-percentage">0%</div>
+<p style="margin-top:8px;color:#888;font-size:0.9rem;" id="results-time-taken"></p>
+</div>
+<div id="results-detail"></div>
+</div>
+</div>
 
-    <script>
-        (function() {
-         const questionSet = {
-    name: 'Nepal General Knowledge - Set 1',
-    details: 'Covers Nepal\'s history, geography, politics, and current affairs.',
-    questions: [
-        { question: 'When first Nepal is Selected as UN Security Council Member?', options: ['1969–1970', '1988–1989', '1978–1979', '1958–1959'], correct: 0 },
-        { question: 'When did Nepal become a founding member of BIMSTEC (Bay of Bengal Initiative for Multi-Sectoral Technical and Economic Cooperation)?', options: ['2004 Feb 8', '2003 Feb 4', '2004 Feb 4', '2006 Feb 4'], correct: 2 },
-        { question: 'Which mountain is nearest to Kathmandu?', options: ['Jugal', 'Ganesh Himal', 'Gaurishankhar Himal', 'Manaslu'], correct: 0 },
-        { question: 'Which of the following is not Sub Metropolitan of Nepal?', options: ['Biratnagar', 'Butwal', 'Hetauda', 'Ghorahi'], correct: 0 },
-        { question: 'When did Nepal Signed Betrawati Sandhi with China?', options: ['1848', '1842', '1860', '1890'], correct: 0 },
-        { question: 'Dho Valley lies in Which District?', options: ['Manang', 'Mustang', 'Mugu', 'Dolpa'], correct: 3 },
-        { question: 'Per Capita Income of Nepal at the end of 16th Plan is', options: ['2250', '2351', '2450', '2500'], correct: 1 },
-        { question: 'Winter Olympic 2026 will hosted by:', options: ['France', 'Switzerland', 'Italy', 'Spain'], correct: 2 },
-        { question: 'Salpa Pokhari lies on which District?', options: ['Solukhumbu', 'Bhojpur', 'Taplejung', 'Dhankuta'], correct: 1 },
-        { question: '13th Goal of Sustainable Development is:', options: ['Life Below Water', 'Life on Land', 'Responsible Consumption and Production', 'Climate Action'], correct: 3 },
-        { question: '29th COP Conference was held on … Country.', options: ['Brazil', 'Azerbaijan', 'Egypt', 'Nepal'], correct: 1 },
-        { question: 'According to Civil Service Act 2049, Maximum Evaluation mark to be given to Employee is ..by Supervisor.', options: ['5', '10', '25', '40'], correct: 2 },
-        { question: 'Motivation Hierarchy Theory is Given by:', options: ['Maslow', 'FW Taylor', 'Wright Man', 'Luther Gulick'], correct: 0 },
-        { question: 'The POSDCORB theory is given by:', options: ['Maslow', 'FW Taylor', 'Wright Man', 'Luther Gulick'], correct: 3 },
-        { question: 'The list of Power of Local government of Nepal is ……. types.', options: ['22', '25', '21', '18'], correct: 0 },
-        { question: 'Which of the following is source of Deficit Budget.', options: ['Revenue in the Budget', 'Grant', 'Internal Borrowing', 'Principle Repayment'], correct: 0 },
-        { question: 'Which of the following river is not Originated from Mountain?', options: ['Bagmati', 'Budi Gandaki', 'Karnali', 'Madi'], correct: 0 },
-        { question: 'Public Service Charter is initiated from:', options: ['France', 'UK', 'USA', 'China'], correct: 1 },
-        { question: 'Jiudo Sahid of Nepal', options: ['Amar Singh Thapa', 'Lakhan Thapa', 'Tanka Prasad Acharya', 'Gangalal'], correct: 2 },
-        { question: 'Residual Power is Vested to', options: ['Federal', 'Provincial', 'Local', 'All Combined'], correct: 0 },
-        { question: 'Percentage of Nepali Language Spoken according to Census 2078:', options: ['62', '45', '55', '49'], correct: 1 },
-        { question: 'Population Percentage of Age group 15 to 59 in Nepal is (Census 2078)', options: ['61.96', '65.96', '56.96', '53.41'], correct: 0 },
-        { question: 'Agriculture dependent Population of Nepal is .. (Census 2078)', options: ['61', '62', '63', '64'], correct: 1 },
-        { question: 'The Tree found in 2000 m to 3000 m is', options: ['Gobre Salla', 'Khotesalla', 'Sal', 'Khayer'], correct: 0 },
-        { question: 'The New Public Management System is introduced by:', options: ['Taylor', 'Christopher Hood', 'Ronald Reagan', 'Margaret Thatcher'], correct: 1 }
-    ]
+<script>
+(function() {
+ const questionSet = {
+name: 'Nepal General Knowledge - Set 1',
+details: 'Covers Nepal\'s history, geography, politics, and current affairs.',
+questions: [
+{ question: 'When first Nepal is Selected as UN Security Council Member?', options: ['1969–1970', '1988–1989', '1978–1979', '1958–1959'], correct: 0 },
+{ question: 'When did Nepal become a founding member of BIMSTEC (Bay of Bengal Initiative for Multi-Sectoral Technical and Economic Cooperation)?', options: ['2004 Feb 8', '2003 Feb 4', '2004 Feb 4', '2006 Feb 4'], correct: 2 },
+{ question: 'Which mountain is nearest to Kathmandu?', options: ['Jugal', 'Ganesh Himal', 'Gaurishankhar Himal', 'Manaslu'], correct: 0 },
+{ question: 'Which of the following is not Sub Metropolitan of Nepal?', options: ['Biratnagar', 'Butwal', 'Hetauda', 'Ghorahi'], correct: 0 },
+{ question: 'When did Nepal Signed Betrawati Sandhi with China?', options: ['1848', '1842', '1860', '1890'], correct: 0 },
+{ question: 'Dho Valley lies in Which District?', options: ['Manang', 'Mustang', 'Mugu', 'Dolpa'], correct: 3 },
+{ question: 'Per Capita Income of Nepal at the end of 16th Plan is', options: ['2250', '2351', '2450', '2500'], correct: 1 },
+{ question: 'Winter Olympic 2026 will hosted by:', options: ['France', 'Switzerland', 'Italy', 'Spain'], correct: 2 },
+{ question: 'Salpa Pokhari lies on which District?', options: ['Solukhumbu', 'Bhojpur', 'Taplejung', 'Dhankuta'], correct: 1 },
+{ question: '13th Goal of Sustainable Development is:', options: ['Life Below Water', 'Life on Land', 'Responsible Consumption and Production', 'Climate Action'], correct: 3 },
+{ question: '29th COP Conference was held on … Country.', options: ['Brazil', 'Azerbaijan', 'Egypt', 'Nepal'], correct: 1 },
+{ question: 'According to Civil Service Act 2049, Maximum Evaluation mark to be given to Employee is ..by Supervisor.', options: ['5', '10', '25', '40'], correct: 2 },
+{ question: 'Motivation Hierarchy Theory is Given by:', options: ['Maslow', 'FW Taylor', 'Wright Man', 'Luther Gulick'], correct: 0 },
+{ question: 'The POSDCORB theory is given by:', options: ['Maslow', 'FW Taylor', 'Wright Man', 'Luther Gulick'], correct: 3 },
+{ question: 'The list of Power of Local government of Nepal is ……. types.', options: ['22', '25', '21', '18'], correct: 0 },
+{ question: 'Which of the following is source of Deficit Budget.', options: ['Revenue in the Budget', 'Grant', 'Internal Borrowing', 'Principle Repayment'], correct: 0 },
+{ question: 'Which of the following river is not Originated from Mountain?', options: ['Bagmati', 'Budi Gandaki', 'Karnali', 'Madi'], correct: 0 },
+{ question: 'Public Service Charter is initiated from:', options: ['France', 'UK', 'USA', 'China'], correct: 1 },
+{ question: 'Jiudo Sahid of Nepal', options: ['Amar Singh Thapa', 'Lakhan Thapa', 'Tanka Prasad Acharya', 'Gangalal'], correct: 2 },
+{ question: 'Residual Power is Vested to', options: ['Federal', 'Provincial', 'Local', 'All Combined'], correct: 0 },
+{ question: 'Percentage of Nepali Language Spoken according to Census 2078:', options: ['62', '45', '55', '49'], correct: 1 },
+{ question: 'Population Percentage of Age group 15 to 59 in Nepal is (Census 2078)', options: ['61.96', '65.96', '56.96', '53.41'], correct: 0 },
+{ question: 'Agriculture dependent Population of Nepal is .. (Census 2078)', options: ['61', '62', '63', '64'], correct: 1 },
+{ question: 'The Tree found in 2000 m to 3000 m is', options: ['Gobre Salla', 'Khotesalla', 'Sal', 'Khayer'], correct: 0 },
+{ question: 'The New Public Management System is introduced by:', options: ['Taylor', 'Christopher Hood', 'Ronald Reagan', 'Margaret Thatcher'], correct: 1 }
+]
 };
-            const TOTAL_QUESTIONS = questionSet.questions.length;
-            const TOTAL_TIME_SECONDS = Math.floor(TOTAL_QUESTIONS * 0.8 * 60);
-            const TOTAL_TIME_MINUTES = TOTAL_TIME_SECONDS / 60;
+// ========== AUTO-GENERATE UNIQUE ID FROM QUESTIONS ==========
+function generateSetId() {
+const str = JSON.stringify(questionSet.questions);
+let hash = 0;
+for (let i = 0; i < str.length; i++) {
+const char = str.charCodeAt(i);
+hash = ((hash << 5) - hash) + char;
+hash |= 0;
+}
+return 'set_' + Math.abs(hash).toString(16).slice(0, 8);
+}
+const SET_ID = generateSetId();
 
-            const STORAGE_KEY_STATUS = 'mcq_single_set_status';
-            const STORAGE_KEY_ANSWERS = 'mcq_single_set_answers';
-            const STORAGE_KEY_START_TIME = 'mcq_single_set_startTime';
-            const STORAGE_KEY_END_TIME = 'mcq_single_set_endTime';
-            const STORAGE_KEY_MARKS = 'mcq_single_set_marks';
-            const STORAGE_KEY_SUBMITTED_AT = 'mcq_single_set_submittedAt';
+const TOTAL_QUESTIONS = questionSet.questions.length;
+const TOTAL_TIME_SECONDS = Math.floor(TOTAL_QUESTIONS * 0.8 * 60);
+const TOTAL_TIME_MINUTES = TOTAL_TIME_SECONDS / 60;
 
-            let currentQuestionIndex = 0;
-            let userAnswers = {};
-            let testActive = false;
-            let timerInterval = null;
-            let timeRemainingSeconds = TOTAL_TIME_SECONDS;
+const STORAGE_KEY_STATUS = `mcq_${SET_ID}_status`;
+const STORAGE_KEY_ANSWERS = `mcq_${SET_ID}_answers`;
+const STORAGE_KEY_START_TIME = `mcq_${SET_ID}_startTime`;
+const STORAGE_KEY_END_TIME = `mcq_${SET_ID}_endTime`;
+const STORAGE_KEY_MARKS = `mcq_${SET_ID}_marks`;
+const STORAGE_KEY_SUBMITTED_AT = `mcq_${SET_ID}_submittedAt`;
 
-            // DOM elements
-            const $preTest = document.getElementById('pre-test-section');
-            const $test = document.getElementById('test-section');
-            const $results = document.getElementById('results-section');
-            const $timerDisplay = document.getElementById('timer-display');
-            const $navbarBrand = document.getElementById('navbar-brand');
-            const $heroSetName = document.getElementById('hero-set-name');
-            const $heroDetails = document.getElementById('hero-details');
-            const $heroQCount = document.getElementById('hero-q-count');
-            const $heroTime = document.getElementById('hero-time');
-            const $heroNote = document.getElementById('hero-note');
-            const $btnStart = document.getElementById('btn-start-test');
-            const $qNumberLabel = document.getElementById('q-number-label');
-            const $qText = document.getElementById('q-text');
-            const $optionsList = document.getElementById('options-list');
-            const $qProgress = document.getElementById('q-progress-indicator');
-            const $btnPrev = document.getElementById('btn-prev');
-            const $btnNext = document.getElementById('btn-next');
-            const $btnSubmit = document.getElementById('btn-submit-test');
-            const $qGrid = document.getElementById('q-grid');
-            const $sidebarTotal = document.getElementById('sidebar-total');
-            const $sidebarAnsweredNum = document.getElementById('sidebar-answered-num');
-            const $resultsSetName = document.getElementById('results-set-name');
-            const $resultsScore = document.getElementById('results-score');
-            const $resultsDenom = document.getElementById('results-denom');
-            const $resultsPercentage = document.getElementById('results-percentage');
-            const $resultsTimeTaken = document.getElementById('results-time-taken');
-            const $resultsDetail = document.getElementById('results-detail');
+let currentQuestionIndex = 0;
+let userAnswers = {};
+let testActive = false;
+let timerInterval = null;
+let deadline = null;
 
-            // Modal elements
-            const $warningModal = document.getElementById('warning-modal');
-            const $modalUnansweredCount = document.getElementById('modal-unanswered-count');
-            const $btnModalCancel = document.getElementById('btn-modal-cancel');
-            const $btnModalSubmit = document.getElementById('btn-modal-submit');
+// --- DOM refs with null checks ---
+function $(id) {
+const el = document.getElementById(id);
+if (!el) console.warn(`Element #${id} not found`);
+return el;
+}
 
-            // Helper functions
-            function LSget(k) { try { return localStorage.getItem(k); } catch(e) { return null; } }
-            function LSset(k,v) { try { localStorage.setItem(k,v); return true; } catch(e) { return false; } }
-            function formatTime(sec) {
-                if (sec < 0) sec = 0;
-                const m = Math.floor(sec / 60);
-                const s = Math.floor(sec % 60);
-                return `${m}:${s.toString().padStart(2,'0')}`;
-            }
-            function formatTimeLong(sec) {
-                if (sec < 0) sec = 0;
-                const m = Math.floor(sec / 60);
-                const s = Math.floor(sec % 60);
-                return m > 0 ? `${m} min ${s} sec` : `${s} seconds`;
-            }
-            function answeredCount() {
-                return Object.keys(userAnswers).filter(k => userAnswers[k] !== undefined && userAnswers[k] !== null).length;
-            }
-            function calcMarks() {
-                let correct = 0;
-                for (let i = 0; i < TOTAL_QUESTIONS; i++) {
-                    if (userAnswers[i] === questionSet.questions[i].correct) correct++;
-                }
-                return correct;
-            }
+const $preTest = $('pre-test-section');
+const $test = $('test-section');
+const $results = $('results-section');
+const $timerDisplay = $('timer-display');
+const $navbarBrand = $('navbar-brand');
+const $heroSetName = $('hero-set-name');
+const $heroDetails = $('hero-details');
+const $heroQCount = $('hero-q-count');
+const $heroTime = $('hero-time');
+const $heroNote = $('hero-note');
+const $btnStart = $('btn-start-test');
+const $qNumberLabel = $('q-number-label');
+const $qText = $('q-text');
+const $optionsList = $('options-list');
+const $btnPrev = $('btn-prev');
+const $btnNext = $('btn-next');
+const $btnSubmit = $('btn-submit-test');
+const $qGrid = $('q-grid');
+const $sidebarTotal = $('sidebar-total');
+const $sidebarAnsweredNum = $('sidebar-answered-num');
+const $resultsSetName = $('results-set-name');
+const $resultsScore = $('results-score');
+const $resultsDenom = $('results-denom');
+const $resultsPercentage = $('results-percentage');
+const $resultsTimeTaken = $('results-time-taken');
+const $resultsDetail = $('results-detail');
+const $warningModal = $('warning-modal');
+const $modalUnansweredCount = $('modal-unanswered-count');
+const $btnModalCancel = $('btn-modal-cancel');
+const $btnModalSubmit = $('btn-modal-submit');
 
-            // Modal control
-            function showWarningModal() {
-                const unanswered = TOTAL_QUESTIONS - answeredCount();
-                $modalUnansweredCount.textContent = `${unanswered} unanswered question(s)`;
-                $warningModal.style.display = 'flex';
-                document.body.style.overflow = 'hidden';
-            }
+// --- Utility ---
+function LSget(k) { try { return localStorage.getItem(k); } catch(e) { return null; } }
+function LSset(k,v) { try { localStorage.setItem(k,v); return true; } catch(e) { return false; } }
+function LSremove(k) { try { localStorage.removeItem(k); } catch(e) {} }
+function formatTime(sec) {
+if (sec < 0) sec = 0;
+const m = Math.floor(sec / 60);
+const s = Math.floor(sec % 60);
+return `${m}:${s.toString().padStart(2,'0')}`;
+}
+function formatTimeLong(sec) {
+if (sec < 0) sec = 0;
+const m = Math.floor(sec / 60);
+const s = Math.floor(sec % 60);
+return m > 0 ? `${m} min ${s} sec` : `${s} seconds`;
+}
+function answeredCount() {
+return Object.keys(userAnswers).filter(k => userAnswers[k] !== undefined && userAnswers[k] !== null).length;
+}
+function calcMarks() {
+let correct = 0;
+for (let i = 0; i < TOTAL_QUESTIONS; i++) {
+if (userAnswers[i] === questionSet.questions[i].correct) correct++;
+}
+return correct;
+}
+function getRemainingSeconds() {
+if (!deadline) return 0;
+return Math.max(0, Math.floor((deadline - Date.now()) / 1000));
+}
 
-            function hideWarningModal() {
-                $warningModal.style.display = 'none';
-                document.body.style.overflow = '';
-            }
+function preventCopy(e) { if (testActive) { e.preventDefault(); return false; } }
+function enableTestRestrictions() {
+try {
+document.body.classList.add('test-active');
+document.addEventListener('copy', preventCopy);
+document.addEventListener('cut', preventCopy);
+document.addEventListener('contextmenu', e => { if (testActive) e.preventDefault(); });
+document.addEventListener('selectstart', e => { if (testActive) e.preventDefault(); });
+} catch(e) { console.error('enableTestRestrictions error:', e); }
+}
+function disableTestRestrictions() {
+try {
+document.body.classList.remove('test-active');
+document.removeEventListener('copy', preventCopy);
+document.removeEventListener('cut', preventCopy);
+} catch(e) { console.error('disableTestRestrictions error:', e); }
+}
 
-            // UI rendering
-            function showPreTest() {
-                $preTest.style.display = 'block';
-                $test.style.display = 'none';
-                $results.style.display = 'none';
-                $timerDisplay.style.display = 'none';
-                $navbarBrand.textContent = '📝 MCQ Test';
-                $heroSetName.textContent = questionSet.name;
-                $heroDetails.textContent = questionSet.details || '';
-                $heroQCount.textContent = TOTAL_QUESTIONS;
-                $heroTime.textContent = `${TOTAL_TIME_MINUTES}:00`;
-                $heroNote.textContent = '⚠️ This test can only be taken once. Make sure you are ready before starting.';
-                $btnStart.disabled = false;
-                $btnStart.textContent = '🚀 Start Test';
-            }
+function requestFullscreen() {
+const el = document.documentElement;
+if (el.requestFullscreen) { el.requestFullscreen().catch(() => {}); }
+else if (el.webkitRequestFullscreen) { el.webkitRequestFullscreen(); }
+else if (el.msRequestFullscreen) { el.msRequestFullscreen(); }
+}
 
-            function showTestInterface() {
-                $preTest.style.display = 'none';
-                $test.style.display = 'block';
-                $results.style.display = 'none';
-                $timerDisplay.style.display = 'inline-block';
-                $navbarBrand.textContent = questionSet.name;
-                $sidebarTotal.textContent = `Total: ${TOTAL_QUESTIONS}`;
-                $qGrid.innerHTML = '';
-                for (let i = 0; i < TOTAL_QUESTIONS; i++) {
-                    const dot = document.createElement('span');
-                    dot.className = 'q-dot';
-                    dot.textContent = i + 1;
-                    dot.dataset.index = i;
-                    dot.addEventListener('click', () => {
-                        currentQuestionIndex = i;
-                        renderQuestion();
-                        updateSidebarHighlight();
-                    });
-                    $qGrid.appendChild(dot);
-                }
-                updateSidebarHighlight();
-                updateAnsweredCount();
-                renderQuestion();
-            }
+function updateTimerFromDeadline() {
+const remaining = getRemainingSeconds();
+if ($timerDisplay) {
+$timerDisplay.textContent = formatTime(remaining);
+$timerDisplay.classList.remove('warning-yellow', 'warning-red');
+if (remaining <= 300 && remaining > 0) {
+$timerDisplay.classList.add('warning-red');
+} else if (remaining <= 600 && remaining > 0) {
+$timerDisplay.classList.add('warning-yellow');
+}
+}
+return remaining;
+}
 
-            function renderQuestion() {
-                const q = questionSet.questions[currentQuestionIndex];
-                if (!q) return;
-                $qNumberLabel.textContent = `QUESTION ${currentQuestionIndex + 1}`;
-                $qText.textContent = q.question;
-                $qProgress.textContent = `${currentQuestionIndex + 1} / ${TOTAL_QUESTIONS}`;
-                $optionsList.innerHTML = '';
-                const letters = ['A','B','C','D','E','F','G','H'];
-                q.options.forEach((opt, idx) => {
-                    const li = document.createElement('li');
-                    li.innerHTML = `<span class="option-letter">${letters[idx] || idx+1}</span> <span>${opt}</span>`;
-                    li.dataset.optionIndex = idx;
-                    li.addEventListener('click', () => selectOption(idx));
-                    if (userAnswers[currentQuestionIndex] === idx) li.classList.add('selected');
-                    $optionsList.appendChild(li);
-                });
-                $btnPrev.disabled = (currentQuestionIndex === 0);
-                $btnNext.disabled = (currentQuestionIndex >= TOTAL_QUESTIONS - 1);
-                updateSidebarHighlight();
-                updateAnsweredCount();
-            }
+function startTimerWithDeadline() {
+const now = Date.now();
+deadline = now + TOTAL_TIME_SECONDS * 1000;
+LSset(STORAGE_KEY_END_TIME, deadline.toString());
+LSset(STORAGE_KEY_START_TIME, now.toString());
+updateTimerFromDeadline();
+if (timerInterval) clearInterval(timerInterval);
+timerInterval = setInterval(() => {
+const remaining = updateTimerFromDeadline();
+if (remaining <= 0) {
+clearInterval(timerInterval);
+timerInterval = null;
+autoSubmit();
+}
+}, 1000);
+}
 
-            function selectOption(idx) {
-                if (!testActive) return;
-                userAnswers[currentQuestionIndex] = idx;
-                LSset(STORAGE_KEY_ANSWERS, JSON.stringify(userAnswers));
-                renderQuestion();
-            }
+function resumeTimerFromStoredDeadline() {
+const startStr = LSget(STORAGE_KEY_START_TIME);
+const endStr = LSget(STORAGE_KEY_END_TIME);
+if (startStr && endStr) {
+deadline = parseInt(endStr);
+const remaining = getRemainingSeconds();
+if (remaining > 0) {
+startTimerWithExistingDeadline();
+return true;
+} else {
+return false;
+}
+}
+return false;
+}
 
-            function navigateQuestion(dir) {
-                const newIdx = currentQuestionIndex + dir;
-                if (newIdx >= 0 && newIdx < TOTAL_QUESTIONS) {
-                    currentQuestionIndex = newIdx;
-                    renderQuestion();
-                }
-            }
+function startTimerWithExistingDeadline() {
+if (timerInterval) clearInterval(timerInterval);
+timerInterval = setInterval(() => {
+const remaining = updateTimerFromDeadline();
+if (remaining <= 0) {
+clearInterval(timerInterval);
+timerInterval = null;
+autoSubmit();
+}
+}, 1000);
+}
 
-            function updateSidebarHighlight() {
-                const dots = $qGrid.querySelectorAll('.q-dot');
-                dots.forEach(dot => {
-                    const i = parseInt(dot.dataset.index);
-                    dot.classList.remove('answered', 'current');
-                    if (userAnswers[i] !== undefined && userAnswers[i] !== null) dot.classList.add('answered');
-                    if (i === currentQuestionIndex) dot.classList.add('current');
-                });
-            }
+document.addEventListener('visibilitychange', () => {
+if (testActive && deadline) {
+const remaining = updateTimerFromDeadline();
+if (remaining <= 0) {
+clearInterval(timerInterval);
+timerInterval = null;
+autoSubmit();
+}
+}
+});
 
-            function updateAnsweredCount() {
-                $sidebarAnsweredNum.textContent = answeredCount();
-            }
+function resetTestData() {
+LSremove(STORAGE_KEY_STATUS);
+LSremove(STORAGE_KEY_ANSWERS);
+LSremove(STORAGE_KEY_START_TIME);
+LSremove(STORAGE_KEY_END_TIME);
+LSremove(STORAGE_KEY_MARKS);
+LSremove(STORAGE_KEY_SUBMITTED_AT);
+testActive = false;
+if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
+deadline = null;
+userAnswers = {};
+currentQuestionIndex = 0;
+disableTestRestrictions();
+}
 
-            function updateTimerDisplay() {
-                $timerDisplay.textContent = formatTime(timeRemainingSeconds);
-                $timerDisplay.classList.remove('warning-yellow', 'warning-red');
-                if (timeRemainingSeconds <= 300 && timeRemainingSeconds > 0) {
-                    $timerDisplay.classList.add('warning-red');
-                } else if (timeRemainingSeconds <= 600 && timeRemainingSeconds > 0) {
-                    $timerDisplay.classList.add('warning-yellow');
-                }
-            }
+function showPreTest() {
+if ($preTest) $preTest.style.display = 'block';
+if ($test) $test.style.display = 'none';
+if ($results) $results.style.display = 'none';
+if ($timerDisplay) $timerDisplay.style.display = 'none';
+if ($navbarBrand) $navbarBrand.textContent = '📝 MCQ Test';
+if ($heroSetName) $heroSetName.textContent = questionSet.name;
+if ($heroDetails) $heroDetails.textContent = questionSet.details || '';
+if ($heroQCount) $heroQCount.textContent = TOTAL_QUESTIONS;
+if ($heroTime) $heroTime.textContent = `${TOTAL_TIME_MINUTES}:00`;
 
-            function startTimer() {
-                timeRemainingSeconds = TOTAL_TIME_SECONDS;
-                updateTimerDisplay();
-                timerInterval = setInterval(() => {
-                    timeRemainingSeconds--;
-                    updateTimerDisplay();
-                    if (timeRemainingSeconds <= 0) {
-                        clearInterval(timerInterval);
-                        timerInterval = null;
-                        autoSubmit();
-                    }
-                }, 1000);
-            }
+// --- New: Instructions with HTML formatting ---
+if ($heroNote) {
+$heroNote.innerHTML = `
+<div style="text-align:left; max-width:500px; margin:10px auto; font-size:0.9rem; line-height:1.6; background:#4caf50; padding:15px 20px; border-radius:8px; border-left:4px solid #ff9800;">
+<p><strong>📌 Exam Instructions:</strong></p>
+<ul style="list-style:none; padding-left:0; margin:5px 0;">
+<li>✅ Exam will automatically open in full-screen mode.</li>
+<li>✅ You can take this test only once — no re-test allowed.</li>
+<li>✅ Timer will start immediately after clicking "🚀 Start Test".</li>
+<li>✅ Time warnings will be shown at 10 minutes and 5 minutes remaining.</li>
+<li>✅ When time is over, the test will be automatically submitted.</li>
+</ul>
+<p style="margin-top:10px; color:red; font-weight:bold;">⚠️ This test can only be taken once. Make sure you are ready before starting.</p>
+</div>
+`;
+}
 
-            function restoreTimerFromStorage() {
-                const startStr = LSget(STORAGE_KEY_START_TIME);
-                const endStr = LSget(STORAGE_KEY_END_TIME);
-                if (startStr && endStr) {
-                    const start = parseInt(startStr);
-                    const end = parseInt(endStr);
-                    const remaining = Math.floor((end - Date.now()) / 1000);
-                    timeRemainingSeconds = Math.max(0, remaining);
-                    return remaining > 0;
-                }
-                return false;
-            }
+if ($btnStart) {
+$btnStart.disabled = false;
+$btnStart.textContent = '🚀 Start Test';
+}
+disableTestRestrictions();
+}
+function showTestInterface() {
+if ($preTest) $preTest.style.display = 'none';
+if ($test) $test.style.display = 'block';
+if ($results) $results.style.display = 'none';
+if ($timerDisplay) {
+$timerDisplay.style.display = 'inline-block';
+$timerDisplay.textContent = formatTime(TOTAL_TIME_SECONDS);
+}
+if ($navbarBrand) $navbarBrand.textContent = questionSet.name;
+if ($sidebarTotal) $sidebarTotal.textContent = `Total: ${TOTAL_QUESTIONS}`;
+if ($qGrid) {
+$qGrid.innerHTML = '';
+for (let i = 0; i < TOTAL_QUESTIONS; i++) {
+const dot = document.createElement('span');
+dot.className = 'q-dot';
+dot.textContent = i + 1;
+dot.dataset.index = i;
+dot.addEventListener('click', () => {
+currentQuestionIndex = i;
+renderQuestion();
+updateSidebarHighlight();
+});
+$qGrid.appendChild(dot);
+}
+}
+updateSidebarHighlight();
+updateAnsweredCount();
+renderQuestion();
+}
 
-            function startTest() {
-                const status = LSget(STORAGE_KEY_STATUS);
-                if (status === 'completed' || status === 'submitted') {
-                    alert('You have already taken this test. Results are shown below.');
-                    showResults();
-                    return;
-                }
-                if (status === 'in_progress') {
-                    resumeTest();
-                    return;
-                }
-                const now = Date.now();
-                const endTime = now + TOTAL_TIME_SECONDS * 1000;
-                LSset(STORAGE_KEY_STATUS, 'in_progress');
-                LSset(STORAGE_KEY_START_TIME, now.toString());
-                LSset(STORAGE_KEY_END_TIME, endTime.toString());
-                LSset(STORAGE_KEY_ANSWERS, JSON.stringify({}));
-                userAnswers = {};
-                currentQuestionIndex = 0;
-                timeRemainingSeconds = TOTAL_TIME_SECONDS;
-                testActive = true;
-                showTestInterface();
-                startTimer();
-                updateTimerDisplay();
-            }
+function renderQuestion() {
+if (!questionSet || !questionSet.questions) return;
+const q = questionSet.questions[currentQuestionIndex];
+if (!q) return;
+if ($qNumberLabel) $qNumberLabel.textContent = `QUESTION ${currentQuestionIndex + 1} / ${TOTAL_QUESTIONS}`;
+if ($qText) $qText.textContent = q.question;
+if ($optionsList) {
+$optionsList.innerHTML = '';
+const letters = ['A','B','C','D','E','F','G','H'];
+q.options.forEach((opt, idx) => {
+const li = document.createElement('li');
+li.innerHTML = `<span class="option-letter">${letters[idx] || idx+1}</span> <span>${opt}</span>`;
+li.dataset.optionIndex = idx;
+li.addEventListener('click', () => selectOption(idx));
+if (userAnswers[currentQuestionIndex] === idx) li.classList.add('selected');
+$optionsList.appendChild(li);
+});
+}
+if ($btnPrev) $btnPrev.disabled = (currentQuestionIndex === 0);
+if ($btnNext) $btnNext.disabled = (currentQuestionIndex >= TOTAL_QUESTIONS - 1);
+updateSidebarHighlight();
+updateAnsweredCount();
+}
 
-            function resumeTest() {
-                const ans = LSget(STORAGE_KEY_ANSWERS);
-                if (ans) { try { userAnswers = JSON.parse(ans); } catch(e) { userAnswers = {}; } }
-                const hasTime = restoreTimerFromStorage();
-                currentQuestionIndex = 0;
-                testActive = true;
-                showTestInterface();
-                updateTimerDisplay();
-                if (hasTime && timeRemainingSeconds > 0) {
-                    startTimer();
-                } else if (timeRemainingSeconds <= 0) {
-                    timeRemainingSeconds = 0;
-                    updateTimerDisplay();
-                    autoSubmit();
-                }
-            }
+function selectOption(idx) {
+if (!testActive) return;
+userAnswers[currentQuestionIndex] = idx;
+LSset(STORAGE_KEY_ANSWERS, JSON.stringify(userAnswers));
+renderQuestion();
+}
 
-            function submitTest() {
-                if (!testActive) return;
-                testActive = false;
-                if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
-                const marks = calcMarks();
-                const now = Date.now();
-                const startStr = LSget(STORAGE_KEY_START_TIME);
-                const start = startStr ? parseInt(startStr) : now;
-                const timeTaken = Math.floor((now - start) / 1000);
-                LSset(STORAGE_KEY_STATUS, 'completed');
-                LSset(STORAGE_KEY_MARKS, marks.toString());
-                LSset(STORAGE_KEY_SUBMITTED_AT, now.toString());
-                LSset(STORAGE_KEY_ANSWERS, JSON.stringify(userAnswers));
-                $timerDisplay.style.display = 'none';
-                hideWarningModal();
-                showResults(marks, timeTaken);
-            }
+function navigateQuestion(dir) {
+const newIdx = currentQuestionIndex + dir;
+if (newIdx >= 0 && newIdx < TOTAL_QUESTIONS) {
+currentQuestionIndex = newIdx;
+renderQuestion();
+}
+}
 
-            function autoSubmit() {
-                if (!testActive && LSget(STORAGE_KEY_STATUS) === 'completed') return;
-                testActive = false;
-                if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
-                timeRemainingSeconds = 0;
-                updateTimerDisplay();
-                const marks = calcMarks();
-                const now = Date.now();
-                const startStr = LSget(STORAGE_KEY_START_TIME);
-                const start = startStr ? parseInt(startStr) : now;
-                const timeTaken = Math.floor((now - start) / 1000);
-                LSset(STORAGE_KEY_STATUS, 'completed');
-                LSset(STORAGE_KEY_MARKS, marks.toString());
-                LSset(STORAGE_KEY_SUBMITTED_AT, now.toString());
-                LSset(STORAGE_KEY_ANSWERS, JSON.stringify(userAnswers));
-                $timerDisplay.style.display = 'none';
-                showResults(marks, timeTaken, true);
-            }
+function updateSidebarHighlight() {
+if (!$qGrid) return;
+const dots = $qGrid.querySelectorAll('.q-dot');
+dots.forEach(dot => {
+const i = parseInt(dot.dataset.index);
+dot.classList.remove('answered', 'current');
+if (userAnswers[i] !== undefined && userAnswers[i] !== null) dot.classList.add('answered');
+if (i === currentQuestionIndex) dot.classList.add('current');
+});
+}
 
-            function showResults(marksOverride, timeOverride, auto = false) {
-                $preTest.style.display = 'none';
-                $test.style.display = 'none';
-                $results.style.display = 'block';
-                $timerDisplay.style.display = 'none';
-                $navbarBrand.textContent = '📊 Results - ' + questionSet.name;
-                const marks = marksOverride !== undefined ? marksOverride : parseInt(LSget(STORAGE_KEY_MARKS) || '0');
-                const submittedStr = LSget(STORAGE_KEY_SUBMITTED_AT);
-                const startStr = LSget(STORAGE_KEY_START_TIME);
-                let timeTaken = timeOverride;
-                if (timeTaken === undefined && submittedStr && startStr) {
-                    timeTaken = Math.floor((parseInt(submittedStr) - parseInt(startStr)) / 1000);
-                }
-                if (timeTaken === undefined || timeTaken < 0) timeTaken = 0;
-                const ans = LSget(STORAGE_KEY_ANSWERS);
-                if (ans) { try { userAnswers = JSON.parse(ans); } catch(e) { userAnswers = {}; } }
-                const percent = TOTAL_QUESTIONS > 0 ? Math.round((marks / TOTAL_QUESTIONS) * 100) : 0;
-                $resultsSetName.textContent = questionSet.name;
-                $resultsScore.textContent = marks;
-                $resultsDenom.textContent = `/ ${TOTAL_QUESTIONS}`;
-                $resultsPercentage.textContent = `${percent}%`;
-                $resultsTimeTaken.textContent = `⏱️ Time taken: ${formatTimeLong(timeTaken)}` + (auto ? ' (Auto-submitted)' : '');
-                $resultsDetail.innerHTML = '';
-                const letters = ['A','B','C','D','E','F','G','H'];
-                questionSet.questions.forEach((q, idx) => {
-                    const userAns = userAnswers[idx];
-                    const correctAns = q.correct;
-                    const isCorrect = (userAns === correctAns);
-                    const wasAnswered = (userAns !== undefined && userAns !== null);
-                    const card = document.createElement('div');
-                    card.className = 'result-card';
-                    if (wasAnswered) card.classList.add(isCorrect ? 'correct' : 'incorrect');
-                    let badge = '';
-                    if (!wasAnswered) {
-                        badge = '<span class="r-badge" style="background:#fff3e0;color:#E65100;">⚠️ NOT ANSWERED</span>';
-                    } else if (isCorrect) {
-                        badge = '<span class="r-badge correct-badge">✅ CORRECT</span>';
-                    } else {
-                        badge = '<span class="r-badge incorrect-badge">❌ INCORRECT</span>';
-                    }
-                    let optsHTML = '';
-                    q.options.forEach((opt, optIdx) => {
-                        let liClass = '';
-                        if (optIdx === correctAns && optIdx === userAns) liClass = 'both-correct';
-                        else if (optIdx === correctAns) liClass = 'correct-answer';
-                        else if (optIdx === userAns && !isCorrect) liClass = 'user-answer';
-                        const label = letters[optIdx] || (optIdx+1);
-                        let prefix = '';
-                        if (optIdx === correctAns && optIdx === userAns) prefix = '✅ ';
-                        else if (optIdx === correctAns) prefix = '✅ ';
-                        else if (optIdx === userAns && !isCorrect) prefix = '❌ ';
-                        optsHTML += `<li class="${liClass}"><strong>${label}.</strong> ${prefix}${opt}</li>`;
-                    });
-                    card.innerHTML = `${badge}<div class="r-q-text">Q${idx+1}: ${q.question}</div><ul class="r-options">${optsHTML}</ul>`;
-                    $resultsDetail.appendChild(card);
-                });
-                $results.scrollIntoView({ behavior: 'smooth' });
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
+function updateAnsweredCount() {
+if ($sidebarAnsweredNum) $sidebarAnsweredNum.textContent = answeredCount();
+}
 
-            // Event listeners
-            $btnStart.addEventListener('click', startTest);
-            $btnPrev.addEventListener('click', () => navigateQuestion(-1));
-            $btnNext.addEventListener('click', () => navigateQuestion(1));
+// --- Main actions ---
+function startTest() {
+console.log('startTest called');
+try {
+const status = LSget(STORAGE_KEY_STATUS);
+if (status === 'completed' || status === 'submitted') {
+alert('You have already taken this test. Results are shown below.');
+showResults();
+return;
+}
+if (status === 'in_progress') {
+resumeTest();
+return;
+}
+const now = Date.now();
+deadline = now + TOTAL_TIME_SECONDS * 1000;
+LSset(STORAGE_KEY_STATUS, 'in_progress');
+LSset(STORAGE_KEY_START_TIME, now.toString());
+LSset(STORAGE_KEY_END_TIME, deadline.toString());
+LSset(STORAGE_KEY_ANSWERS, JSON.stringify({}));
+userAnswers = {};
+currentQuestionIndex = 0;
+testActive = true;
+enableTestRestrictions();
+requestFullscreen();
+showTestInterface();
+startTimerWithDeadline();
+console.log('Test started successfully');
+} catch(e) {
+console.error('Error in startTest:', e);
+alert('An error occurred while starting the test. Please check the console for details.');
+}
+}
 
-            $btnSubmit.addEventListener('click', function() {
-                if (!testActive) return;
-                const unanswered = TOTAL_QUESTIONS - answeredCount();
-                if (unanswered > 0) {
-                    showWarningModal();
-                } else {
-                    submitTest();
-                }
-            });
+function resumeTest() {
+const ans = LSget(STORAGE_KEY_ANSWERS);
+if (ans) { try { userAnswers = JSON.parse(ans); } catch(e) { userAnswers = {}; } }
+const hasTime = resumeTimerFromStoredDeadline();
+testActive = true;
+enableTestRestrictions();
+showTestInterface();
+if (!hasTime) {
+autoSubmit();
+}
+}
 
-            // Modal button handlers
-            $btnModalCancel.addEventListener('click', hideWarningModal);
-            $btnModalSubmit.addEventListener('click', function() {
-                submitTest();
-            });
+function submitTest() {
+if (!testActive) return;
+testActive = false;
+if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
+disableTestRestrictions();
+const marks = calcMarks();
+const now = Date.now();
+const startStr = LSget(STORAGE_KEY_START_TIME);
+const start = startStr ? parseInt(startStr) : now;
+const timeTaken = Math.floor((now - start) / 1000);
+LSset(STORAGE_KEY_STATUS, 'completed');
+LSset(STORAGE_KEY_MARKS, marks.toString());
+LSset(STORAGE_KEY_SUBMITTED_AT, now.toString());
+LSset(STORAGE_KEY_ANSWERS, JSON.stringify(userAnswers));
+if ($timerDisplay) $timerDisplay.style.display = 'none';
+hideWarningModal();
+showResults(marks, timeTaken);
+}
 
-            // Close modal on overlay click
-            $warningModal.addEventListener('click', function(e) {
-                if (e.target === $warningModal) hideWarningModal();
-            });
+function autoSubmit() {
+if (!testActive && LSget(STORAGE_KEY_STATUS) === 'completed') return;
+testActive = false;
+if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
+disableTestRestrictions();
+const marks = calcMarks();
+const now = Date.now();
+const startStr = LSget(STORAGE_KEY_START_TIME);
+const start = startStr ? parseInt(startStr) : now;
+const timeTaken = Math.floor((now - start) / 1000);
+LSset(STORAGE_KEY_STATUS, 'completed');
+LSset(STORAGE_KEY_MARKS, marks.toString());
+LSset(STORAGE_KEY_SUBMITTED_AT, now.toString());
+LSset(STORAGE_KEY_ANSWERS, JSON.stringify(userAnswers));
+if ($timerDisplay) $timerDisplay.style.display = 'none';
+showResults(marks, timeTaken, true);
+}
 
-            // Close modal on Escape key
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && $warningModal.style.display === 'flex') {
-                    hideWarningModal();
-                }
-            });
+function showResults(marksOverride, timeOverride, auto = false) {
+if ($preTest) $preTest.style.display = 'none';
+if ($test) $test.style.display = 'none';
+if ($results) $results.style.display = 'block';
+if ($timerDisplay) $timerDisplay.style.display = 'none';
+if ($navbarBrand) $navbarBrand.textContent = '📊 Results - ' + questionSet.name;
+const marks = marksOverride !== undefined ? marksOverride : parseInt(LSget(STORAGE_KEY_MARKS) || '0');
+const submittedStr = LSget(STORAGE_KEY_SUBMITTED_AT);
+const startStr = LSget(STORAGE_KEY_START_TIME);
+let timeTaken = timeOverride;
+if (timeTaken === undefined && submittedStr && startStr) {
+timeTaken = Math.floor((parseInt(submittedStr) - parseInt(startStr)) / 1000);
+}
+if (timeTaken === undefined || timeTaken < 0) timeTaken = 0;
+const ans = LSget(STORAGE_KEY_ANSWERS);
+if (ans) { try { userAnswers = JSON.parse(ans); } catch(e) { userAnswers = {}; } }
+const percent = TOTAL_QUESTIONS > 0 ? Math.round((marks / TOTAL_QUESTIONS) * 100) : 0;
+if ($resultsSetName) $resultsSetName.textContent = questionSet.name;
+if ($resultsScore) $resultsScore.textContent = marks;
+if ($resultsDenom) $resultsDenom.textContent = `/ ${TOTAL_QUESTIONS}`;
+if ($resultsPercentage) $resultsPercentage.textContent = `${percent}%`;
+if ($resultsTimeTaken) $resultsTimeTaken.textContent = `⏱️ Time taken: ${formatTimeLong(timeTaken)}` + (auto ? ' (Auto-submitted)' : '');
+if ($resultsDetail) {
+$resultsDetail.innerHTML = '';
+const letters = ['A','B','C','D','E','F','G','H'];
+questionSet.questions.forEach((q, idx) => {
+const userAns = userAnswers[idx];
+const correctAns = q.correct;
+const isCorrect = (userAns === correctAns);
+const wasAnswered = (userAns !== undefined && userAns !== null);
+const card = document.createElement('div');
+card.className = 'result-card';
+if (wasAnswered) card.classList.add(isCorrect ? 'correct' : 'incorrect');
+let badge = '';
+if (!wasAnswered) badge = '<span class="r-badge" style="background:#fff3e0;color:#E65100;">⚠️ NOT ANSWERED</span>';
+else if (isCorrect) badge = '<span class="r-badge correct-badge">✅ CORRECT</span>';
+else badge = '<span class="r-badge incorrect-badge">❌ INCORRECT</span>';
+let optsHTML = '';
+q.options.forEach((opt, optIdx) => {
+let liClass = '';
+if (optIdx === correctAns && optIdx === userAns) liClass = 'both-correct';
+else if (optIdx === correctAns) liClass = 'correct-answer';
+else if (optIdx === userAns && !isCorrect) liClass = 'user-answer';
+const label = letters[optIdx] || (optIdx+1);
+let prefix = '';
+if (optIdx === correctAns && optIdx === userAns) prefix = '✅ ';
+else if (optIdx === correctAns) prefix = '✅ ';
+else if (optIdx === userAns && !isCorrect) prefix = '❌ ';
+optsHTML += `<li class="${liClass}"><strong>${label}.</strong> ${prefix}${opt}</li>`;
+});
+card.innerHTML = `${badge}<div class="r-q-text">Q${idx+1}: ${q.question}</div><ul class="r-options">${optsHTML}</ul>`;
+$resultsDetail.appendChild(card);
+});
+}
+if ($results) $results.scrollIntoView({ behavior: 'smooth' });
+window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 
-            // Keyboard shortcuts for test
-            document.addEventListener('keydown', function(e) {
-                if (!testActive) return;
-                // Ignore if modal is open
-                if ($warningModal.style.display === 'flex') return;
-                if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); navigateQuestion(-1); }
-                else if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); navigateQuestion(1); }
-                else if (e.key >= '1' && e.key <= '9') {
-                    const idx = parseInt(e.key) - 1;
-                    if (idx < questionSet.questions[currentQuestionIndex].options.length) {
-                        e.preventDefault();
-                        selectOption(idx);
-                    }
-                }
-                else if (e.key === 'a' || e.key === 'A') selectOption(0);
-                else if (e.key === 'b' || e.key === 'B') selectOption(1);
-                else if (e.key === 'c' || e.key === 'C') selectOption(2);
-                else if (e.key === 'd' || e.key === 'D') selectOption(3);
-                else if (e.key === 'e' || e.key === 'E') selectOption(4);
-            });
+function showWarningModal() {
+const unanswered = TOTAL_QUESTIONS - answeredCount();
+if ($modalUnansweredCount) $modalUnansweredCount.textContent = `${unanswered} unanswered question(s)`;
+if ($warningModal) {
+$warningModal.style.display = 'flex';
+document.body.style.overflow = 'hidden';
+}
+}
 
-            // Init
-            function init() {
-                const status = LSget(STORAGE_KEY_STATUS);
-                if (status === 'completed' || status === 'submitted') {
-                    const ans = LSget(STORAGE_KEY_ANSWERS);
-                    if (ans) { try { userAnswers = JSON.parse(ans); } catch(e) { userAnswers = {}; } }
-                    showResults();
-                } else if (status === 'in_progress') {
-                    const hasTime = restoreTimerFromStorage();
-                    const ans = LSget(STORAGE_KEY_ANSWERS);
-                    if (ans) { try { userAnswers = JSON.parse(ans); } catch(e) { userAnswers = {}; } }
-                    if (hasTime && timeRemainingSeconds > 0) {
-                        currentQuestionIndex = 0;
-                        testActive = true;
-                        showTestInterface();
-                        updateTimerDisplay();
-                        startTimer();
-                    } else {
-                        timeRemainingSeconds = 0;
-                        testActive = true;
-                        showTestInterface();
-                        updateTimerDisplay();
-                        autoSubmit();
-                    }
-                } else {
-                    showPreTest();
-                }
-            }
-            init();
-        })();
-    </script>
-     <script src="/js/logo.js"></script>
-  <script src="/js/text-protect.js" defer></script>
+function hideWarningModal() {
+if ($warningModal) {
+$warningModal.style.display = 'none';
+document.body.style.overflow = '';
+}
+}
+
+// URL-based reset
+function checkAndApplyReset() {
+const url = new URL(window.location.href);
+if (url.searchParams.has('reset') && url.searchParams.get('reset') === '1') {
+resetTestData();
+url.searchParams.delete('reset');
+window.location.replace(url.toString());
+return true;
+}
+return false;
+}
+
+// --- Event Listeners (with existence checks) ---
+if ($btnStart) $btnStart.addEventListener('click', startTest);
+else console.error('Start button not found');
+
+if ($btnPrev) $btnPrev.addEventListener('click', () => navigateQuestion(-1));
+if ($btnNext) $btnNext.addEventListener('click', () => navigateQuestion(1));
+if ($btnSubmit) {
+$btnSubmit.addEventListener('click', function() {
+if (!testActive) return;
+const unanswered = TOTAL_QUESTIONS - answeredCount();
+if (unanswered > 0) {
+showWarningModal();
+} else {
+submitTest();
+}
+});
+}
+if ($btnModalCancel) $btnModalCancel.addEventListener('click', hideWarningModal);
+if ($btnModalSubmit) $btnModalSubmit.addEventListener('click', function() { submitTest(); });
+if ($warningModal) {
+$warningModal.addEventListener('click', function(e) {
+if (e.target === $warningModal) hideWarningModal();
+});
+}
+
+document.addEventListener('keydown', function(e) {
+if (e.key === 'Escape' && $warningModal && $warningModal.style.display === 'flex') {
+hideWarningModal();
+}
+});
+
+document.addEventListener('keydown', function(e) {
+if (!testActive) return;
+if ($warningModal && $warningModal.style.display === 'flex') return;
+if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); navigateQuestion(-1); }
+else if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); navigateQuestion(1); }
+else if (e.key >= '1' && e.key <= '9') {
+const idx = parseInt(e.key) - 1;
+if (idx < questionSet.questions[currentQuestionIndex].options.length) {
+e.preventDefault();
+selectOption(idx);
+}
+}
+else if (e.key === 'a' || e.key === 'A') selectOption(0);
+else if (e.key === 'b' || e.key === 'B') selectOption(1);
+else if (e.key === 'c' || e.key === 'C') selectOption(2);
+else if (e.key === 'd' || e.key === 'D') selectOption(3);
+else if (e.key === 'e' || e.key === 'E') selectOption(4);
+});
+
+// --- Initialisation ---
+function init() {
+if (checkAndApplyReset()) return;
+const status = LSget(STORAGE_KEY_STATUS);
+if (status === 'completed' || status === 'submitted') {
+const ans = LSget(STORAGE_KEY_ANSWERS);
+if (ans) { try { userAnswers = JSON.parse(ans); } catch(e) { userAnswers = {}; } }
+showResults();
+} else if (status === 'in_progress') {
+const ans = LSget(STORAGE_KEY_ANSWERS);
+if (ans) { try { userAnswers = JSON.parse(ans); } catch(e) { userAnswers = {}; } }
+const hasTime = resumeTimerFromStoredDeadline();
+if (hasTime) {
+testActive = true;
+enableTestRestrictions();
+showTestInterface();
+} else {
+testActive = true;
+enableTestRestrictions();
+showTestInterface();
+autoSubmit();
+}
+} else {
+showPreTest();
+}
+}
+
+// Make sure DOM is fully loaded before initialising
+if (document.readyState === 'loading') {
+document.addEventListener('DOMContentLoaded', init);
+} else {
+init();
+}
+})();
+</script>
 </body>
 </html>

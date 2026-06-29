@@ -330,25 +330,40 @@ questions: [
     disableTestRestrictions();
   }
 
-  // --- UI Functions with null checks ---
   function showPreTest() {
-    if ($preTest) $preTest.style.display = 'block';
-    if ($test) $test.style.display = 'none';
-    if ($results) $results.style.display = 'none';
-    if ($timerDisplay) $timerDisplay.style.display = 'none';
-    if ($navbarBrand) $navbarBrand.textContent = '📝 MCQ Test';
-    if ($heroSetName) $heroSetName.textContent = questionSet.name;
-    if ($heroDetails) $heroDetails.textContent = questionSet.details || '';
-    if ($heroQCount) $heroQCount.textContent = TOTAL_QUESTIONS;
-    if ($heroTime) $heroTime.textContent = `${TOTAL_TIME_MINUTES}:00`;
-    if ($heroNote) $heroNote.textContent = '⚠️ This test can only be taken once. Make sure you are ready before starting.';
-    if ($btnStart) {
-      $btnStart.disabled = false;
-      $btnStart.textContent = '🚀 Start Test';
-    }
-    disableTestRestrictions();
+  if ($preTest) $preTest.style.display = 'block';
+  if ($test) $test.style.display = 'none';
+  if ($results) $results.style.display = 'none';
+  if ($timerDisplay) $timerDisplay.style.display = 'none';
+  if ($navbarBrand) $navbarBrand.textContent = '📝 MCQ Test';
+  if ($heroSetName) $heroSetName.textContent = questionSet.name;
+  if ($heroDetails) $heroDetails.textContent = questionSet.details || '';
+  if ($heroQCount) $heroQCount.textContent = TOTAL_QUESTIONS;
+  if ($heroTime) $heroTime.textContent = `${TOTAL_TIME_MINUTES}:00`;
+  
+  // --- New: Instructions with HTML formatting ---
+  if ($heroNote) {
+    $heroNote.innerHTML = `
+      <div style="text-align:left; max-width:500px; margin:10px auto; font-size:0.9rem; line-height:1.6; background:#f8f9fa; padding:15px 20px; border-radius:8px; border-left:4px solid #ff9800;">
+        <p><strong>📌 Exam Instructions:</strong></p>
+        <ul style="list-style:none; padding-left:0; margin:5px 0;">
+          <li>✅ Exam will automatically open in full-screen mode.</li>
+          <li>✅ You can take this test only once — no re-test allowed.</li>
+          <li>✅ Timer will start immediately after clicking "🚀 Start Test".</li>
+          <li>✅ Time warnings will be shown at 10 minutes and 5 minutes remaining.</li>
+          <li>✅ When time is over, the test will be automatically submitted.</li>
+        </ul>
+        <p style="margin-top:10px; color:#d32f2f; font-weight:bold;">⚠️ This test can only be taken once. Make sure you are ready before starting.</p>
+      </div>
+    `;
   }
 
+  if ($btnStart) {
+    $btnStart.disabled = false;
+    $btnStart.textContent = '🚀 Start Test';
+  }
+  disableTestRestrictions();
+}
   function showTestInterface() {
     if ($preTest) $preTest.style.display = 'none';
     if ($test) $test.style.display = 'block';

@@ -48,8 +48,11 @@
       const link = `https://arunpanthi.com.np/Psc-preparation/Mock-Test/General/Set/${i}`;
 
       article.innerHTML = `
+       <img src="https://arunpanthi.com.np/Photos/logo.png" 
+           alt="Set No: ${i}" width="150" height="150">
+     
         <h2>Set No: ${i}</h2>
-        <a href="${link}" class="test-button">Start Exam</a>
+        <a href="${link}" class="cta-button">Start Exam</a>
       `;
       bookList.appendChild(article);
     }

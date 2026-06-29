@@ -34,7 +34,6 @@ html {
     scroll-behavior: smooth;
 }
 
-/* ===== BODY FLEX LAYOUT ===== */
 body {
     font-family: var(--font-family);
     background: #f0f2f5;
@@ -42,26 +41,71 @@ body {
     line-height: 1.6;
     min-height: 100vh;
     margin: 0;
-    padding: 0; /* REMOVED padding so full-width elements touch edges */
+    padding: 0;
     display: flex;
     flex-direction: column;
     align-items: center; /* Keeps 60% elements centered */
 }
 
 /* ============================================================
-   ✅ 100% FULL-WIDTH ELEMENTS (Navbar, Hero, Social, Footer)
+   ✅ FULL‑WIDTH ELEMENTS (Navbar, Hero, Social, Footer, Section)
    ============================================================ */
 .navbar,
+#navbar,
 .hero,
 .social-media,
-footer {
-    width: 100%;           /* Forces full viewport width */
-    align-self: stretch;   /* Overrides body's 'align-items: center' */
+#social-section,
+footer,
+#footer,
+.section {
+    width: 100% !important;          /* Force full viewport width */
+    max-width: 100% !important;      /* Remove any max‑width limit */
+    align-self: stretch !important;  /* Override body's align‑items: center */
+    flex-shrink: 0 !important;       /* Prevent shrinking */
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    border-radius: 0 !important;     /* Remove rounding for full‑width */
 }
 
-/* Gap between Navbar and Hero (as you requested) */
-.navbar {
-    margin-bottom: 25px;
+/* Gap between navbar and hero */
+.navbar,
+#navbar {
+    margin-bottom: 25px !important;
+}
+
+/* ===== HERO SECTION STYLES ===== */
+.hero {
+    background-color: var(--green-400) !important;
+    color: #fff !important;
+    padding: 40px 20px !important;
+    text-align: center !important;
+}
+.hero h1 {
+    font-size: 36px !important;
+    margin: 10px 0 !important;
+    color: white !important;
+}
+.hero p {
+    margin: 10px 0 !important;
+}
+
+/* ===== SOCIAL MEDIA ===== */
+.social-media,
+#social-section {
+    background: linear-gradient(135deg, var(--green-400), var(--green-600)) !important;
+    color: #fff !important;
+    padding: 30px 20px !important;
+    text-align: center !important;
+}
+
+/* ===== FOOTER ===== */
+footer,
+#footer {
+    background-color: var(--green-400) !important;
+    color: #fff !important;
+    text-align: center !important;
+    padding: 20px !important;
+    margin-top: 20px !important;
 }
 
 /* ============================================================
@@ -69,337 +113,265 @@ footer {
    ============================================================ */
 .container,
 .faq {
-    width: 60%;            /* Exactly 60% as requested */
-    max-width: 1200px;     /* Prevents it from becoming too wide on huge monitors */
-    margin: 20px auto 30px; /* Centers horizontally */
-    background: var(--surface);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-2);
-    padding: 32px 40px 48px;
-    transition: var(--transition-medium);
-}
-
-/* Slight padding adjustment for FAQ */
-.faq {
-        display: none;
-    padding: 32px 40px 40px;
+    width: 60% !important;
+    max-width: 1200px !important;
+    margin: 20px auto 30px !important;
+    background: var(--surface) !important;
+    border-radius: var(--radius-lg) !important;
+    box-shadow: var(--shadow-2) !important;
+    padding: 32px 40px 48px !important;
+    transition: var(--transition-medium) !important;
 }
 
 /* ===== HEADINGS ===== */
 .container h1,
 .faq h2 {
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--green-700);
-    text-align: center;
-    letter-spacing: -0.5px;
-    margin-bottom: 8px;
-    position: relative;
+    font-size: 2rem !important;
+    font-weight: 700 !important;
+    color: var(--green-700) !important;
+    text-align: center !important;
+    letter-spacing: -0.5px !important;
+    margin-bottom: 8px !important;
+    position: relative !important;
 }
 
 .container h1::after,
 .faq h2::after {
-    content: '';
-    display: block;
-    width: 80px;
-    height: 4px;
-    background: var(--green-400);
-    border-radius: 4px;
-    margin: 10px auto 0;
+    content: '' !important;
+    display: block !important;
+    width: 80px !important;
+    height: 4px !important;
+    background: var(--green-400) !important;
+    border-radius: 4px !important;
+    margin: 10px auto 0 !important;
 }
 
 .container>p {
-    text-align: center;
-    color: var(--muted);
-    margin-bottom: 30px;
-    font-size: 1rem;
+    text-align: center !important;
+    color: var(--muted) !important;
+    margin-bottom: 30px !important;
+    font-size: 1rem !important;
 }
 
-/* ===== BOOK LIST (GRID) ===== */
+/* ============================================================
+   ✅ BOOK LIST – EXACTLY 2 CARDS PER ROW (FIXED)
+   ============================================================ */
 .book-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 24px;
-    margin-top: 10px;
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important; /* ⬅️ EXACTLY 2 COLUMNS */
+    gap: 24px !important;
+    margin-top: 10px !important;
 }
 
 /* ===== BOOK CARD ===== */
 .book {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-md);
-    padding: 24px 18px 20px;
-    text-align: center;
-    box-shadow: var(--shadow-1);
-    transition: transform var(--transition-fast), box-shadow var(--transition-medium), border-color var(--transition-fast);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 180px;
-    position: relative;
-    overflow: hidden;
+    background: var(--card-bg) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: var(--radius-md) !important;
+    padding: 24px 18px 20px !important;
+    text-align: center !important;
+    box-shadow: var(--shadow-1) !important;
+    transition: transform var(--transition-fast), box-shadow var(--transition-medium), border-color var(--transition-fast) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 180px !important;
+    position: relative !important;
+    overflow: hidden !important;
 }
 
 .book::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: var(--green-400);
-    opacity: 0;
-    transition: opacity var(--transition-fast);
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    height: 4px !important;
+    background: var(--green-400) !important;
+    opacity: 0 !important;
+    transition: opacity var(--transition-fast) !important;
 }
 
 .book:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-3);
-    border-color: var(--green-400);
+    transform: translateY(-5px) !important;
+    box-shadow: var(--shadow-3) !important;
+    border-color: var(--green-400) !important;
 }
 
 .book:hover::before {
-    opacity: 1;
+    opacity: 1 !important;
 }
 
 /* ============================================================
-   ✅ CIRCULAR IMAGE WITH BORDER (FIXED)
+   ✅ CIRCULAR IMAGE WITH BORDER
    ============================================================ */
 .book img {
-    width: 120px;
-    height: 120px;
-    object-fit: cover;        /* Crops image perfectly to fill the circle */
-    border-radius: 50%;       /* Makes it a perfect circle */
-    border: 4px solid var(--green-600);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.10);
-    display: block;
-    margin: 0 auto 15px;
-    background: #ffffff;
-    padding: 4px;             /* Nice inset effect between image and border */
-    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    width: 120px !important;
+    height: 120px !important;
+    object-fit: cover !important;
+    border-radius: 50% !important;
+    border: 4px solid var(--green-600) !important;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.10) !important;
+    display: block !important;
+    margin: 0 auto 15px !important;
+    background: #ffffff !important;
+    padding: 4px !important;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast) !important;
 }
 
 .book img:hover {
-    transform: scale(1.06);
-    box-shadow: 0 6px 16px rgba(46, 125, 50, 0.25);
+    transform: scale(1.06) !important;
+    box-shadow: 0 6px 16px rgba(46, 125, 50, 0.25) !important;
 }
 
 /* ===== BOOK TITLE & BUTTON ===== */
 .book h2 {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--green-700);
-    margin-bottom: 14px;
-    letter-spacing: -0.3px;
+    font-size: 1.25rem !important;
+    font-weight: 700 !important;
+    color: var(--green-700) !important;
+    margin-bottom: 14px !important;
+    letter-spacing: -0.3px !important;
 }
 
-/* Matches your HTML class="cta-button" */
 .book .cta-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 10px 28px;
-    border-radius: 30px;
-    font-weight: 600;
-    font-size: 0.85rem;
-    background: var(--green-600);
-    color: #ffffff;
-    border: none;
-    cursor: pointer;
-    transition: background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
-    text-decoration: none;
-    font-family: inherit;
-    line-height: 1.4;
-    width: 100%;
-    max-width: 160px;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    padding: 10px 28px !important;
+    border-radius: 30px !important;
+    font-weight: 600 !important;
+    font-size: 0.85rem !important;
+    background: var(--green-600) !important;
+    color: #ffffff !important;
+    border: none !important;
+    cursor: pointer !important;
+    transition: background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast) !important;
+    text-decoration: none !important;
+    font-family: inherit !important;
+    line-height: 1.4 !important;
+    width: 100% !important;
+    max-width: 160px !important;
 }
 
 .book .cta-button:hover {
-    background: var(--green-700);
-    box-shadow: 0 4px 14px rgba(46, 125, 50, 0.35);
-    transform: scale(1.02);
+    background: var(--green-700) !important;
+    box-shadow: 0 4px 14px rgba(46, 125, 50, 0.35) !important;
+    transform: scale(1.02) !important;
 }
 
 .book .cta-button:active {
-    transform: scale(0.96);
+    transform: scale(0.96) !important;
 }
 
 .book .cta-button i {
-    font-size: 0.9rem;
-}
-
-/* ===== HERO SECTION (already full width, but ensure inner content is readable) ===== */
-.hero {
-    background-color: var(--green-400);
-    color: #fff;
-    padding: 40px 20px;
-    text-align: center;
-}
-.hero h1 {
-    font-size: 36px;
-    margin: 10px 0;
-    color: white;
-}
-.hero p {
-    margin: 10px 0;
-}
-
-/* ===== FAQ DETAILS ===== */
-.faq details {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-md);
-    padding: 14px 20px;
-    margin-bottom: 12px;
-    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
-    cursor: pointer;
-}
-
-.faq details:hover {
-    border-color: var(--green-400);
-    box-shadow: var(--shadow-1);
-}
-
-.faq details:last-child {
-    margin-bottom: 0;
-}
-
-.faq summary {
-    font-weight: 600;
-    font-size: 1rem;
-    color: #1a1a1a;
-    list-style: none;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    cursor: pointer;
-    user-select: none;
-}
-
-.faq summary::-webkit-details-marker {
-    display: none;
-}
-
-.faq summary::before {
-    content: '\f0fe';
-    font-family: 'Font Awesome 6 Free';
-    font-weight: 400;
-    font-size: 1.1rem;
-    color: var(--green-600);
-    transition: transform var(--transition-fast);
-}
-
-.faq details[open] summary::before {
-    content: '\f146';
-    font-weight: 900;
-}
-
-.faq details p {
-    margin-top: 12px;
-    padding-top: 12px;
-    border-top: 1px solid var(--border);
-    color: var(--muted-2);
-    font-size: 0.95rem;
-    line-height: 1.7;
-    padding-left: 4px;
+    font-size: 0.9rem !important;
 }
 
 /* ============================================================
    RESPONSIVE BREAKPOINTS
    ============================================================ */
+
+/* Tablets and smaller */
 @media (max-width: 768px) {
     .container,
     .faq {
-        width: 92%;          /* Wider on tablets so text isn't squished */
-        padding: 20px 16px 32px;
-        border-radius: var(--radius-md);
+        width: 92% !important;
+        padding: 20px 16px 32px !important;
+        border-radius: var(--radius-md) !important;
     }
 
     .container h1,
     .faq h2 {
-        font-size: 1.5rem;
+        font-size: 1.5rem !important;
     }
 
+    /* Still exactly 2 columns on tablets */
     .book-list {
-        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-        gap: 16px;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 16px !important;
     }
 
     .book {
-        min-height: 150px;
-        padding: 18px 14px 16px;
+        min-height: 150px !important;
+        padding: 18px 14px 16px !important;
     }
 
     .book h2 {
-        font-size: 1.05rem;
+        font-size: 1.05rem !important;
     }
 
     .book img {
-        width: 90px;
-        height: 90px;
+        width: 90px !important;
+        height: 90px !important;
     }
 
     .book .cta-button {
-        font-size: 0.78rem;
-        padding: 8px 18px;
-        max-width: 140px;
+        font-size: 0.78rem !important;
+        padding: 8px 18px !important;
+        max-width: 140px !important;
     }
 
-    .faq {
-        padding: 20px 16px 28px;
-    }
-
-    .faq h2 {
-        font-size: 1.3rem;
-    }
-
-    .faq details {
-        padding: 12px 16px;
+    .hero h1 {
+        font-size: 28px !important;
     }
 }
 
+/* Small phones – still 2 columns, but we reduce sizes */
 @media (max-width: 480px) {
     .book-list {
-        grid-template-columns: 1fr 1fr;
-        gap: 12px;
+        grid-template-columns: repeat(2, 1fr) !important; /* Keeps exactly 2 */
+        gap: 12px !important;
     }
 
     .book {
-        min-height: 130px;
-        padding: 14px 10px 12px;
+        min-height: 130px !important;
+        padding: 14px 10px 12px !important;
     }
 
     .book h2 {
-        font-size: 0.9rem;
-        margin-bottom: 10px;
+        font-size: 0.85rem !important; /* Smaller text to fit 2 columns */
+        margin-bottom: 10px !important;
     }
 
     .book img {
-        width: 70px;
-        height: 70px;
-        border-width: 3px;
+        width: 60px !important;  /* Smaller image on very small screens */
+        height: 60px !important;
+        border-width: 3px !important;
+        margin-bottom: 10px !important;
     }
 
     .book .cta-button {
-        font-size: 0.65rem;
-        padding: 5px 12px;
-        max-width: 100px;
+        font-size: 0.6rem !important;
+        padding: 4px 10px !important;
+        max-width: 90px !important;
     }
 
     .container h1,
     .faq h2 {
-        font-size: 1.25rem;
+        font-size: 1.25rem !important;
     }
 
-    .faq summary {
-        font-size: 0.9rem;
+    .hero h1 {
+        font-size: 22px !important;
     }
 }
 
+/* For extremely tiny screens (e.g., 320px) you may want 1 column – 
+   but since you said "only two cardview", I kept 2 columns everywhere. 
+   If text gets too squished, you can uncomment this block:
+   
+@media (max-width: 380px) {
+    .book-list {
+        grid-template-columns: 1fr !important;
+    }
+}
+*/
+
+/* Tablet to small desktop */
 @media (min-width: 769px) and (max-width: 1024px) {
     .book-list {
-        grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+        grid-template-columns: repeat(2, 1fr) !important; /* Still exactly 2 */
     }
 }

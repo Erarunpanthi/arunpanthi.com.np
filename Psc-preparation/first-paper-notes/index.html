@@ -115,31 +115,26 @@
             <!-- injected by JS -->
         </div>
 
-        <!-- ========================================================== -->
-        <!-- PART II – TECHNICAL                                          -->
-        <!-- ========================================================== -->
+        
+        
         <div class="section-divider">
             <h2>Part II – General Technical Subject</h2>
             <div class="sub-meta">50 Marks · 50 × 1 Mark</div>
         </div>
 
         <div class="book-list" id="technicalGrid">
-            <!-- injected by JS -->
+            
         </div>
 
     </main>
 
-    <!-- ================================================================ -->
-    <!-- JAVASCRIPT                                                        -->
-    <!-- ================================================================ -->
     <script>
         (function() {
-
-            // -------- DATA -------------------------------------------------
+            const BASE_URL = '/Psc-preparation/first-paper-notes/';
+          
             const topicsData = {
 
-                // ---- Awareness ----
-                awareness: [
+                                awareness: [
                     { id: '1.1', name: 'Physical, socio-cultural and economic geography and demography of Nepal',
                         marks: 1 },
                     { id: '1.2', name: 'Major natural resources of Nepal', marks: 1 },
@@ -180,7 +175,7 @@
                     marks: 8
                 }],
 
-                // ---- Technical ----
+                
                 technical: [
                     { id: '3.1', name: 'Structural Engineering (Center of gravity, moment of inertia, stresses, beams, frames, indeterminate structures, plastic analysis)',
                         marks: 5 },
@@ -204,20 +199,7 @@
                         marks: 3 }
                 ]
             };
-
-            // -------- HELPER: generate a consistent color for topic ID -----
-            function getColorForId(id) {
-                const colors = ['#e8f5e9', '#c8e6c9', '#a5d6a7', '#81c784', '#66bb6a', '#4caf50', '#43a047', '#388e3c',
-                    '#2e7d32', '#1b5e20'
-                ];
-                let hash = 0;
-                for (let i = 0; i < id.length; i++) {
-                    hash = id.charCodeAt(i) + ((hash << 5) - hash);
-                }
-                return colors[Math.abs(hash) % colors.length];
-            }
-
-            // -------- RENDER TOPICS INTO .book CARDS ---------------------
+  
             function renderTopics(containerId, topics) {
                 const container = document.getElementById(containerId);
                 if (!container) return;
@@ -227,30 +209,31 @@
                     const card = document.createElement('div');
                     card.className = 'book';
 
-                    // ---- Topic ID badge ----
+                    
                     const badge = document.createElement('span');
                     badge.className = 'topic-id-badge';
                     badge.textContent = topic.id;
                     badge.style.backgroundColor = getColorForId(topic.id);
 
-                    // ---- Title (topic name) ----
+                    
                     const title = document.createElement('h2');
                     title.textContent = topic.name;
 
-                    // ---- Marks meta ----
+                    
                     const meta = document.createElement('div');
                     meta.style.cssText =
                         'font-size:0.8rem; color:var(--muted); margin-bottom:12px;';
                     meta.textContent = `${topic.marks} Mark${topic.marks > 1 ? 's' : ''}`;
 
-                    // ---- View Notes button ----
+                    
+                    
                     const btn = document.createElement('a');
                     btn.className = 'cta-button';
                     btn.textContent = '📖 View Notes';
-                    btn.href = topic.id;
+                    btn.href = BASE_URL + topic.id;
                     btn.setAttribute('aria-label', `View notes for topic ${topic.id}: ${topic.name}`);
 
-                    // ---- Assemble ----
+                    
                     card.appendChild(badge);
                     card.appendChild(title);
                     card.appendChild(meta);
@@ -259,14 +242,14 @@
                 });
             }
 
-            // -------- INIT ------------------------------------------------
+            
             renderTopics('awarenessGrid', topicsData.awareness);
             renderTopics('reasoningGrid', topicsData.reasoning);
             renderTopics('technicalGrid', topicsData.technical);
 
         })();
     </script>
-	<div id="social-section"></div>
+          	<div id="social-section"></div>
     <div id="footer"></div>
 
 

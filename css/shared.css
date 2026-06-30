@@ -20,6 +20,10 @@ body {
     background-color: var(--bg-light);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 16px;
 }
 
 ::selection {
@@ -57,32 +61,44 @@ a:hover {
     --bg-subtle: #f1f5f9;
     --border-light: #e2e8f0;
     --border-medium: #cbd5e1;
-    --shadow-sm: 0 1px 3px rgba(0,0,0,.08);
-    --shadow-md: 0 4px 12px rgba(0,0,0,.1);
-    --shadow-lg: 0 8px 30px rgba(0,0,0,.12);
-    --shadow-xl: 0 12px 40px rgba(0,0,0,.15);
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, .08);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, .1);
+    --shadow-lg: 0 8px 30px rgba(0, 0, 0, .12);
+    --shadow-xl: 0 12px 40px rgba(0, 0, 0, .15);
     --radius-sm: 8px;
     --radius-md: 12px;
     --radius-lg: 16px;
     --radius-xl: 24px;
-    --transition: all .3s cubic-bezier(.4,0,.2,1);
+    --transition: all .3s cubic-bezier(.4, 0, .2, 1);
     --font-body: 'Segoe UI', system-ui, -apple-system, sans-serif;
     --font-heading: 'Segoe UI', system-ui, -apple-system, sans-serif;
-    --max-width: 900px;
-    --max-width-wide: 1100px;
 }
 
-/* ─── HERO SECTION — CARD VIEW ─── */
-.hero-section {
-    max-width: var(--max-width-wide);
-    margin: 24px auto 0;
-    padding: 48px 40px 44px;
+/* ─── THE 70% WIDTH CARD ─── */
+.page-card {
+    width: 70%;
+    max-width: 1100px;
+    margin: 30px auto;
+    background: var(--bg-white);
     border-radius: var(--radius-xl);
-    box-shadow: var(--shadow-lg);
+    box-shadow: var(--shadow-xl);
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.page-card:hover {
+    box-shadow: 0 16px 50px rgba(0, 0, 0, .18);
+}
+
+/* ─── HERO SECTION — INSIDE THE CARD ─── */
+.hero-section {
+    padding: 48px 40px 44px;
     text-align: center;
     color: #fff;
     position: relative;
     overflow: hidden;
+    margin: 0;
+    border-radius: 0;
 }
 
 /* All hero variants use green gradients — no other colours */
@@ -92,8 +108,7 @@ a:hover {
     background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 50%, var(--primary-darker) 100%);
 }
 
-/* Removed ::before (shimmer) and ::after (semicircle) completely */
-
+/* Removed ::before (shimmer) and ::after (semicircle) */
 .hero-section h1 {
     font-family: var(--font-heading);
     font-size: clamp(1.6rem, 4vw, 2.4rem);
@@ -139,11 +154,10 @@ a:hover {
     text-shadow: 0 1px 3px rgba(0, 0, 0, .2);
 }
 
-/* ─── MAIN CONTENT ─── */
+/* ─── MAIN CONTENT — INSIDE THE CARD ─── */
 main {
-    max-width: var(--max-width-wide);
-    margin: 28px auto 40px;
-    padding: 0 20px 30px;
+    padding: 32px 40px 40px;
+    background: var(--bg-white);
 }
 
 main > p {
@@ -188,7 +202,6 @@ main > p {
     opacity: 1;
 }
 
-/* Unified accent/primary hover (both use green) */
 .content-section.hover-accent:hover,
 .content-section.hover-primary:hover {
     border-color: var(--primary);
@@ -230,7 +243,6 @@ main > p {
     transform: scale(1.04);
 }
 
-/* Handle both icon-accent and icon-primary classes */
 .content-section h2 .icon-accent,
 .content-section h2 .icon-primary {
     background: var(--primary-light);
@@ -275,7 +287,7 @@ main > p {
     font-weight: 700;
 }
 
-/* ─── NOTE BOXES — GREEN & WHITE ─── */
+/* ─── NOTE BOXES ─── */
 .note-box {
     border-radius: var(--radius-sm);
     padding: 20px 26px;
@@ -300,7 +312,7 @@ main > p {
     margin-right: 6px;
 }
 
-/* ─── BUTTONS — GREEN & WHITE ONLY ─── */
+/* ─── BUTTONS ─── */
 .btn-group {
     display: flex;
     flex-wrap: wrap;
@@ -323,7 +335,6 @@ main > p {
     cursor: pointer;
 }
 
-/* Green gradient button — used for .btn-gradient-green and .btn-gradient-blue */
 .btn-gradient-green,
 .btn-gradient-blue {
     background: linear-gradient(135deg, var(--primary), var(--primary-dark));
@@ -337,7 +348,6 @@ main > p {
     box-shadow: 0 6px 24px rgba(56, 142, 60, .45);
 }
 
-/* Green outline button — used for .btn-outline-accent and .btn-outline-primary */
 .btn-outline-accent,
 .btn-outline-primary {
     background: transparent;
@@ -362,7 +372,7 @@ main > p {
     border-top: 1px solid var(--border-light);
 }
 
-/* ─── ABOUT PAGE SPECIFIC ELEMENTS ─── */
+/* ─── ABOUT PAGE SPECIFIC ─── */
 .section-title {
     font-family: var(--font-heading);
     font-size: 1.75rem;
@@ -531,7 +541,6 @@ main > p {
     text-decoration: underline;
 }
 
-/* YouTube subscribe block — green & white */
 .author-details .youtube-block {
     background: linear-gradient(135deg, var(--primary), var(--primary-dark));
     border-radius: var(--radius-md);
@@ -574,10 +583,8 @@ main > p {
     margin-bottom: 20px;
 }
 
-/* ─── MAINTENANCE BOX (About page) ─── */
 .maintenance-box {
-    max-width: var(--max-width-wide);
-    margin: 32px auto;
+    margin: 32px 0;
     padding: 24px 32px;
     background: var(--primary-light);
     border: 1px solid var(--primary);
@@ -596,57 +603,17 @@ main > p {
     margin-bottom: 0;
 }
 
-/* ─── BREADCRUMB ─── */
-.breadcrumb {
-    max-width: var(--max-width-wide);
-    margin: 0 auto;
-    padding: 14px 24px;
-}
-.breadcrumb ol {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 6px;
-    padding: 0;
-}
-.breadcrumb ol li {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: .88rem;
-    color: var(--text-light);
-}
-.breadcrumb ol li:not(:last-child)::after {
-    content: '/';
-    color: var(--border-medium);
-    margin-left: 2px;
-}
-.breadcrumb ol li a {
-    color: var(--primary);
-    text-decoration: none;
-    font-weight: 500;
-    transition: var(--transition);
-}
-.breadcrumb ol li a:hover {
-    color: var(--primary-dark);
-    text-decoration: underline;
-}
-.breadcrumb ol li:last-child a {
-    color: var(--text-light);
-    pointer-events: none;
-}
-
 /* ─── RESPONSIVE ─── */
 @media (max-width: 768px) {
+    .page-card {
+        width: 92%;
+        margin: 20px auto;
+    }
     .hero-section {
         padding: 36px 24px 30px;
-        margin: 16px 12px 0;
-        border-radius: var(--radius-lg);
     }
     main {
-        margin: 20px auto 30px;
-        padding: 0 12px 20px;
+        padding: 24px 22px 30px;
     }
     .content-section {
         padding: 24px 22px 20px;
@@ -661,9 +628,6 @@ main > p {
         height: 38px;
         font-size: 1rem;
         border-radius: 8px;
-    }
-    .content-section ul li {
-        padding-left: 22px;
     }
     .author-card {
         flex-direction: column;
@@ -697,15 +661,18 @@ main > p {
 @media (max-width: 480px) {
     body {
         font-size: 15.5px;
+        padding: 0 8px;
+    }
+    .page-card {
+        width: 100%;
+        margin: 12px auto;
+        border-radius: var(--radius-lg);
     }
     .hero-section {
         padding: 28px 16px 24px;
-        margin: 12px 8px 0;
-        border-radius: var(--radius-md);
     }
     main {
-        margin: 16px auto 24px;
-        padding: 0 8px 16px;
+        padding: 20px 16px 24px;
     }
     .content-section {
         padding: 20px 16px 18px;
@@ -743,21 +710,26 @@ main > p {
     }
     .maintenance-box {
         padding: 18px 16px;
-        margin: 20px 8px;
-    }
-    .breadcrumb {
-        padding: 10px 12px;
     }
 }
 
 /* ─── PRINT ─── */
 @media print {
+    body {
+        padding: 0;
+        background: #fff;
+    }
+    .page-card {
+        width: 100%;
+        max-width: 100%;
+        box-shadow: none;
+        border: 1px solid #ccc;
+        margin: 0;
+        border-radius: 0;
+    }
     .hero-section {
         background: none !important;
         color: #000;
-        box-shadow: none;
-        border: 1px solid #ccc;
-        padding: 20px;
     }
     .hero-section h1 {
         color: #000;
@@ -803,7 +775,8 @@ main > p {
     .content-section:hover,
     .feature-card:hover,
     .author-card:hover,
-    .btn:hover {
+    .btn:hover,
+    .page-card:hover {
         transform: none !important;
         box-shadow: var(--shadow-sm) !important;
     }

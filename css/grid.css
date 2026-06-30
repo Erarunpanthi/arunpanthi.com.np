@@ -80,7 +80,7 @@ footer,
   color: #fff;
   padding: 40px 20px;
   text-align: center;
-  border-radius: 0;
+  border-radius: 25px;
   margin: 0 auto;   /* This centers the block */
   width: 60%;
 }

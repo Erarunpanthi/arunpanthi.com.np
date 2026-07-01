@@ -40,7 +40,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* ---- Justified text for all paragraphs & descriptive blocks ---- */
+/* ---- Justified text with TIGHTER word gaps ---- */
 p,
 .newspaper-text,
 .cb p,
@@ -56,7 +56,9 @@ p,
   text-align: justify;
   text-justify: inter-word;
   hyphens: auto;
-  word-spacing: 0.02em;
+  word-spacing: normal;        /* ← eliminates extra gap */
+  word-break: break-word;      /* ← prevents huge spaces due to long words */
+  overflow-wrap: break-word;
 }
 
 /* Headings remain aligned as defined */
@@ -356,7 +358,7 @@ button:hover {
   color: var(--muted);
 }
 
-/* ===== SEMESTER (pure CSS disclosure) ===== */
+/* ===== SEMESTER (pure CSS toggle using checkbox hack) ===== */
 .semester {
   background: var(--surface);
   border-radius: var(--radius-md);
@@ -377,27 +379,22 @@ button:hover {
   font-weight: 700;
   margin-bottom: 15px;
 }
-.semester i {
+.semester h2 i {
   margin-right: 10px;
 }
 .subjects {
   display: none;
   padding: 10px 0;
 }
-/* Use a checkbox hack to toggle subjects without JavaScript */
+/* Hide the checkbox itself */
 .semester-toggle {
   display: none;
 }
+/* Show subjects when checkbox is checked */
 .semester-toggle:checked + .semester .subjects {
   display: block;
 }
-.semester-toggle:checked + .semester h2 .fa-chevron-right {
-  display: none;
-}
-.semester-toggle:checked + .semester h2 .fa-chevron-down {
-  display: inline-block;
-}
-/* Default icons – we hide one and show the other via CSS */
+/* Toggle icons: right arrow shown by default, down arrow hidden */
 .semester h2 .fa-chevron-down {
   display: none;
 }
@@ -518,7 +515,7 @@ img.lazy {
   .container,
   .section {
     width: 96%;
-    padding: 16px 14px;
+    padding: 16px 10px;   /* slightly less padding to give text more room */
   }
   .navbar a {
     padding: 6px 8px;

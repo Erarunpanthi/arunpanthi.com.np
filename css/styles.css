@@ -1,4 +1,3 @@
-/* ===== ROOT VARIABLES ===== */
 :root {
   --green-50: #e8f5e9;
   --green-400: #4caf50;
@@ -19,7 +18,7 @@
   --transition-medium: 0.3s ease;
 }
 
-/* ===== BASE & NEWSPAPER TEXT ===== */
+
 *,
 *::before,
 *::after {
@@ -40,7 +39,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* ---- Justified text with TIGHTER word gaps ---- */
+
 p,
 .newspaper-text,
 .cb p,
@@ -87,7 +86,7 @@ a {
   text-decoration: none;
 }
 
-/* ===== NAVBAR ===== */
+
 .navbar {
   display: flex;
   flex-wrap: wrap;
@@ -103,11 +102,13 @@ a {
   font-size: 14px;
   transition: background-color var(--transition-medium);
 }
-.navbar a:hover {
-  background-color: var(--green-700);
+/* CORRECTION: Removed green background on hover/active */
+.navbar a:hover,
+.navbar a:active {
+  background-color: transparent;
 }
 
-/* ===== HERO – centered with Flexbox ===== */
+
 .hero {
   background-color: var(--green-400);
   color: #fff;
@@ -132,7 +133,7 @@ a {
   margin: 10px 0;
 }
 
-/* ===== SOCIAL MEDIA – fully centered with Flexbox ===== */
+
 .social-media {
   background: linear-gradient(135deg, var(--green-400), var(--green-600));
   color: #fff;
@@ -207,7 +208,7 @@ footer a:hover {
   text-align: left;
 }
 
-/* ===== CARDS ===== */
+
 .card {
   background: var(--card-bg);
   border-radius: var(--radius-md);
@@ -246,7 +247,7 @@ footer a:hover {
   line-height: 1.6;
 }
 
-/* ===== BUTTONS – centered helpers ===== */
+
 .cta-button,
 .secondary-button {
   display: inline-block;
@@ -273,14 +274,14 @@ footer a:hover {
   background-color: #5a6268;
   transform: scale(1.05);
 }
-/* If you place a button directly inside a container/section, use this wrapper or class */
+
 .button-center {
   display: flex;
   justify-content: center;
   width: 100%;
 }
 
-/* ===== FORMS ===== */
+
 .form-group {
   margin-bottom: 1.5rem;
 }
@@ -327,7 +328,7 @@ button:hover {
   background: var(--green-700);
 }
 
-/* ===== TIMER ===== */
+
 .timer {
   font-size: 36px;
   color: #388e3c;
@@ -338,7 +339,7 @@ button:hover {
   text-align: center;
 }
 
-/* ===== BOOK LIST ===== */
+
 .book-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -379,7 +380,7 @@ button:hover {
   color: var(--muted);
 }
 
-/* ===== SEMESTER (pure CSS toggle using checkbox hack) ===== */
+
 .semester {
   background: var(--surface);
   border-radius: var(--radius-md);

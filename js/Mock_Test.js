@@ -211,15 +211,18 @@
         if ($['hero-note']) {
             $['hero-note'].innerHTML =
                 '<div style="text-align:left; max-width:500px; margin:10px auto; font-size:0.9rem; line-height:1.6; background:#e8f5e9; padding:15px 20px; border-radius:8px; border-left:4px solid #2e7d32;">' +
-                '<p><strong>📌 Instructions:</strong></p>' +
+                '<p><strong>📌 ⚠️ Important Exam Instructions</strong> 📌 ⚠️</p>' +
                 '<ul style="list-style:none; padding-left:0; margin:5px 0;">' +
-                '<li>✅ Timer starts immediately after clicking "Start Test".</li>' +
-                '<li>✅ This test can only be taken once.</li>' +
-                '<li>✅ Auto-submit when time runs out.</li>' +
-                '<li>🖼️ Image URLs are automatically displayed.</li>' +
-                '<li>🔄 Add <strong>?reset=1</strong> to URL to reset this test.</li>' +
+                '<li>Exam will open in full-screen mode.</li>' +
+        '<li>You may take this test only once.</li>' +
+        '<li>Timer starts immediately after clicking "Start Test".</li>' +
+        '<li>Time alerts appear at 10 and 5 minutes remaining.</li>' +
+        '<li>Test will auto-submit when time ends.</li>' +
+        '<li>Timer cannot be paused or restarted.</li>' +
+        '<li>Refreshing or going back restores only attempted answers.</li>' +
+        '<li>Copying text or images is not allowed and may block future exams.</li>' +
                 '</ul>' +
-                '<p style="margin-top:10px; color:#c62828; font-weight:bold;">⚠️ Ready? Click the button below.</p>' +
+                '<p style="margin-top:10px; color:white; font-weight:bold;">⚠️ Ready? Click the button below.</p>' +
                 '</div>';
         }
 

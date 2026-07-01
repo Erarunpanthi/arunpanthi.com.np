@@ -1,31 +1,26 @@
-// /js/Mock_Test.js
 (function() {
     'use strict';
 
-    console.log('Mock_Test.js loaded');
-
-    // ─── IMAGE HELPERS ──────────────────────────────────────────────────────────
-
     function isImageUrl(url) {
         if (!url || typeof url !== 'string') return false;
-        const clean = url.split('?')[0].split('#')[0];
+        var clean = url.split('?')[0].split('#')[0];
         return /\.(jpg|jpeg|png|gif|svg|webp|bmp|ico|tiff|tif)(\?.*)?$/i.test(clean);
     }
 
     function renderTextWithImages(text, className) {
         if (!text) return text;
         className = className || 'inline-image';
-        const trimmed = text.trim();
+        var trimmed = text.trim();
         if (/^https?:\/\/[^\s]+$/i.test(trimmed)) {
             return createImageHTML(trimmed, className);
         }
-        const urlRegex = /(https?:\/\/[^\s]+?)(?=[\s,;!?.]|$)/gi;
-        let hasImage = false;
-        let parts = [];
-        let lastIndex = 0;
-        let match;
+        var urlRegex = /(https?:\/\/[^\s]+?)(?=[\s,;!?.]|$)/gi;
+        var hasImage = false;
+        var parts = [];
+        var lastIndex = 0;
+        var match;
         while ((match = urlRegex.exec(text)) !== null) {
-            const url = match[0];
+            var url = match[0];
             if (isImageUrl(url)) {
                 if (match.index > lastIndex) {
                     parts.push(text.substring(lastIndex, match.index));
@@ -39,8 +34,8 @@
             parts.push(text.substring(lastIndex));
         }
         if (!hasImage) return text;
-        const joined = parts.join('');
-        const imgTagPattern = /^\s*<span[^>]*>.*<\/span>\s*$/i;
+        var joined = parts.join('');
+        var imgTagPattern = /^\s*<span[^>]*>.*<\/span>\s*$/i;
         if (imgTagPattern.test(joined.trim())) {
             return joined.trim();
         }
@@ -49,7 +44,7 @@
 
     function renderOptionWithImage(text) {
         if (!text) return text;
-        const trimmed = text.trim();
+        var trimmed = text.trim();
         if (/^https?:\/\/[^\s]+$/i.test(trimmed)) {
             return '<div class="option-content">' +
                     '<div class="option-image-wrapper">' +
@@ -57,7 +52,7 @@
                     '</div>' +
                 '</div>';
         }
-        const rendered = renderTextWithImages(text, 'option-image');
+        var rendered = renderTextWithImages(text, 'option-image');
         return '<div class="option-content"><span class="option-text">' + rendered + '</span></div>';
     }
 
@@ -72,12 +67,8 @@
                 '</span>';
     }
 
-    // ─── HELPERS ────────────────────────────────────────────────────────────────
-
     function getElement(id) {
-        const el = document.getElementById(id);
-        if (!el) console.warn('Element #' + id + ' not found');
-        return el;
+        return document.getElementById(id);
     }
 
     function LSget(k) { try { return localStorage.getItem(k); } catch (_) { return null; } }
@@ -86,40 +77,36 @@
 
     function formatTime(sec) {
         if (sec < 0) sec = 0;
-        const m = Math.floor(sec / 60);
-        const s = Math.floor(sec % 60);
+        var m = Math.floor(sec / 60);
+        var s = Math.floor(sec % 60);
         return m + ':' + s.toString().padStart(2, '0');
     }
 
     function formatTimeLong(sec) {
         if (sec < 0) sec = 0;
-        const m = Math.floor(sec / 60);
-        const s = Math.floor(sec % 60);
+        var m = Math.floor(sec / 60);
+        var s = Math.floor(sec % 60);
         return m > 0 ? m + ' min ' + s + ' sec' : s + ' seconds';
     }
 
     function generateSetId(questionSet) {
-        const str = JSON.stringify(questionSet.questions);
-        let hash = 0;
-        for (let i = 0; i < str.length; i++) {
-            const char = str.charCodeAt(i);
+        var str = JSON.stringify(questionSet.questions);
+        var hash = 0;
+        for (var i = 0; i < str.length; i++) {
+            var char = str.charCodeAt(i);
             hash = ((hash << 5) - hash) + char;
             hash |= 0;
         }
         return 'set_' + Math.abs(hash).toString(16).slice(0, 8);
     }
 
-    // ─── MAIN TEST FUNCTION ────────────────────────────────────────────────────
-
-    window.startTest = function(questionSet) {
-        console.log('startTest called with questionSet:', questionSet);
+    function startTest(questionSet) {
         if (!questionSet || !questionSet.questions || questionSet.questions.length === 0) {
             console.error('Invalid questionSet');
             return;
         }
 
-        // Initialize state
-        const state = {
+        var state = {
             questionSet: questionSet,
             currentQuestionIndex: 0,
             userAnswers: {},
@@ -138,8 +125,7 @@
             $: {}
         };
 
-        // Populate DOM refs
-        const ids = [
+        var ids = [
             'pre-test-section', 'test-section', 'results-section',
             'timer-display', 'navbar-brand',
             'hero-set-name', 'hero-details', 'hero-q-count', 'hero-time', 'hero-note',
@@ -151,9 +137,8 @@
             'results-percentage', 'results-time-taken', 'results-detail',
             'warning-modal', 'modal-unanswered-count', 'btn-modal-cancel', 'btn-modal-submit'
         ];
-        ids.forEach(id => { state.$[id] = getElement(id); });
+        ids.forEach(function(id) { state.$[id] = getElement(id); });
 
-        // Setup constants
         state.TOTAL_QUESTIONS = questionSet.questions.length;
         state.TOTAL_TIME_SECONDS = Math.floor(state.TOTAL_QUESTIONS * 0.8 * 60);
         state.SET_ID = generateSetId(questionSet);
@@ -164,46 +149,35 @@
         state.STORAGE_KEY_MARKS = 'mcq_' + state.SET_ID + '_marks';
         state.STORAGE_KEY_SUBMITTED_AT = 'mcq_' + state.SET_ID + '_submittedAt';
 
-        // Check existing test status
-        const status = LSget(state.STORAGE_KEY_STATUS);
-        console.log('Existing status:', status);
+        var status = LSget(state.STORAGE_KEY_STATUS);
         if (status === 'completed' || status === 'submitted') {
-            const ans = LSget(state.STORAGE_KEY_ANSWERS);
-            if (ans) { try { state.userAnswers = JSON.parse(ans); } catch (e) { state.userAnswers = {}; } }
+            var ans = LSget(state.STORAGE_KEY_ANSWERS);
+            if (ans) { try { state.userAnswers = JSON.parse(ans); } catch (_) { state.userAnswers = {}; } }
             showResults(state);
             return;
         }
         if (status === 'in_progress') {
-            const ans = LSget(state.STORAGE_KEY_ANSWERS);
-            if (ans) { try { state.userAnswers = JSON.parse(ans); } catch (e) { state.userAnswers = {}; } }
-            const hasTime = resumeTimerFromStoredDeadline(state);
+            var ans2 = LSget(state.STORAGE_KEY_ANSWERS);
+            if (ans2) { try { state.userAnswers = JSON.parse(ans2); } catch (_) { state.userAnswers = {}; } }
+            var hasTime = resumeTimerFromStoredDeadline(state);
             state.testActive = true;
             enableTestRestrictions(state);
             blockBackButton(state);
             showTestInterface(state);
-            if (!hasTime) {
-                autoSubmit(state);
-            }
+            if (!hasTime) autoSubmit(state);
             return;
         }
 
-        // Fresh start
-        console.log('Showing pre-test');
         showPreTest(state);
         if (state.$['btn-start-test']) {
             state.$['btn-start-test'].addEventListener('click', function() {
-                console.log('Start button clicked');
                 beginTest(state);
             });
-        } else {
-            console.error('Start button not found');
         }
-    };
-
-    // ─── UI FUNCTIONS ──────────────────────────────────────────────────────────
+    }
 
     function showPreTest(state) {
-        const $ = state.$;
+        var $ = state.$;
         if ($['pre-test-section']) $['pre-test-section'].style.display = 'block';
         if ($['test-section']) $['test-section'].style.display = 'none';
         if ($['results-section']) $['results-section'].style.display = 'none';
@@ -212,7 +186,7 @@
         if ($['hero-set-name']) $['hero-set-name'].textContent = state.questionSet.name;
         if ($['hero-details']) $['hero-details'].textContent = state.questionSet.details || '';
         if ($['hero-q-count']) $['hero-q-count'].textContent = state.TOTAL_QUESTIONS;
-        const totalMinutes = state.TOTAL_TIME_SECONDS / 60;
+        var totalMinutes = state.TOTAL_TIME_SECONDS / 60;
         if ($['hero-time']) $['hero-time'].textContent = totalMinutes + ':00';
 
         if ($['hero-note']) {
@@ -234,12 +208,10 @@
             $['btn-start-test'].textContent = '🚀 Start Test';
         }
         disableTestRestrictions(state);
-        unblockBackButton(state);
     }
 
     function beginTest(state) {
-        console.log('beginTest called');
-        const status = LSget(state.STORAGE_KEY_STATUS);
+        var status = LSget(state.STORAGE_KEY_STATUS);
         if (status === 'completed' || status === 'submitted') {
             alert('You have already taken this test.');
             showResults(state);
@@ -249,7 +221,7 @@
             resumeTest(state);
             return;
         }
-        const now = Date.now();
+        var now = Date.now();
         state.deadline = now + state.TOTAL_TIME_SECONDS * 1000;
         LSset(state.STORAGE_KEY_STATUS, 'in_progress');
         LSset(state.STORAGE_KEY_START_TIME, now.toString());
@@ -266,19 +238,16 @@
     }
 
     function resumeTest(state) {
-        const hasTime = resumeTimerFromStoredDeadline(state);
+        var hasTime = resumeTimerFromStoredDeadline(state);
         state.testActive = true;
         enableTestRestrictions(state);
         blockBackButton(state);
         showTestInterface(state);
-        if (!hasTime) {
-            autoSubmit(state);
-        }
+        if (!hasTime) autoSubmit(state);
     }
 
     function showTestInterface(state) {
-        console.log('showTestInterface called');
-        const $ = state.$;
+        var $ = state.$;
         if ($['pre-test-section']) $['pre-test-section'].style.display = 'none';
         if ($['test-section']) $['test-section'].style.display = 'block';
         if ($['results-section']) $['results-section'].style.display = 'none';
@@ -290,8 +259,8 @@
         if ($['sidebar-total']) $['sidebar-total'].textContent = 'Total: ' + state.TOTAL_QUESTIONS;
         if ($['q-grid']) {
             $['q-grid'].innerHTML = '';
-            for (let i = 0; i < state.TOTAL_QUESTIONS; i++) {
-                const dot = document.createElement('span');
+            for (var i = 0; i < state.TOTAL_QUESTIONS; i++) {
+                var dot = document.createElement('span');
                 dot.className = 'q-dot';
                 dot.textContent = i + 1;
                 dot.dataset.index = i;
@@ -309,7 +278,6 @@
         updateAnsweredCount(state);
         renderQuestion(state);
 
-        // Attach event listeners
         if ($['btn-prev']) {
             $['btn-prev'].addEventListener('click', function() { navigateQuestion(state, -1); });
         }
@@ -319,7 +287,7 @@
         if ($['btn-submit-test']) {
             $['btn-submit-test'].addEventListener('click', function() {
                 if (!state.testActive) return;
-                const unanswered = state.TOTAL_QUESTIONS - answeredCount(state);
+                var unanswered = state.TOTAL_QUESTIONS - answeredCount(state);
                 if (unanswered > 0) {
                     showWarningModal(state);
                 } else {
@@ -327,7 +295,6 @@
                 }
             });
         }
-        // Modal events
         if ($['btn-modal-cancel']) {
             $['btn-modal-cancel'].addEventListener('click', function() { hideWarningModal(state); });
         }
@@ -340,7 +307,6 @@
             });
         }
 
-        // Keyboard navigation
         document.addEventListener('keydown', function(e) {
             if (!state.testActive) return;
             if ($['warning-modal'] && $['warning-modal'].style.display === 'flex') return;
@@ -351,8 +317,8 @@
                 e.preventDefault();
                 navigateQuestion(state, 1);
             } else if (e.key >= '1' && e.key <= '9') {
-                const idx = parseInt(e.key) - 1;
-                const q = state.questionSet.questions[state.currentQuestionIndex];
+                var idx = parseInt(e.key) - 1;
+                var q = state.questionSet.questions[state.currentQuestionIndex];
                 if (q && idx < q.options.length) {
                     e.preventDefault();
                     selectOption(state, idx);
@@ -365,13 +331,9 @@
     }
 
     function renderQuestion(state) {
-        console.log('renderQuestion called for index', state.currentQuestionIndex);
-        const $ = state.$;
-        const q = state.questionSet.questions[state.currentQuestionIndex];
-        if (!q) {
-            console.error('Question not found at index', state.currentQuestionIndex);
-            return;
-        }
+        var $ = state.$;
+        var q = state.questionSet.questions[state.currentQuestionIndex];
+        if (!q) return;
         if ($['q-number-label']) {
             $['q-number-label'].textContent = 'QUESTION ' + (state.currentQuestionIndex + 1) + ' / ' + state.TOTAL_QUESTIONS;
         }
@@ -380,10 +342,10 @@
         }
         if ($['options-list']) {
             $['options-list'].innerHTML = '';
-            const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
-            q.options.forEach((opt, idx) => {
-                const li = document.createElement('li');
-                const renderedOpt = renderOptionWithImage(opt);
+            var letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
+            q.options.forEach(function(opt, idx) {
+                var li = document.createElement('li');
+                var renderedOpt = renderOptionWithImage(opt);
                 li.innerHTML = '<span class="option-letter">' + (letters[idx] || (idx + 1)) + '</span> ' + renderedOpt;
                 li.dataset.optionIndex = idx;
                 li.addEventListener('click', function() { selectOption(state, idx); });
@@ -405,7 +367,7 @@
     }
 
     function navigateQuestion(state, dir) {
-        const newIdx = state.currentQuestionIndex + dir;
+        var newIdx = state.currentQuestionIndex + dir;
         if (newIdx >= 0 && newIdx < state.TOTAL_QUESTIONS) {
             state.currentQuestionIndex = newIdx;
             renderQuestion(state);
@@ -413,11 +375,11 @@
     }
 
     function updateSidebarHighlight(state) {
-        const $ = state.$;
+        var $ = state.$;
         if (!$['q-grid']) return;
-        const dots = $['q-grid'].querySelectorAll('.q-dot');
-        dots.forEach(dot => {
-            const i = parseInt(dot.dataset.index);
+        var dots = $['q-grid'].querySelectorAll('.q-dot');
+        dots.forEach(function(dot) {
+            var i = parseInt(dot.dataset.index);
             dot.classList.remove('answered', 'current');
             if (state.userAnswers[i] !== undefined && state.userAnswers[i] !== null) {
                 dot.classList.add('answered');
@@ -435,13 +397,13 @@
     }
 
     function answeredCount(state) {
-        return Object.keys(state.userAnswers).filter(k => state.userAnswers[k] !== undefined && state.userAnswers[k] !== null).length;
+        return Object.keys(state.userAnswers).filter(function(k) {
+            return state.userAnswers[k] !== undefined && state.userAnswers[k] !== null;
+        }).length;
     }
 
-    // ─── TIMER ──────────────────────────────────────────────────────────────────
-
     function updateTimerFromDeadline(state) {
-        const remaining = getRemainingSeconds(state);
+        var remaining = getRemainingSeconds(state);
         if (state.$['timer-display']) {
             state.$['timer-display'].textContent = formatTime(remaining);
             state.$['timer-display'].classList.remove('warning-yellow', 'warning-red');
@@ -460,14 +422,14 @@
     }
 
     function startTimerWithDeadline(state) {
-        const now = Date.now();
+        var now = Date.now();
         state.deadline = now + state.TOTAL_TIME_SECONDS * 1000;
         LSset(state.STORAGE_KEY_END_TIME, state.deadline.toString());
         LSset(state.STORAGE_KEY_START_TIME, now.toString());
         updateTimerFromDeadline(state);
         if (state.timerInterval) clearInterval(state.timerInterval);
         state.timerInterval = setInterval(function() {
-            const remaining = updateTimerFromDeadline(state);
+            var remaining = updateTimerFromDeadline(state);
             if (remaining <= 0) {
                 clearInterval(state.timerInterval);
                 state.timerInterval = null;
@@ -477,15 +439,15 @@
     }
 
     function resumeTimerFromStoredDeadline(state) {
-        const startStr = LSget(state.STORAGE_KEY_START_TIME);
-        const endStr = LSget(state.STORAGE_KEY_END_TIME);
+        var startStr = LSget(state.STORAGE_KEY_START_TIME);
+        var endStr = LSget(state.STORAGE_KEY_END_TIME);
         if (startStr && endStr) {
             state.deadline = parseInt(endStr);
-            const remaining = getRemainingSeconds(state);
+            var remaining = getRemainingSeconds(state);
             if (remaining > 0) {
                 if (state.timerInterval) clearInterval(state.timerInterval);
                 state.timerInterval = setInterval(function() {
-                    const rem = updateTimerFromDeadline(state);
+                    var rem = updateTimerFromDeadline(state);
                     if (rem <= 0) {
                         clearInterval(state.timerInterval);
                         state.timerInterval = null;
@@ -498,19 +460,17 @@
         return false;
     }
 
-    // ─── SUBMIT & RESULTS ──────────────────────────────────────────────────────
-
     function submitTest(state) {
         if (!state.testActive) return;
         state.testActive = false;
         if (state.timerInterval) { clearInterval(state.timerInterval); state.timerInterval = null; }
         disableTestRestrictions(state);
         unblockBackButton(state);
-        const marks = calcMarks(state);
-        const now = Date.now();
-        const startStr = LSget(state.STORAGE_KEY_START_TIME);
-        const start = startStr ? parseInt(startStr) : now;
-        const timeTaken = Math.floor((now - start) / 1000);
+        var marks = calcMarks(state);
+        var now = Date.now();
+        var startStr = LSget(state.STORAGE_KEY_START_TIME);
+        var start = startStr ? parseInt(startStr) : now;
+        var timeTaken = Math.floor((now - start) / 1000);
         LSset(state.STORAGE_KEY_STATUS, 'completed');
         LSset(state.STORAGE_KEY_MARKS, marks.toString());
         LSset(state.STORAGE_KEY_SUBMITTED_AT, now.toString());
@@ -526,11 +486,11 @@
         if (state.timerInterval) { clearInterval(state.timerInterval); state.timerInterval = null; }
         disableTestRestrictions(state);
         unblockBackButton(state);
-        const marks = calcMarks(state);
-        const now = Date.now();
-        const startStr = LSget(state.STORAGE_KEY_START_TIME);
-        const start = startStr ? parseInt(startStr) : now;
-        const timeTaken = Math.floor((now - start) / 1000);
+        var marks = calcMarks(state);
+        var now = Date.now();
+        var startStr = LSget(state.STORAGE_KEY_START_TIME);
+        var start = startStr ? parseInt(startStr) : now;
+        var timeTaken = Math.floor((now - start) / 1000);
         LSset(state.STORAGE_KEY_STATUS, 'completed');
         LSset(state.STORAGE_KEY_MARKS, marks.toString());
         LSset(state.STORAGE_KEY_SUBMITTED_AT, now.toString());
@@ -540,34 +500,34 @@
     }
 
     function calcMarks(state) {
-        let correct = 0;
-        for (let i = 0; i < state.TOTAL_QUESTIONS; i++) {
+        var correct = 0;
+        for (var i = 0; i < state.TOTAL_QUESTIONS; i++) {
             if (state.userAnswers[i] === state.questionSet.questions[i].correct) correct++;
         }
         return correct;
     }
 
     function showResults(state, marksOverride, timeOverride, auto) {
-        const $ = state.$;
+        var $ = state.$;
         if ($['pre-test-section']) $['pre-test-section'].style.display = 'none';
         if ($['test-section']) $['test-section'].style.display = 'none';
         if ($['results-section']) $['results-section'].style.display = 'block';
         if ($['timer-display']) $['timer-display'].style.display = 'none';
         if ($['navbar-brand']) $['navbar-brand'].textContent = '📊 Results - ' + state.questionSet.name;
 
-        const marks = marksOverride !== undefined ? marksOverride : parseInt(LSget(state.STORAGE_KEY_MARKS) || '0');
-        const submittedStr = LSget(state.STORAGE_KEY_SUBMITTED_AT);
-        const startStr = LSget(state.STORAGE_KEY_START_TIME);
-        let timeTaken = timeOverride;
+        var marks = marksOverride !== undefined ? marksOverride : parseInt(LSget(state.STORAGE_KEY_MARKS) || '0');
+        var submittedStr = LSget(state.STORAGE_KEY_SUBMITTED_AT);
+        var startStr = LSget(state.STORAGE_KEY_START_TIME);
+        var timeTaken = timeOverride;
         if (timeTaken === undefined && submittedStr && startStr) {
             timeTaken = Math.floor((parseInt(submittedStr) - parseInt(startStr)) / 1000);
         }
         if (timeTaken === undefined || timeTaken < 0) timeTaken = 0;
 
-        const ans = LSget(state.STORAGE_KEY_ANSWERS);
-        if (ans) { try { state.userAnswers = JSON.parse(ans); } catch (e) { state.userAnswers = {}; } }
+        var ans = LSget(state.STORAGE_KEY_ANSWERS);
+        if (ans) { try { state.userAnswers = JSON.parse(ans); } catch (_) { state.userAnswers = {}; } }
 
-        const percent = state.TOTAL_QUESTIONS > 0 ? Math.round((marks / state.TOTAL_QUESTIONS) * 100) : 0;
+        var percent = state.TOTAL_QUESTIONS > 0 ? Math.round((marks / state.TOTAL_QUESTIONS) * 100) : 0;
         if ($['results-set-name']) $['results-set-name'].textContent = state.questionSet.name;
         if ($['results-score']) $['results-score'].textContent = marks;
         if ($['results-denom']) $['results-denom'].textContent = '/ ' + state.TOTAL_QUESTIONS;
@@ -578,18 +538,18 @@
 
         if ($['results-detail']) {
             $['results-detail'].innerHTML = '';
-            const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
-            state.questionSet.questions.forEach((q, idx) => {
-                const userAns = state.userAnswers[idx];
-                const correctAns = q.correct;
-                const isCorrect = (userAns === correctAns);
-                const wasAnswered = (userAns !== undefined && userAns !== null);
+            var letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
+            state.questionSet.questions.forEach(function(q, idx) {
+                var userAns = state.userAnswers[idx];
+                var correctAns = q.correct;
+                var isCorrect = (userAns === correctAns);
+                var wasAnswered = (userAns !== undefined && userAns !== null);
 
-                const card = document.createElement('div');
+                var card = document.createElement('div');
                 card.className = 'result-card';
                 if (wasAnswered) card.classList.add(isCorrect ? 'correct' : 'incorrect');
 
-                let badge = '';
+                var badge = '';
                 if (!wasAnswered) {
                     badge = '<span class="r-badge" style="background:#fff3e0;color:#E65100;">⚠️ NOT ANSWERED</span>';
                 } else if (isCorrect) {
@@ -598,22 +558,22 @@
                     badge = '<span class="r-badge incorrect-badge">❌ INCORRECT</span>';
                 }
 
-                const renderedQ = renderTextWithImages(q.question, 'inline-image');
+                var renderedQ = renderTextWithImages(q.question, 'inline-image');
 
-                let optsHTML = '';
-                q.options.forEach((opt, optIdx) => {
-                    let liClass = '';
+                var optsHTML = '';
+                q.options.forEach(function(opt, optIdx) {
+                    var liClass = '';
                     if (optIdx === correctAns && optIdx === userAns) liClass = 'both-correct';
                     else if (optIdx === correctAns) liClass = 'correct-answer';
                     else if (optIdx === userAns && !isCorrect) liClass = 'user-answer';
 
-                    const label = letters[optIdx] || (optIdx + 1);
-                    let prefix = '';
+                    var label = letters[optIdx] || (optIdx + 1);
+                    var prefix = '';
                     if (optIdx === correctAns && optIdx === userAns) prefix = '✅ ';
                     else if (optIdx === correctAns) prefix = '✅ ';
                     else if (optIdx === userAns && !isCorrect) prefix = '❌ ';
 
-                    const optRendered = renderTextWithImages(opt, 'option-image');
+                    var optRendered = renderTextWithImages(opt, 'option-image');
                     optsHTML += '<li class="' + liClass + '"><strong>' + label + '.</strong> ' + prefix + optRendered + '</li>';
                 });
 
@@ -626,10 +586,8 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // ─── WARNING MODAL ─────────────────────────────────────────────────────────
-
     function showWarningModal(state) {
-        const unanswered = state.TOTAL_QUESTIONS - answeredCount(state);
+        var unanswered = state.TOTAL_QUESTIONS - answeredCount(state);
         if (state.$['modal-unanswered-count']) {
             state.$['modal-unanswered-count'].textContent = unanswered + ' unanswered question(s)';
         }
@@ -646,8 +604,6 @@
         }
     }
 
-    // ─── RESTRICTIONS ───────────────────────────────────────────────────────────
-
     function enableTestRestrictions(state) {
         try {
             document.body.classList.add('test-active');
@@ -655,7 +611,7 @@
             document.addEventListener('cut', preventCopy);
             document.addEventListener('contextmenu', function(e) { if (state.testActive) e.preventDefault(); });
             document.addEventListener('selectstart', function(e) { if (state.testActive) e.preventDefault(); });
-        } catch (e) { console.error('enableTestRestrictions error:', e); }
+        } catch (_) {}
     }
 
     function disableTestRestrictions(state) {
@@ -663,7 +619,7 @@
             document.body.classList.remove('test-active');
             document.removeEventListener('copy', preventCopy);
             document.removeEventListener('cut', preventCopy);
-        } catch (e) { console.error('disableTestRestrictions error:', e); }
+        } catch (_) {}
     }
 
     function preventCopy(e) {
@@ -671,7 +627,7 @@
     }
 
     function requestFullscreen() {
-        const el = document.documentElement;
+        var el = document.documentElement;
         if (el.requestFullscreen) { el.requestFullscreen().catch(function() {}); }
         else if (el.webkitRequestFullscreen) { el.webkitRequestFullscreen(); }
         else if (el.msRequestFullscreen) { el.msRequestFullscreen(); }
@@ -686,9 +642,9 @@
         });
     }
 
-    function unblockBackButton(state) {
-        // Popstate handler remains but state.testActive check prevents redirection when not active
-    }
+    function unblockBackButton(state) {}
 
-    console.log('Mock_Test.js ready');
+    window.startTest = startTest;
+    window.renderTextWithImages = renderTextWithImages;
+    window.renderOptionWithImage = renderOptionWithImage;
 })();

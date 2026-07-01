@@ -56,8 +56,8 @@ p,
   text-align: justify;
   text-justify: inter-word;
   hyphens: auto;
-  word-spacing: normal;        /* ← eliminates extra gap */
-  word-break: break-word;      /* ← prevents huge spaces due to long words */
+  word-spacing: normal;
+  word-break: break-word;
   overflow-wrap: break-word;
 }
 
@@ -107,38 +107,44 @@ a {
   background-color: var(--green-700);
 }
 
-/* ===== HERO – fixes mobile sizing ===== */
+/* ===== HERO – centered with Flexbox ===== */
 .hero {
   background-color: var(--green-400);
   color: #fff;
   padding: 40px 30px;
-  text-align: center;
   border-radius: 25px;
   margin: 0 auto 25px auto;
   width: 60%;
   max-width: 100%;
   box-shadow: var(--shadow-2);
+  /* ----- CENTERING ----- */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center; /* fallback */
 }
 .hero h1 {
   font-size: 36px;
   margin: 10px 0;
   color: white;
-  text-align: center;
 }
 .hero p {
   margin: 10px 0;
-  text-align: center;   /* keep hero description centered */
 }
 
-/* ===== SOCIAL MEDIA (full width) ===== */
+/* ===== SOCIAL MEDIA – fully centered with Flexbox ===== */
 .social-media {
   background: linear-gradient(135deg, var(--green-400), var(--green-600));
   color: #fff;
   padding: 30px 20px;
-  text-align: center;
   border-radius: 0;
   margin: 0;
   width: 100%;
+  /* ----- CENTERING ----- */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center; /* fallback */
 }
 .social-media .icons {
   display: flex;
@@ -153,15 +159,24 @@ a {
 .social-media .icons a:hover {
   transform: scale(1.2);
 }
+/* Center any button inside social section */
+.social-media .cta-button,
+.social-media .secondary-button {
+  margin: 10px auto 0 auto;
+}
 
-/* ===== FOOTER ===== */
+/* ===== FOOTER – fully centered with Flexbox ===== */
 footer {
   background-color: var(--green-400);
   color: #fff;
-  text-align: center;
   padding: 20px;
   margin-top: 20px;
   width: 100%;
+  /* ----- CENTERING ----- */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center; /* fallback */
 }
 footer a {
   color: #fff;
@@ -231,7 +246,7 @@ footer a:hover {
   line-height: 1.6;
 }
 
-/* ===== BUTTONS ===== */
+/* ===== BUTTONS – centered helpers ===== */
 .cta-button,
 .secondary-button {
   display: inline-block;
@@ -257,6 +272,12 @@ footer a:hover {
 .secondary-button:hover {
   background-color: #5a6268;
   transform: scale(1.05);
+}
+/* If you place a button directly inside a container/section, use this wrapper or class */
+.button-center {
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
 /* ===== FORMS ===== */
@@ -515,7 +536,7 @@ img.lazy {
   .container,
   .section {
     width: 96%;
-    padding: 16px 10px;   /* slightly less padding to give text more room */
+    padding: 16px 10px;
   }
   .navbar a {
     padding: 6px 8px;

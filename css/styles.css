@@ -1,3 +1,4 @@
+/* ===== ROOT VARIABLES ===== */
 :root {
   --green-50: #e8f5e9;
   --green-400: #4caf50;
@@ -18,26 +19,56 @@
   --transition-medium: 0.3s ease;
 }
 
+/* ===== BASE & NEWSPAPER TEXT ===== */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
-
 html,
 body {
   height: 100%;
 }
-
 body {
-  font-family: Arial, sans-serif;
+  font-family: Georgia, "Times New Roman", serif;
   background-color: var(--green-50);
-  color: #333;
+  color: #1e1e1e;
   margin: 0;
   padding: 0;
-  line-height: 1.6;
+  line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* ---- Justified text for all paragraphs & descriptive blocks ---- */
+p,
+.newspaper-text,
+.cb p,
+.book p,
+.section p,
+.container p,
+.hero p,
+.card p,
+.semester p,
+.subject-box,
+.form-group label,
+.book-list .book p {
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+  word-spacing: 0.02em;
+}
+
+/* Headings remain aligned as defined */
+h1,
+h2,
+h3,
+h4,
+.brand,
+.hero h1,
+.semester h2,
+.cb h3 {
+  text-align: inherit;
 }
 
 h1 {
@@ -49,15 +80,12 @@ h3 {
   color: #388e3c;
   margin: 0 0 0.5rem;
 }
-
 a {
   color: inherit;
   text-decoration: none;
 }
 
-/* ===== 100% WIDTH ELEMENTS (Navbar, Hero, Social, Footer) ===== */
-
-/* Navbar – Full width with gap below */
+/* ===== NAVBAR ===== */
 .navbar {
   display: flex;
   flex-wrap: wrap;
@@ -65,65 +93,42 @@ a {
   background-color: var(--green-600);
   padding: 10px 0;
   width: 100%;
-  margin-bottom: 25px; /* ✅ Gap between navbar and hero */
+  margin-bottom: 25px;
+}
+.navbar a {
+  color: #fff;
+  padding: 8px 10px;
+  font-size: 14px;
+  transition: background-color var(--transition-medium);
+}
+.navbar a:hover {
+  background-color: var(--green-700);
 }
 
-/* Fixed header (if used) */
-#site-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  height: var(--hh, 70px);
-  background: #fff;
-  border-bottom: 2px solid var(--border, #e0e0e0);
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 0 24px;
-  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.07);
-  width: 100%;
-}
-
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  font-size: 1.35rem;
-  font-weight: 900;
-  color: var(--green-600);
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.brand i {
-  font-size: 1.5rem;
-  color: var(--accent-blue);
-}
-.brand span {
-  color: var(--accent-blue);
-}
-
-
+/* ===== HERO – fixes mobile sizing ===== */
 .hero {
   background-color: var(--green-400);
   color: #fff;
-  padding: 40px 20px;
+  padding: 40px 30px;
   text-align: center;
   border-radius: 25px;
-  margin: 0 auto;   
+  margin: 0 auto 25px auto;
   width: 60%;
+  max-width: 100%;
+  box-shadow: var(--shadow-2);
 }
 .hero h1 {
   font-size: 36px;
   margin: 10px 0;
   color: white;
+  text-align: center;
 }
 .hero p {
   margin: 10px 0;
+  text-align: center;   /* keep hero description centered */
 }
 
-/* Social Media – Full width */
+/* ===== SOCIAL MEDIA (full width) ===== */
 .social-media {
   background: linear-gradient(135deg, var(--green-400), var(--green-600));
   color: #fff;
@@ -147,7 +152,7 @@ a {
   transform: scale(1.2);
 }
 
-/* Footer – Full width */
+/* ===== FOOTER ===== */
 footer {
   background-color: var(--green-400);
   color: #fff;
@@ -164,33 +169,28 @@ footer a:hover {
   text-decoration: underline;
 }
 
-/* ===== 60% WIDTH ELEMENTS (Container & Section) ===== */
-
-/* Container – 60% width, centered */
+/* ===== 60% WIDTH CONTAINERS ===== */
 .container {
-  width: 60%; /* ✅ exactly 60% */
+  width: 60%;
   max-width: 100%;
-  margin: 20px auto; /* centered */
-  padding: 20px;
+  margin: 20px auto;
+  padding: 20px 30px;
   background: var(--surface);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-2);
 }
-
-/* Section – 60% width, centered */
 .section {
-  width: 60%; /* ✅ exactly 60% */
+  width: 60%;
   max-width: 100%;
-  margin: 30px auto; /* centered */
-  padding: 30px 20px;
+  margin: 30px auto;
+  padding: 30px 30px;
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-1);
   background-color: var(--surface);
-  text-align: center;
+  text-align: left;
 }
 
-/* ===== OTHER ELEMENTS (Cards, Buttons, Forms, etc.) ===== */
-
+/* ===== CARDS ===== */
 .card {
   background: var(--card-bg);
   border-radius: var(--radius-md);
@@ -221,6 +221,7 @@ footer a:hover {
   font-weight: 800;
   margin-bottom: 7px;
   color: #333;
+  text-align: left;
 }
 .cb p {
   font-size: 0.83rem;
@@ -228,16 +229,7 @@ footer a:hover {
   line-height: 1.6;
 }
 
-.navbar a {
-  color: #fff;
-  padding: 8px 10px;
-  font-size: 14px;
-  transition: background-color var(--transition-medium);
-}
-.navbar a:hover {
-  background-color: var(--green-700);
-}
-
+/* ===== BUTTONS ===== */
 .cta-button,
 .secondary-button {
   display: inline-block;
@@ -265,6 +257,7 @@ footer a:hover {
   transform: scale(1.05);
 }
 
+/* ===== FORMS ===== */
 .form-group {
   margin-bottom: 1.5rem;
 }
@@ -311,6 +304,7 @@ button:hover {
   background: var(--green-700);
 }
 
+/* ===== TIMER ===== */
 .timer {
   font-size: 36px;
   color: #388e3c;
@@ -321,6 +315,7 @@ button:hover {
   text-align: center;
 }
 
+/* ===== BOOK LIST ===== */
 .book-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -354,12 +349,14 @@ button:hover {
   margin: 10px 0;
   color: var(--green-400);
   font-weight: 700;
+  text-align: center;
 }
 .book p {
   font-size: 16px;
   color: var(--muted);
 }
 
+/* ===== SEMESTER (pure CSS disclosure) ===== */
 .semester {
   background: var(--surface);
   border-radius: var(--radius-md);
@@ -387,12 +384,40 @@ button:hover {
   display: none;
   padding: 10px 0;
 }
+/* Use a checkbox hack to toggle subjects without JavaScript */
+.semester-toggle {
+  display: none;
+}
+.semester-toggle:checked + .semester .subjects {
+  display: block;
+}
+.semester-toggle:checked + .semester h2 .fa-chevron-right {
+  display: none;
+}
+.semester-toggle:checked + .semester h2 .fa-chevron-down {
+  display: inline-block;
+}
+/* Default icons – we hide one and show the other via CSS */
+.semester h2 .fa-chevron-down {
+  display: none;
+}
+.semester h2 .fa-chevron-right {
+  display: inline-block;
+}
+.semester-toggle:checked + .semester h2 .fa-chevron-down {
+  display: inline-block;
+}
+.semester-toggle:checked + .semester h2 .fa-chevron-right {
+  display: none;
+}
+
 .subject-box {
   background-color: #ecf0f1;
   margin: 10px 0;
-  padding: 10px;
+  padding: 10px 15px;
   border-radius: 6px;
   transition: background-color var(--transition-medium), transform var(--transition-medium);
+  text-align: justify;
 }
 .subject-box:hover {
   background-color: #3498db;
@@ -413,6 +438,7 @@ button:hover {
   margin-right: 8px;
 }
 
+/* ===== LAZY LOAD ===== */
 .lazy,
 .lazy-section,
 .lazy-bg {
@@ -439,18 +465,28 @@ img.lazy {
   background-position: center;
 }
 
-/* Responsive: On smaller screens, let 60% elements become wider for readability */
+/* ===== RESPONSIVE – fixes hero & containers on mobile ===== */
 @media (max-width: 768px) {
+  .hero {
+    width: 92%;
+    padding: 32px 20px;
+    border-radius: 18px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero h1 {
+    font-size: 28px;
+  }
+  .hero p {
+    font-size: 1rem;
+  }
   .container,
   .section {
-    width: 90%; /* wider on tablets/mobiles so content isn't squished */
-    max-width: 100%;
+    width: 92%;
+    padding: 20px 18px;
   }
-  .hero {
-    padding: 30px 15px;
-  }
-  .social-media {
-    padding: 20px;
+  .cb p {
+    font-size: 0.9rem;
   }
   .semester {
     padding: 15px;
@@ -461,10 +497,53 @@ img.lazy {
   .semester h2 i {
     font-size: 1.5rem;
   }
+  .social-media .icons a {
+    font-size: 28px;
+  }
 }
 
 @media (max-width: 600px) {
-  .hero h1 {
-    font-size: 28px;
+  .hero {
+    width: 96%;
+    padding: 24px 16px;
+    border-radius: 14px;
+    margin-bottom: 18px;
   }
+  .hero h1 {
+    font-size: 24px;
+  }
+  .hero p {
+    font-size: 0.95rem;
+  }
+  .container,
+  .section {
+    width: 96%;
+    padding: 16px 14px;
+  }
+  .navbar a {
+    padding: 6px 8px;
+    font-size: 13px;
+  }
+  .book-list {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .social-media .icons a {
+    font-size: 24px;
+  }
+}
+
+/* ===== UTILITY ===== */
+.text-center {
+  text-align: center;
+}
+.text-justify {
+  text-align: justify;
+  text-justify: inter-word;
+}
+.mt-1 {
+  margin-top: 10px;
+}
+.mb-1 {
+  margin-bottom: 10px;
 }

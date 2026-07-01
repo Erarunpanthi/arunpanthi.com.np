@@ -1,8 +1,8 @@
-// /js/layout.js
+// /js/Mock_Test.js
 (function() {
     'use strict';
 
-    // ─── Image Helpers ──────────────────────────────────────────────────────────
+    // ─── IMAGE HELPERS ──────────────────────────────────────────────────────────
 
     function isImageUrl(url) {
         if (!url || typeof url !== 'string') return false;
@@ -70,37 +70,13 @@
                 '</span>';
     }
 
-    // ─── Test Controller ────────────────────────────────────────────────────────
-
-    const TEST_STATE = {
-        questionSet: null,
-        currentQuestionIndex: 0,
-        userAnswers: {},
-        testActive: false,
-        timerInterval: null,
-        deadline: null,
-        SET_ID: null,
-        TOTAL_QUESTIONS: 0,
-        TOTAL_TIME_SECONDS: 0,
-        STORAGE_KEY_STATUS: '',
-        STORAGE_KEY_ANSWERS: '',
-        STORAGE_KEY_START_TIME: '',
-        STORAGE_KEY_END_TIME: '',
-        STORAGE_KEY_MARKS: '',
-        STORAGE_KEY_SUBMITTED_AT: '',
-        // DOM refs (will be populated)
-        $: {}
-    };
-
-    // ─── DOM Helpers ────────────────────────────────────────────────────────────
+    // ─── HELPERS ────────────────────────────────────────────────────────────────
 
     function getElement(id) {
         const el = document.getElementById(id);
         if (!el) console.warn('Element #' + id + ' not found');
         return el;
     }
-
-    // ─── Utilities ──────────────────────────────────────────────────────────────
 
     function LSget(k) { try { return localStorage.getItem(k); } catch (_) { return null; } }
     function LSset(k, v) { try { localStorage.setItem(k, v); return true; } catch (_) { return false; } }
@@ -120,42 +96,41 @@
         return m > 0 ? m + ' min ' + s + ' sec' : s + ' seconds';
     }
 
-    function answeredCount(state) {
-        return Object.keys(state.userAnswers).filter(k => state.userAnswers[k] !== undefined && state.userAnswers[k] !== null).length;
-    }
-
-    function calcMarks(state) {
-        let correct = 0;
-        for (let i = 0; i < state.TOTAL_QUESTIONS; i++) {
-            if (state.userAnswers[i] === state.questionSet.questions[i].correct) correct++;
+    function generateSetId(questionSet) {
+        const str = JSON.stringify(questionSet.questions);
+        let hash = 0;
+        for (let i = 0; i < str.length; i++) {
+            const char = str.charCodeAt(i);
+            hash = ((hash << 5) - hash) + char;
+            hash |= 0;
         }
-        return correct;
+        return 'set_' + Math.abs(hash).toString(16).slice(0, 8);
     }
 
-    function getRemainingSeconds(state) {
-        if (!state.deadline) return 0;
-        return Math.max(0, Math.floor((state.deadline - Date.now()) / 1000));
-    }
-
-    // ─── Test Lifecycle ─────────────────────────────────────────────────────────
+    // ─── MAIN TEST FUNCTION ────────────────────────────────────────────────────
 
     function startTest(questionSet) {
         // Initialize state
-        const state = TEST_STATE;
-        state.questionSet = questionSet;
-        state.TOTAL_QUESTIONS = questionSet.questions.length;
-        state.TOTAL_TIME_SECONDS = Math.floor(state.TOTAL_QUESTIONS * 0.8 * 60);
-        const SET_ID = generateSetId(questionSet);
-        state.SET_ID = SET_ID;
-        state.STORAGE_KEY_STATUS = `mcq_${SET_ID}_status`;
-        state.STORAGE_KEY_ANSWERS = `mcq_${SET_ID}_answers`;
-        state.STORAGE_KEY_START_TIME = `mcq_${SET_ID}_startTime`;
-        state.STORAGE_KEY_END_TIME = `mcq_${SET_ID}_endTime`;
-        state.STORAGE_KEY_MARKS = `mcq_${SET_ID}_marks`;
-        state.STORAGE_KEY_SUBMITTED_AT = `mcq_${SET_ID}_submittedAt`;
+        const state = {
+            questionSet: questionSet,
+            currentQuestionIndex: 0,
+            userAnswers: {},
+            testActive: false,
+            timerInterval: null,
+            deadline: null,
+            SET_ID: null,
+            TOTAL_QUESTIONS: 0,
+            TOTAL_TIME_SECONDS: 0,
+            STORAGE_KEY_STATUS: '',
+            STORAGE_KEY_ANSWERS: '',
+            STORAGE_KEY_START_TIME: '',
+            STORAGE_KEY_END_TIME: '',
+            STORAGE_KEY_MARKS: '',
+            STORAGE_KEY_SUBMITTED_AT: '',
+            $: {}
+        };
 
         // Populate DOM refs
-        const $ = {};
         const ids = [
             'pre-test-section', 'test-section', 'results-section',
             'timer-display', 'navbar-brand',
@@ -168,10 +143,20 @@
             'results-percentage', 'results-time-taken', 'results-detail',
             'warning-modal', 'modal-unanswered-count', 'btn-modal-cancel', 'btn-modal-submit'
         ];
-        ids.forEach(id => { $[id] = getElement(id); });
-        state.$ = $;
+        ids.forEach(id => { state.$[id] = getElement(id); });
 
-        // Check existing status
+        // Setup constants
+        state.TOTAL_QUESTIONS = questionSet.questions.length;
+        state.TOTAL_TIME_SECONDS = Math.floor(state.TOTAL_QUESTIONS * 0.8 * 60);
+        state.SET_ID = generateSetId(questionSet);
+        state.STORAGE_KEY_STATUS = 'mcq_' + state.SET_ID + '_status';
+        state.STORAGE_KEY_ANSWERS = 'mcq_' + state.SET_ID + '_answers';
+        state.STORAGE_KEY_START_TIME = 'mcq_' + state.SET_ID + '_startTime';
+        state.STORAGE_KEY_END_TIME = 'mcq_' + state.SET_ID + '_endTime';
+        state.STORAGE_KEY_MARKS = 'mcq_' + state.SET_ID + '_marks';
+        state.STORAGE_KEY_SUBMITTED_AT = 'mcq_' + state.SET_ID + '_submittedAt';
+
+        // Check existing test status
         const status = LSget(state.STORAGE_KEY_STATUS);
         if (status === 'completed' || status === 'submitted') {
             const ans = LSget(state.STORAGE_KEY_ANSWERS);
@@ -183,45 +168,26 @@
             const ans = LSget(state.STORAGE_KEY_ANSWERS);
             if (ans) { try { state.userAnswers = JSON.parse(ans); } catch (e) { state.userAnswers = {}; } }
             const hasTime = resumeTimerFromStoredDeadline(state);
-            if (hasTime) {
-                state.testActive = true;
-                enableTestRestrictions(state);
-                blockBackButton(state);
-                showTestInterface(state);
-            } else {
-                state.testActive = true;
-                enableTestRestrictions(state);
-                blockBackButton(state);
-                showTestInterface(state);
+            state.testActive = true;
+            enableTestRestrictions(state);
+            blockBackButton(state);
+            showTestInterface(state);
+            if (!hasTime) {
                 autoSubmit(state);
             }
             return;
         }
 
-        // Fresh start – show pre-test
+        // Fresh start
         showPreTest(state);
-        // Attach start button listener
-        if ($['btn-start-test']) {
-            $['btn-start-test'].addEventListener('click', function() {
+        if (state.$['btn-start-test']) {
+            state.$['btn-start-test'].addEventListener('click', function() {
                 beginTest(state);
             });
         }
     }
 
-    // ─── Generate Set ID ────────────────────────────────────────────────────────
-
-    function generateSetId(questionSet) {
-        const str = JSON.stringify(questionSet.questions);
-        let hash = 0;
-        for (let i = 0; i < str.length; i++) {
-            const char = str.charCodeAt(i);
-            hash = ((hash << 5) - hash) + char;
-            hash |= 0;
-        }
-        return 'set_' + Math.abs(hash).toString(16).slice(0, 8);
-    }
-
-    // ─── UI functions ───────────────────────────────────────────────────────────
+    // ─── UI FUNCTIONS ──────────────────────────────────────────────────────────
 
     function showPreTest(state) {
         const $ = state.$;
@@ -229,7 +195,7 @@
         if ($['test-section']) $['test-section'].style.display = 'none';
         if ($['results-section']) $['results-section'].style.display = 'none';
         if ($['timer-display']) $['timer-display'].style.display = 'none';
-        if ($['navbar-brand']) $['navbar-brand'].textContent = '📝 MCQ Test';
+        if ($['navbar-brand']) $['navbar-brand'].textContent = '📝 ' + state.questionSet.name;
         if ($['hero-set-name']) $['hero-set-name'].textContent = state.questionSet.name;
         if ($['hero-details']) $['hero-details'].textContent = state.questionSet.details || '';
         if ($['hero-q-count']) $['hero-q-count'].textContent = state.TOTAL_QUESTIONS;
@@ -238,17 +204,15 @@
 
         if ($['hero-note']) {
             $['hero-note'].innerHTML =
-                '<div style="text-align:left; max-width:500px; margin:10px auto; font-size:0.9rem; line-height:1.6; background:#4caf50; padding:15px 20px; border-radius:8px; border-left:4px solid #ff9800;">' +
-                '<p><strong>📌 Exam Instructions:</strong></p>' +
+                '<div style="text-align:left; max-width:500px; margin:10px auto; font-size:0.9rem; line-height:1.6; background:#e8f5e9; padding:15px 20px; border-radius:8px; border-left:4px solid #2e7d32;">' +
+                '<p><strong>📌 Instructions:</strong></p>' +
                 '<ul style="list-style:none; padding-left:0; margin:5px 0;">' +
-                '<li>✅ Exam will automatically open in full-screen mode.</li>' +
-                '<li>✅ You can take this test only once — no re-test allowed.</li>' +
-                '<li>✅ Timer will start immediately after clicking "🚀 Start Test".</li>' +
-                '<li>✅ Time warnings will be shown at 10 minutes and 5 minutes remaining.</li>' +
-                '<li>✅ When time is over, the test will be automatically submitted.</li>' +
-                '<li>🖼️ Image links are automatically displayed as images. If an image fails to load, a fallback message is shown.</li>' +
+                '<li>✅ Timer starts immediately after clicking "Start Test".</li>' +
+                '<li>✅ This test can only be taken once.</li>' +
+                '<li>✅ Auto-submit when time runs out.</li>' +
+                '<li>🖼️ Image URLs are automatically displayed.</li>' +
                 '</ul>' +
-                '<p style="margin-top:10px; color:red; font-weight:bold;">⚠️ This test can only be taken once. Make sure you are ready before starting.</p>' +
+                '<p style="margin-top:10px; color:#c62828; font-weight:bold;">⚠️ Ready? Click the button below.</p>' +
                 '</div>';
         }
 
@@ -263,7 +227,7 @@
     function beginTest(state) {
         const status = LSget(state.STORAGE_KEY_STATUS);
         if (status === 'completed' || status === 'submitted') {
-            alert('You have already taken this test. Results are shown below.');
+            alert('You have already taken this test.');
             showResults(state);
             return;
         }
@@ -329,9 +293,14 @@
         updateSidebarHighlight(state);
         updateAnsweredCount(state);
         renderQuestion(state);
-        // Attach event listeners for navigation and submit
-        if ($['btn-prev']) $['btn-prev'].addEventListener('click', function() { navigateQuestion(state, -1); });
-        if ($['btn-next']) $['btn-next'].addEventListener('click', function() { navigateQuestion(state, 1); });
+
+        // Attach event listeners
+        if ($['btn-prev']) {
+            $['btn-prev'].addEventListener('click', function() { navigateQuestion(state, -1); });
+        }
+        if ($['btn-next']) {
+            $['btn-next'].addEventListener('click', function() { navigateQuestion(state, 1); });
+        }
         if ($['btn-submit-test']) {
             $['btn-submit-test'].addEventListener('click', function() {
                 if (!state.testActive) return;
@@ -344,25 +313,52 @@
             });
         }
         // Modal events
-        if ($['btn-modal-cancel']) $['btn-modal-cancel'].addEventListener('click', function() { hideWarningModal(state); });
-        if ($['btn-modal-submit']) $['btn-modal-submit'].addEventListener('click', function() { submitTest(state); });
+        if ($['btn-modal-cancel']) {
+            $['btn-modal-cancel'].addEventListener('click', function() { hideWarningModal(state); });
+        }
+        if ($['btn-modal-submit']) {
+            $['btn-modal-submit'].addEventListener('click', function() { submitTest(state); });
+        }
         if ($['warning-modal']) {
             $['warning-modal'].addEventListener('click', function(e) {
                 if (e.target === $['warning-modal']) hideWarningModal(state);
             });
         }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (!state.testActive) return;
+            if ($['warning-modal'] && $['warning-modal'].style.display === 'flex') return;
+            if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                e.preventDefault();
+                navigateQuestion(state, -1);
+            } else if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+                e.preventDefault();
+                navigateQuestion(state, 1);
+            } else if (e.key >= '1' && e.key <= '9') {
+                const idx = parseInt(e.key) - 1;
+                const q = state.questionSet.questions[state.currentQuestionIndex];
+                if (q && idx < q.options.length) {
+                    e.preventDefault();
+                    selectOption(state, idx);
+                }
+            } else if (e.key === 'a' || e.key === 'A') { selectOption(state, 0); }
+            else if (e.key === 'b' || e.key === 'B') { selectOption(state, 1); }
+            else if (e.key === 'c' || e.key === 'C') { selectOption(state, 2); }
+            else if (e.key === 'd' || e.key === 'D') { selectOption(state, 3); }
+        });
     }
 
     function renderQuestion(state) {
         const $ = state.$;
         const q = state.questionSet.questions[state.currentQuestionIndex];
         if (!q) return;
-        if ($['q-number-label']) $['q-number-label'].textContent = 'QUESTION ' + (state.currentQuestionIndex + 1) + ' / ' + state.TOTAL_QUESTIONS;
-
+        if ($['q-number-label']) {
+            $['q-number-label'].textContent = 'QUESTION ' + (state.currentQuestionIndex + 1) + ' / ' + state.TOTAL_QUESTIONS;
+        }
         if ($['q-text']) {
             $['q-text'].innerHTML = renderTextWithImages(q.question, 'inline-image');
         }
-
         if ($['options-list']) {
             $['options-list'].innerHTML = '';
             const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
@@ -376,7 +372,6 @@
                 $['options-list'].appendChild(li);
             });
         }
-
         if ($['btn-prev']) $['btn-prev'].disabled = (state.currentQuestionIndex === 0);
         if ($['btn-next']) $['btn-next'].disabled = (state.currentQuestionIndex >= state.TOTAL_QUESTIONS - 1);
         updateSidebarHighlight(state);
@@ -405,8 +400,12 @@
         dots.forEach(dot => {
             const i = parseInt(dot.dataset.index);
             dot.classList.remove('answered', 'current');
-            if (state.userAnswers[i] !== undefined && state.userAnswers[i] !== null) dot.classList.add('answered');
-            if (i === state.currentQuestionIndex) dot.classList.add('current');
+            if (state.userAnswers[i] !== undefined && state.userAnswers[i] !== null) {
+                dot.classList.add('answered');
+            }
+            if (i === state.currentQuestionIndex) {
+                dot.classList.add('current');
+            }
         });
     }
 
@@ -416,7 +415,11 @@
         }
     }
 
-    // ─── Timer ─────────────────────────────────────────────────────────────────
+    function answeredCount(state) {
+        return Object.keys(state.userAnswers).filter(k => state.userAnswers[k] !== undefined && state.userAnswers[k] !== null).length;
+    }
+
+    // ─── TIMER ──────────────────────────────────────────────────────────────────
 
     function updateTimerFromDeadline(state) {
         const remaining = getRemainingSeconds(state);
@@ -430,6 +433,11 @@
             }
         }
         return remaining;
+    }
+
+    function getRemainingSeconds(state) {
+        if (!state.deadline) return 0;
+        return Math.max(0, Math.floor((state.deadline - Date.now()) / 1000));
     }
 
     function startTimerWithDeadline(state) {
@@ -466,14 +474,12 @@
                     }
                 }, 1000);
                 return true;
-            } else {
-                return false;
             }
         }
         return false;
     }
 
-    // ─── Submit / Results ──────────────────────────────────────────────────────
+    // ─── SUBMIT & RESULTS ──────────────────────────────────────────────────────
 
     function submitTest(state) {
         if (!state.testActive) return;
@@ -514,6 +520,14 @@
         showResults(state, marks, timeTaken, true);
     }
 
+    function calcMarks(state) {
+        let correct = 0;
+        for (let i = 0; i < state.TOTAL_QUESTIONS; i++) {
+            if (state.userAnswers[i] === state.questionSet.questions[i].correct) correct++;
+        }
+        return correct;
+    }
+
     function showResults(state, marksOverride, timeOverride, auto) {
         const $ = state.$;
         if ($['pre-test-section']) $['pre-test-section'].style.display = 'none';
@@ -539,7 +553,9 @@
         if ($['results-score']) $['results-score'].textContent = marks;
         if ($['results-denom']) $['results-denom'].textContent = '/ ' + state.TOTAL_QUESTIONS;
         if ($['results-percentage']) $['results-percentage'].textContent = percent + '%';
-        if ($['results-time-taken']) $['results-time-taken'].textContent = '⏱️ Time taken: ' + formatTimeLong(timeTaken) + (auto ? ' (Auto-submitted)' : '');
+        if ($['results-time-taken']) {
+            $['results-time-taken'].textContent = '⏱️ Time taken: ' + formatTimeLong(timeTaken) + (auto ? ' (Auto-submitted)' : '');
+        }
 
         if ($['results-detail']) {
             $['results-detail'].innerHTML = '';
@@ -555,9 +571,13 @@
                 if (wasAnswered) card.classList.add(isCorrect ? 'correct' : 'incorrect');
 
                 let badge = '';
-                if (!wasAnswered) badge = '<span class="r-badge" style="background:#fff3e0;color:#E65100;">⚠️ NOT ANSWERED</span>';
-                else if (isCorrect) badge = '<span class="r-badge correct-badge">✅ CORRECT</span>';
-                else badge = '<span class="r-badge incorrect-badge">❌ INCORRECT</span>';
+                if (!wasAnswered) {
+                    badge = '<span class="r-badge" style="background:#fff3e0;color:#E65100;">⚠️ NOT ANSWERED</span>';
+                } else if (isCorrect) {
+                    badge = '<span class="r-badge correct-badge">✅ CORRECT</span>';
+                } else {
+                    badge = '<span class="r-badge incorrect-badge">❌ INCORRECT</span>';
+                }
 
                 const renderedQ = renderTextWithImages(q.question, 'inline-image');
 
@@ -587,7 +607,7 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // ─── Warning Modal ──────────────────────────────────────────────────────────
+    // ─── WARNING MODAL ─────────────────────────────────────────────────────────
 
     function showWarningModal(state) {
         const unanswered = state.TOTAL_QUESTIONS - answeredCount(state);
@@ -607,7 +627,7 @@
         }
     }
 
-    // ─── Restrictions & Fullscreen ─────────────────────────────────────────────
+    // ─── RESTRICTIONS ───────────────────────────────────────────────────────────
 
     function enableTestRestrictions(state) {
         try {
@@ -628,7 +648,7 @@
     }
 
     function preventCopy(e) {
-        if (TEST_STATE.testActive) { e.preventDefault(); return false; }
+        if (window._testActive) { e.preventDefault(); return false; }
     }
 
     function requestFullscreen() {
@@ -648,15 +668,12 @@
     }
 
     function unblockBackButton(state) {
-        // We need to remove the popstate listener, but we can't easily remove a specific one.
-        // We'll just leave it; the check for state.testActive will handle it.
-        // Alternatively, we could store the handler reference.
+        // Popstate handler remains but state.testActive check prevents redirection when not active
     }
 
-    // ─── Global Exposure ──────────────────────────────────────────────────────
+    // ─── EXPOSE GLOBALLY ────────────────────────────────────────────────────────
 
     window.startTest = startTest;
-    // Also expose image helpers if needed elsewhere
     window.renderTextWithImages = renderTextWithImages;
     window.renderOptionWithImage = renderOptionWithImage;
 

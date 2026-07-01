@@ -90,7 +90,9 @@
     }
 
     function generateSetId(questionSet) {
-        var str = JSON.stringify(questionSet.questions);
+        if (questionSet.id) return questionSet.id;
+        var name = questionSet.name || 'set';
+        var str = name + '|' + JSON.stringify(questionSet.questions);
         var hash = 0;
         for (var i = 0; i < str.length; i++) {
             var char = str.charCodeAt(i);
@@ -100,9 +102,26 @@
         return 'set_' + Math.abs(hash).toString(16).slice(0, 8);
     }
 
+    function resetTest(questionSet) {
+        var id = generateSetId(questionSet);
+        var keys = ['_status', '_answers', '_startTime', '_endTime', '_marks', '_submittedAt'];
+        keys.forEach(function(k) {
+            LSremove('mcq_' + id + k);
+        });
+        var url = new URL(window.location.href);
+        url.searchParams.delete('reset');
+        window.location.replace(url.toString());
+    }
+
     function startTest(questionSet) {
         if (!questionSet || !questionSet.questions || questionSet.questions.length === 0) {
             console.error('Invalid questionSet');
+            return;
+        }
+
+        var url = new URL(window.location.href);
+        if (url.searchParams.has('reset') && url.searchParams.get('reset') === '1') {
+            resetTest(questionSet);
             return;
         }
 
@@ -191,13 +210,14 @@
 
         if ($['hero-note']) {
             $['hero-note'].innerHTML =
-                '<div style="text-align:left; max-width:500px; margin:10px auto; font-size:0.9rem; line-height:1.6; background:#4caf50;; padding:15px 20px; border-radius:8px; border-left:4px solid #2e7d32;">' +
+                '<div style="text-align:left; max-width:500px; margin:10px auto; font-size:0.9rem; line-height:1.6; background:#e8f5e9; padding:15px 20px; border-radius:8px; border-left:4px solid #2e7d32;">' +
                 '<p><strong>📌 Instructions:</strong></p>' +
                 '<ul style="list-style:none; padding-left:0; margin:5px 0;">' +
                 '<li>✅ Timer starts immediately after clicking "Start Test".</li>' +
                 '<li>✅ This test can only be taken once.</li>' +
                 '<li>✅ Auto-submit when time runs out.</li>' +
                 '<li>🖼️ Image URLs are automatically displayed.</li>' +
+                '<li>🔄 Add <strong>?reset=1</strong> to URL to reset this test.</li>' +
                 '</ul>' +
                 '<p style="margin-top:10px; color:#c62828; font-weight:bold;">⚠️ Ready? Click the button below.</p>' +
                 '</div>';

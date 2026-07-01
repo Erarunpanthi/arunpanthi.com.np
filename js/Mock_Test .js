@@ -2,6 +2,8 @@
 (function() {
     'use strict';
 
+    console.log('Mock_Test.js loaded');
+
     // ─── IMAGE HELPERS ──────────────────────────────────────────────────────────
 
     function isImageUrl(url) {
@@ -109,7 +111,13 @@
 
     // ─── MAIN TEST FUNCTION ────────────────────────────────────────────────────
 
-    function startTest(questionSet) {
+    window.startTest = function(questionSet) {
+        console.log('startTest called with questionSet:', questionSet);
+        if (!questionSet || !questionSet.questions || questionSet.questions.length === 0) {
+            console.error('Invalid questionSet');
+            return;
+        }
+
         // Initialize state
         const state = {
             questionSet: questionSet,
@@ -158,6 +166,7 @@
 
         // Check existing test status
         const status = LSget(state.STORAGE_KEY_STATUS);
+        console.log('Existing status:', status);
         if (status === 'completed' || status === 'submitted') {
             const ans = LSget(state.STORAGE_KEY_ANSWERS);
             if (ans) { try { state.userAnswers = JSON.parse(ans); } catch (e) { state.userAnswers = {}; } }
@@ -179,13 +188,17 @@
         }
 
         // Fresh start
+        console.log('Showing pre-test');
         showPreTest(state);
         if (state.$['btn-start-test']) {
             state.$['btn-start-test'].addEventListener('click', function() {
+                console.log('Start button clicked');
                 beginTest(state);
             });
+        } else {
+            console.error('Start button not found');
         }
-    }
+    };
 
     // ─── UI FUNCTIONS ──────────────────────────────────────────────────────────
 
@@ -225,6 +238,7 @@
     }
 
     function beginTest(state) {
+        console.log('beginTest called');
         const status = LSget(state.STORAGE_KEY_STATUS);
         if (status === 'completed' || status === 'submitted') {
             alert('You have already taken this test.');
@@ -263,6 +277,7 @@
     }
 
     function showTestInterface(state) {
+        console.log('showTestInterface called');
         const $ = state.$;
         if ($['pre-test-section']) $['pre-test-section'].style.display = 'none';
         if ($['test-section']) $['test-section'].style.display = 'block';
@@ -350,9 +365,13 @@
     }
 
     function renderQuestion(state) {
+        console.log('renderQuestion called for index', state.currentQuestionIndex);
         const $ = state.$;
         const q = state.questionSet.questions[state.currentQuestionIndex];
-        if (!q) return;
+        if (!q) {
+            console.error('Question not found at index', state.currentQuestionIndex);
+            return;
+        }
         if ($['q-number-label']) {
             $['q-number-label'].textContent = 'QUESTION ' + (state.currentQuestionIndex + 1) + ' / ' + state.TOTAL_QUESTIONS;
         }
@@ -671,10 +690,5 @@
         // Popstate handler remains but state.testActive check prevents redirection when not active
     }
 
-    // ─── EXPOSE GLOBALLY ────────────────────────────────────────────────────────
-
-    window.startTest = startTest;
-    window.renderTextWithImages = renderTextWithImages;
-    window.renderOptionWithImage = renderOptionWithImage;
-
+    console.log('Mock_Test.js ready');
 })();

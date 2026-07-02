@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- ===== SEO META ===== -->
+    
     <title>Timed Subject-Wise Practice Tests – PSC Exam | Nepal Engineering Service</title>
     <meta name="description" content="Timed practice tests for Nepal Engineering Service First Paper – Civil Group Third Class. Each topic includes multiple exam sets with instant start buttons." />
     <meta name="keywords" content="PSC Nepal, Loksewa, Engineering Service, Practice Tests, Timed Exam, Civil Group, Third Class" />
@@ -47,7 +47,7 @@
     </script>
 
     <style>
-        /* ===== ACCORDION CORE ===== */
+        
         .accordion-item {
             border: 1px solid var(--gray-200, #e0e0e0);
             border-radius: var(--radius-md, 10px);
@@ -182,7 +182,7 @@
             background: #ffffff;
         }
         .set-card.open .set-body {
-            max-height: 300px; /* enough for button + description */
+            max-height: 300px;
             padding: 14px 16px 16px 16px;
         }
 
@@ -225,7 +225,7 @@
             font-size: 1rem;
         }
 
-        /* ===== SECTION DIVIDER ===== */
+        
         .section-divider {
             margin: 40px 0 24px 0;
             padding-bottom: 12px;
@@ -250,32 +250,7 @@
             border-radius: 20px;
         }
 
-        /* ===== HERO ===== */
-        .hero {
-            background: linear-gradient(145deg, #1b3a2b, #2a5a3a);
-            color: #fff;
-            padding: 48px 20px 40px;
-            text-align: center;
-            border-radius: 0 0 30px 30px;
-            margin-bottom: 32px;
-        }
-        .hero h1 {
-            font-size: 2rem;
-            margin: 0 0 8px 0;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-        }
-        .hero p {
-            margin: 4px 0;
-            opacity: 0.92;
-            font-size: 1.05rem;
-        }
-        .hero .hero-sub {
-            font-size: 0.95rem;
-            opacity: 0.85;
-            margin-top: 6px;
-        }
-
+     
         /* ===== RESPONSIVE ===== */
         @media (max-width: 640px) {
             .accordion-header {
@@ -310,9 +285,7 @@
                 width: 100%;
                 justify-content: center;
             }
-            .hero h1 {
-                font-size: 1.5rem;
-            }
+           
             .section-divider h2 {
                 font-size: 1.15rem;
             }
@@ -336,7 +309,6 @@
             }
         }
 
-        /* ===== TOPIC ID BADGE ===== */
         .topic-id-badge {
             display: inline-flex !important;
             align-items: center !important;
@@ -426,7 +398,7 @@
     <script src="/js/layout.js"></script>
 
     <!-- ================================================================ -->
-    <!-- JAVASCRIPT – ACCORDION + SETS WITH START EXAM BUTTONS            -->
+    <!-- JAVASCRIPT – ACCORDION WITH SINGLE-OPEN & EMOJI SET NAMES        -->
     <!-- ================================================================ -->
     <script>
         (function() {
@@ -435,10 +407,8 @@
             const TEST_BASE_URL = 'https://arunpanthi.com.np/Psc-preparation/Test/';
 
             // ================================================================
-            //  DATA: each topic has a 'sets' array. Each set has:
-            //    name: display name
-            //    description: short description (optional)
-            //    testFile: (optional) if not provided, we generate from topic id + set number
+            //  DATA: each topic has a 'sets' array. 
+            //  Set names now include ✍️ emoji.
             // ================================================================
 
             const topicsData = {
@@ -449,129 +419,129 @@
                     name: 'Physical, socio-cultural and economic geography and demography of Nepal',
                     marks: 1,
                     sets: [
-                        { name: 'Set 1 – Physical Geography', description: 'Rivers, mountains, climate zones, and ecological regions.' },
-                        { name: 'Set 2 – Socio-Cultural & Economic', description: 'Ethnic groups, languages, agriculture, and remittance.' },
-                        { name: 'Set 3 – Demography & Trends', description: 'Population growth, urbanization, sex ratio, and provincial data.' }
+                        { name: '✍️ Set 1 – Physical Geography', description: 'Rivers, mountains, climate zones, and ecological regions.' },
+                        { name: '✍️ Set 2 – Socio-Cultural & Economic', description: 'Ethnic groups, languages, agriculture, and remittance.' },
+                        { name: '✍️ Set 3 – Demography & Trends', description: 'Population growth, urbanization, sex ratio, and provincial data.' }
                     ]
                 }, {
                     id: '1.2',
                     name: 'Major natural resources of Nepal',
                     marks: 1,
                     sets: [
-                        { name: 'Set 1 – Water & Energy', description: 'Hydropower potential, major projects, and water resources.' },
-                        { name: 'Set 2 – Minerals & Forests', description: 'Limestone, coal, iron ore, forest cover, and major species.' }
+                        { name: '✍️ Set 1 – Water & Energy', description: 'Hydropower potential, major projects, and water resources.' },
+                        { name: '✍️ Set 2 – Minerals & Forests', description: 'Limestone, coal, iron ore, forest cover, and major species.' }
                     ]
                 }, {
                     id: '1.3',
                     name: 'Geographical diversity, climatic conditions, and livelihood & lifestyle of people',
                     marks: 1,
                     sets: [
-                        { name: 'Set 1 – Climate & Geography', description: 'Climate zones, temperature, and altitude variation.' },
-                        { name: 'Set 2 – Livelihood & Lifestyle', description: 'Agriculture, occupation by region, and lifestyle patterns.' }
+                        { name: '✍️ Set 1 – Climate & Geography', description: 'Climate zones, temperature, and altitude variation.' },
+                        { name: '✍️ Set 2 – Livelihood & Lifestyle', description: 'Agriculture, occupation by region, and lifestyle patterns.' }
                     ]
                 }, {
                     id: '1.4',
                     name: 'Notable events and personalities, social, cultural and economic conditions in modern history of Nepal',
                     marks: 1,
                     sets: [
-                        { name: 'Set 1 – Historical Events', description: 'Unification, Rana regime, People\'s Movements, and key milestones.' },
-                        { name: 'Set 2 – Personalities & Culture', description: 'Prithvi Narayan Shah, Bhanubhakta, Jung Bahadur, and cultural heritage.' }
+                        { name: '✍️ Set 1 – Historical Events', description: 'Unification, Rana regime, People\'s Movements, and key milestones.' },
+                        { name: '✍️ Set 2 – Personalities & Culture', description: 'Prithvi Narayan Shah, Bhanubhakta, Jung Bahadur, and cultural heritage.' }
                     ]
                 }, {
                     id: '1.5',
                     name: 'Current periodical plan of Nepal',
                     marks: 1,
                     sets: [
-                        { name: 'Set 1 – 16th Plan (FY 2024/25 – 2028/29)', description: 'Vision, priorities, and targets of the current plan.' },
-                        { name: 'Set 2 – Previous Plans', description: '15th Plan, 14th Plan, and their focus areas.' }
+                        { name: '✍️ Set 1 – 16th Plan (FY 2024/25 – 2028/29)', description: 'Vision, priorities, and targets of the current plan.' },
+                        { name: '✍️ Set 2 – Previous Plans', description: '15th Plan, 14th Plan, and their focus areas.' }
                     ]
                 }, {
                     id: '1.6',
                     name: 'Sustainable development, environment, pollution, climate change, biodiversity, science & technology',
                     marks: 1,
                     sets: [
-                        { name: 'Set 1 – Environment & Climate', description: 'Climate vulnerability, GLOF, and biodiversity.' },
-                        { name: 'Set 2 – Science & Technology', description: 'NepaliSat-1, IT sector, NAST, and innovation.' }
+                        { name: '✍️ Set 1 – Environment & Climate', description: 'Climate vulnerability, GLOF, and biodiversity.' },
+                        { name: '✍️ Set 2 – Science & Technology', description: 'NepaliSat-1, IT sector, NAST, and innovation.' }
                     ]
                 }, {
                     id: '1.7',
                     name: "Nepal's international affairs; UNO, SAARC & BIMSTEC",
                     marks: 1,
                     sets: [
-                        { name: 'Set 1 – UNO & SAARC', description: 'UN membership, Security Council terms, SAARC secretariat.' },
-                        { name: 'Set 2 – BIMSTEC & Other', description: 'BIMSTEC objectives, WTO, ADB, and Non-Aligned Movement.' }
+                        { name: '✍️ Set 1 – UNO & SAARC', description: 'UN membership, Security Council terms, SAARC secretariat.' },
+                        { name: '✍️ Set 2 – BIMSTEC & Other', description: 'BIMSTEC objectives, WTO, ADB, and Non-Aligned Movement.' }
                     ]
                 }, {
                     id: '1.8',
                     name: 'The Constitution of Nepal (Part 1 to 5 and Schedules)',
                     marks: 1,
                     sets: [
-                        { name: 'Set 1 – Parts 1–3', description: 'Preliminary, Citizenship, and Fundamental Rights.' },
-                        { name: 'Set 2 – Parts 4–5 & Schedules', description: 'Directives, State structure, and Schedules (provinces, anthem, etc.).' }
+                        { name: '✍️ Set 1 – Parts 1–3', description: 'Preliminary, Citizenship, and Fundamental Rights.' },
+                        { name: '✍️ Set 2 – Parts 4–5 & Schedules', description: 'Directives, State structure, and Schedules (provinces, anthem, etc.).' }
                     ]
                 }, {
                     id: '1.9',
                     name: 'Governance system (Federal, Provincial and Local)',
                     marks: 1,
                     sets: [
-                        { name: 'Set 1 – Federal & Provincial', description: 'Prime Minister, President, Parliament, and provincial assemblies.' },
-                        { name: 'Set 2 – Local Governance', description: 'Local units, metropolitan cities, municipalities, and rural municipalities.' }
+                        { name: '✍️ Set 1 – Federal & Provincial', description: 'Prime Minister, President, Parliament, and provincial assemblies.' },
+                        { name: '✍️ Set 2 – Local Governance', description: 'Local units, metropolitan cities, municipalities, and rural municipalities.' }
                     ]
                 }, {
                     id: '1.10',
                     name: 'Civil Service Act & Regulation (constitution, structure, vacancy, code of conduct)',
                     marks: 1,
                     sets: [
-                        { name: 'Set 1 – Act & Structure', description: 'Civil Service Act 2049, groups, and PSC exams.' },
-                        { name: 'Set 2 – Code of Conduct & Regulation', description: 'Provisions, regulation 2050, and disciplinary rules.' }
+                        { name: '✍️ Set 1 – Act & Structure', description: 'Civil Service Act 2049, groups, and PSC exams.' },
+                        { name: '✍️ Set 2 – Code of Conduct & Regulation', description: 'Provisions, regulation 2050, and disciplinary rules.' }
                     ]
                 }, {
                     id: '1.11',
                     name: 'Functional scope of public services',
                     marks: 1,
                     sets: [
-                        { name: 'Set 1 – Scope & Delivery', description: 'Education, health, infrastructure, and delivery mechanisms.' },
-                        { name: 'Set 2 – Challenges & Reforms', description: 'Bureaucratic inefficiency, corruption, e-governance, and charters.' }
+                        { name: '✍️ Set 1 – Scope & Delivery', description: 'Education, health, infrastructure, and delivery mechanisms.' },
+                        { name: '✍️ Set 2 – Challenges & Reforms', description: 'Bureaucratic inefficiency, corruption, e-governance, and charters.' }
                     ]
                 }, {
                     id: '1.12',
                     name: 'Public Service Charter',
                     marks: 1,
                     sets: [
-                        { name: 'Set 1 – Concept & Objectives', description: 'Definition, accountability, transparency, and citizen rights.' },
-                        { name: 'Set 2 – Implementation', description: 'Time-bound services, grievance redressal, and monitoring.' }
+                        { name: '✍️ Set 1 – Concept & Objectives', description: 'Definition, accountability, transparency, and citizen rights.' },
+                        { name: '✍️ Set 2 – Implementation', description: 'Time-bound services, grievance redressal, and monitoring.' }
                     ]
                 }, {
                     id: '1.13',
                     name: 'Concept, objective and importance of public policy',
                     marks: 1,
                     sets: [
-                        { name: 'Set 1 – Concept & Objectives', description: 'Definition, problem-solving, resource allocation, and welfare.' },
-                        { name: 'Set 2 – Importance & Process', description: 'Guidance, accountability, and the policy cycle.' }
+                        { name: '✍️ Set 1 – Concept & Objectives', description: 'Definition, problem-solving, resource allocation, and welfare.' },
+                        { name: '✍️ Set 2 – Importance & Process', description: 'Guidance, accountability, and the policy cycle.' }
                     ]
                 }, {
                     id: '1.14',
                     name: 'Fundamentals of management: planning, organizing, directing, controlling, coordinating, decision making, motivation and leadership',
                     marks: 1,
                     sets: [
-                        { name: 'Set 1 – Core Functions', description: 'Planning, organizing, directing, and controlling.' },
-                        { name: 'Set 2 – Decision Making & Leadership', description: 'Rational decision making, motivation theories, and leadership styles.' }
+                        { name: '✍️ Set 1 – Core Functions', description: 'Planning, organizing, directing, and controlling.' },
+                        { name: '✍️ Set 2 – Decision Making & Leadership', description: 'Rational decision making, motivation theories, and leadership styles.' }
                     ]
                 }, {
                     id: '1.15',
                     name: 'Government planning, budgeting and accounting system',
                     marks: 1,
                     sets: [
-                        { name: 'Set 1 – Planning & Budgeting', description: 'NPC, annual budget, revenue, expenditure, and deficit.' },
-                        { name: 'Set 2 – Accounting System', description: 'New Accounting System, cash basis, budget classification, and auditing.' }
+                        { name: '✍️ Set 1 – Planning & Budgeting', description: 'NPC, annual budget, revenue, expenditure, and deficit.' },
+                        { name: '✍️ Set 2 – Accounting System', description: 'New Accounting System, cash basis, budget classification, and auditing.' }
                     ]
                 }, {
                     id: '1.16',
                     name: 'Major events and current affairs of national and international importance',
                     marks: 1,
                     sets: [
-                        { name: 'Set 1 – National Events', description: 'SAARC Summit, Melamchi, GDP growth, and elections.' },
-                        { name: 'Set 2 – International Affairs', description: 'COP30, UN presidency, International Solar Alliance, and trade partners.' }
+                        { name: '✍️ Set 1 – National Events', description: 'SAARC Summit, Melamchi, GDP growth, and elections.' },
+                        { name: '✍️ Set 2 – International Affairs', description: 'COP30, UN presidency, International Solar Alliance, and trade partners.' }
                     ]
                 }],
 
@@ -581,27 +551,27 @@
                     name: 'Logical Reasoning (Verbal, Alphanumeric, Analogies, Classification, Coding-Decoding, Order & Ranking, Distance & Directions, Analytical & Logical Reasoning, Assertion & Reason, Statement & Conclusion, Input-Output, Venn-diagram)',
                     marks: 9,
                     sets: [
-                        { name: 'Set 1 – Verbal & Alphanumeric', description: 'Coding-decoding, analogies, classification, and alphanumeric series.' },
-                        { name: 'Set 2 – Analytical & Logical', description: 'Assertion-reason, statement-conclusion, Venn-diagrams, and logical puzzles.' },
-                        { name: 'Set 3 – Input-Output & Ranking', description: 'Input-output, order & ranking, distance & direction, and arrangement.' }
+                        { name: '✍️ Set 1 – Verbal & Alphanumeric', description: 'Coding-decoding, analogies, classification, and alphanumeric series.' },
+                        { name: '✍️ Set 2 – Analytical & Logical', description: 'Assertion-reason, statement-conclusion, Venn-diagrams, and logical puzzles.' },
+                        { name: '✍️ Set 3 – Input-Output & Ranking', description: 'Input-output, order & ranking, distance & direction, and arrangement.' }
                     ]
                 }, {
                     id: '2.2',
                     name: 'Numerical Reasoning (Arithmetic Series, Analogy, Classification, Arithmetical Reasoning, Fraction, Percentage, Ratio, Average, Profit & Loss, Time & Work, Date & Calendar, Data Sufficiency, Data Interpretation & Verification)',
                     marks: 8,
                     sets: [
-                        { name: 'Set 1 – Arithmetic & Percentage', description: 'Fractions, percentages, ratios, averages, and basic arithmetic.' },
-                        { name: 'Set 2 – Profit/Loss & Time/Work', description: 'Profit & loss, time & work, and data interpretation.' },
-                        { name: 'Set 3 – Data Sufficiency & Calendar', description: 'Calendar problems, data sufficiency, and verification.' }
+                        { name: '✍️ Set 1 – Arithmetic & Percentage', description: 'Fractions, percentages, ratios, averages, and basic arithmetic.' },
+                        { name: '✍️ Set 2 – Profit/Loss & Time/Work', description: 'Profit & loss, time & work, and data interpretation.' },
+                        { name: '✍️ Set 3 – Data Sufficiency & Calendar', description: 'Calendar problems, data sufficiency, and verification.' }
                     ]
                 }, {
                     id: '2.3',
                     name: 'Spatial Reasoning (Figure Series, Analogy, Classification, Matrix, Pattern Completion, Embedded Images, Image Formation & Analysis, Mirror & Water Images, Cubes & Dices, Paper Folding & Cutting)',
                     marks: 8,
                     sets: [
-                        { name: 'Set 1 – Figure Series & Analogy', description: 'Figure series, analogy, and classification of figures.' },
-                        { name: 'Set 2 – Mirror & Water Images', description: 'Mirror images, water images, and paper folding & cutting.' },
-                        { name: 'Set 3 – Cubes & Dices', description: 'Cubes, dices, pattern completion, and embedded images.' }
+                        { name: '✍️ Set 1 – Figure Series & Analogy', description: 'Figure series, analogy, and classification of figures.' },
+                        { name: '✍️ Set 2 – Mirror & Water Images', description: 'Mirror images, water images, and paper folding & cutting.' },
+                        { name: '✍️ Set 3 – Cubes & Dices', description: 'Cubes, dices, pattern completion, and embedded images.' }
                     ]
                 }],
 
@@ -611,90 +581,90 @@
                     name: 'Structural Engineering (Center of gravity, moment of inertia, stresses, beams, frames, indeterminate structures, plastic analysis)',
                     marks: 5,
                     sets: [
-                        { name: 'Set 1 – CG & Moment of Inertia', description: 'Center of gravity, moment of inertia, and section properties.' },
-                        { name: 'Set 2 – Beams & Frames', description: 'Beam stresses, frames, and indeterminate structures.' },
-                        { name: 'Set 3 – Plastic Analysis', description: 'Plastic moment, collapse mechanism, and load factor.' }
+                        { name: '✍️ Set 1 – CG & Moment of Inertia', description: 'Center of gravity, moment of inertia, and section properties.' },
+                        { name: '✍️ Set 2 – Beams & Frames', description: 'Beam stresses, frames, and indeterminate structures.' },
+                        { name: '✍️ Set 3 – Plastic Analysis', description: 'Plastic moment, collapse mechanism, and load factor.' }
                     ]
                 }, {
                     id: '3.2',
                     name: 'Engineering Survey (Principles, linear measurement, compass, plane table, levelling, contouring, theodolite, tacheometry, total station, curves, area & volume)',
                     marks: 7,
                     sets: [
-                        { name: 'Set 1 – Linear & Compass Survey', description: 'Linear measurement, compass survey, and plane table.' },
-                        { name: 'Set 2 – Levelling & Contouring', description: 'Levelling, curvature correction, and contouring.' },
-                        { name: 'Set 3 – Theodolite & Total Station', description: 'Theodolite, total station, tacheometry, and curve setting.' }
+                        { name: '✍️ Set 1 – Linear & Compass Survey', description: 'Linear measurement, compass survey, and plane table.' },
+                        { name: '✍️ Set 2 – Levelling & Contouring', description: 'Levelling, curvature correction, and contouring.' },
+                        { name: '✍️ Set 3 – Theodolite & Total Station', description: 'Theodolite, total station, tacheometry, and curve setting.' }
                     ]
                 }, {
                     id: '3.3',
                     name: 'Construction Materials (Properties, stones, ceramics, cement, metals, timber, asphalt, soil, local & modern materials)',
                     marks: 6,
                     sets: [
-                        { name: 'Set 1 – Stones & Ceramics', description: 'Stone types, ceramics, and their properties.' },
-                        { name: 'Set 2 – Cement & Metals', description: 'Cement types, steel, aluminum, and their uses.' },
-                        { name: 'Set 3 – Timber & Modern Materials', description: 'Timber species, bamboo, PVC, FRP, and composites.' }
+                        { name: '✍️ Set 1 – Stones & Ceramics', description: 'Stone types, ceramics, and their properties.' },
+                        { name: '✍️ Set 2 – Cement & Metals', description: 'Cement types, steel, aluminum, and their uses.' },
+                        { name: '✍️ Set 3 – Timber & Modern Materials', description: 'Timber species, bamboo, PVC, FRP, and composites.' }
                     ]
                 }, {
                     id: '3.4',
                     name: 'Concrete Technology (Constituents, water-cement ratio, mix design, testing, admixtures, high strength, pre-stressed concrete)',
                     marks: 5,
                     sets: [
-                        { name: 'Set 1 – Constituents & W/C Ratio', description: 'Cement, aggregates, water, and water-cement ratio.' },
-                        { name: 'Set 2 – Mix Design & Testing', description: 'Mix design methods, slump test, and compressive strength.' },
-                        { name: 'Set 3 – Admixtures & High-Strength', description: 'Admixtures, high-strength concrete, and pre-stressed concrete.' }
+                        { name: '✍️ Set 1 – Constituents & W/C Ratio', description: 'Cement, aggregates, water, and water-cement ratio.' },
+                        { name: '✍️ Set 2 – Mix Design & Testing', description: 'Mix design methods, slump test, and compressive strength.' },
+                        { name: '✍️ Set 3 – Admixtures & High-Strength', description: 'Admixtures, high-strength concrete, and pre-stressed concrete.' }
                     ]
                 }, {
                     id: '3.5',
                     name: 'Geotechnical Engineering (Soil formation, phases, water in soil, index properties, rocks, tunneling)',
                     marks: 6,
                     sets: [
-                        { name: 'Set 1 – Soil Formation & Phases', description: 'Soil formation, phases, void ratio, and porosity.' },
-                        { name: 'Set 2 – Index Properties & Water', description: 'Grain size, Atterberg limits, and water types in soil.' },
-                        { name: 'Set 3 – Rocks & Tunneling', description: 'Rock types, tunneling methods, and notable tunnels.' }
+                        { name: '✍️ Set 1 – Soil Formation & Phases', description: 'Soil formation, phases, void ratio, and porosity.' },
+                        { name: '✍️ Set 2 – Index Properties & Water', description: 'Grain size, Atterberg limits, and water types in soil.' },
+                        { name: '✍️ Set 3 – Rocks & Tunneling', description: 'Rock types, tunneling methods, and notable tunnels.' }
                     ]
                 }, {
                     id: '3.6',
                     name: 'Construction Management (Scheduling, contracts, material management, cost/quality/time control, project management, safety, monitoring)',
                     marks: 6,
                     sets: [
-                        { name: 'Set 1 – Scheduling & Contracts', description: 'CPM, PERT, types of contracts, and procurement.' },
-                        { name: 'Set 2 – Material Management & QC', description: 'Inventory, quality control, and time control.' },
-                        { name: 'Set 3 – Safety & Monitoring', description: 'Safety protocols, KPIs, dashboards, and project monitoring.' }
+                        { name: '✍️ Set 1 – Scheduling & Contracts', description: 'CPM, PERT, types of contracts, and procurement.' },
+                        { name: '✍️ Set 2 – Material Management & QC', description: 'Inventory, quality control, and time control.' },
+                        { name: '✍️ Set 3 – Safety & Monitoring', description: 'Safety protocols, KPIs, dashboards, and project monitoring.' }
                     ]
                 }, {
                     id: '3.7',
                     name: 'Estimating, Costing, Specification & Valuation (Types of estimates, quantity methods, rate analysis, BOQ, specifications, valuation)',
                     marks: 5,
                     sets: [
-                        { name: 'Set 1 – Types of Estimates', description: 'Preliminary, detailed, revised, and supplementary estimates.' },
-                        { name: 'Set 2 – Rate Analysis & BOQ', description: 'Rate analysis, Bill of Quantities, and tendering.' },
-                        { name: 'Set 3 – Specifications & Valuation', description: 'Specifications, valuation methods, and property appraisal.' }
+                        { name: '✍️ Set 1 – Types of Estimates', description: 'Preliminary, detailed, revised, and supplementary estimates.' },
+                        { name: '✍️ Set 2 – Rate Analysis & BOQ', description: 'Rate analysis, Bill of Quantities, and tendering.' },
+                        { name: '✍️ Set 3 – Specifications & Valuation', description: 'Specifications, valuation methods, and property appraisal.' }
                     ]
                 }, {
                     id: '3.8',
                     name: 'Engineering Drawing (Sheet composition, scales, projections, drafting tools, symbols, topographic/electrical/plumbing/structural drawings, community buildings)',
                     marks: 4,
                     sets: [
-                        { name: 'Set 1 – Sheet Composition & Scales', description: 'Title block, scales, and standard sheet sizes.' },
-                        { name: 'Set 2 – Projections & Symbols', description: 'Orthographic, isometric, and standard symbols.' },
-                        { name: 'Set 3 – Community Buildings', description: 'Architectural, structural, electrical, and plumbing drawings.' }
+                        { name: '✍️ Set 1 – Sheet Composition & Scales', description: 'Title block, scales, and standard sheet sizes.' },
+                        { name: '✍️ Set 2 – Projections & Symbols', description: 'Orthographic, isometric, and standard symbols.' },
+                        { name: '✍️ Set 3 – Community Buildings', description: 'Architectural, structural, electrical, and plumbing drawings.' }
                     ]
                 }, {
                     id: '3.9',
                     name: 'Engineering Economics (Benefit-cost analysis, sensitivity, IRR, time value, demand-supply, NPV, financial & economic evaluation)',
                     marks: 3,
                     sets: [
-                        { name: 'Set 1 – Time Value & NPV', description: 'Time value of money, NPV, and discounting.' },
-                        { name: 'Set 2 – IRR & Sensitivity', description: 'Internal Rate of Return and sensitivity analysis.' },
-                        { name: 'Set 3 – Benefit-Cost & Evaluation', description: 'Benefit-cost ratio, financial vs economic evaluation, and demand-supply.' }
+                        { name: '✍️ Set 1 – Time Value & NPV', description: 'Time value of money, NPV, and discounting.' },
+                        { name: '✍️ Set 2 – IRR & Sensitivity', description: 'Internal Rate of Return and sensitivity analysis.' },
+                        { name: '✍️ Set 3 – Benefit-Cost & Evaluation', description: 'Benefit-cost ratio, financial vs economic evaluation, and demand-supply.' }
                     ]
                 }, {
                     id: '3.10',
                     name: 'Professional Practices (Ethics, Nepal Engineering Council Act, client relations, public procurement, National Building Code, building bylaws)',
                     marks: 3,
                     sets: [
-                        { name: 'Set 1 – Ethics & NEC Act', description: 'Professional ethics, Nepal Engineering Council, and registration.' },
-                        { name: 'Set 2 – Public Procurement & NBC', description: 'Public Procurement Act, National Building Code, and building bylaws.' },
-                        { name: 'Set 3 – Client Relations & Practice', description: 'Client management, transparency, and professional standards.' }
+                        { name: '✍️ Set 1 – Ethics & NEC Act', description: 'Professional ethics, Nepal Engineering Council, and registration.' },
+                        { name: '✍️ Set 2 – Public Procurement & NBC', description: 'Public Procurement Act, National Building Code, and building bylaws.' },
+                        { name: '✍️ Set 3 – Client Relations & Practice', description: 'Client management, transparency, and professional standards.' }
                     ]
                 }]
             };
@@ -715,6 +685,7 @@
 
             // ================================================================
             //  RENDER: accordion items with sets and Start Exam buttons
+            //  SINGLE-OPEN: when a header is clicked, close all other items in the same book-list
             // ================================================================
             function renderTopics(containerId, topics) {
                 const container = document.getElementById(containerId);
@@ -786,7 +757,8 @@
 
                             const setName = document.createElement('span');
                             setName.className = 'set-name';
-                            setName.innerHTML = `<i class="fas fa-file-alt"></i> ${set.name}`;
+                            
+                            setName.innerHTML = ` ${set.name}`;
 
                             const setIcon = document.createElement('span');
                             setIcon.className = 'set-toggle-icon';
@@ -812,12 +784,11 @@
                             }
 
                             // Start Exam button
-                            // Generate link: TEST_BASE_URL + topic.id + '-' + (setIdx+1) + '.html'
                             const testFile = `${topic.id}-${setIdx+1}.html`;
                             const link = document.createElement('a');
                             link.className = 'start-exam-btn';
                             link.href = TEST_BASE_URL + testFile;
-                            link.target = '_blank'; // open in new tab
+                            link.target = '_blank';
                             link.setAttribute('aria-label', `Start exam for ${set.name}`);
                             link.innerHTML = '<i class="fas fa-play"></i> Start Exam';
                             contentDiv.appendChild(link);
@@ -827,7 +798,7 @@
                             setCard.appendChild(setBody);
                             setsContainer.appendChild(setCard);
 
-                            // ---- set toggle logic ----
+                            
                             setHeader.addEventListener('click', function(e) {
                                 e.stopPropagation();
                                 const isOpen = setCard.classList.toggle('open');
@@ -847,12 +818,32 @@
                     item.appendChild(body);
                     container.appendChild(item);
 
-                    // ---- accordion toggle logic ----
+                    
                     header.addEventListener('click', function(e) {
+                        
                         if (e.target.closest('.set-header')) return;
-                        const isOpen = item.classList.toggle('open');
-                        this.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+
+                        const isCurrentlyOpen = item.classList.contains('open');
+
+                        
+                        const siblings = container.querySelectorAll('.accordion-item');
+                        siblings.forEach(sib => {
+                            if (sib !== item && sib.classList.contains('open')) {
+                                sib.classList.remove('open');
+                                sib.querySelector('.accordion-header').setAttribute('aria-expanded', 'false');
+                            }
+                        });
+
+                        
+                        if (!isCurrentlyOpen) {
+                            item.classList.add('open');
+                            header.setAttribute('aria-expanded', 'true');
+                        } else {
+                            item.classList.remove('open');
+                            header.setAttribute('aria-expanded', 'false');
+                        }
                     });
+
                     header.addEventListener('keydown', function(e) {
                         if (e.key === 'Enter' || e.key === ' ') {
                             e.preventDefault();
@@ -862,9 +853,6 @@
                 });
             }
 
-            // ================================================================
-            //  INIT
-            // ================================================================
             renderTopics('awarenessGrid', topicsData.awareness);
             renderTopics('reasoningGrid', topicsData.reasoning);
             renderTopics('technicalGrid', topicsData.technical);

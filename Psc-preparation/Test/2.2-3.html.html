@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Work & Time Problems</title>
+<link rel="icon" href="https://arunpanthi.com.np/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="/css/Mock_Test.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar" id="navbar">
+<span class="brand" id="navbar-brand">Work & Time Problems</span>
+<span class="timer-display" id="timer-display" style="display:none;">--:--</span>
+</nav>
+
+<!-- Warning modal -->
+<div id="warning-modal" class="modal-overlay" style="display: none;">
+<div class="modal-dialog">
+<div class="warning-icon">⚠️</div>
+<h3>Unanswered Questions</h3>
+<p>You haven't answered all the questions.</p>
+<span class="unanswered-count" id="modal-unanswered-count">0 unanswered</span>
+<p style="margin-top:8px;"><strong>⚠ This test cannot be retaken once submitted!</strong></p>
+<div class="modal-buttons">
+<button class="btn-cancel" id="btn-modal-cancel">Cancel</button>
+<button class="btn-submit-warning" id="btn-modal-submit">Submit Anyway</button>
+</div>
+</div>
+</div>
+
+<div id="pre-test-section">
+<div class="hero" id="hero-card">
+<h1 id="hero-set-name">Loading...</h1>
+<p class="set-details" id="hero-details"></p>
+<div class="set-meta">
+<div class="meta-item"><span id="hero-q-count">0</span> Questions</div>
+<div class="meta-item"><span id="hero-time">0:00</span> Time (min)</div>
+</div>
+<button class="btn-start" id="btn-start-test">🚀 Start Test</button>
+<p style="margin-top:10px;font-size:0.85rem;opacity:0.8;" id="hero-note"></p>
+</div>
+</div>
+
+<div id="test-section" style="display:none;">
+<div class="test-container">
+<div class="question-area">
+<div class="question-card">
+<div class="q-number" id="q-number-label">QUESTION 1</div>
+<div class="q-text" id="q-text">Loading question...</div>
+<ul class="options-list" id="options-list"></ul>
+</div>
+<div class="nav-buttons">
+<div class="nav-left"><button class="btn-nav" id="btn-prev">◀ Previous</button></div>
+<div class="nav-center"><button class="btn-submit" id="btn-submit-test">✅ Submit Test</button></div>
+<div class="nav-right"><button class="btn-nav" id="btn-next">Next ▶</button></div>
+</div>
+</div>
+<aside class="sidebar">
+<h3>📋 Question </h3>
+<div class="total-questions" id="sidebar-total">Total: 0</div>
+<div class="answered-count">Answered: <strong id="sidebar-answered-num">0</strong></div>
+<div class="q-grid" id="q-grid"></div>
+<div class="legend">
+<span><span class="dot-sample blue"></span> Answered</span>
+<span><span class="dot-sample gray"></span> Unanswered</span>
+</div>
+</aside>
+</div>
+</div>
+
+<div id="results-section" style="display:none;">
+<div class="results-container">
+<div class="results-header">
+<h2 style="color:#2E7D32;">📊 Test Results</h2>
+<p style="color:#666;" id="results-set-name"></p>
+<div class="score-circle">
+<span class="score-num" id="results-score">0</span>
+<span class="score-denom" id="results-denom">/ 0</span>
+</div>
+<div class="percentage" id="results-percentage">0%</div>
+<p style="margin-top:8px;color:#888;font-size:0.9rem;" id="results-time-taken"></p>
+</div>
+<div id="results-detail"></div>
+</div>
+</div>
+<script src="/js/Mock_Test.js"></script>
+<script>
+(function() {
+    console.log('Inline script running');
+const questionSet = {
+name: 'Work & Time Problems - Set 1',
+details: 'Covers time and work problems, efficiency, and combined work calculations.',
+questions: [
+{ question: 'If Hemraj and Bishal can do a piece of work in 15 days and Hemraj alone in 20 days. In how many Days can Bishal alone complete the work?', options: ['30', '40', '50', '60'], correct: 3 },
+{ question: 'A can complete a piece of work of Rs 300 in 6 days but by engaging an assistant, work is completed in 4 days. Find the money received by Assistant.', options: ['50', '100', '150', '200'], correct: 1 },
+{ question: 'A - 7 days of daily 9 hrs. B - 6 days of daily 7 hrs. How long will they take to do it working together at rate of 42/5 hr per day?', options: ['1', '2', '3', '4'], correct: 2 },
+{ question: 'A+B = 9 days, B+C= 12 days, A+C= 18 days. In how many days will A, B and C finish it working together and Separately by C?', options: ['8 days and 72 Days', '16 Days and 24 Days', '8 Days and 24 Days', '16 days and 72/5 Days'], correct: 0 },
+{ question: 'A can do a certain Job in 12 days and B is 60% more efficient than A. How many days does B alone take to do the same job?', options: ['15/2 days', '7.5 days', '9 days', '17/2 days'], correct: 1 },
+{ question: 'A can do a piece of work in 10 days and B can do it in 20 days. They work together but 2 days before the completion of work A left. In how many days the work completed?', options: ['6', '8', '10', '12'], correct: 1 },
+{ question: 'A- 10 Days, B - 12 Days, C - 15 Days. All of them begins the work together but A had to leave the work after 2 days of the start and B, 3 days before the completion of Work. How long did the work Last?', options: ['4', '5', '6', '7'], correct: 2 },
+{ question: '45 Men can complete work in 16 days. Six days after they started working, 30 more men joined them. How many days will they now take to complete the remaining Work?', options: ['4', '5', '6', '7'], correct: 2 },
+{ question: '10 person begins to work together on a Job but after some days 4 Persons leave. As a result the job which could have been completed in 40 days is completed in 50 days. How many days after the commencement of work did the 4 Persons leave?', options: ['20', '25', '30', '35'], correct: 1 },
+{ question: '2 men and 3 boys can do a piece of work in 10 Days While 3 men and 2 boys can do the same work in 8 days. In how many days can 2 men and 1 boys do the work?', options: ['25/2 Days', '12.5 Days', '29/4 Days', '7.25 Days'], correct: 0 },
+{ question: '3 men and 4 women can earn Rs 3780 in 7 days. 11 Men and 13 Women can Earn Rs.15040 in 8 days. In What Time will 7 men and 9 women earn Rs 12400?', options: ['5', '10', '15', '20'], correct: 1 },
+{ question: 'A and B can do a piece of work in 12 days, while B alone can finish it in 30 days. A alone can finish the work in?', options: ['3 days', '10 days', '15 days', '20 days'], correct: 3 },
+{ question: 'A is 30% more efficient than B. How much time will they working together take to complete a job which A alone could have done in 23 days?', options: ['11', '12', '13', '19'], correct: 2 },
+{ question: 'Two tap A and B fill a tank in 10 hour and 8 hour respectively. If both the tap are opened simultaneously, then how many hour before tap B should be closed so that tank fill in 5 hours?', options: ['2 hr', '1 hr', '4 hr', '8 hr'], correct: 0 },
+{ question: 'A sum is sufficient to pay A\'s wages for 21 days and B\'s wages for 28 days. Find for how many days, the money is sufficient to pay the wages of both', options: ['6', '9', '12', '15'], correct: 2 },
+{ question: 'A can do a piece of work in 12 days, which B can finish in 18 days. If they work on alternate days with A beginning, in how many days the work will be finished?', options: ['16/3', '19/3', '43/3', '29/3'], correct: 2 },
+{ question: 'A and B together complete a piece of work in T days. If A alone completes the work in T + 3 days and B alone completes the piece of work in T + 12 days, what is T?', options: ['6', '12', '18', '24'], correct: 0 },
+{ question: 'A can do a piece of work in X days and B can do the same work in 3X days. To finish the work together they take 12 days. What is the value of X?', options: ['15', '16', '20', '24'], correct: 1 },
+{ question: 'The rate of working of Radhika and Kamala are in the ratio 2:3. The number of days taken by them to finish the work in the ratio of', options: ['3:2', '2:3', '4:9', '9:4'], correct: 0 },
+{ question: 'A pump can fill a tank with water in 2 hours. Because of a leak, it took 7/3 hours to fill the tank. The leak can drain all the water of the tank in', options: ['11', '12', '13', '14'], correct: 3 }
+]
+};
+ console.log('questionSet defined');
+    startTest(questionSet);
+    console.log('startTest called');
+})(); 
+</script>
+<script src="/js/text-protect.js" defer></script>
+<script src="/js/logo.js"></script>
+</body>
+</html>

@@ -261,20 +261,20 @@
 
         if ($['hero-note']) {
             $['hero-note'].innerHTML =
-                '<div style="text-align:left; max-width:500px; margin:10px auto; font-size:0.9rem; line-height:1.6; background:#e8f5e9; padding:15px 20px; border-radius:8px; border-left:4px solid #2e7d32;">' +
-                '<p><strong>📌 ⚠️ Important Exam Instructions</strong></p>' +
-                '<ul style="list-style:none; padding-left:0; margin:5px 0;">' +
-                '<li>🏁 Exam will open in full-screen mode.</li>' +
-                '<li>📝 You may take this test only once.</li>' +
-                '<li>⏱️ Timer starts immediately after clicking "Start Test".</li>' +
-                '<li>🔔 Time alerts at 10 and 5 minutes remaining.</li>' +
-                '<li>⏰ Test will auto-submit when time ends.</li>' +
-                '<li>🔄 Timer cannot be paused or restarted.</li>' +
-                '<li>💾 Refreshing restores only attempted answers.</li>' +
-                '<li>🚫 Copying text or images is not allowed.</li>' +
-                '</ul>' +
-                '<p style="margin-top:10px; color:#1b5e20; font-weight:bold;">✅ Ready? Click the button below.</p>' +
-                '</div>';
+                '<div style="text-align:left; max-width:500px; margin:10px auto; font-size:0.9rem; line-height:1.6; background:#c8e6c9; padding:15px 20px; border-radius:8px; border-left:4px solid #2e7d32;">' +
+        '<p><strong>📌 ⚠️ Important Exam Instructions</strong></p>' +
+        '<ul style="list-style:none; padding-left:0; margin:5px 0;">' +
+            '<li>1. Exam will open in full-screen mode.</li>' +
+            '<li>2. You may take this test only once.</li>' +
+            '<li>3. Timer starts immediately after clicking "Start Test".</li>' +
+            '<li>4. Time alerts appear at 10 and 5 minutes remaining.</li>' +
+            '<li>5. Test will auto-submit when time ends.</li>' +
+            '<li>6. Timer cannot be paused or restarted.</li>' +
+            '<li>7. Refreshing or going back restores only attempted answers.</li>' +
+            '<li>8. Copying text or images is not allowed and may block future exams.</li>' +
+        '</ul>' +
+        '<p style="margin-top:10px; color:#b71c1c; font-weight:bold;">⚠️ Please follow all rules carefully before starting.</p>' +
+    '</div>';
         }
 
         if ($['btn-start-test']) {

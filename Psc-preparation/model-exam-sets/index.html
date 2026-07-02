@@ -40,24 +40,24 @@
     
     const totalSets = 20;
     const examList = document.getElementById("book-list");
-
     for (let i = 1; i <= totalSets; i++) {
       const article = document.createElement("article");
       article.className = "book";
-
-      // Dynamic link pattern
-      const link = `https://arunpanthi.com.np/Psc-preparation/model-exam-sets/Set/${i}`;
-
+            const link = `https://arunpanthi.com.np/Psc-preparation/model-exam-sets/Set/${i}`;
       article.innerHTML = `
         <h2>Model Exam Set ${i}</h2>
-        <p>Practice PSC Civil Engineering exam set ${i} with solutions.</p>
+        <img src="https://arunpanthi.com.np/Photos/logo.png" 
+     alt="Set No: ${i}" 
+     width="150" 
+     height="150" 
+     loading="lazy">
+        <p>Practice PSC exam set ${i} with solutions.</p>
         <a href="${link}" class="cta-button">Start Exam</a>
       `;
       examList.appendChild(article);
     }
   </script>
-  
-  <div id="social-section"></div>
+    <div id="social-section"></div>
   <div id="footer"></div>
   <script src="/js/layout.js"></script>
 </body>

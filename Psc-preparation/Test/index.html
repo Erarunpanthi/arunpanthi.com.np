@@ -1,62 +1,876 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- ===== SEO META ===== -->
+    <title>Timed Subject-Wise Practice Tests – PSC Exam | Nepal Engineering Service</title>
+    <meta name="description" content="Timed practice tests for Nepal Engineering Service First Paper – Civil Group Third Class. Each topic includes multiple exam sets with instant start buttons." />
+    <meta name="keywords" content="PSC Nepal, Loksewa, Engineering Service, Practice Tests, Timed Exam, Civil Group, Third Class" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://arunpanthi.com.np/Psc-preparation/Test/" />
+
+    <!-- ===== OPEN GRAPH ===== -->
+    <meta property="og:title" content="Timed Subject-Wise Practice Tests – PSC Exam" />
+    <meta property="og:description" content="Practice tests for Nepal Engineering Service First Paper – Civil Group Third Class. Timed, subject-wise, with multiple sets per topic." />
+    <meta property="og:url" content="https://arunpanthi.com.np/Psc-preparation/Test/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Arun Panthi" />
+
+    <!-- ===== TWITTER CARD ===== -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Timed Subject-Wise Practice Tests – PSC Exam" />
+    <meta name="twitter:description" content="Timed practice tests for Nepal Engineering Service First Paper – Civil Group Third Class." />
+
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/grid.css" />
+
+    <div id="navbar"></div>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous" />
+
+    <!-- ===== STRUCTURED DATA ===== -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Course",
+            "name": "Nepal Engineering Service – First Paper Practice Tests",
+            "description": "Timed subject-wise practice tests for Civil Group Third Class.",
+            "provider": {
+                "@type": "Organization",
+                "name": "Arun Panthi",
+                "url": "https://arunpanthi.com.np"
+            },
+            "educationalLevel": "Third Class",
+            "courseCode": "NES-Civil-Third-FirstPaper-Tests"
+        }
+    </script>
+
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-            color: white;
-        }
-        .card {
-            text-align: center;
-            padding: 60px 50px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 24px;
-            border: 1px solid rgba(255,255,255,0.15);
-            backdrop-filter: blur(12px);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-            max-width: 500px;
-        }
-        .icon { font-size: 4rem; margin-bottom: 20px; }
-        h1 {
-            font-size: 2.2rem;
+        /* ===== ACCORDION CORE ===== */
+        .accordion-item {
+            border: 1px solid var(--gray-200, #e0e0e0);
+            border-radius: var(--radius-md, 10px);
             margin-bottom: 12px;
-            background: linear-gradient(90deg, #f093fb, #f5576c);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            background: #ffffff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            transition: box-shadow var(--transition-fast, 0.2s);
+            overflow: hidden;
         }
-        p { font-size: 1rem; color: #a8b2d8; margin-bottom: 30px; line-height: 1.6; }
-        a {
-            display: inline-block;
-            padding: 12px 35px;
-            background: linear-gradient(90deg, #f093fb, #f5576c);
-            color: white;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
+        .accordion-item:hover {
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.10);
+        }
+
+        .accordion-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 16px 20px;
+            cursor: pointer;
+            background: #fafafa;
+            transition: background var(--transition-fast, 0.2s);
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            flex-wrap: wrap;
+        }
+        .accordion-header:hover {
+            background: #f0f4f0;
+        }
+        .accordion-header .topic-id-badge {
+            flex-shrink: 0;
+        }
+        .accordion-header .topic-title {
+            flex: 1;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--gray-800, #1e293b);
+            line-height: 1.3;
+            margin: 0;
+        }
+        .accordion-header .topic-marks {
+            font-size: 0.8rem;
+            color: var(--muted, #6b7280);
+            background: var(--gray-100, #f3f4f6);
+            padding: 2px 12px;
+            border-radius: 20px;
+            white-space: nowrap;
+            font-weight: 500;
+        }
+        .accordion-header .accordion-toggle-icon {
+            font-size: 1.2rem;
+            color: var(--gray-500, #9ca3af);
+            transition: transform var(--transition-fast, 0.2s);
+            flex-shrink: 0;
+            margin-left: 4px;
+        }
+        .accordion-item.open .accordion-toggle-icon {
+            transform: rotate(180deg);
+        }
+
+        /* ----- accordion body ----- */
+        .accordion-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease, padding 0.3s ease;
+            padding: 0 20px;
+            background: #ffffff;
+        }
+        .accordion-item.open .accordion-body {
+            max-height: 2000px;
+            padding: 0 20px 20px 20px;
+        }
+
+        /* ===== SETS INSIDE ACCORDION ===== */
+        .sets-container {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-top: 6px;
+        }
+
+        .set-card {
+            border: 1px solid var(--gray-200, #e5e7eb);
+            border-radius: var(--radius-sm, 8px);
+            background: #f9fafb;
+            overflow: hidden;
+            transition: border-color var(--transition-fast, 0.2s);
+            display: flex;
+            flex-direction: column;
+        }
+        .set-card:hover {
+            border-color: var(--green-300, #81c784);
+        }
+
+        .set-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 16px;
+            background: #f3f6f3;
+            cursor: pointer;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .set-header .set-name {
+            font-weight: 600;
             font-size: 0.95rem;
-            transition: transform 0.2s, box-shadow 0.2s;
+            color: var(--gray-700, #374151);
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
-        a:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(245,87,108,0.4);
+        .set-header .set-name i {
+            color: var(--green-600, #2e7d32);
+            font-size: 0.9rem;
+        }
+        .set-header .set-toggle-icon {
+            font-size: 0.9rem;
+            color: var(--gray-500, #9ca3af);
+            transition: transform var(--transition-fast, 0.2s);
+        }
+        .set-card.open .set-toggle-icon {
+            transform: rotate(180deg);
+        }
+
+        .set-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.25s ease;
+            padding: 0 16px;
+            background: #ffffff;
+        }
+        .set-card.open .set-body {
+            max-height: 300px; /* enough for button + description */
+            padding: 14px 16px 16px 16px;
+        }
+
+        .set-body .set-content {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--gray-700, #374151);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .set-body .set-content .test-description {
+            color: var(--gray-600, #4b5563);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+        .set-body .set-content .start-exam-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: var(--green-600, #2e7d32);
+            color: #fff;
+            padding: 10px 24px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: background var(--transition-fast, 0.2s), transform 0.1s;
+            border: none;
+            box-shadow: 0 2px 8px rgba(46, 125, 50, 0.3);
+            align-self: flex-start;
+        }
+        .set-body .set-content .start-exam-btn:hover {
+            background: var(--green-700, #1b5e20);
+            transform: scale(1.02);
+            box-shadow: 0 4px 14px rgba(46, 125, 50, 0.4);
+        }
+        .set-body .set-content .start-exam-btn i {
+            font-size: 1rem;
+        }
+
+        /* ===== SECTION DIVIDER ===== */
+        .section-divider {
+            margin: 40px 0 24px 0;
+            padding-bottom: 12px;
+            border-bottom: 3px solid var(--green-200, #a5d6a7);
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .section-divider h2 {
+            margin: 0;
+            font-size: 1.4rem;
+            color: var(--gray-800, #1e293b);
+        }
+        .section-divider .sub-meta {
+            font-size: 0.9rem;
+            color: var(--muted, #6b7280);
+            font-weight: 500;
+            background: var(--gray-100, #f3f4f6);
+            padding: 4px 16px;
+            border-radius: 20px;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            background: linear-gradient(145deg, #1b3a2b, #2a5a3a);
+            color: #fff;
+            padding: 48px 20px 40px;
+            text-align: center;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 32px;
+        }
+        .hero h1 {
+            font-size: 2rem;
+            margin: 0 0 8px 0;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+        .hero p {
+            margin: 4px 0;
+            opacity: 0.92;
+            font-size: 1.05rem;
+        }
+        .hero .hero-sub {
+            font-size: 0.95rem;
+            opacity: 0.85;
+            margin-top: 6px;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 640px) {
+            .accordion-header {
+                padding: 14px 16px;
+                gap: 10px;
+            }
+            .accordion-header .topic-title {
+                font-size: 0.9rem;
+                flex-basis: 100%;
+                order: 2;
+            }
+            .accordion-header .topic-id-badge {
+                order: 0;
+            }
+            .accordion-header .topic-marks {
+                order: 1;
+                margin-left: auto;
+            }
+            .accordion-header .accordion-toggle-icon {
+                order: 3;
+            }
+            .accordion-body {
+                padding: 0 14px;
+            }
+            .accordion-item.open .accordion-body {
+                padding: 0 14px 16px 14px;
+            }
+            .set-header {
+                padding: 10px 14px;
+            }
+            .set-body .set-content .start-exam-btn {
+                width: 100%;
+                justify-content: center;
+            }
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+            .section-divider h2 {
+                font-size: 1.15rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .accordion-header .topic-title {
+                font-size: 0.85rem;
+            }
+            .accordion-header {
+                padding: 12px 12px;
+            }
+            .set-header .set-name {
+                font-size: 0.85rem;
+            }
+            .set-body {
+                padding: 0 10px;
+            }
+            .set-card.open .set-body {
+                padding: 10px 12px 14px 12px;
+            }
+        }
+
+        /* ===== TOPIC ID BADGE ===== */
+        .topic-id-badge {
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            width: 40px !important;
+            height: 40px !important;
+            min-width: 40px !important;
+            min-height: 40px !important;
+            border-radius: 50% !important;
+            background: var(--green-600, #2e7d32) !important;
+            color: #ffffff !important;
+            font-size: 0.75rem !important;
+            font-weight: 700 !important;
+            border: 2px solid var(--green-400, #66bb6a) !important;
+            margin: 0 !important;
+            letter-spacing: 0.3px !important;
+            flex-shrink: 0 !important;
+            box-shadow: 0 2px 8px rgba(46, 125, 50, 0.25) !important;
+            transition: transform var(--transition-fast, 0.2s), box-shadow var(--transition-fast, 0.2s) !important;
+        }
+        .topic-id-badge:hover {
+            transform: scale(1.08) !important;
+            box-shadow: 0 4px 14px rgba(46, 125, 50, 0.35) !important;
+        }
+
+        .book-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .book-list .accordion-item {
+            margin-bottom: 0;
+        }
+        .no-sets-msg {
+            color: var(--gray-500, #9ca3af);
+            font-style: italic;
+            font-size: 0.9rem;
+            padding: 6px 0;
         }
     </style>
 </head>
 <body>
-    <div class="card">
-        <div class="icon">🚧</div>
-        <h1>Test</h1>
-        <p>This page is currently under construction.<br>We're working hard to bring it to you soon!</p>
-        <a href="/">⬅ Back to Home</a>
-    </div>
+
+    <section class="hero" aria-labelledby="hero-heading">
+        <h1 id="hero-heading">⏱️ Timed Subject-Wise Practice Tests</h1>
+        <p>Nepal Engineering Service – First Paper · Civil Group · Third Class</p>
+        <p class="hero-sub">100 MCQ · 1 Hr 30 Min · Each set is a full-length timed exam</p>
+    </section>
+
+    <main class="container" id="main-content">
+
+        <h1>📘 Practice Test Sets</h1>
+        <p style="margin-bottom: 24px;">Expand any topic below to view available exam sets. Click <strong>Start Exam</strong> to begin the timed test.</p>
+
+        <!-- ========================================================== -->
+        <!-- PART I – AWARENESS                                           -->
+        <!-- ========================================================== -->
+        <div class="section-divider">
+            <h2>Part I – General Awareness &amp; Contemporary Issues</h2>
+            <div class="sub-meta">25 Marks · 25 × 1 Mark</div>
+        </div>
+        <div class="book-list" id="awarenessGrid"></div>
+
+        <!-- ========================================================== -->
+        <!-- PART I – REASONING                                           -->
+        <!-- ========================================================== -->
+        <div class="section-divider">
+            <h2>Part I – General Reasoning Test</h2>
+            <div class="sub-meta">25 Marks · 25 × 1 Mark</div>
+        </div>
+        <div class="book-list" id="reasoningGrid"></div>
+
+        <!-- ========================================================== -->
+        <!-- PART II – TECHNICAL                                          -->
+        <!-- ========================================================== -->
+        <div class="section-divider">
+            <h2>Part II – General Technical Subject</h2>
+            <div class="sub-meta">50 Marks · 50 × 1 Mark</div>
+        </div>
+        <div class="book-list" id="technicalGrid"></div>
+
+    </main>
+
+    <div id="social-section"></div>
+    <div id="footer"></div>
+
+    <script src="/js/layout.js"></script>
+
+    <!-- ================================================================ -->
+    <!-- JAVASCRIPT – ACCORDION + SETS WITH START EXAM BUTTONS            -->
+    <!-- ================================================================ -->
+    <script>
+        (function() {
+
+            // -------- BASE URL for exam files (must end with /) ----------
+            const TEST_BASE_URL = 'https://arunpanthi.com.np/Psc-preparation/Test/';
+
+            // ================================================================
+            //  DATA: each topic has a 'sets' array. Each set has:
+            //    name: display name
+            //    description: short description (optional)
+            //    testFile: (optional) if not provided, we generate from topic id + set number
+            // ================================================================
+
+            const topicsData = {
+
+                // ---- Awareness ----
+                awareness: [{
+                    id: '1.1',
+                    name: 'Physical, socio-cultural and economic geography and demography of Nepal',
+                    marks: 1,
+                    sets: [
+                        { name: 'Set 1 – Physical Geography', description: 'Rivers, mountains, climate zones, and ecological regions.' },
+                        { name: 'Set 2 – Socio-Cultural & Economic', description: 'Ethnic groups, languages, agriculture, and remittance.' },
+                        { name: 'Set 3 – Demography & Trends', description: 'Population growth, urbanization, sex ratio, and provincial data.' }
+                    ]
+                }, {
+                    id: '1.2',
+                    name: 'Major natural resources of Nepal',
+                    marks: 1,
+                    sets: [
+                        { name: 'Set 1 – Water & Energy', description: 'Hydropower potential, major projects, and water resources.' },
+                        { name: 'Set 2 – Minerals & Forests', description: 'Limestone, coal, iron ore, forest cover, and major species.' }
+                    ]
+                }, {
+                    id: '1.3',
+                    name: 'Geographical diversity, climatic conditions, and livelihood & lifestyle of people',
+                    marks: 1,
+                    sets: [
+                        { name: 'Set 1 – Climate & Geography', description: 'Climate zones, temperature, and altitude variation.' },
+                        { name: 'Set 2 – Livelihood & Lifestyle', description: 'Agriculture, occupation by region, and lifestyle patterns.' }
+                    ]
+                }, {
+                    id: '1.4',
+                    name: 'Notable events and personalities, social, cultural and economic conditions in modern history of Nepal',
+                    marks: 1,
+                    sets: [
+                        { name: 'Set 1 – Historical Events', description: 'Unification, Rana regime, People\'s Movements, and key milestones.' },
+                        { name: 'Set 2 – Personalities & Culture', description: 'Prithvi Narayan Shah, Bhanubhakta, Jung Bahadur, and cultural heritage.' }
+                    ]
+                }, {
+                    id: '1.5',
+                    name: 'Current periodical plan of Nepal',
+                    marks: 1,
+                    sets: [
+                        { name: 'Set 1 – 16th Plan (FY 2024/25 – 2028/29)', description: 'Vision, priorities, and targets of the current plan.' },
+                        { name: 'Set 2 – Previous Plans', description: '15th Plan, 14th Plan, and their focus areas.' }
+                    ]
+                }, {
+                    id: '1.6',
+                    name: 'Sustainable development, environment, pollution, climate change, biodiversity, science & technology',
+                    marks: 1,
+                    sets: [
+                        { name: 'Set 1 – Environment & Climate', description: 'Climate vulnerability, GLOF, and biodiversity.' },
+                        { name: 'Set 2 – Science & Technology', description: 'NepaliSat-1, IT sector, NAST, and innovation.' }
+                    ]
+                }, {
+                    id: '1.7',
+                    name: "Nepal's international affairs; UNO, SAARC & BIMSTEC",
+                    marks: 1,
+                    sets: [
+                        { name: 'Set 1 – UNO & SAARC', description: 'UN membership, Security Council terms, SAARC secretariat.' },
+                        { name: 'Set 2 – BIMSTEC & Other', description: 'BIMSTEC objectives, WTO, ADB, and Non-Aligned Movement.' }
+                    ]
+                }, {
+                    id: '1.8',
+                    name: 'The Constitution of Nepal (Part 1 to 5 and Schedules)',
+                    marks: 1,
+                    sets: [
+                        { name: 'Set 1 – Parts 1–3', description: 'Preliminary, Citizenship, and Fundamental Rights.' },
+                        { name: 'Set 2 – Parts 4–5 & Schedules', description: 'Directives, State structure, and Schedules (provinces, anthem, etc.).' }
+                    ]
+                }, {
+                    id: '1.9',
+                    name: 'Governance system (Federal, Provincial and Local)',
+                    marks: 1,
+                    sets: [
+                        { name: 'Set 1 – Federal & Provincial', description: 'Prime Minister, President, Parliament, and provincial assemblies.' },
+                        { name: 'Set 2 – Local Governance', description: 'Local units, metropolitan cities, municipalities, and rural municipalities.' }
+                    ]
+                }, {
+                    id: '1.10',
+                    name: 'Civil Service Act & Regulation (constitution, structure, vacancy, code of conduct)',
+                    marks: 1,
+                    sets: [
+                        { name: 'Set 1 – Act & Structure', description: 'Civil Service Act 2049, groups, and PSC exams.' },
+                        { name: 'Set 2 – Code of Conduct & Regulation', description: 'Provisions, regulation 2050, and disciplinary rules.' }
+                    ]
+                }, {
+                    id: '1.11',
+                    name: 'Functional scope of public services',
+                    marks: 1,
+                    sets: [
+                        { name: 'Set 1 – Scope & Delivery', description: 'Education, health, infrastructure, and delivery mechanisms.' },
+                        { name: 'Set 2 – Challenges & Reforms', description: 'Bureaucratic inefficiency, corruption, e-governance, and charters.' }
+                    ]
+                }, {
+                    id: '1.12',
+                    name: 'Public Service Charter',
+                    marks: 1,
+                    sets: [
+                        { name: 'Set 1 – Concept & Objectives', description: 'Definition, accountability, transparency, and citizen rights.' },
+                        { name: 'Set 2 – Implementation', description: 'Time-bound services, grievance redressal, and monitoring.' }
+                    ]
+                }, {
+                    id: '1.13',
+                    name: 'Concept, objective and importance of public policy',
+                    marks: 1,
+                    sets: [
+                        { name: 'Set 1 – Concept & Objectives', description: 'Definition, problem-solving, resource allocation, and welfare.' },
+                        { name: 'Set 2 – Importance & Process', description: 'Guidance, accountability, and the policy cycle.' }
+                    ]
+                }, {
+                    id: '1.14',
+                    name: 'Fundamentals of management: planning, organizing, directing, controlling, coordinating, decision making, motivation and leadership',
+                    marks: 1,
+                    sets: [
+                        { name: 'Set 1 – Core Functions', description: 'Planning, organizing, directing, and controlling.' },
+                        { name: 'Set 2 – Decision Making & Leadership', description: 'Rational decision making, motivation theories, and leadership styles.' }
+                    ]
+                }, {
+                    id: '1.15',
+                    name: 'Government planning, budgeting and accounting system',
+                    marks: 1,
+                    sets: [
+                        { name: 'Set 1 – Planning & Budgeting', description: 'NPC, annual budget, revenue, expenditure, and deficit.' },
+                        { name: 'Set 2 – Accounting System', description: 'New Accounting System, cash basis, budget classification, and auditing.' }
+                    ]
+                }, {
+                    id: '1.16',
+                    name: 'Major events and current affairs of national and international importance',
+                    marks: 1,
+                    sets: [
+                        { name: 'Set 1 – National Events', description: 'SAARC Summit, Melamchi, GDP growth, and elections.' },
+                        { name: 'Set 2 – International Affairs', description: 'COP30, UN presidency, International Solar Alliance, and trade partners.' }
+                    ]
+                }],
+
+                // ---- Reasoning ----
+                reasoning: [{
+                    id: '2.1',
+                    name: 'Logical Reasoning (Verbal, Alphanumeric, Analogies, Classification, Coding-Decoding, Order & Ranking, Distance & Directions, Analytical & Logical Reasoning, Assertion & Reason, Statement & Conclusion, Input-Output, Venn-diagram)',
+                    marks: 9,
+                    sets: [
+                        { name: 'Set 1 – Verbal & Alphanumeric', description: 'Coding-decoding, analogies, classification, and alphanumeric series.' },
+                        { name: 'Set 2 – Analytical & Logical', description: 'Assertion-reason, statement-conclusion, Venn-diagrams, and logical puzzles.' },
+                        { name: 'Set 3 – Input-Output & Ranking', description: 'Input-output, order & ranking, distance & direction, and arrangement.' }
+                    ]
+                }, {
+                    id: '2.2',
+                    name: 'Numerical Reasoning (Arithmetic Series, Analogy, Classification, Arithmetical Reasoning, Fraction, Percentage, Ratio, Average, Profit & Loss, Time & Work, Date & Calendar, Data Sufficiency, Data Interpretation & Verification)',
+                    marks: 8,
+                    sets: [
+                        { name: 'Set 1 – Arithmetic & Percentage', description: 'Fractions, percentages, ratios, averages, and basic arithmetic.' },
+                        { name: 'Set 2 – Profit/Loss & Time/Work', description: 'Profit & loss, time & work, and data interpretation.' },
+                        { name: 'Set 3 – Data Sufficiency & Calendar', description: 'Calendar problems, data sufficiency, and verification.' }
+                    ]
+                }, {
+                    id: '2.3',
+                    name: 'Spatial Reasoning (Figure Series, Analogy, Classification, Matrix, Pattern Completion, Embedded Images, Image Formation & Analysis, Mirror & Water Images, Cubes & Dices, Paper Folding & Cutting)',
+                    marks: 8,
+                    sets: [
+                        { name: 'Set 1 – Figure Series & Analogy', description: 'Figure series, analogy, and classification of figures.' },
+                        { name: 'Set 2 – Mirror & Water Images', description: 'Mirror images, water images, and paper folding & cutting.' },
+                        { name: 'Set 3 – Cubes & Dices', description: 'Cubes, dices, pattern completion, and embedded images.' }
+                    ]
+                }],
+
+                // ---- Technical ----
+                technical: [{
+                    id: '3.1',
+                    name: 'Structural Engineering (Center of gravity, moment of inertia, stresses, beams, frames, indeterminate structures, plastic analysis)',
+                    marks: 5,
+                    sets: [
+                        { name: 'Set 1 – CG & Moment of Inertia', description: 'Center of gravity, moment of inertia, and section properties.' },
+                        { name: 'Set 2 – Beams & Frames', description: 'Beam stresses, frames, and indeterminate structures.' },
+                        { name: 'Set 3 – Plastic Analysis', description: 'Plastic moment, collapse mechanism, and load factor.' }
+                    ]
+                }, {
+                    id: '3.2',
+                    name: 'Engineering Survey (Principles, linear measurement, compass, plane table, levelling, contouring, theodolite, tacheometry, total station, curves, area & volume)',
+                    marks: 7,
+                    sets: [
+                        { name: 'Set 1 – Linear & Compass Survey', description: 'Linear measurement, compass survey, and plane table.' },
+                        { name: 'Set 2 – Levelling & Contouring', description: 'Levelling, curvature correction, and contouring.' },
+                        { name: 'Set 3 – Theodolite & Total Station', description: 'Theodolite, total station, tacheometry, and curve setting.' }
+                    ]
+                }, {
+                    id: '3.3',
+                    name: 'Construction Materials (Properties, stones, ceramics, cement, metals, timber, asphalt, soil, local & modern materials)',
+                    marks: 6,
+                    sets: [
+                        { name: 'Set 1 – Stones & Ceramics', description: 'Stone types, ceramics, and their properties.' },
+                        { name: 'Set 2 – Cement & Metals', description: 'Cement types, steel, aluminum, and their uses.' },
+                        { name: 'Set 3 – Timber & Modern Materials', description: 'Timber species, bamboo, PVC, FRP, and composites.' }
+                    ]
+                }, {
+                    id: '3.4',
+                    name: 'Concrete Technology (Constituents, water-cement ratio, mix design, testing, admixtures, high strength, pre-stressed concrete)',
+                    marks: 5,
+                    sets: [
+                        { name: 'Set 1 – Constituents & W/C Ratio', description: 'Cement, aggregates, water, and water-cement ratio.' },
+                        { name: 'Set 2 – Mix Design & Testing', description: 'Mix design methods, slump test, and compressive strength.' },
+                        { name: 'Set 3 – Admixtures & High-Strength', description: 'Admixtures, high-strength concrete, and pre-stressed concrete.' }
+                    ]
+                }, {
+                    id: '3.5',
+                    name: 'Geotechnical Engineering (Soil formation, phases, water in soil, index properties, rocks, tunneling)',
+                    marks: 6,
+                    sets: [
+                        { name: 'Set 1 – Soil Formation & Phases', description: 'Soil formation, phases, void ratio, and porosity.' },
+                        { name: 'Set 2 – Index Properties & Water', description: 'Grain size, Atterberg limits, and water types in soil.' },
+                        { name: 'Set 3 – Rocks & Tunneling', description: 'Rock types, tunneling methods, and notable tunnels.' }
+                    ]
+                }, {
+                    id: '3.6',
+                    name: 'Construction Management (Scheduling, contracts, material management, cost/quality/time control, project management, safety, monitoring)',
+                    marks: 6,
+                    sets: [
+                        { name: 'Set 1 – Scheduling & Contracts', description: 'CPM, PERT, types of contracts, and procurement.' },
+                        { name: 'Set 2 – Material Management & QC', description: 'Inventory, quality control, and time control.' },
+                        { name: 'Set 3 – Safety & Monitoring', description: 'Safety protocols, KPIs, dashboards, and project monitoring.' }
+                    ]
+                }, {
+                    id: '3.7',
+                    name: 'Estimating, Costing, Specification & Valuation (Types of estimates, quantity methods, rate analysis, BOQ, specifications, valuation)',
+                    marks: 5,
+                    sets: [
+                        { name: 'Set 1 – Types of Estimates', description: 'Preliminary, detailed, revised, and supplementary estimates.' },
+                        { name: 'Set 2 – Rate Analysis & BOQ', description: 'Rate analysis, Bill of Quantities, and tendering.' },
+                        { name: 'Set 3 – Specifications & Valuation', description: 'Specifications, valuation methods, and property appraisal.' }
+                    ]
+                }, {
+                    id: '3.8',
+                    name: 'Engineering Drawing (Sheet composition, scales, projections, drafting tools, symbols, topographic/electrical/plumbing/structural drawings, community buildings)',
+                    marks: 4,
+                    sets: [
+                        { name: 'Set 1 – Sheet Composition & Scales', description: 'Title block, scales, and standard sheet sizes.' },
+                        { name: 'Set 2 – Projections & Symbols', description: 'Orthographic, isometric, and standard symbols.' },
+                        { name: 'Set 3 – Community Buildings', description: 'Architectural, structural, electrical, and plumbing drawings.' }
+                    ]
+                }, {
+                    id: '3.9',
+                    name: 'Engineering Economics (Benefit-cost analysis, sensitivity, IRR, time value, demand-supply, NPV, financial & economic evaluation)',
+                    marks: 3,
+                    sets: [
+                        { name: 'Set 1 – Time Value & NPV', description: 'Time value of money, NPV, and discounting.' },
+                        { name: 'Set 2 – IRR & Sensitivity', description: 'Internal Rate of Return and sensitivity analysis.' },
+                        { name: 'Set 3 – Benefit-Cost & Evaluation', description: 'Benefit-cost ratio, financial vs economic evaluation, and demand-supply.' }
+                    ]
+                }, {
+                    id: '3.10',
+                    name: 'Professional Practices (Ethics, Nepal Engineering Council Act, client relations, public procurement, National Building Code, building bylaws)',
+                    marks: 3,
+                    sets: [
+                        { name: 'Set 1 – Ethics & NEC Act', description: 'Professional ethics, Nepal Engineering Council, and registration.' },
+                        { name: 'Set 2 – Public Procurement & NBC', description: 'Public Procurement Act, National Building Code, and building bylaws.' },
+                        { name: 'Set 3 – Client Relations & Practice', description: 'Client management, transparency, and professional standards.' }
+                    ]
+                }]
+            };
+
+            // ================================================================
+            //  HELPER: consistent color for topic ID
+            // ================================================================
+            function getColorForId(id) {
+                const colors = ['#e8f5e9', '#c8e6c9', '#a5d6a7', '#81c784', '#66bb6a', '#4caf50', '#43a047', '#388e3c',
+                    '#2e7d32', '#1b5e20'
+                ];
+                let hash = 0;
+                for (let i = 0; i < id.length; i++) {
+                    hash = id.charCodeAt(i) + ((hash << 5) - hash);
+                }
+                return colors[Math.abs(hash) % colors.length];
+            }
+
+            // ================================================================
+            //  RENDER: accordion items with sets and Start Exam buttons
+            // ================================================================
+            function renderTopics(containerId, topics) {
+                const container = document.getElementById(containerId);
+                if (!container) return;
+                container.innerHTML = '';
+
+                topics.forEach((topic) => {
+                    const item = document.createElement('div');
+                    item.className = 'accordion-item';
+
+                    // ----- header -----
+                    const header = document.createElement('div');
+                    header.className = 'accordion-header';
+                    header.setAttribute('role', 'button');
+                    header.setAttribute('aria-expanded', 'false');
+                    header.setAttribute('tabindex', '0');
+
+                    // badge
+                    const badge = document.createElement('span');
+                    badge.className = 'topic-id-badge';
+                    badge.textContent = topic.id;
+                    badge.style.backgroundColor = getColorForId(topic.id);
+
+                    // title
+                    const title = document.createElement('h3');
+                    title.className = 'topic-title';
+                    title.textContent = topic.name;
+
+                    // marks
+                    const marks = document.createElement('span');
+                    marks.className = 'topic-marks';
+                    marks.textContent = `${topic.marks} Mark${topic.marks > 1 ? 's' : ''}`;
+
+                    // icon
+                    const icon = document.createElement('span');
+                    icon.className = 'accordion-toggle-icon';
+                    icon.innerHTML = '&#9660;';
+                    icon.setAttribute('aria-hidden', 'true');
+
+                    header.appendChild(badge);
+                    header.appendChild(title);
+                    header.appendChild(marks);
+                    header.appendChild(icon);
+
+                    // ----- body -----
+                    const body = document.createElement('div');
+                    body.className = 'accordion-body';
+
+                    const setsContainer = document.createElement('div');
+                    setsContainer.className = 'sets-container';
+
+                    const sets = topic.sets || [];
+                    if (sets.length === 0) {
+                        const msg = document.createElement('p');
+                        msg.className = 'no-sets-msg';
+                        msg.textContent = 'No exam sets available for this topic yet.';
+                        setsContainer.appendChild(msg);
+                    } else {
+                        sets.forEach((set, setIdx) => {
+                            const setCard = document.createElement('div');
+                            setCard.className = 'set-card';
+
+                            // set header (click to toggle set body)
+                            const setHeader = document.createElement('div');
+                            setHeader.className = 'set-header';
+                            setHeader.setAttribute('role', 'button');
+                            setHeader.setAttribute('aria-expanded', 'false');
+                            setHeader.setAttribute('tabindex', '0');
+
+                            const setName = document.createElement('span');
+                            setName.className = 'set-name';
+                            setName.innerHTML = `<i class="fas fa-file-alt"></i> ${set.name}`;
+
+                            const setIcon = document.createElement('span');
+                            setIcon.className = 'set-toggle-icon';
+                            setIcon.innerHTML = '&#9660;';
+                            setIcon.setAttribute('aria-hidden', 'true');
+
+                            setHeader.appendChild(setName);
+                            setHeader.appendChild(setIcon);
+
+                            // set body
+                            const setBody = document.createElement('div');
+                            setBody.className = 'set-body';
+
+                            const contentDiv = document.createElement('div');
+                            contentDiv.className = 'set-content';
+
+                            // Description
+                            if (set.description) {
+                                const desc = document.createElement('p');
+                                desc.className = 'test-description';
+                                desc.textContent = set.description;
+                                contentDiv.appendChild(desc);
+                            }
+
+                            // Start Exam button
+                            // Generate link: TEST_BASE_URL + topic.id + '-' + (setIdx+1) + '.html'
+                            const testFile = `${topic.id}-${setIdx+1}.html`;
+                            const link = document.createElement('a');
+                            link.className = 'start-exam-btn';
+                            link.href = TEST_BASE_URL + testFile;
+                            link.target = '_blank'; // open in new tab
+                            link.setAttribute('aria-label', `Start exam for ${set.name}`);
+                            link.innerHTML = '<i class="fas fa-play"></i> Start Exam';
+                            contentDiv.appendChild(link);
+
+                            setBody.appendChild(contentDiv);
+                            setCard.appendChild(setHeader);
+                            setCard.appendChild(setBody);
+                            setsContainer.appendChild(setCard);
+
+                            // ---- set toggle logic ----
+                            setHeader.addEventListener('click', function(e) {
+                                e.stopPropagation();
+                                const isOpen = setCard.classList.toggle('open');
+                                this.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+                            });
+                            setHeader.addEventListener('keydown', function(e) {
+                                if (e.key === 'Enter' || e.key === ' ') {
+                                    e.preventDefault();
+                                    this.click();
+                                }
+                            });
+                        });
+                    }
+
+                    body.appendChild(setsContainer);
+                    item.appendChild(header);
+                    item.appendChild(body);
+                    container.appendChild(item);
+
+                    // ---- accordion toggle logic ----
+                    header.addEventListener('click', function(e) {
+                        if (e.target.closest('.set-header')) return;
+                        const isOpen = item.classList.toggle('open');
+                        this.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+                    });
+                    header.addEventListener('keydown', function(e) {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            this.click();
+                        }
+                    });
+                });
+            }
+
+            // ================================================================
+            //  INIT
+            // ================================================================
+            renderTopics('awarenessGrid', topicsData.awareness);
+            renderTopics('reasoningGrid', topicsData.reasoning);
+            renderTopics('technicalGrid', topicsData.technical);
+
+        })();
+    </script>
+
 </body>
 </html>

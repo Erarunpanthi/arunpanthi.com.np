@@ -1,6 +1,32 @@
 (function() {
     'use strict';
 
+    // ============================================================
+    //  CONFIGURATION – adjust to match your deployment
+    // ============================================================
+    var CONFIG = {
+        // Base URL for exam files – set to '/Test/' or '/model-exam-sets/Set/'
+        BASE_URL: '',
+        // Auto‑detect base from script location
+        AUTO_DETECT_BASE: true,
+        // Show a "Reset Test" button on the exam page
+        SHOW_RESET_BUTTON: true
+    };
+
+    if (CONFIG.AUTO_DETECT_BASE && !CONFIG.BASE_URL) {
+        var scripts = document.getElementsByTagName('script');
+        var currentScript = scripts[scripts.length - 1];
+        var src = currentScript.getAttribute('src') || '';
+        var path = src.replace(/\/[^/]*$/, '') + '/';
+        CONFIG.BASE_URL = path;
+    }
+    if (CONFIG.BASE_URL && !CONFIG.BASE_URL.endsWith('/')) {
+        CONFIG.BASE_URL += '/';
+    }
+
+    // ============================================================
+    //  UTILITY FUNCTIONS
+    // ============================================================
     function isImageUrl(url) {
         if (!url || typeof url !== 'string') return false;
         var clean = url.split('?')[0].split('#')[0];
@@ -102,6 +128,9 @@
         return 'set_' + Math.abs(hash).toString(16).slice(0, 8);
     }
 
+    // ============================================================
+    //  RESET FUNCTION – supports ?reset=1 on any page
+    // ============================================================
     function resetTest(questionSet) {
         var id = generateSetId(questionSet);
         var keys = ['_status', '_answers', '_startTime', '_endTime', '_marks', '_submittedAt'];
@@ -113,13 +142,21 @@
         window.location.replace(url.toString());
     }
 
-    function startTest(questionSet) {
+    // ============================================================
+    //  MAIN EXPOSED FUNCTION
+    // ============================================================
+    window.startTest = function(questionSet, options) {
+        options = options || {};
+        var baseUrl = options.baseUrl || CONFIG.BASE_URL || '';
+        if (baseUrl && !baseUrl.endsWith('/')) baseUrl += '/';
+
         if (!questionSet || !questionSet.questions || questionSet.questions.length === 0) {
             console.error('Invalid questionSet');
             return;
         }
 
         var url = new URL(window.location.href);
+        // If ?reset=1 is present, clear everything and reload
         if (url.searchParams.has('reset') && url.searchParams.get('reset') === '1') {
             resetTest(questionSet);
             return;
@@ -154,7 +191,9 @@
             'sidebar-total', 'sidebar-answered-num', 'q-grid',
             'results-set-name', 'results-score', 'results-denom',
             'results-percentage', 'results-time-taken', 'results-detail',
-            'warning-modal', 'modal-unanswered-count', 'btn-modal-cancel', 'btn-modal-submit'
+            'warning-modal', 'modal-unanswered-count', 'btn-modal-cancel', 'btn-modal-submit',
+            // Reset button (new)
+            'btn-reset-test'
         ];
         ids.forEach(function(id) { state.$[id] = getElement(id); });
 
@@ -193,8 +232,20 @@
                 beginTest(state);
             });
         }
-    }
 
+        // ---- Reset button (new) ----
+        if (state.$['btn-reset-test']) {
+            state.$['btn-reset-test'].addEventListener('click', function() {
+                if (confirm('⚠️ Are you sure you want to reset this test? All progress will be lost.')) {
+                    resetTest(questionSet);
+                }
+            });
+        }
+    };
+
+    // ============================================================
+    //  showPreTest – now includes reset button
+    // ============================================================
     function showPreTest(state) {
         var $ = state.$;
         if ($['pre-test-section']) $['pre-test-section'].style.display = 'block';
@@ -210,19 +261,19 @@
 
         if ($['hero-note']) {
             $['hero-note'].innerHTML =
-                '<div style="text-align:left; max-width:500px; margin:10px auto; font-size:0.9rem; line-height:1.6; background:#12b41a; padding:15px 20px; border-radius:8px; border-left:4px solid #2e7d32;">' +
-                '<p><strong>📌 ⚠️ Important Exam Instructions</strong> 📌 ⚠️</p>' +
+                '<div style="text-align:left; max-width:500px; margin:10px auto; font-size:0.9rem; line-height:1.6; background:#e8f5e9; padding:15px 20px; border-radius:8px; border-left:4px solid #2e7d32;">' +
+                '<p><strong>📌 ⚠️ Important Exam Instructions</strong></p>' +
                 '<ul style="list-style:none; padding-left:0; margin:5px 0;">' +
-                '<li>Exam will open in full-screen mode.</li>' +
-        '<li>You may take this test only once.</li>' +
-        '<li>Timer starts immediately after clicking "Start Test".</li>' +
-        '<li>Time alerts appear at 10 and 5 minutes remaining.</li>' +
-        '<li>Test will auto-submit when time ends.</li>' +
-        '<li>Timer cannot be paused or restarted.</li>' +
-        '<li>Refreshing or going back restores only attempted answers.</li>' +
-        '<li>Copying text or images is not allowed and may block future exams.</li>' +
+                '<li>🏁 Exam will open in full-screen mode.</li>' +
+                '<li>📝 You may take this test only once.</li>' +
+                '<li>⏱️ Timer starts immediately after clicking "Start Test".</li>' +
+                '<li>🔔 Time alerts at 10 and 5 minutes remaining.</li>' +
+                '<li>⏰ Test will auto-submit when time ends.</li>' +
+                '<li>🔄 Timer cannot be paused or restarted.</li>' +
+                '<li>💾 Refreshing restores only attempted answers.</li>' +
+                '<li>🚫 Copying text or images is not allowed.</li>' +
                 '</ul>' +
-                '<p style="margin-top:10px; color:white; font-weight:bold;">⚠️ Ready? Click the button below.</p>' +
+                '<p style="margin-top:10px; color:#1b5e20; font-weight:bold;">✅ Ready? Click the button below.</p>' +
                 '</div>';
         }
 
@@ -230,9 +281,106 @@
             $['btn-start-test'].disabled = false;
             $['btn-start-test'].textContent = '🚀 Start Test';
         }
+
+        // Show reset button in pre-test section if configured
+        if (CONFIG.SHOW_RESET_BUTTON && $['btn-reset-test']) {
+            $['btn-reset-test'].style.display = 'inline-block';
+        }
+
         disableTestRestrictions(state);
     }
 
+    // ============================================================
+    //  showResults – now includes reset button
+    // ============================================================
+    function showResults(state, marksOverride, timeOverride, auto) {
+        var $ = state.$;
+        if ($['pre-test-section']) $['pre-test-section'].style.display = 'none';
+        if ($['test-section']) $['test-section'].style.display = 'none';
+        if ($['results-section']) $['results-section'].style.display = 'block';
+        if ($['timer-display']) $['timer-display'].style.display = 'none';
+        if ($['navbar-brand']) $['navbar-brand'].textContent = '📊 Results - ' + state.questionSet.name;
+
+        var marks = marksOverride !== undefined ? marksOverride : parseInt(LSget(state.STORAGE_KEY_MARKS) || '0');
+        var submittedStr = LSget(state.STORAGE_KEY_SUBMITTED_AT);
+        var startStr = LSget(state.STORAGE_KEY_START_TIME);
+        var timeTaken = timeOverride;
+        if (timeTaken === undefined && submittedStr && startStr) {
+            timeTaken = Math.floor((parseInt(submittedStr) - parseInt(startStr)) / 1000);
+        }
+        if (timeTaken === undefined || timeTaken < 0) timeTaken = 0;
+
+        var ans = LSget(state.STORAGE_KEY_ANSWERS);
+        if (ans) { try { state.userAnswers = JSON.parse(ans); } catch (_) { state.userAnswers = {}; } }
+
+        var percent = state.TOTAL_QUESTIONS > 0 ? Math.round((marks / state.TOTAL_QUESTIONS) * 100) : 0;
+        if ($['results-set-name']) $['results-set-name'].textContent = state.questionSet.name;
+        if ($['results-score']) $['results-score'].textContent = marks;
+        if ($['results-denom']) $['results-denom'].textContent = '/ ' + state.TOTAL_QUESTIONS;
+        if ($['results-percentage']) $['results-percentage'].textContent = percent + '%';
+        if ($['results-time-taken']) {
+            $['results-time-taken'].textContent = '⏱️ Time taken: ' + formatTimeLong(timeTaken) + (auto ? ' (Auto-submitted)' : '');
+        }
+
+        // Show reset button in results section
+        if (CONFIG.SHOW_RESET_BUTTON && $['btn-reset-test']) {
+            $['btn-reset-test'].style.display = 'inline-block';
+            $['btn-reset-test'].textContent = '🔄 Reset Test';
+        }
+
+        if ($['results-detail']) {
+            $['results-detail'].innerHTML = '';
+            var letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
+            state.questionSet.questions.forEach(function(q, idx) {
+                var userAns = state.userAnswers[idx];
+                var correctAns = q.correct;
+                var isCorrect = (userAns === correctAns);
+                var wasAnswered = (userAns !== undefined && userAns !== null);
+
+                var card = document.createElement('div');
+                card.className = 'result-card';
+                if (wasAnswered) card.classList.add(isCorrect ? 'correct' : 'incorrect');
+
+                var badge = '';
+                if (!wasAnswered) {
+                    badge = '<span class="r-badge" style="background:#fff3e0;color:#E65100;">⚠️ NOT ANSWERED</span>';
+                } else if (isCorrect) {
+                    badge = '<span class="r-badge correct-badge">✅ CORRECT</span>';
+                } else {
+                    badge = '<span class="r-badge incorrect-badge">❌ INCORRECT</span>';
+                }
+
+                var renderedQ = renderTextWithImages(q.question, 'inline-image');
+
+                var optsHTML = '';
+                q.options.forEach(function(opt, optIdx) {
+                    var liClass = '';
+                    if (optIdx === correctAns && optIdx === userAns) liClass = 'both-correct';
+                    else if (optIdx === correctAns) liClass = 'correct-answer';
+                    else if (optIdx === userAns && !isCorrect) liClass = 'user-answer';
+
+                    var label = letters[optIdx] || (optIdx + 1);
+                    var prefix = '';
+                    if (optIdx === correctAns && optIdx === userAns) prefix = '✅ ';
+                    else if (optIdx === correctAns) prefix = '✅ ';
+                    else if (optIdx === userAns && !isCorrect) prefix = '❌ ';
+
+                    var optRendered = renderTextWithImages(opt, 'option-image');
+                    optsHTML += '<li class="' + liClass + '"><strong>' + label + '.</strong> ' + prefix + optRendered + '</li>';
+                });
+
+                card.innerHTML = badge + '<div class="r-q-text">Q' + (idx + 1) + ': ' + renderedQ + '</div><ul class="r-options">' + optsHTML + '</ul>';
+                $['results-detail'].appendChild(card);
+            });
+        }
+
+        if ($['results-section']) $['results-section'].scrollIntoView({ behavior: 'smooth' });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // ============================================================
+    //  All other functions (unchanged from original)
+    // ============================================================
     function beginTest(state) {
         var status = LSget(state.STORAGE_KEY_STATUS);
         if (status === 'completed' || status === 'submitted') {
@@ -328,6 +476,11 @@
             $['warning-modal'].addEventListener('click', function(e) {
                 if (e.target === $['warning-modal']) hideWarningModal(state);
             });
+        }
+
+        // Hide reset button during test
+        if ($['btn-reset-test']) {
+            $['btn-reset-test'].style.display = 'none';
         }
 
         document.addEventListener('keydown', function(e) {
@@ -530,85 +683,6 @@
         return correct;
     }
 
-    function showResults(state, marksOverride, timeOverride, auto) {
-        var $ = state.$;
-        if ($['pre-test-section']) $['pre-test-section'].style.display = 'none';
-        if ($['test-section']) $['test-section'].style.display = 'none';
-        if ($['results-section']) $['results-section'].style.display = 'block';
-        if ($['timer-display']) $['timer-display'].style.display = 'none';
-        if ($['navbar-brand']) $['navbar-brand'].textContent = '📊 Results - ' + state.questionSet.name;
-
-        var marks = marksOverride !== undefined ? marksOverride : parseInt(LSget(state.STORAGE_KEY_MARKS) || '0');
-        var submittedStr = LSget(state.STORAGE_KEY_SUBMITTED_AT);
-        var startStr = LSget(state.STORAGE_KEY_START_TIME);
-        var timeTaken = timeOverride;
-        if (timeTaken === undefined && submittedStr && startStr) {
-            timeTaken = Math.floor((parseInt(submittedStr) - parseInt(startStr)) / 1000);
-        }
-        if (timeTaken === undefined || timeTaken < 0) timeTaken = 0;
-
-        var ans = LSget(state.STORAGE_KEY_ANSWERS);
-        if (ans) { try { state.userAnswers = JSON.parse(ans); } catch (_) { state.userAnswers = {}; } }
-
-        var percent = state.TOTAL_QUESTIONS > 0 ? Math.round((marks / state.TOTAL_QUESTIONS) * 100) : 0;
-        if ($['results-set-name']) $['results-set-name'].textContent = state.questionSet.name;
-        if ($['results-score']) $['results-score'].textContent = marks;
-        if ($['results-denom']) $['results-denom'].textContent = '/ ' + state.TOTAL_QUESTIONS;
-        if ($['results-percentage']) $['results-percentage'].textContent = percent + '%';
-        if ($['results-time-taken']) {
-            $['results-time-taken'].textContent = '⏱️ Time taken: ' + formatTimeLong(timeTaken) + (auto ? ' (Auto-submitted)' : '');
-        }
-
-        if ($['results-detail']) {
-            $['results-detail'].innerHTML = '';
-            var letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
-            state.questionSet.questions.forEach(function(q, idx) {
-                var userAns = state.userAnswers[idx];
-                var correctAns = q.correct;
-                var isCorrect = (userAns === correctAns);
-                var wasAnswered = (userAns !== undefined && userAns !== null);
-
-                var card = document.createElement('div');
-                card.className = 'result-card';
-                if (wasAnswered) card.classList.add(isCorrect ? 'correct' : 'incorrect');
-
-                var badge = '';
-                if (!wasAnswered) {
-                    badge = '<span class="r-badge" style="background:#fff3e0;color:#E65100;">⚠️ NOT ANSWERED</span>';
-                } else if (isCorrect) {
-                    badge = '<span class="r-badge correct-badge">✅ CORRECT</span>';
-                } else {
-                    badge = '<span class="r-badge incorrect-badge">❌ INCORRECT</span>';
-                }
-
-                var renderedQ = renderTextWithImages(q.question, 'inline-image');
-
-                var optsHTML = '';
-                q.options.forEach(function(opt, optIdx) {
-                    var liClass = '';
-                    if (optIdx === correctAns && optIdx === userAns) liClass = 'both-correct';
-                    else if (optIdx === correctAns) liClass = 'correct-answer';
-                    else if (optIdx === userAns && !isCorrect) liClass = 'user-answer';
-
-                    var label = letters[optIdx] || (optIdx + 1);
-                    var prefix = '';
-                    if (optIdx === correctAns && optIdx === userAns) prefix = '✅ ';
-                    else if (optIdx === correctAns) prefix = '✅ ';
-                    else if (optIdx === userAns && !isCorrect) prefix = '❌ ';
-
-                    var optRendered = renderTextWithImages(opt, 'option-image');
-                    optsHTML += '<li class="' + liClass + '"><strong>' + label + '.</strong> ' + prefix + optRendered + '</li>';
-                });
-
-                card.innerHTML = badge + '<div class="r-q-text">Q' + (idx + 1) + ': ' + renderedQ + '</div><ul class="r-options">' + optsHTML + '</ul>';
-                $['results-detail'].appendChild(card);
-            });
-        }
-
-        if ($['results-section']) $['results-section'].scrollIntoView({ behavior: 'smooth' });
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
     function showWarningModal(state) {
         var unanswered = state.TOTAL_QUESTIONS - answeredCount(state);
         if (state.$['modal-unanswered-count']) {
@@ -667,7 +741,7 @@
 
     function unblockBackButton(state) {}
 
-    window.startTest = startTest;
-    window.renderTextWithImages = renderTextWithImages;
-    window.renderOptionWithImage = renderOptionWithImage;
+    // Export for use in other scripts
+    window.resetTest = resetTest;
+
 })();

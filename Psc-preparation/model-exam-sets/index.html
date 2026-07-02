@@ -16,7 +16,7 @@
 
   <main class="container" id="mocktest-cards">
     <h1 style="text-align: center;">PSC Civil Engineering Model Exam Sets</h1>
-    <div class="exam-list" id="exam-list"></div>
+    <div class="exam-list" id="book-list"></div>
   </main>
 
   <!-- FAQ Section -->
@@ -39,11 +39,11 @@
   <script>
     
     const totalSets = 20;
-    const examList = document.getElementById("exam-list");
+    const examList = document.getElementById("book-list");
 
     for (let i = 1; i <= totalSets; i++) {
       const article = document.createElement("article");
-      article.className = "exam-card";
+      article.className = "book";
 
       // Dynamic link pattern
       const link = `https://arunpanthi.com.np/Psc-preparation/model-exam-sets/Set/${i}`;

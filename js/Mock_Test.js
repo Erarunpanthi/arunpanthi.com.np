@@ -261,7 +261,7 @@
 
         if ($['hero-note']) {
             $['hero-note'].innerHTML =
-                '<div style="text-align:left; max-width:500px; margin:10px auto; font-size:0.9rem; line-height:1.6; background:#c8e6c9; padding:15px 20px; border-radius:8px; border-left:4px solid #2e7d32;">' +
+                '<div style="text-align:left; max-width:500px; margin:10px auto; font-size:0.9rem; line-height:1.6; background:#2E7D32; padding:15px 20px; border-radius:8px; border-left:4px solid #2e7d32;">' +
         '<p><strong>📌 ⚠️ Important Exam Instructions</strong></p>' +
         '<ul style="list-style:none; padding-left:0; margin:5px 0;">' +
             '<li>1. Exam will open in full-screen mode.</li>' +

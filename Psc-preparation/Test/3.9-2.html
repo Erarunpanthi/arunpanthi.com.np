@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Engineering Economics set-1 </title>
+<link rel="icon" href="https://arunpanthi.com.np/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="/css/Mock_Test.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar" id="navbar">
+<span class="brand" id="navbar-brand">Engineering Economics -1 </span>
+<span class="timer-display" id="timer-display" style="display:none;">--:--</span>
+</nav>
+
+<!-- Warning modal -->
+<div id="warning-modal" class="modal-overlay" style="display: none;">
+<div class="modal-dialog">
+<div class="warning-icon">⚠️</div>
+<h3>Unanswered Questions</h3>
+<p>You haven't answered all the questions.</p>
+<span class="unanswered-count" id="modal-unanswered-count">0 unanswered</span>
+<p style="margin-top:8px;"><strong>⚠ This test cannot be retaken once submitted!</strong></p>
+<div class="modal-buttons">
+<button class="btn-cancel" id="btn-modal-cancel">Cancel</button>
+<button class="btn-submit-warning" id="btn-modal-submit">Submit Anyway</button>
+</div>
+</div>
+</div>
+
+<div id="pre-test-section">
+<div class="hero" id="hero-card">
+<h1 id="hero-set-name">Loading...</h1>
+<p class="set-details" id="hero-details"></p>
+<div class="set-meta">
+<div class="meta-item"><span id="hero-q-count">0</span> Questions</div>
+<div class="meta-item"><span id="hero-time">0:00</span> Time (min)</div>
+</div>
+<button class="btn-start" id="btn-start-test">🚀 Start Test</button>
+<p style="margin-top:10px;font-size:0.85rem;opacity:0.8;" id="hero-note"></p>
+</div>
+</div>
+
+<div id="test-section" style="display:none;">
+<div class="test-container">
+<div class="question-area">
+<div class="question-card">
+<div class="q-number" id="q-number-label">QUESTION 1</div>
+<div class="q-text" id="q-text">Loading question...</div>
+<ul class="options-list" id="options-list"></ul>
+</div>
+<div class="nav-buttons">
+<div class="nav-left"><button class="btn-nav" id="btn-prev">◀ Previous</button></div>
+<div class="nav-center"><button class="btn-submit" id="btn-submit-test">✅ Submit Test</button></div>
+<div class="nav-right"><button class="btn-nav" id="btn-next">Next ▶</button></div>
+</div>
+</div>
+<aside class="sidebar">
+<h3>📋 Question </h3>
+<div class="total-questions" id="sidebar-total">Total: 0</div>
+<div class="answered-count">Answered: <strong id="sidebar-answered-num">0</strong></div>
+<div class="q-grid" id="q-grid"></div>
+<div class="legend">
+<span><span class="dot-sample blue"></span> Answered</span>
+<span><span class="dot-sample gray"></span> Unanswered</span>
+</div>
+</aside>
+</div>
+</div>
+
+<div id="results-section" style="display:none;">
+<div class="results-container">
+<div class="results-header">
+<h2 style="color:#2E7D32;">📊 Test Results</h2>
+<p style="color:#666;" id="results-set-name"></p>
+<div class="score-circle">
+<span class="score-num" id="results-score">0</span>
+<span class="score-denom" id="results-denom">/ 0</span>
+</div>
+<div class="percentage" id="results-percentage">0%</div>
+<p style="margin-top:8px;color:#888;font-size:0.9rem;" id="results-time-taken"></p>
+</div>
+<div id="results-detail"></div>
+</div>
+</div>
+<script src="/js/Mock_Test.js"></script>
+<script>
+(function() {
+    console.log('Inline script running');
+const questionSet = {
+      name: 'Engineering Economics & Financial Analysis - Complete Set',
+    details: 'Covers cost-benefit analysis, project evaluation, time value of money, and economic principles.',
+    questions: [
+        { question: 'In which case, future value cannot be computed?', options: ['Annuity', 'Perpetuity', 'Both A and B', 'None of above'], correct: 1 },
+        { question: 'The total revenue minus all the explicit costs and implicit costs is known as', options: ['Accounting profit', 'Economic profit', 'Normal profit', 'None of above'], correct: 1 },
+        { question: 'A demand curve is linear if', options: ['Curve is non-linear', 'Slope of curve remains constant', 'Price and demand change at constant rate', 'All of the above'], correct: 1 },
+        { question: 'A firm is in equilibrium when its', options: ['Marginal cost equals the marginal revenue', 'Total cost is minimum', 'Total revenue is maximum', 'Average revenue and marginal revenue is equal'], correct: 0 },
+        { question: 'A profitability index of .85 for a project means that:', options: ['the project\'s NPV is greater than zero.', 'the present value of benefits is 85% greater than the project\'s costs.', 'the payback period is less than one year.', 'the project returns 85 paisa in present value for each rupee invested.'], correct: 3 },
+        { question: 'Annuities involves', options: ['All payments are equal amount', 'A series of payments', 'Payment at equal time intervals', 'All of these'], correct: 3 },
+        { question: 'Break even analysis is that limited form of', options: ['cost analysis', 'sensitivity analysis', 'benefit analysis', 'none of the above'], correct: 1 },
+        { question: 'Compounding is the process of converting', options: ['future value to present', 'present value to future', 'both a and b', 'none of these'], correct: 1 },
+        { question: 'Cost benefit study are essential to', options: ['ascertain the relevant escalation in prices', 'to assess the total cost of work', 'monitor the expenditure', 'evaluate viability and worthwhileness of taking up the project'], correct: 3 },
+        { question: 'Costs which are independent of output and no alternation by the change in production level are called', options: ['Production costs', 'Fixed costs', 'Total costs', 'Variable costs'], correct: 1 },
+        { question: 'Cross elasticity of demand between petrol and car is', options: ['Positive', 'Infinite', 'Zero', 'Negative'], correct: 3 },
+        { question: 'Decreasing of purchasing power of money with time is called', options: ['deflation', 'inflation', 'cost escalation', 'cost variation'], correct: 1 },
+        { question: 'Discounting is the process of', options: ['determine the future value of a cash flow', 'detecting the equal periodic payment', 'finding the present value of a cash flow', 'find the series of equal periodic payment'], correct: 2 },
+        { question: 'Donor funded projects are based on', options: ['priority of users', 'priority of government', 'good IRR', 'all of these'], correct: 3 },
+        { question: 'During analysis of projects following NPV is obtained -1, 0, 0.5 and 1. Which project should be firmly rejected?', options: ['Second', 'First', 'Third', 'Fourth'], correct: 1 },
+        { question: 'During the calculation of IRR, NPV should be', options: ['negative', 'positive', 'zero', 'all of the above'], correct: 2 },
+        { question: 'Externalities in cost-benefit analysis refer to:', options: ['Costs associated with advertising and promotion', 'Costs and benefits that are not directly accounted for in market prices', 'Benefits accrued by the project owner', 'Costs incurred by the project owner'], correct: 1 },
+        { question: 'Financial analysis excludes the', options: ['Implicit cost', 'Explicit cost', 'Both A and B', 'None of the above'], correct: 0 },
+        { question: 'Financial closure of a project means', options: ['signing of a due diligence', 'signing the letter of interest to finance', 'signing for approval of a loan and commitment to fund the project', 'none of the above'], correct: 2 },
+        { question: 'Find the effective interest rate if the interest rate is 10% which is compounded 3 times per year', options: ['0.1022', '0.1011', '0.1033', '0.1044'], correct: 2 },
+        { question: 'Fixed cost can be', options: ['indirect cost', 'direct cost', 'both a and b', 'none of these'], correct: 2 },
+        { question: 'For the analysis of any project net present value should be', options: ['0', 'positive', 'negative', 'all of the above'], correct: 1 },
+        { question: 'For the road project, the analysis carried out is', options: ['economic analysis', 'financial analysis', 'both a and b', 'none of these'], correct: 0 },
+        { question: 'For the selection of any project, which one is mostly used?', options: ['Internal Rate of Return', 'Benefit Cost Ratio', 'Net present value', 'Average worth method'], correct: 2 },
+        { question: 'For the selection of a project B/C ratio should be', options: ['+ve', '-ve', '>1', '0'], correct: 2 },
+        { question: 'Fundamental decision criteria for acceptability of a public project is', options: ['economic analysis', 'financial analysis', 'both a and b', 'none of these'], correct: 0 },
+        { question: 'Gross Domestic Product (GDP) measures:', options: ['The total value of all goods and services produced by the citizens of a country, regardless of location', 'The total value of all goods and services consumed within a country in a given period', 'The total value of all intermediate goods and services produced within a country in a given period', 'The total market value of all final goods and services produced within a country in a given period'], correct: 3 },
+        { question: 'If % decrease in demand is less than % increase in the price, then scale', options: ['decrease', 'increase', 'remain constant', 'all of these'], correct: 0 },
+        { question: 'If interest rate is 1% per month then the effective interest rate is', options: ['>12%', '0.12', '<12%', 'all of these'], correct: 0 },
+        { question: 'If NPV is +ve then, NFV is', options: ['-ve', '+ve', '0', 'all of these'], correct: 1 },
+        { question: 'If P, A and F represents present value, annual payment and future value respectively, then the present worth factor is……….', options: ['A/P', 'P/A', 'both a and b', 'none of the above'], correct: 1 },
+        { question: 'If the interest rate is 6% per year then monthly interest rate is', options: ['<1/2%', '1/2%', '>1/2%', 'all of these'], correct: 1 },
+        { question: 'If the price of a product increases, but the total revenue of the producer remains unchanged, what can be said about the price elasticity of demand?', options: ['Demand is elastic.', 'Demand is unit elastic.', 'Demand is perfectly elastic.', 'Demand is inelastic.'], correct: 1 },
+        { question: 'In 3 years, you are to receive Rs. 5,000. If the interest rate were to suddenly increase, the present value of that future amount to you would', options: ['Fall', 'Rise', 'Remain unchanged', 'cannot be determined'], correct: 0 },
+        { question: 'In Nepal, the hydropower financing model in a power sector of a country is', options: ['30% debt and 70% equity', '70% debt and 30% equity', 'varies project wise', 'depends on the types of financial closure'], correct: 1 },
+        { question: 'In a perfectly competitive market, firms are considered to be price takers. This means that:', options: ['Firms can set prices based on their production costs', 'Firms have control over the market price', 'Firms can easily influence market demand', 'Firms must accept the market price as given'], correct: 3 },
+        { question: 'In a project equal investment is done to obtain a fixed amount it in the future, this amount is known as…………..', options: ['capital recovery', 'sinking fund', 'uniform series', 'all of the above'], correct: 1 },
+        { question: 'In a project selection ERR should be', options: ['-ve', '>0', 'none of these', 'all of the above'], correct: 1 },
+        { question: 'In any project 10 million rupees is invested to get an income of 1 million. Then the invested money of 10 million is called', options: ['Cash inflow', 'Cash outflow', 'Equilibrium cash', 'Profit cash'], correct: 1 },
+        { question: 'In capital budgeting decisions, which of the following statements about IRR is true?', options: ['Projects with higher IRR are always selected regardless of other factors.', 'Projects with IRR greater than the cost of capital are preferred.', 'IRR considers the timing of cash flows.', 'IRR does not consider the reinvestment rate of cash flows.'], correct: 1 },
+        { question: 'In some of the road project connecting the district headquarters are implemented even its IRR is not satisfactory, because of……………', options: ['social need', 'pressure of interest groups', 'easy to implement', 'donor pressure'], correct: 0 },
+        { question: 'In the economic analysis, all the cost and benefit are analyzed keeping in the basket of', options: ['public entity', 'nation', 'private entity', 'all of these'], correct: 1 },
+        { question: 'In the process of selecting public project the criteria usually adopted is', options: ['Profitability evaluation', 'Economic and financial evaluation', 'Financial evaluation', 'Economic valuation'], correct: 1 },
+        { question: 'Inflation due to increase in population', options: ['demand push', 'demand pull', 'cost push inflation', 'cost pull inflation'], correct: 1 },
+        { question: 'Inflation is normally phenomenon in which', options: ['nominal price of objects is decreased', 'nominal price of object is raised', 'nominal price of object is constant', 'none of the above'], correct: 1 },
+        { question: 'Insurance cost is', options: ['indirect cost', 'direct cost', 'both a and b', 'none of these'], correct: 0 },
+        { question: 'Internal rate of return should', options: ['more than borrowing rate', 'less than borrowing rate', 'equal than borrowing rate', 'all of the above'], correct: 0 },
+        { question: 'Main objective of sensitivity analysis of a project is to examine the', options: ['profitability', 'productivity', 'uncertainty', 'sustainability'], correct: 2 },
+        { question: 'Material cost is concerned with', options: ['indirect cost', 'direct cost', 'both a and b', 'none of the above'], correct: 1 },
+        { question: 'Mostly used risk analysis technique in engineering is', options: ['break even analysis', 'sensitivity analysis', 'scenario analysis', 'monte carlo simulation'], correct: 1 },
+        { question: 'Optimization of any project means selection of a project option corresponding to', options: ['minimum cost', 'optimal cost', 'favorable cost', 'maximum cost'], correct: 1 },
+        { question: 'Pay back period is counted only after', options: ['starting of the construction of a project', 'tendering for the project', 'completion of the construction of project', 'commissioning of the project'], correct: 3 },
+        { question: 'Project appraisal means', options: ['evaluation of a proposed option', 'selection of best option', 'both a and b', 'none of these'], correct: 2 },
+        { question: 'Project is assumed as feasible if', options: ['IRR is lesser than borrow rate', 'IRR is greater than borrow rate', 'IRR is equal to borrow rate', 'none of the above'], correct: 1 },
+        { question: 'Relationship between annual nominal rate of interest and annual effective rate of interest, if frequency of compounding is greater than one:', options: ['Effective rate = Nominal rate', 'Effective rate > Nominal rate', 'Effective rate < Nominal rate', 'None of the above'], correct: 1 },
+        { question: 'Sensitivity analysis is a study of', options: ['comparison of assets and liabilities', 'comparison of profit and loss', 'change in output due to change in input', 'economics of cost and benefits of the project'], correct: 2 },
+        { question: 'Shadow price is related to', options: ['economic analysis', 'financial analysis', 'both a and b', 'none of these'], correct: 0 },
+        { question: 'Subsidy provided to private enterprises is taken as……….. For the financial analysis of any project.', options: ['cost', 'revenue', 'profit', 'none of these'], correct: 1 },
+        { question: 'Supervisor`s cost is', options: ['indirect cost', 'direct cost', 'both a and b', 'none of these'], correct: 0 },
+        { question: 'Suppose the market demand and supply equations are given by, Qd = 40000 – 20P, Qs = 20000+30P, then the equilibrium price is', options: ['Rs. 40', 'Rs. 400', 'Rs. 50', 'Rs. 500'], correct: 1 },
+        { question: 'The difference between actual costs of project with the budgeted cost is called', options: ['Profit', 'Loss', 'Variance', 'All of above'], correct: 2 },
+        { question: 'The estimate based on a detailed quantity survey and furnishes the most accurate and reliable estimate possible is known as………', options: ['definitive estimate', 'conceptual estimate', 'probabilistic estimate', 'none of these'], correct: 0 },
+        { question: 'The exact interest earned during entire year is called', options: ['compound interest', 'simple interest', 'effective interest', 'none of these'], correct: 2 },
+        { question: 'The financial analysis help to judge', options: ['the financial position of the firm', 'the operational efficiency of the firm', 'both of the above', 'nan'], correct: 2 },
+        { question: 'The market interest rate increases MARR ….', options: ['Increase', 'Decreases', 'Remain constant', 'All of above'], correct: 0 },
+        { question: 'The number of years required for the net operating to pay back the initial cost of project is called', options: ['service period', 'operating period', 'payback period', 'maintenance period'], correct: 2 },
+        { question: 'The point at which demand curve and supply curve intersects is called', options: ['Market skimming point', 'Market intersection point', 'Market penetration point', 'Market equilibrium point'], correct: 3 },
+        { question: 'The product of Capital recovery factor and Present worth factor is :', options: ['1/3', '1/2', '1', '4'], correct: 2 },
+        { question: 'The project risk that will encounter due to earthquake in which both contracting parties are unable to control the situation is……….', options: ['force amount', 'force shutdown', 'force majeure', 'none of these'], correct: 2 },
+        { question: 'The ratio of current assets to current liabilities is known as', options: ['Current ratio', 'Liquidity ratio', 'B/C ratio', 'Profit'], correct: 0 },
+        { question: 'The true value of interest rate computed by equations for compound interest for a 1-year period is known as-', options: ['Nominal return', 'Expected return', 'Effective interest', 'Economic return'], correct: 2 },
+        { question: 'The type of indirect cost which cannot measured and allocated to specific output or work activity is called………..', options: ['prime cost', 'project cost', 'overhead cost', 'all of these'], correct: 2 },
+        { question: 'The value of property after deducting the depreciation is known as', options: ['Valuation', 'Depreciation', 'Discounted Value', 'Book Value'], correct: 3 },
+        { question: 'The method provides correct rankings of mutually exclusive projects, when the firm is not subject to capital rationing.', options: ['Internal rate of return', 'Net Present value', 'Payback period', 'Profitability index'], correct: 1 },
+        { question: 'Time value of money refers to relationship between', options: ['interest and amount', 'interest and time', 'amount and time', 'all of these'], correct: 1 },
+        { question: 'To the closest year, how long will it take Rs. 200 to double if it is deposited and earns 7% interest rate?', options: ['7 years', '5 years', '10 years', '12 years'], correct: 2 },
+        { question: 'Two projects having the same status expect payback period which project will be selected?', options: ['the project having less payback period', 'the project having more payback period', 'the project having equal investment', 'None of These'], correct: 0 },
+        { question: 'Upward shift in supply curve shows that', options: ['Increase in quantity demand', 'Decrease in quantity demand', 'Increase in quantity Supply', 'Increase in quantity supply'], correct: 2 },
+        { question: 'What does Internal Rate of Return (IRR) represent in a project?', options: ['The discount rate that makes the net present value zero', 'The initial investment', 'The total revenue generated', 'The total expenses incurred'], correct: 0 },
+        { question: 'What does the payback period measure?', options: ['The time it takes to double the investment', 'The time it takes to recover the initial investment', 'The time it takes to reach maximum profitability', 'The time it takes to break even'], correct: 1 },
+        { question: 'What does the present value (PV) represent in TVM analysis?', options: ['The value of money in the future, adjusted for inflation', 'The value of money at present, considering the time value of money', 'The value of money in the past, adjusted for inflation', 'The value of money at a specified point in the future, ignoring any interest or inflation factors'], correct: 1 },
+        { question: 'When analyzing the market for corn, an economist found that the cross-price elasticity of demand between corn and wheat is negative. What does this imply about the relationship between corn and wheat?', options: ['Corn and wheat are complements.', 'Corn and wheat are substitutes.', 'Changes in the price of wheat do not affect the demand for corn.', 'Corn and wheat are unrelated goods.'], correct: 0 },
+        { question: 'Which of the below is not a method used for the economic analysis of the pavements?', options: ['Cost-benefit method', 'Rate of return method', 'Annual cost method', 'Average cost method'], correct: 3 },
+        { question: 'Which of the following best describes the concept of "opportunity cost"?', options: ['The value of the next best alternative foregone when a decision is made', 'The actual cost incurred in production', 'The total cost of inputs used in production', 'The cost of goods and services in an economy'], correct: 0 },
+        { question: 'Which of the following factors affect the future value of an investment?', options: ['Time period and inflation rate', 'Initial investment amount and discount rate', 'Discount rate and inflation rate', 'Initial investment amount and time period'], correct: 1 },
+        { question: 'Which of the following is a limitation of the payback period method?', options: ['It is easy to understand and calculate', 'It considers the time value of money', 'It ignores cash flows beyond the payback period', 'It is widely used in complex investment analysis'], correct: 2 },
+        { question: 'Which of the following is NOT considered a determinant of supply?', options: ['Government policies', 'Consumer preferences', 'Technology', 'Input prices'], correct: 1 },
+        { question: 'Which of the following is NOT likely to cause a shift in the supply curve for apples?', options: ['Changes in the price of fertilizers used in apple farming.', 'Technological advancements in apple farming.', 'Consumer preferences shifting towards healthier eating.', 'Government subsidies for apple farmers.'], correct: 2 },
+        { question: 'Which of the following scenarios would most likely result in a leftward shift of the supply curve for smartphones?', options: ['Decrease in the wages of smartphone assembly workers.', 'Advancements in smartphone technology.', 'Increase in the price of rare earth metals used in smartphone production.', 'Expansion of the market for smartphone applications.'], correct: 2 },
+        { question: 'Who operates the monetary policy in Nepal?', options: ['Nepal Rastra Bank', 'Ministry of Finance', 'Security Exchange Board of Nepal(SEBON)', 'All of above'], correct: 0 }
+    ]
+};
+console.log('questionSet defined');
+    startTest(questionSet);
+    console.log('startTest called');
+})(); 
+</script>
+<script src="/js/text-protect.js" defer></script>
+<script src="/js/logo.js"></script>
+</body>
+</html>

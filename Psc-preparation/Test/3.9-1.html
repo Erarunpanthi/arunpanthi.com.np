@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Engineering Economics set-1 </title>
+<link rel="icon" href="https://arunpanthi.com.np/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="/css/Mock_Test.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar" id="navbar">
+<span class="brand" id="navbar-brand">Engineering Economics -1 </span>
+<span class="timer-display" id="timer-display" style="display:none;">--:--</span>
+</nav>
+
+<!-- Warning modal -->
+<div id="warning-modal" class="modal-overlay" style="display: none;">
+<div class="modal-dialog">
+<div class="warning-icon">⚠️</div>
+<h3>Unanswered Questions</h3>
+<p>You haven't answered all the questions.</p>
+<span class="unanswered-count" id="modal-unanswered-count">0 unanswered</span>
+<p style="margin-top:8px;"><strong>⚠ This test cannot be retaken once submitted!</strong></p>
+<div class="modal-buttons">
+<button class="btn-cancel" id="btn-modal-cancel">Cancel</button>
+<button class="btn-submit-warning" id="btn-modal-submit">Submit Anyway</button>
+</div>
+</div>
+</div>
+
+<div id="pre-test-section">
+<div class="hero" id="hero-card">
+<h1 id="hero-set-name">Loading...</h1>
+<p class="set-details" id="hero-details"></p>
+<div class="set-meta">
+<div class="meta-item"><span id="hero-q-count">0</span> Questions</div>
+<div class="meta-item"><span id="hero-time">0:00</span> Time (min)</div>
+</div>
+<button class="btn-start" id="btn-start-test">🚀 Start Test</button>
+<p style="margin-top:10px;font-size:0.85rem;opacity:0.8;" id="hero-note"></p>
+</div>
+</div>
+
+<div id="test-section" style="display:none;">
+<div class="test-container">
+<div class="question-area">
+<div class="question-card">
+<div class="q-number" id="q-number-label">QUESTION 1</div>
+<div class="q-text" id="q-text">Loading question...</div>
+<ul class="options-list" id="options-list"></ul>
+</div>
+<div class="nav-buttons">
+<div class="nav-left"><button class="btn-nav" id="btn-prev">◀ Previous</button></div>
+<div class="nav-center"><button class="btn-submit" id="btn-submit-test">✅ Submit Test</button></div>
+<div class="nav-right"><button class="btn-nav" id="btn-next">Next ▶</button></div>
+</div>
+</div>
+<aside class="sidebar">
+<h3>📋 Question </h3>
+<div class="total-questions" id="sidebar-total">Total: 0</div>
+<div class="answered-count">Answered: <strong id="sidebar-answered-num">0</strong></div>
+<div class="q-grid" id="q-grid"></div>
+<div class="legend">
+<span><span class="dot-sample blue"></span> Answered</span>
+<span><span class="dot-sample gray"></span> Unanswered</span>
+</div>
+</aside>
+</div>
+</div>
+
+<div id="results-section" style="display:none;">
+<div class="results-container">
+<div class="results-header">
+<h2 style="color:#2E7D32;">📊 Test Results</h2>
+<p style="color:#666;" id="results-set-name"></p>
+<div class="score-circle">
+<span class="score-num" id="results-score">0</span>
+<span class="score-denom" id="results-denom">/ 0</span>
+</div>
+<div class="percentage" id="results-percentage">0%</div>
+<p style="margin-top:8px;color:#888;font-size:0.9rem;" id="results-time-taken"></p>
+</div>
+<div id="results-detail"></div>
+</div>
+</div>
+<script src="/js/Mock_Test.js"></script>
+<script>
+(function() {
+    console.log('Inline script running');
+const questionSet = {
+    name: 'Engineering Economics',
+details: 'Covers financial analysis, cost estimation, and economic evaluation of projects.',
+questions: [
+{ question: 'If market interest rate is 8% and inflation rate is 6%, then market free interest rate is', options: ['2%', '14%', '> 2%', '< 2%'], correct: 0 },
+{ question: 'If monthly interest rate is 0.5% the nominal interest rate is', options: ['0.06', '>6%', '<6%', 'All of the above'], correct: 1 },
+{ question: 'If net present value of a project is zero at a discount rate of 12% then IRR of project is ........', options: ['0.13', '0.12', '0.1', 'difficult to tell'], correct: 1 },
+{ question: 'Construction company it sufficiently able to meet current obligation using liquid assets, then the acid test ratio of firm should be ........', options: ['1', '>1', '< 1', 'all of the above'], correct: 1 },
+{ question: 'In breakeven analysis, how many variables are assumed?', options: ['1', '2', '3', '>4'], correct: 1 },
+{ question: 'A person took a loan of Rs 100,000 for 10 years at 11% compound interest. The person desires to pay off the amount in 10 equal annual installments. The amount of installments is:', options: ['5368', '6638', '7738', 'None of the above'], correct: 0 },
+{ question: 'If you need Rs 50,00,000 in 5 years the sinking fund annuity required per year is', options: ['1000000', '> 1000000', '< 1000000', 'None of the above'], correct: 2 },
+{ question: 'If P is principal amount, i is the rate of interest per annum and n is the number of periods in years, the compound amount factor (CAF) is', options: ['(1 + i)n', '(1+i)', 'ni', 'None of the above'], correct: 0 },
+{ question: 'Increase in price of commodity with increase in price of fuel is known as', options: ['Demand pull inflation', 'Demand Push inflation', 'Cost pull inflation', 'Cost push inflation'], correct: 3 },
+{ question: 'The ratio of % change in demand to % Change in price is known as', options: ['Elasticity of demand', 'Income elasticity of demand', 'Price Elasticity of demand', 'All of the above'], correct: 2 },
+{ question: 'The main drawback of Internal Rate of return method is..', options: ['It may give multiple values', 'It is not accurate', 'It is not reliable', 'All of the above'], correct: 0 },
+{ question: 'Project is feasible if ……. Value of Cost Benefit Ratio (CBR) is 1', options: ['minimum', 'maximum', 'Both A and B', 'None of the above'], correct: 1 },
+{ question: 'Which one of the following statements in correct?', options: ['The number of years required to recover the initial cash investment in a project, is called Pay Back period (PBP)', 'The discount rate that equates the present value of the expected Net Cash Flows (CFS) with the Initial Cash Outflow (ICO) is known as internal rate of return.', 'The present value of the proposal\'s net cash flows, less the proposal\'s initial cash outflow is known as the Net Present Value (N/PV)', 'All of the above'], correct: 3 },
+{ question: 'In a cash-flow :', options: ['Time 0 is considered to be the present', 'A vertical arrow pointing up indicates a positive cash flow', 'An arrow pointing downward indicates a negative cash flow', 'All of these'], correct: 3 },
+{ question: 'If Conventional B/C is 1.25, Modified benefit ratio is …', options: ['< 1.25', 'nan', '> 1.25', 'All of the above'], correct: 2 },
+{ question: 'If MARR = 12% and IRR = 15 %, ERR is', options: ['< 12%', '> 15%', 'Between 12% to 15%', 'All of the above'], correct: 2 },
+{ question: 'If IRR is < MARR, Payback period is', options: ['> standard PB period', '< Standard Payback period', 'nan', 'None of the above'], correct: 0 },
+{ question: 'If P is the principal amount,I is the ratio of interest and n is the number of periods in a year then the interest factor is ……..', options: ['1+ni', 'ni-1', 'ni', 'none of these'], correct: 2 },
+{ question: 'In economic marginal cost is change in total cost that arises when the quantity produced changed by ……..', options: ['100 unit', '0.01 unit', '0.1 unit', '1 unit'], correct: 3 },
+{ question: 'If a is the base amount expenditure is the increase in the operation cost year over a period of n years. The total cost of maintenance is ……..', options: ['a +(n+1)b', 'a +(n-1)b', 'a *(n-1)b', 'a (n+1)b'], correct: 1 },
+{ question: 'Each financial ratio is generally compared by ……..', options: ['a past ratio calculated from the past financial standard of the firm', 'a ratio developed by using the projected financial statement of the firm', 'a ratio of some selected firms most progressive and successful at the point of consideration', 'all of the above'], correct: 3 },
+{ question: 'Annuities involve ........', options: ['all payment of equal amount', 'a series of payment', 'payment at equal interval', 'all of these'], correct: 3 },
+{ question: 'Simple payback period is ……… Discounted Payback period', options: ['Always equal to', 'Greater than', 'Less than', 'All of the above'], correct: 2 },
+{ question: 'Pick up the correct statement from the following', options: ['An annuity is a series of equal payments occurring at equal period of time.', 'Annuity is called an equal payment or uniform payment series', 'Annuity may have periods of time of any length but should always be of equal length', 'All of the above'], correct: 3 },
+{ question: 'For a financial institution the most important study of the project to be taken for risk management', options: ['appraisal', 'environment and social', 'technical', 'financial and economical'], correct: 3 },
+{ question: 'For selection of any project which of the following is mostly used ........', options: ['B/C ratio', 'IRR', 'NPV', 'all of these'], correct: 2 },
+{ question: 'Value of an asset at any time after purchase is known as', options: ['Book Value', 'Market Value', 'Salvage Value', 'Scrap Value'], correct: 0 },
+{ question: 'The discount rate that makes the net present value equal to zero is known as ……..', options: ['breakeven point', 'internal rate of return', 'external rate of return', 'none of the above'], correct: 1 },
+{ question: 'The annuity which refers to debt payment for recovering the initial amount or capital in equal periodical payments, is known as ……..', options: ['capital recovery annuity', 'present worth annuity', 'sinking fund annuity', 'compound annuity'], correct: 0 },
+{ question: 'The economic system in which ownership and allocation of resources, goods and services produced lies on national government is called ........', options: ['capitalist economic system', 'communist economic system', 'mixed economic system', 'all of these'], correct: 1 },
+{ question: 'Future is unpredictable but if the probability of occurrence of the outcome can be calculated then the situation is', options: ['Certain', 'Uncertain', 'Risky', 'Unpredictable'], correct: 2 },
+{ question: 'The cost that differs to alternatives is called ……..', options: ['common cost', 'variable cost', 'differential cost', 'opportunity cost'], correct: 2 },
+{ question: 'For a government funded development project the most important factor to be considered is ……..', options: ['cost benefit', 'social and political benefit', 'job creation', 'economic rate of return'], correct: 1 },
+{ question: 'Opportunity Cost is', options: ['Cost of opportunity foregone', 'Cost of best rejected opportunity', 'Both A and B', 'None of the above'], correct: 2 },
+{ question: 'Current assets less the inventory is known as .......', options: ['current assets', 'stock', 'inventory', 'quick asset'], correct: 3 },
+{ question: 'Current assets that we presumably can be quickly converted to cash at a close to their book value is called ........', options: ['current assets', 'stock', 'inventory', 'quick asset'], correct: 3 },
+{ question: 'A decrease in asset\'s value caused by unfavorable market condition is called........', options: ['deflation', 'depreciation', 'preference share', 'dividend fund'], correct: 1 },
+{ question: 'A state in which the value of money is rising that is prices are falling is called........', options: ['deflation', 'depreciation', 'degradation', 'decline'], correct: 0 },
+{ question: 'According to Law of demand', options: ['Demand increases if price increases', 'Demand decrease if price increases', 'Price increases if Demand increases', 'Price decreases is demand increases'], correct: 1 },
+{ question: 'Excessive spending power of consumers that pulls prices up is called ……..', options: ['demand pull inflation', 'cost pull inflation', 'cost pull inflation', 'demand push inflation'], correct: 0 },
+{ question: 'The loss in value of an asset with decrease in its volume is known as', options: ['Depreciation', 'Depletion', 'Inflation', 'obsolescence'], correct: 1 },
+{ question: 'Cost of the material is …… cost', options: ['Direct cost', 'Indirect Cost', 'Both A and B', 'None of the above'], correct: 0 },
+{ question: 'Labour cost is concerned with ........', options: ['direct cost', 'indirect cost', 'both \'a\' and \'b\'', 'contingency'], correct: 2 },
+{ question: 'Material cost is concerned with ........', options: ['direct cost', 'indirect cost', 'both \'a\' and \'b\'', 'contingency'], correct: 0 },
+{ question: 'Pick up the element of cost from the following ……..', options: ['direct material', 'direct labour', 'overhead', 'all of the above'], correct: 3 },
+{ question: 'The benefit cost ratio is ……..', options: ['directly proportional to discount rate', 'inversely proportional to discount rate', 'not related to discount rate', 'superior to all of the above method'], correct: 1 },
+{ question: 'In Government Projects which of the following is carried out', options: ['Economic analysis', 'Financial Analysis', 'Both A and B', 'None of the above'], correct: 0 },
+{ question: 'The ratio analysis of construction firm is used for the analysis by ……..', options: ['financial analysis', 'shareholder of the form', 'management group of construction firm', 'all of the above'], correct: 3 },
+{ question: 'A stage when all the condition of a financing agreements are fulfilled prior to initial availability of a fund is called ........', options: ['financial clearing', 'financial closure', 'financial cloud off', 'financial wellbeing'], correct: 1 },
+{ question: 'If benefit cost ratio of a proposed project is 0.95 then project is ........', options: ['financially viable', 'economically viable', 'financially not feasible but may or may not economically viable', 'difficult to tell'], correct: 2 },
+{ question: 'Total cost of project is sum of ........', options: ['fixed and variable cost', 'average cost and fixed cost', 'both \'a\' and \'b\'', 'none of the above'], correct: 0 },
+{ question: 'Both architect and engineer makes use of the cost estimate of the project ........', options: ['for site selection', 'for designing of the project', 'for choosing alternatives', 'all of the above'], correct: 3 },
+{ question: 'The project contractor relies on the cost of estimates', options: ['for the submission of competitive bid for a lump sum contract', 'for unit price contract', 'for preparation of a definitive estimate to help negotiate contract', 'all of the above'], correct: 3 },
+{ question: 'For any project to be feasible ……..', options: ['future work should be negative', 'present worth should be positive', 'annual worth should be equal to zero', 'payback period should be equal to or less than 5 year'], correct: 1 },
+{ question: 'The sinking fund factor is ……..', options: ['i/(1+i)^n-1', 'i(1+i)^n/(1-i)^n-1', 'i(1+i)^n-1/(1+i)^n-1', 'i(1+i)^n-1/i'], correct: 0 },
+{ question: 'According to law of demand if the price of good increase than the demand of articles ........', options: ['increase', 'decrease', 'constant', 'all of the above'], correct: 1 },
+{ question: 'According to law of supply if the price of goods increases then the supply of goods ........', options: ['increase', 'decrease', 'constant', 'all of the above'], correct: 0 },
+{ question: 'As Bank interest rate increases the Internal Rate of Return (IRR) …', options: ['Increases', 'Decreases', 'Remain Constant', 'All of the above'], correct: 2 },
+{ question: 'If bank interest rate increases MARR …', options: ['increases', 'decreases', 'Remain Constant', 'None of the above'], correct: 0 },
+{ question: 'A state in which the value of money is decreasing that is prices are falling is called........', options: ['inflation', 'depreciation', 'degradation', 'decline'], correct: 0 },
+{ question: 'Which of the following is not construction estimate?', options: ['Initial feasibility estimate', 'Conceptual preliminary budget', 'Definite estimate', 'None of these'], correct: 3 },
+{ question: 'The annual periodic payment for repayment of capital invested over definite period is ........', options: ['interest certain', 'annuity certain', 'due interest', 'due annuity'], correct: 1 },
+{ question: 'Engineering economics is mainly concerned with ........', options: ['IRR', 'ERR', 'B/C ratio', 'profit'], correct: 3 },
+{ question: 'Probabilistic estimate of a construction project includes ........', options: ['labour', 'productivity', 'wage scale', 'all of the above'], correct: 3 },
+{ question: 'The economic resources means ........', options: ['land', 'labour', 'capital', 'all of these'], correct: 3 },
+{ question: 'For attractive project payback period must be …….', options: ['less as possible', 'more as possible', 'both \'a\' and \'b\'', 'none of these'], correct: 0 },
+{ question: 'The more critical (or severe) test of the firm liquidity can be judged by ........', options: ['liquidity ratio', 'current ratio', 'acid test (or quick ratio) ratio', 'debts ratio'], correct: 2 },
+{ question: 'The state at which economic forces are balanced is called ........', options: ['lost potential', 'economical equilibrium', 'profit potential', 'demand business'], correct: 1 },
+{ question: 'Which of the following statement is correct?', options: ['Marginal Utility increases with increase in use', 'Marginal Utility decreases with decrease in use', 'Marginal Utility remain constant with use', 'All of the above'], correct: 1 },
+{ question: 'The interest rate corresponding to zero NPV is ........', options: ['MARR', 'IRR', 'SDR', 'all of the above'], correct: 1 },
+{ question: 'In Sensitivity analysis, most sensitive parameter is the one with …. Slope in Sensitivity graph', options: ['minimum', 'maximum', 'Both A and B', 'None of the above'], correct: 1 },
+{ question: 'Inflation is normal phenomenon in which .........', options: ['normal price of goods is decreased', 'normal price of goods is remain constant', 'normal price of goods is raised', 'all of the above'], correct: 2 },
+{ question: 'The wages of supervisor and material handlers are charged as ……..', options: ['overhead', 'direct labour cost', 'indirect labour cost', 'none of these'], correct: 0 },
+{ question: 'The construction estimate of project is used by ……..', options: ['owner of the facility', 'the consulting architect/engineer', 'the contractor of the project', 'all of the above'], correct: 3 },
+{ question: 'If P is principle amount, I is the interest rate per year, N is the number of periods in years, the interest amount is:', options: ['P (1 + i)N – 1', 'P (1 + i) – 1', 'P (1 + i)N – P', 'PN – P'], correct: 2 },
+{ question: 'The sunk cost include ………', options: ['past expenditure', 'unrecovered balance', 'an invested capital that cannot be retrieved', 'all of the above'], correct: 3 },
+{ question: 'The most reliable method of evaluating project financially is', options: ['Pay back period', 'Net Present Value', 'Internal Rate of Return', 'External rate of return'], correct: 1 },
+{ question: 'Simplest method of evaluating Project is', options: ['Payback period method', 'Net Present Value', 'Internal Rate of Return', 'Benefit Cost Ratio'], correct: 0 },
+{ question: 'If Net Present value is negative , Net future value is', options: ['positive', 'zero', 'negative', 'All of the above'], correct: 2 },
+{ question: 'Present worth annuity (PWA) is generally known as ……..', options: ['premium annuities', 'income annuities', 'future annuities', 'all of the above'], correct: 1 },
+{ question: 'The cost associated with the project which can not be calculated accurately is known as …', options: ['Prime cost', 'Overhead Cost', 'Associated Cost', 'Premium Cost'], correct: 1 },
+{ question: 'Investment less the discounted benefit is called ........', options: ['PV', 'NPV', 'PW', 'all of the above'], correct: 1 },
+{ question: 'To critically examine the detail feasibility study report of any project is to ........', options: ['review', 'appraise', 'check through readiness filter', 'all of the above'], correct: 1 },
+{ question: 'The situation at which production of good just sufficient to consumption is called .........', options: ['satisfaction point', 'breakeven point', 'equivalent point', 'all of the above'], correct: 1 },
+{ question: 'Company stock with dividends that are paid to stockholders after common stock dividends are paid out is called ........', options: ['share', 'priority share', 'preference share', 'dividend fund'], correct: 2 },
+{ question: 'Earning per share is most important ratio for ……..', options: ['shareholder', 'banks', 'company\'s management', 'all of the above'], correct: 0 },
+{ question: 'The inverse of sinking fund factor is ……..', options: ['single payment present worth factor', 'series compound amount factor', 'series present worth factor', 'sinking fund factor'], correct: 1 },
+{ question: 'Annual income amount required to recover the invested capital is known as', options: ['Sinking fund', 'Capital budget', 'Capital Recovery amount', 'nan'], correct: 2 },
+{ question: 'In a project equal investment is done for the future value then it is known as ........', options: ['sinking fund', 'capital recovery', 'future annuity', 'deferred annuity'], correct: 0 },
+{ question: 'The fund gradually accumulated by periodic deposit for replacement of a structure at the end of its life cycle is called ........', options: ['sinking fund', 'capital fund', 'revolving fund', 'treasury'], correct: 0 },
+{ question: 'Method of Depreciation in which the amount of depreciation increases with time is', options: ['Straight line', 'Declining Balance', 'Sum of year digit', 'Sinking fund'], correct: 3 },
+{ question: 'In which of the following method of depreciation salvage value is not given', options: ['Straight line', 'Sum of year digit', 'Declining balance', 'Sinking fund method'], correct: 3 },
+{ question: 'According to Law of Supply', options: ['Supply increases if price increases', 'Supply decrease if price increases', 'Price increases if Supply increases', 'Price decreases is Supply increases'], correct: 0 },
+{ question: 'A project construction cost includes ……..', options: ['the labour and material cost', 'the equivalent and overhead cost', 'the profit of the contractor', 'all of the above'], correct: 3 },
+{ question: 'If the percentage fall in the quantity demanded is greater than the percentage rise in the price changed ……..', options: ['the revenue will rise', 'the revenue will fall', 'is not related with the discount rate', 'none of the above'], correct: 1 },
+{ question: 'In a cash flow diagram ……..', options: ['time 0 is considered to be present', 'time 1 is considered to be end of the past period 1', 'a vertical arrow pointing up indicates a positive cash flow', 'all of the above'], correct: 3 },
+{ question: 'In a cash flow series ……..', options: ['uniform gradient signifies that an income or disbursement changed by the same amount in each interest period', 'either an increase or decrease in the amount of cash flow is called the gradient', 'the gradient in a cash flow may be positive or negative', 'all of these'], correct: 3 },
+{ question: 'In economic the change in total cost that arises when the quantity produced changes by 1 unit is called ……..', options: ['variable cost', 'added cost', 'marginal cost', 'cost without profit'], correct: 2 },
+{ question: 'If IRR is equal to MARR , Net Present Value NPV is', options: ['Zero', 'Positive', 'Negative', 'Also equal to MARR'], correct: 0 },
+{ question: 'Gross Domestic Product (GDP) measures:', options: ['The total value of all goods and services produced by the citizens of a country, regardless of location', 'The total value of all goods and services consumed within a country in a given period', 'The total value of all intermediate goods and services produced within a country in a given period', 'The total market value of all final goods and services produced within a country in a given period'], correct: 3 }
+]
+};
+console.log('questionSet defined');
+    startTest(questionSet);
+    console.log('startTest called');
+})(); 
+</script>
+<script src="/js/text-protect.js" defer></script>
+<script src="/js/logo.js"></script>
+</body>
+</html>
+

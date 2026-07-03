@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profit & Loss</title>
+<link rel="icon" href="https://arunpanthi.com.np/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="/css/Mock_Test.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar" id="navbar">
+<span class="brand" id="navbar-brand">Profit & Loss </span>
+<span class="timer-display" id="timer-display" style="display:none;">--:--</span>
+</nav>
+
+<!-- Warning modal -->
+<div id="warning-modal" class="modal-overlay" style="display: none;">
+<div class="modal-dialog">
+<div class="warning-icon">⚠️</div>
+<h3>Unanswered Questions</h3>
+<p>You haven't answered all the questions.</p>
+<span class="unanswered-count" id="modal-unanswered-count">0 unanswered</span>
+<p style="margin-top:8px;"><strong>⚠ This test cannot be retaken once submitted!</strong></p>
+<div class="modal-buttons">
+<button class="btn-cancel" id="btn-modal-cancel">Cancel</button>
+<button class="btn-submit-warning" id="btn-modal-submit">Submit Anyway</button>
+</div>
+</div>
+</div>
+
+<div id="pre-test-section">
+<div class="hero" id="hero-card">
+<h1 id="hero-set-name">Loading...</h1>
+<p class="set-details" id="hero-details"></p>
+<div class="set-meta">
+<div class="meta-item"><span id="hero-q-count">0</span> Questions</div>
+<div class="meta-item"><span id="hero-time">0:00</span> Time (min)</div>
+</div>
+<button class="btn-start" id="btn-start-test">🚀 Start Test</button>
+<p style="margin-top:10px;font-size:0.85rem;opacity:0.8;" id="hero-note"></p>
+</div>
+</div>
+
+<div id="test-section" style="display:none;">
+<div class="test-container">
+<div class="question-area">
+<div class="question-card">
+<div class="q-number" id="q-number-label">QUESTION 1</div>
+<div class="q-text" id="q-text">Loading question...</div>
+<ul class="options-list" id="options-list"></ul>
+</div>
+<div class="nav-buttons">
+<div class="nav-left"><button class="btn-nav" id="btn-prev">◀ Previous</button></div>
+<div class="nav-center"><button class="btn-submit" id="btn-submit-test">✅ Submit Test</button></div>
+<div class="nav-right"><button class="btn-nav" id="btn-next">Next ▶</button></div>
+</div>
+</div>
+<aside class="sidebar">
+<h3>📋 Question </h3>
+<div class="total-questions" id="sidebar-total">Total: 0</div>
+<div class="answered-count">Answered: <strong id="sidebar-answered-num">0</strong></div>
+<div class="q-grid" id="q-grid"></div>
+<div class="legend">
+<span><span class="dot-sample blue"></span> Answered</span>
+<span><span class="dot-sample gray"></span> Unanswered</span>
+</div>
+</aside>
+</div>
+</div>
+
+<div id="results-section" style="display:none;">
+<div class="results-container">
+<div class="results-header">
+<h2 style="color:#2E7D32;">📊 Test Results</h2>
+<p style="color:#666;" id="results-set-name"></p>
+<div class="score-circle">
+<span class="score-num" id="results-score">0</span>
+<span class="score-denom" id="results-denom">/ 0</span>
+</div>
+<div class="percentage" id="results-percentage">0%</div>
+<p style="margin-top:8px;color:#888;font-size:0.9rem;" id="results-time-taken"></p>
+</div>
+<div id="results-detail"></div>
+</div>
+</div>
+<script src="/js/Mock_Test.js"></script>
+<script>
+(function() {
+    console.log('Inline script running');
+const questionSet = {
+    name: 'Profit & Loss - Complete Set',
+    details: 'Covers profit, loss, discount, cost price, selling price, and percentage calculations.',
+    questions: [
+        { question: 'A shopkeeper marks his goods 20% above the cost price, but allows 30% discount for cash purchase. Find his net loss percent.', options: ['8', '10', '16', '20'], correct: 0 },
+        { question: 'Fast Track Course Book marks price 12% above the cost price and then allows 12% discount on the marked price. What is loss percent?', options: ['1', '1.44', '1.66', '2.44'], correct: 1 },
+        { question: 'Bikram sold a cow for Rs.136 and thus lost 15% At what price he should have sold it to gain 15%.', options: ['150', '180', '184', '200'], correct: 2 },
+        { question: 'If the ratio of cost price and the selling price is 5: 6, find the gain percent.', options: ['15', '20', '25', '30'], correct: 1 },
+        { question: 'Bigyan purchased 30 kg of rice at the rate of Rs. 10 per kg and 35 kg of rice at the rate of Rs. 11 per kg. He mixed the two. At what price per kg should he sell the mixture to make a profit of 30% in the transaction?', options: ['12.5', '13', '13.7', '14.25'], correct: 2 },
+        { question: 'Pradip gains 20% by selling an article for a certain price. If he sells it at double the price then percentage of profit will be:', options: ['40', '100', '120', '140'], correct: 3 },
+        { question: 'Television manufacturer earns 20% profit by selling each T.V. set for 14400. If the production cost is increased by 15%, what should be the new selling price of a set so as to gain 15%?', options: ['15870', '16870', '17870', '14870'], correct: 0 },
+        { question: 'The selling price of 30 items is equal to the purchase price of 25 items. What is the profit or loss %?', options: ['12', '16', '20', '24'], correct: 2 },
+        { question: 'By selling 33 metres of cloth, one gains the selling price of 11 metres. Find the gain percent?', options: ['40', '50', '60', '75'], correct: 1 },
+        { question: 'A vendor bought bananas at 6 for 10 and sold them at 4 for 6. Find his gain or loss percent?', options: ['10', '15', '20', '25'], correct: 0 },
+        { question: 'A vendor sells 10 clips for a rupee gaining thereby 40%. How many clips did he buy for a rupees?', options: ['14', '15', '16', '17'], correct: 0 },
+        { question: 'A dishonest dealer professes to sell his goods at cost price but uses a weight of 960 gms for a kg. weight. Find his gain percent.', options: ['0.0215', '0.0315', '0.0415', '0.0515'], correct: 2 },
+        { question: 'Shopkeeper advertises for selling cloth at 4% loss. However, by using a false metre scale he actually gains 25%. What is the actual length of the scale?', options: ['76.8 cm', '86.8cm', '80 cm', '90 cm'], correct: 0 },
+        { question: 'Bhawana purchased a pressure cooker at 9/10 th of its selling price and sold it at 8% more than its S.P. Find her gain percent.', options: ['10', '15', '20', '25'], correct: 2 },
+        { question: 'A tradesman sold an article at a loss of 20%. If the selling price had been increased by 100, there would have been a gain of 5%. What was the cost price of the article?', options: ['150', '300', '400', '450'], correct: 2 }
+    ]
+};
+
+
+console.log('questionSet defined');
+    startTest(questionSet);
+    console.log('startTest called');
+})(); 
+</script>
+<script src="/js/text-protect.js" defer></script>
+<script src="/js/logo.js"></script>
+</body>
+</html>

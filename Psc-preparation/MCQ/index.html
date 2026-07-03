@@ -1,62 +1,369 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MCQ</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Subject-Wise MCQ for PSC Civil Engineering | Nepal Engineering Service</title>
+    <meta name="description" content="Master Nepal Engineering Service with subject-wise MCQ practice for Civil Engineering. Covering General Awareness, Reasoning, and Technical subjects with direct access to each topic." />
+    <meta name="keywords" content="PSC Nepal, Loksewa, Civil Engineering MCQ, Subject-Wise MCQ, Nepal Engineering Service, Civil Group, Third Class, General Awareness, Reasoning, Technical" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://arunpanthi.com.np/Psc-preparation/MCQ/" />
+
+    <meta property="og:title" content="Subject-Wise MCQ for PSC Civil Engineering | Nepal Engineering Service" />
+    <meta property="og:description" content="Master Nepal Engineering Service with subject-wise MCQ practice for Civil Engineering." />
+    <meta property="og:url" content="https://arunpanthi.com.np/Psc-preparation/MCQ/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Arun Panthi" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Subject-Wise MCQ for PSC Civil Engineering | Nepal Engineering Service" />
+    <meta name="twitter:description" content="Master Nepal Engineering Service with subject-wise MCQ practice for Civil Engineering." />
+
+    <link rel="stylesheet" href="/css/styles.css" />
+    
+    <div id="navbar"></div>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous" />
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Course",
+            "name": "Subject-Wise MCQ for PSC Civil Engineering",
+            "description": "Comprehensive subject-wise MCQ practice for Nepal Engineering Service Civil Engineering examination. Covers General Awareness, Reasoning, and Technical subjects.",
+            "provider": {
+                "@type": "Organization",
+                "name": "Arun Panthi",
+                "url": "https://arunpanthi.com.np"
+            },
+            "educationalLevel": "Third Class",
+            "courseCode": "NES-Civil-Third-MCQ",
+            "hasCourseInstance": {
+                "@type": "CourseInstance",
+                "courseMode": "online",
+                "totalCredits": "100"
+            }
+        }
+    </script>
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [{
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://arunpanthi.com.np"
+            }, {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "PSC Preparation",
+                "item": "https://arunpanthi.com.np/Psc-preparation/"
+            }, {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Subject-Wise MCQ",
+                "item": "https://arunpanthi.com.np/Psc-preparation/MCQ/"
+            }]
+        }
+    </script>
+
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Segoe UI', sans-serif;
+        .book-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 10px;
+        }
+
+        .book {
+            background: #ffffff;
+            border: 1px solid var(--gray-200, #e0e0e0);
+            border-radius: var(--radius-md, 10px);
+            padding: 20px 18px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            transition: box-shadow var(--transition-fast, 0.2s), transform 0.15s;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            min-height: 100vh;
-            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-            color: white;
-        }
-        .card {
             text-align: center;
-            padding: 60px 50px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 24px;
-            border: 1px solid rgba(255,255,255,0.15);
-            backdrop-filter: blur(12px);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-            max-width: 500px;
         }
-        .icon { font-size: 4rem; margin-bottom: 20px; }
-        h1 {
-            font-size: 2.2rem;
-            margin-bottom: 12px;
-            background: linear-gradient(90deg, #f093fb, #f5576c);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .book:hover {
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.10);
+            transform: translateY(-2px);
         }
-        p { font-size: 1rem; color: #a8b2d8; margin-bottom: 30px; line-height: 1.6; }
-        a {
+
+        .book .topic-id-badge {
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            width: 44px !important;
+            height: 44px !important;
+            min-width: 44px !important;
+            min-height: 44px !important;
+            border-radius: 50% !important;
+            background: var(--green-600, #2e7d32) !important;
+            color: #ffffff !important;
+            font-size: 0.85rem !important;
+            font-weight: 700 !important;
+            border: 2px solid var(--green-400, #66bb6a) !important;
+            margin: 0 auto 10px !important;
+            letter-spacing: 0.3px !important;
+            box-shadow: 0 2px 8px rgba(46, 125, 50, 0.25) !important;
+            transition: transform var(--transition-fast, 0.2s), box-shadow var(--transition-fast, 0.2s) !important;
+        }
+        .book .topic-id-badge:hover {
+            transform: scale(1.08) !important;
+            box-shadow: 0 4px 14px rgba(46, 125, 50, 0.35) !important;
+        }
+
+        .book h2 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--gray-800, #1e293b);
+            margin: 8px 0 6px;
+            line-height: 1.3;
+        }
+
+        .book .topic-marks {
+            font-size: 0.8rem;
+            color: var(--muted, #6b7280);
+            background: var(--gray-100, #f3f4f6);
+            padding: 2px 14px;
+            border-radius: 20px;
+            font-weight: 500;
             display: inline-block;
-            padding: 12px 35px;
-            background: linear-gradient(90deg, #f093fb, #f5576c);
-            color: white;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 0.95rem;
-            transition: transform 0.2s, box-shadow 0.2s;
+            margin-bottom: 14px;
         }
-        a:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(245,87,108,0.4);
+
+        .book .mcq-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: var(--green-600, #2e7d32);
+            color: #fff;
+            padding: 10px 24px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: background var(--transition-fast, 0.2s), transform 0.1s;
+            border: none;
+            box-shadow: 0 2px 8px rgba(46, 125, 50, 0.3);
+            width: 100%;
+            max-width: 200px;
+        }
+        .book .mcq-button:hover {
+            background: var(--green-700, #1b5e20);
+            transform: scale(1.02);
+            box-shadow: 0 4px 14px rgba(46, 125, 50, 0.4);
+        }
+        .book .mcq-button i {
+            font-size: 1rem;
+        }
+
+        .section-divider {
+            margin: 40px 0 24px 0;
+            padding-bottom: 12px;
+            border-bottom: 3px solid var(--green-200, #a5d6a7);
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .section-divider h2 {
+            margin: 0;
+            font-size: 1.4rem;
+            color: var(--gray-800, #1e293b);
+        }
+        .section-divider .sub-meta {
+            font-size: 0.9rem;
+            color: var(--muted, #6b7280);
+            font-weight: 500;
+            background: var(--gray-100, #f3f4f6);
+            padding: 4px 16px;
+            border-radius: 20px;
+        }
+
+     
+        @media (max-width: 640px) {
+            .book-list {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+            .section-divider h2 {
+                font-size: 1.15rem;
+            }
+            .book .mcq-button {
+                max-width: 100%;
+            }
+        }
+        @media (max-width: 480px) {
+            .book h2 {
+                font-size: 0.9rem;
+            }
+        }
+
+        .skip-link {
+            position: absolute;
+            top: -1000px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 12px 24px;
+            background: #2e7d32;
+            color: #fff;
+            border-radius: 0 0 8px 8px;
+            z-index: 9999;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .skip-link:focus {
+            top: 0;
         }
     </style>
 </head>
 <body>
-    <div class="card">
-        <div class="icon">🚧</div>
-        <h1>MCQ</h1>
-        <p>This page is currently under construction.<br>We're working hard to bring it to you soon!</p>
-        <a href="/">⬅ Back to Home</a>
-    </div>
+
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <section class="hero" aria-labelledby="hero-heading">
+        <h1 id="hero-heading">📚 Subject-Wise MCQ for PSC Civil Engineering</h1>
+        <p>Nepal Engineering Service – First Paper · Civil Group · Third Class</p>
+        <p class="hero-sub">100 MCQ · 1 Hr 30 Min · Each topic has its own MCQ set</p>
+    </section>
+
+    <main class="container" id="main-content">
+
+        <h1>📘 MCQ Topics</h1>
+        <p style="margin-bottom: 24px;">Click <strong>View MCQ</strong> on any topic to start practicing subject-wise multiple‑choice questions.</p>
+
+        <div class="section-divider">
+            <h2>Part I – General Awareness &amp; Contemporary Issues</h2>
+            <div class="sub-meta">25 Marks · 25 × 1 Mark</div>
+        </div>
+        <div class="book-list" id="awarenessGrid"></div>
+
+        <div class="section-divider">
+            <h2>Part I – General Reasoning Test</h2>
+            <div class="sub-meta">25 Marks · 25 × 1 Mark</div>
+        </div>
+        <div class="book-list" id="reasoningGrid"></div>
+
+        <div class="section-divider">
+            <h2>Part II – General Technical Subject</h2>
+            <div class="sub-meta">50 Marks · 50 × 1 Mark</div>
+        </div>
+        <div class="book-list" id="technicalGrid"></div>
+
+    </main>
+
+    <div id="social-section"></div>
+    <div id="footer"></div>
+
+    <script src="/js/layout.js"></script>
+
+    <script>
+        (function() {
+
+            const MCQ_BASE_URL = 'https://arunpanthi.com.np/Psc-preparation/MCQ/';
+
+            const topicsData = {
+
+                awareness: [
+                    { id: '1.1', name: 'Physical, socio-cultural and economic geography and demography of Nepal', marks: 1 },
+                    { id: '1.2', name: 'Major natural resources of Nepal', marks: 1 },
+                    { id: '1.3', name: 'Geographical diversity, climatic conditions, and livelihood & lifestyle of people', marks: 1 },
+                    { id: '1.4', name: 'Notable events and personalities, social, cultural and economic conditions in modern history of Nepal', marks: 1 },
+                    { id: '1.5', name: 'Current periodical plan of Nepal', marks: 1 },
+                    { id: '1.6', name: 'Sustainable development, environment, pollution, climate change, biodiversity, science & technology', marks: 1 },
+                    { id: '1.7', name: "Nepal's international affairs; UNO, SAARC & BIMSTEC", marks: 1 },
+                    { id: '1.8', name: 'The Constitution of Nepal (Part 1 to 5 and Schedules)', marks: 1 },
+                    { id: '1.9', name: 'Governance system (Federal, Provincial and Local)', marks: 1 },
+                    { id: '1.10', name: 'Civil Service Act & Regulation (constitution, structure, vacancy, code of conduct)', marks: 1 },
+                    { id: '1.11', name: 'Functional scope of public services', marks: 1 },
+                    { id: '1.12', name: 'Public Service Charter', marks: 1 },
+                    { id: '1.13', name: 'Concept, objective and importance of public policy', marks: 1 },
+                    { id: '1.14', name: 'Fundamentals of management: planning, organizing, directing, controlling, coordinating, decision making, motivation and leadership', marks: 1 },
+                    { id: '1.15', name: 'Government planning, budgeting and accounting system', marks: 1 },
+                    { id: '1.16', name: 'Major events and current affairs of national and international importance', marks: 1 }
+                ],
+
+                reasoning: [
+                    { id: '2.1', name: 'Logical Reasoning (Verbal, Alphanumeric, Analogies, Classification, Coding-Decoding, Order & Ranking, Distance & Directions, Analytical & Logical Reasoning, Assertion & Reason, Statement & Conclusion, Input-Output, Venn-diagram)', marks: 9 },
+                    { id: '2.2', name: 'Numerical Reasoning (Arithmetic Series, Analogy, Classification, Arithmetical Reasoning, Fraction, Percentage, Ratio, Average, Profit & Loss, Time & Work, Date & Calendar, Data Sufficiency, Data Interpretation & Verification)', marks: 8 },
+                    { id: '2.3', name: 'Spatial Reasoning (Figure Series, Analogy, Classification, Matrix, Pattern Completion, Embedded Images, Image Formation & Analysis, Mirror & Water Images, Cubes & Dices, Paper Folding & Cutting)', marks: 8 }
+                ],
+
+                technical: [
+                    { id: '3.1', name: 'Structural Engineering (Center of gravity, moment of inertia, stresses, beams, frames, indeterminate structures, plastic analysis)', marks: 5 },
+                    { id: '3.2', name: 'Engineering Survey (Principles, linear measurement, compass, plane table, levelling, contouring, theodolite, tacheometry, total station, curves, area & volume)', marks: 7 },
+                    { id: '3.3', name: 'Construction Materials (Properties, stones, ceramics, cement, metals, timber, asphalt, soil, local & modern materials)', marks: 6 },
+                    { id: '3.4', name: 'Concrete Technology (Constituents, water-cement ratio, mix design, testing, admixtures, high strength, pre-stressed concrete)', marks: 5 },
+                    { id: '3.5', name: 'Geotechnical Engineering (Soil formation, phases, water in soil, index properties, rocks, tunneling)', marks: 6 },
+                    { id: '3.6', name: 'Construction Management (Scheduling, contracts, material management, cost/quality/time control, project management, safety, monitoring)', marks: 6 },
+                    { id: '3.7', name: 'Estimating, Costing, Specification & Valuation (Types of estimates, quantity methods, rate analysis, BOQ, specifications, valuation)', marks: 5 },
+                    { id: '3.8', name: 'Engineering Drawing (Sheet composition, scales, projections, drafting tools, symbols, topographic/electrical/plumbing/structural drawings, community buildings)', marks: 4 },
+                    { id: '3.9', name: 'Engineering Economics (Benefit-cost analysis, sensitivity, IRR, time value, demand-supply, NPV, financial & economic evaluation)', marks: 3 },
+                    { id: '3.10', name: 'Professional Practices (Ethics, Nepal Engineering Council Act, client relations, public procurement, National Building Code, building bylaws)', marks: 3 }
+                ]
+            };
+
+            function getColorForId(id) {
+                const colors = ['#e8f5e9', '#c8e6c9', '#a5d6a7', '#81c784', '#66bb6a', '#4caf50', '#43a047', '#388e3c',
+                    '#2e7d32', '#1b5e20'
+                ];
+                let hash = 0;
+                for (let i = 0; i < id.length; i++) {
+                    hash = id.charCodeAt(i) + ((hash << 5) - hash);
+                }
+                return colors[Math.abs(hash) % colors.length];
+            }
+
+            function renderTopics(containerId, topics) {
+                const container = document.getElementById(containerId);
+                if (!container) return;
+                container.innerHTML = '';
+
+                topics.forEach((topic) => {
+                    const card = document.createElement('div');
+                    card.className = 'book';
+
+                    const badge = document.createElement('span');
+                    badge.className = 'topic-id-badge';
+                    badge.textContent = topic.id;
+                    badge.style.backgroundColor = getColorForId(topic.id);
+
+                    const title = document.createElement('h2');
+                    title.textContent = topic.name;
+
+                    const marks = document.createElement('span');
+                    marks.className = 'topic-marks';
+                    marks.textContent = `${topic.marks} Mark${topic.marks > 1 ? 's' : ''}`;
+
+                    const btn = document.createElement('a');
+                    btn.className = 'mcq-button';
+                    btn.innerHTML = ' ✍️ View MCQ';
+                    btn.href = MCQ_BASE_URL + topic.id + '.html';
+                    btn.setAttribute('aria-label', `View MCQ for topic ${topic.id}: ${topic.name}`);
+
+                    card.appendChild(badge);
+                    card.appendChild(title);
+                    card.appendChild(marks);
+                    card.appendChild(btn);
+                    container.appendChild(card);
+                });
+            }
+
+            renderTopics('awarenessGrid', topicsData.awareness);
+            renderTopics('reasoningGrid', topicsData.reasoning);
+            renderTopics('technicalGrid', topicsData.technical);
+
+        })();
+    </script>
 </body>
 </html>

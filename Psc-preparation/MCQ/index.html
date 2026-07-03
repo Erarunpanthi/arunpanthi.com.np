@@ -348,7 +348,7 @@
                     const btn = document.createElement('a');
                     btn.className = 'mcq-button';
                     btn.innerHTML = ' ✍️ View MCQ';
-                    btn.href = MCQ_BASE_URL + topic.id + '.html';
+                    btn.href = MCQ_BASE_URL + topic.id + '';
                     btn.setAttribute('aria-label', `View MCQ for topic ${topic.id}: ${topic.name}`);
 
                     card.appendChild(badge);

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Engineer Construction Material Past Questions</title>
+<link rel="icon" href="https://arunpanthi.com.np/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="/css/Mock_Test.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar" id="navbar">
+<span class="brand" id="navbar-brand">Engineer Construction Material Past Questions</span>
+<span class="timer-display" id="timer-display" style="display:none;">--:--</span>
+</nav>
+
+<!-- Warning modal -->
+<div id="warning-modal" class="modal-overlay" style="display: none;">
+<div class="modal-dialog">
+<div class="warning-icon">⚠️</div>
+<h3>Unanswered Questions</h3>
+<p>You haven't answered all the questions.</p>
+<span class="unanswered-count" id="modal-unanswered-count">0 unanswered</span>
+<p style="margin-top:8px;"><strong>⚠ This test cannot be retaken once submitted!</strong></p>
+<div class="modal-buttons">
+<button class="btn-cancel" id="btn-modal-cancel">Cancel</button>
+<button class="btn-submit-warning" id="btn-modal-submit">Submit Anyway</button>
+</div>
+</div>
+</div>
+
+<div id="pre-test-section">
+<div class="hero" id="hero-card">
+<h1 id="hero-set-name">Loading...</h1>
+<p class="set-details" id="hero-details"></p>
+<div class="set-meta">
+<div class="meta-item"><span id="hero-q-count">0</span> Questions</div>
+<div class="meta-item"><span id="hero-time">0:00</span> Time (min)</div>
+</div>
+<button class="btn-start" id="btn-start-test">🚀 Start Test</button>
+<p style="margin-top:10px;font-size:0.85rem;opacity:0.8;" id="hero-note"></p>
+</div>
+</div>
+
+<div id="test-section" style="display:none;">
+<div class="test-container">
+<div class="question-area">
+<div class="question-card">
+<div class="q-number" id="q-number-label">QUESTION 1</div>
+<div class="q-text" id="q-text">Loading question...</div>
+<ul class="options-list" id="options-list"></ul>
+</div>
+<div class="nav-buttons">
+<div class="nav-left"><button class="btn-nav" id="btn-prev">◀ Previous</button></div>
+<div class="nav-center"><button class="btn-submit" id="btn-submit-test">✅ Submit Test</button></div>
+<div class="nav-right"><button class="btn-nav" id="btn-next">Next ▶</button></div>
+</div>
+</div>
+<aside class="sidebar">
+<h3>📋 Question </h3>
+<div class="total-questions" id="sidebar-total">Total: 0</div>
+<div class="answered-count">Answered: <strong id="sidebar-answered-num">0</strong></div>
+<div class="q-grid" id="q-grid"></div>
+<div class="legend">
+<span><span class="dot-sample blue"></span> Answered</span>
+<span><span class="dot-sample gray"></span> Unanswered</span>
+</div>
+</aside>
+</div>
+</div>
+
+<div id="results-section" style="display:none;">
+<div class="results-container">
+<div class="results-header">
+<h2 style="color:#2E7D32;">📊 Test Results</h2>
+<p style="color:#666;" id="results-set-name"></p>
+<div class="score-circle">
+<span class="score-num" id="results-score">0</span>
+<span class="score-denom" id="results-denom">/ 0</span>
+</div>
+<div class="percentage" id="results-percentage">0%</div>
+<p style="margin-top:8px;color:#888;font-size:0.9rem;" id="results-time-taken"></p>
+</div>
+<div id="results-detail"></div>
+</div>
+</div>
+<script src="/js/Mock_Test.js"></script>
+<script>
+(function() {
+    console.log('Inline script running');
+
+const questionSet = {
+
+    name: 'Engineer Construction Material Past Questions - Exam 01',
+    details: 'covering building stones, rocks, cement, mortar and concrete technology.',
+    questions: [
+
+        { question: 'A good building stone shall not absorb water more than.............', options: ['0.04', '0.05', '0.02', '0.03'], correct: 1 },
+        { question: 'For a good building stone, its specific gravity should be ...............', options: ['> 2.7', '< 2.7', '> 4', '< 4'], correct: 0 },
+        { question: 'Crushing strength for most of the building stones should be greater than ...............', options: ['500 kg/cm²', '1000 kg/cm²', '1500 kg/cm²', '2000 kg/cm²'], correct: 1 },
+        { question: 'The minimum thickness of a wall in stone masonry cannot be less than ...............', options: ['10 cm', '20 cm', '35 cm', '50 cm'], correct: 2 },
+        { question: 'Marble is more susceptible to ...............', options: ['alkaline', 'water', 'acids', 'all of the above'], correct: 2 },
+        { question: 'Which of the following has most fire resistance characteristics?', options: ['Marble', 'Lime stone', 'Compact sand stone', 'Granite'], correct: 2 },
+        { question: 'Generally natural stone is in shaped as ...............', options: ['regular shaped', 'irregular shaped', 'cubical cone shaped', 'pentagonal shaped'], correct: 1 },
+        { question: 'For stones, Mohr’s scale is used to determine.', options: ['Toughness', 'Hardness', 'Durability', 'Flakiness index'], correct: 1 },
+        { question: 'The rock generally used for roofing is ...............', options: ['slate', 'basalt', 'granite', 'pumice'], correct: 0 },
+        { question: 'For fire resistance masonry construction, the type of stone preferred is ...............', options: ['compact sand stone', 'slate', 'granite', 'limestone'], correct: 0 },
+
+        { question: 'The properties of good stone is indicated by its ...............', options: ['strength', 'durability', 'hardness', 'all of the above'], correct: 3 },
+        { question: 'The stones provided at regular intervals and placed right across width of wall in stone masonry is known as ...............', options: ['through stone', 'spalls stone', 'head stone', 'quoins stone'], correct: 0 },
+        { question: 'The type of rock suitable for coarse aggregate should be ...............', options: ['tough', 'hard', 'heavy', 'light'], correct: 0 },
+        { question: 'The stone suitable for rubble masonry should be ...............', options: ['hard', 'tough', 'heavy', 'light'], correct: 0 },
+        { question: 'Sand stone is ...............', options: ['sedimentary rock', 'metamorphic rock', 'igneous rock', 'volcanic rock'], correct: 0 },
+        { question: 'In stone masonry, stones are so placed that the direction of pressure to the plane of bedding is ...............', options: ['right angle', 'parallel', 'inclined', 'none of above'], correct: 0 },
+        { question: 'Marble belongs to ...............', options: ['igneous rock', 'sedimentary rock', 'metamorphic rock', 'organic rock'], correct: 2 },
+        { question: 'Quartzite is a ...............', options: ['igneous rock', 'sedimentary rock', 'metamorphic rock', 'all of the above'], correct: 2 },
+        { question: 'Slate is ..............', options: ['igneous rock', 'sedimentary rock', 'metamorphic rock', 'none of the above'], correct: 2 },
+        { question: 'Rocks formed due to alteration of original structure due to heat and excessive pressure are called ...............', options: ['sedimentary rocks', 'igneous rocks', 'metamorphic rocks', 'none of above'], correct: 2 },
+
+        { question: 'The type of ashlar masonry in which stones are finely chisel dressed and thickness of joints does not exceed 3 mm, is ...............', options: ['chamfered ashlar', 'ashlar facing masonry', 'random coursed ashlar masonry', 'coursed ashlar masonry'], correct: 3 },
+        { question: 'Heavy stone is suitable for ...............', options: ['arches', 'roads', 'rubble masonry', 'retaining wall'], correct: 3 },
+        { question: 'A sedimentary rock of calcareous variety having specific gravity 2.6 is called ...............', options: ['marble', 'kankar', 'sandstone', 'limestone'], correct: 3 },
+        { question: 'Slate is formed by metamorphic action on ...............', options: ['limestone', 'shale', 'sandstone', 'granite'], correct: 1 },
+        { question: 'The preparation of surface of stones to obtain plain edges or required shape and size is known as ...............', options: ['pitching', 'quarrying', 'seasoning', 'dressing'], correct: 3 },
+        { question: 'The softest rock is ...............', options: ['marble', 'diamond', 'talc', 'quartz'], correct: 2 },
+        { question: 'The cement becomes useless if its absorbed moisture content exceeds ...............', options: ['0.03', '0.02', '0.05', '0.04'], correct: 2 },
+        { question: 'The alumina gives quick setting property in cement. The content of alumina in cement is ...............', options: ['0.63', '0.22', '0.06', '0.03'], correct: 2 },
+        { question: 'The specific gravity of cement is about ...............', options: ['2.15', '3.15', '4.15', '1.15'], correct: 1 },
+        { question: 'How many bags of cement are there in 1 metric ton?', options: ['5 bags', '20 bags', '50 bags', '100 bags'], correct: 1 },
+
+        { question: 'The initial setting time for ordinary Portland cement as per Nepal standard should not be less than ...............', options: ['10 minutes', '30 minutes', '60 minutes', '600 minutes'], correct: 1 },
+        { question: 'The final setting time of ordinary cement should not be more than ...............', options: ['2 hours', '4 hours', '8 hours', '10 hours'], correct: 3 },
+        { question: 'Maximum percentage available in cement is ...............', options: ['silica', 'lime', 'alumina', 'iron oxide'], correct: 1 },
+        { question: 'Which of the following is an ingredient of cement?', options: ['lime', 'silica', 'alumina', 'all of the above'], correct: 3 },
+        { question: 'The most commonly used retarder in cement is ...............', options: ['gypsum', 'calcium chloride', 'calcium carbonate', 'none of the above'], correct: 0 },
+        { question: 'The setting time of cement can be increased by the addition of ..............', options: ['sodium', 'gypsum', 'calcium chloride', 'hydrogen peroxide'], correct: 1 },
+        { question: 'Which mortar is most suitable for construction work in water logged area?', options: ['Lime mortar', 'Gauged mortar', 'Cement mortar', 'Mud mortar'], correct: 2 },
+        { question: 'After storage for long time, the strength of cement ...............', options: ['increases', 'remains same', 'decreases', 'may increase or decrease'], correct: 2 },
+        { question: 'The strength of white cement is ............... that of ordinary Portland cement.', options: ['equal to', 'less than', 'greater than', 'depends on manufacturer'], correct: 1 },
+        { question: 'A badly mixed cement concrete results in ...............', options: ['segregation', 'bleeding', 'honey combing', 'none of above'], correct: 2 },
+
+        { question: 'Lime mortar is generally made with ...............', options: ['quick lime', 'fat lime', 'hydraulic lime', 'plain lime'], correct: 2 },
+        { question: 'Surkhi is added to lime mortar to ...............', options: ['prevent shrinkage', 'impart hydraulicity', 'increase bulk', 'decrease setting time'], correct: 1 },
+        { question: 'Vicat needle apparatus is used to determine ...............', options: ['viscosity', 'initial setting time of bitumen', 'initial setting time of cement', 'all of the above'], correct: 2 },
+        { question: 'The maximum percentage of chemical ingredient of cement is that of ...............', options: ['magnesium oxide', 'lime', 'iron oxide', 'aluminium oxide'], correct: 1 },
+        { question: 'The cement becomes unsound by the presence of excess ............', options: ['sulphur', 'magnesia', 'lime', 'all of the above'], correct: 3 },
+        { question: 'The commonly used raw material in the manufacture of cement is ...............', options: ['slate', 'sand stone', 'lime stone', 'basalt'], correct: 2 },
+        { question: 'The fineness of cement is measured in terms of ...............', options: ['surface area in square cm per gram of cement', 'percentage weight retained on IS sieve number', 'neither a nor b', 'surface area in square meter'], correct: 0 },
+        { question: 'OPC cement means ...............', options: ['optimum portland cement', 'ordinary portland cement', 'one-time portland cement', 'none of the above'], correct: 1 },
+        { question: 'The cement widely used in the construction of retaining walls is ...............', options: ['high alumina cement', 'rapid hardening cement', 'ordinary portland cement', 'rapid softening cement'], correct: 2 },
+        { question: 'Which type of cement is the most commonly used in general construction works?', options: ['Quick setting cement', 'Ordinary portland cement', 'Portland pozzolana cement', 'High alumina cement'], correct: 1 },
+
+        { question: 'Which one is correct?', options: ['PPC gains strength slowly as compared to OPC', 'Ultimate strength of PPC is higher than OPC', 'PPC has higher resistance to chemical attack', 'All of the above'], correct: 3 },
+        { question: 'Ware house pack of cement means ...............', options: ['full capacity of warehouse', 'pressure exertion of upper layers', 'pressure exertion of lower layers', 'packing the warehouse'], correct: 2 },
+        { question: 'A floor constructed with special aggregate of 3 mm marble chips mixed with white and colored cement is called ...............', options: ['marble floor', 'chips floor', 'terrazzo floor', 'mosaic floor'], correct: 3 },
+        { question: 'Rapid hardening cement contains ...............', options: ['tri-calcium silicate', 'tri-calcium aluminate', 'tetra-calcium alumino-ferrite', 'decalcium silicate'], correct: 0 },
+        { question: 'The "rich mix" in concrete is high cement content; low cement content is called ...............', options: ['poor mix', 'lean mix', 'thin mix', 'none of the above'], correct: 1 },
+        { question: 'Excessive free lime and excessive magnesia present in the cement make the cement ...............', options: ['gain strength faster', 'unsound', 'very low initial setting time', 'very light compressive strength'], correct: 1 },
+        { question: 'Ultimate strength to cement is provided by ...............', options: ['tricalcium silicate', 'dicalcium silicate', 'tricalcium aluminate', 'tetra-calcium aluminoferrite'], correct: 1 },
+        { question: 'Initial setting of cement is caused due to ...............', options: ['tricalcium silicate', 'dicalcium silicate', 'tricalcium aluminate', 'tetra calcium aluminoferrite'], correct: 2 },
+        { question: 'Good quality of cement contains higher percentage of ...............', options: ['dicalcium silicate', 'tricalcium silicate', 'tricalcium aluminate', 'tetra-calcium aluminate'], correct: 1 },
+        { question: 'Quick setting cement is used ...............', options: ['for construction under water', 'to obtain very light strength', 'where resistance to acidic water is required', 'none of the above'], correct: 0 }
+
+    ]
+};
+
+
+console.log('questionSet defined');
+    startTest(questionSet);
+    console.log('startTest called');
+})(); 
+</script>
+<script src="/js/text-protect.js" defer></script>
+<script src="/js/logo.js"></script>
+</body>
+</html>

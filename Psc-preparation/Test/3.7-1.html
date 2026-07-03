@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estimating, Costing, Specification and Valuation  - Old Questions Part 2</title>
+<link rel="icon" href="https://arunpanthi.com.np/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="/css/Mock_Test.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar" id="navbar">
+<span class="brand" id="navbar-brand">Estimating, Costing, Specification and Valuation  - Old Questions Part 2</span>
+<span class="timer-display" id="timer-display" style="display:none;">--:--</span>
+</nav>
+
+<!-- Warning modal -->
+<div id="warning-modal" class="modal-overlay" style="display: none;">
+<div class="modal-dialog">
+<div class="warning-icon">⚠️</div>
+<h3>Unanswered Questions</h3>
+<p>You haven't answered all the questions.</p>
+<span class="unanswered-count" id="modal-unanswered-count">0 unanswered</span>
+<p style="margin-top:8px;"><strong>⚠ This test cannot be retaken once submitted!</strong></p>
+<div class="modal-buttons">
+<button class="btn-cancel" id="btn-modal-cancel">Cancel</button>
+<button class="btn-submit-warning" id="btn-modal-submit">Submit Anyway</button>
+</div>
+</div>
+</div>
+
+<div id="pre-test-section">
+<div class="hero" id="hero-card">
+<h1 id="hero-set-name">Loading...</h1>
+<p class="set-details" id="hero-details"></p>
+<div class="set-meta">
+<div class="meta-item"><span id="hero-q-count">0</span> Questions</div>
+<div class="meta-item"><span id="hero-time">0:00</span> Time (min)</div>
+</div>
+<button class="btn-start" id="btn-start-test">🚀 Start Test</button>
+<p style="margin-top:10px;font-size:0.85rem;opacity:0.8;" id="hero-note"></p>
+</div>
+</div>
+
+<div id="test-section" style="display:none;">
+<div class="test-container">
+<div class="question-area">
+<div class="question-card">
+<div class="q-number" id="q-number-label">QUESTION 1</div>
+<div class="q-text" id="q-text">Loading question...</div>
+<ul class="options-list" id="options-list"></ul>
+</div>
+<div class="nav-buttons">
+<div class="nav-left"><button class="btn-nav" id="btn-prev">◀ Previous</button></div>
+<div class="nav-center"><button class="btn-submit" id="btn-submit-test">✅ Submit Test</button></div>
+<div class="nav-right"><button class="btn-nav" id="btn-next">Next ▶</button></div>
+</div>
+</div>
+<aside class="sidebar">
+<h3>📋 Question </h3>
+<div class="total-questions" id="sidebar-total">Total: 0</div>
+<div class="answered-count">Answered: <strong id="sidebar-answered-num">0</strong></div>
+<div class="q-grid" id="q-grid"></div>
+<div class="legend">
+<span><span class="dot-sample blue"></span> Answered</span>
+<span><span class="dot-sample gray"></span> Unanswered</span>
+</div>
+</aside>
+</div>
+</div>
+
+<div id="results-section" style="display:none;">
+<div class="results-container">
+<div class="results-header">
+<h2 style="color:#2E7D32;">📊 Test Results</h2>
+<p style="color:#666;" id="results-set-name"></p>
+<div class="score-circle">
+<span class="score-num" id="results-score">0</span>
+<span class="score-denom" id="results-denom">/ 0</span>
+</div>
+<div class="percentage" id="results-percentage">0%</div>
+<p style="margin-top:8px;color:#888;font-size:0.9rem;" id="results-time-taken"></p>
+</div>
+<div id="results-detail"></div>
+</div>
+</div>
+<script src="/js/Mock_Test.js"></script>
+<script>
+(function() {
+    console.log('Inline script running');
+
+const questionSet = {
+
+    name: 'Estimating, Costing, Specification and Valuation  - Old Questions Part 2',
+    details: 'covering estimation methods, valuation, measurement units, contracts, and civil engineering calculations.',
+    questions: [
+
+        { question: 'The main factor to be consider while preparing a detailed estimate is', options: ['Quantity of the materials', 'Availability of materials', 'Location of site and local labour charges', 'All the above'], correct: 3 },
+        { question: 'Which of the following method is more accurate in preparing quantity estimate of a building?', options: ['Centre line method', 'Plinth area method', 'Long wall and short wall method', 'Crossing method'], correct: 2 },
+        { question: 'The quantity of partition walls and honey-comb walls are worked out in', options: ['m³', 'm²', 'm', 'lump-sum'], correct: 1 },
+        { question: 'Quantity of honey comb walls are worked out in', options: ['m', 'm²', 'm³', 'lump-sum'], correct: 1 },
+        { question: 'The unit of brick work having half thick is', options: ['m', 'm²', 'm³', 'None of the above'], correct: 1 },
+        { question: 'A work costing less than Rs. 20,000 is termed as', options: ['petty work', 'minor work', 'major work', 'casual work'], correct: 0 },
+        { question: "The term 'valuation' in reference to Civil Engineering is the process of estimating the potential ....... of an asset.", options: ['fake value', 'Book value', 'market value', 'antique value'], correct: 2 },
+        { question: 'The damp proof course (DPC) is measured in', options: ['Cu m', 'Sq.m', 'meter', 'None of these'], correct: 1 },
+        { question: 'The unit of payment for excavation in trenches for pipes, cables etc. up to 1.5 m depth in ordinary rock/hard rock is in', options: ['cu. m.', 'sq. m.', 'meter', 'numbers'], correct: 0 },
+        { question: 'The unit of payment for A.C. sheet roofing is in', options: ['cu. m.', 'sq. m.', 'meter', 'quintal'], correct: 1 },
+
+        { question: 'In long and short wall method of estimation, the length of long wall is the center to center distance between the walls and', options: ['breadth of the wall', 'half breadth of wall on each side', 'one fourth breadth of wall on each side', 'None of these'], correct: 1 },
+        { question: 'Valuations is generally done for', options: ['Existing building', 'Proposed new buildings', 'Ongoing constructions', 'None of the above'], correct: 0 },
+        { question: "The 'center line method' is specially adopted for estimating", options: ['Circular buildings', 'Hexagonal buildings', 'Other geometrical shaped buildings', 'All the above'], correct: 3 },
+        { question: 'The most reliable estimate is', options: ['Detailed estimate', 'Preliminary estimate', 'Plinth area estimate', 'Cube rate estimate'], correct: 0 },
+        { question: 'The technique of finding the fair price of an existing building or property is known as', options: ['estimation', 'valuation', 'pricing', 'costing'], correct: 1 },
+        { question: 'The purpose of estimating the fair price of property of existing buildings is called', options: ['Costing', 'Estimating', 'Pricing', 'Valuation'], correct: 3 },
+        { question: 'If the formation level of a highway has a uniform gradient for a particular length, and the ground is also having a longitudinal slope, the earthwork may be calculated by', options: ['Mid-section formula', 'Trapezoidal formula', 'Prismoidal formula', 'All the above'], correct: 3 },
+        { question: 'The valuation of a building depends upon', options: ['its structure and durability', 'size, shape and type', 'quality of material used', 'all the above'], correct: 3 },
+        { question: 'The value of the dismantled material less the cost of dismantling is called', options: ['the scrap value', 'salvage value', 'ratable value', 'none'], correct: 1 },
+        { question: 'The necessary elements of an estimate are', options: ['drawing', 'specification', 'rates', 'all of above'], correct: 3 },
+
+        { question: 'Original cost of property minus depreciation is', options: ['book value', 'salvage value', 'readable value', 'obsolescence value'], correct: 0 },
+        { question: 'If the payment of annuity begins after some years in future, it is known as', options: ['Deferred annuity', 'Delayed annuity', 'Readjusted annuity', 'Regulated annuity'], correct: 0 },
+        { question: 'The brick work is not measured in cu m in case of', options: ['One or more than one brick wall', 'Brick work in arches', 'Reinforced brick work', 'Half brick wall'], correct: 3 },
+        { question: 'The unit of measurement of the wooden railings in staircase is', options: ['Sqm', 'Cum', 'Rnm', 'Kg'], correct: 2 },
+        { question: 'The loss in value of property by its becoming out of date in style, in design, in structure etc, is called as', options: ['obsolescence', 'distress value', 'Salvage value', 'scrap value'], correct: 0 },
+        { question: 'When a contractor is paid certain percentage over the actual cost of the construction as his profit, such contract is termed as', options: ['lump-sum contract', 'Work order', 'Schedule contract', 'Cost plus percentage contract'], correct: 3 },
+        { question: 'The essential requirements to prepare a good estimate are', options: ['a full dimensioned drawing to scale', 'detailed specification', 'schedule of rate', 'all of the above'], correct: 3 },
+        { question: 'When contractor fails to complete the work, an agency is employed to execute a part or whole of the work at the cost of contractor. Such an agency is known as', options: ['substitute agency', 'debitable agency', 'secondary agency', 'creditable agency'], correct: 0 },
+        { question: 'The amount required to be deposited by a contractor while submitting a tender is known as', options: ['fixed deposit', 'caution deposit', 'security deposit', 'earnest money deposit'], correct: 3 },
+        { question: 'While submitting a tender the contractor is required to deposit some amount with the department, as guarantee of the tender known as', options: ['bank guarantee', 'earnest money', 'security deposit', 'caution money'], correct: 1 },
+
+        { question: 'Bulbs in street lighting are all connected in', options: ['Parallel', 'Series', 'series parallel', 'End to end'], correct: 0 },
+        { question: 'Besides standard length and width of a corrugated sheet, one important dimension usually considered is', options: ['pitch of corrugation', 'depth of corrugation', 'shape of corrugation', 'gauge of the material'], correct: 1 },
+        { question: 'The annual periodic payments made for the repayment of the capital invested is known as', options: ['annuity', 'depreciation', 'sinking fund', 'none'], correct: 0 },
+        { question: 'The net annual letting out value of a property, which is obtained after deducting the amount of yearly repairs from the gross income, is known as', options: ['market value', 'book value', 'sinking value', 'rateable value'], correct: 3 },
+        { question: 'The document in which the quality of the work or material is mentioned is called', options: ['Detailed Estimate', 'Norms', 'Specification', 'Bill of Quantities'], correct: 2 },
+        { question: 'The unit of measurement for earth work in excavation in mine soil with kankar, bajri etc. when depth of excavation does not exceed 30 cm, is', options: ['m', 'cu m', 'sq m', 'ft'], correct: 2 },
+        { question: 'The unit of payment for blasting of rock including stacking is in', options: ['cu m', 'meter', 'sq m', 'kg'], correct: 0 },
+        { question: 'The unit of measurement of lintels over opening is', options: ['m', 'kg', 'sq. meter', 'cubic meter'], correct: 0 },
+        { question: 'Pick up the excavation where measurement is made in square meters for payment', options: ['Ordinary cuttings up to 1 m', 'surface dressing up to 15 cm depths', 'Surface excavation up to 30 cm depths', 'both (b) and (c)'], correct: 3 },
+        { question: 'The quantum of work of any item a skilled labour is supposed to turnout in a day is known as', options: ['unit work', 'task work', 'target work', 'basic work'], correct: 1 },
+
+        { question: 'Indicating works left in excavated trenches to facilitate the measurement of borrow pits are known as', options: ['jambs', 'posts', 'tell-tale', 'None of the above'], correct: 2 },
+        { question: 'The valuation report must contain', options: ['Description of the property', 'A definition of value', 'The effective date of the valuation', 'none'], correct: 0 },
+        { question: 'In case of discrepancy between rate in words and figures', options: ['rate in words is determining', 'rate in figures is determining', "both 'a' and 'b'", 'none of the above'], correct: 0 },
+        { question: 'In specification of earth work in foundation trenches, specified lead is', options: ['30 m', '1.5 m', '50 m', '100 m'], correct: 0 },
+        { question: 'Carpet area does not include the area of', options: ['verandah, corridor and passage', 'bathroom and lavatory', 'kitchen and pantry', 'all of the above'], correct: 0 },
+        { question: 'What of the following is depreciation?', options: ['Value of an asset decrease over time due to wear and tear', 'Value of an asset increase over time due to wear and tear', 'Value of an asset increase over time due to inflation', 'Value of an asset increase over time due to scarcity of that asset'], correct: 0 },
+        { question: 'Contingencies in cost estimate is provided for the sake of meeting the cost related to', options: ['unforeseen costs', 'work charge establishment cost', "both 'a' and 'b'", 'transportation cost'], correct: 2 },
+        { question: 'The portion which is wrongly excavated by the contractor is to be filled by', options: ['brick masonry', 'the earth excavated from the same pit', 'concrete as specified', 'earthwork excavated from borrow pit'], correct: 1 },
+        { question: 'The calculation and determination of price of an existing building is termed as', options: ['specification', 'rate analysis', 'valuation', 'all of the above'], correct: 2 },
+        { question: 'The reduction in the value of asset with time is called', options: ['salvage value', 'scrap value', 'book value', 'depreciation'], correct: 3 },
+
+        { question: 'The annual periodic payments made for the repayment of the capital invested is known as', options: ['repayment', 'depreciation', 'sinking fund', 'annuity'], correct: 3 },
+        { question: 'The carpet area of a room means', options: ['plinth area', 'site area', 'covered area without walls', 'open area'], correct: 2 },
+        { question: 'The value of dismantled material less the cost of dismantling is', options: ['market value', 'scrap value', 'rateable value', 'salvage value'], correct: 3 },
+        { question: 'The salvage value of any structure is', options: ['less than scrap value', 'more than scrap value', 'equal to scrap value', 'none of the above'], correct: 2 },
+        { question: 'The technique of finding the fair price of an existing building or property is known as', options: ['estimation', 'valuation', 'pricing', 'costing'], correct: 1 },
+        { question: 'The valuation report must contain', options: ['description of the property', 'a definition of value', 'the effective date of the valuation', 'all of the above'], correct: 3 },
+        { question: 'Which of the following is not the common size of reinforcement bar?', options: ['16 mm', '20 mm', '25 mm', '28 mm'], correct: 3 },
+        { question: 'The area between the walls is called', options: ['carpet area', 'floor area', 'plinth area', 'circulation area'], correct: 0 },
+        { question: 'The value of property that can be obtained at any particular time from the open market if the property is put for sale, is known as', options: ['book value', 'market value', 'current value', 'tradeable value'], correct: 1 },
+        { question: 'The plinth area of a building does not include', options: ['Area of the wall at the floor level', 'Area of stair cover', 'Internal shaft for sanitary installation up to 2 sq. m in area', 'Area of cantilevered porch'], correct: 3 },
+
+        { question: 'While estimating a works, the allowable contingency is', options: ['5 percent', '4 percent', '3 percent', '2 percent'], correct: 0 },
+        { question: 'As per the standard estimate format of government of Nepal, following percent of VAT and contingency is added to project cost', options: ['10% contingency and 15% VAT', '4% contingency and 13% VAT', '15% contingency and 15% VAT', 'none of the above'], correct: 1 },
+        { question: 'Minimum area of openings in a habitable room as fraction of the floor area of room should be', options: ['1/10', '1/8', '1/6', '1/5'], correct: 0 },
+        { question: 'The scrap value of wood after using six times in formwork for rate analysis purpose is normally taken as', options: ['0.25', '0.3', '0.1', '0.05'], correct: 3 },
+        { question: 'When life of structure is over at the end of its utility period, the dismantled materials as steel, brick, timber etc. has certain value which is known as', options: ['scrap value', 'salvage value', 'market value', 'all of the above'], correct: 0 },
+        { question: 'The value of property or structure without dismantling at the end of useful life is called', options: ['market value', 'scrap value', 'salvage value', 'face value'], correct: 2 },
+        { question: 'The plan of a building is in the form of rectangle with centerline dimension of outer walls as 5.7 m × 12.7 m. The thickness of the wall in superstructure is 0.3 m then its plinth area is m²', options: ['67', '72', '78', '84'], correct: 1 },
+        { question: 'Total length of CGI sheet in bundle is', options: ['60 feet', '70 feet', '62 feet', '72 feet'], correct: 3 },
+        { question: 'The height of sink of wash basin above floor level is kept', options: ['60 cm', '75 cm', '88 cm', '90 cm'], correct: 1 },
+        { question: 'Quantity of 5 m long, 30 cm width and 4 m high wall is', options: ['6 m³', '20 m³', '60 m³', '600 m³'], correct: 0 },
+
+        { question: 'As per the Nepal standard norms the nominal lead and lift allowed for the earthwork in the excavations of the foundation are', options: ['50 m and 2 m', '30 m and 2 m', '30 m and 1.5 m', '20 m and 1.5 m'], correct: 3 },
+        { question: 'The unit of measurement for electric wiring or electrification, light, fan, plug point is', options: ['point', 'meter', 'number', 'lump sum'], correct: 0 },
+        { question: 'One hectare equals to', options: ['100 m²', '1000 m²', '10000 m²', '100000 m²'], correct: 2 },
+        { question: '1 kilometer is equal to how many millimeters', options: ['1000', '100', '10000', '1000000'], correct: 3 },
+        { question: 'What is the weight of one cubic meter of steel in kilogram?', options: ['1000', '2400', '1400', '7850'], correct: 3 },
+        { question: 'How many kilo liters are there in 1 cubic meter?', options: ['1', '10', '100', '1000'], correct: 0 },
+        { question: 'If valuable property are found during excavation it becomes the property of', options: ['contractor', 'owner of the site', 'government', 'labour'], correct: 2 },
+        { question: 'Rate column of bill of quantity is filled by', options: ['client', "client's engineer", 'contractor', 'none of the above'], correct: 2 },
+        { question: 'Unit rate is only for', options: ['preparing document', 'finding cost', 'contractor', 'none of the above'], correct: 1 },
+        { question: 'For 100 sq m concrete (1:2:4) 4 cm thick floor the quantity of cement required is', options: ['0.88 m³', '0.94 m³', '0.98 m³', '1.00 m³'], correct: 0 }
+
+    ]
+};
+
+
+console.log('questionSet defined');
+    startTest(questionSet);
+    console.log('startTest called');
+})(); 
+</script>
+<script src="/js/text-protect.js" defer></script>
+<script src="/js/logo.js"></script>
+</body>
+</html>

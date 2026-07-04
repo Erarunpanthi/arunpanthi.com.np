@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="https://arunpanthi.com.np/logo.ico" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">00:00:00</title>
+    <style>
+        /* ----- styles (unchanged) ----- */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            position: relative;
+            transition: background-color 0.5s ease;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .container {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 1000px;
+            width: 90%;
+        }
+        .timer-display {
+            font-size: 3em;
+            margin: 20px 0;
+            color: #333;
+            font-weight: bold;
+            transition: color 0.3s ease;
+            font-variant-numeric: tabular-nums;
+        }
+        .buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .buttons button {
+            padding: 10px 15px;
+            font-size: 1em;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            transition: background-color 0.3s, transform 0.1s;
+        }
+        .buttons button:hover {
+            background-color: #0056b3;
+        }
+        .buttons button:active {
+            transform: scale(0.98);
+        }
+        .control-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .control-buttons button {
+            padding: 15px 20px;
+            font-size: 1.2em;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            transition: background-color 0.3s, transform 0.1s;
+        }
+        #startBtn {
+            background-color: #28a745;
+        }
+        #startBtn:hover {
+            background-color: #218838;
+        }
+        #stopBtn {
+            background-color: #dc3545;
+        }
+        #stopBtn:hover {
+            background-color: #c82333;
+        }
+        #clearBtn {
+            background-color: #ffc107;
+            color: black;
+        }
+        #clearBtn:hover {
+            background-color: #e0a800;
+        }
+        #restartBtn {
+            background-color: #17a2b8;
+        }
+        #restartBtn:hover {
+            background-color: #138496;
+        }
+        .btn-3h {
+            background-color: #6f42c1 !important;
+        }
+        .btn-3h:hover {
+            background-color: #5a32a3 !important;
+        }
+        .btn-5h {
+            background-color: #e83e8c !important;
+        }
+        .btn-5h:hover {
+            background-color: #c92a7a !important;
+        }
+        .nepal-time {
+            position: absolute;
+            top: 20px;
+            font-size: 1.2em;
+            color: #333;
+            background-color: rgba(255, 255, 255, 0.85);
+            padding: 5px 12px;
+            border-radius: 5px;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+        }
+        .nepal-time.left {
+            left: 20px;
+        }
+        .nepal-time.right {
+            right: 20px;
+        }
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .message-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.5s ease;
+        }
+        .message-card {
+            background-color: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 400px;
+            width: 80%;
+            animation: slideUp 0.5s ease;
+        }
+        .message-card h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        .message-card p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            color: #555;
+        }
+        .message-card button {
+            padding: 12px 25px;
+            font-size: 1.1em;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .message-card button:hover {
+            background-color: #0056b3;
+        }
+        .success-message h2 {
+            color: #28a745;
+        }
+        .warning-message h2 {
+            color: #ffc107;
+        }
+        .info-message h2 {
+            color: #17a2b8;
+        }
+        .error-message h2 {
+            color: #dc3545;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .persist-badge {
+            font-size: 0.75em;
+            color: #6c757d;
+            margin-top: 12px;
+            background: #e9ecef;
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+        }
+        .persist-badge span {
+            color: #28a745;
+            font-weight: bold;
+        }
+        @media (max-width: 768px) {
+            .timer-display { font-size: 2.5em; }
+            .nepal-time {
+                position: static;
+                margin-bottom: 10px;
+            }
+            .nepal-time.left, .nepal-time.right {
+                position: static;
+                display: inline-block;
+                margin: 5px;
+            }
+            body {
+                flex-direction: column;
+                padding: 20px;
+                height: auto;
+            }
+        }
+        @media (max-width: 480px) {
+            .timer-display { font-size: 1.8em; }
+            .buttons button { padding: 8px 12px; font-size: 0.85em; }
+            .control-buttons button { padding: 10px 14px; font-size: 1em; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Nepal Time Displays -->
+    <div class="nepal-time left" id="nepalTimeLeft">🇳🇵 Nepal: <span id="timeLeft">Loading...</span></div>
+    <div class="nepal-time right" id="nepalTimeRight">🇳🇵 Nepal: <span id="timeRight">Loading...</span></div>
+
+    <!-- Countdown Timer Container -->
+    <div class="container">
+        <h1>⏱️ Persistent Countdown</h1>
+        <div class="timer-display" id="timer">00:00:00</div>
+
+        <!-- Quick Time Buttons -->
+        <div class="buttons">
+            <button onclick="addTime(60)">1m</button>
+            <button onclick="addTime(120)">2m</button>
+            <button onclick="addTime(180)">3m</button>
+            <button onclick="addTime(300)">5m</button>
+            <button onclick="addTime(600)">10m</button>
+            <button onclick="addTime(1200)">20m</button>
+            <button onclick="addTime(1500)">25m</button>
+            <button onclick="addTime(1800)">30m</button>
+            <button onclick="addTime(3600)">1h</button>
+            <button class="btn-3h" onclick="addTime(10800)">3h</button>
+            <button class="btn-5h" onclick="addTime(18000)">5h</button>
+        </div>
+
+        <!-- Control Buttons -->
+        <div class="control-buttons">
+            <button onclick="startTimer()" id="startBtn">▶ Start</button>
+            <button onclick="stopTimer()" id="stopBtn">⏸ Stop</button>
+            <button onclick="restartTimer()" id="restartBtn">⟲ Restart</button>
+            <button onclick="clearScreen()" id="clearBtn">✕ Clear</button>
+        </div>
+
+        <div class="persist-badge">💾 Persistent &nbsp;·&nbsp; <span>✓ survives refresh / close</span></div>
+    </div>
+
+    <!-- Message Overlay -->
+    <div class="message-overlay" id="messageOverlay">
+        <div class="message-card" id="messageCard">
+            <h2 id="messageTitle">Message</h2>
+            <p id="messageText">Content goes here.</p>
+            <button onclick="closeMessage()">Close</button>
+        </div>
+    </div>
+
+    <script>
+        // ================================================================
+        //  PERSISTENT TIMER with enhanced bell (richer, more attractive)
+        //  Rings on start AND at 1‑hour mark. No "Timer Started" message.
+        // ================================================================
+
+        // ---- DOM refs ----
+        const timerEl = document.getElementById('timer');
+        const pageTitle = document.getElementById('pageTitle');
+        const timeLeftSpan = document.getElementById('timeLeft');
+        const timeRightSpan = document.getElementById('timeRight');
+
+        // ---- localStorage key ----
+        const STORAGE_KEY = 'persistent_timer_state';
+
+        // ---- In‑memory interval ----
+        let timerInterval = null;
+
+        // ---- Default state ----
+        function getDefaultState() {
+            return {
+                duration: 0,
+                remaining: 0,
+                startTime: null,
+                isRunning: false,
+                savedTime: 0,
+                oneHourNotified: false
+            };
+        }
+
+        // ---- Load / save ----
+        function loadState() {
+            try {
+                const raw = localStorage.getItem(STORAGE_KEY);
+                if (!raw) return getDefaultState();
+                const parsed = JSON.parse(raw);
+                const def = getDefaultState();
+                for (const key in def) {
+                    if (!(key in parsed)) parsed[key] = def[key];
+                }
+                return parsed;
+            } catch (_) {
+                return getDefaultState();
+            }
+        }
+
+        function saveState(state) {
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+            } catch (_) { /* ignore */ }
+        }
+
+        // ---- Compute current remaining seconds ----
+        function computeRemaining(state) {
+            if (!state.isRunning) {
+                return Math.max(0, state.remaining);
+            }
+            if (!state.startTime) return 0;
+            const elapsed = (Date.now() - state.startTime) / 1000;
+            const rem = state.duration - elapsed;
+            return Math.max(0, rem);
+        }
+
+        // ---- Update display + title + color ----
+        function updateDisplayAndTitle(remaining) {
+            const hrs = Math.floor(remaining / 3600);
+            const mins = Math.floor((remaining % 3600) / 60);
+            const secs = Math.floor(remaining % 60);
+            const str =
+                `${String(hrs).padStart(2, '0')}:${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+            timerEl.textContent = str;
+            pageTitle.textContent = str;
+
+            if (remaining <= 60) {
+                timerEl.style.color = '#dc3545';
+            } else if (remaining <= 300) {
+                timerEl.style.color = '#ffc107';
+            } else {
+                timerEl.style.color = '#333';
+            }
+        }
+
+        // ---- ENHANCED BELL: richer, more attractive, rings 4 times with harmonic layering ----
+        function playBell() {
+            try {
+                const ctx = new(window.AudioContext || window.webkitAudioContext)();
+                const now = ctx.currentTime;
+
+                // Each "ring" is a chord of 3 frequencies (harmonics) with a pleasing decay.
+                // We'll play 4 rings with a short gap between them.
+                const baseFreq = 880; // A5
+                const harmonics = [1, 1.25, 1.5]; // multiplier: 880, 1100, 1320
+                const durations = [0.4, 0.35, 0.3]; // slightly different decay per harmonic
+                const volumes = [0.20, 0.15, 0.10];
+
+                for (let ring = 0; ring < 4; ring++) {
+                    const ringStart = now + ring * 0.55; // 0.55s gap between rings
+
+                    for (let h = 0; h < harmonics.length; h++) {
+                        const osc = ctx.createOscillator();
+                        const gain = ctx.createGain();
+                        const freq = baseFreq * harmonics[h];
+                        osc.type = 'sine';
+
+                        // Slight frequency wobble for a more organic bell sound
+                        const wobble = 3 + Math.random() * 4; // small random vibrato
+                        osc.frequency.setValueAtTime(freq, ringStart);
+                        osc.frequency.linearRampToValueAtTime(freq + wobble, ringStart + durations[h] * 0.3);
+                        osc.frequency.linearRampToValueAtTime(freq - wobble * 0.5, ringStart + durations[h]);
+
+                        // Volume envelope: quick attack, exponential decay
+                        gain.gain.setValueAtTime(volumes[h] * 0.9, ringStart);
+                        gain.gain.exponentialRampToValueAtTime(0.001, ringStart + durations[h]);
+
+                        osc.connect(gain);
+                        gain.connect(ctx.destination);
+                        osc.start(ringStart);
+                        osc.stop(ringStart + durations[h] + 0.05);
+                    }
+
+                    // Add a subtle high "ping" on the first and third ring for sparkle
+                    if (ring % 2 === 0) {
+                        const pingOsc = ctx.createOscillator();
+                        const pingGain = ctx.createGain();
+                        pingOsc.type = 'sine';
+                        pingOsc.frequency.setValueAtTime(1760, ringStart); // A6
+                        pingGain.gain.setValueAtTime(0.06, ringStart);
+                        pingGain.gain.exponentialRampToValueAtTime(0.001, ringStart + 0.15);
+                        pingOsc.connect(pingGain);
+                        pingGain.connect(ctx.destination);
+                        pingOsc.start(ringStart + 0.05);
+                        pingOsc.stop(ringStart + 0.2);
+                    }
+                }
+            } catch (_) {
+                // Fallback: simpler but still pleasant beep
+                try {
+                    const ctx2 = new(window.AudioContext || window.webkitAudioContext)();
+                    for (let i = 0; i < 4; i++) {
+                        const osc = ctx2.createOscillator();
+                        const gain = ctx2.createGain();
+                        osc.type = 'sine';
+                        osc.frequency.value = 880 + i * 30;
+                        const t = ctx2.currentTime + i * 0.45;
+                        gain.gain.setValueAtTime(0.15, t);
+                        gain.gain.exponentialRampToValueAtTime(0.001, t + 0.3);
+                        osc.connect(gain);
+                        gain.connect(ctx2.destination);
+                        osc.start(t);
+                        osc.stop(t + 0.3);
+                    }
+                } catch (_2) { /* silent fail */ }
+            }
+        }
+
+        // ---- Check and trigger 1‑hour notification ----
+        function checkOneHour(state, remaining) {
+            if (!state.isRunning) return false;
+            if (state.duration < 3600) return false;
+            if (state.oneHourNotified) return false;
+
+            const elapsed = state.duration - remaining;
+            if (elapsed >= 3600) {
+                state.oneHourNotified = true;
+                saveState(state);
+                playBell();
+                showMessage('🔔 1 Hour Passed!', 'One hour has elapsed since the timer started.', 'info');
+                return true;
+            }
+            return false;
+        }
+
+        // ---- Refresh UI from state (on load / visibility) ----
+        function refreshFromState() {
+            const state = loadState();
+            const remaining = computeRemaining(state);
+            updateDisplayAndTitle(remaining);
+
+            if (state.isRunning && remaining <= 0 && state.duration > 0) {
+                const newState = loadState();
+                newState.isRunning = false;
+                newState.remaining = 0;
+                newState.startTime = null;
+                saveState(newState);
+                if (timerEl.textContent !== '00:00:00') {
+                    timerEl.textContent = '00:00:00';
+                    pageTitle.textContent = '00:00:00';
+                }
+                showMessage("⏰ Time's Up!", "Your countdown timer has completed.", 'success');
+                return;
+            }
+
+            if (state.isRunning && remaining > 0) {
+                checkOneHour(state, remaining);
+                startIntervalIfNeeded();
+            } else {
+                if (timerInterval) {
+                    clearInterval(timerInterval);
+                    timerInterval = null;
+                }
+            }
+        }
+
+        // ---- Start display interval ----
+        function startIntervalIfNeeded() {
+            if (timerInterval) return;
+            timerInterval = setInterval(() => {
+                const state = loadState();
+                if (!state.isRunning) {
+                    if (timerInterval) {
+                        clearInterval(timerInterval);
+                        timerInterval = null;
+                    }
+                    return;
+                }
+                const remaining = computeRemaining(state);
+                updateDisplayAndTitle(remaining);
+                checkOneHour(state, remaining);
+
+                if (remaining <= 0) {
+                    clearInterval(timerInterval);
+                    timerInterval = null;
+                    const newState = loadState();
+                    newState.isRunning = false;
+                    newState.remaining = 0;
+                    newState.startTime = null;
+                    saveState(newState);
+                    updateDisplayAndTitle(0);
+                    showMessage("⏰ Time's Up!", "Your countdown timer has completed.", 'success');
+                }
+            }, 200);
+        }
+
+        // ---- Timer control functions ----
+
+        function addTime(seconds) {
+            const state = loadState();
+            const remaining = computeRemaining(state);
+
+            if (state.isRunning) {
+                state.duration += seconds;
+                if (state.savedTime > 0) state.savedTime += seconds;
+                saveState(state);
+                const newRemaining = computeRemaining(state);
+                updateDisplayAndTitle(newRemaining);
+                startIntervalIfNeeded();
+                showMessage('⏱️ Time Added', `Added ${formatTime(seconds)} to running timer.`, 'info');
+            } else {
+                state.remaining = remaining + seconds;
+                if (state.savedTime === 0 && remaining === 0) {
+                    state.savedTime = seconds;
+                } else if (state.savedTime > 0) {
+                    state.savedTime += seconds;
+                }
+                state.oneHourNotified = false;
+                saveState(state);
+                updateDisplayAndTitle(state.remaining);
+                showMessage('⏱️ Time Added', `Added ${formatTime(seconds)}.`, 'info');
+            }
+        }
+
+        function formatTime(sec) {
+            const h = Math.floor(sec / 3600);
+            const m = Math.floor((sec % 3600) / 60);
+            const s = Math.floor(sec % 60);
+            const parts = [];
+            if (h) parts.push(h + 'h');
+            if (m) parts.push(m + 'm');
+            if (s) parts.push(s + 's');
+            return parts.join(' ') || '0s';
+        }
+
+        // Start timer – plays enhanced bell, no message
+        function startTimer() {
+            const state = loadState();
+            const remaining = computeRemaining(state);
+
+            if (remaining <= 0) {
+                showMessage('Timer Error', 'Please set a timer before starting.', 'warning');
+                return;
+            }
+
+            if (state.isRunning) {
+                showMessage('Already Running', 'Timer is already counting down.', 'info');
+                return;
+            }
+
+            state.oneHourNotified = false;
+            state.isRunning = true;
+            state.duration = remaining;
+            state.startTime = Date.now();
+            state.remaining = 0;
+            if (state.savedTime === 0) {
+                state.savedTime = remaining;
+            }
+            saveState(state);
+
+            updateDisplayAndTitle(remaining);
+            startIntervalIfNeeded();
+
+            // 🔔 Enhanced bell on start (no message)
+            playBell();
+        }
+
+        function stopTimer() {
+            const state = loadState();
+            if (!state.isRunning) {
+                showMessage('Timer Error', 'No timer is currently running.', 'warning');
+                return;
+            }
+            const remaining = computeRemaining(state);
+            state.isRunning = false;
+            state.remaining = remaining;
+            state.startTime = null;
+            saveState(state);
+
+            if (timerInterval) {
+                clearInterval(timerInterval);
+                timerInterval = null;
+            }
+            updateDisplayAndTitle(remaining);
+            showMessage('⏸ Timer Stopped', 'Countdown timer has been paused.', 'warning');
+        }
+
+        function restartTimer() {
+            const state = loadState();
+            if (state.savedTime <= 0) {
+                showMessage('Restart Error', 'No timer saved to restart. Please set a timer first.', 'error');
+                return;
+            }
+
+            if (state.isRunning) {
+                if (timerInterval) {
+                    clearInterval(timerInterval);
+                    timerInterval = null;
+                }
+            }
+
+            state.isRunning = false;
+            state.remaining = state.savedTime;
+            state.duration = state.savedTime;
+            state.startTime = null;
+            state.oneHourNotified = false;
+            saveState(state);
+
+            updateDisplayAndTitle(state.savedTime);
+            showMessage('⟲ Timer Restarted', `Reset to ${formatTime(state.savedTime)}.`, 'info');
+        }
+
+        function clearScreen() {
+            if (timerInterval) {
+                clearInterval(timerInterval);
+                timerInterval = null;
+            }
+            const state = getDefaultState();
+            saveState(state);
+            updateDisplayAndTitle(0);
+            pageTitle.textContent = '00:00:00';
+            timerEl.style.color = '#333';
+            showMessage('✕ Timer Cleared', 'Timer has been reset to zero.', 'info');
+        }
+
+        // ---- Nepal Time ----
+        function getNepalTime() {
+            const now = new Date();
+            const utcOffset = now.getTimezoneOffset() * 60000;
+            const nepalOffset = 5.75 * 3600000;
+            const nepalTime = new Date(now.getTime() + utcOffset + nepalOffset);
+            let h = nepalTime.getHours();
+            const m = String(nepalTime.getMinutes()).padStart(2, '0');
+            const s = String(nepalTime.getSeconds()).padStart(2, '0');
+            const ampm = h >= 12 ? 'PM' : 'AM';
+            h = h % 12 || 12;
+            return `${h}:${m}:${s} ${ampm}`;
+        }
+
+        function updateNepalTime() {
+            const t = getNepalTime();
+            timeLeftSpan.textContent = t;
+            timeRightSpan.textContent = t;
+        }
+        setInterval(updateNepalTime, 1000);
+        updateNepalTime();
+
+        // ---- Message overlay ----
+        function showMessage(title, text, type = 'info') {
+            const overlay = document.getElementById('messageOverlay');
+            const card = document.getElementById('messageCard');
+            const titleEl = document.getElementById('messageTitle');
+            const textEl = document.getElementById('messageText');
+
+            card.classList.remove('success-message', 'warning-message', 'info-message', 'error-message');
+            card.classList.add(type + '-message');
+
+            titleEl.textContent = title;
+            textEl.textContent = text;
+            overlay.style.display = 'flex';
+
+            const bgMap = {
+                'success': '#d4edda',
+                'warning': '#fff3cd',
+                'error': '#f8d7da',
+                'info': '#d1ecf1'
+            };
+            document.body.style.backgroundColor = bgMap[type] || '#f0f0f0';
+        }
+
+        function closeMessage() {
+            document.getElementById('messageOverlay').style.display = 'none';
+            document.body.style.backgroundColor = '#f0f0f0';
+        }
+
+        // ---- Init ----
+        function init() {
+            refreshFromState();
+
+            document.addEventListener('visibilitychange', () => {
+                if (!document.hidden) {
+                    refreshFromState();
+                }
+            });
+
+            window.addEventListener('beforeunload', () => {
+                const state = loadState();
+                saveState(state);
+            });
+        }
+
+        // ---- Expose to global ----
+        window.addTime = addTime;
+        window.startTimer = startTimer;
+        window.stopTimer = stopTimer;
+        window.restartTimer = restartTimer;
+        window.clearScreen = clearScreen;
+        window.closeMessage = closeMessage;
+        window.showMessage = showMessage;
+
+        init();
+        console.log('✅ Enhanced bell sound – richer harmonics, 4 rings, on start + 1‑hour.');
+    </script>
+</body>
+</html>

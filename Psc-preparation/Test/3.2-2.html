@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Surveying - Complete Set</title>
+<link rel="icon" href="https://arunpanthi.com.np/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="/css/Mock_Test.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar" id="navbar">
+<span class="brand" id="navbar-brand">Surveying - Complete Set</span>
+<span class="timer-display" id="timer-display" style="display:none;">--:--</span>
+</nav>
+
+<!-- Warning modal -->
+<div id="warning-modal" class="modal-overlay" style="display: none;">
+<div class="modal-dialog">
+<div class="warning-icon">⚠️</div>
+<h3>Unanswered Questions</h3>
+<p>You haven't answered all the questions.</p>
+<span class="unanswered-count" id="modal-unanswered-count">0 unanswered</span>
+<p style="margin-top:8px;"><strong>⚠ This test cannot be retaken once submitted!</strong></p>
+<div class="modal-buttons">
+<button class="btn-cancel" id="btn-modal-cancel">Cancel</button>
+<button class="btn-submit-warning" id="btn-modal-submit">Submit Anyway</button>
+</div>
+</div>
+</div>
+
+<div id="pre-test-section">
+<div class="hero" id="hero-card">
+<h1 id="hero-set-name">Loading...</h1>
+<p class="set-details" id="hero-details"></p>
+<div class="set-meta">
+<div class="meta-item"><span id="hero-q-count">0</span> Questions</div>
+<div class="meta-item"><span id="hero-time">0:00</span> Time (min)</div>
+</div>
+<button class="btn-start" id="btn-start-test">🚀 Start Test</button>
+<p style="margin-top:10px;font-size:0.85rem;opacity:0.8;" id="hero-note"></p>
+</div>
+</div>
+
+<div id="test-section" style="display:none;">
+<div class="test-container">
+<div class="question-area">
+<div class="question-card">
+<div class="q-number" id="q-number-label">QUESTION 1</div>
+<div class="q-text" id="q-text">Loading question...</div>
+<ul class="options-list" id="options-list"></ul>
+</div>
+<div class="nav-buttons">
+<div class="nav-left"><button class="btn-nav" id="btn-prev">◀ Previous</button></div>
+<div class="nav-center"><button class="btn-submit" id="btn-submit-test">✅ Submit Test</button></div>
+<div class="nav-right"><button class="btn-nav" id="btn-next">Next ▶</button></div>
+</div>
+</div>
+<aside class="sidebar">
+<h3>📋 Question </h3>
+<div class="total-questions" id="sidebar-total">Total: 0</div>
+<div class="answered-count">Answered: <strong id="sidebar-answered-num">0</strong></div>
+<div class="q-grid" id="q-grid"></div>
+<div class="legend">
+<span><span class="dot-sample blue"></span> Answered</span>
+<span><span class="dot-sample gray"></span> Unanswered</span>
+</div>
+</aside>
+</div>
+</div>
+
+<div id="results-section" style="display:none;">
+<div class="results-container">
+<div class="results-header">
+<h2 style="color:#2E7D32;">📊 Test Results</h2>
+<p style="color:#666;" id="results-set-name"></p>
+<div class="score-circle">
+<span class="score-num" id="results-score">0</span>
+<span class="score-denom" id="results-denom">/ 0</span>
+</div>
+<div class="percentage" id="results-percentage">0%</div>
+<p style="margin-top:8px;color:#888;font-size:0.9rem;" id="results-time-taken"></p>
+</div>
+<div id="results-detail"></div>
+</div>
+</div>
+<script src="/js/Mock_Test.js"></script>
+<script>
+(function() {
+    console.log('Inline script running');
+    const questionSet = {
+        name: 'Surveying - Complete Set',
+        details: 'Covers surveying principles, chain surveying, leveling, theodolite, contouring, and measurements.',
+        questions: [
+            { question: 'A lemniscate curve between the tangents is transitional throughout, if the polar deflection angle of its apex is equal to', options: ['Φ/3', 'Φ/4', 'Φ/5', 'Φ/6'], correct: 0 },
+            { question: 'The sum of the interior angles of a geometrical figure laid on the surface of the earth differs from that of the corresponding plane figure only to the extent of one second for every', options: ['100 sq. km of area', '200 sq. km of area', '150 sq. km of area', 'none of these'], correct: 1 },
+            { question: 'A ideal vertical curve to join two gradients, is', options: ['circular', 'parabolic', 'hyperbolic', 'none of these'], correct: 1 },
+            { question: 'When the cross-hairs are not clearly visible', options: ['the cross-hairs should be adjusted', 'the eye-piece should be focused', 'the objective should be focused', 'the parallax should be removed'], correct: 3 },
+            { question: 'If a 30 m chain diverges through a perpendicular distance from its correct alignment, the error in length is', options: ['d²/60 m', 'd²/30 m', 'd²/40 m', 'd/40 m'], correct: 1 },
+            { question: 'A lemniscate curve will not be transitional throughout, if its deflection angle, is', options: ['30°', '45°', '60°', '90°'], correct: 3 },
+            { question: 'Which of the following is not used in measuring perpendicular offsets?', options: ['Line ranger', 'Steel tape', 'Optical square', 'Cross staff'], correct: 0 },
+            { question: 'Which of the following instrument is generally used for base line measurements?', options: ['Chain', 'Metallic tape', 'Steel tape', 'Invar tape'], correct: 3 },
+            { question: 'A tape length l and weight W kg/m is suspended at its ends with a pull of p kg, the sag correction is', options: ['l³W²/24P²', 'l²W³/24P²', 'l²W²/24P²', 'lW²/24P'], correct: 0 },
+            { question: 'Accidental or compensating errors of length L are proportional to', options: ['L', '√L', '3√L', '1/√L'], correct: 1 },
+            { question: 'Ranging is the process of', options: ['fixing ranging rods on the extremities of area', 'aligning the chain in a straight line between two extremities', 'taking offsets from a chain line', 'chaining over a range of mountains'], correct: 1 },
+            { question: 'While measuring a chain line between two stations A and B intervened by a raised ground', options: ['vision gets obstructed', 'chaining gets obstructed', 'both vision and chaining get obstructed', 'all of the above'], correct: 2 },
+            { question: 'Cross staff is an instrument used for', options: ['measuring approximate horizontal angles', 'setting out right angles', 'measuring bearings of the lines', 'none of the above'], correct: 1 },
+            { question: 'Prolongation of chain line across an obstruction chain surveying, is done by', options: ['making angular measurements', 'solution of triangles', 'drawing perpendiculars with a chain', 'all of the above'], correct: 3 },
+            { question: 'While viewing through a level telescope and moving the eye slightly, a relative movement occurs between the image of the leveling staff and the cross hairs. The instrument is', options: ['correctly focused', 'not correctly focused', 'said to have parallax', 'free from parallax'], correct: 2 },
+            { question: 'Diaphragm of a surveying telescope is held inside', options: ['eye-piece', 'objective', 'telescope tube at its mid-point', 'telescope at the end nearer the eye-piece'], correct: 2 },
+            { question: 'In chain surveying field work is limited to', options: ['both linear and angular measurements', 'linear measurements only', 'angular measurements only', 'all of the above'], correct: 1 },
+            { question: 'For a closed traverse the omitted measurements may be calculated', options: ['length of one side only', 'length or bearing of adjacent side', 'bearing of one side only', 'all of the above'], correct: 3 },
+            { question: 'For the construction of highway or railway', options: ['longitudinal sections are required', 'cross sections are required', 'both longitudinal and cross sections are required', 'none of these'], correct: 2 },
+            { question: 'An imaginary line joining the points of equal elevation on the surface of the earth, represents', options: ['contour surface', 'contour line', 'level line', 'contour gradient'], correct: 1 },
+            { question: 'The boundary of water of a still lake, represents', options: ['level surface', 'horizontal surface', 'contour line', 'a concave surface'], correct: 2 },
+            { question: 'The constant vertical distance between two adjacent contours, is called', options: ['horizontal interval', 'horizontal equivalent', 'vertical equivalent', 'contour interval'], correct: 3 },
+            { question: 'The contour interval is kept inversely proportional to', options: ['time and expense of field work', 'steepness of the configuration of the area', 'scale of the map', 'all of the above'], correct: 3 },
+            { question: 'The representation of general topography of a very flat terrain is possible only', options: ['by drawing contours at large interval', 'by drawing contours at small interval', 'by giving spot levels at large interval', 'by giving spot levels to features at close interval'], correct: 3 },
+            { question: 'Contour interval, within the limits of a map', options: ['may be kept constant', 'may not be kept constant', 'must be kept constant', 'may vary according to the configuration'], correct: 2 },
+            { question: 'The direction of steepest slope on a contour, is', options: ['along the contour', 'at right angles to the contour', 'at an angle of 45° to the contour', 'none of these'], correct: 1 },
+            { question: 'Straight, parallel and widely spaced contours represent', options: ['a steep surface', 'a flat surface', 'an inclined plane surface', 'curved surface'], correct: 2 },
+            { question: 'Two contour lines, having the same may cross each other only in the case of', options: ['cannot cross each other', 'can cross each other', 'cannot unite together', 'can unite together'], correct: 1 },
+            { question: 'Contours of different elevations may cross each other only in the case of', options: ['an overhanging cliff', 'a vertical cliff', 'a saddle', 'an inclined plane'], correct: 0 },
+            { question: 'Closed contours of decreasing values toward their centre, represent', options: ['a hill', 'a depression', 'a saddle or pass', 'a river bed'], correct: 1 },
+            { question: 'The Simpson\'s rule of areas assumes that the portions of the boundary between the ends of ordinates are', options: ['straight', 'circular', 'elliptical', 'parabolic'], correct: 3 },
+            { question: 'The difference between the sum of the angles of a spherical triangle the angles of the corresponding plane triangle for every 195.5 km² of area is only', options: ['1 second', '5 second', '10 second', '15 second'], correct: 0 },
+            { question: 'In order to determine the natural features such as valleys, rivers, lakes, etc., the surveying preferred is', options: ['city surveying', 'location surveying', 'cadastral surveying', 'topographical surveying'], correct: 3 },
+            { question: 'The surveying used to determine additional details such as boundaries of fields, is called', options: ['city surveying', 'location surveying', 'cadastral surveying', 'topographical surveying'], correct: 2 },
+            { question: 'The fundamental principle of surveying is to work from the', options: ['whole to the part', 'part to the whole', 'lower level to higher level', 'higher level to lower that'], correct: 0 },
+            { question: 'The working from whole to the part is done in surveying in order to ensure that', options: ['surveying work is completed more quickly', 'number of errors is minimum', 'plotting is done more quickly', 'errors and mistakes of one portion do not affected the remaining portion'], correct: 3 },
+            { question: 'The theodolites used for making tacheometric observations by optical wedge system, are', options: ['provided with stadia hairs in front of eye piece', 'not provided with stadia hairs at all', 'fitted with a glass wedge inside the telescope', 'fitted with a glass wedge in front of telescope'], correct: 3 },
+            { question: 'The curve composed of two arcs of different radii having their centers on the opposite side of the curve, is known', options: ['a simple curve', 'a compound curve', 'a reverse curve', 'a vertical curve'], correct: 2 },
+            { question: 'The true or geographical meridians through the various stations', options: ['are parallel', 'converge to the poles', 'converge from north pole to south pole', 'converge from south pole to north pole'], correct: 1 },
+            { question: 'The line in which the plane passing through the intersects the surface of the earth is called', options: ['arbitrary meridian', 'magnetic meridian', 'true meridian', 'none of these'], correct: 2 },
+            { question: 'In a whole circle system, the bearing of a line is measured', options: ['always clockwise from the south point of the reference meridian towards the line right round the circle', 'clockwise or anticlockwise from the east or west whichever is nearer the line towards east or west', 'clockwise or anticlockwise from the north or south whichever is nearer the line towards', 'none of these'], correct: 0 },
+            { question: 'Surveys which are carried out to depict mountains, rivers, water bodies, wooded areas and other cultural details, are known as', options: ['cadastral surveys', 'city surveys', 'topographical surveys', 'guide map surveys'], correct: 2 },
+            { question: 'The length of an engineer\'s chain is', options: ['20 m', '33 feet', '66 feet', '100 feet'], correct: 3 },
+            { question: 'The length of a link of Gunter\'s chain is', options: ['20 cm', '1\'', '0.66\'', '2.065\''], correct: 2 },
+            { question: 'Which of the following angles can be set out with the help of French cross staff?', options: ['45° only', '90° only', 'Either 45° or 90°', 'Any angle'], correct: 2 },
+            { question: 'Which of the following methods of offsets involves less measurements on the ground?', options: ['Method of perpendicular offsets', 'Method of oblique offsets', 'Method of ties', 'All involve equal measurements on the ground'], correct: 1 },
+            { question: 'The permissible error in chaining for measurement with chain on rough or hilly ground is', options: ['1 in 100', '1 in 250', '1 in 500', '1 in 1000'], correct: 1 },
+            { question: 'The angle between the reflecting surface of a prism square is', options: ['30°', '60°', '45°', '75°'], correct: 2 },
+            { question: 'The obstacle, which obstructs vision but not chaining is a', options: ['river', 'pond', 'hill', 'all of these'], correct: 2 },
+            { question: 'The obstacle, which obstructs chaining but not vision is a', options: ['river', 'hill', 'rising ground', 'all of these'], correct: 0 },
+            { question: 'The \'fix\' of a plane table station with three known points, is bad if the plane station lies', options: ['in the great triangle', 'outside the great triangle', 'on the circumference of the circumscribing circle', 'none of these'], correct: 2 },
+            { question: 'To orient a plane table at a point with two inaccessible points, the method generally adopted, is', options: ['intersection', 'resection', 'radiation', 'two point problem'], correct: 3 },
+            { question: 'Accuracy of \'fix by two point problem, is', options: ['bad', 'good', 'not reliable', 'unique'], correct: 2 },
+            { question: 'Contour lines cross ridge or valley lines at', options: ['30°', '45°', '60°', '90°'], correct: 3 },
+            { question: 'The least count of a vernier scale is', options: ['sum of the smallest divisions of main and vernier scales', 'value of one division of the primary scale divided by total number of divisions of vernier scale', 'value of one division of vernier scale divided by total number of divisions of primary scale', 'none of these'], correct: 1 },
+            { question: 'On a diagonal scale, it is possible to read up to', options: ['one dimension', 'two dimensions', 'three dimensions', 'four dimensions'], correct: 2 },
+            { question: 'Measuring with a 30 m chain, 0.01 m too short, introduces', options: ['positive compensating error', 'positive cumulative error', 'negative compensating error', 'negative cumulative error'], correct: 3 },
+            { question: 'The area of any irregular figure of the plotted map is measured with', options: ['pentagraph', 'sextant', 'clinometer', 'planimeter'], correct: 3 },
+            { question: 'If d is the distance between equidistant odd ordinates, the Simpson\'s rule for the areas is', options: ['d/2 [h₁+hₙ+2(h₃+h₅+...+hₙ₋₂)+4(h₂+h₄+....+hₙ₋₁)]', 'd/3 [h₁+hₙ+2(h₃+h₅+...+hₙ₋₂)+4(h₂+h₄+....+hₙ₋₁)]', 'd/6 [h₁+hₙ+2(h₁₁+h₂+...+hₙ₋₂)+4(h₁+h₃+....+hₙ₋₂)]', 'd/5 [h₁+h₂+2(h₂+h₁+....+hₙ₋₂)+4(h₂+h₂+....+hₙ₋₁)]'], correct: 1 },
+            { question: 'Volume of the earth work may be calculated by', options: ['mean areas', 'end areas', 'prismoidal formula', 'all of the above'], correct: 3 },
+            { question: 'The trapezoidal rule of volumes V of an embankment divided into a number of sections equidistant D, is give by', options: ['V=D[(A₁+Aₙ)/2+A₂+A₃+..........+Aₙ₋₁]', 'V=D/2[(A₁+Aₙ)/4+A₂+A₃+............+Aₙ₋₁]', 'V=D/2[A₁+Aₙ+2(A₂+A₁+...................+Aₙ₋₁)+4(A₃+A₅+.....+Aₙ₋₁)]', 'V=D/2[A₁+Aₙ+4(A₂+A₄+........+Aₙ₋₁)+4(A₃+A₅+.........+Aₙ₋₂)]'], correct: 0 },
+            { question: 'For indirect ranging, number of ranging rods required is', options: ['1', '2', '5', '4'], correct: 3 },
+            { question: 'The smaller horizontal angle between the true meridian and a survey line is known as', options: ['declination', 'azimuth', 'dip', 'bearing'], correct: 3 },
+            { question: 'The vertical angle between longitudinal axis of a freely suspended magnetic needle and a horizontal line at its pivot, is known as', options: ['declination', 'azimuth', 'dip', 'bearing'], correct: 2 },
+            { question: 'Perpendicular offset from a tangent to the junction of a transition curve and circular curve is', options: ['shift', 'twice the shift', 'thrice the shift', 'four times the shift'], correct: 0 },
+            { question: 'In order to measure a horizontal angle more accurately than a vernier, a', options: ['method of repetition is used', 'method of reiteration is used', 'method of deflection angles is used', 'method of double observations is used'], correct: 0 },
+            { question: 'In measuring horizontal angles, the theodolite should be turned', options: ['clockwise from the forward station to the back station', 'clockwise from the back station to the forward station', 'anticlockwise from the forward station to the back station', 'anticlockwise from the back station to the forward station'], correct: 1 },
+            { question: 'If the smallest division of a vernier is longer than the smallest division of its primary scale, the vernier is known as', options: ['direct vernier', 'double vernier', 'retrograde vernier', 'simple vernier'], correct: 2 },
+            { question: 'If the length of chain is found to be short on testing, it can be adjusted by', options: ['straightening the links', 'removing one or more circular rings', 'closing the joints of the rings if opened out', 'all of these'], correct: 0 },
+            { question: 'The maximum tolerance in 20 m chain is', options: ['±2 mm', '±3 mm', '±5mm', '±8 mm'], correct: 1 },
+            { question: 'For accurate work, the steel band should always be used in preference to chain because the steel band', options: ['is lighter than chain', 'is easier to handle', 'is practically inextensible and is not liable to kinks when in use', 'can be easily repaired in the field'], correct: 2 },
+            { question: 'The length of chain is measured from', options: ['center of one handle to center of other handle', 'outside of one handle to outside of other handle', 'outside of one handle to inside of other handle', 'inside of one handle to inside of other handle'], correct: 0 },
+            { question: 'The magnetic bearing of a line differs for the true bearing by', options: ['magnetic declination east', 'magnetic declination west', 'the amount of local attraction', 'both \'a\' and \'b\''], correct: 3 },
+            { question: 'If the whole circle bearing of a line is 120°, its quadrant bearing is', options: ['S60°E', 'E30°S', 'N120°E', 'None of these'], correct: 0 },
+            { question: 'While plane tabling in plane and open area, the most important operation for setting up the plane table is', options: ['orienting', 'leveling', 'centering', 'placing the alidade'], correct: 1 },
+            { question: 'The survey a small area which one of the most important operation for setting up the plane table is', options: ['radiation', 'intersection', 'traversing', 'resection'], correct: 0 },
+            { question: 'In leveling operation', options: ['the first sight on any change point is a back sight', 'the second sight on any change point is a fore sight', 'the line commences with a fore sight and close with a back sight', 'the line commences with a back sight and closes with a foresight'], correct: 3 },
+            { question: 'A relatively fixed point of known elevation above datum, is called', options: ['bench mark', 'datum point', 'reduced level', 'reference point'], correct: 0 },
+            { question: 'In case of a direct vernier scale', options: ['graduations increase in opposite direction in which graduations of the main scale increase', 'smallest division is longer than smallest division of the main scale', 'graduations increase in the same direction in which graduations of the main scale increase', 'none of these'], correct: 2 },
+            { question: 'Reduced bearing of a line is an angle between', options: ['north line and given line measured clockwise', 'north line and given line measured anti-clockwise', 'east or west and the given line', 'given line and the part of the meridian whether n end or s end, lying adjacent'], correct: 3 },
+            { question: 'The angle of intersection of a curve is the angle between', options: ['back tangent and forward tangent', 'prolongation of back tangent and forward tangent', 'forward tangent and long chord', 'back tangent and long chord'], correct: 1 },
+            { question: 'If D is the angle of deflection of a simple curve of radius R, the length of its long chord is', options: ['R cos D/2', '2R COS d/2', 'R sin D/2', '2R sin D/2'], correct: 3 },
+            { question: 'The chord a curve less than peg interval, is known as', options: ['small chord', 'sub-chord', 'normal chord', 'short chord'], correct: 1 },
+            { question: 'In route surveys, the most suitable method of contouring is', options: ['by squares', 'by radial lines', 'by cross-section', 'by tacheometer'], correct: 2 },
+            { question: 'To the sum of the first and last ordinates, add twice the sum of the remaining odd ordinates and four times the sum of all the even ordinates. The total sum thus obtained is multiplied by one third of the common distance between the ordinates and the result gives the required area. This rule of finding the area is called', options: ['mid-ordinate rule', 'trapezoidal rule', 'average ordinate rule', 'simpson\'s rule'], correct: 3 },
+            { question: 'If L is the measured length of a base line whose elevation is h above MSL.. the necessary correction to reduce the base length to MSL is', options: ['L*h/R', 'L*(h/R)²', 'L/2*(h/R)²', 'L*R/h'], correct: 1 },
+            { question: 'Chain survey method is most suitable', options: ['in fairly level and open area', 'for large scale plans required for industrial site', 'comparatively small area', 'all of these'], correct: 3 },
+            { question: 'The principle of chain surveying is to divided the area into a number of', options: ['triangles', 'squares', 'rectangles', 'circles'], correct: 0 },
+            { question: 'For locating the locations of the individual points according to situation we resort to', options: ['perpendicular offsets', 'oblique offsets', 'short offsets', 'all of these'], correct: 3 },
+            { question: 'The diaphragm of a leveling telescope contains', options: ['two vertical wires and three horizontal wires', 'three vertical wires and two horizontal wires', 'two vertical wires and two horizontal wires', 'none of these'], correct: 0 },
+            { question: 'At a change point', options: ['two readings are taken', 'the first reading was taken from the preceding station', 'the second reading is taken on the staff from the following station', 'all of these'], correct: 3 },
+            { question: 'An inverted level staff is held when', options: ['leveling in the ravines', 'leveling in tunnels', 'leveling along canals', 'none of these'], correct: 1 },
+            { question: 'when the back staff reading and forward staff reading at a station of leveling are the same, their difference shall be entered', options: ['in rise column', 'fall column', 'in both rise and fall columns', 'in neither of the columns'], correct: 3 },
+            { question: 'cumulative error that occur in chaining are proportional to', options: ['L', '√L', '1/L', '1/√L'], correct: 0 },
+            { question: 'The theodolite is an instrument used for measuring very accurately', options: ['horizontal angles only', 'vertical angles only', 'horizontal and vertical angles', 'linear measurements'], correct: 2 },
+            { question: 'The process of turning the telescope of a theodolite over its supporting axis through 180° in a vertical plane, is called', options: ['transiting', 'reversing', 'plunging', 'any one of these'], correct: 2 },
+            { question: 'An imaginary line joining the point of intersection of the cross-hairs of the diaphragm and the optical plane is called', options: ['fundamental line', 'axis of telescope', 'axis of level tube', 'line of collimation'], correct: 3 },
+            { question: 'A line joining the optical centre of the object glass and the centre of the eye piece is known as', options: ['fundamental line', 'axis of telescope', 'axis of level tube', 'line of collimation'], correct: 1 },
+            { question: 'In the surveying telescopes, cross hairs are fitted in', options: ['centre of the telescope', 'optical centre of the eye piece', 'front of the eye piece', 'nearer to the objective'], correct: 3 },
+            { question: 'In the surveying telescope, diaphragm is held', options: ['inside the eye piece', 'inside the objective', 'nearer to the eye piece', 'nearer to the objective'], correct: 2 }
+        ]
+    };
+
+
+
+console.log('questionSet defined');
+    startTest(questionSet);
+    console.log('startTest called');
+})(); 
+</script>
+<script src="/js/text-protect.js" defer></script>
+<script src="/js/logo.js"></script>
+</body>
+</html>

@@ -44,15 +44,15 @@
       const article = document.createElement("article");
       article.className = "book";
 
-      
-      const link = `https://arunpanthi.com.np/Psc-preparation/Mock-Test/General/Set/${i}`;
+      // FIXED: Using a real file (index.php) with a query parameter.
+      // This guarantees a 200 OK response and zero redirects.
+      const link = `https://arunpanthi.com.np/Psc-preparation/Mock-Test/General/Set/index.php?set=${i}`;
 
       article.innerHTML = `
        <img src="https://arunpanthi.com.np/Photos/logo.png" 
            alt="Set No: ${i}" width="150" height="150">
-     
         <h2>Set No: ${i}</h2>
-        <a href="${link}" class="cta-button">Start Exam</a>
+        <a href="${link}" class="cta-button" title="Start Mock Test Set ${i}" rel="noopener noreferrer">Start Exam</a>
       `;
       bookList.appendChild(article);
     }

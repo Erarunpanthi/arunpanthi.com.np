@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Construction Management & Organization - Complete Set</title>
+<link rel="icon" href="https://arunpanthi.com.np/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="/css/Mock_Test.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar" id="navbar">
+<span class="brand" id="navbar-brand">Profit & Loss </span>
+<span class="timer-display" id="timer-display" style="display:none;">--:--</span>
+</nav>
+
+<!-- Warning modal -->
+<div id="warning-modal" class="modal-overlay" style="display: none;">
+<div class="modal-dialog">
+<div class="warning-icon">⚠️</div>
+<h3>Unanswered Questions</h3>
+<p>You haven't answered all the questions.</p>
+<span class="unanswered-count" id="modal-unanswered-count">0 unanswered</span>
+<p style="margin-top:8px;"><strong>⚠ This test cannot be retaken once submitted!</strong></p>
+<div class="modal-buttons">
+<button class="btn-cancel" id="btn-modal-cancel">Cancel</button>
+<button class="btn-submit-warning" id="btn-modal-submit">Submit Anyway</button>
+</div>
+</div>
+</div>
+
+<div id="pre-test-section">
+<div class="hero" id="hero-card">
+<h1 id="hero-set-name">Loading...</h1>
+<p class="set-details" id="hero-details"></p>
+<div class="set-meta">
+<div class="meta-item"><span id="hero-q-count">0</span> Questions</div>
+<div class="meta-item"><span id="hero-time">0:00</span> Time (min)</div>
+</div>
+<button class="btn-start" id="btn-start-test">🚀 Start Test</button>
+<p style="margin-top:10px;font-size:0.85rem;opacity:0.8;" id="hero-note"></p>
+</div>
+</div>
+
+<div id="test-section" style="display:none;">
+<div class="test-container">
+<div class="question-area">
+<div class="question-card">
+<div class="q-number" id="q-number-label">QUESTION 1</div>
+<div class="q-text" id="q-text">Loading question...</div>
+<ul class="options-list" id="options-list"></ul>
+</div>
+<div class="nav-buttons">
+<div class="nav-left"><button class="btn-nav" id="btn-prev">◀ Previous</button></div>
+<div class="nav-center"><button class="btn-submit" id="btn-submit-test">✅ Submit Test</button></div>
+<div class="nav-right"><button class="btn-nav" id="btn-next">Next ▶</button></div>
+</div>
+</div>
+<aside class="sidebar">
+<h3>📋 Question </h3>
+<div class="total-questions" id="sidebar-total">Total: 0</div>
+<div class="answered-count">Answered: <strong id="sidebar-answered-num">0</strong></div>
+<div class="q-grid" id="q-grid"></div>
+<div class="legend">
+<span><span class="dot-sample blue"></span> Answered</span>
+<span><span class="dot-sample gray"></span> Unanswered</span>
+</div>
+</aside>
+</div>
+</div>
+
+<div id="results-section" style="display:none;">
+<div class="results-container">
+<div class="results-header">
+<h2 style="color:#2E7D32;">📊 Test Results</h2>
+<p style="color:#666;" id="results-set-name"></p>
+<div class="score-circle">
+<span class="score-num" id="results-score">0</span>
+<span class="score-denom" id="results-denom">/ 0</span>
+</div>
+<div class="percentage" id="results-percentage">0%</div>
+<p style="margin-top:8px;color:#888;font-size:0.9rem;" id="results-time-taken"></p>
+</div>
+<div id="results-detail"></div>
+</div>
+</div>
+<script src="/js/Mock_Test.js"></script>
+<script>
+(function() {
+    console.log('Inline script running');
+    const questionSet = {
+        name: 'Construction Management & Organization - Complete Set',
+        details: 'Covers organization types, contracts, procurement, supervision, and construction management in Nepal.',
+        questions: [
+            { question: 'Need for organization', options: ['to arrange the right people at right position at right time', 'coordination action for the achievement of goal', 'to prompt decision', 'all of the above'], correct: 3 },
+            { question: 'Type of organization used in construction industry is', options: ['line organization', 'line staff organization', 'function organization', 'effective organization'], correct: 0 },
+            { question: 'Fredrick W. Taylor introduced a system of working, is known as', options: ['line organization', 'line and staff organization', 'functional organization', 'effective organization'], correct: 2 },
+            { question: 'In which of the following organization structure, each specialist is supposed to give his functional advice to all other foremen and workers', options: ['line organization', 'functional organization', 'line and staff organization', 'all of the above'], correct: 1 },
+            { question: 'The most popular type of organization used for civil engineering construction is', options: ['line organization', 'lines and staff organization', 'functional organization', 'effective organization'], correct: 0 },
+            { question: 'The type of organization used in construction industry is', options: ['Functional organization', 'Line organization', 'Effective organization', 'Line staff organization'], correct: 1 },
+            { question: 'The main advantage of line organization is', options: ['effective command and control', 'defined responsibilities at all levels', 'strict discipline in the organization', 'all of the above'], correct: 3 },
+            { question: 'Functional organization system of working was introduced by', options: ['Henry Gantt', 'M.R. Walker', 'F.W. Taylor', 'Peter Drucker'], correct: 2 },
+            { question: 'In a development related organization, the responsibilities of the sub-engineer is', options: ['estimating and costing', 'making design and drawing', 'site supervision and quality control', 'approval of bill'], correct: 2 },
+            { question: 'When engineering departments undertake the works of other department the amount charged towards design supervision, etc. is called', options: ['work charged establishment', 'centage charge', 'contingencies', 'service charge'], correct: 1 },
+            { question: 'The main responsibility of overseer/sub-engineer is', options: ['to teach the sub ordinate', 'to understand the duties', 'to plan and execute the work', 'all of the above'], correct: 3 },
+            { question: 'What are the responsibilities of a civil overseer who works at construction site?', options: ['to supervise the construction work for quality', 'to take measurement of completed work', 'to report daily progress to the engineer', 'all of the above'], correct: 3 },
+            { question: 'The owner gets the assurance of work progress and quality from', options: ['supervisor', 'contractor', 'engineer', 'mason'], correct: 2 },
+            { question: 'Which is not a responsibility of Civil Sub Engineer while working on the behalf of government agencies?', options: ['Project design', 'Work supervision', 'Measurement of completed works', 'Reporting'], correct: 0 },
+            { question: 'What is the main responsibility of assistant sub-engineer?', options: ['Plan and design a sub-project', 'Detail design of a sub-project', 'Supervise the design of a sub-project', 'Supervise the work of a sub-project'], correct: 3 },
+            { question: 'The overall in-charge of an organization at the site for the execution of the work is', options: ['executive engineer', 'engineer', 'sub-engineer', 'assistant sub-engineer'], correct: 1 },
+            { question: 'The conception of idea for any construction on work is the responsibility of', options: ['engineer', 'contractor', 'owner', 'all of the above'], correct: 2 },
+            { question: 'Which of these procedures doesn\'t provide a direct from of quality control?', options: ['control chart', 'acceptance sampling', 'design of experiments', 'cusum chart'], correct: 2 },
+            { question: 'The report prepared at the end of finishing a construction job is called', options: ['audit report', 'finalization report', 'approval report', 'completion report'], correct: 3 },
+            { question: 'What do you mean by a site plan?', options: ['detail breakdown of different construction activities', 'detail space allocation for different group of activities', 'detail breakdown of different types of labours', 'all of the above'], correct: 1 },
+            { question: 'In construction industry, contractor\'s profit is included in', options: ['unit rate of items', 'specification', 'work charged establishments', 'contingencies'], correct: 0 },
+            { question: 'A guarantee amount that is provided by the contractor to the employer towards successful execution of a contract is known as', options: ['tender security', 'bid security', 'performance security', 'advance security'], correct: 2 },
+            { question: 'The contractor is selected by', options: ['low-bid selection', 'best value selection', 'qualification based selection', 'all of the above'], correct: 3 },
+            { question: 'An agreement between two parties or more to do or not to do any work is known as', options: ['work to proceed', 'contract', 'specification', 'tender'], correct: 1 },
+            { question: 'Relation between consultant contractor and owner should be', options: ['cooperative with each other', 'coordinated with each other', 'problems solving with understanding and discussion', 'all of the above'], correct: 3 },
+            { question: 'For the execution of work in time, work plan is prepared by', options: ['contractor', 'consultant', 'petti contractor', 'financial institution'], correct: 0 },
+            { question: 'Who is responsible for accident occurring at site?', options: ['Consultant', 'Contractor', 'Himself', 'Petti contractor'], correct: 1 },
+            { question: 'At what stage "Quality Assurance plan" is prepared and by whom?', options: ['By contractor before starting the works', 'By consultant during construction activities', 'By client at procurement stage', 'By contractor before signing the contract'], correct: 0 },
+            { question: 'Which of the following documents should be prepared and submitted by a contractor?', options: ['Bid document', 'Quality control plan', 'Quality assurance plan', 'Specification'], correct: 2 },
+            { question: 'The maximum amount of mobilization paid to the contractor shall not exceed', options: ['5% of the contract amount', '20% of the contract amount', '25% of the contract amount', '40% of the contract amount'], correct: 1 },
+            { question: 'As per public procurement regulation, 2064, while estimating any consulting services the "price adjustment contingency" is taken as', options: ['5% of consulting service cost', '10% of consulting service cost', '15% of consulting service cost', '20% of consulting service cost'], correct: 0 },
+            { question: 'Payment of embankment activities shall be done with', options: ['district rate', 'contract rate', 'estimate rate', 'all of the above'], correct: 1 },
+            { question: 'Rate column of bill quantity is filled by', options: ['client', 'contractor', 'consultant', 'none of the above'], correct: 1 },
+            { question: 'The term SCC in conditions of contract refers to', options: ['standard conditions of contract', 'specific condition of contract', 'safe condition of contract', 'special conditions of contract'], correct: 3 },
+            { question: 'A type of contract based on estimated quantities of items included in the project and their unit prices quoted by the bidder against each item is known as', options: ['lump sum contract', 'cost plus contract', 'unit rate contract', 'construction management contract'], correct: 2 },
+            { question: 'EPC contract means', options: ['end of planning and construction', 'evaluation planning and construction', 'engineering planning and construction', 'engineering procurement and construction'], correct: 3 },
+            { question: 'Which of following contract is suitable to control the tendency of the contractor to increase the cost of the project unnecessarily', options: ['cost plus contract', 'cost plus a fixed fee contract', 'design and build contract', 'BOOT contract'], correct: 1 },
+            { question: 'Tender document does not contain', options: ['tender form', 'BOQ', 'unit rate', 'amount of bid security'], correct: 2 },
+            { question: 'The sum of amount required to be deposited by a contractor while submitting a tender is known as', options: ['recurring deposit', 'fixed deposit', 'security deposit', 'earnest money deposit'], correct: 3 },
+            { question: 'The amount of money deposited while bidding a tender as a guarantee of party\'s willingness of carryout the work is called', options: ['security money', 'retention money', 'performance bond', 'earnest money'], correct: 3 },
+            { question: 'Bidding document is provided to the', options: ['eligible bidder on purchase', 'third party', 'project related personnel', 'none of above'], correct: 0 },
+            { question: 'Bid security in a contract is required', options: ['during bidding process', 'after bidding process', 'during contract signing', 'after contract signing'], correct: 0 },
+            { question: 'Which of the following is not a part of bid document', options: ['bill of quantity', 'drawings', 'specifications', 'performance security'], correct: 3 },
+            { question: 'The bid security validity period generally is', options: ['30 days beyond the bid validity period', 'equal to the bid validity period', '30 days less than bid validity period', 'none of the above'], correct: 0 },
+            { question: 'As per public procurement act-2063 and regulation 2064, the minimum bidding period (time between invitation for bid and last date of submission of bids) for International Competitive Bidding (ICB) contracts is', options: ['30 days', '15 days', '45 days', '7 days'], correct: 2 },
+            { question: 'The amount of bid security is', options: ['1-2% of estimated amount', '2-3% of estimated amount', '3-4% of estimated amount', '4-5% estimated amount'], correct: 1 },
+            { question: 'Which of the following is not a part of a contract agreement?', options: ['Price schedule', 'Work schedule', 'Manning schedule', 'cost estimate'], correct: 3 },
+            { question: 'The contractor is responsible for', options: ['procuring material not supplied by the owner', 'organizing and planning the work as per drawing', 'executing the work as per specifications laid down in contract', 'all of the above'], correct: 3 },
+            { question: 'What is the difference between quotation and direct order?', options: ['Notice of quotation is published in newspaper but not for direct order', 'Bid security amount for quotation is more than that of direct order', 'In direct order the rates of contract shall be fixed by verbal agreement, for quotation it shall be written', 'Both are similar except the threshold of contract amount'], correct: 3 },
+            { question: 'What is the most important aspect of supervision in construction work?', options: ['To control the cost', 'To control the quality of project', 'To control the rise in price', 'All of the above'], correct: 1 },
+            { question: 'Inspection of construction works for quality control is carried out and covers', options: ['sampling, examination and field testing of materials', 'testing specimens in the laboratory', 'observation of a construction equipment and plant', 'all of the above'], correct: 3 },
+            { question: 'Which of the following is not a scope of construction supervision?', options: ['Progress of the works', 'Quality of the works', 'Measurement of the works', 'Preparation of tender documents'], correct: 3 },
+            { question: 'The reduction in project time normally results in', options: ['decreasing the direct cost and increasing indirect cost', 'increasing the direct cost and decreasing indirect cost', 'increasing the direct cost and indirect cost both', 'decreasing the direct cost and indirect cost both'], correct: 1 },
+            { question: 'The object of technical planning is', options: ['preparation of specification', 'preparation of estimates', 'initiating the procurement action of resources', 'all of the above'], correct: 3 },
+            { question: 'Which of the following techniques is advanced and more indicate in modern construction progress review?', options: ['Earned value', 'S-curve', 'Histogram', 'Milestone'], correct: 0 },
+            { question: 'Which of the following term does not include while making a cost expenditure in Government offices?', options: ['Value added tax (VAT)', 'Price escalates', 'Physical Contingency', 'Increase tax'], correct: 2 },
+            { question: 'Time line for a project that are to determine the order and duration on construction activities is called', options: ['pre estimation', 'construction supervision', 'pre construction planning', 'construction schedule'], correct: 3 },
+            { question: 'The conception of idea for any construction works is the responsibility of', options: ['owner', 'engineer', 'contractor', 'all of the above'], correct: 0 },
+            { question: 'As per local government operation act, 2074 any infrastructural development proposals must go through public auditing if it exceeds the amount mentioned below', options: ['Rs. twenty five thousand', 'Rs. fifty thousand', 'Rs. seventy five thousand', 'Rs. one hundred thousand'], correct: 3 },
+            { question: 'Which of the following item is not required in municipal building byelaws?', options: ['Minimum plot area and ground coverage', 'Maximum allowed building height', 'Scale of the drawing', 'Building cost estimate'], correct: 3 },
+            { question: 'Which of the following contract types is usually followed by government organization in Nepal?', options: ['Lump sum', 'Percentage rate', 'Item rate', 'Piece work'], correct: 2 },
+            { question: 'In Nepal, public procurement act was enacted in', options: ['2055 BS', '2065 BS', '2059 BS', '2063 BS'], correct: 3 },
+            { question: 'In construction management works muster roll term is related as', options: ['wages', 'bonus money', 'provident money', 'donation money'], correct: 0 },
+            { question: 'Muster rolls are used for', options: ['to pay wages of workers employed on daily basis', 'to record the daily construction activities', 'to evaluate the constriction activities', 'to evaluate the performance of workers'], correct: 0 },
+            { question: 'Daily attendance of labour force is recorded in', options: ['site instruction book', 'muster roll', 'level book', 'estimating and costing'], correct: 1 },
+            { question: 'The method of directly hiring the labours (skilled and unskilled) in a construction work by an agency is known as', options: ['quotation work', 'direct order work', 'muster roll pavement method', 'tender work'], correct: 2 },
+            { question: 'Attendance of daily wage workers are recorded in', options: ['measurement book', 'day book', 'log book', 'muster roll'], correct: 3 },
+            { question: 'The types of format in which the records of labors are kept on daily basis for executing works is known as', options: ['attendance register', 'voucher', 'attendance book', 'muster roll'], correct: 3 },
+            { question: 'The Defect Liability Period (DLP), in general is', options: ['one year from date of completion', 'two year from date of completion', 'six month from date of completion', 'nine month from date of completion'], correct: 0 },
+            { question: 'What provision is made for the pension in civil service act, 2049 before the completion of 20 years of period?', options: ['No pension shall be give', 'Pension amount shall be given as per the number of years served', 'Pension amount shall be equivalent to 20 years of service period', 'Pension amount shall be given by adding remaining service period of the retirement age'], correct: 1 }
+        ]
+    };
+
+
+console.log('questionSet defined');
+    startTest(questionSet);
+    console.log('startTest called');
+})(); 
+</script>
+<script src="/js/text-protect.js" defer></script>
+<script src="/js/logo.js"></script>
+</body>
+</html>

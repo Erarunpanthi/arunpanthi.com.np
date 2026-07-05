@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chain Surveying & Measurements </title>
+<link rel="icon" href="https://arunpanthi.com.np/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="/css/Mock_Test.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar" id="navbar">
+<span class="brand" id="navbar-brand">Chain Surveying & Measurements </span>
+<span class="timer-display" id="timer-display" style="display:none;">--:--</span>
+</nav>
+<div id="warning-modal" class="modal-overlay" style="display: none;">
+<div class="modal-dialog">
+<div class="warning-icon">⚠️</div>
+<h3>Unanswered Questions</h3>
+<p>You haven't answered all the questions.</p>
+<span class="unanswered-count" id="modal-unanswered-count">0 unanswered</span>
+<p style="margin-top:8px;"><strong>⚠ This test cannot be retaken once submitted!</strong></p>
+<div class="modal-buttons">
+<button class="btn-cancel" id="btn-modal-cancel">Cancel</button>
+<button class="btn-submit-warning" id="btn-modal-submit">Submit Anyway</button>
+</div>
+</div>
+</div>
+<div id="pre-test-section">
+<div class="hero" id="hero-card">
+<h1 id="hero-set-name">Loading...</h1>
+<p class="set-details" id="hero-details"></p>
+<div class="set-meta">
+<div class="meta-item"><span id="hero-q-count">0</span> Questions</div>
+<div class="meta-item"><span id="hero-time">0:00</span> Time (min)</div>
+</div>
+<button class="btn-start" id="btn-start-test">🚀 Start Test</button>
+<p style="margin-top:10px;font-size:0.85rem;opacity:0.8;" id="hero-note"></p>
+</div>
+</div>
+<div id="test-section" style="display:none;">
+<div class="test-container">
+<div class="question-area">
+<div class="question-card">
+<div class="q-number" id="q-number-label">QUESTION 1</div>
+<div class="q-text" id="q-text">Loading question...</div>
+<ul class="options-list" id="options-list"></ul>
+</div>
+<div class="nav-buttons">
+<div class="nav-left"><button class="btn-nav" id="btn-prev">◀ Previous</button></div>
+<div class="nav-center"><button class="btn-submit" id="btn-submit-test">✅ Submit Test</button></div>
+<div class="nav-right"><button class="btn-nav" id="btn-next">Next ▶</button></div>
+</div>
+</div>
+<aside class="sidebar">
+<h3>📋 Question </h3>
+<div class="total-questions" id="sidebar-total">Total: 0</div>
+<div class="answered-count">Answered: <strong id="sidebar-answered-num">0</strong></div>
+<div class="q-grid" id="q-grid"></div>
+<div class="legend">
+<span><span class="dot-sample blue"></span> Answered</span>
+<span><span class="dot-sample gray"></span> Unanswered</span>
+</div>
+</aside>
+</div>
+</div>
+<div id="results-section" style="display:none;">
+<div class="results-container">
+<div class="results-header">
+<h2 style="color:#2E7D32;">📊 Test Results</h2>
+<p style="color:#666;" id="results-set-name"></p>
+<div class="score-circle">
+<span class="score-num" id="results-score">0</span>
+<span class="score-denom" id="results-denom">/ 0</span>
+</div>
+<div class="percentage" id="results-percentage">0%</div>
+<p style="margin-top:8px;color:#888;font-size:0.9rem;" id="results-time-taken"></p>
+</div>
+<div id="results-detail"></div>
+</div>
+</div>
+<script src="/js/Mock_Test.js"></script>
+<script>
+(function() {
+    console.log('Inline script running');
+    const questionSet = {
+        name: 'Chain Surveying & Measurements - Complete Set',
+        details: 'Covers chain surveying, scales, instruments, measurements, offsets, and surveying principles.',
+        questions: [
+            { question: 'A plain scale is used to read', options: ['one dimension', 'two dimensions', 'three dimensions', 'all of these'], correct: 1 },
+            { question: 'An instrument used for ranging is', options: ['optical square', 'line ranger', 'clinometer', 'pedometer'], correct: 1 },
+            { question: 'A diagonal scale is used to read dimensions', options: ['two', 'three', 'four', 'five'], correct: 1 },
+            { question: 'Survey plotting can be done with an accuracy of', options: ['0.25 m', '0.5 mm', '1 mm', '1 cm'], correct: 1 },
+            { question: 'A chain may get elongated due to', options: ['change in temperature', 'difference in pull', 'opening of rings', 'kinks in links'], correct: 0 },
+            { question: 'A scale which has a common representative fraction, but read in different measures, is called a', options: ['plain scale', 'shrunk scale', 'diagonal scale', 'comparative scale'], correct: 3 },
+            { question: 'In a direct vernier, the smallest division of a vernier is ........ the smallest division of its primary scale.', options: ['equal to', 'shorter than', 'longer than', 'none of these'], correct: 1 },
+            { question: 'A chain is made up of mild steel or galvanised iron wire of diameter', options: ['1 mm', '4 mm', '5 mm', '1 cm'], correct: 1 },
+            { question: 'Handles of chains are made up of', options: ['mild steel', 'galvanised iron', 'brass', 'copper'], correct: 2 },
+            { question: 'Measurements taken with a wrong can be corrected by using the relation', options: ['true length = (correct scale /wrong scale )* measured length', 'true length = (correct scale /wrong scale )^2* measured length', 'true length = (correct scale /wrong scale )^3* measured length', 'none of these'], correct: 0 },
+            { question: 'Handles are connected to the link by', options: ['fexible joint', 'rigid joint', 'ball and socket joint', 'swivel joint'], correct: 2 },
+            { question: 'If x is the smallest division on the main scale and n are the number of divisions on the vernier, then the least count of the vernier is', options: ['x + n', 'x - n', 'x * n', 'x / n'], correct: 3 },
+            { question: 'Distance between two neighbouring brass rings is', options: ['less than 20 cm', '20 cm', '1m', '5 m'], correct: 2 },
+            { question: 'An average length of a pace is', options: ['60 cm', '80 cm', '100 cm', '120 cm'], correct: 1 },
+            { question: 'The length of an Engineer\'s chain is', options: ['20 m', '33 feet', '66 feet', '100 feet'], correct: 3 },
+            { question: 'The method of measuring distance by pacing is chiefly used in', options: ['reconnaissance surveys', 'nan', 'preliminary surveys', 'all of these'], correct: 3 },
+            { question: 'The length of a link of Gunter\'s chain is', options: ['20 cm', '1\'', '0.66\'', '2.065\''], correct: 2 },
+            { question: 'A 30 m chain after measuring a distance of 6000 m was found to be 10 cm more than the designated length. If the chain was standardised before the commencement of survey then the true length is', options: ['6020 m', '5990 m', '6010 m', '5980 m'], correct: 0 },
+            { question: 'A 20 m long chain when tested should not show an error exceeding', options: ['2 mm per metre length and 5 mm in the overall length', '2 mm per metre length and 8 mm in the overall length', '2 mm per metre length and 20 mm in the overall length', '2 mm per metre length and 40 mum in the overall length'], correct: 1 },
+            { question: 'Accuracy of elevation of various points obtained from contour map is limited to', options: ['(1/4) ^ th of the contour interval', '(1/5) ^ th of the contour interval', '(1/2) ^ nd of the contour interval', '(1/3) ^ rd of the contour interval'], correct: 2 },
+            { question: 'Drop arrow is used in', options: ['measurement by method of stepping', 'conventional chain survey', 'measuring along slope', 'measuring with tape'], correct: 0 },
+            { question: 'Hypotenusal allowance is', options: ['(sec θ-1)x measured distance', '(1-sec θ)*measured distance', 'measured distance *(1*cos θ)', 'measured distance *cosθ'], correct: 0 },
+            { question: 'Hypotenusal allowance for a length of 50 m when the slope is 60° is', options: ['17.32 m', '37.5 m', '25 m', '50 m'], correct: 2 },
+            { question: 'The distance between steps for measuring downhill to obtain better accuracy', options: ['decreases with decrease of slope', 'decreases with decrease of weight of the chain', 'decreases with increase of slope', 'increases with increase of slope'], correct: 2 },
+            { question: 'In an adjusted level, when the bubble is central, the axis of the bubble tube becomes parallel to', options: ['line of sight', 'axis of the telescope', 'line of collimation', 'none of these'], correct: 0 },
+            { question: 'Survey is conducted at 40°C and the measured length was 5 km. If the chain was standardised at 20°C and coefficient of linear expansion of chain material is 0.3 * 10 ^ - 3 /^ 2 ˚C, then the correct length is', options: ['5000.15 m', '4999.70 m', '5000.30 m', '4999.85 m'], correct: 3 },
+            { question: 'Correction for pull is', options: ['(P-Po)l/AE', '(P-Po)l*A/E', '(P-Po)A/EI', '(P-Po)lAE'], correct: 0 },
+            { question: 'Survey plotting can be done with an accuracy of', options: ['0.25 mm', '0.5 mm', '1mm', '1 cm'], correct: 1 },
+            { question: 'Pick up the most accurate statement from the following:', options: ['survey lines in an area should be as many as possible', 'number of base lines in an area is limited to one', 'main chain lines should form well conditioned triangles', 'oblique offsets are inferior to perpendicular offsets'], correct: 2 },
+            { question: 'When a chain line encounters a river', options: ['Chaining is obstructed but ranging is free', 'ranging is obstructed but chaining is free', 'both ranging and chaining are obstructed', 'both ranging and chaining are free'], correct: 2 },
+            { question: 'For the revision of an existing survey with the help of plane table we generally use', options: ['radiation method', 'intersection method', 'resection method', 'none of these'], correct: 2 },
+            { question: 'The vertical distance above or below the datum is called', options: ['reduced level of the point', 'elevation of the point', 'height of the instrument', 'either \'a\' or \'b'], correct: 3 },
+            { question: 'The correction for sag is', options: ['always additive', 'always subtractive', 'sometimes additive and sometimes subtractive', 'always zero'], correct: 1 },
+            { question: 'Number of links per metre length of a chain are', options: ['2', '5', '8', '10'], correct: 1 },
+            { question: 'Pantagraph is used for', options: ['measuring distance', 'measuring areas', 'enlarging or reducing plans', 'setting out right angles'], correct: 2 },
+            { question: 'In chain surveying, perpendiculars to the chain line, are set out by...........', options: ['a theodolite', 'a prismatic compass', 'a level', 'an optical square'], correct: 3 },
+            { question: 'The branch of surveying in which both horizontal and vertical positions of a point, are determined by making in instrumental observations, is known', options: ['tacheometry', 'tachemetry', 'telemetry', 'all of the above'], correct: 3 },
+            { question: 'A base line in a chain survey', options: ['checks the accuracy of the framework', 'enables the survey or locate the interior details which are far away from the main chain lines', 'fixes up the directions of all other lines', 'all of the above'], correct: 3 },
+            { question: 'Chain surveying is most suitable when', options: ['area to be surveyed is small', 'ground is fairly level and open with simple details', 'plans are required on a large scale', 'all of the above'], correct: 3 },
+            { question: 'If L is the specified length of a tape, L1 its actual length and S the measured distance, then the true distance is given by the formula', options: ['(L1/L)*S', '(L/L1)*S', '(L-L1/L)*S', '(L1/L)^2*S'], correct: 0 },
+            { question: 'Metric chains are generally available in', options: ['10 m and 20 m length', '15 m and 20 m length', '25 m and 100 m length', '20 m and 30 m length'], correct: 3 },
+            { question: 'Due to curvature of earth the object', options: ['looks higher than it is', 'looks as it is', 'looks lower than it is', 'looks curved'], correct: 2 },
+            { question: 'While measuring with a metallic tape of 30 m length pull should be applied', options: ['1 kg', '2 kg', '3 kg', '4 kg'], correct: 0 },
+            { question: 'The ratio of the distances at which a stated length can be distinguished by the telescope and the human eye, respectively, is called', options: ['brightness of telescope', 'magnification of telescope', 'resolving power of telescope', 'none of these'], correct: 2 },
+            { question: 'Bergchund is a topographical feature in', options: ['plains', 'water bodies', 'hills', 'glaciated region'], correct: 3 },
+            { question: 'A check line in a chain surveying', options: ['checks the accuracy of the framework', 'enables the surveyor lines to locate the interior details which are far away from the main chain', 'fixed up the directions of all other lines', 'all of the above'], correct: 0 },
+            { question: 'A luminous object on the top of a hill 100 m high is just visible above the horizontal at a certain station at the sea level. The distance between the station and the hill is', options: ['3.853 km', '38.53 km', '3.853*√0.1 km', '385.3 km'], correct: 1 },
+            { question: 'A tie line in a chain surveying', options: ['checks the accuracy of the framework', 'enables the surveyor lines to locate the interior details which are far away from the main chain', 'fixed up the directions of all other lines', 'all of the above'], correct: 1 },
+            { question: 'Then the position of a poini is to be located accurately by a perpendicular offset, the direction of perpendicular is set out by means of', options: ['theodolite', 'optical square', 'dumpy level', 'planimeter'], correct: 1 },
+            { question: 'The accuracy in laying down the perpendicular offsets and in measuring them depends upon', options: ['scale of plotting', 'length of offset', 'importance of the object', 'all of the above'], correct: 3 },
+            { question: 'The limiting length of the offset is ........ when its perpendicular direction is set out by an eye.', options: ['5 m', '10 m', '15 m', '20 m'], correct: 2 },
+            { question: 'An example for instrumental error in levelling is…………', options: ['earth\'s curvature and atmospheric refraction', 'collimation error', 'wearing of shoe of level staff', 'defective tripod'], correct: 1 },
+            { question: 'When the temperature rises, length of bubble………', options: ['remains unaltered', 'decreases', 'increases', 'sometimes increases and sometimes decreases'], correct: 2 },
+            { question: 'Sensitiveness of bubble tube can be increased by………', options: ['using viscous liquid', 'reducing length of tube', 'increasing diameter of the tube', 'reducing internal radius of the tube'], correct: 3 },
+            { question: 'To use the Abney clinometer as Abney level the vernier should read', options: ['0°', '90°', '0° or 180°', 'it is not possible to use clinometer as hand level'], correct: 0 },
+            { question: 'Check lines (or proof lines) in Chain Surveying are essentially required', options: ['to plot the chain lines', 'to indicate the accuracy of the survey work', 'to increase the out-turn', 'to plot the offsets'], correct: 1 },
+            { question: 'A well conditioned triangle has no angle less than', options: ['20°', '30°', '45°', '60°'], correct: 1 },
+            { question: 'The surface if zero elevation around the earth, which is slightly irregular and curved, is known as....', options: ['mean sea level', 'level surface', 'geoid surface', 'Berizontal surface'], correct: 2 },
+            { question: 'The accuracy of measurement in chain surveying does not depend upon', options: ['length of the offset', 'scale of the plotting', 'importance of the features', 'general layout of the chain lines'], correct: 3 },
+            { question: 'The limiting length of an offset does not depend upon', options: ['accuracy of the work', 'method of setting out perpendiculars', 'scale of plotting', 'indefinite features to be surveyed'], correct: 3 },
+            { question: 'An angles of 45° with a chain line may be set out with..', options: ['open cross staff', 'prismatic square', 'optical square', 'french cross staff'], correct: 3 },
+            { question: 'For taking offsets with an optical square on the right hand side of the chain line, it is held', options: ['by right hand upside down', 'by left hand upright', 'by right hand upright', 'by left hand upside down'], correct: 2 },
+            { question: 'Pick up the most accurate statement from the following', options: ['survey lines in an area should be as many as possible', 'number of base lines in an area is limited to one', 'main chain lines should from well conditioned triangles', 'oblique offsets are inferior to perpendicular offsets'], correct: 2 },
+            { question: 'When a chain line encounters a river', options: ['chaining is obstructed but ranging is free', 'ranging is obstructed but chaining is free', 'both ranging and chaining are free', 'both ranging and chaining are obstructed'], correct: 3 },
+            { question: 'A 30 m chain after measuring a distance of 6000 m was found to be 10 cm more than the designated length. If the chain was standardized before the commencement of survey than the true length is', options: ['6020 m', '6010 m', '5990 m', '5980 m'], correct: 0 },
+            { question: 'Theory of probability is applied to', options: ['accidentals errors only', 'cumulative errors only', 'both accidental and cumulative errors', 'none of these'], correct: 2 },
+            { question: 'The approximate formula for radial or perpendicular offsets from the tangent, is.', options: ['X/2R', 'X^2/2R', 'X/R', 'X^2/R'], correct: 1 },
+            { question: 'A chain may get elongated due to', options: ['difference in pull', 'kinks in links', 'opening of rings', 'change in temperature'], correct: 3 },
+            { question: 'A negative declination shows that the magnetic meridian is to the', options: ['eastern side of the true meridian', 'western side of the true meridian', 'southern side of true meridian', 'none of these'], correct: 1 },
+            { question: 'An invar tape is generally used for accurate measurement of distance because it possesses ........ coefficient of thermal expansion.', options: ['zero', 'low', 'high', 'none of these'], correct: 1 },
+            { question: 'The instrument attached to the wheel of a vehicle in order to measure the distance travelled, is called', options: ['passometer', 'pedometer', 'odometer', 'speedometer'], correct: 2 },
+            { question: 'Ceylon Ghat tracer can read slopes up to……….', options: ['1/120 to 1/6 either way', '1/6 either elevation or depression 1/30', '1/300 to 1/2 rising or falling', '1/500 to 1/10 upwards or downwards'], correct: 0 },
+            { question: 'It is more convenient and gives better results while measuring horizontal distance........ by stepping method.', options: ['down the hill', 'up the hill', 'in plane areas', 'all of these'], correct: 1 },
+            { question: 'The error in measured length due to incorrect holding of chain is', options: ['cumulative error', 'negative error', 'compensating error', 'instrumrnt error'], correct: 2 },
+            { question: 'The instrument used to reproduce plans to a different scale is called…………', options: ['planimeter', 'clinometer', 'Ghat tracer', 'pantograph'], correct: 3 },
+            { question: 'To reproduce the given map to a small scale, positions of pointer and pencil in a pantograph are', options: ['pointer is to the longer arm and pencil to the shorter arm', 'pointer to the shorter arm and pencil to the longer arm', 'both pointer and pencil are to the two different short arms', 'both the pointer and pencil are to the two different long arms, pencil being fixed and pointer adjusted to the scale.'], correct: 0 },
+            { question: 'Geodetic surveying is different from plane surveying because of', options: ['the curvature of earth', 'nan', 'coverage of very large area', 'nan'], correct: 0 },
+            { question: 'Offsets are', options: ['short measurements from chain line', 'ties or check lines which are perpendicular to chain line', 'sets of minor instruments in chain surveying', 'chain lines which go out of alignment'], correct: 0 },
+            { question: 'The tension, at which the effects of pull and sag for a tape are neutralised, is known as', options: ['initial tension', 'surface tension', 'absolute tension', 'normal tension'], correct: 3 },
+            { question: 'A line joining the apex of a triangle to some fixed point on the opposite side is called a', options: ['base line', 'check line', 'tie line', 'none of these'], correct: 2 },
+            { question: 'When 1 cm on a map represents 10 m on the ground, the representative fraction of scale is.', options: ['2024-01-10 00:00:00', '1/100', '1/1000', '1/10000'], correct: 2 },
+            { question: 'The representative fraction 1/2500 means that the scale is', options: ['1cm = 0.25m', '1cm = 2.5m', '1cm = 25m', '1cm = 250m'], correct: 2 },
+            { question: 'The main object of running a tie line is', options: ['to check accuracy of the work', 'to take offsets for detailed surveying', 'to take details of nearby objects', 'none'], correct: 0 },
+            { question: 'In the prismatic compass', options: ['the magnetic needle moves with the box', 'the line of sight doesn\'t move with the box', 'the magnetic needle and graduated circle do not move with the box', 'none of these'], correct: 2 },
+            { question: 'Local attraction in compass surveying may exist due to ........', options: ['incorrect leveling of the magnetic needle', 'friction of the needle at the pivot', 'presence of magnetic substances near the instrument', 'loss of magnetism of the needle'], correct: 2 },
+            { question: 'The difference between the most probable value and its observed value is', options: ['true error', 'true error', 'weighted observation', 'residual error'], correct: 3 },
+            { question: 'An arbitrary surface with reference to which the elevation of points are measured and compared, is called', options: ['datum surface', 'horizontal surface', 'level surface', 'vertical surface'], correct: 0 },
+            { question: 'The distances AC and BC are measured from two fixed points A and B whose distance AB is known. The point C is plotted by intersection. This method is generally adopted in', options: ['chain surveying', 'traverse method of surveying', 'triangulation', 'none of these'], correct: 2 },
+            { question: 'Mistakes which may produce a very serious effect upon the final results arise due to', options: ['in attention', 'in experience', 'carelessness', 'all of the above'], correct: 3 },
+            { question: 'The systematic errors which persist and have regular effects in the performance of a survey operations, are due to', options: ['careless', 'inattention', 'faulty instrument', 'none of these'], correct: 2 },
+            { question: 'You have to observe an included angle with better accuracy than what is achievable by a vernier, you will prefer the method of.............', options: ['repetition', 'double observations', 'reiteration', 'exactness'], correct: 0 },
+            { question: 'Correct length of a 50 m tape, weighing 1.2 kg when a pull of 12 kg is applied at the ends and is freely suspended is', options: ['49.98 m', '49.96 m', '50.02 m', '50.04'], correct: 1 },
+            { question: 'In the double application of principle of reversion, the apparent error is', options: ['half the true error', 'equal to true error', 'four times the true error', 'two times the true error'], correct: 3 },
+            { question: 'Long offsets are taken if the offset length exceeds', options: ['5 m', '10 m', '15 m', '20 m'], correct: 2 },
+            { question: 'The strength of fix is poor when', options: ['the station is within the great triangle', 'the station is outside the great circle', 'the station is within the great circle but outside the great triangle', 'the station is on the great circle'], correct: 1 },
+            { question: 'Grid lines are parallel to……..', options: ['magnetic meridian of the central point of the grid', 'line representing the central true meridian of the grid', 'geographical equator', 'none of these'], correct: 1 },
+            { question: 'Normal tension is that pull which .....', options: ['is used at the time of standardizing the tape', 'neutralizes the effect due to pull and sag', 'makes the correction due to sag equal to zero', 'makes the correction due to pull equal to zero'], correct: 1 },
+            { question: 'If the length of a chain line along a slope of 0° is l, the required slope correction is', options: ['2lcos^2θ/2', '2lsin^2θ/2', '2ltan^2θ/2', 'lcos^2θ'], correct: 1 },
+            { question: 'An invar tape is made of an alloy of', options: ['copper and steel', 'brass and nickel', 'brass and steel', 'nickel and steel'], correct: 3 },
+            { question: 'In chain surveying tie lines are primarily provided', options: ['to check the accuracy of the survey', 'to take offsets for detail survey', 'to avoid long offsets from chain lines', 'to increase the number of chain lines'], correct: 2 }
+        ]
+    };
+console.log('questionSet defined');
+    startTest(questionSet);
+    console.log('startTest called');
+})(); 
+</script>
+<script src="/js/text-protect.js" defer></script>
+<script src="/js/logo.js"></script>
+</body>
+</html>
+
+
+
+

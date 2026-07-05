@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compass Survey, Plane Table & Levelling  </title>
+<link rel="icon" href="https://arunpanthi.com.np/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="/css/Mock_Test.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar" id="navbar">
+<span class="brand" id="navbar-brand">Compass Survey, Plane Table & Levelling  </span>
+<span class="timer-display" id="timer-display" style="display:none;">--:--</span>
+</nav>
+<div id="warning-modal" class="modal-overlay" style="display: none;">
+<div class="modal-dialog">
+<div class="warning-icon">⚠️</div>
+<h3>Unanswered Questions</h3>
+<p>You haven't answered all the questions.</p>
+<span class="unanswered-count" id="modal-unanswered-count">0 unanswered</span>
+<p style="margin-top:8px;"><strong>⚠ This test cannot be retaken once submitted!</strong></p>
+<div class="modal-buttons">
+<button class="btn-cancel" id="btn-modal-cancel">Cancel</button>
+<button class="btn-submit-warning" id="btn-modal-submit">Submit Anyway</button>
+</div>
+</div>
+</div>
+<div id="pre-test-section">
+<div class="hero" id="hero-card">
+<h1 id="hero-set-name">Loading...</h1>
+<p class="set-details" id="hero-details"></p>
+<div class="set-meta">
+<div class="meta-item"><span id="hero-q-count">0</span> Questions</div>
+<div class="meta-item"><span id="hero-time">0:00</span> Time (min)</div>
+</div>
+<button class="btn-start" id="btn-start-test">🚀 Start Test</button>
+<p style="margin-top:10px;font-size:0.85rem;opacity:0.8;" id="hero-note"></p>
+</div>
+</div>
+<div id="test-section" style="display:none;">
+<div class="test-container">
+<div class="question-area">
+<div class="question-card">
+<div class="q-number" id="q-number-label">QUESTION 1</div>
+<div class="q-text" id="q-text">Loading question...</div>
+<ul class="options-list" id="options-list"></ul>
+</div>
+<div class="nav-buttons">
+<div class="nav-left"><button class="btn-nav" id="btn-prev">◀ Previous</button></div>
+<div class="nav-center"><button class="btn-submit" id="btn-submit-test">✅ Submit Test</button></div>
+<div class="nav-right"><button class="btn-nav" id="btn-next">Next ▶</button></div>
+</div>
+</div>
+<aside class="sidebar">
+<h3>📋 Question </h3>
+<div class="total-questions" id="sidebar-total">Total: 0</div>
+<div class="answered-count">Answered: <strong id="sidebar-answered-num">0</strong></div>
+<div class="q-grid" id="q-grid"></div>
+<div class="legend">
+<span><span class="dot-sample blue"></span> Answered</span>
+<span><span class="dot-sample gray"></span> Unanswered</span>
+</div>
+</aside>
+</div>
+</div>
+<div id="results-section" style="display:none;">
+<div class="results-container">
+<div class="results-header">
+<h2 style="color:#2E7D32;">📊 Test Results</h2>
+<p style="color:#666;" id="results-set-name"></p>
+<div class="score-circle">
+<span class="score-num" id="results-score">0</span>
+<span class="score-denom" id="results-denom">/ 0</span>
+</div>
+<div class="percentage" id="results-percentage">0%</div>
+<p style="margin-top:8px;color:#888;font-size:0.9rem;" id="results-time-taken"></p>
+</div>
+<div id="results-detail"></div>
+</div>
+</div>
+<script src="/js/Mock_Test.js"></script>
+<script>
+(function() {
+    console.log('Inline script running');
+    const questionSet = {
+        name: 'Compass Survey, Plane Table & Levelling - Complete Set',
+        details: 'Covers compass surveying, bearings, plane table surveying, levelling operations, and survey instruments.',
+        questions: [
+            { question: 'In a quadrantal system, the bearing of a line is measured', options: ['always clockwise from the south point of the reference meridian towards the line right round the circle', 'clockwise or anticlockwise from the east or west whichever is nearer the line towards north or south', 'clockwise or anticlockwise from the north or south whichever is nearer the line towards east or west', 'none of the above'], correct: 2 },
+            { question: 'If the fore bearing of a line is 36°15\', its back bearing will be', options: ['36°15\'', '126°15\'', '143°45\'', '216°15\''], correct: 3 },
+            { question: 'In a whole circle bearing system N25°15′W corresponds to..', options: ['154°45\'', '115°15\'', '205°15\'', '334°45\''], correct: 3 },
+            { question: 'If the fore bearing of a line is N26°35\'W, its back bearing will be', options: ['N26°35′E', 'N26°35′W', 'S26°35\'E', 'S26°35\'W'], correct: 3 },
+            { question: 'When the whole circle circle bearing of two lines AB and AC are 115° and 41" respectively. Then the included angle BAC will be', options: ['41°', '74°', '115°', '156°'], correct: 1 },
+            { question: 'The horizontal angle between the true meridian and a survey line is called', options: ['magnetic bearing', 'azimuth', 'magnetic declination', 'dip'], correct: 1 },
+            { question: 'The horizontal angle between the true meridian and magnetic meridians is known as', options: ['true bearing', 'local attraction', 'magnetic declination', 'dip'], correct: 2 },
+            { question: 'At the equator, the amount of dip is', options: ['60°', '0°', '45°', '90°'], correct: 1 },
+            { question: 'The magnetic bearing of a line is N 88° E. Its true bearing is 5 89° E. Therefore, its magnetic declination is', options: ['2˚ W', '3° W', '3˚ E', '91˚'], correct: 0 },
+            { question: 'A freely floating needle slightly gets inclined to the horizontal anywhere except on the equator. It is called', options: ['declination', 'dip', 'local attraction', 'secular variation'], correct: 1 },
+            { question: 'Imaginary line passing through points having equal magnetic declination is termed as', options: ['isogon', 'agonic', 'isoclinic line', 'none of these'], correct: 0 },
+            { question: 'Isogonic lines are the lines having the same', options: ['elevation', 'bearing', 'dip', 'declination'], correct: 3 },
+            { question: 'The variation of magnetic declination within a day is called', options: ['diurnal variation', 'irregular variation', 'annual variation', 'secular variation'], correct: 0 },
+            { question: 'Local attraction at a place may be due to', options: ['key bunches', 'steel buttons', 'electric storm', 'current carrying bare wire'], correct: 3 },
+            { question: 'Magnetic declination at any place', options: ['remain constant', 'doesn\'t remain constant', 'fluctuates', 'changes abruptly'], correct: 1 },
+            { question: 'The amount of correction due to local attraction at a place', options: ['is a constant for all bearings', 'varies with the bearing', 'changes from time to time', 'sometimes additive and sometimes subtractive'], correct: 0 },
+            { question: 'An instrumental error in compass survey is because of', options: ['inaccurate levelling', 'variation in declination', 'no counter weight provision to counteract dip', 'local attraction due to bare current carrying conductors'], correct: 2 },
+            { question: 'The horizontal angle between true meridian and magnetic meridian at a place is called', options: ['azimuth', 'declination', 'local attraction', 'magnetic bearing'], correct: 1 },
+            { question: 'The variation of magnetic declination within a day is called', options: ['diurnal variation', 'annual variation', 'irregular variation', 'secular variation'], correct: 0 },
+            { question: 'Local attraction at a place may be due to', options: ['key bunches', 'current carrying bare wire', 'steel buttons', 'electric storm'], correct: 1 },
+            { question: 'An instrument error in compass survey is because of', options: ['inaccurate leveling', 'variation in declination', 'no counter weight provision to counteract dip', 'local attraction due to bare current carrying conductors'], correct: 2 },
+            { question: 'While surveying a plot of land by plane tabling, the field observations', options: ['and plotting proceed simultaneously', 'and plotting do not proceed simultaneously', 'and recorded in field books to be plotted later', 'all of these'], correct: 0 },
+            { question: 'Usefullness of plane table is enhanced by providing', options: ['the Indian tangent clinometer', 'the optical square', 'the box compass', 'none of the above'], correct: 0 },
+            { question: 'The operation of revolving a plane table about its vertical axis so that all lines on the sheet become parallel to corresponding lines on the ground, is known', options: ['leveling', 'centering', 'setting', 'orientation'], correct: 3 },
+            { question: 'In setting up a plane table at any station', options: ['leveling is done first', 'both leveling and centering are done simultaneously', 'centering is done first', 'orientation is done first'], correct: 1 },
+            { question: 'The technique of plotting all the accessible stations with a single set up of plane table is called', options: ['radiation', 'intersection', 'resection', 'traversing'], correct: 0 },
+            { question: 'Radiation plane table survey is the best suited when', options: ['distances are long but accessible', 'distances are long and inaccessible', 'distances are short and accessible', 'distances are short but inaccessible'], correct: 2 },
+            { question: 'An advantage of plane tabling is', options: ['it is a tropical instrument', 'plotting is done out-door', 'it has many accessories', 'chances to miss details are less'], correct: 3 },
+            { question: 'A disadvantage of plane table survey is', options: ['it is heavy, cumbersome and awkward to carry', 'it cannot be used in wet climate', 'details may not be available while redrawing to a different scale', 'accessories are likely to be lost'], correct: 1 },
+            { question: 'An important rule in using pantograph is……….', options: ['pointer, pencil and weight should fall in a straight line', 'pointer should never be put on the short arm', 'the arm on to which the weight is attached should never move', 'pencil is always attached to the arm on which the scale is marked'], correct: 0 },
+            { question: 'Plotting of inaccessible points on a plane table, is done by', options: ['intersection method', 'resection method', 'radiation method', 'three point problem'], correct: 0 },
+            { question: 'Locating the position of plane table station with refererice to three known points, is known as', options: ['intersection method', 'resection method', 'radiation method', 'three point problem'], correct: 1 },
+            { question: 'The size of plane table is', options: ['750mm * 500 mm', '450mms * 600 mm', '600mm * 750mm', '300mm * 450mm'], correct: 0 },
+            { question: 'Radiation plane table survey is the best suited when.', options: ['distances are long but accessible', 'distances are long and inaccessible', 'distances are short and accessible', 'distances are short but inaccessible'], correct: 2 },
+            { question: 'An advantage of plane tabling is', options: ['it is tropical instrument', 'plotting is done out-door', 'it has many accessories', 'changes to miss details are less'], correct: 3 },
+            { question: 'Two hill tops A and B 20 km apart arte intervened by a third top C. If the top most contour of the three hill tops are of the same value, state whether the line of sight AB', options: ['passes over the hill top C', 'passes below the hill top C', 'grazes the hill top C', 'none of these'], correct: 2 },
+            { question: 'Correction for slope is', options: ['h^2/2l', 'h/2l^2', '2h/l^2', 'h/l'], correct: 0 },
+            { question: 'Distance between two stations A and B is 200 whereas their difference in elevations is 2 m. Hence horizontal distance between A and B is', options: ['199 m', '199.9 m', '199.99 m', '199.999 m'], correct: 2 },
+            { question: 'Height of instrument method of leveling is', options: ['more accurate than rise and fall method', 'less accurate than rise and fall method', 'quicker and less tedious for large number of intermediate sights', 'none of these'], correct: 2 },
+            { question: 'Reciprocal ranging is adopted when the following is encountered:', options: ['a dense forest', 'a river', 'a hillock', 'a tall building'], correct: 1 },
+            { question: 'The intercept of a staff', options: ['is maximum if the staff is held truly normal to the line of sight', 'is minimum if the staff is held truly normal to the line of sight', 'decreases if the staff is tilted away from normal', 'increases if the staff is tilted towards normal'], correct: 1 },
+            { question: 'If vertical angles of inclined sights do not exceed 10° and non-verticality of the staff remains within 1" stadia system of techeometric observations are made on', options: ['staff normal', 'staff vertical', 'staff normal as well as vertical', 'none of these'], correct: 1 },
+            { question: 'A back sight indicates the ........of the instrument.', options: ['shifting', 'setting up', 'height', 'none of these'], correct: 2 },
+            { question: 'Sensitiveness of a level tube is designated by', options: ['radius of level tube', 'length of bubble of level tube', 'length of level tube', 'none of these'], correct: 0 },
+            { question: 'Dumpy level is most suitable when', options: ['the instrument is to be shifted frequently', 'fly leveling is being done over long distance', 'many readings are to be taken from a single setting of instrument', 'all of these'], correct: 2 },
+            { question: 'Cross-staff is used for', options: ['setting out right angles', 'measuring contour gradient', 'taking levels', 'measuring distances'], correct: 0 },
+            { question: 'Profile leveling is usually done for determining', options: ['contours of an area', 'capacity of a reservoir', 'elevations along a straight line', 'boundaries of property'], correct: 2 },
+            { question: 'An example for a level surface is', options: ['surface of earth', 'surface of sea', 'surface of a reservoir', 'surface of a still lake'], correct: 3 },
+            { question: 'Level line and horizontal line are', options: ['the same for longer distances', 'both straight lines', 'never the same', 'same for smaller lengths'], correct: 3 },
+            { question: 'A plumb line is', options: ['a vertical line', 'line perpendicular to level line', 'a line perpendicular to the horizontal line', 'a line parallel to a vertical line'], correct: 0 },
+            { question: 'Line of collimation', options: ['is the same as line of sight', 'the line parallel to the bubble tube axis', 'the line joining point of intersection of cross hairs and optical centre of object glass', 'the geometrical axis of the telescope'], correct: 2 },
+            { question: 'The very first reading taken is called', options: ['back sight', 'intermediate sight', 'fore sight', 'invert'], correct: 0 },
+            { question: 'A change point is', options: ['the very first station', 'the last station', 'the intermediate station where F.S. and B.S. are taken', 'the station after which the instrument is shifted'], correct: 2 },
+            { question: 'A levelling station is a place where', options: ['the level is set up', 'both B.S. and P.S. are taken', 'the level staff is held', 'temporary adjustments are done'], correct: 0 },
+            { question: 'The telescope of a Dumpy level', options: ['is rigidly fixed to the levelling head', 'can be tilted in a vertical plane', 'can be taken out of its supports and reversed', 'permits interchange of eye piece and object glass'], correct: 0 },
+            { question: 'Pick up the odd statement', options: ['temporary adjustments of the Dumpy level are to be performed at every set up', 'the eye piece need not be adjusted after the first set up when the same surveyor is taking readings', 'parallax error is completely eliminated when there is no change in the staff reading when the eye is moved up and down', 'focus the objective towards a white or bright background for the clear visibility of cross hairs'], correct: 3 },
+            { question: 'A Bench mark is a', options: ['reference point', 'the last station where the survey closes', 'the very first station', 'point of known elevation'], correct: 3 },
+            { question: 'Height of instrument method of booking readings is adopted', options: ['when less number of intermediate sights exist', 'in profile levelling', 'in reciprocal levelling', 'in differential levelling'], correct: 1 },
+            { question: 'An invert is taken when the point is', options: ['having high elevation', 'below the line of sight', 'above the line of sights', 'below ground level'], correct: 3 },
+            { question: 'A plumb bob is required', options: ['when measuring distances along slopes in a hilly country', 'for accurate centering of a theodolite over a station mark', 'for testing the vertically of ranging poles', 'all of these'], correct: 3 },
+            { question: 'In a survey it was recorded that ∑Rise = 0, then', options: ['the ground is sloping', 'it is continuously falling', 'it is continuously rising', 'the survey had many invert readings'], correct: 2 },
+            { question: 'When the staff is held on a B.M. of RL 100.000, the staff reading was 2.000. When the staff is held on station P, the reading was 3.000. Hence height of the instrument is', options: ['100.000', '103.000', '102.000', '99.000'], correct: 2 },
+            { question: 'The following readings correspond to the check at the end of a page of level field book but they are not given in the order. They represent a continuously rising ground 100.000, 6.000, 0.000, 106.000, 13.000, 7.000.Hence in the above ƩBS =', options: ['0', '7', '6', '13'], correct: 3 },
+            { question: 'Ten readings were recorded in a level field book. If the instrument was shifted after 2nd and 6th readings, then the fore sights are', options: ['1st, 3rd and 7th readings', '2nd and 6th readings', '2nd, 6th and 10th readings', '3rd, 4th, 5th, 7th, 8th, 9th and 10th readings'], correct: 2 },
+            { question: 'The method of finding out the difference in elevation between two points for eliminating the effect of curvature and refraction is', options: ['reciprocal leveling', 'differential leveling', 'precise leveling', 'flying leveling'], correct: 0 },
+            { question: 'Correction for curvature for a distance of 1 km =', options: ['0.0112m', '0.0785 m', '0.0673 m', '0.0673 km'], correct: 2 },
+            { question: 'The first reading from a level station is', options: ['foresight', 'back-sight', 'intermediate sight', 'any sight'], correct: 1 },
+            { question: 'Correction for refraction for a distance of 1 km=', options: ['0.0112m', '0.0786 m', '0.0674 m', '0.0674 km'], correct: 0 },
+            { question: 'In profile levelling, staff readings on two neighbouring pegs 20 m apart are 1.200 and 1.000 respectively. Therefore, the proposed road had a…………', options: ['rising gradient of 1 in 100', 'rising gradient of 1 in 20', 'falling gradient of 1 in 100', 'falling gradient of 1 in 20'], correct: 0 },
+            { question: 'The instrument used for setting out an offset at a right angle, is called', options: ['open cross-staff', 'french cross-staff', 'adjustable cross-staff', 'optical square'], correct: 3 },
+            { question: 'The adjustable cross-staff is used for setting out an offset', options: ['at an angle of 45°', 'at an angle of 60°', 'at a right angle', 'at any angle'], correct: 3 },
+            { question: 'For setting out an offset at an angle 45°, ........ cross-staff is uesd.', options: ['open', 'french', 'adjustable', 'none of these'], correct: 1 },
+            { question: 'Pick up the odd instrument', options: ['prismatic compass', 'theodolite', 'box sextant', 'dumpy level'], correct: 3 },
+            { question: 'For the Abney clinometer the semi-circular arc is graduated as', options: ['0° to 180°', '0° to 90° to 0', '90° to 0° to 90°', '0° to 140'], correct: 2 },
+            { question: 'Reciprocal levelling eliminates………', options: ['collimation error', 'collimation, curvature and refraction error', 'curvature and refraction error', 'collimation and curvature error fully and refraction error partly'], correct: 2 },
+            { question: 'An open cross-staff is commonly used for setting out', options: ['short offsets', 'long offsets', 'oblique offsets', 'none of these'], correct: 0 },
+            { question: 'An instrument used to find slopes of ground is', options: ['planimeter', 'clinometer', 'box sextant', 'pantograph'], correct: 1 },
+            { question: 'When the line of sight is inclined at 0 to the horizontal and staff is held vertical then horizontal distance is…………..', options: ['f/t *s+(f+d)', 'f/t* s cosϴ + (f+d)', 'f/t* s cos²ϴ + (f+d) cosϴ', '[f/t *s + (f+d)]cosϴ+h sin ϴ'], correct: 2 },
+            { question: 'The stadia intercept on a fixed hair instrument vertically held is 1 m. If its constants are 800 and 0.5 and total number of turns are 16, the horizontal distance between the instrument and target is', options: ['5.5 m', '55 m', '50.5 m', '800.5 m'], correct: 3 },
+            { question: 'Reciprocal ranging is adopted when the following is encountered', options: ['a dense forest', 'a hillock', 'a river', 'a tall building'], correct: 2 },
+            { question: 'Indirect ranging is adopted when the two ends of chain line are', options: ['mutually invisible', 'too distant', 'separated by a valley', 'on a sloping ground'], correct: 0 },
+            { question: 'For high sensitivity of the bubble tube', options: ['a liquid of low viscosity is used', 'the bubble space should be long', 'a liquid of low surface tension is used', 'all of the above'], correct: 3 },
+            { question: 'An imaginary line tangential to the longitudinal curve of the level at the centre of the tie is called', options: ['horizontal axis', 'axis of the level tube', 'vertical axis', 'line of collimation'], correct: 1 },
+            { question: 'Agate cap is fitted with... cross staff', options: ['chain', 'level', 'prismatic compass', 'cross staff'], correct: 3 },
+            { question: 'To use the Abney clinometer as Abney level the vernier should read', options: ['0°', '90°', '0° or 180°', 'it is not possible to use clinometer as hand level'], correct: 0 },
+            { question: 'A tangent clinometer was set up at A of R.L. 100.00. When it was sighted to B 200 m away from A, the object vane read -0.05. If the height of instrument (at A) is 1.2 m, R.L. of B is', options: ['91.2', '101.15', '101.25', '111.2'], correct: 1 },
+            { question: 'Direct ranging is possible only when the end stations are.', options: ['close to each other', 'not more than 100 m apart', 'mutually intervisible', 'located at highest points in the sea'], correct: 2 },
+            { question: 'For true difference in elevations between two points A and B, the level must be set up', options: ['at any point between A and B', 'at the exact midpoint of A and B', 'near the point B', 'near the point A'], correct: 1 },
+            { question: 'The error due to bad ranging is', options: ['cumulative positive', 'compensating', 'cumulative negative', 'cumulative positive or negative'], correct: 1 },
+            { question: 'When the image formed by the objective is not situated in the plane of cross-hairs', options: ['the cross-hairs should be adjusted', 'the objective should be focused', 'the eye-piece should be focused', 'the parallax should be removed'], correct: 3 },
+            { question: 'Determining the difference in elevation between two points on the surface of the earth, is known as......', options: ['leveling', 'differential leveling', 'simple leveling', 'longitudinal leveling'], correct: 0 },
+            { question: 'An angle between the inclined line of sight and the horizontal is called', options: ['by angles and distances from the same station', 'by angle from one station and distance from the other station', 'by distance from two different stations', 'by angles from two different stations'], correct: 3 },
+            { question: 'A line normal to the plumb line at all points is known as', options: ['horizontal line', 'level line', 'vertical line', 'line of collimation'], correct: 1 },
+            { question: 'Axis of altitude level is', options: ['parallel to trunnion axıs', 'perpendicular to the vertical axis', 'parallel to the line of collimation', 'perpendicular to plate levels'], correct: 1 },
+            { question: 'The method of reversal', options: ['is usually directed to examine whether a certain part is truly parallel or perpendicular to another', 'makes the erroneous relationship between parts evident', 'both \'a\' and \'b\'', 'neither \'a\' nor \'b\''], correct: 2 },
+            { question: 'The apparent error on reversal is', options: ['equal to the actual error', 'thrice the actual error', 'twice the actual error', 'none of these'], correct: 2 },
+            { question: 'The sensitivity of bubble tube can be increased by', options: ['increasing the diameter of tube', 'decreasing the length of bubble', 'increasing the viscosity of liquid', 'decreasing the radius of curvature of tube'], correct: 3 },
+            { question: 'With the rise of temperature, the sensitivity of bubble tube', options: ['decreases', 'remains constant', 'increases', 'none of these'], correct: 0 },
+            { question: 'Refraction correction', options: ['completely eliminates curvature correction', 'partially eliminates curvature correction', 'adds to the curvature correction', 'has no effect on the curvature correction'], correct: 1 },
+            { question: 'While doing leveling in undulating terrain, it is preferable to set level on', options: ['the top of summit', 'one side of the slope', 'the bottom of a valley', 'anywhere'], correct: 0 }
+        ]
+    };
+console.log('questionSet defined');
+    startTest(questionSet);
+    console.log('startTest called');
+})(); 
+</script>
+<script src="/js/text-protect.js" defer></script>
+<script src="/js/logo.js"></script>
+</body>
+</html>
+
+
+
+

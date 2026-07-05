@@ -4,14 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    
     <title>Timed Subject-Wise Practice Tests – PSC Exam | Nepal Engineering Service</title>
     <meta name="description" content="Timed practice tests for Nepal Engineering Service First Paper – Civil Group Third Class. Each topic includes multiple exam sets with instant start buttons." />
     <meta name="keywords" content="PSC Nepal, Loksewa, Engineering Service, Practice Tests, Timed Exam, Civil Group, Third Class" />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://arunpanthi.com.np/Psc-preparation/Test/" />
-
-    <!-- ===== OPEN GRAPH ===== -->
     <meta property="og:title" content="Timed Subject-Wise Practice Tests – PSC Exam" />
     <meta property="og:description" content="Practice tests for Nepal Engineering Service First Paper – Civil Group Third Class. Timed, subject-wise, with multiple sets per topic." />
     <meta property="og:url" content="https://arunpanthi.com.np/Psc-preparation/Test/" />
@@ -24,7 +21,6 @@
     <meta name="twitter:description" content="Timed practice tests for Nepal Engineering Service First Paper – Civil Group Third Class." />
 
     <link rel="stylesheet" href="/css/styles.css" />
-    
 
     <div id="navbar"></div>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous" />
@@ -61,6 +57,7 @@
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.10);
         }
 
+        
         .accordion-header {
             display: flex;
             align-items: center;
@@ -107,7 +104,7 @@
             transform: rotate(180deg);
         }
 
-        /* ----- accordion body ----- */
+        /* ----- Accordion Body ----- */
         .accordion-body {
             max-height: 0;
             overflow: hidden;
@@ -120,7 +117,7 @@
             padding: 0 20px 20px 20px;
         }
 
-        /* ===== SETS INSIDE ACCORDION ===== */
+        /* ----- Sets Container ----- */
         .sets-container {
             display: flex;
             flex-direction: column;
@@ -128,6 +125,7 @@
             margin-top: 6px;
         }
 
+        /* ----- Set Card ----- */
         .set-card {
             border: 1px solid var(--gray-200, #e5e7eb);
             border-radius: var(--radius-sm, 8px);
@@ -194,11 +192,8 @@
             flex-direction: column;
             gap: 12px;
         }
-        .set-body .set-content .test-description {
-            color: var(--gray-600, #4b5563);
-            font-size: 0.9rem;
-            margin: 0;
-        }
+
+        /* ----- Start Exam Button ----- */
         .set-body .set-content .start-exam-btn {
             display: inline-flex;
             align-items: center;
@@ -225,7 +220,7 @@
             font-size: 1rem;
         }
 
-        
+        /* ----- Section Divider ----- */
         .section-divider {
             margin: 40px 0 24px 0;
             padding-bottom: 12px;
@@ -250,65 +245,7 @@
             border-radius: 20px;
         }
 
-     
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 640px) {
-            .accordion-header {
-                padding: 14px 16px;
-                gap: 10px;
-            }
-            .accordion-header .topic-title {
-                font-size: 0.9rem;
-                flex-basis: 100%;
-                order: 2;
-            }
-            .accordion-header .topic-id-badge {
-                order: 0;
-            }
-            .accordion-header .topic-marks {
-                order: 1;
-                margin-left: auto;
-            }
-            .accordion-header .accordion-toggle-icon {
-                order: 3;
-            }
-            .accordion-body {
-                padding: 0 14px;
-            }
-            .accordion-item.open .accordion-body {
-                padding: 0 14px 16px 14px;
-            }
-            .set-header {
-                padding: 10px 14px;
-            }
-            .set-body .set-content .start-exam-btn {
-                width: 100%;
-                justify-content: center;
-            }
-           
-            .section-divider h2 {
-                font-size: 1.15rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .accordion-header .topic-title {
-                font-size: 0.85rem;
-            }
-            .accordion-header {
-                padding: 12px 12px;
-            }
-            .set-header .set-name {
-                font-size: 0.85rem;
-            }
-            .set-body {
-                padding: 0 10px;
-            }
-            .set-card.open .set-body {
-                padding: 10px 12px 14px 12px;
-            }
-        }
-
+        /* ----- Topic ID Badge ----- */
         .topic-id-badge {
             display: inline-flex !important;
             align-items: center !important;
@@ -348,6 +285,63 @@
             font-size: 0.9rem;
             padding: 6px 0;
         }
+
+        /* ----- Responsive ----- */
+        @media (max-width: 640px) {
+            .accordion-header {
+                padding: 14px 16px;
+                gap: 10px;
+            }
+            .accordion-header .topic-title {
+                font-size: 0.9rem;
+                flex-basis: 100%;
+                order: 2;
+            }
+            .accordion-header .topic-id-badge {
+                order: 0;
+            }
+            .accordion-header .topic-marks {
+                order: 1;
+                margin-left: auto;
+            }
+            .accordion-header .accordion-toggle-icon {
+                order: 3;
+            }
+            .accordion-body {
+                padding: 0 14px;
+            }
+            .accordion-item.open .accordion-body {
+                padding: 0 14px 16px 14px;
+            }
+            .set-header {
+                padding: 10px 14px;
+            }
+            .set-body .set-content .start-exam-btn {
+                width: 100%;
+                justify-content: center;
+            }
+            .section-divider h2 {
+                font-size: 1.15rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .accordion-header .topic-title {
+                font-size: 0.85rem;
+            }
+            .accordion-header {
+                padding: 12px 12px;
+            }
+            .set-header .set-name {
+                font-size: 0.85rem;
+            }
+            .set-body {
+                padding: 0 10px;
+            }
+            .set-card.open .set-body {
+                padding: 10px 12px 14px 12px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -363,27 +357,21 @@
         <h1>📘 Practice Test Sets</h1>
         <p style="margin-bottom: 24px;">Expand any topic below to view available exam sets. Click <strong>Start Exam</strong> to begin the timed test.</p>
 
-        <!-- ========================================================== -->
-        <!-- PART I – AWARENESS                                           -->
-        <!-- ========================================================== -->
+        <!-- ===== PART I – AWARENESS ===== -->
         <div class="section-divider">
             <h2>Part I – General Awareness &amp; Contemporary Issues</h2>
             <div class="sub-meta">25 Marks · 25 × 1 Mark</div>
         </div>
         <div class="book-list" id="awarenessGrid"></div>
 
-        <!-- ========================================================== -->
-        <!-- PART I – REASONING                                           -->
-        <!-- ========================================================== -->
+        <!-- ===== PART I – REASONING ===== -->
         <div class="section-divider">
             <h2>Part I – General Reasoning Test</h2>
             <div class="sub-meta">25 Marks · 25 × 1 Mark</div>
         </div>
         <div class="book-list" id="reasoningGrid"></div>
 
-        <!-- ========================================================== -->
-        <!-- PART II – TECHNICAL                                          -->
-        <!-- ========================================================== -->
+        <!-- ===== PART II – TECHNICAL ===== -->
         <div class="section-divider">
             <h2>Part II – General Technical Subject</h2>
             <div class="sub-meta">50 Marks · 50 × 1 Mark</div>
@@ -398,17 +386,27 @@
     <script src="/js/layout.js"></script>
 
     <!-- ================================================================ -->
-    <!-- JAVASCRIPT – ACCORDION WITH SINGLE-OPEN & EMOJI SET NAMES        -->
+    <!--  JAVASCRIPT – PROFESSIONAL ACCORDION WITH SINGLE-OPEN BEHAVIOR    -->
     <!-- ================================================================ -->
     <script>
         (function() {
-
-            // -------- BASE URL for exam files (must end with /) ----------
-            const TEST_BASE_URL = 'https://arunpanthi.com.np/Psc-preparation/Test/';
+            'use strict';
 
             // ================================================================
-            //  DATA: each topic has a 'sets' array. 
-            //  Set names now include ✍️ emoji.
+            //  CONSTANTS
+            // ================================================================
+
+            /** Base URL for exam files – must end with a slash. */
+            const TEST_BASE_URL = 'https://arunpanthi.com.np/Psc-preparation/Test/';
+
+            /** Color palette for topic badges – cycled via hash. */
+            const BADGE_COLORS = [
+                '#e8f5e9', '#c8e6c9', '#a5d6a7', '#81c784', '#66bb6a',
+                '#4caf50', '#43a047', '#388e3c', '#2e7d32', '#1b5e20'
+            ];
+
+            // ================================================================
+            //  DATA – Topics and their exam sets
             // ================================================================
 
             const topicsData = {
@@ -419,129 +417,129 @@
                     name: 'Physical, socio-cultural and economic geography and demography of Nepal',
                     marks: 1,
                     sets: [
-                        { name: '✍️ Set 1 – Physical Geography', description: 'Rivers, mountains, climate zones, and ecological regions.' },
-                        { name: '✍️ Set 2 – Socio-Cultural & Economic', description: 'Ethnic groups, languages, agriculture, and remittance.' },
-                        { name: '✍️ Set 3 – Demography & Trends', description: 'Population growth, urbanization, sex ratio, and provincial data.' }
+                        { name: '✍️ Set 1 – Physical Geography' },
+                        { name: '✍️ Set 2 – Socio-Cultural & Economic' },
+                        { name: '✍️ Set 3 – Demography & Trends' }
                     ]
                 }, {
                     id: '1.2',
                     name: 'Major natural resources of Nepal',
                     marks: 1,
                     sets: [
-                        { name: '✍️ Set 1 – Water & Energy', description: 'Hydropower potential, major projects, and water resources.' },
-                        { name: '✍️ Set 2 – Minerals & Forests', description: 'Limestone, coal, iron ore, forest cover, and major species.' }
+                        { name: '✍️ Set 1 – Water & Energy' },
+                        { name: '✍️ Set 2 – Minerals & Forests' }
                     ]
                 }, {
                     id: '1.3',
                     name: 'Geographical diversity, climatic conditions, and livelihood & lifestyle of people',
                     marks: 1,
                     sets: [
-                        { name: '✍️ Set 1 – Climate & Geography', description: 'Climate zones, temperature, and altitude variation.' },
-                        { name: '✍️ Set 2 – Livelihood & Lifestyle', description: 'Agriculture, occupation by region, and lifestyle patterns.' }
+                        { name: '✍️ Set 1 – Climate & Geography' },
+                        { name: '✍️ Set 2 – Livelihood & Lifestyle' }
                     ]
                 }, {
                     id: '1.4',
                     name: 'Notable events and personalities, social, cultural and economic conditions in modern history of Nepal',
                     marks: 1,
                     sets: [
-                        { name: '✍️ Set 1 – Historical Events', description: 'Unification, Rana regime, People\'s Movements, and key milestones.' },
-                        { name: '✍️ Set 2 – Personalities & Culture', description: 'Prithvi Narayan Shah, Bhanubhakta, Jung Bahadur, and cultural heritage.' }
+                        { name: '✍️ Set 1 – Historical Events' },
+                        { name: '✍️ Set 2 – Personalities & Culture' }
                     ]
                 }, {
                     id: '1.5',
                     name: 'Current periodical plan of Nepal',
                     marks: 1,
                     sets: [
-                        { name: '✍️ Set 1 – 16th Plan (FY 2024/25 – 2028/29)', description: 'Vision, priorities, and targets of the current plan.' },
-                        { name: '✍️ Set 2 – Previous Plans', description: '15th Plan, 14th Plan, and their focus areas.' }
+                        { name: '✍️ Set 1 – 16th Plan (FY 2024/25 – 2028/29)' },
+                        { name: '✍️ Set 2 – Previous Plans' }
                     ]
                 }, {
                     id: '1.6',
                     name: 'Sustainable development, environment, pollution, climate change, biodiversity, science & technology',
                     marks: 1,
                     sets: [
-                        { name: '✍️ Set 1 – Environment & Climate', description: 'Climate vulnerability, GLOF, and biodiversity.' },
-                        { name: '✍️ Set 2 – Science & Technology', description: 'NepaliSat-1, IT sector, NAST, and innovation.' }
+                        { name: '✍️ Set 1 – Environment & Climate' },
+                        { name: '✍️ Set 2 – Science & Technology' }
                     ]
                 }, {
                     id: '1.7',
                     name: "Nepal's international affairs; UNO, SAARC & BIMSTEC",
                     marks: 1,
                     sets: [
-                        { name: '✍️ Set 1 – UNO & SAARC', description: 'UN membership, Security Council terms, SAARC secretariat.' },
-                        { name: '✍️ Set 2 – BIMSTEC & Other', description: 'BIMSTEC objectives, WTO, ADB, and Non-Aligned Movement.' }
+                        { name: '✍️ Set 1 – UNO & SAARC' },
+                        { name: '✍️ Set 2 – BIMSTEC & Other' }
                     ]
                 }, {
                     id: '1.8',
                     name: 'The Constitution of Nepal (Part 1 to 5 and Schedules)',
                     marks: 1,
                     sets: [
-                        { name: '✍️ Set 1 – Parts 1–3', description: 'Preliminary, Citizenship, and Fundamental Rights.' },
-                        { name: '✍️ Set 2 – Parts 4–5 & Schedules', description: 'Directives, State structure, and Schedules (provinces, anthem, etc.).' }
+                        { name: '✍️ Set 1 – Parts 1–3' },
+                        { name: '✍️ Set 2 – Parts 4–5 & Schedules' }
                     ]
                 }, {
                     id: '1.9',
                     name: 'Governance system (Federal, Provincial and Local)',
                     marks: 1,
                     sets: [
-                        { name: '✍️ Set 1 – Federal & Provincial', description: 'Prime Minister, President, Parliament, and provincial assemblies.' },
-                        { name: '✍️ Set 2 – Local Governance', description: 'Local units, metropolitan cities, municipalities, and rural municipalities.' }
+                        { name: '✍️ Set 1 – Federal & Provincial' },
+                        { name: '✍️ Set 2 – Local Governance' }
                     ]
                 }, {
                     id: '1.10',
                     name: 'Civil Service Act & Regulation (constitution, structure, vacancy, code of conduct)',
                     marks: 1,
                     sets: [
-                        { name: '✍️ Set 1 – Act & Structure', description: 'Civil Service Act 2049, groups, and PSC exams.' },
-                        { name: '✍️ Set 2 – Code of Conduct & Regulation', description: 'Provisions, regulation 2050, and disciplinary rules.' }
+                        { name: '✍️ Set 1 – Act & Structure' },
+                        { name: '✍️ Set 2 – Code of Conduct & Regulation' }
                     ]
                 }, {
                     id: '1.11',
                     name: 'Functional scope of public services',
                     marks: 1,
                     sets: [
-                        { name: '✍️ Set 1 – Scope & Delivery', description: 'Education, health, infrastructure, and delivery mechanisms.' },
-                        { name: '✍️ Set 2 – Challenges & Reforms', description: 'Bureaucratic inefficiency, corruption, e-governance, and charters.' }
+                        { name: '✍️ Set 1 – Scope & Delivery' },
+                        { name: '✍️ Set 2 – Challenges & Reforms' }
                     ]
                 }, {
                     id: '1.12',
                     name: 'Public Service Charter',
                     marks: 1,
                     sets: [
-                        { name: '✍️ Set 1 – Concept & Objectives', description: 'Definition, accountability, transparency, and citizen rights.' },
-                        { name: '✍️ Set 2 – Implementation', description: 'Time-bound services, grievance redressal, and monitoring.' }
+                        { name: '✍️ Set 1 – Concept & Objectives' },
+                        { name: '✍️ Set 2 – Implementation' }
                     ]
                 }, {
                     id: '1.13',
                     name: 'Concept, objective and importance of public policy',
                     marks: 1,
                     sets: [
-                        { name: '✍️ Set 1 – Concept & Objectives', description: 'Definition, problem-solving, resource allocation, and welfare.' },
-                        { name: '✍️ Set 2 – Importance & Process', description: 'Guidance, accountability, and the policy cycle.' }
+                        { name: '✍️ Set 1 – Concept & Objectives' },
+                        { name: '✍️ Set 2 – Importance & Process' }
                     ]
                 }, {
                     id: '1.14',
                     name: 'Fundamentals of management: planning, organizing, directing, controlling, coordinating, decision making, motivation and leadership',
                     marks: 1,
                     sets: [
-                        { name: '✍️ Set 1 – Core Functions', description: 'Planning, organizing, directing, and controlling.' },
-                        { name: '✍️ Set 2 – Decision Making & Leadership', description: 'Rational decision making, motivation theories, and leadership styles.' }
+                        { name: '✍️ Set 1 – Core Functions' },
+                        { name: '✍️ Set 2 – Decision Making & Leadership' }
                     ]
                 }, {
                     id: '1.15',
                     name: 'Government planning, budgeting and accounting system',
                     marks: 1,
                     sets: [
-                        { name: '✍️ Set 1 – Planning & Budgeting', description: 'NPC, annual budget, revenue, expenditure, and deficit.' },
-                        { name: '✍️ Set 2 – Accounting System', description: 'New Accounting System, cash basis, budget classification, and auditing.' }
+                        { name: '✍️ Set 1 – Planning & Budgeting' },
+                        { name: '✍️ Set 2 – Accounting System' }
                     ]
                 }, {
                     id: '1.16',
                     name: 'Major events and current affairs of national and international importance',
                     marks: 1,
                     sets: [
-                        { name: '✍️ Set 1 – National Events', description: 'SAARC Summit, Melamchi, GDP growth, and elections.' },
-                        { name: '✍️ Set 2 – International Affairs', description: 'COP30, UN presidency, International Solar Alliance, and trade partners.' }
+                        { name: '✍️ Set 1 – National Events' },
+                        { name: '✍️ Set 2 – International Affairs' }
                     ]
                 }],
 
@@ -551,28 +549,28 @@
                     name: 'Logical Reasoning (Verbal, Alphanumeric, Analogies, Classification, Coding-Decoding, Order & Ranking, Distance & Directions, Analytical & Logical Reasoning, Assertion & Reason, Statement & Conclusion, Input-Output, Venn-diagram)',
                     marks: 9,
                     sets: [
-                        { name: '✍️ Set 1 – Verbal & Alphanumeric', description: 'Coding-decoding, analogies, classification, and alphanumeric series.' },
-                        { name: '✍️ Set 2 – Analytical & Logical', description: 'Assertion-reason, statement-conclusion, Venn-diagrams, and logical puzzles.' },
-                        { name: '✍️ Set 3 – Input-Output & Ranking', description: 'Input-output, order & ranking, distance & direction, and arrangement.' }
+                        { name: '✍️ Set 1 – Verbal & Alphanumeric' },
+                        { name: '✍️ Set 2 – Analytical & Logical' },
+                        { name: '✍️ Set 3 – Input-Output & Ranking' }
                     ]
                 }, {
                     id: '2.2',
                     name: 'Numerical Reasoning (Arithmetic Series, Analogy, Classification, Arithmetical Reasoning, Fraction, Percentage, Ratio, Average, Profit & Loss, Time & Work, Date & Calendar, Data Sufficiency, Data Interpretation & Verification)',
                     marks: 8,
                     sets: [
-                        { name: '✍️ Set 1 – Arithmetic & Percentage', description: 'Fractions, percentages, ratios, averages, and basic arithmetic.' },
-                        { name: '✍️ Set 2 – Profit/Loss & Time/Work', description: 'Profit & loss, time & work, and data interpretation.' },
-                          { name: '✍️ Set 3 – Time& Work', description: 'time & work' },
-                        { name: '✍️ Set 4 – Data Sufficiency & Calendar', description: 'Calendar problems, data sufficiency, and verification.' }
+                        { name: '✍️ Set 1 – Arithmetic & Percentage' },
+                        { name: '✍️ Set 2 – Profit/Loss & Time/Work' },
+                        { name: '✍️ Set 3 – Time & Work' },
+                        { name: '✍️ Set 4 – Data Sufficiency & Calendar' }
                     ]
                 }, {
                     id: '2.3',
                     name: 'Spatial Reasoning (Figure Series, Analogy, Classification, Matrix, Pattern Completion, Embedded Images, Image Formation & Analysis, Mirror & Water Images, Cubes & Dices, Paper Folding & Cutting)',
                     marks: 8,
                     sets: [
-                        { name: '✍️ Set 1 – Figure Series & Analogy', description: 'Figure series, analogy, and classification of figures.' },
-                        { name: '✍️ Set 2 – Mirror & Water Images', description: 'Mirror images, water images, and paper folding & cutting.' },
-                        { name: '✍️ Set 3 – Cubes & Dices', description: 'Cubes, dices, pattern completion, and embedded images.' }
+                        { name: '✍️ Set 1 – Figure Series & Analogy' },
+                        { name: '✍️ Set 2 – Mirror & Water Images' },
+                        { name: '✍️ Set 3 – Cubes & Dices' }
                     ]
                 }],
 
@@ -582,277 +580,313 @@
                     name: 'Structural Engineering (Center of gravity, moment of inertia, stresses, beams, frames, indeterminate structures, plastic analysis)',
                     marks: 5,
                     sets: [
-                        { name: '✍️ Set 1 – CG & Moment of Inertia', description: 'Center of gravity, moment of inertia, and section properties.' },
-                        { name: '✍️ Set 2 – Beams & Frames', description: 'Beam stresses, frames, and indeterminate structures.' },
-                        { name: '✍️ Set 3 – Plastic Analysis', description: 'Plastic moment, collapse mechanism, and load factor.' }
+                        { name: '✍️ Set 1 – CG & Moment of Inertia' },
+                        { name: '✍️ Set 2 – Beams & Frames' },
+                        { name: '✍️ Set 3 – Plastic Analysis' }
                     ]
                 }, {
                     id: '3.2',
                     name: 'Engineering Survey (Principles, linear measurement, compass, plane table, levelling, contouring, theodolite, tacheometry, total station, curves, area & volume)',
                     marks: 7,
                     sets: [
-                        { name: '✍️ Set 1 – Linear & Compass Survey', description: 'Linear measurement, compass survey, and plane table.' },
-                        { name: '✍️ Set 2 – Levelling & Contouring', description: 'Levelling, curvature correction, and contouring.' },
-                        { name: '✍️ Set 3 – Theodolite & Total Station', description: 'Theodolite, total station, tacheometry, and curve setting.' }
+                        { name: '✍️ Set 1 – Principles & Linear Measurement' },
+                        { name: '✍️ Set 2 – Compass & Plane Table' },
+                        { name: '✍️ Set 3 – Levelling & Contouring' },
+                        { name: '✍️ Set 4 – Theodolite & Tacheometry' },
+                        { name: '✍️ Set 5 – Total Station, Curves, Area & Volume' }
                     ]
                 }, {
                     id: '3.3',
                     name: 'Construction Materials (Properties, stones, ceramics, cement, metals, timber, asphalt, soil, local & modern materials)',
                     marks: 6,
                     sets: [
-                        { name: '✍️ Set 1 – Stones & Ceramics', description: 'Stone types, ceramics, and their properties.' },
-                        { name: '✍️ Set 2 – Cement & Metals', description: 'Cement types, steel, aluminum, and their uses.' },
-                        { name: '✍️ Set 3 – Timber & Modern Materials', description: 'Timber species, bamboo, PVC, FRP, and composites.' }
+                        { name: '✍️ Set 1 – Stones & Ceramics' },
+                        { name: '✍️ Set 2 – Cement & Metals' },
+                        { name: '✍️ Set 3 – Timber & Modern Materials' }
                     ]
                 }, {
                     id: '3.4',
                     name: 'Concrete Technology (Constituents, water-cement ratio, mix design, testing, admixtures, high strength, pre-stressed concrete)',
                     marks: 5,
                     sets: [
-                        { name: '✍️ Set 1 – Constituents & W/C Ratio', description: 'Cement, aggregates, water, and water-cement ratio.' },
-                        { name: '✍️ Set 2 – Mix Design & Testing', description: 'Mix design methods, slump test, and compressive strength.' },
-                        { name: '✍️ Set 3 – Admixtures & High-Strength', description: 'Admixtures, high-strength concrete, and pre-stressed concrete.' }
+                        { name: '✍️ Set 1 – Constituents & W/C Ratio' },
+                        { name: '✍️ Set 2 – Mix Design & Testing' },
+                        { name: '✍️ Set 3 – Admixtures & High-Strength' }
                     ]
                 }, {
                     id: '3.5',
                     name: 'Geotechnical Engineering (Soil formation, phases, water in soil, index properties, rocks, tunneling)',
                     marks: 6,
                     sets: [
-                        { name: '✍️ Set 1 – Soil Formation & Phases', description: 'Soil formation, phases, void ratio, and porosity.' },
-                        { name: '✍️ Set 2 – Index Properties & Water', description: 'Grain size, Atterberg limits, and water types in soil.' },
-                        { name: '✍️ Set 3 – Rocks & Tunneling', description: 'Rock types, tunneling methods, and notable tunnels.' }
+                        { name: '✍️ Set 1 – Soil Formation & Phases' },
+                        { name: '✍️ Set 2 – Index Properties & Water' },
+                        { name: '✍️ Set 3 – Rocks & Tunneling' }
                     ]
                 }, {
                     id: '3.6',
                     name: 'Construction Management (Scheduling, contracts, material management, cost/quality/time control, project management, safety, monitoring)',
                     marks: 6,
                     sets: [
-                        { name: '✍️ Set 1 – Scheduling & Contracts', description: 'CPM, PERT, types of contracts, and procurement.' },
-                        { name: '✍️ Set 2 – Material Management & QC', description: 'Inventory, quality control, and time control.' },
-                        { name: '✍️ Set 3 – Safety & Monitoring', description: 'Safety protocols, KPIs, dashboards, and project monitoring.' }
+                        { name: '✍️ Set 1 – Scheduling & Contracts' },
+                        { name: '✍️ Set 2 – Material Management & QC' },
+                        { name: '✍️ Set 3 – Safety & Monitoring' }
                     ]
                 }, {
                     id: '3.7',
                     name: 'Estimating, Costing, Specification & Valuation (Types of estimates, quantity methods, rate analysis, BOQ, specifications, valuation)',
                     marks: 5,
                     sets: [
-                        { name: '✍️ Set 1 – Types of Estimates', description: 'Preliminary, detailed, revised, and supplementary estimates.' },
-                        { name: '✍️ Set 2 – Rate Analysis & BOQ', description: 'Rate analysis, Bill of Quantities, and tendering.' },
-                        { name: '✍️ Set 3 – Specifications & Valuation', description: 'Specifications, valuation methods, and property appraisal.' }
+                        { name: '✍️ Set 1 – Types of Estimates' },
+                        { name: '✍️ Set 2 – Rate Analysis & BOQ' },
+                        { name: '✍️ Set 3 – Specifications & Valuation' }
                     ]
                 }, {
                     id: '3.8',
                     name: 'Engineering Drawing (Sheet composition, scales, projections, drafting tools, symbols, topographic/electrical/plumbing/structural drawings, community buildings)',
                     marks: 4,
                     sets: [
-                        { name: '✍️ Set 1 – Sheet Composition & Scales', description: 'Title block, scales, and standard sheet sizes.' },
-                        { name: '✍️ Set 2 – Projections & Symbols', description: 'Orthographic, isometric, and standard symbols.' },
-                        { name: '✍️ Set 3 – Community Buildings', description: 'Architectural, structural, electrical, and plumbing drawings.' }
+                        { name: '✍️ Set 1 – Sheet Composition & Scales' },
+                        { name: '✍️ Set 2 – Projections & Symbols' },
+                        { name: '✍️ Set 3 – Community Buildings' }
                     ]
                 }, {
                     id: '3.9',
                     name: 'Engineering Economics (Benefit-cost analysis, sensitivity, IRR, time value, demand-supply, NPV, financial & economic evaluation)',
                     marks: 3,
                     sets: [
-                        { name: '✍️ Set 1 – Time Value & NPV', description: 'Time value of money, NPV, and discounting.' },
-                        { name: '✍️ Set 2 – IRR & Sensitivity', description: 'Internal Rate of Return and sensitivity analysis.' },
-                        { name: '✍️ Set 3 – Benefit-Cost & Evaluation', description: 'Benefit-cost ratio, financial vs economic evaluation, and demand-supply.' }
+                        { name: '✍️ Set 1 – Time Value & NPV' },
+                        { name: '✍️ Set 2 – IRR & Sensitivity' },
+                        { name: '✍️ Set 3 – Benefit-Cost & Evaluation' }
                     ]
                 }, {
                     id: '3.10',
                     name: 'Professional Practices (Ethics, Nepal Engineering Council Act, client relations, public procurement, National Building Code, building bylaws)',
                     marks: 3,
                     sets: [
-                        { name: '✍️ Set 1 – Ethics & NEC Act', description: 'Professional ethics, Nepal Engineering Council, and registration.' },
-                        { name: '✍️ Set 2 – Public Procurement & NBC', description: 'Public Procurement Act, National Building Code, and building bylaws.' },
-                        { name: '✍️ Set 3 – Client Relations & Practice', description: 'Client management, transparency, and professional standards.' }
+                        { name: '✍️ Set 1 – Ethics & NEC Act' },
+                        { name: '✍️ Set 2 – Public Procurement & NBC' },
+                        { name: '✍️ Set 3 – Client Relations & Practice' }
                     ]
                 }]
             };
 
             // ================================================================
-            //  HELPER: consistent color for topic ID
+            //  UTILITY FUNCTIONS
             // ================================================================
-            function getColorForId(id) {
-                const colors = ['#e8f5e9', '#c8e6c9', '#a5d6a7', '#81c784', '#66bb6a', '#4caf50', '#43a047', '#388e3c',
-                    '#2e7d32', '#1b5e20'
-                ];
+
+            /**
+             * Generates a deterministic color from a string ID using a simple hash.
+             * @param {string} id - The topic ID (e.g. '3.2').
+             * @returns {string} A hex color from the BADGE_COLORS palette.
+             */
+            function getBadgeColor(id) {
                 let hash = 0;
                 for (let i = 0; i < id.length; i++) {
                     hash = id.charCodeAt(i) + ((hash << 5) - hash);
                 }
-                return colors[Math.abs(hash) % colors.length];
+                return BADGE_COLORS[Math.abs(hash) % BADGE_COLORS.length];
+            }
+
+            /**
+             * Builds the full test file name from topic ID and set index.
+             * @param {string} topicId - e.g. '3.2'.
+             * @param {number} setIndex - 1-based index within the topic's sets.
+             * @returns {string} The test file name (e.g. '3.2-1').
+             */
+            function buildTestFileName(topicId, setIndex) {
+                return topicId + '-' + setIndex;
             }
 
             // ================================================================
-            //  RENDER: accordion items with sets and Start Exam buttons
-            //  SINGLE-OPEN: when a header is clicked, close all other items in the same book-list
+            //  DOM BUILDERS
             // ================================================================
+
+            /**
+             * Creates a set card DOM element.
+             * @param {object} set - The set object with a `name` property.
+             * @param {string} topicId - The parent topic ID.
+             * @param {number} index - 1-based index of this set.
+             * @returns {HTMLElement} The set card element.
+             */
+            function createSetElement(set, topicId, index) {
+                const card = document.createElement('div');
+                card.className = 'set-card';
+
+                // ----- Header (toggles set body) -----
+                const header = document.createElement('div');
+                header.className = 'set-header';
+                header.setAttribute('role', 'button');
+                header.setAttribute('aria-expanded', 'false');
+                header.setAttribute('tabindex', '0');
+
+                const nameSpan = document.createElement('span');
+                nameSpan.className = 'set-name';
+                nameSpan.innerHTML = set.name;
+
+                const toggleIcon = document.createElement('span');
+                toggleIcon.className = 'set-toggle-icon';
+                toggleIcon.innerHTML = '&#9660;';
+                toggleIcon.setAttribute('aria-hidden', 'true');
+
+                header.appendChild(nameSpan);
+                header.appendChild(toggleIcon);
+
+                // ----- Body (content + Start button) -----
+                const body = document.createElement('div');
+                body.className = 'set-body';
+
+                const content = document.createElement('div');
+                content.className = 'set-content';
+
+                const link = document.createElement('a');
+                link.className = 'start-exam-btn';
+                link.href = TEST_BASE_URL + buildTestFileName(topicId, index);
+                link.target = '_blank';
+                link.setAttribute('aria-label', 'Start exam for ' + set.name);
+                link.innerHTML = '<i class="fas fa-play"></i> Start Exam';
+
+                content.appendChild(link);
+                body.appendChild(content);
+
+                card.appendChild(header);
+                card.appendChild(body);
+
+                // ----- Toggle event for set card -----
+                header.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const isOpen = card.classList.toggle('open');
+                    this.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+                });
+
+                header.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        this.click();
+                    }
+                });
+
+                return card;
+            }
+
+            /**
+             * Creates a topic accordion item DOM element.
+             * @param {object} topic - The topic object with id, name, marks, and sets.
+             * @returns {HTMLElement} The accordion item element.
+             */
+            function createTopicElement(topic) {
+                const item = document.createElement('div');
+                item.className = 'accordion-item';
+
+                // ----- Header -----
+                const header = document.createElement('div');
+                header.className = 'accordion-header';
+                header.setAttribute('role', 'button');
+                header.setAttribute('aria-expanded', 'false');
+                header.setAttribute('tabindex', '0');
+
+                const badge = document.createElement('span');
+                badge.className = 'topic-id-badge';
+                badge.textContent = topic.id;
+                badge.style.backgroundColor = getBadgeColor(topic.id);
+
+                const title = document.createElement('h3');
+                title.className = 'topic-title';
+                title.textContent = topic.name;
+
+                const marks = document.createElement('span');
+                marks.className = 'topic-marks';
+                marks.textContent = topic.marks + ' Mark' + (topic.marks > 1 ? 's' : '');
+
+                const icon = document.createElement('span');
+                icon.className = 'accordion-toggle-icon';
+                icon.innerHTML = '&#9660;';
+                icon.setAttribute('aria-hidden', 'true');
+
+                header.appendChild(badge);
+                header.appendChild(title);
+                header.appendChild(marks);
+                header.appendChild(icon);
+
+                // ----- Body -----
+                const body = document.createElement('div');
+                body.className = 'accordion-body';
+
+                const setsContainer = document.createElement('div');
+                setsContainer.className = 'sets-container';
+
+                const sets = topic.sets || [];
+                if (sets.length === 0) {
+                    const msg = document.createElement('p');
+                    msg.className = 'no-sets-msg';
+                    msg.textContent = 'No exam sets available for this topic yet.';
+                    setsContainer.appendChild(msg);
+                } else {
+                    sets.forEach((set, idx) => {
+                        const setEl = createSetElement(set, topic.id, idx + 1);
+                        setsContainer.appendChild(setEl);
+                    });
+                }
+
+                body.appendChild(setsContainer);
+                item.appendChild(header);
+                item.appendChild(body);
+
+                // ----- Accordion toggle (single-open) -----
+                header.addEventListener('click', function(e) {
+                    // Ignore clicks that originated from a set header inside.
+                    if (e.target.closest('.set-header')) return;
+
+                    const container = this.closest('.book-list');
+                    const isCurrentlyOpen = item.classList.contains('open');
+
+                    // Close all siblings in the same book-list.
+                    const siblings = container.querySelectorAll('.accordion-item');
+                    siblings.forEach(function(sib) {
+                        if (sib !== item && sib.classList.contains('open')) {
+                            sib.classList.remove('open');
+                            sib.querySelector('.accordion-header').setAttribute('aria-expanded', 'false');
+                        }
+                    });
+
+                    // Toggle this item.
+                    if (!isCurrentlyOpen) {
+                        item.classList.add('open');
+                        header.setAttribute('aria-expanded', 'true');
+                    } else {
+                        item.classList.remove('open');
+                        header.setAttribute('aria-expanded', 'false');
+                    }
+                });
+
+                header.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        this.click();
+                    }
+                });
+
+                return item;
+            }
+
+            /**
+             * Renders a list of topics into a container.
+             * @param {string} containerId - The DOM id of the container element.
+             * @param {Array} topics - Array of topic objects.
+             */
             function renderTopics(containerId, topics) {
                 const container = document.getElementById(containerId);
                 if (!container) return;
+
                 container.innerHTML = '';
-
-                topics.forEach((topic) => {
-                    const item = document.createElement('div');
-                    item.className = 'accordion-item';
-
-                    // ----- header -----
-                    const header = document.createElement('div');
-                    header.className = 'accordion-header';
-                    header.setAttribute('role', 'button');
-                    header.setAttribute('aria-expanded', 'false');
-                    header.setAttribute('tabindex', '0');
-
-                    // badge
-                    const badge = document.createElement('span');
-                    badge.className = 'topic-id-badge';
-                    badge.textContent = topic.id;
-                    badge.style.backgroundColor = getColorForId(topic.id);
-
-                    // title
-                    const title = document.createElement('h3');
-                    title.className = 'topic-title';
-                    title.textContent = topic.name;
-
-                    // marks
-                    const marks = document.createElement('span');
-                    marks.className = 'topic-marks';
-                    marks.textContent = `${topic.marks} Mark${topic.marks > 1 ? 's' : ''}`;
-
-                    // icon
-                    const icon = document.createElement('span');
-                    icon.className = 'accordion-toggle-icon';
-                    icon.innerHTML = '&#9660;';
-                    icon.setAttribute('aria-hidden', 'true');
-
-                    header.appendChild(badge);
-                    header.appendChild(title);
-                    header.appendChild(marks);
-                    header.appendChild(icon);
-
-                    // ----- body -----
-                    const body = document.createElement('div');
-                    body.className = 'accordion-body';
-
-                    const setsContainer = document.createElement('div');
-                    setsContainer.className = 'sets-container';
-
-                    const sets = topic.sets || [];
-                    if (sets.length === 0) {
-                        const msg = document.createElement('p');
-                        msg.className = 'no-sets-msg';
-                        msg.textContent = 'No exam sets available for this topic yet.';
-                        setsContainer.appendChild(msg);
-                    } else {
-                        sets.forEach((set, setIdx) => {
-                            const setCard = document.createElement('div');
-                            setCard.className = 'set-card';
-
-                            // set header (click to toggle set body)
-                            const setHeader = document.createElement('div');
-                            setHeader.className = 'set-header';
-                            setHeader.setAttribute('role', 'button');
-                            setHeader.setAttribute('aria-expanded', 'false');
-                            setHeader.setAttribute('tabindex', '0');
-
-                            const setName = document.createElement('span');
-                            setName.className = 'set-name';
-                            
-                            setName.innerHTML = ` ${set.name}`;
-
-                            const setIcon = document.createElement('span');
-                            setIcon.className = 'set-toggle-icon';
-                            setIcon.innerHTML = '&#9660;';
-                            setIcon.setAttribute('aria-hidden', 'true');
-
-                            setHeader.appendChild(setName);
-                            setHeader.appendChild(setIcon);
-
-                            // set body
-                            const setBody = document.createElement('div');
-                            setBody.className = 'set-body';
-
-                            const contentDiv = document.createElement('div');
-                            contentDiv.className = 'set-content';
-
-                            // Description
-                            if (set.description) {
-                                const desc = document.createElement('p');
-                                desc.className = 'test-description';
-                                desc.textContent = set.description;
-                                contentDiv.appendChild(desc);
-                            }
-
-                            // Start Exam button
-                            const testFile = `${topic.id}-${setIdx+1}`;
-                            const link = document.createElement('a');
-                            link.className = 'start-exam-btn';
-                            link.href = TEST_BASE_URL + testFile;
-                            link.target = '_blank';
-                            link.setAttribute('aria-label', `Start exam for ${set.name}`);
-                            link.innerHTML = '<i class="fas fa-play"></i> Start Exam';
-                            contentDiv.appendChild(link);
-
-                            setBody.appendChild(contentDiv);
-                            setCard.appendChild(setHeader);
-                            setCard.appendChild(setBody);
-                            setsContainer.appendChild(setCard);
-
-                            
-                            setHeader.addEventListener('click', function(e) {
-                                e.stopPropagation();
-                                const isOpen = setCard.classList.toggle('open');
-                                this.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-                            });
-                            setHeader.addEventListener('keydown', function(e) {
-                                if (e.key === 'Enter' || e.key === ' ') {
-                                    e.preventDefault();
-                                    this.click();
-                                }
-                            });
-                        });
-                    }
-
-                    body.appendChild(setsContainer);
-                    item.appendChild(header);
-                    item.appendChild(body);
-                    container.appendChild(item);
-
-                    
-                    header.addEventListener('click', function(e) {
-                        
-                        if (e.target.closest('.set-header')) return;
-
-                        const isCurrentlyOpen = item.classList.contains('open');
-
-                        
-                        const siblings = container.querySelectorAll('.accordion-item');
-                        siblings.forEach(sib => {
-                            if (sib !== item && sib.classList.contains('open')) {
-                                sib.classList.remove('open');
-                                sib.querySelector('.accordion-header').setAttribute('aria-expanded', 'false');
-                            }
-                        });
-
-                        
-                        if (!isCurrentlyOpen) {
-                            item.classList.add('open');
-                            header.setAttribute('aria-expanded', 'true');
-                        } else {
-                            item.classList.remove('open');
-                            header.setAttribute('aria-expanded', 'false');
-                        }
-                    });
-
-                    header.addEventListener('keydown', function(e) {
-                        if (e.key === 'Enter' || e.key === ' ') {
-                            e.preventDefault();
-                            this.click();
-                        }
-                    });
+                topics.forEach(function(topic) {
+                    const el = createTopicElement(topic);
+                    container.appendChild(el);
                 });
             }
+
+            // ================================================================
+            //  INITIALIZATION
+            // ================================================================
 
             renderTopics('awarenessGrid', topicsData.awareness);
             renderTopics('reasoningGrid', topicsData.reasoning);

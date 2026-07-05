@@ -15,24 +15,58 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
     </script>
-   
+    <script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['\\(','\\)']],
+    displayMath: [['\
+
+\[','\\]
+
+']]
+  }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+   <style>
+       mjx-container {
+  font-family: 'Times New Roman', serif;
+  font-size: 1.1rem;
+  color: #222;
+}
+mjx-container[display="true"] {
+  display: block;
+  margin: 15px 0;
+  padding: 12px;
+  background: #f8f9fa;
+  border-left: 4px solid #2E7D32;
+  border-radius: 6px;
+  text-align: left;
+}
+mjx-container[display="false"] {
+  display: inline;
+  margin: 0 4px;
+}
+
+   </style>
     
 
 </head>
 <body>
     <section id="top">      
                 <header class="hero">
-                <h2> Numerical Reasoning (Arithmetic Series, Analogy, Classification, Arithmetical Reasoning, Fraction, Percentage, Ratio, Average, Profit & Loss, Time & Work, Date & Calendar, Data Sufficiency, Data Interpretation & Verification)</h2>
+                <h> Numerical Reasoning (Arithmetic Series, Analogy, Classification, Arithmetical Reasoning, Fraction, Percentage, Ratio, Average, Profit & Loss, Time & Work, Date & Calendar, Data Sufficiency, Data Interpretation & Verification)</h>
                             </header>
 <div class="container">
- <div class="nav-buttons">
-      <div class="nav-buttons">
-            <button class="nav-btn" onclick="location.href='#Time & Work'">Time & Work</button>
-<button class="nav-btn" onclick="location.href='#Lines'">Lines & Dimension</button>
-<button class="nav-btn" onclick="location.href='#Conics'">Cone and Conic Sections</button>
-<button class="nav-btn" onclick="location.href='#Theory of Projection'">Theory of Projection</button>
-<button class="nav-btn" onclick="location.href='#Working Drawings'">Working Drawings</button>
-             </div>
+   <div class="nav-buttons" style="display:flex; justify-content:space-between;">
+    <button class="nav-btn" onclick="location.href='#Time & Work'">Time & Work</button>
+    <button class="nav-btn" onclick="location.href='#Average'">Average</button>
+    <button class="nav-btn" onclick="location.href='#Conics'">Cone and Conic Sections</button>
+    <button class="nav-btn" onclick="location.href='#Theory of Projection'">Theory of Projection</button>
+    <button class="nav-btn" onclick="location.href='#Working Drawings'">Working Drawings</button>
+</div>
+
     <section id="Time & Work">
 <div class="card">
   <p>
@@ -72,12 +106,48 @@
     Therefore, A’s one day’s work = 1/15 − 1/20 = 1/60.<br>
     Hence, A alone can complete the work in 60 days.
   </div>
-</div>          
+</div>  
+        
 </section>
- <button class="top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to Top">↑</button>
+
+    <section id="Time & Work">
+<div class="card">
+  <p>
+    Ajit has a certain average for 9 innings. In the tenth innings, he scores 100 runs thereby increasing his average by 8 runs. His new average is:<br>
+    a) 20<br>
+    b) 21<br>
+    c) 28<br>
+    d) 32<br>
+  </p>
+  <div class="options">
+    <button class="nav-btn">Show Answer</button>
+  </div>
+  <div class="answer">
+    c) 28<br>
+    Explanation:<br>
+    Let Ajit's average for 9 innings = \(x\).<br>
+    Total runs in 9 innings = \(9x\).<br><br>
+    In the 10th inning, he scores 100 runs.<br>
+    New average = \(x + 8\).<br>
+    Total runs in 10 innings = \((x + 8) \times 10\).<br><br>
+    Equation:<br>
+\[ 9x + 100 = 10(x + 8) \]
+<br>  
+\[ 9x + 100 = 10x + 80 \]
+<br>
+\[ x = 20 \]
+<br>
+    New average = \(x + 8 = 28\).
+  </div>
+</div>
+
+    </section>
+        
+
 </section>
  <div id="social-section"></div>
     <div id="footer"></div>
+     <button class="top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to Top">↑</button>
     <script src="/js/mcq-script.js" defer></script>
    <script src="/js/logo.js"></script>
     <script src="/js/layout.js"></script>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Model Set -2</title>
+<link rel="icon" href="https://arunpanthi.com.np/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="/css/Mock_Test.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar" id="navbar">
+<span class="brand" id="navbar-brand">Model Set -2 </span>
+<span class="timer-display" id="timer-display" style="display:none;">--:--</span>
+</nav>
+
+<!-- Warning modal -->
+<div id="warning-modal" class="modal-overlay" style="display: none;">
+<div class="modal-dialog">
+<div class="warning-icon">⚠️</div>
+<h3>Unanswered Questions</h3>
+<p>You haven't answered all the questions.</p>
+<span class="unanswered-count" id="modal-unanswered-count">0 unanswered</span>
+<p style="margin-top:8px;"><strong>⚠ This test cannot be retaken once submitted!</strong></p>
+<div class="modal-buttons">
+<button class="btn-cancel" id="btn-modal-cancel">Cancel</button>
+<button class="btn-submit-warning" id="btn-modal-submit">Submit Anyway</button>
+</div>
+</div>
+</div>
+
+<div id="pre-test-section">
+<div class="hero" id="hero-card">
+<h1 id="hero-set-name">Loading...</h1>
+<p class="set-details" id="hero-details"></p>
+<div class="set-meta">
+<div class="meta-item"><span id="hero-q-count">0</span> Questions</div>
+<div class="meta-item"><span id="hero-time">0:00</span> Time (min)</div>
+</div>
+<button class="btn-start" id="btn-start-test">🚀 Start Test</button>
+<p style="margin-top:10px;font-size:0.85rem;opacity:0.8;" id="hero-note"></p>
+</div>
+</div>
+
+<div id="test-section" style="display:none;">
+<div class="test-container">
+<div class="question-area">
+<div class="question-card">
+<div class="q-number" id="q-number-label">QUESTION 1</div>
+<div class="q-text" id="q-text">Loading question...</div>
+<ul class="options-list" id="options-list"></ul>
+</div>
+<div class="nav-buttons">
+<div class="nav-left"><button class="btn-nav" id="btn-prev">◀ Previous</button></div>
+<div class="nav-center"><button class="btn-submit" id="btn-submit-test">✅ Submit Test</button></div>
+<div class="nav-right"><button class="btn-nav" id="btn-next">Next ▶</button></div>
+</div>
+</div>
+<aside class="sidebar">
+<h3>📋 Question </h3>
+<div class="total-questions" id="sidebar-total">Total: 0</div>
+<div class="answered-count">Answered: <strong id="sidebar-answered-num">0</strong></div>
+<div class="q-grid" id="q-grid"></div>
+<div class="legend">
+<span><span class="dot-sample blue"></span> Answered</span>
+<span><span class="dot-sample gray"></span> Unanswered</span>
+</div>
+</aside>
+</div>
+</div>
+
+<div id="results-section" style="display:none;">
+<div class="results-container">
+<div class="results-header">
+<h2 style="color:#2E7D32;">📊 Test Results</h2>
+<p style="color:#666;" id="results-set-name"></p>
+<div class="score-circle">
+<span class="score-num" id="results-score">0</span>
+<span class="score-denom" id="results-denom">/ 0</span>
+</div>
+<div class="percentage" id="results-percentage">0%</div>
+<p style="margin-top:8px;color:#888;font-size:0.9rem;" id="results-time-taken"></p>
+</div>
+<div id="results-detail"></div>
+</div>
+</div>
+<script src="/js/Mock_Test.js"></script>
+<script>
+(function() {
+    console.log('Inline script running');
+    const questionSet = {
+        name: 'Civil Engineering Loksewa Model Set -2',
+        details: 'Comprehensive civil engineering exam covering strength of materials, surveying, construction materials, soil mechanics, contracts, estimation, general knowledge, and reasoning.',
+        questions: [
+            { question: 'When a bar is subjected to change in temperature and its deformation is prevented, the stress induced in the bar is', options: ['tensile stress', 'compressive stress', 'shear stress', 'thermal stress'], correct: 3 },
+            { question: 'A beam is said to have been subjected to pure bending when', options: ['SF is maximum', 'the load is applied as udl through out the section', 'SF in a length is zero', 'the load applied at the mid span section only'], correct: 2 },
+            { question: 'In a shaft subjected to pure torsion cracks, the cracks will start', options: ['at the center of cross section', 'on the pheriphery', 'throught out he cross section simultaneously', 'none of above'], correct: 1 },
+            { question: 'For two hinged parabolic arch, if one of the support settle horizontally thrust', options: ['increases', 'decreases', 'remained unchanged', 'becomes zero'], correct: 1 },
+            { question: 'The load on a spring per unit deflection is called', options: ['stiffness', 'proof resilience', 'proof stress', 'proof load'], correct: 0 },
+            { question: 'Systematic error are those errors', options: ['which cannot be recognized', 'whose character is understood', 'both', 'whose effects are cumulative and can be eliminated'], correct: 3 },
+            { question: 'A freely floating needle slightly gets inclined to the horizontal anywhere except on the equator. It is called', options: ['declination', 'dip', 'local attraction', 'secular variation'], correct: 1 },
+            { question: 'Detailed plotting is generally done by', options: ['radiation', 'traversing', 'resection', 'all of above'], correct: 0 },
+            { question: 'If the staff is not held vertical at a levelling station, the reduced levels calculated from the observation would be', options: ['true R.L.', 'More than true R.L.', 'less than true R.L.', 'none of above'], correct: 2 },
+            { question: 'When internal angles are to be subtended by a theodolite survey for closed traverse', options: ['traverse should run clockwise', 'traverse should go counter clockwise', 'traverse may go either way', 'exterior angle are measured when the traverse goes anticlockwise'], correct: 1 },
+            { question: 'Which of the following methods of contouring is most suitable for hilly terrain?', options: ['direct method', 'square method', 'cross section method', 'tacheometric method'], correct: 3 },
+            { question: 'The perpendicular distance/offset from a tangent to point of junction of transition curve and circular curve is', options: ['4* shift', '3*shift', '2*shift', '6*shift'], correct: 0 },
+            { question: 'The trunk of tree left after cutting all the branches is known as', options: ['log', 'batten', 'plank', 'baulk'], correct: 0 },
+            { question: 'The moisture absorption of a good stone should be less than', options: ['1%', '5%', '10%', '15%'], correct: 1 },
+            { question: 'The most durable varnish is', options: ['oil varnish', 'spirit varnish', 'flat varnish', 'asphalt varnish'], correct: 0 },
+            { question: 'The composition of copper and tin in alloy bronze is', options: ['90% and 10%', '80% and 20%', '70% and 30%', '60% and 40%'], correct: 0 },
+            { question: 'Smith test is performed on stones for', options: ['durability', 'water absorption', 'soluble and clayey matter', 'hardness'], correct: 2 },
+            { question: 'Softer variety of steel is obtained by', options: ['cementation process', 'crucible process', 'bessemer process', 'open hearth process'], correct: 2 },
+            { question: 'The normal consistency of cement is', options: ['25-33%', '33-35%', '5-7%', '20-30%'], correct: 0 },
+            { question: 'The purpose of reinforcement in prestressed concrete is', options: ['to provide adequate bond stress', 'to resist tensile stress', 'to impart initial compressive stress in concrete', 'all of above'], correct: 2 },
+            { question: 'The sand that required higher water content lies in', options: ['Zone I', 'Zone II', 'Zone III', 'Zone IV'], correct: 3 },
+            { question: 'The decreasing order of rate of hydration of cement constituent is', options: ['C3S,C2S and C3A', 'C2S, C3A and C2S', 'C3A, C2S and C3S', 'C3A, C3S and C2S'], correct: 3 },
+            { question: 'The modulus of elasticity of concrete improved with', options: ['decreasing in curing period', 'better compaction', 'higher water cement ratio', 'age'], correct: 3 },
+            { question: 'The water content of a soil at which the soil volume becomes constant is', options: ['plastic limit', 'liquid limit', 'shrinkage limit', 'solid limit'], correct: 2 },
+            { question: 'Which of the following method is quickest to find the water content of soil', options: ['oven dry method', 'alcohol method', 'calcium carbide method', 'sand bath method'], correct: 2 },
+            { question: 'circular section of tunnel is not suitable for', options: ['carrying water', 'non cohesive soils', 'tunnels driven by shield method', 'placement of concrete'], correct: 3 },
+            { question: 'Which of the following plate is the most active tectonic plate?', options: ['Pacific plate', 'Eurasian plate', 'Indo-Australian plate', 'South african plate'], correct: 0 },
+            { question: 'Uniformity coefficient of well graded soil is', options: ['1', 'less than 2', '2', 'greater than 2'], correct: 3 },
+            { question: 'Black cotton soil is not suitable for foundation because of its', options: ['black colour', 'low bearing capacity', 'cohesive particles', 'swelling and shrinkage nature'], correct: 3 },
+            { question: 'Bar chart are considered suitable for', options: ['major projects', 'minor project', 'large project', 'all of above'], correct: 1 },
+            { question: 'Free float affects….activity.', options: ['preceding activity', 'succeeding activity', 'both', 'particular activity'], correct: 1 },
+            { question: 'Which of the following is not the part of contract document?', options: ['Letter of intent', 'performance bond', 'Work Schedule', 'Bill of quantities'], correct: 0 },
+            { question: 'The project Technical Audit is done', options: ['after project completion', 'during project implementation', 'after dlp', 'all of above'], correct: 0 },
+            { question: 'Preventive maintenance is a type of', options: ['planned maintenance', 'recurrent maintenance', 'routine maintenance', 'all of above'], correct: 3 },
+            { question: 'In the context of the construction industry, a "variation" most accurately refers to:', options: ['any increase in the contract price due to inflation, regardless of work changes', 'Any change in the scope of works, specifications, or conditions agreed upon in the original contract', 'Any delay in the project caused by the contractor\'s inefficiency', 'all of above'], correct: 1 },
+            { question: 'Plinth area rate method of estimation is generally used for', options: ['Detailed estimates', 'Revised estimates', 'Approximate estimates', 'Supplementary estimates'], correct: 2 },
+            { question: 'A supplementary estimate is prepared when:', options: ['Work is to be done without contract', 'Original estimate has some technical errors', 'There\'s an increase in the quantity of work', 'Rates have changed in the market'], correct: 2 },
+            { question: 'Depreciation is calculated on:', options: ['Original cost of construction', 'Salvage value', 'Cost of land', 'Cost of structure or equipment over time'], correct: 3 },
+            { question: 'Which of the following items is usually not estimated in lump sum?', options: ['Boundary wall', 'Site clearance', 'Earthwork in excavation', 'Water supply and sanitation'], correct: 2 },
+            { question: 'The daily wage of skilled labor is considered in', options: ['Lump sum basis', 'Based on output per day', 'Based on output per day', 'Assumed by local government circular'], correct: 1 },
+            { question: 'True shape of a section is visible when the cutting plane is', options: ['Inclined', 'Parallel to viewing plane', 'perpendicular to viewing plane', 'vertical only'], correct: 1 },
+            { question: 'Leader lines are used to', options: ['represent axis', 'Show dimensions', 'Indicate notes or part names', 'Represent isometric lines'], correct: 2 },
+            { question: 'In AutoCAD, UCS stands for', options: ['User Coordinate System', 'Universal Coordinate System', 'Unified Coordinate System', 'User Custom Scale'], correct: 0 },
+            { question: 'Which of the following is not a type of engineering scale?', options: ['Plain scale', 'Diagonal scale', 'Vernier scale', 'Linear scale'], correct: 3 },
+            { question: 'Economic life of an asset is', options: ['Period till physical life ends', 'Period maximizing profit', 'Period during which asset is cost effective', 'Period till tax depreciation ends'], correct: 2 },
+            { question: 'Capital recovery cost includes', options: ['Depreciation only', 'Interest only', 'Depreciation and interest', 'Operating cost'], correct: 2 },
+            { question: 'The main limitation of payback period method is', options: ['Ignores time value of money', 'Complex to calculate', 'Ignores initial investment', 'Considers all cash flows'], correct: 0 },
+            { question: 'In the hierarchy of building codes, which comes the first?', options: ['Start of the art design: An introduction', 'Architectural Design Requirements', 'MRT for RCC buildings', 'MRT for load bearing buildings'], correct: 0 },
+            { question: 'Which ethical principle emphasizes being truthful and straightforward in professional dealings?', options: ['Integrity', 'Confidentiality', 'Responsibility Accountability', 'Accountability'], correct: 0 },
+            { question: 'Under which ministry does PPMO come?', options: ['Ministry of Infrastructure Development', 'Office of Prime Minister and Council of Minister', 'Ministry of law', 'Ministry of Education'], correct: 1 },
+            { question: 'In which district is \'Phungi Glacier\' situated?', options: ['Manang', 'Gorkha', 'Dolakha', 'Taplejung'], correct: 1 },
+            { question: 'The \'Ruru Kshetra\' lies within which province of Nepal?', options: ['Koshi', 'Lumbini', 'Gandaki', 'Karnali'], correct: 1 },
+            { question: 'The country that presents two separate budgets for a fiscal year is:', options: ['India', 'France', 'UK', 'Germany'], correct: 0 },
+            { question: 'Pointing to a lady in the bus Subir told Paresh, "She is the elder daughter of the brother-in-law of my friend\'s father". How is the lady related to Subir\'s friend?', options: ['Mother', 'Cousin Sister', 'Sister in Law', 'Sister'], correct: 1 },
+            { question: 'A and B have to travel from Kathmandu to Butwal in their respective cars. A is driving at 48kmph while B is driving at 40kmph. Find the time taken by B to reach Butwal if A takes 8 hrs.', options: ['9 hours 40 minutes', '9 hours 36 minutes', '9 hours 46 minutes', '9 hours 50 minutes'], correct: 1 },
+            { question: 'Identify the incorrect pair regarding the dance of different caste.', options: ['Sakela Dance - Lepcha', 'Maruni Dance - Magar', 'Balan Dance - Bhramin and Chhetri', 'Jhijhiya Dance - Tharu'], correct: 0 },
+            { question: 'How many articles are there in Paris Climate Agreement?', options: ['25', '27', '29', '33'], correct: 2 },
+            { question: 'Which principle is most closely associated with the Citizen Charter?', options: ['Secrecy', 'Centralization', 'Transparency and Accountability', 'Political Neutrality'], correct: 2 },
+            { question: 'Statement: Incessant rain for the past several days has posed the problem of overflowing and flood as the river bed is full of silt and mud. Courses of action: (I) The people should be made aware about the eminent danger over radio/television. (II) The silt and mud from the river bed should be cleared immediately after receding of water level.', options: ['Only I follows', 'Only II follows', 'Either I or II follows', 'Both I and II follows'], correct: 3 },
+            { question: 'Question: Among A, B, C, D and E, who is in the middle while standing in a row? Statements: I. C, who is third to the left of D, is to the immediate right of A and second to the left of E. II. C is second to the left of E, who is not at any of the ends and who is third to the right of A. D is at one of the ends.', options: ['I alone is sufficient while II alone is not sufficient', 'II alone is sufficient while I alone is not sufficient', 'Either I or II is sufficient', 'Both I and II are sufficient'], correct: 2 },
+            { question: 'The largest Hindu Temple "Angkor Wat" is located in which country?', options: ['Srilanka', 'Malaysia', 'Cambodia', 'Vietnam'], correct: 2 },
+            { question: 'Who discovered insulin?', options: ['Hermain Faizer', 'Herman Parkins', 'Frederick Banting', 'Edward Jenner'], correct: 2 },
+            { question: 'Which company received the Corporate Commercial Vehicle Award, 2026?', options: ['Tata Motors', 'Ashok Leyland', 'Foton', 'Mahindra Trucks'], correct: 2 },
+            { question: 'According to the National Population Census 2021, in how many local levels of Nepal was the population growth rate negative?', options: ['319', '248', '143', '127'], correct: 0 },
+            { question: 'Which of the following individuals did NOT serve as Prime Minister during the reign of King Mahendra?', options: ['Tanka Prasad Acharya', 'Matrika Prasad Koirala', 'Kirti Nidhi Bista', 'Lokendra Bahadur Chand'], correct: 3 },
+            { question: 'On which date did the devastating earthquake occur in Venezuela?', options: ['20 June, 2026', '22 June, 2026', '23 June, 2026', '25 June, 2026'], correct: 3 },
+            { question: 'In which district of Nepal is Deurali Cave located?', options: ['Kapilvastu', 'Parbat', 'Rukum East', 'Rolpa'], correct: 2 },
+            { question: 'In the national referendum held on 20 Baisakh 2037 B.S., in how many districts did the Panchayat system secure a majority?', options: ['31', '43', '55', '64'], correct: 2 },
+            { question: 'What was Nepal\'s rank in the Sustainable Development Index, 2026?', options: ['85th', '88th', '90th', '95th'], correct: 2 },
+            { question: 'In a library, 60% of the books are in Hindi, 60% of the remaining books are English, rests of the books are in Nepali. If there are 4800 books in English, then the total number of books in Nepali are', options: ['3200', '3300', '3400', '3500'], correct: 0 },
+            { question: 'According to the Sixteenth Plan, what percentage of digital literacy is targeted to be achieved by the end of the plan period?', options: ['50', '55', '60', '65'], correct: 0 },
+            { question: 'According to the Constitution of Nepal, the interval between the end of one session of the Federal Parliament and the commencement of the next session shall not exceed:', options: ['3 months', '4 months', '5 months', '6 months'], correct: 3 },
+            { question: 'Statement: Some tables are students. All students are guns. Conclusion: I. Some guns are tables. II. All tables are guns. III. Some guns are students. IV. All students are tables.', options: ['Only I follows', 'Only I, II and III follow', 'I, II, III and IV follow', 'Only II and III follow'], correct: 1 },
+            { question: 'K, L and M started a business in partnership, investing in the ratio of 5:6:13 respectively. At the end of the year, they earned a profit of Rs. 36,400, which is 14% of their total investment. How much did L invest in the business?', options: ['6500', '6600', '6700', '6800'], correct: 0 },
+            { question: 'Who was the first Prime Minister of Nepal to participate in a South Asian Association for Regional Cooperation Summit?', options: ['Tanka Prasad Acharya', 'B.P. Koirala', 'Girija Prasad Koirala', 'Krishna Prasad Bhattarai'], correct: 3 },
+            { question: 'Which Constitution of Nepal first used the term "State"?', options: ['Constitution of the Kingdom of Nepal, 2047 B.S.', 'Interim Constitution of Nepal, 2063 B.S.', 'Constitution of the Kingdom of Nepal, 2015 B.S.', 'Constitution of Nepal, 2019 B.S.'], correct: 3 },
+            { question: 'A child is looking for his father. He went 90m to the east before turning to his right. He went 20m before turning to his right again to look for his father at his uncle\'s place 30m from this point. His father was not there. From there he went 100 m to his north before meeting his father in a street. What is the shortest distance between son and father?', options: ['80', '100', '120', '140'], correct: 1 },
+            { question: 'If a 10% discount on the marked price of an article results in an 8% profit, what is the ratio of cost price (CP) to marked price (MP)?', options: ['5:6', '6:5', '4:5', '5:4'], correct: 0 },
+            { question: 'Which organ of the United Nations prepared the Universal Declaration of Human Rights?', options: ['General Assembly', 'Economic and Social Council', 'Security Council', 'International Court of Justice'], correct: 0 },
+            { question: 'Which of the following countries redesigned its public services by implementing the "Customer Service Journey Mapping" program?', options: ['Australia', 'UK', 'Malaysia', 'Qatar'], correct: 0 },
+            { question: 'If foretell is to predict, distort is to .......? Select the appropriate one among the given alternatives.', options: ['Evil', 'Wrong', 'Deform', 'Harm'], correct: 2 },
+            { question: 'Two Fan were sold for Rs. 3990 each, gaining 5% on one and losing 5% on the other. The gain or loss percent on the whole transaction is', options: ['0.25', '0.5', '25', '0.025'], correct: 0 },
+            { question: 'According to the Economic Survey 2082/83, which of the following correctly represents the order of crop production (from highest to lowest) in the fiscal year 2081/82?', options: ['Industrial crops → Vegetables → Cash crops → Food grains', 'Food grains → Cash crops → Industrial crops → Vegetables', 'Food grains → Vegetables → Cash crops → Industrial crops', 'Cash crops → Food grains → Vegetables → Industrial crops'], correct: 2 },
+            { question: 'Since when has the \'Nepal Economic Planning and Statistics Service\' been included in the Civil Service?', options: ['Since the commencement of the Act', 'Since the First Amendment', 'Since the Second Amendment', 'Since the Third Amendment'], correct: 1 },
+            { question: 'In a certain code, \'HILTON\' is written as \'IHTLNO\'. How is \'BILLION\' written in that code?', options: ['IBLLION', 'IBOILLN', 'IBLLOIN', 'IBLOILN'], correct: 2 },
+            { question: 'Pipe R can empty a full tank in 30 hours. But two pipes P and Q can fill a tank in 15 hours and 10 hours respectively. Ram unknowingly opened all three taps. After 2 hours Shyam realized it and closed Pipe R. Due to this mistake how much time in minutes more would it take to fill the tank?', options: ['18', '24', '30', '36'], correct: 3 },
+            { question: 'By which title is Bhakta Raj Acharya popularly known?', options: ['Kavi Shiromani', 'Bhajan Shiromani', 'Sangeet Shiromani', 'Vadya Shiromani'], correct: 1 },
+           { question: 'https://shorturl.at/A5lzk', options: ['a', 'b', 'c', 'd'], correct: 1 }, 
+           { question: 'https://shorturl.at/jPijL', options: ['134', '235', '241', '234'], correct: 0 },
+           { question: 'https://shorturl.at/53ecz', options: ['1', '2', '3', '4'], correct: 3 },
+           { question: 'https://shorturl.at/l2e79', options: ['1', '2', '3', '4'], correct: 1 },
+           { question: 'https://shorturl.at/dcnMp', options: ['a', 'b', 'c', 'd'], correct: 2 },
+           { question: 'https://short-url.cc/1yBTu', options: ['b', 'c', 'd', 'e'], correct: 3 },
+           { question: 'https://short-url.cc/1t5fX', options: ['1', '2', '3', '4'], correct: 0 },
+           { question: 'https://short-url.cc/1yBU9', options: ['a', 'b', 'c', 'd'], correct: 3 },
+           { question: 'https://short-url.cc/1yBUw', options: ['1', '2', '3', '4'], correct: 2 },
+           { question: 'https://short-url.cc/1yBVI', options: ['a', 'b', 'c', 'd'], correct: 0 },
+            { question: 'The Reinforcement Theory of Motivation was propounded by:', options: ['Douglas McGregor', 'Elton Mayo', 'B.F. Skinner', 'McClelland\'s'], correct: 2 },
+            { question: 'Choose the word which is least like the other words in the group?', options: ['Troop', 'Group', 'Mob', 'Class'], correct: 2 },
+            { question: 'Average of 14 numbers is 32. If the average of last 5 numbers is 26, then what is the average of the remaining numbers?', options: ['34.33', '35.33', '36.33', '37.33'], correct: 1 }
+        ]
+    };
+
+   console.log('questionSet defined');
+    startTest(questionSet);
+    console.log('startTest called');
+})(); 
+</script>
+<script src="/js/text-protect.js" defer></script>
+<script src="/js/logo.js"></script>
+</body>
+</html>

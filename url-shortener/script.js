@@ -1,9 +1,9 @@
 
-const JSONBIN_CONFIG = {
-    apiKey: '$2a$10$LvIsdjR2wQQMRq28tc2rh.yR1nccP5HIYYrKCSFMRoYMTIrqjRwM6 ',  
-    binId: '6a4e09bdda38895dfe3f3612'            
-};
 
+const JSONBIN_CONFIG = {
+    apiKey: '$2a$10$LvIsdjR2wQQMRq28tc2rh.yR1nccP5HIYYrKCSFMRoYMTIrqjRwM6',
+    binId: '6a4e14eeda38895dfe3f6860'
+};
 let currentOriginalUrl = '';
 let urlDatabase = {};
 let isLoading = false;

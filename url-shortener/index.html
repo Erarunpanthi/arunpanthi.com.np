@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image URL Shortener</title>
+    <title>URL Shortener - Shorten Any Link</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>🖼️ Image URL Shortener</h1>
-            <p>Convert long image URLs to short, shareable links</p>
+            <h1>🔗 Universal URL Shortener</h1>
+            <p>Shorten any long URL into a short, shareable link</p>
         </div>
 
         <div class="shortener-box">
@@ -18,7 +18,7 @@
                 <input 
                     type="text" 
                     id="longUrl" 
-                    placeholder="Paste your long image URL here..."
+                    placeholder="Paste any long URL here... (https://example.com/very/long/url)"
                     autocomplete="off"
                 >
                 <button id="shortenBtn" onclick="shortenUrl()">
@@ -29,40 +29,98 @@
 
             <div id="result" class="result hidden">
                 <div class="result-content">
-                    <label>Your shortened URL:</label>
+                    <label>✅ Your shortened URL:</label>
                     <div class="url-display">
                         <input type="text" id="shortUrl" readonly>
                         <button onclick="copyUrl()" class="copy-btn">
-                            <span id="copyText">Copy</span>
+                            <span id="copyText">📋 Copy</span>
                         </button>
                     </div>
-                    <div class="preview">
-                        <img id="previewImg" src="" alt="Image preview">
+                    <div class="stats">
+                        <div class="stat-item">
+                            <strong>Short Code:</strong> <span id="displayCode"></span>
+                        </div>
+                        <div class="stat-item">
+                            <strong>Created:</strong> <span id="displayDate"></span>
+                        </div>
+                        <div class="stat-item">
+                            <strong>Clicks:</strong> <span id="displayClicks">0</span>
+                        </div>
+                    </div>
+                    <div class="url-info">
+                        <div class="info-label">Original URL:</div>
+                        <div class="original-url" id="originalUrl"></div>
+                        <button onclick="openOriginal()" class="open-btn-small">🔗 Open Original</button>
                     </div>
                 </div>
             </div>
 
             <div id="error" class="error hidden"></div>
+            
+            <div class="info-box">
+                <p>💡 <strong>How it works:</strong> Enter any URL, get a short link, and share it with anyone! 
+                All data is stored locally in your browser.</p>
+            </div>
+        </div>
+
+        <div class="stats-section">
+            <div class="stat-card">
+                <div class="stat-number" id="totalUrls">0</div>
+                <div class="stat-label">URLs Shortened</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="totalClicks">0</div>
+                <div class="stat-label">Total Clicks</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="savedChars">0</div>
+                <div class="stat-label">Characters Saved</div>
+            </div>
         </div>
 
         <div class="features">
             <div class="feature">
                 <span class="icon">⚡</span>
-                <h3>Fast & Easy</h3>
-                <p>Shorten URLs instantly</p>
+                <h3>Instant</h3>
+                <p>Shorten URLs in milliseconds</p>
             </div>
             <div class="feature">
                 <span class="icon">🔒</span>
-                <h3>Secure</h3>
-                <p>Your data is safe</p>
+                <h3>Private</h3>
+                <p>No tracking, all data stays local</p>
             </div>
             <div class="feature">
-                <span class="icon">📊</span>
-                <h3>Track Links</h3>
-                <p>Monitor your URLs</p>
+                <span class="icon">🌐</span>
+                <h3>Universal</h3>
+                <p>Works with any URL</p>
+            </div>
+            <div class="feature">
+                <span class="icon">📱</span>
+                <h3>No Login</h3>
+                <p>Start shortening immediately</p>
             </div>
         </div>
+
+        <div class="history-section">
+            <div class="history-header">
+                <h2>📋 Your Shortened URLs</h2>
+                <button onclick="clearAllHistory()" class="clear-all-btn">🗑️ Clear All</button>
+            </div>
+            <div class="filter-section">
+                <input type="text" id="searchHistory" placeholder="🔍 Search URLs..." oninput="filterHistory()">
+                <select id="sortHistory" onchange="loadHistory()">
+                    <option value="newest">Newest First</option>
+                    <option value="oldest">Oldest First</option>
+                    <option value="mostClicks">Most Clicks</option>
+                </select>
+            </div>
+            <div id="historyList"></div>
+        </div>
     </div>
+
+    <footer class="footer">
+        <p>Made with ❤️ | Free & Open Source | No Data Collection</p>
+    </footer>
 
     <script src="script.js"></script>
 </body>

@@ -1,7 +1,8 @@
-// Global variable to store current original URL
+// This version creates short URLs like: arunpanthi.com.np/#abc123
+// Works perfectly on GitHub Pages
+
 let currentOriginalUrl = '';
 
-// Initialize on page load
 document.addEventListener('DOMContentLoaded', function() {
     loadHistory();
     checkForRedirect();
@@ -9,11 +10,10 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function checkForRedirect() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const code = urlParams.get('c');
+    const hash = window.location.hash.substring(1); // Remove the # symbol
     
-    if (code) {
-        redirectToOriginal(code);
+    if (hash && /^[a-zA-Z0-9]{6}$/.test(hash)) {
+        redirectToOriginal(hash);
     }
 }
 
@@ -21,16 +21,43 @@ function redirectToOriginal(code) {
     const urls = JSON.parse(localStorage.getItem('urlShortener') || '{}');
     
     if (urls[code]) {
-        // Increment click counter
         urls[code].clicks = (urls[code].clicks || 0) + 1;
         localStorage.setItem('urlShortener', JSON.stringify(urls));
         
-        // Redirect to original URL
-        window.location.href = urls[code].longUrl;
+        document.body.innerHTML = `
+            <div style="display: flex; justify-content: center; align-items: center; min-height: 100vh; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                <div style="background: white; padding: 50px; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); text-align: center; max-width: 500px;">
+                    <div style="font-size: 60px; margin-bottom: 20px;">🚀</div>
+                    <h2 style="color: #333; margin-bottom: 15px;">Redirecting...</h2>
+                    <p style="color: #666; margin-bottom: 25px;">Taking you to your destination</p>
+                    <div style="background: #f5f5f5; padding: 15px; border-radius: 10px; word-break: break-all; font-size: 14px; color: #667eea; margin-bottom: 20px;">${escapeHtml(urls[code].longUrl)}</div>
+                    <div style="border: 4px solid #f3f3f3; border-top: 4px solid #667eea; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto;"></div>
+                </div>
+            </div>
+            <style>@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }</style>
+        `;
+        
+        setTimeout(() => {
+            window.location.href = urls[code].longUrl;
+        }, 1000);
     } else {
-        // Code not found, redirect to home
-        window.location.href = window.location.origin + window.location.pathname;
+        // Code not found
+        document.body.innerHTML = `
+            <div style="display: flex; justify-content: center; align-items: center; min-height: 100vh; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                <div style="background: white; padding: 50px; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); text-align: center; max-width: 500px;">
+                    <div style="font-size: 60px; margin-bottom: 20px;">❌</div>
+                    <h2 style="color: #f44336; margin-bottom: 15px;">Link Not Found</h2>
+                    <p style="color: #666; margin-bottom: 25px;">This short URL doesn't exist or has been deleted.</p>
+                    <button onclick="window.location.href='${window.location.origin}/url-shortener/'" style="padding: 15px 30px; background: #667eea; color: white; border: none; border-radius: 10px; font-size: 16px; cursor: pointer; font-weight: 600;">Go to URL Shortener</button>
+                </div>
+            </div>
+        `;
     }
+}
+
+function getShortUrl(code) {
+    // Create short URL without the /url-shortener/ path
+    return window.location.origin + '/#' + code;
 }
 
 function generateShortCode(length = 6) {
@@ -59,11 +86,9 @@ async function shortenUrl() {
     const btnLoader = document.getElementById('btnLoader');
     const shortenBtn = document.getElementById('shortenBtn');
 
-    // Hide previous results
     resultDiv.classList.add('hidden');
     errorDiv.classList.add('hidden');
 
-    // Validate URL
     if (!longUrl) {
         showError('Please enter a URL');
         return;
@@ -74,16 +99,13 @@ async function shortenUrl() {
         return;
     }
 
-    // Show loading state
     btnText.classList.add('hidden');
     btnLoader.classList.remove('hidden');
     shortenBtn.disabled = true;
 
-    // Simulate network delay for better UX
     await new Promise(resolve => setTimeout(resolve, 400));
 
     try {
-        // Get existing URLs from localStorage
         let urls = JSON.parse(localStorage.getItem('urlShortener') || '{}');
         
         // Check if URL already exists
@@ -91,6 +113,9 @@ async function shortenUrl() {
             if (urls[code].longUrl === longUrl) {
                 displayResult(code, longUrl, urls[code].created, urls[code].clicks || 0);
                 updateStats();
+                btnText.classList.remove('hidden');
+                btnLoader.classList.add('hidden');
+                shortenBtn.disabled = false;
                 return;
             }
         }
@@ -114,11 +139,12 @@ async function shortenUrl() {
         loadHistory();
         updateStats();
         
+        document.getElementById('longUrl').value = '';
+        
     } catch (error) {
         showError('An error occurred. Please try again.');
         console.error('Error:', error);
     } finally {
-        // Reset button state
         btnText.classList.remove('hidden');
         btnLoader.classList.add('hidden');
         shortenBtn.disabled = false;
@@ -133,12 +159,9 @@ function displayResult(shortCode, longUrl, created, clicks) {
     const displayClicks = document.getElementById('displayClicks');
     const originalUrl = document.getElementById('originalUrl');
     
-    // Store original URL globally
     currentOriginalUrl = longUrl;
     
-    // Create short URL
-    const baseUrl = window.location.origin + window.location.pathname;
-    const shortUrl = baseUrl + '?c=' + shortCode;
+    const shortUrl = getShortUrl(shortCode);
     
     shortUrlInput.value = shortUrl;
     displayCode.textContent = shortCode;
@@ -147,8 +170,6 @@ function displayResult(shortCode, longUrl, created, clicks) {
     originalUrl.textContent = longUrl;
     
     resultDiv.classList.remove('hidden');
-    
-    // Scroll to result
     resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
@@ -191,8 +212,7 @@ function updateStats() {
     
     for (let code in urls) {
         totalClicks += urls[code].clicks || 0;
-        const baseUrl = window.location.origin + window.location.pathname;
-        const shortUrl = baseUrl + '?c=' + code;
+        const shortUrl = getShortUrl(code);
         const charsSaved = urls[code].longUrl.length - shortUrl.length;
         if (charsSaved > 0) {
             totalCharsSaved += charsSaved;
@@ -228,15 +248,14 @@ function loadHistory() {
     }
     
     entries.forEach(([code, data]) => {
-        const baseUrl = window.location.origin + window.location.pathname;
-        const shortUrl = baseUrl + '?c=' + code;
+        const shortUrl = getShortUrl(code);
         
         const item = document.createElement('div');
         item.className = 'history-item';
         item.setAttribute('data-url', data.longUrl.toLowerCase());
         item.innerHTML = `
             <div class="history-info">
-                <div class="short-code">🔗 ${code}</div>
+                <div class="short-code">🔗 ${shortUrl}</div>
                 <div class="long-url">${escapeHtml(data.longUrl)}</div>
                 <div class="date">
                     📅 ${new Date(data.created).toLocaleString()}
@@ -297,12 +316,15 @@ function copyHistoryUrl(url) {
             border-radius: 10px;
             font-weight: 600;
             z-index: 10000;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
             animation: slideIn 0.3s ease;
         `;
         document.body.appendChild(notification);
         
         setTimeout(() => {
-            notification.style.animation = 'slideOut 0.3s ease';
+            notification.style.opacity = '0';
+            notification.style.transform = 'translateX(400px)';
+            notification.style.transition = 'all 0.3s ease';
             setTimeout(() => notification.remove(), 300);
         }, 2000);
     });
@@ -331,7 +353,23 @@ function clearAllHistory() {
         updateStats();
         document.getElementById('result').classList.add('hidden');
         
-        alert('✓ All URLs have been deleted!');
+        // Show success notification
+        const notification = document.createElement('div');
+        notification.textContent = '✓ All URLs have been deleted!';
+        notification.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #4caf50;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            font-weight: 600;
+            z-index: 10000;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        `;
+        document.body.appendChild(notification);
+        setTimeout(() => notification.remove(), 3000);
     }
 }
 
@@ -341,30 +379,3 @@ document.getElementById('longUrl').addEventListener('keypress', function(event) 
         shortenUrl();
     }
 });
-
-// Add CSS for animations
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes slideIn {
-        from {
-            transform: translateX(400px);
-            opacity: 0;
-        }
-        to {
-            transform: translateX(0);
-            opacity: 1;
-        }
-    }
-    
-    @keyframes slideOut {
-        from {
-            transform: translateX(0);
-            opacity: 1;
-        }
-        to {
-            transform: translateX(400px);
-            opacity: 0;
-        }
-    }
-`;
-document.head.appendChild(style);

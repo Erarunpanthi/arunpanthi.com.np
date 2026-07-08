@@ -57,7 +57,7 @@ function redirectToOriginal(code) {
 
 function getShortUrl(code) {
     // Create short URL without the /url-shortener/ path
-    return window.location.origin + '/#' + code;
+        return window.location.origin + '/s#' + code;
 }
 
 function generateShortCode(length = 6) {

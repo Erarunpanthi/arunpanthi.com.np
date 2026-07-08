@@ -1,6 +1,0 @@
-# File: /Psc-preparation/Mock-Test/General/Set/.htaccess
-RewriteEngine On
-
-# Internally map /Set/1, /Set/2, etc. to index.php?set=1
-# The [L] flag means "last" – it does NOT trigger an external redirect.
-RewriteRule ^([0-9]+)/?$ index.php?set=$1 [L]

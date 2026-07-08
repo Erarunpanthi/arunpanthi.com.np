@@ -1,73 +1,188 @@
 <script>
-    const hash = window.location.hash.substring(1);
-    const content = document.getElementById('content');
-    
-    const JSONBIN_CONFIG = {
-        apiKey: 'YOUR_JSONBIN_API_KEY_HERE',  // Same as in script.js
-        binId: 'YOUR_BIN_ID_HERE'              // Same as in script.js
-    };
-    
+    // Wait for DOM to be fully loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        initRedirect();
+    });
+
+    // Also run immediately in case DOMContentLoaded already fired
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initRedirect);
+    } else {
+        initRedirect();
+    }
+
+    function initRedirect() {
+        const hash = window.location.hash.substring(1);
+        const content = document.getElementById('content');
+        
+        if (!content) {
+            console.error('Content element not found!');
+            document.body.innerHTML = `
+                <div style="padding: 50px; text-align: center; color: white;">
+                    <h1>❌ Error Loading Page</h1>
+                    <p>Please refresh the page</p>
+                </div>
+            `;
+            return;
+        }
+
+        console.log('Redirect initialized');
+        console.log('Hash:', hash);
+        
+        // Check if hash is valid
+        if (!hash || hash.length !== 6 || !/^[a-zA-Z0-9]{6}$/.test(hash)) {
+            showInvalidCode(content, hash);
+            return;
+        }
+
+        // Try to load from localStorage first
+        tryLocalStorage(content, hash);
+    }
+
+    function tryLocalStorage(content, hash) {
+        try {
+            const localDB = JSON.parse(localStorage.getItem('urlShortener') || '{}');
+            console.log('LocalStorage check:', Object.keys(localDB).length, 'URLs found');
+            
+            if (localDB[hash]) {
+                console.log('✅ Found in localStorage!');
+                redirectToUrl(content, hash, localDB[hash].longUrl);
+                return;
+            }
+            
+            console.log('❌ Not found in localStorage, trying JSONBin...');
+            tryJSONBin(content, hash);
+            
+        } catch (error) {
+            console.error('localStorage error:', error);
+            tryJSONBin(content, hash);
+        }
+    }
+
+    async function tryJSONBin(content, hash) {
+        // JSONBin Configuration - CORRECTED
+        const JSONBIN_CONFIG = {
+            apiKey: '$2a$10$LvIsdjR2wQQMRq28tc2rh.yR1nccP5HIYYrKCSFMRoYMTIrqjRwM6',
+            binId: '6a4e14eeda38895dfe3f6860'
+        };
+
+        try {
+            content.innerHTML = `
+                <div class="icon bounce">🔍</div>
+                <h2>Searching Database...</h2>
+                <p>Looking up your short code</p>
+                <div class="loader"></div>
+            `;
+
+            console.log('Fetching from JSONBin...');
+            console.log('API URL:', `https://api.jsonbin.io/v3/b/${JSONBIN_CONFIG.binId}/latest`);
+
+            const response = await fetch(`https://api.jsonbin.io/v3/b/${JSONBIN_CONFIG.binId}/latest`, {
+                method: 'GET',
+                headers: {
+                    'X-Master-Key': JSONBIN_CONFIG.apiKey
+                }
+            });
+
+            console.log('JSONBin response status:', response.status);
+
+            if (!response.ok) {
+                const errorText = await response.text();
+                console.error('JSONBin API Error:', response.status, errorText);
+                throw new Error(`JSONBin API error: ${response.status}`);
+            }
+
+            const data = await response.json();
+            const urlDatabase = data.record || {};
+            
+            console.log('JSONBin URLs found:', Object.keys(urlDatabase).length);
+            console.log('Available codes:', Object.keys(urlDatabase));
+
+            if (urlDatabase[hash]) {
+                console.log('✅ Found in JSONBin!');
+                
+                // Update click count
+                urlDatabase[hash].clicks = (urlDatabase[hash].clicks || 0) + 1;
+                
+                // Save updated count back (optional)
+                try {
+                    await fetch(`https://api.jsonbin.io/v3/b/${JSONBIN_CONFIG.binId}`, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-Master-Key': JSONBIN_CONFIG.apiKey
+                        },
+                        body: JSON.stringify(urlDatabase)
+                    });
+                    console.log('Click count updated');
+                } catch (e) {
+                    console.warn('Failed to update click count:', e);
+                }
+                
+                redirectToUrl(content, hash, urlDatabase[hash].longUrl);
+            } else {
+                console.log('❌ Not found in JSONBin');
+                showNotFound(content, hash, 'This short code does not exist in our database.');
+            }
+
+        } catch (error) {
+            console.error('JSONBin error:', error);
+            showNotFound(content, hash, `Error loading from database: ${error.message}`);
+        }
+    }
+
+    function redirectToUrl(content, code, longUrl) {
+        content.innerHTML = `
+            <div class="icon bounce">🚀</div>
+            <h2>Redirecting...</h2>
+            <p>Taking you to your destination</p>
+            <div class="url-box">${escapeHtml(longUrl)}</div>
+            <div class="loader"></div>
+            <p style="font-size: 12px; color: #999; margin-top: 20px;">
+                You will be redirected in 1 second...
+            </p>
+        `;
+
+        setTimeout(() => {
+            console.log('Redirecting to:', longUrl);
+            window.location.href = longUrl;
+        }, 1000);
+    }
+
+    function showNotFound(content, hash, message) {
+        content.innerHTML = `
+            <div class="icon error-icon">❌</div>
+            <h2>Link Not Found</h2>
+            <p>${escapeHtml(message)}</p>
+            <div class="code-display">Code: ${escapeHtml(hash)}</div>
+            <p style="font-size: 14px; color: #999; margin: 20px 0;">
+                This could mean:<br>
+                • The URL was created on a different browser<br>
+                • The short code doesn't exist<br>
+                • The database is not synced yet
+            </p>
+            <a href="/url-shortener/" class="btn">🔗 Create Your Own Short URL</a>
+            <button onclick="location.reload()" class="btn btn-secondary">🔄 Retry</button>
+        `;
+    }
+
+    function showInvalidCode(content, hash) {
+        content.innerHTML = `
+            <div class="icon error-icon">⚠️</div>
+            <h2>Invalid Short Code</h2>
+            <p>The URL format is incorrect.</p>
+            <div class="code-display">Received: ${escapeHtml(hash || '(empty)')}</div>
+            <p style="font-size: 14px; color: #999;">
+                Short codes must be exactly 6 alphanumeric characters.
+            </p>
+            <a href="/url-shortener/" class="btn">🔗 Go to URL Shortener</a>
+        `;
+    }
+
     function escapeHtml(text) {
+        if (!text) return '';
         const div = document.createElement('div');
         div.textContent = text;
         return div.innerHTML;
     }
-    
-    async function loadAndRedirect() {
-        if (hash && /^[a-zA-Z0-9]{6}$/.test(hash)) {
-            try {
-                const response = await fetch(`https://api.jsonbin.io/v3/b/${JSONBIN_CONFIG.binId}/latest`, {
-                    headers: {
-                        'X-Master-Key': JSONBIN_CONFIG.apiKey
-                    }
-                });
-                
-                if (response.ok) {
-                    const data = await response.json();
-                    const urlDatabase = data.record || {};
-                    
-                    if (urlDatabase[hash]) {
-                        const longUrl = urlDatabase[hash].longUrl;
-                        
-                        content.innerHTML = `
-                            <div class="icon">🚀</div>
-                            <h2>Redirecting...</h2>
-                            <p>Taking you to your destination</p>
-                            <div class="url-box">${escapeHtml(longUrl)}</div>
-                            <div class="loader"></div>
-                        `;
-                        
-                        setTimeout(() => {
-                            window.location.href = longUrl;
-                        }, 1200);
-                    } else {
-                        showError();
-                    }
-                } else {
-                    showError();
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                showError();
-            }
-        } else {
-            content.innerHTML = `
-                <div class="icon error-icon">⚠️</div>
-                <h2>Invalid Short Code</h2>
-                <p>The URL format is incorrect.</p>
-                <a href="/url-shortener/" class="btn">🔗 Create Short URL</a>
-            `;
-        }
-    }
-    
-    function showError() {
-        content.innerHTML = `
-            <div class="icon error-icon">❌</div>
-            <h2>Link Not Found</h2>
-            <p>This short URL doesn't exist.</p>
-            <a href="/url-shortener/" class="btn">🔗 Create Your Own</a>
-        `;
-    }
-    
-    loadAndRedirect();
 </script>

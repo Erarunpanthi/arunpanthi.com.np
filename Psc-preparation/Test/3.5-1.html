@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Engineer Construction Material Past Questions</title>
+<link rel="icon" href="https://arunpanthi.com.np/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="/css/Mock_Test.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar" id="navbar">
+<span class="brand" id="navbar-brand">Engineer Construction Material Past Questions</span>
+<span class="timer-display" id="timer-display" style="display:none;">--:--</span>
+</nav>
+<div id="warning-modal" class="modal-overlay" style="display: none;">
+<div class="modal-dialog">
+<div class="warning-icon">⚠️</div>
+<h3>Unanswered Questions</h3>
+<p>You haven't answered all the questions.</p>
+<span class="unanswered-count" id="modal-unanswered-count">0 unanswered</span>
+<p style="margin-top:8px;"><strong>⚠ This test cannot be retaken once submitted!</strong></p>
+<div class="modal-buttons">
+<button class="btn-cancel" id="btn-modal-cancel">Cancel</button>
+<button class="btn-submit-warning" id="btn-modal-submit">Submit Anyway</button>
+</div>
+</div>
+</div>
+<div id="pre-test-section">
+<div class="hero" id="hero-card">
+<h1 id="hero-set-name">Loading...</h1>
+<p class="set-details" id="hero-details"></p>
+<div class="set-meta">
+<div class="meta-item"><span id="hero-q-count">0</span> Questions</div>
+<div class="meta-item"><span id="hero-time">0:00</span> Time (min)</div>
+</div>
+<button class="btn-start" id="btn-start-test">🚀 Start Test</button>
+<p style="margin-top:10px;font-size:0.85rem;opacity:0.8;" id="hero-note"></p>
+</div>
+</div>
+<div id="test-section" style="display:none;">
+<div class="test-container">
+<div class="question-area">
+<div class="question-card">
+<div class="q-number" id="q-number-label">QUESTION 1</div>
+<div class="q-text" id="q-text">Loading question...</div>
+<ul class="options-list" id="options-list"></ul>
+</div>
+<div class="nav-buttons">
+<div class="nav-left"><button class="btn-nav" id="btn-prev">◀ Previous</button></div>
+<div class="nav-center"><button class="btn-submit" id="btn-submit-test">✅ Submit Test</button></div>
+<div class="nav-right"><button class="btn-nav" id="btn-next">Next ▶</button></div>
+</div>
+</div>
+<aside class="sidebar">
+<h3>📋 Question </h3>
+<div class="total-questions" id="sidebar-total">Total: 0</div>
+<div class="answered-count">Answered: <strong id="sidebar-answered-num">0</strong></div>
+<div class="q-grid" id="q-grid"></div>
+<div class="legend">
+<span><span class="dot-sample blue"></span> Answered</span>
+<span><span class="dot-sample gray"></span> Unanswered</span>
+</div>
+</aside>
+</div>
+</div>
+<div id="results-section" style="display:none;">
+<div class="results-container">
+<div class="results-header">
+<h2 style="color:#2E7D32;">📊 Test Results</h2>
+<p style="color:#666;" id="results-set-name"></p>
+<div class="score-circle">
+<span class="score-num" id="results-score">0</span>
+<span class="score-denom" id="results-denom">/ 0</span>
+</div>
+<div class="percentage" id="results-percentage">0%</div>
+<p style="margin-top:8px;color:#888;font-size:0.9rem;" id="results-time-taken"></p>
+</div>
+<div id="results-detail"></div>
+</div>
+</div>
+<script src="/js/Mock_Test.js"></script>
+<script>
+(function() {
+    console.log('Inline script running');
+    const questionSet = {
+        name: 'Exam - 05, Geo Technical Engineering',
+        details: 'Comprehensive geotechnical engineering covering soil properties, phase relationships, density, void ratio, specific gravity, and soil mechanics principles.',
+        questions: [
+            { question: 'The specific gravity of a soil is the ratio of the unit solids to that of water ata a temperature of .........', options: ['27˚C', '36˚C', '4˚C', '17˚C'], correct: 0 },
+            { question: 'The principle involved in the relation ϒsub=ϒsat-ϒw is ........', options: ['Stoke\'s law', 'Darcy\'s law', 'Acrhimedes principle', 'All of the above'], correct: 2 },
+            { question: 'The most commonly used specific gravity of a soil in soil mechanics is .........', options: ['mass specific gravity', 'apparent specific gravity', 'grain specific gravity', 'bulk specific gravity'], correct: 2 },
+            { question: 'Hydrometer is a device which is used to measure ........', options: ['temperature of liquids', 'density of liquids', 'specific gravity of liquid', 'all of the above'], correct: 2 },
+            { question: 'The void ratio for saturated soil is equal to the ........of water content and specific gravity of solids', options: ['sum', 'difference', 'product', 'ratio'], correct: 2 },
+            { question: 'The approximate void ratio in sandy soils is', options: ['0.8', '0.2', '0.6', '1.2'], correct: 2 },
+            { question: 'The specific gravity of sandy soils is ........', options: ['1.2', '1.8', '2.2', '2.7'], correct: 3 },
+            { question: 'The water content of soils can be accurately determined by ........', options: ['sand bath method', 'calcium carbide method', 'oven drying method', 'pycnometer method'], correct: 2 },
+            { question: 'The specific gravity of soil solids is determined by ........', options: ['pycnometer method', 'hydrometer analysis', 'sieve analysis', 'all of these'], correct: 0 },
+            { question: 'Relationship between void ratio e and porosity a is given by........', options: ['e = n(1 + n)', 'e = n(1 + e)', 'e = n(1 - e)', 'e = n(1 + n)'], correct: 1 },
+            { question: 'Thixotropy of soils refers to ........', options: ['loss of strength of soil with passage of time after it had been remoulded', 'gain of strength of soil with passage of time after it has been remoulded', 'thickening of soil with particles with water', 'none of the above'], correct: 1 },
+            { question: 'A sand has e = 0.8 and another clay has e = 1.2, which is more pervious?', options: ['sand', 'clay', 'both', 'none of these'], correct: 0 },
+            { question: 'The coefficient of permeability is proportional to void ratio as ........', options: ['e', '1/e^3', 'e^3/1+e', 'e/1+e^2'], correct: 2 },
+            { question: 'Clays containing organic matter are made suitable for stabilization, by first adding a small percentage of ........', options: ['hydrated lime', 'cement', 'calcium chloride', 'resins'], correct: 0 },
+            { question: 'A coarse grained soil has a void ratio of 0.7 and specific gravity of 2.7. The critical gradient at which the quick sand condition occurs is ........', options: ['1', '0.75', '0.5', '0.25'], correct: 0 },
+            { question: 'The ratio of volume of water present in a given soil mass to the volume of voids in it is known ........', options: ['percentage voids', 'degree of saturation', 'porosity', 'water content'], correct: 1 },
+            { question: 'Core-cutter method is used for ........', options: ['determining density of soil', 'obtaining samples for direct shear test', 'determining bearing capacity of soil', 'compacting soil'], correct: 0 },
+            { question: 'The ratio of weight of water to the total weight of the soil is known ........', options: ['degree of saturation', 'saturated density', 'water content', 'none of the above'], correct: 3 },
+            { question: 'In the laboratory determination of SL, the volume of the dry soil pat is determined by ........', options: ['oven dry method', 'sand bath method', 'radiation method', 'mercury replacement method'], correct: 3 },
+            { question: 'Shrinkage ratio will be equal to ........', options: ['mass specific gravity', 'grain specific gravity', 'absolute specific gravity', 'specific gravity of water'], correct: 0 },
+            { question: 'The slope of the flow curve obtained in liquid limit test is called ........', options: ['liquidity index', 'plasticity index', 'toughness index', 'flow index'], correct: 3 },
+            { question: 'Two soils A and B are having a flow index of 9 and 6 respectively. Then which soil has a better strength as function of WC ........', options: ['A', 'B', 'both \'a\' and \'b\'', 'none of these'], correct: 1 },
+            { question: 'Specific surface of the following soil is more ........', options: ['gravels', 'sands', 'silts', 'clays'], correct: 3 },
+            { question: 'More hygroscopicity will be observed in .......', options: ['gravels', 'sands', 'silts', 'clays'], correct: 3 },
+            { question: 'Water content of soil can', options: ['never be greater than 100%', 'take values only from 0% to 100%', 'be less than 0%', 'be greater than 100%'], correct: 3 },
+            { question: 'A fully saturated soil is said to be', options: ['one phase system', 'two phase system with soil and air', 'two phase system with soil and water', 'three phase system'], correct: 2 },
+            { question: 'The submerged density of soil in terms of unit weight of water γw, specific gravity G and voids ratio e is given by the expression', options: ['γw(G+1)/1+e', 'γw(G-1)/1-e', 'γw(G+1)/1-e', 'γw(G-1)/1+e'], correct: 3 },
+            { question: 'If the voids of a soil mass are full of air only, the soil is termed as', options: ['air entrained soil', 'partially saturated soil', 'dry soil', 'dehydrated soil'], correct: 2 },
+            { question: 'Valid range for n, the percentage voids is', options: ['0 < n < 100', '0 ≤ n ≤ 100', 'n > 0', 'n ≤ 0'], correct: 0 },
+            { question: 'Select the correct statement.', options: ['unit weight of dry soil is greater th unit weight of wet soil', 'for dry soils, dry unit weight is les than total unit weight.', 'unit weight of soil increases due submergence in water.', 'unit weight of soil decreases due submergence in water.'], correct: 3 },
+            { question: 'Voids ratio of a soil mass can', options: ['never be greater than unity', 'be zero', 'take any value greater than zero', 'take values between 0 and 1 only'], correct: 2 },
+            { question: 'If the volume of voids is equal to the volume of solids in a soil mass, then the values of porosity and voids ratio respectively are', options: ['0.0 and 1.0', '0.5 and 1.0', '1.0 and 0.5', '1.0 and 0.0'], correct: 1 },
+            { question: 'When the degree of saturation is zero, the soil mass under consideration representhe', options: ['one phase system', 'two phase system with soil and air', 'two phase system with soil and water', 'three phase system'], correct: 1 },
+            { question: 'If the degree of saturation of a partially saturated soil is 60%, then air content of the soil is', options: ['0.4', '0.8', '0.6', '1'], correct: 0 },
+            { question: 'If the water content of a fully saturated soil mass is 100%, then the voids ratio of the sample is', options: ['less than specific gravity of soil', 'equal to specific gravity of soil', 'greater than specific gravity of soil', 'independent of specific gravity of soil'], correct: 1 },
+            { question: 'The ratio of volume of voids to the total volume of soil mass is called', options: ['air content', 'porosity', 'percentage air voids', 'voids ratio'], correct: 1 },
+            { question: 'Which of the following methods is most accurate for the determination of the water content of soil?', options: ['oven drying method', 'sand bath method', 'calcium carbide method', 'pycnometer method'], correct: 0 },
+            { question: 'Quick method of determination of water content of a soil mass?', options: ['oven drying method', 'sand bath method', 'alcohol method', 'calcium carbide method'], correct: 3 },
+            { question: 'A pycnometer is used to determine', options: ['water content and voids ratio', 'specific gravity and dry density', 'water content and specific gravity', 'voids ratio and dry density'], correct: 2 },
+            { question: 'Relationship between dry density Yd, percentage air voids na water content w and specific gravity G of any soil is', options: ['γd=(1+na)Gγw/1+wG', 'γd=(1+na)Gγw/1-wG', 'γd=(1-na)Gγw/2-wG', 'γd=(1-na)Gγw/1+wG'], correct: 3 },
+            { question: 'The correct increasing order of the surface areas of the given soils is', options: ['silt, sand, colloids, clay', 'sand, silt, colloids, clay', 'sand, silt, clay, colloids', 'clay, silt, sand, colloids'], correct: 2 },
+            { question: 'Which one of the following, gives the decreasing order of the densities of a soil sample?', options: ['saturated, submerged, wet, dry', 'saturated, wet, submerged, dry', 'saturated, wet, dry, submerged', 'wet, saturated, submerged, dry'], correct: 2 },
+            { question: 'A sample of clay and a sample of sand have the same specific gravity and void ratio.Their permeabilities would differ because', options: ['their porosities would be different', 'their degrees of saturation would be different', 'their densities would be different', 'the size ranges of their voids would be different'], correct: 3 },
+            { question: 'The difference between maximum void ratio and minimum void ratio of a sand sample is 0.30. If the relative density of this sample is 66.6% at a void ratio of 0.40, then the void ratio of this sample at its loosest state will be', options: ['0.4', '0.7', '0.6', '0.75'], correct: 2 },
+            { question: 'The foundation soil under the toe of a dam has a void ratio \'e\'. The specific gravity of the soil solid is G. Factor of safety against piping is to be taken as 2.5. The maximum permissible upward exit gradient is given by', options: ['i=2.5 (G-1/1+e)', 'i=2.5 (1+e/G-1)', 'i=0.4 (1+e/G-1)', 'i=0.4 (G-1/1+e)'], correct: 3 },
+            { question: 'Which one of the following parameters can be used to estimate the angle of internal friction of a sandy soil?', options: ['Particle size', 'Roughness of particle', 'Particle size distribution', 'Density index'], correct: 3 },
+            { question: 'A soil has a bulk density of 1.80 g/cm³ at a water content of 5%. If the void ratio remains constant, then its bulk density for a water content of 10% will be', options: ['1.98 g/cm³', '1.88 g/cm³', '1.80 g/cm³', '1.70 g/cm³'], correct: 1 },
+            { question: 'A deposit of fine sand has a porosity n and specific gravity of soil solids is G. The hydraulic gradient of the deposit to develop boiling condition of sand is given by', options: ['ie = (G-1)(1 – n)', 'ie = (G-1)(1 + n)', 'ie=G-1/1-n', 'ie=G-1/1+n'], correct: 0 },
+            { question: 'The dry density of a soil is 1.5 g/cc. If the saturation water content were 50%, then its saturated density and submerged density would, respectively, be', options: ['1.5 g/cc and 1.0 g/cc', '2.0 g/ce and 1.0 g/cc', '2.25 g/cc and 1.25 g/cc', '2.50 g/cc and 1.50 g/cc'], correct: 2 },
+            { question: 'A sand sample has a porosity of 30% and specific gravity of solid as 2.6. what is its degree of saturation at moisture content of 4.94%?', options: ['0.4', '0.35', '0.3', '0.25'], correct: 2 },
+            { question: 'What will be the unit weight of a fully saturated soil sample having water content of 38% and grain specific gravity of 2.65?', options: ['19.85 kN/m³', '17.88 kN/m³', '16.52 kN/m³', '14.65 kN/m³'], correct: 1 },
+            { question: 'How many cubic metres of soil having void ratio of 0.7 can be made from 30 m^3 of soil with void ratio of 1.2?', options: ['36.8m^3', '30m^3', '25.9m^3', '23.2m^3'], correct: 3 },
+            { question: 'A soil yielded a maximum dry unit weight of 18kN * m ^ 2 at a moisture content of 16% during a standard proctor test. What is the degree of saturation of the soil if its specific Gravity is 2.65?', options: ['0.9842', '0.955', '0.8432', '0.7571'], correct: 1 },
+            { question: 'The property of clays by virtue of which they regain, if left alone for a time, a part of the strength lost due to remoulding ar unaltered moisture content, is known as', options: ['thixotropy', 'sensitivity', 'consistency', 'activity'], correct: 0 },
+            { question: 'A soil sample has a porosity of 47% the specific gravity of solid is 2.70. soil is 50% saturated, the unit weight will be nearly', options: ['22 kN/m^3', '20 kN/m^3', '18 kN/m^3', '16 kN/m^3'], correct: 3 },
+            { question: 'A soil has bulk density of 20.1 kN/m² and water content 15%. What is the water content if the soil partially dries to a density of 19.4kN/m^3 and the void ratio remains unchanged?', options: ['0.1086', '0.1076', '0.1066', '0.1068'], correct: 0 },
+            { question: 'A sample of silty clay has a volume of 14.8 8 cm^3 a total mass of 28.81 gm, a dry mass of 24.83 gm and a specific gravity of solids 2.7. What is the void ratio?', options: ['0.412', '0.521', '0.618', '0.663'], correct: 2 },
+            { question: 'The void ratio of a clay sample is 0.5 and the degree of saturation is 70%. What is the bulk unit weight of the soil? (Assume G= 2.7)', options: ['10.46kN/m^3', '14.32kN/m^3', '17.77kN/m^3', '19.95kN/m^3'], correct: 3 },
+            { question: 'A soil sample has a porosity of 40%. Th specific gravity of solids is 2.70. What voids ratio?', options: ['0.467', '0.667', '0.567', '0.743'], correct: 1 },
+            { question: 'If the pores of a soil are completely full of air only, the soil is said to be', options: ['wet soil', 'dry soil', 'fully saturated soil', 'partially saturated soil'], correct: 1 },
+            { question: 'The moist soil is..............saturated soil.', options: ['fully', 'partially', 'fully and partially', 'none of these'], correct: 1 },
+            { question: 'Which of the following statements is correct?', options: ['In a dry soil, all the voids are filled with air.', 'In a saturated soil, all the voids are filled with water.', 'In a partially saturated soil, voids are occupied by both air and water.', 'all of the above'], correct: 3 },
+            { question: 'A unit phase diagram is normally divided into parts. What does the top, middle and bottom pan represent?', options: ['Solid, water and air respectively', 'Water, air and solid respectively', 'Air, water and solid respectively', 'Air, solid and water respectively'], correct: 2 },
+            { question: 'The ratio of the volume of voids to the total volume of soil mass is called', options: ['water content ratio', 'porosity', 'void ratio', 'degree of saturation'], correct: 1 },
+            { question: 'The ratio of the total mass of the soil to the total volume of the soil is called', options: ['water content ratio', 'saturated density', 'bulk density', 'moist density'], correct: 2 },
+            { question: 'The buoyant density is the ratio of mass of solids to the total volume of the soil (in moist condition).', options: ['Yes', 'No', 'all of these', 'none of these'], correct: 1 },
+            { question: 'The submerged weight of soil solids per unit volume is called', options: ['saturated unit weight', 'dry unit weight', 'wet unit weight', 'buoyant unit weight'], correct: 3 },
+            { question: 'The degree of saturation of a soil is', options: ['Vw/Va+Vw', 'Va/Va+Vw', 'Vs/Va+Vv', 'Va+Vw/Vs'], correct: 0 },
+            { question: 'If W is the total weight of the soil mass and Ws is the weight of solids, then water content is equal to', options: ['1+W/Ws', '1-W/Ws', 'W/Ws-1', 'W/Ws+1'], correct: 2 },
+            { question: 'The relation between porosity (n) and void ratio (e) is given by', options: ['n = (1 + e)/e', 'n = e/(1 + e)', 'e = (1 - n)/n', 'e = n/(n-1)'], correct: 1 }
+        ]
+    };
+console.log('questionSet defined');
+    startTest(questionSet);
+    console.log('startTest called');
+})(); 
+</script>
+<script src="/js/text-protect.js" defer></script>
+<script src="/js/logo.js"></script>
+</body>
+</html>
+
+
+

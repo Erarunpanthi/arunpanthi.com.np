@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Physical Geogaraphy Practice Questions</title>
+<link rel="icon" href="https://arunpanthi.com.np/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="/css/Mock_Test.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar" id="navbar">
+<span class="brand" id="navbar-brand">Physical Geogaraphy Practice Questions </span>
+<span class="timer-display" id="timer-display" style="display:none;">--:--</span>
+</nav>
+
+<!-- Warning modal -->
+<div id="warning-modal" class="modal-overlay" style="display: none;">
+<div class="modal-dialog">
+<div class="warning-icon">⚠️</div>
+<h3>Unanswered Questions</h3>
+<p>You haven't answered all the questions.</p>
+<span class="unanswered-count" id="modal-unanswered-count">0 unanswered</span>
+<p style="margin-top:8px;"><strong>⚠ This test cannot be retaken once submitted!</strong></p>
+<div class="modal-buttons">
+<button class="btn-cancel" id="btn-modal-cancel">Cancel</button>
+<button class="btn-submit-warning" id="btn-modal-submit">Submit Anyway</button>
+</div>
+</div>
+</div>
+
+<div id="pre-test-section">
+<div class="hero" id="hero-card">
+<h1 id="hero-set-name">Loading...</h1>
+<p class="set-details" id="hero-details"></p>
+<div class="set-meta">
+<div class="meta-item"><span id="hero-q-count">0</span> Questions</div>
+<div class="meta-item"><span id="hero-time">0:00</span> Time (min)</div>
+</div>
+<button class="btn-start" id="btn-start-test">🚀 Start Test</button>
+<p style="margin-top:10px;font-size:0.85rem;opacity:0.8;" id="hero-note"></p>
+</div>
+</div>
+
+<div id="test-section" style="display:none;">
+<div class="test-container">
+<div class="question-area">
+<div class="question-card">
+<div class="q-number" id="q-number-label">QUESTION 1</div>
+<div class="q-text" id="q-text">Loading question...</div>
+<ul class="options-list" id="options-list"></ul>
+</div>
+<div class="nav-buttons">
+<div class="nav-left"><button class="btn-nav" id="btn-prev">◀ Previous</button></div>
+<div class="nav-center"><button class="btn-submit" id="btn-submit-test">✅ Submit Test</button></div>
+<div class="nav-right"><button class="btn-nav" id="btn-next">Next ▶</button></div>
+</div>
+</div>
+<aside class="sidebar">
+<h3>📋 Question </h3>
+<div class="total-questions" id="sidebar-total">Total: 0</div>
+<div class="answered-count">Answered: <strong id="sidebar-answered-num">0</strong></div>
+<div class="q-grid" id="q-grid"></div>
+<div class="legend">
+<span><span class="dot-sample blue"></span> Answered</span>
+<span><span class="dot-sample gray"></span> Unanswered</span>
+</div>
+</aside>
+</div>
+</div>
+
+<div id="results-section" style="display:none;">
+<div class="results-container">
+<div class="results-header">
+<h2 style="color:#2E7D32;">📊 Test Results</h2>
+<p style="color:#666;" id="results-set-name"></p>
+<div class="score-circle">
+<span class="score-num" id="results-score">0</span>
+<span class="score-denom" id="results-denom">/ 0</span>
+</div>
+<div class="percentage" id="results-percentage">0%</div>
+<p style="margin-top:8px;color:#888;font-size:0.9rem;" id="results-time-taken"></p>
+</div>
+<div id="results-detail"></div>
+</div>
+</div>
+<script src="/js/Mock_Test.js"></script>
+<script>
+(function() {
+    console.log('Inline script running');
+    const questionSet = {
+        name: 'Physical Geography of Nepal - Practice Questions',
+        details: 'Comprehensive practice questions on physical, socio-cultural and economic geography and demography of Nepal covering geographical coordinates, districts, provinces, mountains, rivers and administrative divisions.',
+        questions: [
+            { question: 'Nepal is geographically situated at ........zone of the world map', options: ['North South', 'North East', 'North West', 'South West'], correct: 1 },
+            { question: 'Nepal is situated in which Latitude and Longitude?', options: ['Northern Latitude and Eastern Latitude', 'Eastern Longitude and Northern Longitude', 'Northern Latitude and Eastern Longitude', 'Southern Latitude and Eastern Latitude'], correct: 2 },
+            { question: 'Which of the following point is correct regarding geographical coordinate of Nepal?', options: ['26°22\' Northern Latitude to 30°27\' Eastern Latitude', '80°4\' Eastern Latitude to 88°12\' Eastern Latitude', '26°22\' Northern Latitude to 30°27\' Northern Longitude', '80°4\' Eastern Longitude to 88°12\' Eastern Longitude'], correct: 3 },
+            { question: 'Which is the northern most point of Nepal?', options: ['Lodabari', 'Changla Pass', 'Lelep', 'Dodhara'], correct: 1 },
+            { question: 'What is the newly revised height (in meters) of Mount Everest?', options: ['8848.68', '8848.86', '8848.88', '8848.98'], correct: 1 },
+            { question: 'When was the new height of Mount Everest declared jointly by Nepal and China?', options: ['2077 Kartik 23', '2077 Mangsir 23', '2077 Poush 23', '2077 Magh 23'], correct: 1 },
+            { question: 'Which is the district headquarter of Nepal at the lowest and highest altitude?', options: ['Jaleshwor/Mushaharaniya', 'Jaleshwor/Humla', 'Biratnagar/Simikot', 'Jaleshwor/Simikot'], correct: 3 },
+            { question: 'What is the average width of Nepal?', options: ['241 Km', '193 Km', '145 Km', '885 km'], correct: 1 },
+            { question: 'What is the geographical area of Nepal?', options: ['56,728 Sq. miles', '56,827 Sq. miles', '56,278 Sq. miles', '56,516 Sq. miles'], correct: 1 },
+            { question: 'When did the government of Nepal unveiled its new political map?', options: ['2020 May 18', '2020 May 19', '2020 May 20', '2020 May 21'], correct: 2 },
+            { question: 'What is the newly added area of Nepal after the addition of Limpiyadhura, Lipulekh and Kalapani in the new political map of Nepal?', options: ['335 Sq.km', '460.28 Sq.km', '825.67 Sq.km', '181 Sq.km'], correct: 0 },
+            { question: 'Nepal occupies... percentage of the total area of the earth', options: ['0.03%', '0.3%', '0.1%', '0.001%'], correct: 0 },
+            { question: 'When was Nepal declared as the state of seven federal provinces?', options: ['2071/06/03', '2072/06/03', '2073/06/03', '2073/07/03'], correct: 1 },
+            { question: 'What is the minimum and maximum number of wards in rural munipality?', options: ['Minimum 5 and Maximum 21', 'Minimum 9 and Maximum 35', 'Minimum 10 and Maximum 21', 'Minimum 7 and Maximum 35'], correct: 3 },
+            { question: 'Which district of Nepal shares its border with most number of other district borders?', options: ['Sindhuli', 'Nawalparasi East', 'Dolpa', 'Chitwan'], correct: 0 },
+            { question: 'Which of the following is the youngest district of Nepal?', options: ['Kalikot', 'Nawalaparasi East', 'Jajarkot', 'Bajhang'], correct: 1 },
+            { question: 'Which peak of Nepal is also known as Ladies peak?', options: ['Gimmigela', 'Amodablem', 'Pumori', 'Makalu'], correct: 1 },
+            { question: 'Which is the youngest/last/77th district of Nepal?', options: ['Nawalparasi East', 'Nawalparasi West', 'Rukum East', 'Rukum West'], correct: 2 },
+            { question: 'Which is the deepest valley of Nepal, which is also the deepest valley of the world?', options: ['Arun valley', 'Waipio valley', 'Nubra valley', 'Hunza valley'], correct: 0 },
+            { question: 'Which of the following state of India is not linked to Nepal?', options: ['Maharashtra', 'West Bengal', 'Sikkim', 'Uttarakhand'], correct: 0 },
+            { question: 'Which of the following state of India borders Nepal in the West?', options: ['Uttar Pradesh', 'Bihar', 'Uttarakhand', 'Sikkim'], correct: 2 },
+            { question: 'Which state of India shares its most border length with Nepal?', options: ['Uttar Pradesh', 'Bihar', 'Uttarakhand', 'West Bengal'], correct: 0 },
+            { question: 'Which treaty determined the Mechi River as the eastern border and Kali River as the western Border of length 885km?', options: ['Mahakali Treaty', 'Sugauli Treaty', 'Sino-Nepalese treaty', 'none'], correct: 1 },
+            { question: 'What is the total length of International boundary line of Nepal?', options: ['1236 km', '1690 km', '1127 km', '2926 km'], correct: 3 },
+            { question: 'What is the nearest sea distance from Nepal?', options: ['1126 km', '1127 km', '1128 km', '1129 km'], correct: 1 },
+            { question: 'Which is the third nearest country from Nepal?', options: ['Bhutan', 'India', 'China', 'Bangladesh'], correct: 3 },
+            { question: 'Which peak is the basis for standard time in Nepal?', options: ['Mount Everest', 'Machhapuchhre', 'Gaurishankar', 'Lhotse'], correct: 2 },
+            { question: 'What is the nearest mountain peak from Kathmandu?', options: ['Gaurishankar', 'Jugal', 'Amodeblem', 'Jasamba'], correct: 1 },
+            { question: 'The time of Nepal is .........', options: ['5:45 faster than Equator', '5:45 faster than GMT', '5:45 faster than Poles', '5:45 late than GMT'], correct: 1 },
+            { question: 'The time of India is ......... than Nepal', options: ['15 minutes late', '15 minutes fast', 'have same time zone', 'None'], correct: 0 },
+            { question: 'The vast plains surrounded by mountains (Mahabharat and Shivalik) on all sides are called Inner Madhesh or Doon region.', options: ['Dunduwa Region', 'Chure Region', 'Main Terai region', 'Inner Madhesh (Doon) Region'], correct: 3 },
+            { question: 'What is the lowest point of Nepal?', options: ['Kechanakabal', 'Jaleshwor', 'Mushaharaniya', 'Biratnagar'], correct: 2 },
+            { question: 'What percent of the area of Nepal is covered by Inner Terai?', options: ['8.5 percent', '9.5 percent', '10.85 percent', '11 percent'], correct: 0 },
+            { question: 'When did 77 districts come into operation?', options: ['2074 Bhadra 4', '2074 Bhadra 25', '2075 Falgun 19', '2074 Bhadra 5'], correct: 3 },
+            { question: 'Which is the largest district of Nepal among the following?', options: ['Humla', 'Taplejung', 'Gorkha', 'Mugu'], correct: 0 },
+            { question: 'Which of the following district is not upgraded to Mountainous region from Hilly region?', options: ['Dolakha', 'Ramechhap', 'Dhading', 'Gorkha'], correct: 0 },
+            { question: 'Which is the last district upgraded from Hilly region to Mountainous region?', options: ['East Rukum', 'West Rukum', 'Myagdi', 'Kalikot'], correct: 2 },
+            { question: 'Which district of Nepal has the trace of volcano?', options: ['Dolakha', 'Dailekh', 'Rasuwa', 'Jumla'], correct: 1 },
+            { question: 'Which district of Nepal is expanded to Himalayas in the north and Mahabharata in the south?', options: ['Dhading', 'Nuwakot', 'Sindhupalchowk', 'Dolakha'], correct: 0 },
+            { question: 'Which district touches both India and China?', options: ['Darchula', 'Acchham', 'Bajhang', 'Bajura'], correct: 0 },
+            { question: 'How many districts of Nepal are linked to India?', options: ['23', '25', '27', '29'], correct: 2 },
+            { question: 'How many districts of Nepal are connected to China?', options: ['11', '13', '15', '17'], correct: 2 },
+            { question: 'In order to protect Chure Area, "Rastrapati Chure Program" has been launched in how many districts?', options: ['33', '34', '35', '37'], correct: 3 },
+            { question: 'Where are Kalapani, Limpiyadhura and lipulek located?', options: ['Bajhang', 'Kanchanpur', 'Darchula', 'Baitadi'], correct: 2 },
+            { question: 'Which of the following religious spot is situated in Khotang?', options: ['Pathibhara Devi', 'Haleshi Mahadev', 'Mehuli Devi', 'Sworgadwari'], correct: 1 },
+            { question: 'What separates Nepal and India?', options: ['Purbi Ghyanch', '11th Parallel', 'Chicken Neck Corridor', 'Dasgaja'], correct: 3 },
+            { question: 'Which is the nearest port from Nepal?', options: ['Bay of Bengal', 'Kolkatta', 'Patna', 'West Bengal'], correct: 1 },
+            { question: 'Which is the nearest airport from Nepal?', options: ['Patna', 'Kolkatta', 'Mumbai', 'Pune'], correct: 0 },
+            { question: 'How many districts are there in Mountainous region?', options: ['20', '21', '22', '23'], correct: 1 },
+            { question: 'Which of the following district does not lie in inner Terai?', options: ['Dang', 'Nawalpaur West', 'Surkhet', 'Nawalpur East'], correct: 1 },
+            { question: 'What is the area occupied by Inner Terai?', options: ['8.5%', '9.5%', '10.5%', '11.5%'], correct: 0 },
+            { question: 'Which of the following district is not included in Upper Sagarmatha?', options: ['Solukhumbhu', 'Okhaldhunga', 'Khotang', 'Sankhuwasabha'], correct: 3 },
+            { question: 'Which is the airport at the highest altitude?', options: ['Phaplu', 'Kangel Danda', 'Lukla', 'Syanboche'], correct: 3 },
+            { question: 'Which district has the similar map structure to Nepal?', options: ['Ramechhap', 'Dolakha', 'Myagdi', 'Baglung'], correct: 3 },
+            { question: 'Which is the pass at the highest altitude?', options: ['Changla Pass', 'Larkhe pass', 'Thorang Pass', 'Olangchungola'], correct: 0 },
+            { question: 'Which place of Nepal is called "The Cherapunji"?', options: ['Godavari', 'Kimathanka', 'Lumle', 'Lomanthang'], correct: 2 },
+            { question: 'Which district of Nepal is famous for salt?', options: ['Manang', 'Mustang', 'Dang', 'Arghakhanchi'], correct: 1 },
+            { question: 'Which place is called "Srilanka of Nepal"?', options: ['Chandani & Dodhara', 'Koshi Tappu', 'Marchawar', 'Jagadispur lake'], correct: 1 },
+            { question: 'Which region is called the "Outer Himalaya"?', options: ['Chure', 'Mahabharata', 'Inner Terrain', 'Midland'], correct: 0 },
+            { question: 'What is the highest point of Mahabharata range?', options: ['Garva', 'Lalikharka Hill', 'Churia', 'Shailung Hill'], correct: 3 },
+            { question: 'How many mountain ranges are there in Nepal?', options: ['25', '26', '27', '28'], correct: 3 },
+            { question: 'Which is the longest mountain range of Nepal?', options: ['Kanchenjunga', 'Rolwaling', 'Mahalangur', 'Khumbu'], correct: 2 },
+            { question: 'How many mountain peaks are there in Nepal above 8000 meters?', options: ['5', '6', '7', '8'], correct: 3 },
+            { question: 'How many mountain peaks are there in Nepal above 8500 meters?', options: ['3', '4', '5', '6'], correct: 0 },
+            { question: 'How many peaks above 8000m are there in Koshi Province?', options: ['4', '5', '6', '7'], correct: 1 },
+            { question: 'Which of the following province is named first and last?', options: ['Karnali and Koshi', 'Gandaki and Koshi', 'Karnali and Madhesh', 'Koshi and Madhesh'], correct: 0 },
+            { question: 'The number of provinces named after the name of river are', options: ['4', '5', '6', '7'], correct: 0 },
+            { question: 'The ......... is the youngest mountain formed by the accumulation of river materials during the origin of the Himalayas about 40 million years ago.', options: ['Chure', 'Mahabharat', 'Midland', 'Himalayas'], correct: 0 },
+            { question: 'Which of the following province is linked to India only?', options: ['Koshi', 'Bagmati', 'Gandaki', 'Lumbini'], correct: 3 },
+            { question: 'How many districts are there in Bagmati Province?', options: ['10', '11', '12', '13'], correct: 3 },
+            { question: 'Which is the second smallest province in terms of the number of districts?', options: ['Koshi', 'Madhesh', 'Sudur Paschim', 'Gandaki'], correct: 2 },
+            { question: 'Which is the province with least number of districts?', options: ['Karnali', 'Madhesh', 'Bagmati', 'Gandaki'], correct: 1 },
+            { question: 'Which is the largest province in terms of Area?', options: ['Gandaki', 'Lumbini', 'Karnali', 'Sudur-Paschim'], correct: 2 },
+            { question: 'Who is the person to ascend Mount Everest for most number of times?', options: ['Aang Rita Sherpa', 'Kamirita Sherpa', 'Mingma Dorchi Sherpa', 'Nirmal Purja Magar'], correct: 1 },
+            { question: 'Who is the first Chief Minister of Nepal?', options: ['Sher Dhan Rai', 'Lal Babu Raut', 'Dormani Poudyal', 'Trilochan Bhatta'], correct: 2 },
+            { question: 'Who is the first governor/Chief of Province of Nepal?', options: ['Anuradha Koirala', 'Dharmanath Yadav', 'Amik Serachan', 'Bidhya Devi Bhandari'], correct: 0 },
+            { question: 'Who is the first female chief minister of Nepal?', options: ['Komal Oli', 'Padma Aryal', 'Binda Pandey', 'Ashta Laxmi Shakya'], correct: 3 },
+            { question: 'How many local levels are there?', options: ['753', '754', '755', '756'], correct: 0 },
+            { question: 'Which of the following districts does not have any rural municipalities?', options: ['Kathmandu and Lalitpur', 'Kathmandu and Bhaktapur', 'Kathmandu and Dhading', 'Kathmandu and Chitwan'], correct: 1 },
+            { question: 'How many districts of Nepal do not have any municipalities?', options: ['3', '4', '5', '6'], correct: 2 },
+            { question: 'Which of the following districts does not have any municipalities?', options: ['Dolpa', 'Rolpa', 'Mugu', 'Rasuwa'], correct: 3 },
+            { question: 'Which of the following is the largest sub-metropolitan city based on area?', options: ['Itahari', 'Ghorahi', 'Hetauda', 'Kalaiya'], correct: 1 },
+            { question: 'Which is the last metropolitan city of Nepal?', options: ['Kathmandu', 'Biratnagar', 'Pokhara', 'Ghorahi'], correct: 1 },
+            { question: 'Which is the smallest metropolitan city in terms of Area and Population?', options: ['Lalitpur and Biratnagar', 'Lalitpur and Birgunj', 'Lalitpur and Kathmandu', 'Kathmandu and Biratnagar'], correct: 0 },
+            { question: 'What percent of the total area of Nepal is covered by hilly region?', options: ['15%', '17%', '68%', '8.5%'], correct: 2 },
+            { question: 'Which of the following are the smallest Submetropolitan cities of Nepal?', options: ['Nepalgunj and Itahari', 'Nepalgunj and Janakpur', 'Jeetpur and Dharan', 'Ghorahi and Tulsipur'], correct: 1 },
+            { question: 'Which of the following district does not fall under Inner Terai?', options: ['Chitwan', 'Rautahat', 'Nawalaparasi East', 'Dang'], correct: 1 },
+            { question: 'What is the minimum population required to declare a municipality in a hilly district?', options: ['40 Thousand', '45 Thousand', '50 Thousand', '55 Thousand'], correct: 0 },
+            { question: 'Which Province has the least number of local levels?', options: ['Gandaki', 'Lumbini', 'Karnali', 'Madhesh'], correct: 2 },
+            { question: 'Choose the correct pair of districts according to the local governance operation act, 2074 (A. Mountainous district, B. Hilly district, C. District of Inner Terai, D. District of Kathmandu Valley; 1. Dadeldhura, 2. Bhaktapur, 3. Myagdi, 4. Surkhet)', options: ['A-3, B-1, C-4, D-2', 'A-4, B-3, C-2, D-1', 'A-3, B-4, C-1, D-2', 'A-3, B-2, C-4, D-1'], correct: 0 },
+            { question: 'Which province has the highest and least number of wards?', options: ['Madhesh and Koshi', 'Madhesh and Karnali', 'Bagmati and Madhesh', 'Karnali and Sudur paschim'], correct: 1 },
+            { question: 'Api, Byash Rishi peak is situated in?', options: ['Bajhang', 'Bajhura', 'Darchula', 'Kanchanpur'], correct: 2 },
+            { question: 'Match the correct pair between different peaks and Mountain ranges (A. Sagarmatha, B. Machchhapuchhre, C. Gaurishankar, D. Api; 1. Gurans, 2. Khumbu/Mahalangur, 3. Annapurna, 4. Rolwaling)', options: ['A-3, B-1, C-4, D-2', 'A-4, B-3, C-2, D-1', 'A-2, B-3, C-4, D-1', 'A-3, B-2, C-4, D-1'], correct: 2 },
+            { question: 'How many meters is the height of Thorangla paas, the highest point of the Annapurna trail?', options: ['4130 meters', '5416 meters', '4536 meters', '5515 meters'], correct: 1 },
+            { question: 'Study the statements below and choose the correct answer. 1. There are 8 peaks of height more than 8000 meters in Nepal. 2. Mount Manaslu is located in Gorkha district.', options: ['1 correct, 2 incorrect', '1 incorrect, 2 correct', '1 and 2 both correct', '1 and 2 both incorrect'], correct: 2 },
+            { question: 'Which of the following province is not connected to both India and China?', options: ['Koshi', 'Bagmati', 'Gandaki', 'Karnali'], correct: 3 },
+            { question: 'Mithila, Hanshapur and Kamala municipalities are located in which district?', options: ['Mahottari', 'Dhanusha', 'Sarlahi', 'Saptari'], correct: 1 },
+            { question: 'The place of origin of Seti river is', options: ['Annapurna', 'Lhotse', 'Apinampa', 'Machhapuchre'], correct: 2 },
+            { question: 'The standard time of Nepal (UTC+5:45) was implemeted from which date?', options: ['2042/01/01', '2042/02/01', '2042/02/02', '2042/03/01'], correct: 0 },
+            { question: 'Inner Terai (Bhitri Madhesh) refers to which of the following?', options: ['North of Main Terai and below Chure range', 'Between Chure and Mahabharata range', 'The area between the Himalayan Mountains and the Mahabharata Mountains', 'The plains of the main Terai region'], correct: 1 }
+        ]
+    };
+
+
+
+
+console.log('questionSet defined');
+    startTest(questionSet);
+    console.log('startTest called');
+})(); 
+</script>
+<script src="/js/text-protect.js" defer></script>
+<script src="/js/logo.js"></script>
+</body>
+</html>

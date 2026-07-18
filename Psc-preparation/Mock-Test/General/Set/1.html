@@ -3,16 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>2081 PSC Exam Question
-</title>
+<title>Set -1</title>
 <link rel="icon" href="https://arunpanthi.com.np/favicon.ico" type="image/x-icon">
 <link rel="stylesheet" href="/css/Mock_Test.css">
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous">
 </head>
 <body>
 <nav class="navbar" id="navbar">
-<span class="brand" id="navbar-brand">2081 PSC Exam Question </span>
+<span class="brand" id="navbar-brand">Set -1  2067/12/10</span>
 <span class="timer-display" id="timer-display" style="display:none;">--:--</span>
 </nav>
 
@@ -87,619 +85,125 @@
 </div>
 </div>
 
+
+<script src="/js/Mock_Test.js"></script>
+
 <script>
 (function() {
- const questionSet = {
-name: 'Nepal General Knowledge - Set 1',
-details: 'Covers Nepal\'s history, geography, politics, and current affairs.',
-questions: [
-{ question: 'When first Nepal is Selected as UN Security Council Member?', options: ['1969–1970', '1988–1989', '1978–1979', '1958–1959'], correct: 0 },
-{ question: 'When did Nepal become a founding member of BIMSTEC (Bay of Bengal Initiative for Multi-Sectoral Technical and Economic Cooperation)?', options: ['2004 Feb 8', '2003 Feb 4', '2004 Feb 4', '2006 Feb 4'], correct: 2 },
-{ question: 'Which mountain is nearest to Kathmandu?', options: ['Jugal', 'Ganesh Himal', 'Gaurishankhar Himal', 'Manaslu'], correct: 0 },
-{ question: 'Which of the following is not Sub Metropolitan of Nepal?', options: ['Biratnagar', 'Butwal', 'Hetauda', 'Ghorahi'], correct: 0 },
-{ question: 'When did Nepal Signed Betrawati Sandhi with China?', options: ['1848', '1842', '1860', '1890'], correct: 0 },
-{ question: 'Dho Valley lies in Which District?', options: ['Manang', 'Mustang', 'Mugu', 'Dolpa'], correct: 3 },
-{ question: 'Per Capita Income of Nepal at the end of 16th Plan is', options: ['2250', '2351', '2450', '2500'], correct: 1 },
-{ question: 'Winter Olympic 2026 will hosted by:', options: ['France', 'Switzerland', 'Italy', 'Spain'], correct: 2 },
-{ question: 'Salpa Pokhari lies on which District?', options: ['Solukhumbu', 'Bhojpur', 'Taplejung', 'Dhankuta'], correct: 1 },
-{ question: '13th Goal of Sustainable Development is:', options: ['Life Below Water', 'Life on Land', 'Responsible Consumption and Production', 'Climate Action'], correct: 3 },
-{ question: '29th COP Conference was held on … Country.', options: ['Brazil', 'Azerbaijan', 'Egypt', 'Nepal'], correct: 1 },
-{ question: 'According to Civil Service Act 2049, Maximum Evaluation mark to be given to Employee is ..by Supervisor.', options: ['5', '10', '25', '40'], correct: 2 },
-{ question: 'Motivation Hierarchy Theory is Given by:', options: ['Maslow', 'FW Taylor', 'Wright Man', 'Luther Gulick'], correct: 0 },
-{ question: 'The POSDCORB theory is given by:', options: ['Maslow', 'FW Taylor', 'Wright Man', 'Luther Gulick'], correct: 3 },
-{ question: 'The list of Power of Local government of Nepal is ……. types.', options: ['22', '25', '21', '18'], correct: 0 },
-{ question: 'Which of the following is source of Deficit Budget.', options: ['Revenue in the Budget', 'Grant', 'Internal Borrowing', 'Principle Repayment'], correct: 0 },
-{ question: 'Which of the following river is not Originated from Mountain?', options: ['Bagmati', 'Budi Gandaki', 'Karnali', 'Madi'], correct: 0 },
-{ question: 'Public Service Charter is initiated from:', options: ['France', 'UK', 'USA', 'China'], correct: 1 },
-{ question: 'Jiudo Sahid of Nepal', options: ['Amar Singh Thapa', 'Lakhan Thapa', 'Tanka Prasad Acharya', 'Gangalal'], correct: 2 },
-{ question: 'Residual Power is Vested to', options: ['Federal', 'Provincial', 'Local', 'All Combined'], correct: 0 },
-{ question: 'Percentage of Nepali Language Spoken according to Census 2078:', options: ['62', '45', '55', '49'], correct: 1 },
-{ question: 'Population Percentage of Age group 15 to 59 in Nepal is (Census 2078)', options: ['61.96', '65.96', '56.96', '53.41'], correct: 0 },
-{ question: 'Agriculture dependent Population of Nepal is .. (Census 2078)', options: ['61', '62', '63', '64'], correct: 1 },
-{ question: 'The Tree found in 2000 m to 3000 m is', options: ['Gobre Salla', 'Khotesalla', 'Sal', 'Khayer'], correct: 0 },
-{ question: 'The New Public Management System is introduced by:', options: ['Taylor', 'Christopher Hood', 'Ronald Reagan', 'Margaret Thatcher'], correct: 1 }
-]
-};
-// ========== AUTO-GENERATE UNIQUE ID FROM QUESTIONS ==========
-function generateSetId() {
-const str = JSON.stringify(questionSet.questions);
-let hash = 0;
-for (let i = 0; i < str.length; i++) {
-const char = str.charCodeAt(i);
-hash = ((hash << 5) - hash) + char;
-hash |= 0;
-}
-return 'set_' + Math.abs(hash).toString(16).slice(0, 8);
-}
-const SET_ID = generateSetId();
-
-const TOTAL_QUESTIONS = questionSet.questions.length;
-const TOTAL_TIME_SECONDS = Math.floor(TOTAL_QUESTIONS * 0.8 * 60);
-const TOTAL_TIME_MINUTES = TOTAL_TIME_SECONDS / 60;
-
-const STORAGE_KEY_STATUS = `mcq_${SET_ID}_status`;
-const STORAGE_KEY_ANSWERS = `mcq_${SET_ID}_answers`;
-const STORAGE_KEY_START_TIME = `mcq_${SET_ID}_startTime`;
-const STORAGE_KEY_END_TIME = `mcq_${SET_ID}_endTime`;
-const STORAGE_KEY_MARKS = `mcq_${SET_ID}_marks`;
-const STORAGE_KEY_SUBMITTED_AT = `mcq_${SET_ID}_submittedAt`;
-
-let currentQuestionIndex = 0;
-let userAnswers = {};
-let testActive = false;
-let timerInterval = null;
-let deadline = null;
-
-// --- DOM refs with null checks ---
-function $(id) {
-const el = document.getElementById(id);
-if (!el) console.warn(`Element #${id} not found`);
-return el;
-}
-
-const $preTest = $('pre-test-section');
-const $test = $('test-section');
-const $results = $('results-section');
-const $timerDisplay = $('timer-display');
-const $navbarBrand = $('navbar-brand');
-const $heroSetName = $('hero-set-name');
-const $heroDetails = $('hero-details');
-const $heroQCount = $('hero-q-count');
-const $heroTime = $('hero-time');
-const $heroNote = $('hero-note');
-const $btnStart = $('btn-start-test');
-const $qNumberLabel = $('q-number-label');
-const $qText = $('q-text');
-const $optionsList = $('options-list');
-const $btnPrev = $('btn-prev');
-const $btnNext = $('btn-next');
-const $btnSubmit = $('btn-submit-test');
-const $qGrid = $('q-grid');
-const $sidebarTotal = $('sidebar-total');
-const $sidebarAnsweredNum = $('sidebar-answered-num');
-const $resultsSetName = $('results-set-name');
-const $resultsScore = $('results-score');
-const $resultsDenom = $('results-denom');
-const $resultsPercentage = $('results-percentage');
-const $resultsTimeTaken = $('results-time-taken');
-const $resultsDetail = $('results-detail');
-const $warningModal = $('warning-modal');
-const $modalUnansweredCount = $('modal-unanswered-count');
-const $btnModalCancel = $('btn-modal-cancel');
-const $btnModalSubmit = $('btn-modal-submit');
-
-// --- Utility ---
-function LSget(k) { try { return localStorage.getItem(k); } catch(e) { return null; } }
-function LSset(k,v) { try { localStorage.setItem(k,v); return true; } catch(e) { return false; } }
-function LSremove(k) { try { localStorage.removeItem(k); } catch(e) {} }
-function formatTime(sec) {
-if (sec < 0) sec = 0;
-const m = Math.floor(sec / 60);
-const s = Math.floor(sec % 60);
-return `${m}:${s.toString().padStart(2,'0')}`;
-}
-function formatTimeLong(sec) {
-if (sec < 0) sec = 0;
-const m = Math.floor(sec / 60);
-const s = Math.floor(sec % 60);
-return m > 0 ? `${m} min ${s} sec` : `${s} seconds`;
-}
-function answeredCount() {
-return Object.keys(userAnswers).filter(k => userAnswers[k] !== undefined && userAnswers[k] !== null).length;
-}
-function calcMarks() {
-let correct = 0;
-for (let i = 0; i < TOTAL_QUESTIONS; i++) {
-if (userAnswers[i] === questionSet.questions[i].correct) correct++;
-}
-return correct;
-}
-function getRemainingSeconds() {
-if (!deadline) return 0;
-return Math.max(0, Math.floor((deadline - Date.now()) / 1000));
-}
-
-function preventCopy(e) { if (testActive) { e.preventDefault(); return false; } }
-function enableTestRestrictions() {
-try {
-document.body.classList.add('test-active');
-document.addEventListener('copy', preventCopy);
-document.addEventListener('cut', preventCopy);
-document.addEventListener('contextmenu', e => { if (testActive) e.preventDefault(); });
-document.addEventListener('selectstart', e => { if (testActive) e.preventDefault(); });
-} catch(e) { console.error('enableTestRestrictions error:', e); }
-}
-function disableTestRestrictions() {
-try {
-document.body.classList.remove('test-active');
-document.removeEventListener('copy', preventCopy);
-document.removeEventListener('cut', preventCopy);
-} catch(e) { console.error('disableTestRestrictions error:', e); }
-}
-
-function requestFullscreen() {
-const el = document.documentElement;
-if (el.requestFullscreen) { el.requestFullscreen().catch(() => {}); }
-else if (el.webkitRequestFullscreen) { el.webkitRequestFullscreen(); }
-else if (el.msRequestFullscreen) { el.msRequestFullscreen(); }
-}
-
-function updateTimerFromDeadline() {
-const remaining = getRemainingSeconds();
-if ($timerDisplay) {
-$timerDisplay.textContent = formatTime(remaining);
-$timerDisplay.classList.remove('warning-yellow', 'warning-red');
-if (remaining <= 300 && remaining > 0) {
-$timerDisplay.classList.add('warning-red');
-} else if (remaining <= 600 && remaining > 0) {
-$timerDisplay.classList.add('warning-yellow');
-}
-}
-return remaining;
-}
-
-function startTimerWithDeadline() {
-const now = Date.now();
-deadline = now + TOTAL_TIME_SECONDS * 1000;
-LSset(STORAGE_KEY_END_TIME, deadline.toString());
-LSset(STORAGE_KEY_START_TIME, now.toString());
-updateTimerFromDeadline();
-if (timerInterval) clearInterval(timerInterval);
-timerInterval = setInterval(() => {
-const remaining = updateTimerFromDeadline();
-if (remaining <= 0) {
-clearInterval(timerInterval);
-timerInterval = null;
-autoSubmit();
-}
-}, 1000);
-}
-
-function resumeTimerFromStoredDeadline() {
-const startStr = LSget(STORAGE_KEY_START_TIME);
-const endStr = LSget(STORAGE_KEY_END_TIME);
-if (startStr && endStr) {
-deadline = parseInt(endStr);
-const remaining = getRemainingSeconds();
-if (remaining > 0) {
-startTimerWithExistingDeadline();
-return true;
-} else {
-return false;
-}
-}
-return false;
-}
-
-function startTimerWithExistingDeadline() {
-if (timerInterval) clearInterval(timerInterval);
-timerInterval = setInterval(() => {
-const remaining = updateTimerFromDeadline();
-if (remaining <= 0) {
-clearInterval(timerInterval);
-timerInterval = null;
-autoSubmit();
-}
-}, 1000);
-}
-
-document.addEventListener('visibilitychange', () => {
-if (testActive && deadline) {
-const remaining = updateTimerFromDeadline();
-if (remaining <= 0) {
-clearInterval(timerInterval);
-timerInterval = null;
-autoSubmit();
-}
-}
-});
-
-function resetTestData() {
-LSremove(STORAGE_KEY_STATUS);
-LSremove(STORAGE_KEY_ANSWERS);
-LSremove(STORAGE_KEY_START_TIME);
-LSremove(STORAGE_KEY_END_TIME);
-LSremove(STORAGE_KEY_MARKS);
-LSremove(STORAGE_KEY_SUBMITTED_AT);
-testActive = false;
-if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
-deadline = null;
-userAnswers = {};
-currentQuestionIndex = 0;
-disableTestRestrictions();
-}
-
-function showPreTest() {
-if ($preTest) $preTest.style.display = 'block';
-if ($test) $test.style.display = 'none';
-if ($results) $results.style.display = 'none';
-if ($timerDisplay) $timerDisplay.style.display = 'none';
-if ($navbarBrand) $navbarBrand.textContent = '📝 MCQ Test';
-if ($heroSetName) $heroSetName.textContent = questionSet.name;
-if ($heroDetails) $heroDetails.textContent = questionSet.details || '';
-if ($heroQCount) $heroQCount.textContent = TOTAL_QUESTIONS;
-if ($heroTime) $heroTime.textContent = `${TOTAL_TIME_MINUTES}:00`;
-
-// --- New: Instructions with HTML formatting ---
-if ($heroNote) {
-$heroNote.innerHTML = `
-<div style="text-align:left; max-width:500px; margin:10px auto; font-size:0.9rem; line-height:1.6; background:#4caf50; padding:15px 20px; border-radius:8px; border-left:4px solid #ff9800;">
-<p><strong>📌 Exam Instructions:</strong></p>
-<ul style="list-style:none; padding-left:0; margin:5px 0;">
-<li>✅ Exam will automatically open in full-screen mode.</li>
-<li>✅ You can take this test only once — no re-test allowed.</li>
-<li>✅ Timer will start immediately after clicking "🚀 Start Test".</li>
-<li>✅ Time warnings will be shown at 10 minutes and 5 minutes remaining.</li>
-<li>✅ When time is over, the test will be automatically submitted.</li>
-</ul>
-<p style="margin-top:10px; color:red; font-weight:bold;">⚠️ This test can only be taken once. Make sure you are ready before starting.</p>
-</div>
-`;
-}
-
-if ($btnStart) {
-$btnStart.disabled = false;
-$btnStart.textContent = '🚀 Start Test';
-}
-disableTestRestrictions();
-}
-function showTestInterface() {
-if ($preTest) $preTest.style.display = 'none';
-if ($test) $test.style.display = 'block';
-if ($results) $results.style.display = 'none';
-if ($timerDisplay) {
-$timerDisplay.style.display = 'inline-block';
-$timerDisplay.textContent = formatTime(TOTAL_TIME_SECONDS);
-}
-if ($navbarBrand) $navbarBrand.textContent = questionSet.name;
-if ($sidebarTotal) $sidebarTotal.textContent = `Total: ${TOTAL_QUESTIONS}`;
-if ($qGrid) {
-$qGrid.innerHTML = '';
-for (let i = 0; i < TOTAL_QUESTIONS; i++) {
-const dot = document.createElement('span');
-dot.className = 'q-dot';
-dot.textContent = i + 1;
-dot.dataset.index = i;
-dot.addEventListener('click', () => {
-currentQuestionIndex = i;
-renderQuestion();
-updateSidebarHighlight();
-});
-$qGrid.appendChild(dot);
-}
-}
-updateSidebarHighlight();
-updateAnsweredCount();
-renderQuestion();
-}
-
-function renderQuestion() {
-if (!questionSet || !questionSet.questions) return;
-const q = questionSet.questions[currentQuestionIndex];
-if (!q) return;
-if ($qNumberLabel) $qNumberLabel.textContent = `QUESTION ${currentQuestionIndex + 1} / ${TOTAL_QUESTIONS}`;
-if ($qText) $qText.textContent = q.question;
-if ($optionsList) {
-$optionsList.innerHTML = '';
-const letters = ['A','B','C','D','E','F','G','H'];
-q.options.forEach((opt, idx) => {
-const li = document.createElement('li');
-li.innerHTML = `<span class="option-letter">${letters[idx] || idx+1}</span> <span>${opt}</span>`;
-li.dataset.optionIndex = idx;
-li.addEventListener('click', () => selectOption(idx));
-if (userAnswers[currentQuestionIndex] === idx) li.classList.add('selected');
-$optionsList.appendChild(li);
-});
-}
-if ($btnPrev) $btnPrev.disabled = (currentQuestionIndex === 0);
-if ($btnNext) $btnNext.disabled = (currentQuestionIndex >= TOTAL_QUESTIONS - 1);
-updateSidebarHighlight();
-updateAnsweredCount();
-}
-
-function selectOption(idx) {
-if (!testActive) return;
-userAnswers[currentQuestionIndex] = idx;
-LSset(STORAGE_KEY_ANSWERS, JSON.stringify(userAnswers));
-renderQuestion();
-}
-
-function navigateQuestion(dir) {
-const newIdx = currentQuestionIndex + dir;
-if (newIdx >= 0 && newIdx < TOTAL_QUESTIONS) {
-currentQuestionIndex = newIdx;
-renderQuestion();
-}
-}
-
-function updateSidebarHighlight() {
-if (!$qGrid) return;
-const dots = $qGrid.querySelectorAll('.q-dot');
-dots.forEach(dot => {
-const i = parseInt(dot.dataset.index);
-dot.classList.remove('answered', 'current');
-if (userAnswers[i] !== undefined && userAnswers[i] !== null) dot.classList.add('answered');
-if (i === currentQuestionIndex) dot.classList.add('current');
-});
-}
-
-function updateAnsweredCount() {
-if ($sidebarAnsweredNum) $sidebarAnsweredNum.textContent = answeredCount();
-}
-
-// --- Main actions ---
-function startTest() {
-console.log('startTest called');
-try {
-const status = LSget(STORAGE_KEY_STATUS);
-if (status === 'completed' || status === 'submitted') {
-alert('You have already taken this test. Results are shown below.');
-showResults();
-return;
-}
-if (status === 'in_progress') {
-resumeTest();
-return;
-}
-const now = Date.now();
-deadline = now + TOTAL_TIME_SECONDS * 1000;
-LSset(STORAGE_KEY_STATUS, 'in_progress');
-LSset(STORAGE_KEY_START_TIME, now.toString());
-LSset(STORAGE_KEY_END_TIME, deadline.toString());
-LSset(STORAGE_KEY_ANSWERS, JSON.stringify({}));
-userAnswers = {};
-currentQuestionIndex = 0;
-testActive = true;
-enableTestRestrictions();
-requestFullscreen();
-showTestInterface();
-startTimerWithDeadline();
-console.log('Test started successfully');
-} catch(e) {
-console.error('Error in startTest:', e);
-alert('An error occurred while starting the test. Please check the console for details.');
-}
-}
-
-function resumeTest() {
-const ans = LSget(STORAGE_KEY_ANSWERS);
-if (ans) { try { userAnswers = JSON.parse(ans); } catch(e) { userAnswers = {}; } }
-const hasTime = resumeTimerFromStoredDeadline();
-testActive = true;
-enableTestRestrictions();
-showTestInterface();
-if (!hasTime) {
-autoSubmit();
-}
-}
-
-function submitTest() {
-if (!testActive) return;
-testActive = false;
-if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
-disableTestRestrictions();
-const marks = calcMarks();
-const now = Date.now();
-const startStr = LSget(STORAGE_KEY_START_TIME);
-const start = startStr ? parseInt(startStr) : now;
-const timeTaken = Math.floor((now - start) / 1000);
-LSset(STORAGE_KEY_STATUS, 'completed');
-LSset(STORAGE_KEY_MARKS, marks.toString());
-LSset(STORAGE_KEY_SUBMITTED_AT, now.toString());
-LSset(STORAGE_KEY_ANSWERS, JSON.stringify(userAnswers));
-if ($timerDisplay) $timerDisplay.style.display = 'none';
-hideWarningModal();
-showResults(marks, timeTaken);
-}
-
-function autoSubmit() {
-if (!testActive && LSget(STORAGE_KEY_STATUS) === 'completed') return;
-testActive = false;
-if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
-disableTestRestrictions();
-const marks = calcMarks();
-const now = Date.now();
-const startStr = LSget(STORAGE_KEY_START_TIME);
-const start = startStr ? parseInt(startStr) : now;
-const timeTaken = Math.floor((now - start) / 1000);
-LSset(STORAGE_KEY_STATUS, 'completed');
-LSset(STORAGE_KEY_MARKS, marks.toString());
-LSset(STORAGE_KEY_SUBMITTED_AT, now.toString());
-LSset(STORAGE_KEY_ANSWERS, JSON.stringify(userAnswers));
-if ($timerDisplay) $timerDisplay.style.display = 'none';
-showResults(marks, timeTaken, true);
-}
-
-function showResults(marksOverride, timeOverride, auto = false) {
-if ($preTest) $preTest.style.display = 'none';
-if ($test) $test.style.display = 'none';
-if ($results) $results.style.display = 'block';
-if ($timerDisplay) $timerDisplay.style.display = 'none';
-if ($navbarBrand) $navbarBrand.textContent = '📊 Results - ' + questionSet.name;
-const marks = marksOverride !== undefined ? marksOverride : parseInt(LSget(STORAGE_KEY_MARKS) || '0');
-const submittedStr = LSget(STORAGE_KEY_SUBMITTED_AT);
-const startStr = LSget(STORAGE_KEY_START_TIME);
-let timeTaken = timeOverride;
-if (timeTaken === undefined && submittedStr && startStr) {
-timeTaken = Math.floor((parseInt(submittedStr) - parseInt(startStr)) / 1000);
-}
-if (timeTaken === undefined || timeTaken < 0) timeTaken = 0;
-const ans = LSget(STORAGE_KEY_ANSWERS);
-if (ans) { try { userAnswers = JSON.parse(ans); } catch(e) { userAnswers = {}; } }
-const percent = TOTAL_QUESTIONS > 0 ? Math.round((marks / TOTAL_QUESTIONS) * 100) : 0;
-if ($resultsSetName) $resultsSetName.textContent = questionSet.name;
-if ($resultsScore) $resultsScore.textContent = marks;
-if ($resultsDenom) $resultsDenom.textContent = `/ ${TOTAL_QUESTIONS}`;
-if ($resultsPercentage) $resultsPercentage.textContent = `${percent}%`;
-if ($resultsTimeTaken) $resultsTimeTaken.textContent = `⏱️ Time taken: ${formatTimeLong(timeTaken)}` + (auto ? ' (Auto-submitted)' : '');
-if ($resultsDetail) {
-$resultsDetail.innerHTML = '';
-const letters = ['A','B','C','D','E','F','G','H'];
-questionSet.questions.forEach((q, idx) => {
-const userAns = userAnswers[idx];
-const correctAns = q.correct;
-const isCorrect = (userAns === correctAns);
-const wasAnswered = (userAns !== undefined && userAns !== null);
-const card = document.createElement('div');
-card.className = 'result-card';
-if (wasAnswered) card.classList.add(isCorrect ? 'correct' : 'incorrect');
-let badge = '';
-if (!wasAnswered) badge = '<span class="r-badge" style="background:#fff3e0;color:#E65100;">⚠️ NOT ANSWERED</span>';
-else if (isCorrect) badge = '<span class="r-badge correct-badge">✅ CORRECT</span>';
-else badge = '<span class="r-badge incorrect-badge">❌ INCORRECT</span>';
-let optsHTML = '';
-q.options.forEach((opt, optIdx) => {
-let liClass = '';
-if (optIdx === correctAns && optIdx === userAns) liClass = 'both-correct';
-else if (optIdx === correctAns) liClass = 'correct-answer';
-else if (optIdx === userAns && !isCorrect) liClass = 'user-answer';
-const label = letters[optIdx] || (optIdx+1);
-let prefix = '';
-if (optIdx === correctAns && optIdx === userAns) prefix = '✅ ';
-else if (optIdx === correctAns) prefix = '✅ ';
-else if (optIdx === userAns && !isCorrect) prefix = '❌ ';
-optsHTML += `<li class="${liClass}"><strong>${label}.</strong> ${prefix}${opt}</li>`;
-});
-card.innerHTML = `${badge}<div class="r-q-text">Q${idx+1}: ${q.question}</div><ul class="r-options">${optsHTML}</ul>`;
-$resultsDetail.appendChild(card);
-});
-}
-if ($results) $results.scrollIntoView({ behavior: 'smooth' });
-window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function showWarningModal() {
-const unanswered = TOTAL_QUESTIONS - answeredCount();
-if ($modalUnansweredCount) $modalUnansweredCount.textContent = `${unanswered} unanswered question(s)`;
-if ($warningModal) {
-$warningModal.style.display = 'flex';
-document.body.style.overflow = 'hidden';
-}
-}
-
-function hideWarningModal() {
-if ($warningModal) {
-$warningModal.style.display = 'none';
-document.body.style.overflow = '';
-}
-}
-
-// URL-based reset
-function checkAndApplyReset() {
-const url = new URL(window.location.href);
-if (url.searchParams.has('reset') && url.searchParams.get('reset') === '1') {
-resetTestData();
-url.searchParams.delete('reset');
-window.location.replace(url.toString());
-return true;
-}
-return false;
-}
-
-// --- Event Listeners (with existence checks) ---
-if ($btnStart) $btnStart.addEventListener('click', startTest);
-else console.error('Start button not found');
-
-if ($btnPrev) $btnPrev.addEventListener('click', () => navigateQuestion(-1));
-if ($btnNext) $btnNext.addEventListener('click', () => navigateQuestion(1));
-if ($btnSubmit) {
-$btnSubmit.addEventListener('click', function() {
-if (!testActive) return;
-const unanswered = TOTAL_QUESTIONS - answeredCount();
-if (unanswered > 0) {
-showWarningModal();
-} else {
-submitTest();
-}
-});
-}
-if ($btnModalCancel) $btnModalCancel.addEventListener('click', hideWarningModal);
-if ($btnModalSubmit) $btnModalSubmit.addEventListener('click', function() { submitTest(); });
-if ($warningModal) {
-$warningModal.addEventListener('click', function(e) {
-if (e.target === $warningModal) hideWarningModal();
-});
-}
-
-document.addEventListener('keydown', function(e) {
-if (e.key === 'Escape' && $warningModal && $warningModal.style.display === 'flex') {
-hideWarningModal();
-}
-});
-
-document.addEventListener('keydown', function(e) {
-if (!testActive) return;
-if ($warningModal && $warningModal.style.display === 'flex') return;
-if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); navigateQuestion(-1); }
-else if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); navigateQuestion(1); }
-else if (e.key >= '1' && e.key <= '9') {
-const idx = parseInt(e.key) - 1;
-if (idx < questionSet.questions[currentQuestionIndex].options.length) {
-e.preventDefault();
-selectOption(idx);
-}
-}
-else if (e.key === 'a' || e.key === 'A') selectOption(0);
-else if (e.key === 'b' || e.key === 'B') selectOption(1);
-else if (e.key === 'c' || e.key === 'C') selectOption(2);
-else if (e.key === 'd' || e.key === 'D') selectOption(3);
-else if (e.key === 'e' || e.key === 'E') selectOption(4);
-});
-
-// --- Initialisation ---
-function init() {
-if (checkAndApplyReset()) return;
-const status = LSget(STORAGE_KEY_STATUS);
-if (status === 'completed' || status === 'submitted') {
-const ans = LSget(STORAGE_KEY_ANSWERS);
-if (ans) { try { userAnswers = JSON.parse(ans); } catch(e) { userAnswers = {}; } }
-showResults();
-} else if (status === 'in_progress') {
-const ans = LSget(STORAGE_KEY_ANSWERS);
-if (ans) { try { userAnswers = JSON.parse(ans); } catch(e) { userAnswers = {}; } }
-const hasTime = resumeTimerFromStoredDeadline();
-if (hasTime) {
-testActive = true;
-enableTestRestrictions();
-showTestInterface();
-} else {
-testActive = true;
-enableTestRestrictions();
-showTestInterface();
-autoSubmit();
-}
-} else {
-showPreTest();
-}
-}
-
-// Make sure DOM is fully loaded before initialising
-if (document.readyState === 'loading') {
-document.addEventListener('DOMContentLoaded', init);
-} else {
-init();
-}
-})();
+    console.log('Inline script running');
+    const questionSet = {
+        name: 'Civil Engineering Exam Set-1 (2067/12/10)',
+        details: 'Comprehensive exam covering engineering drawing, surveying, materials, structures, concrete technology, project management, and professional ethics.',
+        questions: [
+            { question: 'The proportion by which the actual size of an object is enlarged or reduced in drawing is simply known as :', options: ['multiplication factor', 'Scale', 'reflection factor', 'none of them'], correct: 1 },
+            { question: 'One method of preparing perspective view of an object is :', options: ['lattice', 'vanishing point method', 'evolution method', 'equilibrium method'], correct: 1 },
+            { question: 'Free hand sketching can be done only when, one has :', options: ['proper proficiency', 'good practice', 'Proper patience', 'Proper proportion'], correct: 1 },
+            { question: 'Circles of small radii are draw by means of a :', options: ['set square', 'bow compass', 'straight bar', 'divider'], correct: 1 },
+            { question: 'The optical square is used to measure angles by :', options: ['double reflection', 'refraction', 'reflection', 'double refraction'], correct: 0 },
+            { question: 'The instrument used for setting out an offset at a right angle, is called :', options: ['optical square', 'open cross - staff', 'french cross - staff', 'adjustable cross-staff'], correct: 0 },
+            { question: 'Bench marks are fixed by :', options: ['Profile leveling', 'trigonometric leveling', 'barometric leveling', 'spirit leveling'], correct: 0 },
+            { question: 'The sensitivity of the double tube can be increased by :', options: ['increasing the viscosity of fluid', 'decreasing the radius of fluid', 'decreasing the length of double', 'increasing the diameter of the tube'], correct: 2 },
+            { question: 'The method most suitable for plotting in hilly areas is :', options: ['traversing', 'radiation', 'intersection', 'resection'], correct: 0 },
+            { question: 'The types of level normally used in hilly area is ;', options: ['hand level', 'abney level', 'dumpy level', 'none of the above'], correct: 1 },
+            { question: 'Chainage is a distance measured :', options: ['perpendicular to a tie line', 'along a chain line', 'perpendicular to a chain line', 'none of the above'], correct: 1 },
+            { question: 'Cadastral map is a map having :', options: ['large scale', 'small scale', 'medium scale', 'all of the above'], correct: 1 },
+            { question: 'An agreement between two parties or more to do or not so any work is known as :', options: ['work to proceed', 'contract', 'specification', 'tender'], correct: 1 },
+            { question: 'The discount rate that makes the net present value equal to zero is known as :', options: ['break even point', 'internal rate of return', 'external rate of return', 'none of above'], correct: 1 },
+            { question: 'A technique that measures the change in the profitability of a project caused by changes in the factors that affect the cash inflows of the project is called :', options: ['capital analysis', 'cost benefit analysis', 'sensitivity analysis', 'risk analysis'], correct: 2 },
+            { question: 'For the selection of any project the NPV should :', options: ['Zero', 'less than 0', 'both of the above', 'none of the above'], correct: 1 },
+            { question: 'The difference between actual cost of the project with the targeted cost is called :', options: ['loss', 'profit', 'variance', 'all of the above'], correct: 2 },
+            { question: 'As the benefit cost ratio of a project increases, the attractiveness of project increases. But minimumvalue of benefit cost ratio should be ............. for the acception of project.', options: ['greater than one', 'less than one', 'equal to one', 'none of the above'], correct: 0 },
+            { question: 'Payback period is counted only after :', options: ['commissioning of the project', 'tendering for the project', 'starting of the construction of the project', 'completion of the construction of the project'], correct: 3 },
+            { question: 'In analysis of the rates the profit for the contractor is generally taken as', options: ['25%', '10%', '15%', '20%'], correct: 1 },
+            { question: 'Nepal Engineering Council Regulation, 2057 is effective from :', options: ['2057/3/8', '2057/4/8', '2057/5/8', '2057/6/8'], correct: 1 },
+            { question: 'Which of the following is not concerned with the authority of Engineers?', options: ['express an opinion on Engineering matter', 'good behavior with client', 'conscious with his profession', 'divulge the confidential matter'], correct: 3 },
+            { question: 'Ethics as a normative science needs code of conduct and guidelines to maintaining high level of standard of good behavior in the society. This is applicable to :', options: ['lawyers', 'doctors', 'engineers', 'all of the above'], correct: 3 },
+            { question: 'Engineering profession needs cooperation with the profession of :', options: ['medical professionals', 'accountant', 'lawyer', 'all of the above'], correct: 3 },
+            { question: 'The total number of members in Nepal Engineering council is :', options: ['18', '9', '12', '15'], correct: 1 },
+            { question: 'Design of a timber joist, in general, is most critical in :', options: ['torsion', 'bending moment', 'shear force', 'deflection'], correct: 1 },
+            { question: 'Strain is defined as ........... per unit length caused by normal force in its direction:', options: ['deflection', 'deformation', 'both of the above', 'none of the above'], correct: 1 },
+            { question: 'In the slope-deflection equations, the deformations are considered to be caused by :', options: ['bending moment', 'shear force', 'axial force', 'both A & B'], correct: 3 },
+            { question: 'For no torsion the plane of bending should :', options: ['pass through centre of gravity of the section', 'be parallel to one of the principle axis', 'pass through shear center of section', 'pass through neutral axis of the section'], correct: 3 },
+            { question: 'A cantilever of span, L has a load, P acting at the free end. The bending moment at free end will be :', options: ['PL²', 'O', 'PL', '- PL'], correct: 1 },
+            { question: 'Maximum deflection for a beam as show in figure will be :', options: ['6.82 WL³/384 EL', '5.5 W/384 EI', '5.5 WL³/384 EI', '6.82 W/384 EI'], correct: 0 },
+            { question: 'For finding forces in the member of a Truss by the graphical method, the force diagram is suggested by:', options: ['Betti', 'Mohr', 'Timoshenko', 'Maxwell'], correct: 0 },
+            { question: 'The acceptable limit for the safety and serviceability required before failure occurs is :', options: ['ultimate limit', 'limit state of collapse', 'limit state of serviceability', 'limit state'], correct: 1 },
+            { question: 'The floor slab of a building is supported on reinforced cement floor beams. The ratio of the end and intermediate span is kept :', options: ['0.6', '0.7', '0.8', '0.9'], correct: 1 },
+            { question: 'Doubly reinforced RCCbeam is provided with ............:', options: ['reinforcement in compression zone only', 'double amount of reinforcement', 'reinforcement in compression zone as well', 'reinforcement in tension zone only'], correct: 2 },
+            { question: 'If \'A\' is the section area of a prestressed rectangular beam provided with a tendon prestressed by a force \'P\' through its centroidal longitudinal axis the compressive stress induced in concrete is :', options: ['2A/P', 'P/A', 'A/P', 'P/2A'], correct: 1 },
+            { question: 'When a column is subjected to an eccentric load, the stress induced in the column will be :', options: ['direct stress only', 'bending stress only', 'shear stress only', 'direct and bending stress both'], correct: 3 },
+            { question: 'A column is regarded as long column if ratio of its effective length and lateral dimension, exceeds :', options: ['25', '10', '15', '20'], correct: 0 },
+            { question: 'The maximum ratio of span of a cantilever slab, is :', options: ['14', '8', '10', '12'], correct: 1 },
+            { question: 'For the construction of RCC slabs, columns, beams, walls etc. the nominal mix of concrete to be used is :', options: ['1:1: 2', '1: 3: 6', '1: 1½/₂: 3', '1:2:4'], correct: 1 },
+            { question: 'The concrete not used for structure is :', options: ['M25', 'M10', 'M15', 'M20'], correct: 1 },
+            { question: 'The main purpose of seasoning is :', options: ['to make the timber water proof', '', 'to make timber five resistant', '', 'to remove moisture from the timber at uniform rate', '', 'none of the above', ''], correct: 2 },
+            { question: 'A column splice is used to increase :', options: ['cross-sectional area of the column', '', 'length of the column', '', 'strength of the column', '', 'none of these', ''], correct: 1 },
+            { question: 'Which of the following is the best compression member section?', options: ['tubular section', 'Single angle section', 'strength of the column', 'none of these'], correct: 0 },
+            { question: 'Bearing stiffeners are designed as :', options: ['ties', 'beam', 'columns', 'beam ties'], correct: 2 },
+            { question: 'Which of the following wood (trade name of timber) have all grades modulus of elasticity?', options: ['Kala-siris', 'Mango', 'eucalyptus', 'Sal'], correct: 3 },
+            { question: 'Seasoning of timber is ............:', options: ['removing sap', 'painting', 'tarring', 'watering'], correct: 0 },
+            { question: 'On the laboratory thread test of a fine grain soil is carried out to determine :', options: ['dry strength', 'liquid limit', 'plastic limit', 'none of the above'], correct: 1 },
+            { question: 'The lime used for plastering and white washing is :', options: ['hydraulic lime', 'fat lime', 'quick lime', 'none of the above'], correct: 1 },
+            { question: 'The arrangement, size and shape of the constituent mineral grains of a stone gives the information about its :', options: ['lusture', 'texture', 'toughness', 'all of the above'], correct: 1 },
+            { question: 'A good quality stone absorbs water less than:', options: ['5%', '20%', '15%', '10%'], correct: 0 },
+            { question: 'Stones used for ornamental work must be:', options: ['heavy', 'hard', 'soft', 'light'], correct: 1 },
+            { question: 'Durability of building stone is affected by its:', options: ['resistance to atmosphere', 'chemical composition', 'texture', 'all the above'], correct: 3 },
+            { question: 'Bitumen felt is used for:', options: ['water proofing', 'damp proofing', 'both of the above', 'none of the above'], correct: 2 },
+            { question: 'All burnt bricks should be soaked in water for at least ......... hours to be used with cement mortar:', options: ['1', '1/4', '1/2', '¾'], correct: 0 },
+            { question: 'Initial setting time of ordinary Portland cement is ........:', options: ['40 minutes', '10 minutes', '20 minutes', '30 minutes'], correct: 3 },
+            { question: 'Tung oil is used for making:', options: ['superior paints and varnishe', 'very dilute colours', 'colourless paints and varnishe', 'very delicate colour'], correct: 0 },
+            { question: 'In blasting rocks with dynamites the recommended diameter of drill for depth 1.80 to 3.50m is:', options: ['60mm', '25mm', '40mm', '5 0mm'], correct: 1 },
+            { question: 'The property by which the metals deforms continuously at a slow rate without further increase in stress is called:', options: ['plasticity', 'creep', 'fatigue', 'resilience'], correct: 1 },
+            { question: 'Which method is quickest to find the water content of soils?', options: ['sand bath method', 'oven dry method', 'alcohol method', 'calcium carbide method'], correct: 3 },
+            { question: 'Concreting should be stopped when temperature falls below ....:', options: ['4.5⁰ C', '20⁰ C', '15⁰ C', '10⁰ C'], correct: 0 },
+            { question: 'Humidity causes ................. of cement in bag.', options: ['decaying', 'setting', 'strengthening', 'disintegration'], correct: 1 },
+            { question: 'The purpose of reinforcement in prestressed concrete is :', options: ['to impact initial compressive stress in concrete', 'to provide adequate bond stress', 'to resist tensile stress', 'all of the above'], correct: 0 },
+            { question: 'Reduction in aggregate - cement ratio while keeping W/C ratio constant causes :', options: ['increase in workability', 'decrease in workability', 'workability is not affected', 'none of the above'], correct: 1 },
+            { question: 'Low water - cement ratio in concrete :', options: ['reduces the permeability of concrete', 'increase the compressive strength', 'improves the frost - resistance of concrete', 'all of the above'], correct: 3 },
+            { question: 'Plaster of Paris is obtained by calcination of ............:', options: ['marble', 'lime stone', 'bauxite', 'gypsum'], correct: 3 },
+            { question: 'The concrete mix of grade M25 means that the compressive strength of 15 cm cubes at 25 days after mixing is :', options: ['30 N/mm²', '15 N/mm²', '20 N/mm²', '25 N/mm2'], correct: 3 },
+            { question: 'The process of proper and accurate measurement of concrete ingredients for uniformity of proportion is known as :', options: ['mixing', 'batching', 'grading', 'none of the above'], correct: 1 },
+            { question: 'Modulus of rupture of concrete is measure of:', options: ['compressive strength', 'flexural tensile strength', 'direct tensile strength', 'none of the above'], correct: 1 },
+            { question: 'The concrete having a slump of 6.5 cm, is said to be :', options: ['plastic', 'dry', 'earth moist', 'semi plastic'], correct: 0 },
+            { question: 'Concrete gains strength due to :', options: ['hydration of cement', 'chemical reaction of cement with sand and coarse aggregates', 'evaporation of water from concrete', 'all of the above'], correct: 1 },
+            { question: 'Surface vibration is effective only when the thickness of concrete does not exceed :', options: ['20 cm', '5 cm', '10 cm', '15 cm'], correct: 2 },
+            { question: 'PERT requires :', options: ['four time estimate', 'single time estimate', 'double time estimate', 'triple time estimate'], correct: 0 },
+            { question: 'CPM stands for :', options: ['Critical path method', 'combined process method', 'Common planning method', 'Critical process method'], correct: 0 },
+            { question: 'The chart which gives an estimate about the amount of materials handling between various work station is known as ;', options: ['operation chart', 'flow chart', 'process chart', 'travel chart'], correct: 3 },
+            { question: 'Bar chart is suitable for :', options: ['minor works', 'large project', 'major work', 'large project with major works'], correct: 0 },
+            { question: 'F.W. Taylor introduced a system of organization known as :', options: ['functional organization', '', 'line organization', '', 'line and staff organization', '', 'line, staff and functional organization', ''], correct: 0 },
+            { question: 'Acquisition of land for any construction should be performed ;', options: ['before tender', 'after tender', 'at the time of tender', 'security deposit'], correct: 0 },
+            { question: 'The money of the contractor retained by the department during payments is called :', options: ['tender money', 'retention money', 'earnest money', 'security deposit'], correct: 1 },
+            { question: 'A written offer submitted by contractors to execute certain work at certain rates within a fixed time is called :', options: ['measurement book', 'muster roll', 'contract', 'tender'], correct: 3 },
+            { question: 'An agreement which is enforceable by law is a :', options: ['muster roll', 'tender', 'contract', 'bid'], correct: 2 },
+            { question: 'All measurement should be neatly recorded in a :', options: ['measurement book', 'note book', 'muster roll', 'daily book'], correct: 0 },
+            { question: 'Basic record of payments madeto daily labour is kept in a :', options: ['daily book', 'measurement book', 'muster roll', 'labour roll'], correct: 2 },
+            { question: 'Float is :', options: ['time available-time required for an activity', 'the earliest time by which an activity may commence', 'latest time by which an activity can be delayed without hampering the completion of the project', 'latest allowable time-earliest expected time'], correct: 2 },
+            { question: 'An estimate is :', options: ['a random guess of project cost with similar project in the locality', '', 'actual cost of construction of a project', '', 'the probable cost arrived at before commencement of the project', '', 'none of the above', ''], correct: 2 },
+            { question: 'A document containing detailed description of all items of the work (but their quantities are not mentioned) together with their current rates are called :', options: ['abstract estimate', 'tender', 'schedule of rates', 'analysis of rates'], correct: 2 },
+            { question: 'Working out the exact quantities of various items of work is known as :', options: ['valuation', 'estimating', 'mensuration', 'quantity surveying'], correct: 3 },
+            { question: 'The essential requirements to prepare good estimate are :', options: ['schedule of rates', '', 'fully dimensioned drawing to the scale', '', 'detailed specifications', '', 'all of the above', ''], correct: 3 },
+            { question: 'The covered area of a proposed building rectangular is shape is 120 sq.m with central courtyardmeasuring 5 m ×4 m. if plinth area rate of constructions of similar building in the locality is Rs. 1200 per sq.m The plinth area of the proposed building is :', options: ['Rs. 2,00,000', 'Rs. 1,20,000', 'Rs. 1,44,000', 'Rs. 1,68,000'], correct: 2 },
+            { question: 'The unit of measurement of brick soling is :', options: ['lump sum', 'meter', 'square meter', 'cubic meter'], correct: 2 },
+            { question: 'The techniques of finding fair price of an existing building of property is known as :', options: ['costing', 'estimation', 'pricing', 'valuation'], correct: 3 },
+            { question: 'Annual periodic payments made for repayment of capital invested is known as :', options: ['solatium', 'annuity', 'depreciation', 'sinking fund'], correct: 1 },
+            { question: 'The specific weight of reinforced cement concrete is :', options: ['3000 kg/cubic meter', '1200 kg/cubic meter', '1500 kg /cubic meter', '2500 kg/cubic meter'], correct: 3 },
+            { question: 'Unit of measurement of reinforcement steel and iron work is taken in terms of :', options: ['meter', 'square meter', 'cubic meter', 'kilogram'], correct: 3 },
+            { question: 'Free hand sketch is normally used for :', options: ['discussion', 'concept', 'final', 'none of the above'], correct: 1 },
+            { question: 'The measurement of standard A3 size drawing sheet in mm is :', options: ['594×891', '297×420', '210×297', '420×594'], correct: 1 },
+            { question: 'Which of the following is not a drawing hand tool?', options: ['alidade', 'straight edge', 'French curve', 'set squares'], correct: 0 },
+            { question: 'Orthographic projection means :', options: ['900', '30⁰', '45⁰', 'none of these'], correct: 0 },
+            { question: 'Working drawing is prepared not for :', options: ['bill of quantities', 'estimation', 'layout', 'specification'], correct: 2 },
+            { question: 'French curves are used to draw :', options: ['regular curves', 'circle', 'irregular curves', 'none of these'], correct: 2 }
+        ]
+    };
+    
+    console.log('questionSet defined');
+    startTest(questionSet);
+    console.log('startTest called');
+})(); 
 </script>
+<script src="/js/text-protect.js" defer></script>
+<script src="/js/logo.js"></script>
 </body>
 </html>

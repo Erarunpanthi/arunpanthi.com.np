@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title> Economic Geography and Demography of Nepal 1.3 </title>
+<link rel="icon" href="https://arunpanthi.com.np/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="/css/Mock_Test.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar" id="navbar">
+<span class="brand" id="navbar-brand"> Economic Geography and Demography of Nepal </span>
+<span class="timer-display" id="timer-display" style="display:none;">--:--</span>
+</nav>
+
+<!-- Warning modal -->
+<div id="warning-modal" class="modal-overlay" style="display: none;">
+<div class="modal-dialog">
+<div class="warning-icon">⚠️</div>
+<h3>Unanswered Questions</h3>
+<p>You haven't answered all the questions.</p>
+<span class="unanswered-count" id="modal-unanswered-count">0 unanswered</span>
+<p style="margin-top:8px;"><strong>⚠ This test cannot be retaken once submitted!</strong></p>
+<div class="modal-buttons">
+<button class="btn-cancel" id="btn-modal-cancel">Cancel</button>
+<button class="btn-submit-warning" id="btn-modal-submit">Submit Anyway</button>
+</div>
+</div>
+</div>
+
+<div id="pre-test-section">
+<div class="hero" id="hero-card">
+<h1 id="hero-set-name">Loading...</h1>
+<p class="set-details" id="hero-details"></p>
+<div class="set-meta">
+<div class="meta-item"><span id="hero-q-count">0</span> Questions</div>
+<div class="meta-item"><span id="hero-time">0:00</span> Time (min)</div>
+</div>
+<button class="btn-start" id="btn-start-test">🚀 Start Test</button>
+<p style="margin-top:10px;font-size:0.85rem;opacity:0.8;" id="hero-note"></p>
+</div>
+</div>
+
+<div id="test-section" style="display:none;">
+<div class="test-container">
+<div class="question-area">
+<div class="question-card">
+<div class="q-number" id="q-number-label">QUESTION 1</div>
+<div class="q-text" id="q-text">Loading question...</div>
+<ul class="options-list" id="options-list"></ul>
+</div>
+<div class="nav-buttons">
+<div class="nav-left"><button class="btn-nav" id="btn-prev">◀ Previous</button></div>
+<div class="nav-center"><button class="btn-submit" id="btn-submit-test">✅ Submit Test</button></div>
+<div class="nav-right"><button class="btn-nav" id="btn-next">Next ▶</button></div>
+</div>
+</div>
+<aside class="sidebar">
+<h3>📋 Question </h3>
+<div class="total-questions" id="sidebar-total">Total: 0</div>
+<div class="answered-count">Answered: <strong id="sidebar-answered-num">0</strong></div>
+<div class="q-grid" id="q-grid"></div>
+<div class="legend">
+<span><span class="dot-sample blue"></span> Answered</span>
+<span><span class="dot-sample gray"></span> Unanswered</span>
+</div>
+</aside>
+</div>
+</div>
+
+<div id="results-section" style="display:none;">
+<div class="results-container">
+<div class="results-header">
+<h2 style="color:#2E7D32;">📊 Test Results</h2>
+<p style="color:#666;" id="results-set-name"></p>
+<div class="score-circle">
+<span class="score-num" id="results-score">0</span>
+<span class="score-denom" id="results-denom">/ 0</span>
+</div>
+<div class="percentage" id="results-percentage">0%</div>
+<p style="margin-top:8px;color:#888;font-size:0.9rem;" id="results-time-taken"></p>
+</div>
+<div id="results-detail"></div>
+</div>
+</div>
+<script src="/js/Mock_Test.js"></script>
+<script>
+(function() {
+    console.log('Inline script running');
+    const questionSet = {
+        name: 'Physical, Socio-cultural and Economic Geography and Demography of Nepal - Complete Set',
+        details: 'Covers Nepal economy, GDP, agriculture, industries, tourism, highways, and demography.',
+        questions: [
+            { question: 'What is the current population of Nepal under poverty?', options: ['17.8%', '20.27%', '19.7%', '11.7%'], correct: 0 },
+            { question: 'What type of economy does Nepal adopt in the current day?', options: ['Pure market economy', 'Traditional', 'Pure command economy', 'Mixed economy'], correct: 3 },
+            { question: 'The economy of Nepal is largely dependent on', options: ['Industry', 'Agriculture', 'Remittance', 'Tourism'], correct: 1 },
+            { question: 'Which of the following are the economic issues in Nepal?', options: ['Poverty', 'Trade imbalance', 'political hurdles', 'all of them'], correct: 3 },
+            { question: 'Which country has the largest economy in the world?', options: ['USA', 'China', 'Japan', 'Germany'], correct: 0 },
+            { question: 'Which country has the second largest economy in the world?', options: ['USA', 'China', 'Germany', 'Russia'], correct: 1 },
+            { question: 'What is the current HDI of Nepal?', options: ['0.579', '0.601', '0.672', '0.682'], correct: 1 },
+            { question: 'What is the rank of Nepal in corruption perception index 2021?', options: ['104th', '106th', '108th', '110th'], correct: 0 },
+            { question: 'According to the projection of IMF, the economic growth rate of Nepal in 2024 will be...', options: ['2.9%', '3.2%', '4.9%', '5.9%'], correct: 1 },
+            { question: 'Which of the following statement is false regarding the economic growth rate in 2080/81?', options: ['The economic growth rate of Nepal is estimated to be 3.87 percent in current price', 'Gandaki province has the highest (4.6 percent) economic growth rate', 'The economic growth is expected to reach 7.3 percent by the end of the 16th plan.', 'All the above options are true'], correct: 2 },
+            { question: 'Which of the following sector has recently contributed the most in GDP of Nepal?', options: ['Agriculture', 'Industries', 'Tourism', 'Service sector'], correct: 3 },
+            { question: 'Total estimated Gross Domestic Product (GDP) of Nepal / Size of Nepalese economy in current fiscal year 2023/24 (2080/81) is estimated to be', options: ['Rs. 7504.16 billion (in constant price)', 'Rs. 4568.162 billion (in producer\'s price)', 'Rs. 5704.84 billion (in consumer\'s price)', 'Rs. 5857.16 billion (in current price)'], correct: 3 },
+            { question: 'Which province is expected to contribute the most and least in the GDP in the current fiscal year?', options: ['Bagmati and Madhesh', 'Koshi and Gandaki', 'Bagmati and Lumbini', 'Bagmati and Karnali'], correct: 3 },
+            { question: 'What is the projected contribution of Primary sector to the GDP in the current fiscal year?', options: ['25.5%', '24.56 %', '24.9 %', '26.5%'], correct: 2 },
+            { question: 'The contribution of agriculture sector to GDP in the current fiscal year is expected to remain', options: ['22.9%', '23.6%', '24.09%', '24.5%'], correct: 3 },
+            { question: 'What is the expected contribution of secondary sector to the GDP in the current fiscal year?', options: ['12.53%', '13.5%', '13.3%', '13.1%'], correct: 1 },
+            { question: 'Which of the following pair is correct regarding their contribution to GDP in the current fiscal year. A. Education sector B. Health and social sector C. Banking and finance sector D. Real estate sector (i. 8.50%, ii. 1.87%, iii. 6.82%, iv. 8.33%)', options: ['A-i, B-ii, C-iii, d-iv', 'A-ii, B-iii, C-iv, D-I', 'A-iii, B-iv, C-ii, D-I', 'A-iv, B-i, C-iii, D-ii'], correct: 2 },
+            { question: 'The contribution of Service sector (Tertiary Sector) is expected to remain', options: ['60.09%', '61.72%', '62.90%', '63.74%'], correct: 0 },
+            { question: 'Contribution of non agriculture sector to GDP in the current fiscal year is projected to be', options: ['75.1%', '75.91%', '77.1%', '78.1%'], correct: 1 },
+            { question: 'Nepal\'s economic growth rate is projected to grow by .......... percent in 2024 according to the report presented by World Bank', options: ['2.52%', '3.6%', '4.7%', '3.3%'], correct: 1 },
+            { question: 'What is the expected per capita income of Nepalese is expected to reach in the current fiscal year?', options: ['1246 US Dollar', '1434 US Dollar', '1541 US Dollar', '1467 US Dollar'], correct: 0 },
+            { question: 'By the end of Sixteenth plan, Nepal has planned to achieve per capita national income of', options: ['2351 US Dollar', '2345 US Dollar', '2378 US Dollar', '3456 US Dollar'], correct: 1 },
+            { question: 'The long term vision of the 15th plan has planned to achieve per capita income of', options: ['12,000 US Dollar', '12,100 US Dollar', '12,200 US Dollar', '12,400 US Dollar'], correct: 1 },
+            { question: 'Which province has the highest economic growth rate in the current fiscal year?', options: ['Province number 1', 'Madhesh Province', 'Gandaki Province', 'Gandaki Province'], correct: 2 },
+            { question: 'The government has set an economic Growth rate target of.......... according to the budget of 2081/82.', options: ['5%', '6%', '7%', '8%'], correct: 1 },
+            { question: 'The government has projected economic growth of .............. percent in base price in the current fiscal year according the economic survey 2081/82', options: ['5.06%', '2.87%', '3.54%', '3.99%'], correct: 2 },
+            { question: 'The total public debt of Nepal has reached........ by the end of Shrawan', options: ['24 trillion 33 billion', '23 trillion 32 billion', '22 trillion 31 billion', '21 trillion 30 billion'], correct: 0 },
+            { question: 'Match the Correct pair. A. Sustainable Development Goals B. Sixteenth Plan C. Developed Country D. Long term thinking base year (1. 2100 B.S., 2. 2087 B.S., 3. 2086 B.S., 4. 2075 B.S.)', options: ['A-2, B-3, C-1, D-4', 'A-2, B-1, C-4, D-3', 'A-3, B-2, C-4, D-1', 'A-4, B-3, C-1, D-2'], correct: 0 },
+            { question: 'Nepal\'s main trade partner country is', options: ['India', 'China', 'Bangladesh', 'USA'], correct: 0 },
+            { question: 'The largest market for garment product is', options: ['USA', 'Canada', 'China', 'Vietnam'], correct: 0 },
+            { question: 'Which of the following bodies is responsible for building a Project Bank in Nepal based on various analyses including cost benefit?', options: ['Office of the Prime Minister and the Council of Ministers', 'Ministry of Finance', 'National Planning Commission', 'Investment Board'], correct: 2 },
+            { question: 'Import of which of the following items has decreased in the financial year 2080/81?', options: ['Readymade garments', 'Vehicles', 'Electrical equipments', 'Gold'], correct: 3 },
+            { question: 'Per Capita Income measures', options: ['Total income earned by a country\'s population', 'Average income earned per capita in the country', 'Gross income from foreign employment', 'Income earned by government agencies'], correct: 1 },
+            { question: 'Which of the given issues is not the main attribute of Financial Literacy?', options: ['Financial knowledge and skill', 'Financial education', 'Financial Awareness', 'Financial access'], correct: 1 },
+            { question: 'According to Economic Survey, 2079/80, which are the three provinces of Nepal mostly contributed in Gross Domestic Product respectively in the period of upto Falgun 2079', options: ['Bagmati, Gandaki and Lumbini', 'Bagmati, Koshi and Gandaki', 'Bagmati, Koshi and Lumbini', 'Bagmati, Lumbini and Gandaki'], correct: 3 },
+            { question: 'Among the following pairs which pair is/are not right?', options: ['Gorkhapatra Corporation......Social Sector', 'Nepal water supply corporation......Service sector', 'Food management and Trading company......Industrial sector', 'Dairy Development Corporation......Public utility sector'], correct: 3 },
+            { question: 'What is the major destination for foreign employment for Nepalese workers?', options: ['Malaysia', 'Qatar', 'Saudi Arabia', 'United Arab Emirates'], correct: 2 },
+            { question: 'The Government of Nepal has opened ............. countries for foreign employment', options: ['110', '111', '112', '113'], correct: 3 },
+            { question: 'Which of the following is not included in foreign aid?', options: ['Technical assistance', 'Multilateral loans', 'Bilateral grant', 'Foreign direct investment'], correct: 3 },
+            { question: 'In terms of province-wise investment, which province has the highest industrial investment?', options: ['Koshi', 'madhesh', 'Bagmati', 'Gandaki'], correct: 0 },
+            { question: 'What is the target set by Nepal Rastra Bank in the monetary policy of 2081/82', options: ['4 percent', '5 percent', '6 percent', '7 percent'], correct: 1 },
+            { question: 'The estimated number of employment per industry is ....', options: ['70', '75', '80', '85'], correct: 1 },
+            { question: 'Which province has the least share of production manufacturing industries?', options: ['Bagmati', 'madhesh', 'Gandaki', 'karnali'], correct: 3 },
+            { question: 'In the current fiscal year the per capita GDP of which province is projected to remain highest and lowest?', options: ['Bagmati and Karnali', 'Bagmati and Sudur paschim', 'Bagmati and Gandaki', 'Bagmati and Madhesh'], correct: 3 },
+            { question: 'In the current fiscal year the per capita GDP of Bagmati and Madhesh province is projected to remain', options: ['1267$ and 868$', '868 $ and 2430 $', '2484 $ and 892 $', '1031 $ and 964 $'], correct: 2 },
+            { question: 'Match the economic growth rate of different provinces. a. Bagmati Province b. Gandaki Province c. Sudur Paschim Province d. Karnali Province (i. 4.6%, ii. 3.4%, iii. 4.0%, iv. 3.4%)', options: ['a-i, b-ii, c-iii, d-iv', 'a-iii, b-iv, c-i, d-ii', 'a-iii, b-i, c-iv, d-ii', 'a-iv, b-i, c-iii, d-ii'], correct: 2 },
+            { question: 'Which province is expected to have highest and least economic growth rate in the current fiscal year?', options: ['Gandaki and Sudur paschim', 'Gandaki and Bagmati', 'Bagmati and Koshi', 'Bagmati and Madhesh'], correct: 0 },
+            { question: 'When is industrial day observed in Nepal?', options: ['Baisakh 9', 'Asar 9', 'Mangsir 9', 'Jetha 09'], correct: 1 },
+            { question: 'Who is the chairman of High level Investment Board?', options: ['A person appointed by Prime Minister', 'President', 'Minister of Industries', 'Prime Minister'], correct: 3 },
+            { question: 'Which of the following has seen the most use of remittance in Nepal?', options: ['To use consumables', 'to increase revenue', 'To purchase raw materials', 'To increase Production'], correct: 0 },
+            { question: 'What percent of the population of Nepal is involved in agriculture?', options: ['50.15%', '50.4%', '50.73%', '50.92%'], correct: 1 },
+            { question: 'What is the percent of agriculturable land in Nepal?', options: ['17.79%', '17.97%', '18.79%', '19.97%'], correct: 1 },
+            { question: 'Which is the first cash crop?', options: ['Tea', 'Coffee', 'Cardamom', 'Potato'], correct: 0 },
+            { question: 'When did Tea farming start in Nepal?', options: ['1915 B.S', '1920 B.S.', '1925 B.S.', '1930 B.S.'], correct: 1 },
+            { question: 'Which place of Nepal is famous for coffee?', options: ['Illam', 'Taplejung', 'parbat', 'Gulmi'], correct: 0 },
+            { question: 'Which district of Nepal has the highest production of paddy/Rice?', options: ['Jhapa', 'Morang', 'Sunsari', 'Saptari'], correct: 0 },
+            { question: 'Which district of Nepal has the largest and least quantity of agriculturable land?', options: ['Jhapa and Mustang', 'Morang and Mustang', 'Sunsari and Humla', 'Morang and Mugu'], correct: 1 },
+            { question: 'Which of the following statement is/are right? A. Agriculture census is carried out in every 10 years B. Industrial census is carried out in 5 years', options: ['A right, B wrong', 'A wrong, B right', 'both wrong', 'both right'], correct: 3 },
+            { question: 'When was the first agriculture census carried out in Nepal?', options: ['2018 B.S.', '2019 B.S.', '2020 B.S.', '2021 B.S.'], correct: 0 },
+            { question: 'The concept of one village one product was launched in Nepal under the support of which country?', options: ['United Kingdom', 'United States of America', 'Japan', 'Korea'], correct: 2 },
+            { question: 'One village one product program was initiated from which district of Nepal?', options: ['Ramechhap', 'Dolakha', 'Sindhupalchok', 'Kavrepalanchok'], correct: 1 },
+            { question: 'Which of the following pair is incorrect regarding one village one product?', options: ['Jhapa......Bettel nut/areca nut', 'Bhaktapur......Hugplum', 'Saptari......Mango', 'Bhojpur......Kiwi farming'], correct: 3 },
+            { question: 'Which of the following district has been chosen for coffee farming under one village one product?', options: ['Gulmi', 'Syangja', 'both a and b', 'Gorkha'], correct: 2 },
+            { question: 'Which is the oldest irrigation canal of Nepal?', options: ['Chandra canal', 'Bagmati canal', 'Bheri babai', 'Sunkoshi'], correct: 0 },
+            { question: 'Under Prime Minister Agriculture Modernization Project (PMAMP), Superzone program is being implemented in which of the following districts? A. Dadeldhura B. Jumla C. Gulmi D. Jhapa (1. Coffee, 2. Rice, 3. Apple, 4. Potato)', options: ['A-2, B-3, C-1, D-4', 'A-2, B-1, C-4, D-3', 'A-3, B-2, C-4, D-1', 'A-4, B-3, C-1, D-2'], correct: 3 },
+            { question: 'The project duration of Prime Minister Agriculture Modernization Project (PMAMP) started from FY 2073 to .............', options: ['2080 B.S.', '2081 B.S.', '2082 B.S', '2083 B.S.'], correct: 0 },
+            { question: 'When was the third investment summit held in Nepal?', options: ['28-29 April 2024 (2081 Baisakh 16-17), Pokhara', '28-29 April 2024 (2081 Baisakh 16-17), Kathmandu', '28-29 May 2024 (2081 Jetha 16-17), Kathmandu', '28-29 May 2024 (2081 Jetha 16-17), Pokhara'], correct: 0 },
+            { question: 'Which district of Nepal has been chosen as super zones for the production of paddy?', options: ['Jhapa', 'Morang', 'Sunsari', 'Saptari'], correct: 0 },
+            { question: 'There are.......... in operations under Prime Minister Agriculture Modernization Project', options: ['166 zones and 16 super-zones', '177 zones and 20 super-zones', '277 zones and 15 super-zones', '177 zones and 16 super-zones'], correct: 3 },
+            { question: 'Which is the first industry of Nepal?', options: ['Raghupati match factory', 'Biratnagar Jute mills', 'Juddha match factory', 'Bansbari leather shoe industry'], correct: 1 },
+            { question: 'The contribution of manufacturing industry to GDP is estimated to be....... in 2021/22', options: ['4.56%', '4.87 %', '4.71%', '4.93%'], correct: 3 },
+            { question: 'When did telecommunication services start in Nepal?', options: ['1955 B.S.', '1960 B.S.', '1965 B.S.', '1970 B.S.'], correct: 0 },
+            { question: 'Which country has established the most number of industries in Nepal?', options: ['China', 'India', 'Japan', 'USA'], correct: 0 },
+            { question: 'Match the correct number of industries established by different countries. 1. China 2. India 3. USA 4. South Korea (i. 383, ii. 843, iii. 467, iv. 2368)', options: ['1-i, 2-ii, 3-iii, 4-iv', '1-iv, 2-ii, 3-iii, 4-i', '1-iii, 2-i, 3-iv, 4-ii', 'a-ii, 2-iii, 3-I, 4-iv'], correct: 1 },
+            { question: 'Which countries are the three largest investor in industries of Nepal?', options: ['China, India, South Korea, USA, Uk', 'India, China, South Korea, USA, UK', 'China, India, USA, UK, South Korea', 'China, India, Japan, South Korea, USA'], correct: 0 },
+            { question: 'Among the following, which is the computer operating system?', options: ['Ms Word', 'Linux', 'Oracle', 'Git Hub'], correct: 1 },
+            { question: 'Which is the first Industrial Estate of Nepal?', options: ['Balaju', 'Hetauda', 'Bhaktapur', 'Dhankuta'], correct: 0 },
+            { question: 'Among 11 Industrial Estates, how many Industrial Estates are in operation?', options: ['10', '11', '12', '13'], correct: 0 },
+            { question: 'Which is the largest Industrial Estate of Nepal based on area?', options: ['Hetauda', 'Rajbiraj', 'Birendranagar', 'Patan'], correct: 0 },
+            { question: 'To establish an industry in the Special Economic Zone, the minimum fixed capital of the industry should be?', options: ['5 crore', '4 crore', '3 crore', '2 crore'], correct: 0 },
+            { question: 'Which is the first Special economic zone (SEZ) of Nepal?', options: ['Bhairahawa', 'Morang', 'Sunsari', 'Dhangadi'], correct: 0 },
+            { question: 'The number of public enterprises including full ownership and majority ownership of the government has reached', options: ['41', '42', '43', '44'], correct: 0 },
+            { question: 'In order to be a public enterprise, at least how many shares or equity must be owned by the government of Nepal?', options: ['One hundred percent', 'More than 75 percent', 'More than 50 percent', 'More than 40 percent'], correct: 0 },
+            { question: 'When was Email introduced in the world?', options: ['1974 A.D.', '1975 A.D.', '1976 A.D.', '1977 A.D.'], correct: 2 },
+            { question: 'The average stay of a tourist in Nepal is', options: ['14.1 days', '13.2 days', '12.9 days', '11.5 days'], correct: 0 },
+            { question: 'Per day per tourist expense in Nepal is', options: ['41 US dollar', '42 US Dollar', '43 US Dollar', '44 US Dollar'], correct: 2 },
+            { question: 'Which of the following statement is false regarding Tourist arrival to Nepal according to travel objectives?', options: ['Recreation (Holiday, Entertainment, Trekking): 62.5%', 'Mountaineering, adventurous trekking and travelling: 15.9%', 'Pilgrimage: 13.1%', 'Other purpose: 16.5%'], correct: 3 },
+            { question: 'Match the correct pair regarding Tourists\' arrival to Nepal as per Countries. a. India b. USA c. UK d. China e. Bangladesh (i. 31.5%, ii. 9.9%, iii. 5.2%, iv. 6.0%, v. 3.6%)', options: ['a-i, b-ii, c-iii, d-iv, e-v', 'a-ii, b-iii, c-iv, d-v, e-I', 'a-iii, b-iv, c-v, d-I, e-ii', 'a-i, b-iii, c-iv, d-v, e-ii'], correct: 0 },
+            { question: 'Which time frame is observed as the decade of tourism?', options: ['2023-2032', '2022-2031', '2021-2031', '2020-2030'], correct: 0 },
+            { question: 'Whether the following statements are correct or incorrect? a. In Nepal, CDMA phone services was started since B.S. 2062 b. World Telecommunication Day is celebrated annually on 17th May.', options: ['Both a and b correct', 'Both a and b incorrect', 'Only a correct', 'Only b correct'], correct: 0 },
+            { question: 'When did Nepal maintain BIPPA agreement with India?', options: ['2011 October 21', '2011 September 15', '2011 November 03', '2011 July 13'], correct: 0 },
+            { question: 'Who was the prime minister of Nepal when Nepal signed BIPPA Agreement with India?', options: ['Sher Bahadur Deuwa', 'K.P Oli', 'Baburam Bhattarai', 'Pushpa Kamal Dahal'], correct: 2 },
+            { question: 'When did Nepal attain the membership of World Trade organization (WTO)?', options: ['2002 April 23', '2004 April 23', '2006 April 23', '2008 April 23'], correct: 1 },
+            { question: 'Which is the first highway of Nepal?', options: ['Tribhuvan', 'Mahendra', 'Prithvi', 'Madan Bhandari'], correct: 0 },
+            { question: 'The number of national pride projects in operation are', options: ['24', '25', '26', '27'], correct: 0 },
+            { question: 'The National Tourism Strategic Plan 2016-2025 has targeted how many tourists to visit Nepal annually by 2025?', options: ['25 lakhs', '30 lakhs', '35 lakhs', '36 lakhs'], correct: 0 },
+            { question: 'When is National Education Day observed in Nepal?', options: ['Ashoj 2', 'Ashoj 3', 'Ashoj 4', 'Ashoj 5'], correct: 0 },
+            { question: 'Which is the last/latest Central university of Nepal?', options: ['Mid western University', 'Far Western University', 'Rajarshi Janak university', 'National open university'], correct: 2 },
+            { question: 'Which of the following is known as the oldest social network?', options: ['HI-5', 'Six Degrees', 'Facebook', 'Twitter'], correct: 1 },
+            { question: 'The Prime Minister\'s Employment Program was started from which financial year?', options: ['FY 2073/74', 'FY 2074/75', 'FY 2075/76', 'FY 2076/77'], correct: 2 },
+            { question: 'According to the National Census of 2078, what is the percentage of working age group population (15-59 years of labor force) in the demographic structure of Nepal?', options: ['62.87 Percent', '60.83 Percent', '60.29 Percent', '61.96 Percent'], correct: 3 },
+            { question: 'Which of the following is not included under the projects of national pride?', options: ['Bheri Babai Diversion Project', 'Sunkoshi Marine Diversion Project', 'President Education Improvement Project', 'Bhairahawa International Airport'], correct: 2 },
+            { question: 'Which of the following district is not covered by Madhyapahadi (Pushpalal) Lokmarga project?', options: ['Baitadi', 'Achchham', 'Syangja', 'Nuwakot'], correct: 2 },
+            { question: 'Choose the correct pair from the given below. 1. Dharan Dhankuta Highway: UK 2. Araniko Rajmarg: China 3. Siddhartha Highway: Thailand 4. Prithvi Highway: Russia', options: ['3 and 4 are correct', '1 and 2 are correct', '2 and 4 are correct', '2 and 3 are correct'], correct: 1 },
+            { question: 'The Pushpalal highway of 1879 km begins from....... and ends in.................', options: ['Chiyo Bhanjyang (Taplejung)- Jhulaghat (Dadeldhura)', 'Chiyo Bhanjyang (Panchthar)-Rupal (Baitadi)', 'Chiyo Bhanjyang (Panchthar) -Jhulaghat (Baitadi)', 'Chiyobhanjyang (Panchthar)-Kanchanpur'], correct: 2 },
+            { question: 'What is the initial point of Postal highway (Hulaki Rajmarga)?', options: ['Taplejung', 'Jhapa', 'Illam', 'Panchthar'], correct: 1 },
+            { question: 'Which highway connects Kohalpur to Surkhet?', options: ['Ratna', 'Rapti', 'Mahakali', 'Karnali'], correct: 0 },
+            { question: 'Butwal Narayangadh Compartment of Mahendra highway is constructed under the support of', options: ['United Kingdom', 'Ashoj 3', 'Ashoj 4', 'Ashoj 5'], correct: 0 },
+            { question: 'One Village One Product program was started from which country?', options: ['Israel', 'Japan', 'South Korea', 'Nepal'], correct: 1 },
+            { question: 'One village one production program (OVOP) has been in operation in Nepal from which fiscal year?', options: ['2063/64', '2068/69', '2070/71', '2073/74'], correct: 0 },
+            { question: 'Rani Jamara Kularia and Babai Irrigation Project is located in which district?', options: ['Banke & Bardiya', 'Bardiya & Kailali', 'Kailali & Bardiya', 'Kailali and Kanchanpur'], correct: 2 },
+            { question: 'What was the slogan of the 9th Industry Day of 2080?', options: ['Swadeshi Production Campaign: Honoring the Entrepreneur', 'Indigenous Enterprise and Manufacturing: Sustainable Industrial Revival', 'Industrial Investment and Infrastructure: A Strong Foundation for Prosperity', 'Industry and Infrastructure: Key pillars of economic growth'], correct: 0 },
+            { question: 'Industries with fixed assets upto 5 crores excluding domestic small industries are called', options: ['Large scale industries', 'Medium Scale industries', 'Small Scale industries', 'Cottage industries'], correct: 2 },
+            { question: 'Who is credited with developing the wireless internet system in Nepal?', options: ['Ramesh Wagle', 'Mahavir Pun', 'Jaybir Khadka', 'Sandhuk Ruit'], correct: 1 },
+            { question: 'How much Random Access Memory (RAM) is required for Internet access?', options: ['30 MB', '32 MB', '34 MB', '36 MB'], correct: 1 },
+            { question: 'The first special economic zone of Nepal, Bhairahawa SEZ established in........', options: ['2071/08/02', '2071/09/02', '2071/10/2', '2071/11/02'], correct: 0 },
+            { question: 'Sukulumba airport is located in which of the following districts?', options: ['Taplejung', 'Panchthar', 'Illam', 'Jhapa'], correct: 2 },
+            { question: 'Who is the founder of Mobile Phone?', options: ['Ratan Tata', 'Hugko Nokia', 'Morbili Slyer', 'Martin Cooper'], correct: 3 }
+        ]
+    };
+    console.log('questionSet defined');
+    startTest(questionSet);
+    console.log('startTest called');
+})(); 
+</script>
+<script src="/js/text-protect.js" defer></script>
+<script src="/js/logo.js"></script>
+</body>
+</html>

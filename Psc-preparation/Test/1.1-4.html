@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title> Economic Geography and Demography of Nepal 1.3 </title>
+<link rel="icon" href="https://arunpanthi.com.np/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="/css/Mock_Test.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar" id="navbar">
+<span class="brand" id="navbar-brand"> Economic Geography and Demography of Nepal </span>
+<span class="timer-display" id="timer-display" style="display:none;">--:--</span>
+</nav>
+
+<!-- Warning modal -->
+<div id="warning-modal" class="modal-overlay" style="display: none;">
+<div class="modal-dialog">
+<div class="warning-icon">⚠️</div>
+<h3>Unanswered Questions</h3>
+<p>You haven't answered all the questions.</p>
+<span class="unanswered-count" id="modal-unanswered-count">0 unanswered</span>
+<p style="margin-top:8px;"><strong>⚠ This test cannot be retaken once submitted!</strong></p>
+<div class="modal-buttons">
+<button class="btn-cancel" id="btn-modal-cancel">Cancel</button>
+<button class="btn-submit-warning" id="btn-modal-submit">Submit Anyway</button>
+</div>
+</div>
+</div>
+
+<div id="pre-test-section">
+<div class="hero" id="hero-card">
+<h1 id="hero-set-name">Loading...</h1>
+<p class="set-details" id="hero-details"></p>
+<div class="set-meta">
+<div class="meta-item"><span id="hero-q-count">0</span> Questions</div>
+<div class="meta-item"><span id="hero-time">0:00</span> Time (min)</div>
+</div>
+<button class="btn-start" id="btn-start-test">🚀 Start Test</button>
+<p style="margin-top:10px;font-size:0.85rem;opacity:0.8;" id="hero-note"></p>
+</div>
+</div>
+
+<div id="test-section" style="display:none;">
+<div class="test-container">
+<div class="question-area">
+<div class="question-card">
+<div class="q-number" id="q-number-label">QUESTION 1</div>
+<div class="q-text" id="q-text">Loading question...</div>
+<ul class="options-list" id="options-list"></ul>
+</div>
+<div class="nav-buttons">
+<div class="nav-left"><button class="btn-nav" id="btn-prev">◀ Previous</button></div>
+<div class="nav-center"><button class="btn-submit" id="btn-submit-test">✅ Submit Test</button></div>
+<div class="nav-right"><button class="btn-nav" id="btn-next">Next ▶</button></div>
+</div>
+</div>
+<aside class="sidebar">
+<h3>📋 Question </h3>
+<div class="total-questions" id="sidebar-total">Total: 0</div>
+<div class="answered-count">Answered: <strong id="sidebar-answered-num">0</strong></div>
+<div class="q-grid" id="q-grid"></div>
+<div class="legend">
+<span><span class="dot-sample blue"></span> Answered</span>
+<span><span class="dot-sample gray"></span> Unanswered</span>
+</div>
+</aside>
+</div>
+</div>
+
+<div id="results-section" style="display:none;">
+<div class="results-container">
+<div class="results-header">
+<h2 style="color:#2E7D32;">📊 Test Results</h2>
+<p style="color:#666;" id="results-set-name"></p>
+<div class="score-circle">
+<span class="score-num" id="results-score">0</span>
+<span class="score-denom" id="results-denom">/ 0</span>
+</div>
+<div class="percentage" id="results-percentage">0%</div>
+<p style="margin-top:8px;color:#888;font-size:0.9rem;" id="results-time-taken"></p>
+</div>
+<div id="results-detail"></div>
+</div>
+</div>
+<script src="/js/Mock_Test.js"></script>
+<script>
+(function() {
+    console.log('Inline script running');
+    const questionSet = {
+        name: 'Demography of Nepal - Practice Questions',
+        details: 'Covers population, literacy rate, census 2078 (12th census), population growth, density, languages, and demographic structure of Nepal.',
+        questions: [
+            { question: 'What is the current literacy rate of Nepal?', options: ['76.2 percent', '67.2 percent', '68.2 percent', '69.13 percent'], correct: 0 },
+            { question: 'Which province of Nepal has the highest and least population growth rate?', options: ['Koshi and Karnali', 'Bagmati and Gandaki', 'Madhesh and Karnali', 'Lumbini and Gandaki'], correct: 3 },
+            { question: 'Which district of Nepal has the highest and least population growth rate?', options: ['Bhaktapur and Ramechhap', 'Ramechhap and Bhaktapur', 'Bhaktapur and Khotang', 'Kathmandu and Mustang'], correct: 0 },
+            { question: 'Which are the most populated districts of Nepal?', options: ['Kathmandu, Morang, Rupandehi, Jhapa, Kailali', 'Kathmandu, Morang, Jhapa, Rupandehi, Sunsari', 'Kathmandu, Morang, Rupandehi, Jhapa, Sunsari', 'Kathmandu, Morang, Rupandehi, Jhapa, Kanchanpur'], correct: 1 },
+            { question: 'What is the current population growth rate of Nepal?', options: ['0.92 percent', '0.93 percent', '0.94 percent', '0.95 percent'], correct: 0 },
+            { question: 'What is the total population of Nepal?', options: ['2,64,94,704', '2,64,94,504', '2,91,64,678', '2,91,64,578'], correct: 3 },
+            { question: 'What is the population of women according to the census of 2078?', options: ['1,42,53,551', '1,49,11,027', '1,49,11,720', '1,49,12,027'], correct: 1 },
+            { question: 'What is the difference in the population between male and female in the 12th census?', options: ['567,467', '657,674', '657,476', '567,478'], correct: 2 },
+            { question: 'What is the number of other gender (LGBTQIA) in the 12th census?', options: ['2829', '2928', '3938', '3839'], correct: 1 },
+            { question: 'Identify the incorrect option', options: ['The current sex ratio of Nepal is 95.59', 'Madhesh Province has the highest sex ratio', 'Gandaki Province has the least sex ratio', 'All of the statements are correct'], correct: 3 },
+            { question: 'What is the current population density of Nepal?', options: ['180/Sq.km', '187/Sq.km', '195/Sq.km', '198/Sq.km'], correct: 3 },
+            { question: 'Identify the incorrect pair', options: ['Active Population: 61.96 Percent', 'Population below 14 years of age: 27.83 percent', 'Population above 60 years of age: 10.21 percent', 'Number of languages spoken: 142'], correct: 3 },
+            { question: 'What is the average number of people (average size of house hold) living in a family according to the 12th census?', options: ['4.37', '4.73', '5.94', '3.49'], correct: 0 },
+            { question: 'According to the 12th census what is the number of families in Nepal?', options: ['66,60,841', '66,66,937', '66,89,937', '78,66,978'], correct: 1 },
+            { question: 'Which district of Nepal has the highest and least size of family?', options: ['Taplejung and Bhaktapur', 'Sunsari and Mugu', 'Rautahat and Manang', 'Rautahat and Dolakha'], correct: 3 },
+            { question: 'Consider the following statement and identify the correct statement', options: ['Madhesh Pradesh has the highest population density', 'The average size of family is highest in Bagmati Province', 'The district with highest population density is Bhaktapur', 'Hinduism is observed by 81.3 percent of the people of Nepal.'], correct: 0 },
+            { question: 'What is the female literacy rate of Nepal?', options: ['83.6 percent', '69.4 percent', '76.2 percent', '71.9 percent'], correct: 1 },
+            { question: 'What percent of people live in urban settlement (municipalities)?', options: ['66.17 percent', '66.71 percent', '67.71 percent', '67.34 percent'], correct: 0 },
+            { question: 'Identify the incorrect pair', options: ['Number of religions observed: 10', 'Number of languages spoken: 124', 'Number of castes: 140', 'Number of minor castes: 115'], correct: 0 },
+            { question: 'What is the second and third most spoken languages of Nepal?', options: ['Bhojpuri and Maithili', 'Maithili and Bhojpuri', 'Maithili and Bajjika', 'Nepali and Maithili'], correct: 1 },
+            { question: 'What is the total population residing in Rural municipalites (Rural Population)?', options: ['31.47 percent', '34.67 percent', '32.76 percent', '33.83 percent'], correct: 3 },
+            { question: 'Which age group is called the active population?', options: ['16-59 years', '16-60 years', '15-59 years', '14-44 years'], correct: 2 }
+        ]
+    };
+    console.log('questionSet defined');
+    startTest(questionSet);
+    console.log('startTest called');
+})(); 
+</script>
+<script src="/js/text-protect.js" defer></script>
+<script src="/js/logo.js"></script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Geographical Diversity, Climatic Conditions & Livelihood of Nepal - Practice Set</title>
+<link rel="icon" href="https://arunpanthi.com.np/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="/css/Mock_Test.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar" id="navbar">
+<span class="brand" id="navbar-brand">Geographical Diversity, Climatic Conditions & Livelihood of Nepal - Practice Set</span>
+<span class="timer-display" id="timer-display" style="display:none;">--:--</span>
+</nav>
+
+<!-- Warning modal -->
+<div id="warning-modal" class="modal-overlay" style="display: none;">
+<div class="modal-dialog">
+<div class="warning-icon">⚠️</div>
+<h3>Unanswered Questions</h3>
+<p>You haven't answered all the questions.</p>
+<span class="unanswered-count" id="modal-unanswered-count">0 unanswered</span>
+<p style="margin-top:8px;"><strong>⚠ This test cannot be retaken once submitted!</strong></p>
+<div class="modal-buttons">
+<button class="btn-cancel" id="btn-modal-cancel">Cancel</button>
+<button class="btn-submit-warning" id="btn-modal-submit">Submit Anyway</button>
+</div>
+</div>
+</div>
+
+<div id="pre-test-section">
+<div class="hero" id="hero-card">
+<h1 id="hero-set-name">Loading...</h1>
+<p class="set-details" id="hero-details"></p>
+<div class="set-meta">
+<div class="meta-item"><span id="hero-q-count">0</span> Questions</div>
+<div class="meta-item"><span id="hero-time">0:00</span> Time (min)</div>
+</div>
+<button class="btn-start" id="btn-start-test">🚀 Start Test</button>
+<p style="margin-top:10px;font-size:0.85rem;opacity:0.8;" id="hero-note"></p>
+</div>
+</div>
+
+<div id="test-section" style="display:none;">
+<div class="test-container">
+<div class="question-area">
+<div class="question-card">
+<div class="q-number" id="q-number-label">QUESTION 1</div>
+<div class="q-text" id="q-text">Loading question...</div>
+<ul class="options-list" id="options-list"></ul>
+</div>
+<div class="nav-buttons">
+<div class="nav-left"><button class="btn-nav" id="btn-prev">◀ Previous</button></div>
+<div class="nav-center"><button class="btn-submit" id="btn-submit-test">✅ Submit Test</button></div>
+<div class="nav-right"><button class="btn-nav" id="btn-next">Next ▶</button></div>
+</div>
+</div>
+<aside class="sidebar">
+<h3>📋 Question </h3>
+<div class="total-questions" id="sidebar-total">Total: 0</div>
+<div class="answered-count">Answered: <strong id="sidebar-answered-num">0</strong></div>
+<div class="q-grid" id="q-grid"></div>
+<div class="legend">
+<span><span class="dot-sample blue"></span> Answered</span>
+<span><span class="dot-sample gray"></span> Unanswered</span>
+</div>
+</aside>
+</div>
+</div>
+
+<div id="results-section" style="display:none;">
+<div class="results-container">
+<div class="results-header">
+<h2 style="color:#2E7D32;">📊 Test Results</h2>
+<p style="color:#666;" id="results-set-name"></p>
+<div class="score-circle">
+<span class="score-num" id="results-score">0</span>
+<span class="score-denom" id="results-denom">/ 0</span>
+</div>
+<div class="percentage" id="results-percentage">0%</div>
+<p style="margin-top:8px;color:#888;font-size:0.9rem;" id="results-time-taken"></p>
+</div>
+<div id="results-detail"></div>
+</div>
+</div>
+<script src="/js/Mock_Test.js"></script>
+<script>
+(function() {
+    console.log('Inline script running');
+    const questionSet = {
+        name: 'Geographical Diversity, Climatic Conditions & Livelihood of Nepal - Practice Set',
+        details: 'Covers geography, languages, valleys, Ramsar sites, world heritage sites, protected wildlife, national parks, climate zones, and seasons of Nepal.',
+        questions: [
+            { question: 'What percent of the total area of Nepal is occupied by Mountain region?', options: ['15%', '17%', '19%', '21%'], correct: 0 },
+            { question: 'Nepal is ranked ......in the rank of world\'s most bio-diverse countries', options: ['45th', '46th', '47th', '49th'], correct: 3 },
+            { question: 'What are the two least spoken languages of Nepal?', options: ['Kusunda and Bankariya', 'Bankaria and Kusunda', 'Surel and Kusunda', 'Tharu and Sadhani'], correct: 0 },
+            { question: 'How many languages are spoken in Nepal as the mother tongue?', options: ['115', '119', '124', '142'], correct: 2 },
+            { question: 'Which of the following languages have been recommended as the official languages of Bagmati Province?', options: ['Tamang and Nepal Bhasa (Newari)', 'Maithili, Bhojpuri and Bajjika', 'Tamang and Newar', 'Tharu and Abadhi'], correct: 0 },
+            { question: 'The most common language family of Nepal is', options: ['Bharopeli', 'BhotBurmeli', 'Agneli', 'Dravid'], correct: 0 },
+            { question: 'What percent of people speak Nepali Language?', options: ['44.86%', '45.64%', '46.46%', '48.4%'], correct: 0 },
+            { question: 'Which is the least populated caste of Nepal?', options: ['Bankariya', 'Nurang', 'Kusunda', 'Surel'], correct: 1 },
+            { question: 'Which is the largest valley of Nepal?', options: ['Dang', 'Udayapur', 'Surkhet', 'Chitwan'], correct: 0 },
+            { question: 'The deepest valley of Nepal which is also the deepest valley of the world lies in', options: ['Sankhuwashabha', 'Bhojpur', 'Solukhumbhu', 'Rasuwa'], correct: 0 },
+            { question: 'Which is the first wetland of Nepal listed in World Ramsar Site in 1987 December 17?', options: ['KoshiTappu', 'Jagadishpur lake', 'Ghodaghodi Lake', 'Phewa lake'], correct: 0 },
+            { question: 'Which of the following is not included in World Ramsar Site?', options: ['Maipokhari', 'Phewa lake', 'Beganas lake', 'Satyawati lake'], correct: 3 },
+            { question: 'How many sites of Nepal have been listed in world heritage site by UNESCO?', options: ['8', '9', '10', '11'], correct: 2 },
+            { question: 'Which of the following sites is not listed in the world heritage site?', options: ['Pashupatinath', 'Lumbini', 'Changunarayan', 'Nyatpol'], correct: 3 },
+            { question: 'Which is the last heritage listed in world heritage site in 1997?', options: ['Lumbini', 'Boudhanath', 'Changuanaryan', 'Basantapur Durbar'], correct: 0 },
+            { question: 'How many protected mammals are there in Nepal?', options: ['25', '26', '27', '28'], correct: 1 },
+            { question: 'Which of the following mammals are not included in the list of protected mammals?', options: ['Pangolin', 'Royal Bengal Tiger', 'Panda', 'Lynx'], correct: 3 },
+            { question: 'Which of the following bird is not included in the list of protected species of birds?', options: ['Danphe', 'KharMayur', 'Sarus crane', 'Dhukur'], correct: 3 },
+            { question: 'How many tigers are there in Nepal?', options: ['230', '355', '240', '245'], correct: 1 },
+            { question: 'Among 752 Rhino in Nepal, how many of them are in Chitwan National Park?', options: ['690', '692', '694', '696'], correct: 2 },
+            { question: 'Which national park of Nepal is the major for tigers in Nepal?', options: ['Shuklaphanta', 'Parsa', 'Banke', 'Bardiya'], correct: 0 },
+            { question: 'The forest with Sal tree, Sisoo, Red wood, Cutch tree (Khayar) is called', options: ['Tropical Evergreen Forest', 'Decidious Forest', 'Coniferous Forest', 'Alpine Forest'], correct: 1 },
+            { question: 'The only bird found in Nepal, Spinny babbler is found in which national park?', options: ['Banke National Park', 'Bardiya National Park', 'Chitwan National Park', 'She Phoksundo National Park'], correct: 1 },
+            { question: 'Which is the largest national park of Nepal in terms of area?', options: ['She-Phoksundo', 'Khaptad', 'Makalu-Barun', 'Rara'], correct: 0 },
+            { question: 'Which district of Nepal is famous for Rhododendron?', options: ['Jhapa', 'Illam', 'Panchthar', 'Bhojpur'], correct: 1 },
+            { question: 'How many types of climate are found in Nepal?', options: ['4', '5', '6', '7'], correct: 1 },
+            { question: 'Which region of Nepal is called Monsoon affected region of Nepal?', options: ['Mountain', 'Hills', 'Chure', 'Terai'], correct: 3 },
+            { question: 'Monsoon wind originates from', options: ['Pacific Ocean', 'Atlantic Ocean', 'Indian Ocean', 'Arctic Ocean'], correct: 2 },
+            { question: 'Tropical Monsoon climate is found at a height of', options: ['60 meter-1200 meter', '2100-2100 meter', '2100-3300 meter', '3300 meter-5000 meter'], correct: 0 },
+            { question: 'Which climate is found above 5000 meters?', options: ['Monsoon', 'Temperate', 'Alpine', 'Tundra'], correct: 3 },
+            { question: 'Which climate is most suitable for healthier living?', options: ['Warm Temperate', 'Cold Temperate', 'Sub-Tropical', 'Monsoon'], correct: 0 },
+            { question: 'Which is the following statement is false?', options: ['Monsoon climate is the most favourable climate for agriculture.', 'The most unfavourable climate of Nepal is Mountain climate/Tundra/Polar climate.', 'Alpine climate is famous for animal farming and Trekking (Tourism Promotion).', 'Cold temperate climate is found in Kathmandu.'], correct: 3 },
+            { question: 'Rhododendron is found in which type of climate?', options: ['Warm Temperate', 'Cold Temperate', 'Monsoon Climate', 'Alpine'], correct: 0 },
+            { question: 'Which of the following vegetation is not found in Tropical climate?', options: ['Sal', 'Sissou', 'Khayar', 'Lapsi'], correct: 3 },
+            { question: 'The medicinal herb "Yarshagumba (Cordyseps sinensis)" is found in which type of climate?', options: ['Alpine', 'Tundra', 'Tropical', 'Sub-tropical'], correct: 0 },
+            { question: 'Which climate is called vegetation free area?', options: ['Monsoon', 'Tundra', 'Alpine', 'Sub alpine region'], correct: 1 },
+            { question: 'What is the main occupation of the people of Himalayan region?', options: ['Animal Husbandry', 'Agriculture', 'Trade', 'Industrial activity'], correct: 0 },
+            { question: 'Which region of Nepal is called Lesser Himalaya?', options: ['Bhabar', 'Chure', 'Mahabharata', 'Inner Himalaya'], correct: 2 },
+            { question: 'There are .............seasons of Nepal', options: ['4', '5', '6', '7'], correct: 2 },
+            { question: 'Sharad (Autumn) season in Nepal can be observed in the month of', options: ['Jetha-Asar', 'Shrawan-Bhadra', 'Ashwin-Kartik', 'Mangsir-Poush'], correct: 2 }
+        ]
+    };
+console.log('questionSet defined');
+    startTest(questionSet);
+    console.log('startTest called');
+})(); 
+</script>
+<script src="/js/text-protect.js" defer></script>
+<script src="/js/logo.js"></script>
+</body>
+</html>

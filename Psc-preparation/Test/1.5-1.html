@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Current Periodic Plan of Nepal - Practice Questions</title>
+<link rel="icon" href="https://arunpanthi.com.np/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="/css/Mock_Test.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar" id="navbar">
+<span class="brand" id="navbar-brand">Current Periodic Plan of Nepal - Practice Questions</span>
+<span class="timer-display" id="timer-display" style="display:none;">--:--</span>
+</nav>
+
+<!-- Warning modal -->
+<div id="warning-modal" class="modal-overlay" style="display: none;">
+<div class="modal-dialog">
+<div class="warning-icon">⚠️</div>
+<h3>Unanswered Questions</h3>
+<p>You haven't answered all the questions.</p>
+<span class="unanswered-count" id="modal-unanswered-count">0 unanswered</span>
+<p style="margin-top:8px;"><strong>⚠ This test cannot be retaken once submitted!</strong></p>
+<div class="modal-buttons">
+<button class="btn-cancel" id="btn-modal-cancel">Cancel</button>
+<button class="btn-submit-warning" id="btn-modal-submit">Submit Anyway</button>
+</div>
+</div>
+</div>
+
+<div id="pre-test-section">
+<div class="hero" id="hero-card">
+<h1 id="hero-set-name">Loading...</h1>
+<p class="set-details" id="hero-details"></p>
+<div class="set-meta">
+<div class="meta-item"><span id="hero-q-count">0</span> Questions</div>
+<div class="meta-item"><span id="hero-time">0:00</span> Time (min)</div>
+</div>
+<button class="btn-start" id="btn-start-test">🚀 Start Test</button>
+<p style="margin-top:10px;font-size:0.85rem;opacity:0.8;" id="hero-note"></p>
+</div>
+</div>
+
+<div id="test-section" style="display:none;">
+<div class="test-container">
+<div class="question-area">
+<div class="question-card">
+<div class="q-number" id="q-number-label">QUESTION 1</div>
+<div class="q-text" id="q-text">Loading question...</div>
+<ul class="options-list" id="options-list"></ul>
+</div>
+<div class="nav-buttons">
+<div class="nav-left"><button class="btn-nav" id="btn-prev">◀ Previous</button></div>
+<div class="nav-center"><button class="btn-submit" id="btn-submit-test">✅ Submit Test</button></div>
+<div class="nav-right"><button class="btn-nav" id="btn-next">Next ▶</button></div>
+</div>
+</div>
+<aside class="sidebar">
+<h3>📋 Question </h3>
+<div class="total-questions" id="sidebar-total">Total: 0</div>
+<div class="answered-count">Answered: <strong id="sidebar-answered-num">0</strong></div>
+<div class="q-grid" id="q-grid"></div>
+<div class="legend">
+<span><span class="dot-sample blue"></span> Answered</span>
+<span><span class="dot-sample gray"></span> Unanswered</span>
+</div>
+</aside>
+</div>
+</div>
+
+<div id="results-section" style="display:none;">
+<div class="results-container">
+<div class="results-header">
+<h2 style="color:#2E7D32;">📊 Test Results</h2>
+<p style="color:#666;" id="results-set-name"></p>
+<div class="score-circle">
+<span class="score-num" id="results-score">0</span>
+<span class="score-denom" id="results-denom">/ 0</span>
+</div>
+<div class="percentage" id="results-percentage">0%</div>
+<p style="margin-top:8px;color:#888;font-size:0.9rem;" id="results-time-taken"></p>
+</div>
+<div id="results-detail"></div>
+</div>
+</div>
+<script src="/js/Mock_Test.js"></script>
+<script>
+(function () {
+    console.log('Inline script running');
+
+    const questionSet = {
+        name: 'Current Periodic Plan of Nepal - Practice Questions',
+        details: 'Covers Nepal’s periodic plans, the Sixteenth Plan, long-term national vision, economic growth, poverty, infrastructure, governance, social justice, prosperity, and development indicators.',
+        questions: [
+            { question: 'The Constitution of Nepal envisages creating which type of economy?', options: ['Prosperous-oriented economy', 'Independent-oriented economy', 'Socialist-oriented economy', 'All of the above'], correct: 3 },
+            { question: 'Till now, the Government of Nepal has implemented a total of how many plans?', options: ['13', '14', '16', '15'], correct: 2 },
+            { question: 'Which of the following is the current periodic plan?', options: ['2081/82–2085/86', '2075/76–2080/81', '2077/78–2082/83', 'None'], correct: 0 },
+            { question: 'When did Nepal observe a plan holiday for the first time?', options: ['2015–2016', '2016–2017', '2017–2018', '2018–2019'], correct: 3 },
+            { question: 'Which of the following is not a fiscal year in which Nepal observed a plan holiday?', options: ['2018/19', '2019/20', '2047/48', '2048/49'], correct: 1 },
+            { question: 'How many periodic plans of Nepal were three-year plans?', options: ['3', '4', '5', '6'], correct: 2 },
+            { question: 'Which of the following plans were three-year plans?', options: ['Second, Seventh, Twelfth, Thirteenth and Fourteenth Plans', 'First, Eleventh, Twelfth, Thirteenth and Fourteenth Plans', 'Second, Tenth, Twelfth, Thirteenth and Fourteenth Plans', 'Second, Eleventh, Twelfth, Thirteenth and Fourteenth Plans'], correct: 3 },
+            { question: 'The currently endorsed Sixteenth Plan is a how many-year plan?', options: ['3-year plan', '4-year plan', '5-year plan', '6-year plan'], correct: 2 },
+            { question: 'The current plan is which plan after the promulgation of the Constitution by the historical Constituent Assembly?', options: ['First', 'Second', 'Third', 'Fifth'], correct: 1 },
+            { question: 'The Sixteenth Plan has been endorsed with which slogan?', options: ['We must eradicate ignorance and illiteracy from our nation', 'Good Governance, Social Justice, and Prosperity', 'The growth and development of the people', 'The need for growth, development and change is fundamental for life'], correct: 1 },
+            { question: 'The current periodic plan consists of how many goals?', options: ['30 goals', '40 goals', '50 goals', '60 goals'], correct: 1 },
+            { question: 'Which of the following statements is correct?', options: ['The current periodic plan has 10 good-governance goals', 'The current periodic plan has 10 social-justice goals', 'The current periodic plan has 20 prosperity goals', 'All of the statements are correct'], correct: 3 },
+            { question: 'The Fifteenth Plan was prepared with the long-term vision of fulfilling the shared national aspiration of “Prosperous Nepal, Happy Nepali” by making Nepal a high-income country by which year?', options: ['2022', '2030', '2043', '2050'], correct: 2 },
+            { question: 'The Fifteenth Plan was formulated for five years with a long-term vision of taking Nepal to the level of advanced countries by which year?', options: ['2022', '2030', '2043', '2050'], correct: 2 },
+            { question: 'Which periodic plan of Nepal had the single objective of poverty alleviation?', options: ['Tenth Plan', 'Ninth Plan', 'Eighth Plan', 'Seventh Plan'], correct: 0 },
+            { question: 'How many strategies does the current periodic plan have?', options: ['5', '6', '7', '8'], correct: 3 },
+            { question: 'Which of the following is the top priority of the Sixteenth Periodic Plan?', options: ['Accessible modern infrastructure and intensive connectivity', 'High and equitable national income', 'Well-being and decent life', 'Digital database and e-Governance'], correct: 3 },
+            { question: 'The long-term vision of the Fifteenth Plan was to increase Nepal’s per capita national income to at least how much?', options: ['USD 12,000', 'USD 12,100', 'USD 12,200', 'USD 12,300'], correct: 1 },
+            { question: 'The Fifteenth Plan was expected to create a foundation for Nepal to graduate to an upper-middle-income country by achieving the Sustainable Development Goals by which year?', options: ['2028', '2029', '2030 (2087 B.S.)', '2035'], correct: 2 },
+            { question: 'What is the ending fiscal year of the Sixteenth Plan?', options: ['2085/86', '2086/87', '2084/85', '2088/89'], correct: 0 },
+            { question: 'What has been proposed for the Sixteenth Plan starting from the fiscal year 2081/82?', options: ['Promoting good governance, social justice and prosperity', 'Strengthening macroeconomic fundamentals', 'A strong, sustainable and employment-oriented economy', 'Prosperity in human life and national economy'], correct: 1 },
+            { question: 'What average economic growth rate does the Sixteenth Plan target by the end of the plan in 2085/86?', options: ['6.8%', '7.3%', '10.5%', '10.85%'], correct: 1 },
+            { question: 'What is Nepal’s current HDI rank according to the Human Development Index 2023/24 published by UNDP?', options: ['124th', '146th', '142nd', '137th'], correct: 1 },
+            { question: 'The Sixteenth Plan targets increasing the value of the national HDI to how much by the end of the plan?', options: ['0.613', '0.624', '0.650', '0.626'], correct: 2 },
+            { question: 'From which periodic plan did Nepal materialize the concept of Environmental Impact Assessment?', options: ['Seventh Plan', 'Eighth Plan', 'Ninth Plan', 'Tenth Plan'], correct: 0 },
+            { question: 'In the Sixteenth Five-Year Plan, what percentage of the population below the poverty line has been targeted by the fiscal year 2085/86?', options: ['12.0%', '13.5%', '9.5%', '4.2%'], correct: 0 },
+            { question: 'What percentage of Nepali citizens was targeted to receive a national ID by the end of the Fifteenth Five-Year Plan?', options: ['93%', '95%', '98%', '100%'], correct: 3 },
+            { question: 'The current plan aims to increase Nepal’s per capita income to how much by the fiscal year 2085/86?', options: ['USD 1,456', 'USD 1,595', 'USD 2,351', 'USD 12,100'], correct: 2 },
+            { question: 'What percentage of the population was targeted to have access to basic drinking water by the end of the Fifteenth Plan?', options: ['90%', '88%', '99%', '100%'], correct: 3 },
+            { question: 'What economic growth rate was expected after the end of the Fifteenth Plan under its long-term vision?', options: ['10.5%', '10%', '9%', '8%'], correct: 0 },
+            { question: 'According to the Sixteenth Periodic Plan, which indicator is not included in the happiness index?', options: ['Good governance', 'High and equitable national income', 'Well-being and decent life', 'Safe, civilized and just society'], correct: 1 },
+            { question: 'Which indicator is not included in the long-term national goal of prosperity?', options: ['High and sustainable production and productivity', 'Development and full utilization of human-capital potential', 'Accessible modern infrastructure and intensive connectivity', 'National unity, security and dignity'], correct: 3 },
+            { question: 'When did the Sixteenth Plan start in Nepal?', options: ['2081/04/01', '2081/03/01', '2081/02/01', '2081/01/01'], correct: 0 },
+            { question: 'To what percentage will the population under multidimensional poverty be reduced by 2043/44?', options: ['5%', '4%', '3%', '2%'], correct: 2 },
+            { question: 'What percentage of the population is expected to be internet users by 2100?', options: ['99%', '100%', '95%', '96%'], correct: 1 },
+            { question: 'The current plan targets increasing the average life expectancy at birth to how many years?', options: ['71 years', '72 years', '73 years', '74 years'], correct: 2 },
+            { question: 'What is the main strategy of the Sixteenth Plan?', options: ['To internalize gender mainstreaming', 'To implement policy-making and development programs', 'To strengthen interrelationships and functional capacity', 'To achieve good governance, social justice and prosperity'], correct: 3 },
+            { question: 'What will Nepal’s power-generation capacity be by the end of the Sixteenth Periodic Plan?', options: ['11,769 MW', '15,560 MW', '12,800 MW', '10,000 MW'], correct: 0 },
+            { question: 'The decade 2075–2085 is being observed as which decade?', options: ['Education decade', 'Energy decade', 'Health decade', 'Infrastructure decade'], correct: 1 },
+            { question: 'According to the Fifteenth Plan, what is the digital literacy rate of Nepal?', options: ['40%', '50%', '60%', '70%'], correct: 0 },
+            { question: 'Which body presents the periodic plans of Nepal?', options: ['Ministry of Finance', 'National Planning Commission', 'Central Bureau of Statistics', 'Ministry of Urban Planning and Development'], correct: 1 },
+            { question: 'The Sixteenth Periodic Plan has an ambitious target of reducing the unemployment rate from 11.4% to how much?', options: ['3%', '4%', '5%', '6%'], correct: 2 },
+            { question: 'What is the estimated investment of the current periodic plan?', options: ['111.02 trillion', '111.84 trillion', '112.67 trillion', '113.92 trillion'], correct: 1 },
+            { question: 'The current periodic plan aims to achieve what value for the Gender Development Index?', options: ['0.567', '0.602', '0.670', '0.967'], correct: 2 },
+            { question: 'What is the current Gender Development Index of Nepal?', options: ['0.885', '0.876', '0.967', '0.493'], correct: 0 },
+            { question: 'What is the projected economic growth rate by the end of the Sixteenth Plan?', options: ['10.1%', '10.2%', '7.3%', '10.4%'], correct: 2 },
+            { question: 'What is the condition called in which foreign aid is not required?', options: ['White Holiday', 'Laundering cause', 'Fiduciary issue', 'Zero Net Aid'], correct: 3 },
+            { question: 'Which of the following pairs is incorrect?', options: ['Population with access to the internet by the end of the plan: 90%', 'Road density by the end of the plan: 0.77/Sq. km', 'Literacy rate by the end of the plan: 85.0%', 'Expenditure per tourist per day by the end of the plan: USD 200'], correct: 3 },
+            { question: 'What percentage of the population currently has access to the internet?', options: ['68.45%', '69.2%', '66.34%', '62.56%'], correct: 1 },
+            { question: 'What is the current road density of Nepal?', options: ['0.63/Sq. km', '0.77/Sq. km', '0.87/Sq. km', '0.97/Sq. km'], correct: 0 },
+            { question: 'Which of the following factors depicts the importance of planning?', options: ['Unity of action', 'Unity of direction for employees’ efforts', 'Both A and B', 'None of the above'], correct: 2 },
+            { question: 'Planning does which of the following?', options: ['Reduces uncertainties', 'Reduces overlapping and wasteful activities', 'Promotes innovative ideas', 'All of the above'], correct: 3 },
+            { question: 'Which of the following is not a step in the planning process?', options: ['Evaluating alternative courses', 'Controlling', 'Developing premises', 'Implementing the plan'], correct: 1 },
+            { question: 'From which periodic plan did Nepal materialize the concept of Environmental Impact Assessment?', options: ['Seventh Plan', 'Eighth Plan', 'Ninth Plan', 'Tenth Plan'], correct: 0 },
+            { question: 'Which of the following is not a fiscal year in which Nepal observed a plan holiday?', options: ['2018/19', '2019/20', '2047/48', '2048/49'], correct: 1 },
+            { question: 'What percentage of Nepali citizens is targeted to receive a national ID by the end of the Sixteenth Five-Year Plan?', options: ['93%', '95%', '98%', '90%'], correct: 3 },
+            { question: 'What percentage of families will have access to financial institutions by the end of the Sixteenth Plan?', options: ['81%', '90%', '85%', '92%'], correct: 2 },
+            { question: 'What percentage of the population is targeted to have access to electricity by the end of the Sixteenth Plan?', options: ['99%', '98%', '100%', '96%'], correct: 2 },
+            { question: 'What economic growth rate is expected after the end of the Sixteenth Plan?', options: ['7.3%', '10%', '9%', '8%'], correct: 0 },
+            { question: 'Which of the following groups consists of three-year plans?', options: ['Fourth, Tenth, Eleventh and Twelfth Plans', 'Second, Tenth, Eleventh and Twelfth Plans', 'Tenth, Eleventh, Twelfth and Thirteenth Plans', 'Second, Eleventh, Twelfth and Thirteenth Plans'], correct: 3 },
+            { question: 'What will Nepal’s Global Competitiveness Index score be by the end of the Sixteenth Periodic Plan?', options: ['64', '65', '85', '62'], correct: 1 },
+            { question: 'Which index is not included in the long-term national goal of prosperity?', options: ['High and sustainable production and productivity', 'Development and full utilization of human-capital potential', 'Accessible modern infrastructure and intensive connectivity', 'National unity, security and dignity'], correct: 3 },
+            { question: 'What will the per capita gross national income of a Nepali citizen be by the end of the Sixteenth Periodic Plan?', options: ['USD 2,351', 'USD 2,492', 'USD 2,045', 'USD 2,450'], correct: 0 },
+            { question: 'To what percentage will the population under absolute poverty be reduced by the end of the current periodic plan?', options: ['11.5%', '14%', '12%', '13%'], correct: 2 },
+            { question: 'What percentage of the population is expected to have internet access by the end of the Sixteenth Plan?', options: ['80%', '90%', '85%', '75%'], correct: 1 },
+            { question: 'Planning means which of the following?', options: ['Looking ahead', 'Guiding people', 'Managing staff', 'Delegating authority'], correct: 0 },
+            { question: 'Which of the following is the current periodic plan?', options: ['2081/82–2085/86', '2080/81–2084/85', '2079/80–2083/84', 'None'], correct: 0 },
+            { question: 'What are the three levels of planning?', options: ['Strategic, intermediate and operational', 'Headquarters, divisional and local', 'Top, middle and bottom', 'None'], correct: 2 },
+            { question: 'Which of the following statements is correct?', options: ['By the end of the current periodic plan, consumer inflation will be limited to 5%', 'The current periodic plan has 6 prosperity goals and 4 happiness goals', 'The current periodic plan has 5 prosperity goals and 5 happiness goals', 'The current periodic plan covers 2080/81–2084/85'], correct: 0 },
+            { question: 'What will Nepal’s electricity-generation capacity be by the end of the Sixteenth Periodic Plan?', options: ['11,769 MW', '12,160 MW', '11,700 MW', '13,200 MW'], correct: 0 }
+        ]
+    };
+
+    console.log('questionSet defined');
+    startTest(questionSet);
+    console.log('startTest called');
+})(); 
+</script>
+<script src="/js/text-protect.js" defer></script>
+<script src="/js/logo.js"></script>
+</body>
+</html>

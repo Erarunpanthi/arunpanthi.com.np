@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Government System and Government (Federal, Provincial and Local Level) - Practice Questions</title>
+<link rel="icon" href="https://arunpanthi.com.np/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="/css/Mock_Test.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar" id="navbar">
+<span class="brand" id="navbar-brand">Government System and Government (Federal, Provincial and Local Level) - Practice Questions</span>
+<span class="timer-display" id="timer-display" style="display:none;">--:--</span>
+</nav>
+
+<!-- Warning modal -->
+<div id="warning-modal" class="modal-overlay" style="display: none;">
+<div class="modal-dialog">
+<div class="warning-icon">⚠️</div>
+<h3>Unanswered Questions</h3>
+<p>You haven't answered all the questions.</p>
+<span class="unanswered-count" id="modal-unanswered-count">0 unanswered</span>
+<p style="margin-top:8px;"><strong>⚠ This test cannot be retaken once submitted!</strong></p>
+<div class="modal-buttons">
+<button class="btn-cancel" id="btn-modal-cancel">Cancel</button>
+<button class="btn-submit-warning" id="btn-modal-submit">Submit Anyway</button>
+</div>
+</div>
+</div>
+
+<div id="pre-test-section">
+<div class="hero" id="hero-card">
+<h1 id="hero-set-name">Loading...</h1>
+<p class="set-details" id="hero-details"></p>
+<div class="set-meta">
+<div class="meta-item"><span id="hero-q-count">0</span> Questions</div>
+<div class="meta-item"><span id="hero-time">0:00</span> Time (min)</div>
+</div>
+<button class="btn-start" id="btn-start-test">🚀 Start Test</button>
+<p style="margin-top:10px;font-size:0.85rem;opacity:0.8;" id="hero-note"></p>
+</div>
+</div>
+
+<div id="test-section" style="display:none;">
+<div class="test-container">
+<div class="question-area">
+<div class="question-card">
+<div class="q-number" id="q-number-label">QUESTION 1</div>
+<div class="q-text" id="q-text">Loading question...</div>
+<ul class="options-list" id="options-list"></ul>
+</div>
+<div class="nav-buttons">
+<div class="nav-left"><button class="btn-nav" id="btn-prev">◀ Previous</button></div>
+<div class="nav-center"><button class="btn-submit" id="btn-submit-test">✅ Submit Test</button></div>
+<div class="nav-right"><button class="btn-nav" id="btn-next">Next ▶</button></div>
+</div>
+</div>
+<aside class="sidebar">
+<h3>📋 Question </h3>
+<div class="total-questions" id="sidebar-total">Total: 0</div>
+<div class="answered-count">Answered: <strong id="sidebar-answered-num">0</strong></div>
+<div class="q-grid" id="q-grid"></div>
+<div class="legend">
+<span><span class="dot-sample blue"></span> Answered</span>
+<span><span class="dot-sample gray"></span> Unanswered</span>
+</div>
+</aside>
+</div>
+</div>
+
+<div id="results-section" style="display:none;">
+<div class="results-container">
+<div class="results-header">
+<h2 style="color:#2E7D32;">📊 Test Results</h2>
+<p style="color:#666;" id="results-set-name"></p>
+<div class="score-circle">
+<span class="score-num" id="results-score">0</span>
+<span class="score-denom" id="results-denom">/ 0</span>
+</div>
+<div class="percentage" id="results-percentage">0%</div>
+<p style="margin-top:8px;color:#888;font-size:0.9rem;" id="results-time-taken"></p>
+</div>
+<div id="results-detail"></div>
+</div>
+</div>
+<script src="/js/Mock_Test.js"></script>
+<script>
+(function () {
+    console.log('Inline script running');
+
+    const questionSet = {
+        name: 'Government System and Government (Federal, Provincial and Local Level) - Practice Questions',
+        details: 'Covers form of government, republic declaration, President, Prime Minister, federal parliament, provincial and local governments, constitutional bodies, elections, oath, impeachment and governance system of Nepal.',
+        questions: [
+            { question: '1. The form of government of Nepal shall be', options: ['Federal', 'Democratic', 'Republican', 'All of the above'], correct: 3 },
+            { question: '2. When was Nepal declared Republic state?', options: ['2008 May 18', '2008 May 28', '2008 May 15', '2008 May 30'], correct: 1 },
+            { question: '3. Provision relating to forms of governance of Nepal is indicated in which article of present constitution?', options: ['Article 72', 'Article 73', 'Article 74', 'Article 75'], correct: 2 },
+            { question: '4. Which Article of Present Constitution defines Nepal as a Federal democratic republican country?', options: ['Article 3', 'Article 4', 'Article 5', 'Article 6'], correct: 1 },
+            { question: '5. How many governments are there in Nepal?', options: ['753', '761', '771', '785'], correct: 1 },
+            { question: '6. Who is the executive head of state of Nepal?', options: ['President', 'Prime Minister', 'Governor of Province', 'Nepalese people'], correct: 1 },
+            { question: '7. Which of the following statement is false?', options: ['President of Nepal is the titular head or constitutional head of the state', 'The term of office of president is 5 years', 'The president shall take his/her oath of office to Prime Minister', 'The only legal way to remove the president from his/her office is by impeachment'], correct: 2 },
+            { question: '8. When was Ram Chandra Paudel sworn in as Nepal\'s third President?', options: ['2023/03/13', '2023/03/12', '2023/03/11', '2023/03/10'], correct: 0 },
+            { question: '9. Which of the Following are not the characteristics of Governance system in Nepal?', options: ['Parliamentary', 'Republican', 'Presidential', 'Federal'], correct: 2 },
+            { question: '10. There are ....... levels of government in Nepal.', options: ['1', '2', '3', '4'], correct: 2 },
+            { question: '11. The number of ministers in the federal council of minister shall constitute the number ......', options: ['25', 'In a number not exceeding 25 excluding Prime Minister', 'In a number not exceeding 25 including Prime Minister', '20% of the total Members of National Assembly'], correct: 1 },
+            { question: '12. Who heads Provinces of Nepal?', options: ['Chief of Province (Governor)', 'President', 'Chief Minister', 'Prime Minister'], correct: 0 },
+            { question: '13. Who recommends for the nomination of Chief of Province?', options: ['Government of Nepal', 'President', 'Governor recommendation committee', 'Chief Minister'], correct: 0 },
+            { question: '14. What is the term of office of the chief and members of constitutional bodies?', options: ['4 years', '5 years', '6 years', '7 years'], correct: 1 },
+            { question: '15. The minimum criteria of Master\'s degree are required to be the member of which constitutional body?', options: ['Public Service Commission', 'Election Commission', 'Women Commission', 'National Human Rights commission'], correct: 0 },
+            { question: '16. Who of the following is placed on the top hierarchism?', options: ['Chief of Province', 'Chief Justice', 'Prime Minister', 'Vice-President'], correct: 2 },
+            { question: '17. What is the minimum age required to become a candidate for Member of Rural Municipal Assembly?', options: ['20 years', '21 years', '22 years', '23 years'], correct: 1 },
+            { question: '18. How many members are there in Federal Parliament (Legislature)?', options: ['275', '165', '59', '334'], correct: 3 },
+            { question: '19. Motion of no confidence cannot be filed against the prime minister of Nepal for ......... from the date of appointment.', options: ['One year', 'Two years', 'Three years', 'Four years'], correct: 1 },
+            { question: '20. What is the minimum age required for the Nepalese citizens to vote in periodic election?', options: ['16 years', '17 years', '18 years', '19 years'], correct: 2 },
+            { question: '21. How many members are there in the lower house (house of representatives) in the federal parliament?', options: ['275', '280', '285', '290'], correct: 0 },
+            { question: '22. What is the minimum age required to be the candidate for the election of house of representative?', options: ['23 years', '24 years', '25 years', '26 years'], correct: 2 },
+            { question: '23. What is the minimum age required to be the candidate for National Assembly?', options: ['25 years', '30 years', '35 years', '45 years'], correct: 2 },
+            { question: '24. The total number of parliament members in Nepal including federation and province is', options: ['335', '550', '790', '884'], correct: 3 },
+            { question: '25. Who is the first president of Nepal?', options: ['Dr. Bhagwan Koirala', 'Dr. Ram Varan Yadav', 'Bidhya Devi Bhandari', 'Parmananda Jha'], correct: 1 },
+            { question: '26. Who is the first provincial Chief/Governor of Nepal?', options: ['Dormani Poudyal', 'Anuradha Koirala', 'Ram Prasad Jha', 'Trilochan Bhatta'], correct: 1 },
+            { question: '27. Who is the first chief minister of Nepal?', options: ['Sher Dhan Rai', 'Lalbabu Raut', 'Dormani Poudyal', 'Anil Jha'], correct: 2 },
+            { question: '28. Who is the first female chief minister of Nepal?', options: ['Arzoo Deuwa', 'Dwarika Devi Thakurani', 'Ashta Laxmi Shakya', 'None'], correct: 2 },
+            { question: '29. Who has been elected the mayor of Kathmandu Metropolitan city?', options: ['Sunita Dangol', 'Balendra Sah', 'Chiribabu Maharjan', 'Renu Dahal'], correct: 1 },
+            { question: '30. Who has the right to designate the name of rural municipality or municipality?', options: ['Government of Nepal in consultation with the Provincial Government', 'Provincial Government in consultation with the concerned municipality', 'Government of Nepal in consultation with concerned municipality', 'Concerned municipality'], correct: 2 },
+            { question: '31. How many local governments are there in Nepal?', options: ['753', '761', '3', '7'], correct: 0 },
+            { question: '32. The chief of local level executive (Chairman and Mayor) take his/her oath of office in front of', options: ['Chief Justice', 'Judges of Supreme Court', 'Judges of district court', 'None'], correct: 2 },
+            { question: '33. Which province has the highest number of members of provincial Assembly?', options: ['Madhesh', 'Bagmati', 'Gandaki', 'SudurPaschim'], correct: 1 },
+            { question: '34. When was Nepal declared the Federal State?', options: ['2063 Baishakh 11', '2065 Jetha 15', '2072 Ashwin 3', '2074 Mangsir 15'], correct: 1 },
+            { question: '35. Which of the following is/are the features of Democratic Governance system?', options: ['Rule of law', 'Multiparty system', 'Periodic election', 'All of the above'], correct: 3 },
+            { question: '36. Balen Sah is the .......... mayor of Kathmandu Metropolitan city?', options: ['14th', '15th', '16th', '17th'], correct: 1 },
+            { question: '37. How many members are there in Kathmandu Metropolitan city executive (government)?', options: ['40', '41', '42', '43'], correct: 2 },
+            { question: '38. According to the present constitution of Nepal who shall discharge the functions required to be performed by President and Vice President if the offices of both the President and Vice President fall vacant?', options: ['Prime Minister', 'Speaker of the House of Representatives', 'Chairman of National Assembly', 'Chief Justice'], correct: 1 },
+            { question: '39. The meetings of rural municipal assembly and municipal assembly are usually held ..... a year?', options: ['Once', 'Twice', 'Thrice', 'Four'], correct: 1 },
+            { question: '40. Which is the first country in the world to adopt Federal Governance System?', options: ['China', 'USA', 'India', 'France'], correct: 0 },
+            { question: '41. According to the constitution of Nepal, in whom is the executive power vested?', options: ['President', 'Prime Minister', 'Council of Minister', 'All of the above'], correct: 2 },
+            { question: '42. What is the function of inter-provincial council?', options: ['Co-operation and co-ordination between the Union and the States', 'Settlement of disputes between States', 'Resolving problems arising between the Union and the Provinces and between the Provinces', 'Settlement of political disputes arising between Union and States and between States'], correct: 3 },
+            { question: '43. Which of the following works does not come under the purview of Ministry of Federal Affairs and General Administration?', options: ['Operation and Management of the Federal Civil Service', 'Regarding policies, laws and standards related to local infrastructure development', 'General direction, control and operation of the governance system of Nepal', 'Coordination, cooperation and facilitation with local levels'], correct: 2 },
+            { question: '44. For which expenditure on the Federal Reserve Fund does not require the approval of the Federal Parliament?', options: ['Remuneration of the President', 'Remuneration of the Chief Justice', 'Remuneration of the Provincial Head', 'All of the above'], correct: 3 },
+            { question: '45. According to the Constitution of Nepal, what is the provision of minimum age criteria to be a member of the National Assembly at the time of nomination?', options: ['55', '45', '35', '25'], correct: 2 },
+            { question: '46. According to the Constitution of Nepal, which of the following officials is not involved in the Electoral Board to elect 56 members of the National Assembly?', options: ['Member of Provincial Assembly', 'Chairman of Rural Municipality', 'Deputy Chairman of Municipality', 'Head of District Coordination Committee'], correct: 3 },
+            { question: '47. Who will be the coordinator of the judicial committee to be formed in the municipality?', options: ['Head of Municipality', 'Deputy Head of Municipality', 'The most senior member of the municipality', 'The member elected by the municipal council'], correct: 1 },
+            { question: '48. According to the constitution of Nepal, according to which principle is the appointment of constitutional bodies and agencies and ambassadors to be done?', options: ['Inclusion', 'Cooperation', 'Coordination', 'Collusion'], correct: 0 },
+            { question: '49. According to the constitution of Nepal, what are the three pillars of economic policy?', options: ['Public, private and cooperative sector', 'Agriculture, industrial and service sector', 'Government, private and non-government sectors', 'None of the above'], correct: 0 },
+            { question: '50. How many members are directly elected in the House of Representatives?', options: ['275', '110', '165', '59'], correct: 2 },
+            { question: '51. When was the third presidential election held in Nepal?', options: ['2079/11/22', '2079/11/23', '2079/11/24', '2079/11/25'], correct: 3 },
+            { question: '52. Who among the following is not a member of the inter-provincial council?', options: ['Minister of Law, Justice and Parliamentary Affairs, Government of Nepal', 'Minister of Home Affairs, Government of Nepal', 'Chief ministers of concerned Province', 'Minister of Defence of Government of Nepal'], correct: 0 },
+            { question: '53. Who makes the final decision whether a member of the Federal Parliament is ineligible or disqualified?', options: ['Supreme Court', 'Constitutional Council', 'Constitutional Bench', 'High Court'], correct: 2 },
+            { question: '54. Which is correct?', options: ['Supreme Court is called the court of record', 'There are only 25 judges in the Supreme Court', 'Appointment of Supreme Court Judges is done on the recommendation of the Judicial Council', 'The term of office of the Chief Justice of the Supreme Court is 5 years'], correct: 0 },
+            { question: '55. What rule has the Nepal government made to manage the work to be done by the Nepal government?', options: ['Government of Nepal (Division of Work) Regulations, 2074', 'Government of Nepal (Performance) Regulations, 2064', 'Government Decision-Making Process Simplification Guide, 2065', 'All of the above'], correct: 3 },
+            { question: '56. According to the constitution of Nepal, which of the following officers is exempted from impeachment?', options: ['President, Vice President, Chief Justice', 'Members of the Judiciary and Supreme Court Judges', 'Prime Ministers and Ministers', 'All of the above'], correct: 0 }
+        ]
+    };
+
+           		console.log('questionSet defined');
+    startTest(questionSet);
+    console.log('startTest called');
+})(); 
+</script>
+<script src="/js/text-protect.js" defer></script>
+<script src="/js/logo.js"></script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Constitution of Nepal (Part 1 to 5 and Schedules) - Practice Questions</title>
+<link rel="icon" href="https://arunpanthi.com.np/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="/css/Mock_Test.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar" id="navbar">
+<span class="brand" id="navbar-brand">The Constitution of Nepal (Part 1 to 5 and Schedules) - Practice Questions</span>
+<span class="timer-display" id="timer-display" style="display:none;">--:--</span>
+</nav>
+
+<!-- Warning modal -->
+<div id="warning-modal" class="modal-overlay" style="display: none;">
+<div class="modal-dialog">
+<div class="warning-icon">⚠️</div>
+<h3>Unanswered Questions</h3>
+<p>You haven't answered all the questions.</p>
+<span class="unanswered-count" id="modal-unanswered-count">0 unanswered</span>
+<p style="margin-top:8px;"><strong>⚠ This test cannot be retaken once submitted!</strong></p>
+<div class="modal-buttons">
+<button class="btn-cancel" id="btn-modal-cancel">Cancel</button>
+<button class="btn-submit-warning" id="btn-modal-submit">Submit Anyway</button>
+</div>
+</div>
+</div>
+
+<div id="pre-test-section">
+<div class="hero" id="hero-card">
+<h1 id="hero-set-name">Loading...</h1>
+<p class="set-details" id="hero-details"></p>
+<div class="set-meta">
+<div class="meta-item"><span id="hero-q-count">0</span> Questions</div>
+<div class="meta-item"><span id="hero-time">0:00</span> Time (min)</div>
+</div>
+<button class="btn-start" id="btn-start-test">🚀 Start Test</button>
+<p style="margin-top:10px;font-size:0.85rem;opacity:0.8;" id="hero-note"></p>
+</div>
+</div>
+
+<div id="test-section" style="display:none;">
+<div class="test-container">
+<div class="question-area">
+<div class="question-card">
+<div class="q-number" id="q-number-label">QUESTION 1</div>
+<div class="q-text" id="q-text">Loading question...</div>
+<ul class="options-list" id="options-list"></ul>
+</div>
+<div class="nav-buttons">
+<div class="nav-left"><button class="btn-nav" id="btn-prev">◀ Previous</button></div>
+<div class="nav-center"><button class="btn-submit" id="btn-submit-test">✅ Submit Test</button></div>
+<div class="nav-right"><button class="btn-nav" id="btn-next">Next ▶</button></div>
+</div>
+</div>
+<aside class="sidebar">
+<h3>📋 Question </h3>
+<div class="total-questions" id="sidebar-total">Total: 0</div>
+<div class="answered-count">Answered: <strong id="sidebar-answered-num">0</strong></div>
+<div class="q-grid" id="q-grid"></div>
+<div class="legend">
+<span><span class="dot-sample blue"></span> Answered</span>
+<span><span class="dot-sample gray"></span> Unanswered</span>
+</div>
+</aside>
+</div>
+</div>
+
+<div id="results-section" style="display:none;">
+<div class="results-container">
+<div class="results-header">
+<h2 style="color:#2E7D32;">📊 Test Results</h2>
+<p style="color:#666;" id="results-set-name"></p>
+<div class="score-circle">
+<span class="score-num" id="results-score">0</span>
+<span class="score-denom" id="results-denom">/ 0</span>
+</div>
+<div class="percentage" id="results-percentage">0%</div>
+<p style="margin-top:8px;color:#888;font-size:0.9rem;" id="results-time-taken"></p>
+</div>
+<div id="results-detail"></div>
+</div>
+</div>
+<script src="/js/Mock_Test.js"></script>
+<script>
+(function () {
+    console.log('Inline script running');
+
+    const questionSet = {
+        name: 'The Constitution of Nepal (Part 1 to 5 and Schedules) - Practice Questions',
+        details: 'Covers the present Constitution of Nepal 2072, national flag, anthem, coat of arms, citizenship, fundamental rights, duties of citizens, federal structure, schedules, distribution of powers among Federation, Province and Local level.',
+        questions: [
+            { question: '1. Present constitution of Nepal is the ............... constitution of Nepal by development.', options: ['5th', '6th', '7th', '8th'], correct: 2 },
+            { question: '2. What is the correct name of the present constitution of Nepal?', options: ['The constitution of Kingdom of Nepal', 'The Constitution of Nepal, 2072', 'Interim Constitution of Nepal', 'The constitution of Nepal'], correct: 3 },
+            { question: '3. When was the present constitution of Nepal enforced?', options: ['2015 September 20', '2015 October 20', '2015 November 20', '2015 December 20'], correct: 0 },
+            { question: '4. Who enforced the Present constitution of Nepal?', options: ['House of Representatives', 'National Assembly', 'First Constituent Assembly', 'Second Constituent Assembly'], correct: 2 },
+            { question: '5. Identify the false statement regarding the present constitution of Nepal.', options: ['Sushil Koirala was the prime minister of Nepal at the time of commencement of the constitution of Nepal', 'The present constitution has a signature of 537 CA members', 'The then President Ram Varan Yadav declared the implementation of the present constitution', 'The chairman of Constitution drafting committee was Dr. Baburam Bhattarai', 'The second amendment of the present constitution was made on 2020 June 18'], correct: 3 },
+            { question: '6. Who is the designer of the national flag of Nepal?', options: ['Shankar Kandel', 'Krishna Bir Manandhar', 'Shankar Nath Rimal', 'Krishna Bhakta Nepali'], correct: 2 },
+            { question: '7. When was the national flag brought in use for the first time?', options: ['2019 Poush 01', '2019 Asar 02', '2019 Jetha 04', '2019 Bhadra 03'], correct: 0 },
+            { question: '8. Who is the composer of national anthem of Nepal?', options: ['Til Bikram Nemwang (Bairagi Kaila)', 'Bashudev Luitel (Bhootko Bhinaju)', 'Pradeep Kumar Rai (Byakul Maila)', 'Baburam Acharya (Kharidar Baje)'], correct: 2 },
+            { question: '9. Who is the music composer of national anthem of Nepal?', options: ['Amrit Gurung', 'Prem Dhoj Pradhan', 'Amabar Gurung', 'Deep Shrestha'], correct: 2 },
+            { question: '10. When was the national anthem of Nepal revealed by the government of Nepal?', options: ['2064 Shrawan 18', '2065 Shrawan 18', '2066 Shrawan 18', '2067 Shrawan 18'], correct: 0 },
+            { question: '11. Who is the designer of coat of arms of Nepal?', options: ['Shankar Nath Rimal', 'Narendra Raj Rajbhandari', 'Krish Prasad Koirala', 'Tej Bahadur K.C.'], correct: 1 },
+            { question: '12. Sovereignty and state authority of Nepal is vested to', options: ['President', 'Prime Minister', 'Nepalese People', 'All of the above'], correct: 2 },
+            { question: '13. Which of the following position does not require the nominees to be the citizen of Nepal by descent?', options: ['Chief of Province', 'Ambassador', 'Chief Minister', 'Speaker of the province'], correct: 1 },
+            { question: '14. A citizen of Nepal who has obtained the Nonresidential Citizenship cannot use .....', options: ['Economic Rights', 'Social Rights', 'Cultural rights', 'Political rights'], correct: 3 },
+            { question: '15. How many fundamental rights are there in the present constitution of Nepal?', options: ['30', '31', '32', '33'], correct: 1 },
+            { question: '16. Provision relating to Right to women is indicated in ........ of the present constitution.', options: ['Article 36', 'Article 37', 'Article 38', 'Article 39'], correct: 2 },
+            { question: '17. There are ........... duties of citizens in article 48 of the present constitution.', options: ['4', '5', '6', '7'], correct: 0 },
+            { question: '18. The state structure of level is divided into ...... levels.', options: ['2', '3', '4', '5'], correct: 1 },
+            { question: '19. Which of the following does not fall under local level?', options: ['Rural Municipality', 'Municipality', 'District Assembly', 'District Coordination Committee'], correct: 3 },
+            { question: '20. Which of the following pair is incorrect?', options: ['Nawalparasi East (Nawalpur) - Gandaki Province', 'Nawalparasi West (Parasi) - Lumbini Province', 'Rukum East - SudurPaschim Province', 'Rukum West - Karnali Province'], correct: 2 },
+            { question: '21. The constitution of Nepal has placed the currency and banking sector under the jurisdiction of which level of government?', options: ['Federation', 'Province', 'Local level', 'In all level'], correct: 0 },
+            { question: '22. The second amendment of the present constitution was made in which schedule?', options: ['Schedule 2', 'Schedule 3', 'Schedule 4', 'Schedule 5'], correct: 1 },
+            { question: '23. The rights/Power of Federation is included in which schedule of present constitution?', options: ['Schedule 5', 'Schedule 6', 'Schedule 7', 'Schedule 8'], correct: 0 },
+            { question: '24. Schedule 8 of the present constitution has the list of power of', options: ['Federation', 'Province', 'Local Level', 'All'], correct: 2 },
+            { question: '25. The number of concurrent power of Federation, province and local level is', options: ['14', '15', '16', '17'], correct: 1 },
+            { question: '26. The inter relation between Federation, province and local level is based on the principle of', options: ['Co-operation', 'Co-existence', 'Co-ordination', 'All of the above'], correct: 3 },
+            { question: '27. The residual power is vested to', options: ['Federation', 'Province', 'Local Level', 'All of the above'], correct: 0 },
+            { question: '28. Provision relating to education is listed in the power of', options: ['Federation', 'Province', 'Common Power of Federation and province', 'Common power of Federation, Province and local level'], correct: 3 },
+            { question: '29. Management of Trust (Guthi) is listed in the power of', options: ['Federation', 'Province', 'Local Level', 'All'], correct: 1 },
+            { question: '30. Provision related to engineering is included in the rights of', options: ['Federation', 'Province', 'Common Power of Federation and province', 'Common power of Federation, Province and local level'], correct: 2 },
+            { question: '31. According to the Constitution of Nepal, actions against the national interest will be punishable by..........', options: ['Constitutional Law', 'Federal law', 'Provincial law', 'Local law'], correct: 1 },
+            { question: '32. According to the Constitution of Nepal, which of the following subjects is not mentioned in the food related rights?', options: ['Every citizen has the right to food', 'Every citizen has the right to be protected from life-threatening situations due to lack of food', 'Every citizen has the right to food sovereignty according to law', 'Every consumer has the right to receive quality goods and services'], correct: 3 },
+            { question: '33. In the Constitution of Nepal, the provision that "the indigent party shall have the right to get free legal aid according to the law" is included under which fundamental right?', options: ['Justice', 'Equality', 'Freedom', 'Social Justice'], correct: 0 },
+            { question: '34. The constitution of Nepal has provided the fundamental right of which class of citizens to get free higher education according to the law?', options: ['Backward Tribes and Dalits', 'Citizens of marginalized communities and backward areas', 'Disabled and economically disadvantaged', 'All of the above'], correct: 2 },
+            { question: '35. "No one shall be employed against his will." Under which fundamental right is this provision placed in the Constitution of Nepal?', options: ['Right to liberty', 'Right to live with dignity', 'Right against exploitation', 'Right to justice'], correct: 2 },
+            { question: '36. What is the right of constitutional remedy that will be maintained even when the emergency situation is applied?', options: ['Right to Equality', 'Habeas Corpus', 'Mandamus', 'Quo warranto'], correct: 1 },
+            { question: '37. Who will use the state power of Nepal?', options: ['Federation', 'Province', 'Local Level', 'Federation, Province and local level'], correct: 3 },
+            { question: '38. Which work does not fall under the common list of rights of Federation, Province and local level?', options: ['Social Security', 'Mining', 'Personal Incident Register', 'Land Record'], correct: 3 },
+            { question: '39. Under which fundamental right of the constitution is the provision that no law shall be made to punish anyone with death penalty?', options: ['Right to live with dignity', 'Right to liberty', 'Right to equality', 'Right to justice'], correct: 0 },
+            { question: '40. According to the Constitution of Nepal, who has the authority over matters that are not mentioned in the list of rights of Federation, Province and local levels (Residual Power) or in the common list or that are not specified to be used by any level in the Constitution of Nepal?', options: ['Federation', 'Province', 'Province and Local level', 'Local Level'], correct: 0 },
+            { question: '41. According to Article 48 of the Constitution of Nepal, which of the following subjects is not included in the duty of a citizen?', options: ['Complying with the constitution and laws', 'Filing taxes as per law', 'To perform compulsory service whenever required by the State', 'To protect and preserve public property'], correct: 1 },
+            { question: '42. Squat Management (Sukumbasi Byabasthapan) is included in the list of', options: ['Federation', 'Federation and Province', 'Province and Local level', 'Federation, Province and Local Level'], correct: 3 },
+            { question: '43. The management of local services is mentioned in which schedule of the constitution of Nepal?', options: ['Schedule-6', 'Schedule-7', 'Schedule-9', 'Schedule-8'], correct: 3 },
+            { question: '44. Population management falls under the rights of which level of government?', options: ['Federation', 'Federation and Province', 'Province and Local level', 'Federation, Province and Local Level'], correct: 1 },
+            { question: '45. Which federal unit falls under the jurisdiction of Local property Tax?', options: ['Federation', 'Federation and Province', 'Local level', 'Federation, Province and Local Level'], correct: 2 }
+        ]
+    };
+
+       		console.log('questionSet defined');
+    startTest(questionSet);
+    console.log('startTest called');
+})(); 
+</script>
+<script src="/js/text-protect.js" defer></script>
+<script src="/js/logo.js"></script>
+</body>
+</html>

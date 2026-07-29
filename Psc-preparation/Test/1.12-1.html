@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Public Service Charter / Citizen Charter - Practice Questions</title>
+<link rel="icon" href="https://arunpanthi.com.np/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="/css/Mock_Test.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar" id="navbar">
+<span class="brand" id="navbar-brand">Public Service Charter / Citizen Charter - Practice Questions</span>
+<span class="timer-display" id="timer-display" style="display:none;">--:--</span>
+</nav>
+
+<!-- Warning modal -->
+<div id="warning-modal" class="modal-overlay" style="display: none;">
+<div class="modal-dialog">
+<div class="warning-icon">⚠️</div>
+<h3>Unanswered Questions</h3>
+<p>You haven't answered all the questions.</p>
+<span class="unanswered-count" id="modal-unanswered-count">0 unanswered</span>
+<p style="margin-top:8px;"><strong>⚠ This test cannot be retaken once submitted!</strong></p>
+<div class="modal-buttons">
+<button class="btn-cancel" id="btn-modal-cancel">Cancel</button>
+<button class="btn-submit-warning" id="btn-modal-submit">Submit Anyway</button>
+</div>
+</div>
+</div>
+
+<div id="pre-test-section">
+<div class="hero" id="hero-card">
+<h1 id="hero-set-name">Loading...</h1>
+<p class="set-details" id="hero-details"></p>
+<div class="set-meta">
+<div class="meta-item"><span id="hero-q-count">0</span> Questions</div>
+<div class="meta-item"><span id="hero-time">0:00</span> Time (min)</div>
+</div>
+<button class="btn-start" id="btn-start-test">🚀 Start Test</button>
+<p style="margin-top:10px;font-size:0.85rem;opacity:0.8;" id="hero-note"></p>
+</div>
+</div>
+
+<div id="test-section" style="display:none;">
+<div class="test-container">
+<div class="question-area">
+<div class="question-card">
+<div class="q-number" id="q-number-label">QUESTION 1</div>
+<div class="q-text" id="q-text">Loading question...</div>
+<ul class="options-list" id="options-list"></ul>
+</div>
+<div class="nav-buttons">
+<div class="nav-left"><button class="btn-nav" id="btn-prev">◀ Previous</button></div>
+<div class="nav-center"><button class="btn-submit" id="btn-submit-test">✅ Submit Test</button></div>
+<div class="nav-right"><button class="btn-nav" id="btn-next">Next ▶</button></div>
+</div>
+</div>
+<aside class="sidebar">
+<h3>📋 Question </h3>
+<div class="total-questions" id="sidebar-total">Total: 0</div>
+<div class="answered-count">Answered: <strong id="sidebar-answered-num">0</strong></div>
+<div class="q-grid" id="q-grid"></div>
+<div class="legend">
+<span><span class="dot-sample blue"></span> Answered</span>
+<span><span class="dot-sample gray"></span> Unanswered</span>
+</div>
+</aside>
+</div>
+</div>
+
+<div id="results-section" style="display:none;">
+<div class="results-container">
+<div class="results-header">
+<h2 style="color:#2E7D32;">📊 Test Results</h2>
+<p style="color:#666;" id="results-set-name"></p>
+<div class="score-circle">
+<span class="score-num" id="results-score">0</span>
+<span class="score-denom" id="results-denom">/ 0</span>
+</div>
+<div class="percentage" id="results-percentage">0%</div>
+<p style="margin-top:8px;color:#888;font-size:0.9rem;" id="results-time-taken"></p>
+</div>
+<div id="results-detail"></div>
+</div>
+</div>
+<script src="/js/Mock_Test.js"></script>
+<script>
+(function () {
+    console.log('Inline script running');
+
+    const questionSet = {
+        name: 'Public Service Charter / Citizen Charter - Practice Questions',
+        details: 'Covers Public Service Charter and Citizen Charter in Nepal: legal grounds, principles, objectives, compensation directives, periodic plans, UN Public Service Day, Right to Information (RTI) and RTI audit.',
+        questions: [
+            { question: '1. Public service charter is not kept in which of the following office?', options: ['Rural municipality', 'Municipality', 'Department of Irrigation', 'Ministry of agriculture and livestock'], correct: 3 },
+            { question: '2. According to Citizen Charter with compensation, management directives 2069 what is the maximum amount of compensation for the loss incurred to the customer in case he/she does not receive the service due to the failure of the office to deliver service?', options: ['Rs 5000', 'Rs 4000', 'Rs 3000', 'Rs 2000'], correct: 0 },
+            { question: '3. In Nepal which is the first periodic plan to make provision of citizen charter?', options: ['7th plan', '9th plan', '10th plan', '11th plan'], correct: 2 },
+            { question: '4. Among the given below, which matter is not contained in Public Charter?', options: ['Procedure to be followed by service seeker', 'Estimated time for service delivery', 'Description of the officer responsible for providing service', 'About legal assistance'], correct: 3 },
+            { question: '5. What is the objective of Public service charter?', options: ['Strengthen trust between citizens and public officials', 'Ensure predictability in service delivery', 'Maintains administrative neutrality and functional commitment', 'All of the above'], correct: 3 },
+            { question: '6. Which is the first SAARC country to implement Public service charter?', options: ['Nepal', 'Srilanka', 'India', 'Bhutan'], correct: 2 },
+            { question: '7. Citizen Charter with compensation was implemented in Nepal from when?', options: ['2056 B.S.', '2070 B.S.', '2061 B.S.', '2064 B.S.'], correct: 1 },
+            { question: '8. Public service charter is guided by which principle?', options: ['Principle of people\'s sovereignty', 'Principle of decentralization', 'Principle of delegation of authority', 'Principle of division of work'], correct: 0 },
+            { question: '9. What is the legal ground to implement Public Service Charter in Nepal?', options: ['Right to information act, 2064', 'Good governance (management and operation) act, 2064', 'Audit act, 2075', 'Financial procedure and financial accountability act, 2076'], correct: 1 },
+            { question: '10. When is United Nations Public Service day observed?', options: ['June 21', 'June 22', 'June 23', 'March 23'], correct: 2 },
+            { question: '11. The characteristics of public service is', options: ['Rivalrous', 'Profit oriented', 'Based on social justice', 'Involve in manufacturing of goods for earning'], correct: 2 },
+            { question: '12. Which of the following is not the general principle of Public service charter?', options: ['Service standard', 'Informative', 'Service choice', 'Monopoly'], correct: 3 },
+            { question: '13. A written commitment by government agencies to public about service delivery system, cost, time, compensation is called...', options: ['Service contract', 'Term of Reference (ToR)', 'Citizen charter', 'None of the above'], correct: 2 },
+            { question: '14. Full form of RTI is...', options: ['Right to Information', 'Right to investigation', 'Both', 'None'], correct: 0 },
+            { question: '15. In Nepal RTI Audit is done by which agency?', options: ['Auditor General', 'District Administration office', 'Financial Comptroller General Office', 'Information Commission'], correct: 3 }
+        ]
+    };
+               		console.log('questionSet defined');
+    startTest(questionSet);
+    console.log('startTest called');
+})(); 
+</script>
+<script src="/js/text-protect.js" defer></script>
+<script src="/js/logo.js"></script>
+</body>
+</html>

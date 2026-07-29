@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title> Functional Scope of Public Service - Practice Questions</title>
+<link rel="icon" href="https://arunpanthi.com.np/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="/css/Mock_Test.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar" id="navbar">
+<span class="brand" id="navbar-brand">Functional Scope of Public Service - Practice Questions</span>
+<span class="timer-display" id="timer-display" style="display:none;">--:--</span>
+</nav>
+
+<!-- Warning modal -->
+<div id="warning-modal" class="modal-overlay" style="display: none;">
+<div class="modal-dialog">
+<div class="warning-icon">⚠️</div>
+<h3>Unanswered Questions</h3>
+<p>You haven't answered all the questions.</p>
+<span class="unanswered-count" id="modal-unanswered-count">0 unanswered</span>
+<p style="margin-top:8px;"><strong>⚠ This test cannot be retaken once submitted!</strong></p>
+<div class="modal-buttons">
+<button class="btn-cancel" id="btn-modal-cancel">Cancel</button>
+<button class="btn-submit-warning" id="btn-modal-submit">Submit Anyway</button>
+</div>
+</div>
+</div>
+
+<div id="pre-test-section">
+<div class="hero" id="hero-card">
+<h1 id="hero-set-name">Loading...</h1>
+<p class="set-details" id="hero-details"></p>
+<div class="set-meta">
+<div class="meta-item"><span id="hero-q-count">0</span> Questions</div>
+<div class="meta-item"><span id="hero-time">0:00</span> Time (min)</div>
+</div>
+<button class="btn-start" id="btn-start-test">🚀 Start Test</button>
+<p style="margin-top:10px;font-size:0.85rem;opacity:0.8;" id="hero-note"></p>
+</div>
+</div>
+
+<div id="test-section" style="display:none;">
+<div class="test-container">
+<div class="question-area">
+<div class="question-card">
+<div class="q-number" id="q-number-label">QUESTION 1</div>
+<div class="q-text" id="q-text">Loading question...</div>
+<ul class="options-list" id="options-list"></ul>
+</div>
+<div class="nav-buttons">
+<div class="nav-left"><button class="btn-nav" id="btn-prev">◀ Previous</button></div>
+<div class="nav-center"><button class="btn-submit" id="btn-submit-test">✅ Submit Test</button></div>
+<div class="nav-right"><button class="btn-nav" id="btn-next">Next ▶</button></div>
+</div>
+</div>
+<aside class="sidebar">
+<h3>📋 Question </h3>
+<div class="total-questions" id="sidebar-total">Total: 0</div>
+<div class="answered-count">Answered: <strong id="sidebar-answered-num">0</strong></div>
+<div class="q-grid" id="q-grid"></div>
+<div class="legend">
+<span><span class="dot-sample blue"></span> Answered</span>
+<span><span class="dot-sample gray"></span> Unanswered</span>
+</div>
+</aside>
+</div>
+</div>
+
+<div id="results-section" style="display:none;">
+<div class="results-container">
+<div class="results-header">
+<h2 style="color:#2E7D32;">📊 Test Results</h2>
+<p style="color:#666;" id="results-set-name"></p>
+<div class="score-circle">
+<span class="score-num" id="results-score">0</span>
+<span class="score-denom" id="results-denom">/ 0</span>
+</div>
+<div class="percentage" id="results-percentage">0%</div>
+<p style="margin-top:8px;color:#888;font-size:0.9rem;" id="results-time-taken"></p>
+</div>
+<div id="results-detail"></div>
+</div>
+</div>
+<script src="/js/Mock_Test.js"></script>
+<script>
+(function () {
+    console.log('Inline script running');
+
+    const questionSet = {
+        name: 'Functional Scope of Public Service - Practice Questions',
+        details: 'Covers public administration theories, New Public Management, good governance, globalization, organizational principles, motivation theories, right to information, and public service delivery mechanisms in Nepal.',
+        questions: [
+            { question: '1. The civil service was defined as "professional body of officials, permanent, paid and skilled" by..', options: ['Felix Nigro', 'L. D. White', 'Herman Finer', 'E. N. Gladden'], correct: 2 },
+            { question: '2. Who coined the term New Public Management', options: ['Christopher Hood', 'L.D. White', 'David osborne', 'Ted Geabler'], correct: 0 },
+            { question: '3. The book "Reinventing Government" by David Osborne and Ted Gaebler was published in which year?', options: ['1990 A.D.', '1991 A.D.', '1992 A.D.', '1995 A.D.'], correct: 2 },
+            { question: '4. New public management (NPM) is also known as....', options: ['Managerialism', 'Market based Public Administration', 'Entrepreneurial Government', 'All of the above'], correct: 3 },
+            { question: '5. New Public Management (NPM) emphasized three Es for reforming public sectors. Which is not included in 3Es?', options: ['Efficiency', 'Economy', 'Effectiveness', 'Ecological'], correct: 3 },
+            { question: '6. Which of the following is not a feature of good governance?', options: ['Rule of Law', 'Transparency', 'Nepotism', 'Accountability'], correct: 2 },
+            { question: '7. Which one of the following statements is not correct in respect of New Public Management?', options: ['It upholds public interest', 'It has market orientation', 'It advocates managerial autonomy', 'It focuses on performance appraisal'], correct: 0 },
+            { question: '8. "Good Governance" and "Participating Civil Society for Development" were stressed in World Bank Report of...', options: ['1991', '1992', '1993', '1994'], correct: 1 },
+            { question: '9. Globalization means...', options: ['Foreign capitalist transactions', 'The growth of a single unified world market', 'Financial market system is centered in a single state', 'Geographical location of a firm is of utmost importance'], correct: 1 },
+            { question: '10. The classical theory of motivation is also known as..', options: ['Historical theory', 'Location theory', 'Mechanistic theory', 'Human relation theory'], correct: 2 },
+            { question: '11. How many principles of organization were propounded by Henry Fayol?', options: ['12', '13', '14', '15'], correct: 2 },
+            { question: '12. Negative motivation is based on...', options: ['Fear', 'Status', 'Money', 'Reward'], correct: 0 },
+            { question: '13. The principle of \'span of control\' means..', options: ['The number of people being controlled', 'An employees should receive orders from one superior only', 'The control or supervision of the superior over the subordinate', 'The number of subordinate employees that an administrator can effectively direct'], correct: 3 },
+            { question: '14. The first country in the world to introduce the right to information was..', options: ['USA', 'Finland', 'Norway', 'Sweden'], correct: 3 },
+            { question: '15. The modern concept rule of law was propounded by..', options: ['Lowell', 'A.V. Dicey', 'H Finer', 'W. F. Willoughby'], correct: 1 },
+            { question: '16. Who says "Power corrupts and absolutely power corrupts absolutely"?', options: ['Lord Acton', 'Woodrow Wilson', 'Josiah Stamp', 'Luther Gullick'], correct: 0 },
+            { question: '17. The concept of separation between politics and public administration was first propounded by...', options: ['Aristotle', 'Woodrow Wilson', 'Karl Marx', 'Machiavelli'], correct: 1 },
+            { question: '18. Who is described as the father of Public Administration?', options: ['Woodrow Wilson', 'Fredrick Taylor', 'Henry Foyl', 'Max Weber'], correct: 0 },
+            { question: '19. The founder of Scientific Management School of thought was..', options: ['F.W Taylor', 'HerberSimson', 'L.D. White', 'Mary Parker'], correct: 0 },
+            { question: '20. Father of Human Relations theory was...', options: ['M.C Douglas', 'Elton Mayo', 'E.N. Gladden', 'L. Urick'], correct: 1 },
+            { question: '21. From when "Hello Sarkar" was launched in Nepal?', options: ['2067 Kartik 17', '2068 Kartik 17', '2070 Kartik 4', '2068 Mangisir 17'], correct: 1 },
+            { question: '22. Mobile service in Nepal started from when?', options: ['2067 B.S.', '2068 B.S.', '2064 B.S.', '2065 B.S.'], correct: 2 },
+            { question: '23. Mobile based service delivery started in Nepal from when?', options: ['2077 B.S.', '2076 B.S.', '2075 B.S.', '2074 B.S.'], correct: 3 },
+            { question: '24. In Public service delivery process what is the main role of service recipient?', options: ['Discouraging the irregularities and corruption related activities', 'Providing feed back to service provider', 'Being attentive to obligation and duties of people', 'All of the above'], correct: 3 },
+            { question: '25. "Nagarik App" in Nepal has been launched by which agency?', options: ['Ministry of Information and Communication', 'Ministry of Federal Affairs and General Administration', 'Ministry of Home Affairs', 'Ministry of Education Science and Technology'], correct: 0 },
+            { question: '26. Naagarik App has been launched in Nepal from when?', options: ['2078 Baisakh 17', '2078 Baisakh 19', '2078 Baisakh 20', '2078 Jestha 19'], correct: 1 },
+            { question: '27. Which of the following falls under categories of Mandatory Public Service?', options: ['Health related service', 'Educational Service', 'Maintaining Peace and order', 'Implementing laws and regulation'], correct: 2 },
+            { question: '28. Clean Feed policy in Nepal implemented from when?', options: ['2077 Kartik 7', '2078 Kartik 7', '2078 Baisakh 2', '2078 Jestha 19'], correct: 0 }
+        ]
+    };
+
+               		console.log('questionSet defined');
+    startTest(questionSet);
+    console.log('startTest called');
+})(); 
+</script>
+<script src="/js/text-protect.js" defer></script>
+<script src="/js/logo.js"></script>
+</body>
+</html>

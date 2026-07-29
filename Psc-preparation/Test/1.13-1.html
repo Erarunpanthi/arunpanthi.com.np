@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Management (Planning, Organizing, Directing, Controlling) - Practice Questions</title>
+<link rel="icon" href="https://arunpanthi.com.np/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="/css/Mock_Test.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar" id="navbar">
+<span class="brand" id="navbar-brand">Management (Planning, Organizing, Directing, Controlling) - Practice Questions</span>
+<span class="timer-display" id="timer-display" style="display:none;">--:--</span>
+</nav>
+
+<!-- Warning modal -->
+<div id="warning-modal" class="modal-overlay" style="display: none;">
+<div class="modal-dialog">
+<div class="warning-icon">⚠️</div>
+<h3>Unanswered Questions</h3>
+<p>You haven't answered all the questions.</p>
+<span class="unanswered-count" id="modal-unanswered-count">0 unanswered</span>
+<p style="margin-top:8px;"><strong>⚠ This test cannot be retaken once submitted!</strong></p>
+<div class="modal-buttons">
+<button class="btn-cancel" id="btn-modal-cancel">Cancel</button>
+<button class="btn-submit-warning" id="btn-modal-submit">Submit Anyway</button>
+</div>
+</div>
+</div>
+
+<div id="pre-test-section">
+<div class="hero" id="hero-card">
+<h1 id="hero-set-name">Loading...</h1>
+<p class="set-details" id="hero-details"></p>
+<div class="set-meta">
+<div class="meta-item"><span id="hero-q-count">0</span> Questions</div>
+<div class="meta-item"><span id="hero-time">0:00</span> Time (min)</div>
+</div>
+<button class="btn-start" id="btn-start-test">🚀 Start Test</button>
+<p style="margin-top:10px;font-size:0.85rem;opacity:0.8;" id="hero-note"></p>
+</div>
+</div>
+
+<div id="test-section" style="display:none;">
+<div class="test-container">
+<div class="question-area">
+<div class="question-card">
+<div class="q-number" id="q-number-label">QUESTION 1</div>
+<div class="q-text" id="q-text">Loading question...</div>
+<ul class="options-list" id="options-list"></ul>
+</div>
+<div class="nav-buttons">
+<div class="nav-left"><button class="btn-nav" id="btn-prev">◀ Previous</button></div>
+<div class="nav-center"><button class="btn-submit" id="btn-submit-test">✅ Submit Test</button></div>
+<div class="nav-right"><button class="btn-nav" id="btn-next">Next ▶</button></div>
+</div>
+</div>
+<aside class="sidebar">
+<h3>📋 Question </h3>
+<div class="total-questions" id="sidebar-total">Total: 0</div>
+<div class="answered-count">Answered: <strong id="sidebar-answered-num">0</strong></div>
+<div class="q-grid" id="q-grid"></div>
+<div class="legend">
+<span><span class="dot-sample blue"></span> Answered</span>
+<span><span class="dot-sample gray"></span> Unanswered</span>
+</div>
+</aside>
+</div>
+</div>
+
+<div id="results-section" style="display:none;">
+<div class="results-container">
+<div class="results-header">
+<h2 style="color:#2E7D32;">📊 Test Results</h2>
+<p style="color:#666;" id="results-set-name"></p>
+<div class="score-circle">
+<span class="score-num" id="results-score">0</span>
+<span class="score-denom" id="results-denom">/ 0</span>
+</div>
+<div class="percentage" id="results-percentage">0%</div>
+<p style="margin-top:8px;color:#888;font-size:0.9rem;" id="results-time-taken"></p>
+</div>
+<div id="results-detail"></div>
+</div>
+</div>
+<script src="/js/Mock_Test.js"></script>
+<script>
+(function () {
+    console.log('Inline script running');
+
+    const questionSet = {
+        name: 'Management (Planning, Organizing, Directing, Controlling) - Practice Questions',
+        details: 'Covers definition and functions of management, leadership styles, motivation theories (Maslow, Herzberg, Vroom, McGregor), Fayol\'s principles of management, scientific management, POSDCoRB, decision making, scalar chain and span of control.',
+        questions: [
+            { question: '1. Management is the art of …', options: ['Managing customers', 'Making super normal profit', 'Keeping competitors under pressure', 'Getting things done by groups of people'], correct: 3 },
+            { question: '2. Under .... leadership system, goals are set and work related decision are taken by subordinates.', options: ['Authoritarian', 'Bureaucratic', 'Democratic', 'Visionary'], correct: 2 },
+            { question: '3. Henry Foyl\'s General theory of Administration is applicable at..', options: ['Policy management level', 'Top management level', 'Middle management level', 'Workshop management level'], correct: 1 },
+            { question: '4. Who propounded need-based theory of motivation?', options: ['Maslow', 'Mc Gregor', 'Vroom', 'Hertzberg'], correct: 0 },
+            { question: '5. Autocratic leadership is also known as..', options: ['Authoritarian', 'Democratic', 'Free rein', 'Participative'], correct: 0 },
+            { question: '6. Abraham Maslow in his hierarchy has not considered:', options: ['Physical needs', 'Security needs', 'Wealthy needs', 'Existence needs'], correct: 2 },
+            { question: '7. Leadership is not a …', options: ['Act', 'Capacity', 'Art', 'Post'], correct: 3 },
+            { question: '9. Who is known as father of scientific management?', options: ['Henry Foyl', 'Abraham Maslow', 'F.W. Taylor', 'Fried Hertzberg'], correct: 2 },
+            { question: '10. Leadership behavior is influenced by certain quality of person is....', options: ['Followers theory', 'Trait theory', 'Situational theory', 'Managerial grid'], correct: 1 },
+            { question: '11. Decision making is expected to be based on..', options: ['Competitors policy', 'Rational thinking', 'Government policy', 'Workers activity'], correct: 0 },
+            { question: '12. Scientific management is concerned with…', options: ['Co operation, not individualism', 'Increased production through long experience', 'Application of scientific principles to the management production', 'Increased sales'], correct: 2 },
+            { question: '14. .................. is an intellectual process.', options: ['Staffing', 'Controlling', 'Directing', 'Planning'], correct: 3 },
+            { question: '15. ........... is that managerial function which initiates organized action.', options: ['Directing', 'Organizing', 'Leading', 'Motivation'], correct: 0 },
+            { question: '16. Vroom\'s Theory of Motivation is known as ....', options: ['Equity theory', 'Expectancy theory', 'Need theory', 'Theory X and Theory Y'], correct: 1 },
+            { question: '17. Which of the following elements is associated with Herzberg\'s Model?', options: ['Self Actualization', 'Self realization', 'Esteem', 'Hygiene'], correct: 3 },
+            { question: '18. Under Foyol\'s 14 principle of Management, which one of the following factor is related with Esprit de Corps?', options: ['Division of work', 'Team work', 'Personal ability', 'Personal interest'], correct: 1 },
+            { question: '19. Scalar Chain denotes…..', options: ['A production process', 'An appraisal process', 'Span of Management', 'Authority from the highest to lowest ranks'], correct: 3 },
+            { question: '20. Which one of following is not included in "The Managerial Activities"?', options: ['Commanding', 'Controlling', 'Accounting', 'Directing'], correct: 2 },
+            { question: '21. Selecting a best course of action among available alternatives is called…', options: ['Decision making', 'Planning', 'Controlling', 'Directing'], correct: 0 },
+            { question: '22. Crisis decision is also known as …', options: ['Group decision', 'Major decision', 'Minor decision', 'Spot decision'], correct: 3 },
+            { question: '23. Theory..... is based on positive assumption about workers?', options: ['X', 'Y', 'C', 'Z'], correct: 1 },
+            { question: '24. In POSDCoRB, R stands for?', options: ['Recruiting', 'Re managing', 'Reporting', 'Rectifying'], correct: 2 },
+            { question: '25. Who defines management as, "process of getting things done by and through others"?', options: ['F.W. Taylor', 'Henry Foyl', 'John Adams', 'Hicks'], correct: 3 },
+            { question: '26. Who is known as father of management?', options: ['F.W. Taylor', 'Drucker', 'Foyol', 'David'], correct: 1 },
+            { question: '27. ....... flows from lower level management to top level management.', options: ['Authority', 'Centralization', 'Decentralization', 'Responsibility'], correct: 3 },
+            { question: '28. Who has modified the hierarchy of needs theory of motivation?', options: ['Vroom', 'Mc Clelland', 'Gregor', 'Herzberg'], correct: 1 },
+            { question: '30. Bureaucratic Theory was invented by whom?', options: ['Elton Mayo', 'Henry Foyl', 'F.W. Taylor', 'Max Weber'], correct: 3 },
+            { question: '31. Which one of the following is not a function of management?', options: ['Grouping', 'Planning', 'Staffing', 'Directing'], correct: 0 },
+            { question: '32. Which one of the following is not a technique of control?', options: ['Management Audit', 'Management by objectives', 'Management Information System', 'Break even analysis'], correct: 1 },
+            { question: '33. Leadership is the process of exerting influence on....', options: ['Customers', 'Suppliers', 'Group members', 'Competitors'], correct: 2 },
+            { question: '34. ....... of motivation is known as Two factor Theory of Motivation?', options: ['Maslow\'s Theory', 'Herzberg\'s Theory', 'Mc. Gregor\'s Thoery', 'Vroom Theory'], correct: 1 },
+            { question: '35. ......... leader exercise complete control over the subordinates.', options: ['Autocratic', 'Free rein', 'Democratic', 'Participative'], correct: 0 }
+        ]
+    };
+
+                  		console.log('questionSet defined');
+    startTest(questionSet);
+    console.log('startTest called');
+})(); 
+</script>
+<script src="/js/text-protect.js" defer></script>
+<script src="/js/logo.js"></script>
+</body>
+</html>

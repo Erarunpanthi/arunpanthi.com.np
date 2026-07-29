@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>General Science, Scientists, Inventions and Technology - Practice Questions</title>
+<link rel="icon" href="https://arunpanthi.com.np/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="/css/Mock_Test.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar" id="navbar">
+<span class="brand" id="navbar-brand">General Science, Scientists, Inventions and Technology - Practice Questions</span>
+<span class="timer-display" id="timer-display" style="display:none;">--:--</span>
+</nav>
+
+<!-- Warning modal -->
+<div id="warning-modal" class="modal-overlay" style="display: none;">
+<div class="modal-dialog">
+<div class="warning-icon">⚠️</div>
+<h3>Unanswered Questions</h3>
+<p>You haven't answered all the questions.</p>
+<span class="unanswered-count" id="modal-unanswered-count">0 unanswered</span>
+<p style="margin-top:8px;"><strong>⚠ This test cannot be retaken once submitted!</strong></p>
+<div class="modal-buttons">
+<button class="btn-cancel" id="btn-modal-cancel">Cancel</button>
+<button class="btn-submit-warning" id="btn-modal-submit">Submit Anyway</button>
+</div>
+</div>
+</div>
+
+<div id="pre-test-section">
+<div class="hero" id="hero-card">
+<h1 id="hero-set-name">Loading...</h1>
+<p class="set-details" id="hero-details"></p>
+<div class="set-meta">
+<div class="meta-item"><span id="hero-q-count">0</span> Questions</div>
+<div class="meta-item"><span id="hero-time">0:00</span> Time (min)</div>
+</div>
+<button class="btn-start" id="btn-start-test">🚀 Start Test</button>
+<p style="margin-top:10px;font-size:0.85rem;opacity:0.8;" id="hero-note"></p>
+</div>
+</div>
+
+<div id="test-section" style="display:none;">
+<div class="test-container">
+<div class="question-area">
+<div class="question-card">
+<div class="q-number" id="q-number-label">QUESTION 1</div>
+<div class="q-text" id="q-text">Loading question...</div>
+<ul class="options-list" id="options-list"></ul>
+</div>
+<div class="nav-buttons">
+<div class="nav-left"><button class="btn-nav" id="btn-prev">◀ Previous</button></div>
+<div class="nav-center"><button class="btn-submit" id="btn-submit-test">✅ Submit Test</button></div>
+<div class="nav-right"><button class="btn-nav" id="btn-next">Next ▶</button></div>
+</div>
+</div>
+<aside class="sidebar">
+<h3>📋 Question </h3>
+<div class="total-questions" id="sidebar-total">Total: 0</div>
+<div class="answered-count">Answered: <strong id="sidebar-answered-num">0</strong></div>
+<div class="q-grid" id="q-grid"></div>
+<div class="legend">
+<span><span class="dot-sample blue"></span> Answered</span>
+<span><span class="dot-sample gray"></span> Unanswered</span>
+</div>
+</aside>
+</div>
+</div>
+
+<div id="results-section" style="display:none;">
+<div class="results-container">
+<div class="results-header">
+<h2 style="color:#2E7D32;">📊 Test Results</h2>
+<p style="color:#666;" id="results-set-name"></p>
+<div class="score-circle">
+<span class="score-num" id="results-score">0</span>
+<span class="score-denom" id="results-denom">/ 0</span>
+</div>
+<div class="percentage" id="results-percentage">0%</div>
+<p style="margin-top:8px;color:#888;font-size:0.9rem;" id="results-time-taken"></p>
+</div>
+<div id="results-detail"></div>
+</div>
+</div>
+<script src="/js/Mock_Test.js"></script>
+<script>
+(function () {
+    console.log('Inline script running');
+
+    const questionSet = {
+        name: 'General Science, Scientists, Inventions and Technology - Practice Questions',
+        details: 'Covers scientists, inventions, physics, chemistry, biology, medicine, astronomy, space science, biotechnology, computers, environmental science and general scientific knowledge.',
+        questions: [
+            { question: '1. Who is called the Geometrical Monster?', options: ['Euclid', 'Archimedes', 'John Dalton', 'Einstein'], correct: 1 },
+            { question: '2. For which invention or discovery did Albert Einstein win the Nobel Prize in Physics in 1921?', options: ['Quantum Theory of Light', 'General Theory of Relativity', 'Photoelectric effect', 'Wave-particle duality'], correct: 2 },
+            { question: '3. Which invention is related to Thomas Alva Edison?', options: ['Motion-picture camera', 'AC current', 'Explosives', 'Binoculars'], correct: 0 },
+            { question: '4. Who invented the radio?', options: ['Gregor Mendel', 'Maxwell', 'Guglielmo Marconi', 'Archimedes'], correct: 2 },
+            { question: '5. Who discovered the generator?', options: ['Michael Faraday', 'Thomas Edison', 'Madame Curie', 'Alfred Nobel'], correct: 0 },
+            { question: '6. The Wright brothers are regarded as the inventors of:', options: ['Hot-air balloon', 'Bicycle', 'Aeroplane', 'None of the above'], correct: 2 },
+            { question: '7. Which country became the first to approve commercial production of genetically modified golden rice?', options: ['Thailand', 'Cambodia', 'Bangladesh', 'The Philippines'], correct: 3 },
+            { question: '8. What is the study of all factors responsible for the appearance of a particular disease called?', options: ['Aetiology', 'Epidemic', 'Endemic', 'Epidemiology'], correct: 2 },
+            { question: '9. The wave nature of electrons was first experimentally established by:', options: ['Photoelectric-effect experiment', 'Double-slit experiment', 'Davisson and Germer experiment', 'Compton-effect experiment'], correct: 2 },
+            { question: '10. Which of the following does not contribute to pollution in a water body?', options: ['Heavy metals', 'Ozone', 'Microplastics', 'Pesticides'], correct: 1 },
+            { question: '11. Approximately what percentage of the Earth’s water is freshwater?', options: ['30%', '3%', '0.3%', '0.17%'], correct: 1 },
+            { question: '12. Researchers from the UK and India developed a handwashing robot named:', options: ['Gope', 'Hepe', 'Hope', 'Pepe'], correct: 3 },
+            { question: '13. Who was a pioneer in discovering the heating effect of electric current?', options: ['Isaac Newton', 'Galileo Galilei', 'James P. Joule', 'J. J. Thomson'], correct: 2 },
+            { question: '14. Which instrument measures the temperature of a source from its thermal radiation?', options: ['Hydrometer', 'Barometer', 'Thermopile', 'Pyrometer'], correct: 2 },
+            { question: '15. Which organization launched the SPHEREx mission?', options: ['NASA', 'ISRO', 'Roscosmos', 'CNSA'], correct: 0 },
+            { question: '16. The virtual currency Bitcoin is based on:', options: ['Blockchain technology', 'Internet of Things', 'Artificial intelligence', '3-D printing'], correct: 0 },
+            { question: '17. The Higgs boson is also known as the:', options: ['Electron', 'Sand particle', 'Neutron', 'God particle'], correct: 3 },
+            { question: '18. Which was the first living creature sent into space?', options: ['Cat', 'Dog', 'Monkey', 'Rat'], correct: 2 },
+            { question: '19. The normal blood pressure of a young male human is:', options: ['110/70', '120/80', '135/90', '140/100'], correct: 1 },
+            { question: '20. Who first identified the electron?', options: ['J. Kepler', 'Rutherford', 'J. J. Thomson', 'James Chadwick'], correct: 2 },
+            { question: '21. The first attempt at printing in England was made by:', options: ['William Caxton', 'James Watt', 'James Arkwright', 'Isaac Newton'], correct: 0 },
+            { question: '22. Which branch of science studies cells?', options: ['Cytology', 'Homoplasty', 'Entomology', 'Hormonology'], correct: 0 },
+            { question: '23. The energy of food is measured in:', options: ['Kelvin', 'Bushel', 'Calories', 'None of the above'], correct: 2 },
+            { question: '24. Which of the following has the highest frequency?', options: ['Microwaves', 'Radio waves', 'Gamma rays', 'Light waves'], correct: 2 },
+            { question: '25. The clear sky looks blue because of:', options: ['Reflection of light', 'Refraction of light', 'Diffraction of light', 'Dispersion of light'], correct: 3 },
+            { question: '26. Who was the first Indian and Asian to receive the Nobel Prize in Physics?', options: ['C. V. Raman', 'Mother Teresa', 'Rabindranath Tagore', 'S. Chandrasekhar'], correct: 0 },
+            { question: '27. Commonly used pesticides consist of:', options: ['PCBs', 'Organochlorines', 'Olefins', 'Heterocyclic compounds'], correct: 2 },
+            { question: '28. What is the chemical name of vitamin B₁?', options: ['Thiamine', 'Ascorbic acid', 'Riboflavin', 'Nicotinamide'], correct: 0 },
+            { question: '29. Which instrument is used to measure electric current?', options: ['Ammeter', 'Electrometer', 'Galvanometer', 'Spectrometer'], correct: 0 },
+            { question: '30. The law of natural selection is associated with:', options: ['Dalton', 'Darwin', 'Kepler', 'Mendel'], correct: 1 },
+            { question: '31. The reaction that converts a sugar solution into alcohol is an example of:', options: ['Saponification', 'Hydrogenation', 'Fermentation', 'Hydrolysis'], correct: 2 },
+            { question: '32. Which Scottish bacteriologist discovered penicillin?', options: ['Alexander Fleming', 'Albert Einstein', 'Archimedes', 'Aryabhata'], correct: 0 },
+            { question: '33. How many bones are present in an adult human skeleton?', options: ['200', '206', '212', '218'], correct: 1 },
+            { question: '34. The ozone layer restricts:', options: ['Visible light', 'Infrared radiation', 'X-rays and gamma rays', 'Ultraviolet radiation'], correct: 3 },
+            { question: '35. The site of the third-oldest civilization, Mohenjo-daro, was built in approximately:', options: ['2500 BC', '2500–2000 BC', '2300 BC', '2200 BC'], correct: 0 },
+            { question: '36. The normal threshold of hearing is approximately:', options: ['60–80 dB', '45–60 dB', '100–120 dB', '25–45 dB'], correct: 3 },
+            { question: '37. Which refrigerant is commonly used in domestic refrigerators?', options: ['Alcohol', 'Ammonia', 'Neon', 'None of the above'], correct: 1 },
+            { question: '38. Which part of chlorofluorocarbons is considered most harmful to the ozone layer?', options: ['Carbon atom', 'Chlorine atom', 'Fluorine atom', 'The entire compound'], correct: 2 },
+            { question: '39. Red blood cells are formed in the:', options: ['Heart', 'Liver', 'Lymph nodes', 'Bone marrow'], correct: 3 },
+            { question: '40. The SI unit of which quantity is named after André-Marie Ampère?', options: ['Power', 'Potential difference', 'Electric current', 'Energy'], correct: 2 },
+            { question: '41. Who first discovered that the Earth revolves around the Sun?', options: ['Newton', 'Dalton', 'Nicolaus Copernicus', 'Einstein'], correct: 2 },
+            { question: '42. The pulse of an aquatic environment can be ascertained by measuring:', options: ['Nitrogen', 'Oxygen', 'Alkalinity', 'Conductivity'], correct: 1 },
+            { question: '43. What is the approximate ratio of red blood cells to white blood cells in the human body?', options: ['15:500', '10:500', '5:500', '1:500'], correct: 3 },
+            { question: '44. How many chromosomes are present in the human body?', options: ['42', '44', '46', '48'], correct: 2 },
+            { question: '45. The purest natural form of water can be obtained from:', options: ['A deep tube well', 'A running stream', 'A hot-water spring', 'A heavy shower of rain'], correct: 3 },
+            { question: '46. A telescope is used for viewing:', options: ['Distant objects', 'Near objects', 'Small objects', 'Living cells'], correct: 0 },
+            { question: '47. A Venturi tube is used for:', options: ['Measuring earthquake intensity', 'Measuring specific gravity', 'Measuring density', 'Measuring the flow of a fluid'], correct: 3 },
+            { question: '48. Who first measured the velocity of light?', options: ['Einstein', 'Newton', 'Rømer', 'Galileo'], correct: 2 },
+            { question: '49. What happens to the apparent weight of an object in a satellite orbiting the Earth?', options: ['It remains the same as on Earth', 'It becomes slightly greater', 'It becomes less than on Earth', 'It is reduced to zero'], correct: 3 },
+            { question: '50. What is the correct descending order of abundance of oxygen, silicon and aluminium in the Earth’s crust?', options: ['Oxygen, aluminium, silicon', 'Aluminium, silicon, oxygen', 'Oxygen, silicon, aluminium', 'Silicon, oxygen, aluminium'], correct: 2 },
+            { question: '51. The velocity of wind is measured by a:', options: ['Speedometer', 'Tachometer', 'Anemometer', 'Audiometer'], correct: 2 },
+            { question: '52. The unit of energy in the MKS system is:', options: ['Volt', 'Erg', 'Ohm', 'Joule'], correct: 3 },
+            { question: '53. Who proposed the theory of inheritance of acquired characteristics?', options: ['Charles Darwin', 'Gregor Mendel', 'J. B. Lamarck', 'Weismann'], correct: 2 },
+            { question: '54. The SI unit of which quantity is named after André-Marie Ampère?', options: ['Power', 'Potential difference', 'Electric current', 'Energy'], correct: 2 },
+            { question: '55. In which year did Yuri Alekseyevich Gagarin become the first man to reach space?', options: ['1960', '1961', '1962', '1963'], correct: 1 },
+            { question: '56. What happens when a given amount of air is cooled?', options: ['The amount of moisture it can hold decreases', 'Its absolute humidity decreases', 'Its relative humidity remains constant', 'Its absolute humidity increases'], correct: 0 },
+            { question: '57. What is the function of a dynamo?', options: ['Convert heat energy into light energy', 'Convert light energy into heat energy', 'Convert mechanical energy into electrical energy', 'Convert electrical energy into mechanical energy'], correct: 2 },
+            { question: '58. Which statement correctly describes Yuri Gagarin?', options: ['He was a Russian cosmonaut and the first man in space', 'He was the first person to fly at an altitude of about 340 km', 'Both statements are correct', 'Neither statement is correct'], correct: 2 },
+            { question: '59. When did Commander Robert Peary discover the North Pole?', options: ['1904', '1905', '1908', '1909'], correct: 3 },
+            { question: '60. When did Roald Amundsen discover the South Pole?', options: ['1909', '1910', '1911', '1912'], correct: 2 },
+            { question: '61. When did Neil Armstrong and Edwin E. Aldrin land on the Moon?', options: ['July 21, 1969', 'July 21, 1970', 'July 21, 1963', 'July 21, 1972'], correct: 0 },
+            { question: '62. What is the SI unit of temperature?', options: ['Kelvin', 'Celsius', 'Centigrade', 'Fahrenheit'], correct: 0 },
+            { question: '63. In which year did India enter the space age by launching the satellite Aryabhata?', options: ['1966', '1932', '1975', '1990'], correct: 2 },
+            { question: '64. When did Christopher Columbus discover North America?', options: ['1455 AD', '1492 AD', '1139 AD', '1556 AD'], correct: 1 },
+            { question: '65. Which acts as the channel for transmitting blood to the heart?', options: ['Arteries', 'Muscle fibres', 'Nerves', 'Veins'], correct: 3 },
+            { question: '66. Which of the following provides resistance against disease in the body?', options: ['Carbohydrates', 'Red corpuscles', 'Vitamins', 'White corpuscles'], correct: 3 },
+            { question: '67. Which inventions were made by Thomas Alva Edison?', options: ['Incandescent lamp', 'Phonograph and microphone', 'Carbon telephone transmitters', 'All of the above'], correct: 3 },
+            { question: '68. When was the Mona Lisa painted by Leonardo da Vinci?', options: ['1431 AD', '1492 AD', '1504 AD', '1556 AD'], correct: 2 },
+            { question: '69. Why is a clear night generally colder than a cloudy night?', options: ['A clear sky allows radiant energy to escape readily from the Earth', 'Clouds are warm and retard cooling', 'A clear sky allows the cold of outer space to reach Earth', 'Air currents carry heat away on a clear night'], correct: 0 },
+            { question: '70. Which instrument is used to measure relative humidity?', options: ['Hydrometer', 'Hygrometer', 'Barometer', 'Mercury thermometer'], correct: 1 },
+            { question: '71. Michael Faraday discovered:', options: ['Electromagnetism', 'Benzene, liquid gases and optical glass', 'Electromagnetic induction', 'All of the above'], correct: 3 },
+            { question: '72. The most commonly used bleaching agent is:', options: ['Alcohol', 'Carbon dioxide', 'Chlorine', 'Sodium chloride'], correct: 2 },
+            { question: '73. Neil Armstrong and Edwin Aldrin were the first to:', options: ['Step on the Moon', 'Circle the Moon', 'Walk in space', 'Journey into space'], correct: 0 },
+            { question: '74. Which statement correctly describes Leonardo da Vinci?', options: ['He was a great Italian painter, sculptor and architect', 'He gained universal fame from his masterpiece', 'He drew models of organs such as the heart, lungs and womb', 'All of the above'], correct: 3 },
+            { question: '75. Marco Polo:', options: ['Discovered Greenland', 'Travelled through China, India and other parts of Asia', 'Travelled around the Cape of Good Hope', 'Discovered Canada'], correct: 1 },
+            { question: '76. Which blood group can be transfused to a person whose blood group is A?', options: ['Group A only', 'Group B only', 'Groups A and O', 'Group AB only'], correct: 2 },
+            { question: '77. Numismatics is the study of:', options: ['Coins', 'Numbers', 'Stamps', 'Space'], correct: 0 },
+            { question: '78. Which Caltech seismologist invented a scale used to measure earthquake magnitude?', options: ['Charles Richter', 'Hiram Walker', 'Giuseppe Mercalli', 'Joshua Rumble'], correct: 0 },
+            { question: '79. What did James Watt invent?', options: ['Diving bell', 'Steamboat', 'Hot-air balloon', 'Rotary steam engine'], correct: 3 },
+            { question: '80. Who invented the jet engine?', options: ['Sir Frank Whittle', 'Gottlieb Daimler', 'Roger Bacon', 'Lewis E. Waterman'], correct: 0 },
+            { question: '81. What invention caused many deaths while being tested?', options: ['Dynamite', 'Ladders', 'Race cars', 'Parachute'], correct: 3 },
+            { question: '82. Which ubiquitous device was invented by Zenith engineer Eugene Polley in 1955?', options: ['Microwave oven', 'Remote control', 'VCR', 'Calculator'], correct: 1 },
+            { question: '83. What did Benjamin Franklin invent?', options: ['Bifocal spectacles', 'Radio', 'Barometer', 'Hygrometer'], correct: 0 },
+            { question: '84. Which part-time race-car driver invented the bucket seat in 1969?', options: ['Steve McQueen', 'Harrison Frazier', 'Paul Newman', 'John Wayne'], correct: 0 },
+            { question: '85. Which modelling compound was invented by Joe McVicker in 1956?', options: ['Silly Putty', 'Etch-A-Sketch', 'Lite-Brite', 'Play-Doh'], correct: 3 },
+            { question: '86. Who invented the gramophone?', options: ['Michael Faraday', 'Fahrenheit', 'Sir Alexander Graham Bell', 'Thomas Alva Edison'], correct: 3 },
+            { question: '87. Which scientist used to forget his own name?', options: ['Michael Faraday', 'John Dalton', 'Isaac Newton', 'Thomas Alva Edison'], correct: 3 },
+            { question: '88. Who conceived the idea of the parachute?', options: ['Leonardo da Vinci', 'Solomon Lee Van Meter', 'Fausto Veranzio', 'J. Blanchard'], correct: 0 },
+            { question: '89. Whom did President Roosevelt appoint as the scientific head of the Manhattan Project?', options: ['Robert Oppenheimer', 'James B. Conant', 'Leslie R. Groves', 'Vannevar Bush'], correct: 0 },
+            { question: '90. Which English physicist is associated with the Big Bang theory?', options: ['Albert Einstein', 'Michael Skube', 'George Gamow', 'Roger Penrose'], correct: 2 },
+            { question: '91. Which insurance salesman invented the fountain pen in 1884?', options: ['Lewis Edson Waterman', 'Sir William Grove', 'Charles Kettering', 'George Fountain'], correct: 0 },
+            { question: '92. What did Enrico Fermi invent?', options: ['X-ray machine', 'Betatron', 'Cyclotron', 'Nuclear reactor'], correct: 3 },
+            { question: '93. Who invented the smallpox vaccine?', options: ['Robert Koch', 'Edward Jenner', 'Robert Hooke', 'Louis Pasteur'], correct: 1 },
+            { question: '94. Which invention is credited to Vladimir Kosma Zworykin?', options: ['Telegraph', 'Radio', 'Television', 'Dishwasher'], correct: 2 },
+            { question: '95. Which musical instrument did Benjamin Franklin invent?', options: ['Banjo', 'Oboe', 'Clarinet', 'Harmonium'], correct: 3 },
+            { question: '96. What did Elisha Otis invent?', options: ['The brake used in modern elevators', 'Jet engine', 'Turbine', 'Hydraulic crane'], correct: 0 },
+            { question: '97. Who invented bifocal lenses?', options: ['Alfred B. Nobel', 'Thomas Alva Edison', 'Benjamin Franklin', 'Rudolf Diesel'], correct: 2 },
+            { question: '98. What did Karl Benz invent?', options: ['Gasoline-powered automobile', 'Streetcar', 'Glider', 'Steam turbine'], correct: 0 },
+            { question: '99. Who invented dynamite?', options: ['Sir Alexander Graham Bell', 'Benjamin Franklin', 'Thomas Alva Edison', 'Alfred B. Nobel'], correct: 3 },
+            { question: '100. Who invented the bicycle?', options: ['Leo H. Baekeland', 'Karl Benz', 'Evangelista Torricelli', 'Kirkpatrick Macmillan'], correct: 3 },
+            { question: '101. Who synthesized the first wholly artificial gene?', options: ['Har Gobind Khorana', 'J. J. Thomson', 'Benjamin Franklin', 'Meghnad Saha'], correct: 0 },
+            { question: '102. Which item, originally called the “Whirlwind,” was invented by Ives McGaffey in 1869?', options: ['Blender', 'Electric mixer', 'Washing machine', 'Vacuum cleaner'], correct: 3 },
+            { question: '103. Who invented Bakelite?', options: ['Charles Goodyear', 'Leo Hendrik Baekeland', 'Roy Plunkett', 'Henry Ford'], correct: 1 },
+            { question: '104. Which beverage was invented by Charles Alderton in 1885 in Waco, Texas?', options: ['Cream soda', 'Coca-Cola', 'Dr Pepper', 'Sprite'], correct: 2 },
+            { question: '105. Which drink was invented by Charles Leiper Grigg in 1929?', options: ['7-Up', 'Yoo-Hoo', 'Pepsi', 'Hawaiian Punch'], correct: 0 },
+            { question: '106. For what is Charles Babbage remembered?', options: ['Computers', 'Telescopes', 'Radio telegraphy', 'Steamboating'], correct: 0 },
+            { question: '107. Who invented the gasoline-powered automobile?', options: ['Leo H. Baekeland', 'Karl Benz', 'Evangelista Torricelli', 'Kirkpatrick Macmillan'], correct: 1 },
+            { question: '108. Who invented the battery?', options: ['John Wilkinson', 'Alessandro Volta', 'James Hargreaves', 'Thomas Edison'], correct: 1 },
+            { question: '109. When was the toothbrush invented?', options: ['1770', '1765', '1790', '1742'], correct: 0 },
+            { question: '110. Who invented the fountain pen?', options: ['John J. Loud', 'Sir Frank Whittle', 'Lewis E. Waterman', 'Kirkpatrick Macmillan'], correct: 2 },
+            { question: '111. The first crop whose genome was sequenced is:', options: ['Maize', 'Wheat', 'Rice', 'Barley'], correct: 2 },
+            { question: '112. The first transgenic plant produced was:', options: ['Rice', 'Maize', 'Cotton', 'Tobacco'], correct: 3 },
+            { question: '113. Genetically engineered Golden Rice synthesizes a large amount of:', options: ['Vitamin K', 'Beta carotene', 'Vitamin C', 'Beta-galactosidase'], correct: 1 },
+            { question: '114. DNA fingerprinting refers to:', options: ['A technique for identifying individual fingerprints', 'Molecular analysis of DNA-sample profiles', 'Analysis of DNA samples using imprinting devices', 'Techniques used for molecular analysis of different DNA specimens'], correct: 1 },
+            { question: '115. Which vaccine was developed from animal-cell culture?', options: ['Hepatitis B vaccine', 'Influenza vaccine', 'Smallpox vaccine', 'Polio vaccine'], correct: 3 },
+            { question: '116. Producing complete animals from the somatic cells of an animal is called:', options: ['Gene cloning', 'Animal cloning', 'Cell cloning', 'All of the above'], correct: 3 },
+            { question: '117. Which was announced as the world’s first cloned baby on December 27, 2002?', options: ['Eve', 'Ape', 'Dome', 'Evra'], correct: 0 },
+            { question: '118. DNA does not contain:', options: ['Adenine', 'Thymine', 'Guanine', 'Uracil'], correct: 3 },
+            { question: '119. When was the first test-tube baby, Louise Joy Brown, born?', options: ['July 20, 1978', 'July 25, 1978', 'July 30, 1978', 'July 10, 1978'], correct: 1 },
+            { question: '120. Who was Nepal’s first test-tube baby?', options: ['Om Mani Dhungana', 'Surya Mani Tamang', 'Daman Dhungana', 'Om Mani Tamang'], correct: 3 },
+            { question: '121. Where was a tissue-culture centre established in Nepal?', options: ['Khumaltar', 'Godavari', 'Lele', 'Olangchungola'], correct: 1 },
+            { question: '122. What was used as the memory-storage device in second-generation computers?', options: ['Vacuum tubes', 'Transistors', 'Integrated circuits', 'Artificial intelligence'], correct: 1 },
+            { question: '123. The “Grand Trunk Herald” was a newspaper published by:', options: ['Albert Einstein', 'Thomas Alva Edison', 'Marconi', 'Archimedes'], correct: 1 },
+            { question: '124. Which Italian philosopher first stated that the Earth revolves around the Sun?', options: ['Nicolaus Copernicus', 'Johannes Kepler', 'Giordano Bruno', 'Darwin'], correct: 2 },
+            { question: '125. The theory of natural selection was postulated by:', options: ['Edward Jenner', 'Charles Darwin', 'Lamarck', 'John Dalton'], correct: 1 },
+            { question: '126. What is the full form of RADAR?', options: ['Radio Detection and Raying', 'Rapid Detection and Ranging', 'Radio Detection and Ranging', 'Radio Detection and Recognizing'], correct: 1 },
+            { question: '127. What is the full form of the SIM card used in mobile phones?', options: ['Subscriber Identity Molecule', 'Subscriber Identity Module', 'Subscriber Identity Mail', 'Subscriber Identity Magnitude'], correct: 1 },
+            { question: '128. Albert Einstein is mostly associated with:', options: ['Theory of gravitation', 'Theory of air pollution', 'Theory of radioactivity', 'Theory of relativity'], correct: 3 },
+            { question: '129. Which scientist won Nobel Prizes in two different fields?', options: ['Guglielmo Marconi', 'Louis Pasteur', 'Charles Darwin', 'Madame Curie'], correct: 3 },
+            { question: '130. Who is famous for a theory of exploding black holes based on relativity and quantum mechanics?', options: ['Darwin', 'Newton', 'Einstein', 'Stephen William Hawking'], correct: 3 },
+            { question: '131. Who is called the Wizard of Menlo Park?', options: ['Thomas Alva Edison', 'Royman Powell', 'Har Gobind Khorana', 'Archimedes'], correct: 0 },
+            { question: '132. Which scientist had more than 1,000 inventions to his name?', options: ['Michael Faraday', 'Pythagoras', 'Thomas Alva Edison', 'Galileo Galilei'], correct: 2 },
+            { question: '133. Who first proposed the heliocentric theory?', options: ['Johannes Kepler', 'Edwin Hubble', 'Nicolaus Copernicus', 'Giordano Bruno'], correct: 2 },
+            { question: '134. What is a computer network used within a building called?', options: ['LAN', 'WAN', 'CAN', 'LWAN'], correct: 0 },
+            { question: '135. Who invented the theory of the lever?', options: ['Archimedes', 'John Dalton', 'Herodotus', 'Euclid'], correct: 0 },
+            { question: '136. Who discovered insulin?', options: ['Frederick Banting', 'Hermann Faizer', 'Darwin', 'Calmette'], correct: 0 },
+            { question: '137. Psychoanalysis and dream analysis are associated with:', options: ['Herman Parkins', 'Archimedes', 'Sigmund Freud', 'John Dalton'], correct: 2 },
+            { question: '138. Who established the world’s first printing press?', options: ['Erasmus', 'Thomas More', 'Gutenberg', 'Loyola'], correct: 2 },
+            { question: '139. How many pounds are there in one kilogram?', options: ['2.20462 pounds', '2.022 pounds', '2.452 pounds', '2.789 pounds'], correct: 0 },
+            { question: '140. Who experimented with the speed of light in 1676?', options: ['Archimedes', 'J. J. Thomson', 'Euclid', 'Rømer'], correct: 3 },
+            { question: '141. One barrel is equal to approximately how many litres?', options: ['145 litres', '153 litres', '159 litres', '165 litres'], correct: 2 },
+            { question: '142. Which device separates water molecules into hydrogen and oxygen using electricity?', options: ['Electrolysers', 'Neutralysers', 'Electrolytes', 'Water splitters'], correct: 0 },
+            { question: '143. Who discovered the law of electrical resistance?', options: ['George Ohm', 'John Dalton', 'Alessandro Volta', 'Thomas Edison'], correct: 0 },
+            { question: '144. A lie-detector instrument is called a:', options: ['Polygraph machine', 'Breathalyser machine', 'Anemone machine', 'Lieophlyzer machine'], correct: 0 },
+            { question: '145. Who is called the father of the atomic or nuclear bomb?', options: ['Albert Einstein', 'Galileo Galilei', 'Sir Isaac Newton', 'Michael Faraday'], correct: 0 },
+            { question: '146. Match the scientists with their inventions: Madame Curie, Thomas Alva Edison, Louis Pasteur and Wright Brothers.', options: ['Curie–Radium; Edison–Electric bulb; Pasteur–Vaccine; Wright Brothers–Airplane', 'Curie–Airplane; Edison–Radium; Pasteur–Electric bulb; Wright Brothers–Vaccine', 'Curie–Vaccine; Edison–Airplane; Pasteur–Radium; Wright Brothers–Electric bulb', 'Curie–Radium; Edison–Vaccine; Pasteur–Airplane; Wright Brothers–Electric bulb'], correct: 0 },
+            { question: '147. Who discovered the theory of gravity?', options: ['Albert Einstein', 'Isaac Newton', 'John Dalton', 'Robert Boyle'], correct: 1 },
+            { question: '148. Which of the following chemicals is harmful to human health?', options: ['DDT', 'Mercury', 'Arsenic', 'All of the above'], correct: 3 },
+            { question: '149. What is a device that gives information about poisonous gas called?', options: ['Toxiquian', 'Toxivian', 'Toximeter', 'Toxifan'], correct: 2 },
+            { question: '150. Who is known as the father of immunology?', options: ['Samuel Richardson', 'Edward Jenner', 'Euclid', 'Louis Pasteur'], correct: 1 },
+            { question: '151. What is the method of opening a blocked or closed artery without cutting it called?', options: ['Angiotherapy', 'Angioplasty', 'Angioplasmal', 'Physiotherapy'], correct: 1 },
+            { question: '152. Which device measures the speed of a vehicle?', options: ['Audiometer', 'Barometer', 'Speedometer', 'Lactometer'], correct: 2 },
+            { question: '153. Which theory was proposed by Albert Einstein?', options: ['Relative density', 'Thermal conductivity', 'Germ theory', 'Theory of relativity'], correct: 3 },
+            { question: '154. Identify the incorrect pair.', options: ['Archimedes–Spirals', 'Galileo Galilei–The Starry Messenger', 'Isaac Newton–Principia', 'Stephen William Hawking–The Sky Star'], correct: 3 },
+            { question: '155. Match the inventions with their scientists: Telephone, Camera, Radar and Helicopter.', options: ['Telephone–Breguet; Camera–Alexander Graham Bell; Radar–Joseph Niassi; Helicopter–Sir Robert Watson', 'Telephone–Sir Robert Watson; Camera–Breguet; Radar–Alexander Graham Bell; Helicopter–Joseph Niassi', 'Telephone–Alexander Graham Bell; Camera–Joseph Niassi; Radar–Sir Robert Watson; Helicopter–Breguet', 'Telephone–Joseph Niassi; Camera–Alexander Graham Bell; Radar–Breguet; Helicopter–Sir Robert Watson'], correct: 2 },
+            { question: '156. Match the titles with their associated persons: Father of Electricity, Father of Ayurveda, Father of Microbiology and Father of Science.', options: ['Faraday; Dhanvantari; Louis Pasteur; Galileo Galilei', 'Dhanvantari; Faraday; Galileo Galilei; Louis Pasteur', 'Galileo Galilei; Louis Pasteur; Faraday; Dhanvantari', 'Louis Pasteur; Galileo Galilei; Dhanvantari; Faraday'], correct: 0 },
+            { question: '157. Which statement is incorrect?', options: ['The law of flotation was postulated by Archimedes', 'Inertia is related to Newton’s second law of motion', 'Galileo proposed the theory of the fixedness of the Sun and rotation of the Earth', 'Ecology studies animals and their environment'], correct: 1 },
+            { question: '158. Blood-transfusion researcher William Harvey was a citizen of:', options: ['Germany', 'America', 'Britain', 'Italy'], correct: 2 },
+            { question: '159. Who discovered the vaccine against rabies?', options: ['Louis Pasteur', 'Charles Darwin', 'Thomas Edison', 'Michael Faraday'], correct: 0 },
+            { question: '160. Insulin is related to which disease?', options: ['Blood pressure', 'Compensator', 'Gastric disease', 'Diabetes'], correct: 3 },
+            { question: '161. Who invented dynamite?', options: ['Michael Faraday', 'Joseph Priestley', 'Alfred Nobel', 'Moser'], correct: 2 },
+            { question: '162. What may result from using more medicine than prescribed?', options: ['Side effect', 'Addiction', 'Toxicity', 'Sensitivity'], correct: 0 },
+            { question: '163. Who invented the safety lamp?', options: ['Sir Humphry Davy', 'Joseph Priestley', 'Madame Curie', 'Marconi'], correct: 0 },
+            { question: '164. Which is the most abundant metal found on Earth?', options: ['Copper', 'Zinc', 'Iron', 'Nickel'], correct: 2 },
+            { question: '165. The SI unit of work or power is measured in:', options: ['Calorie', 'Joule', 'Newton', 'Fathom'], correct: 1 },
+            { question: '166. On which date was ChatGPT made publicly available by OpenAI?', options: ['November 22, 2022', 'November 26, 2022', 'November 30, 2022', 'November 28, 2022'], correct: 2 },
+            { question: '167. What is SODIS technology?', options: ['Energy production by molecules', 'Purification of water by heating', 'Purification of drinking water using solar power', 'Natural purification of water'], correct: 2 },
+            { question: '168. When is National Science Day celebrated in Nepal?', options: ['Ashoj 1', 'Ashoj 2', 'Ashoj 3', 'Ashoj 4'], correct: 0 },
+            { question: '169. Which was the first Nepali bank to use a robot?', options: ['Standard Chartered Bank', 'SBI Bank', 'NIC Asia Bank', 'Himalayan Bank'], correct: 1 },
+            { question: '170. In which category did Albert Einstein win the Nobel Prize?', options: ['Photolight effect', 'Photoelectric effect', 'Theory of relativity', 'General Theory of Relativity'], correct: 1 },
+            { question: '171. Which was the first pharmaceutical company in Nepal to manufacture anti-cancer drugs?', options: ['Magnus', 'Tizig', 'M-Tech', 'Curex'], correct: 1 },
+            { question: '172. Which device is used to see objects that cannot be seen directly with the eyes?', options: ['Telescope', 'Heliscope', 'Pyroscope', 'Microscope'], correct: 1 },
+            { question: '173. Who is called the father of genetics?', options: ['Carl Linnaeus', 'Lamarck', 'Gregor Johann Mendel', 'Darwin'], correct: 2 },
+            { question: '174. Which gas is used in welding?', options: ['Oxygen', 'Hydrogen', 'Ammonia', 'Nitrogen'], correct: 0 },
+            { question: '175. What is the science of studying mountains?', options: ['Oncology', 'Ornithology', 'Orology', 'Osteology'], correct: 2 },
+            { question: '176. What is the full form of VIRUS?', options: ['Very Intelligent Result Unit Source', 'Very Interchanged Resources Under Search', 'Vital Information Resources Under Siege', 'Viral Important Record User Search'], correct: 2 },
+            { question: '177. Which of the following pairs is incorrect?', options: ['Zoom–Eric Yuan', 'ChatGPT–Sam Altman and Elon Musk', 'Twitter–Linda Yaccarino', 'Apple–Bill Gates'], correct: 3 },
+            { question: '178. Who founded the calculator?', options: ['Marconi', 'Marie Curie', 'Blaise Pascal', 'Lady Ada'], correct: 2 },
+            { question: '179. What is the full form of LCD?', options: ['Liquid Crystal Display', 'Light Common Diode', 'Long Close Display', 'Length Crystal Display'], correct: 0 },
+            { question: '180. Which of the following was invented by Wilhelm Conrad Röntgen?', options: ['Electric charge', 'Electric bulb', 'X-ray', 'Thermodynamics'], correct: 2 },
+            { question: '181. Who first discovered a method of measuring the diameter of the Sun and the Moon?', options: ['Archimedes', 'John Dalton', 'Newton', 'Galileo Galilei'], correct: 3 },
+            { question: '182. Who proposed the theory of density?', options: ['Archimedes', 'Charles Darwin', 'Galileo Galilei', 'Henry Buison'], correct: 0 },
+            { question: '183. The output quality of a printer is measured in:', options: ['Dots per inch', 'Dots printed per unit time', 'Dots per page', 'All of the above'], correct: 0 },
+            { question: '184. What does GB, used to indicate computer-memory size, mean?', options: ['General byte', 'Grossbyte', 'Getabyte', 'Gigabyte'], correct: 3 },
+            { question: '185. Cataract is related to which part of the eye?', options: ['Cornea', 'Lens', 'Retina', 'Eyebrow'], correct: 1 }
+        ]
+    };
+      
+		console.log('questionSet defined');
+    startTest(questionSet);
+    console.log('startTest called');
+})(); 
+</script>
+<script src="/js/text-protect.js" defer></script>
+<script src="/js/logo.js"></script>
+</body>
+</html>

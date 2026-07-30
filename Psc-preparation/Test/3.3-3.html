@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Building Materials (Advanced) - Cement, Mortar, Timber and Paints</title>
+<link rel="icon" href="https://arunpanthi.com.np/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="/css/Mock_Test.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar" id="navbar">
+<span class="brand" id="navbar-brand">Building Materials (Advanced) - Cement, Mortar, Timber and Paints</span>
+<span class="timer-display" id="timer-display" style="display:none;">--:--</span>
+</nav>
+<div id="warning-modal" class="modal-overlay" style="display: none;">
+<div class="modal-dialog">
+<div class="warning-icon">⚠️</div>
+<h3>Unanswered Questions</h3>
+<p>You haven't answered all the questions.</p>
+<span class="unanswered-count" id="modal-unanswered-count">0 unanswered</span>
+<p style="margin-top:8px;"><strong>⚠ This test cannot be retaken once submitted!</strong></p>
+<div class="modal-buttons">
+<button class="btn-cancel" id="btn-modal-cancel">Cancel</button>
+<button class="btn-submit-warning" id="btn-modal-submit">Submit Anyway</button>
+</div>
+</div>
+</div>
+<div id="pre-test-section">
+<div class="hero" id="hero-card">
+<h1 id="hero-set-name">Loading...</h1>
+<p class="set-details" id="hero-details"></p>
+<div class="set-meta">
+<div class="meta-item"><span id="hero-q-count">0</span> Questions</div>
+<div class="meta-item"><span id="hero-time">0:00</span> Time (min)</div>
+</div>
+<button class="btn-start" id="btn-start-test">🚀 Start Test</button>
+<p style="margin-top:10px;font-size:0.85rem;opacity:0.8;" id="hero-note"></p>
+</div>
+</div>
+<div id="test-section" style="display:none;">
+<div class="test-container">
+<div class="question-area">
+<div class="question-card">
+<div class="q-number" id="q-number-label">QUESTION 1</div>
+<div class="q-text" id="q-text">Loading question...</div>
+<ul class="options-list" id="options-list"></ul>
+</div>
+<div class="nav-buttons">
+<div class="nav-left"><button class="btn-nav" id="btn-prev">◀ Previous</button></div>
+<div class="nav-center"><button class="btn-submit" id="btn-submit-test">✅ Submit Test</button></div>
+<div class="nav-right"><button class="btn-nav" id="btn-next">Next ▶</button></div>
+</div>
+</div>
+<aside class="sidebar">
+<h3>📋 Question </h3>
+<div class="total-questions" id="sidebar-total">Total: 0</div>
+<div class="answered-count">Answered: <strong id="sidebar-answered-num">0</strong></div>
+<div class="q-grid" id="q-grid"></div>
+<div class="legend">
+<span><span class="dot-sample blue"></span> Answered</span>
+<span><span class="dot-sample gray"></span> Unanswered</span>
+</div>
+</aside>
+</div>
+</div>
+<div id="results-section" style="display:none;">
+<div class="results-container">
+<div class="results-header">
+<h2 style="color:#2E7D32;">📊 Test Results</h2>
+<p style="color:#666;" id="results-set-name"></p>
+<div class="score-circle">
+<span class="score-num" id="results-score">0</span>
+<span class="score-denom" id="results-denom">/ 0</span>
+</div>
+<div class="percentage" id="results-percentage">0%</div>
+<p style="margin-top:8px;color:#888;font-size:0.9rem;" id="results-time-taken"></p>
+</div>
+<div id="results-detail"></div>
+</div>
+</div>
+<script src="/js/Mock_Test.js"></script>
+<script>
+(function () {
+    console.log('Inline script running');
+
+    const questionSet = {
+        name: 'Building Materials (Advanced) - Cement, Mortar, Timber and Paints',
+        details: 'Covers special cement, mortar, sand, timber, timber defects and preservation, paints, pigments, solvents and protective coatings. True/false questions and questions with fewer than four options are excluded.',
+        questions: [
+            { question: '5.33 The final setting time of ordinary Portland cement should not exceed:', options: ['8 hours', '9 hours', '10 hours', '12 hours'], correct: 2 },
+            { question: '5.34 Pick the correct statement about the soundness test of cement.', options: ['It is performed using the Le Chatelier apparatus', 'It detects uncombined lime in cement', 'The Le Chatelier apparatus has a brass mould of diameter 30 mm, height 30 mm and thickness 0.5 mm', 'All of these are correct'], correct: 3 },
+            { question: '5.35 The distance between the two readings of the Le Chatelier apparatus should not exceed:', options: ['4 mm', '5 mm', '7.5 mm', '10 mm'], correct: 1 },
+            { question: '5.36 What minimum storage space is required for 20 bags, or one tonne, of cement?', options: ['1 m³', '0.5 m³', '1.5 m³', 'None of these'], correct: 0 },
+            { question: '5.37 Acid-resistant cement contains:', options: ['Aggregates of quartz and quartzite', 'Sodium fluorosilicate', 'Soluble glass', 'All of these'], correct: 3 },
+            { question: '5.38 What is the function of sodium fluorosilicate in acid-resistant cement?', options: ['It accelerates the hardening of soluble glass', 'It increases the resistance of cement to acidic water', 'It performs both functions', 'It performs neither function'], correct: 2 },
+            { question: '5.39 Pick the correct statement about acid-resistant cement.', options: ['Its binding material is soluble glass', 'The ratio of silica molecules to alkali-oxide molecules is called glass modulus', 'The glass modulus varies from 2.50 to 3.50', 'All of these are correct'], correct: 3 },
+            { question: '5.40 The slag obtained as a waste product in the manufacture of pig iron contains:', options: ['Alumina', 'Lime', 'Silica', 'All of these'], correct: 3 },
+            { question: '5.41 Pick the correct statement about blast-furnace cement.', options: ['It gains less strength during the early days', 'It requires a longer curing period', 'It is durable and economical because it uses a waste product', 'All of these are correct'], correct: 3 },
+            { question: '5.42 Pick the correct statement about colouring cement.', options: ['Chromium oxide gives cement a green colour', 'Cobalt gives cement a blue colour', 'Manganese dioxide gives cement a black or brown colour', 'All of these are correct'], correct: 3 },
+            { question: '5.43 Pick the correct statement about high-alumina cement.', options: ['It contains not less than 32% bauxite', 'Its alumina-to-lime ratio lies between 0.85 and 1.30', 'It sets quickly and attains high ultimate strength in a short period', 'All of these are correct'], correct: 3 },
+            { question: '5.44 Which of the following can be used as a hydrophobic admixture in hydrophobic cement?', options: ['Alcohol', 'Naphthene soap', 'Oxidized petrolene', 'All of these'], correct: 3 },
+            { question: '5.45 Pick the correct statement about low-heat cement.', options: ['It contains a lower percentage of C₃A, roughly 5%', 'It contains a higher percentage of C₂S, roughly 46%', 'It is used in mass-concrete works such as dams', 'All of these are correct'], correct: 3 },
+            { question: '5.46 Pick the correct statement about pozzolana cement.', options: ['Pozzolana is a volcanic powder', 'It resembles surkhi prepared by burning bricks', 'It contains approximately 10–30% pozzolanic material', 'All of these are correct'], correct: 3 },
+            { question: '5.47 Pick the correct statement about quick-setting cement.', options: ['It contains a small percentage of aluminium sulphate', 'It contains a lower percentage of gypsum or retarder', 'It begins setting within about 5 minutes and attains good strength in less than 30 minutes', 'All of these are correct'], correct: 3 },
+            { question: '5.48 Quick-setting cement is useful for laying concrete under:', options: ['Static water', 'Running water', 'Both static and running water', 'Neither static nor running water'], correct: 2 },
+            { question: '5.49 Pick the correct statement about rapid-hardening cement.', options: ['Its initial and final setting times are similar to ordinary Portland cement', 'It attains high strength during the early days', 'It contains a high percentage of C₃S, approximately 56%', 'All of these are correct'], correct: 3 },
+            { question: '5.50 Sulphate-resisting cement is generally used in:', options: ['Canal linings', 'Culverts', 'Systems exposed to sulphates', 'All of these'], correct: 3 },
+            { question: '5.51 Pick the correct statement about white cement.', options: ['It is made from raw materials practically free from colouring oxides', 'It is obtained by burning clinker with oil fuel', 'Its initial setting time should not be less than 30 minutes', 'All of these are correct'], correct: 3 },
+
+            { question: '6.1 Pick the correct statement about mortar.', options: ['Mortar is a mixture of water, binding material and fine aggregate', 'The binding material in mortar is called the matrix', 'Fine aggregate in mortar is called the adulterant', 'All of these are correct'], correct: 3 },
+            { question: '6.2 Pick the correct statement about the strength of mortar.', options: ['The strength of mortar depends on the quantity and quality of its matrix', 'The combined effect of the matrix and adulterant binds bricks or stones firmly', 'Both statements are correct', 'Neither statement is correct'], correct: 2 },
+            { question: '6.3 Pick the correct statement about sand in mortar.', options: ['Sand is an important ingredient of mortar', 'Sand particles consist of small grains of silica', 'Sand is formed through the weathering of stones', 'All of these are correct'], correct: 3 },
+            { question: '6.4 Pick the correct statement about pit sand.', options: ['It consists of sharp, angular grains', 'Its particles are free from salts', 'It is an excellent material for mortar or concrete', 'All of these are correct'], correct: 3 },
+            { question: '6.5 Pick the correct statement about river sand.', options: ['It is obtained from the beds of perennial rivers', 'It contains fine moulded grains due to mutual attrition under water currents', 'It is almost white and is widely used in construction', 'All of these are correct'], correct: 3 },
+            { question: '6.6 Pick the correct statement about sea sand.', options: ['It is abundantly available along the seashore', 'It contains rounded fine particles', 'It contains salts and is seldom used for engineering work', 'All of these are correct'], correct: 3 },
+            { question: '6.7 Pick the correct statement about moisture in sand.', options: ['Moisture increases the volume of sand', 'Moisture forms a film around sand particles and causes bulking', 'Finer sand generally shows a greater increase in volume for the same moisture content', 'All of these are correct'], correct: 3 },
+            { question: '6.8 Pick the correct statement about bulking of sand.', options: ['Dry sand and completely flooded sand have practically the same volume', 'Failure to allow for bulking increases the cost of concrete and mortar', 'Ignoring bulking may result in undersanded mixes that are harsh and difficult to place', 'All of these are correct'], correct: 3 },
+            { question: '6.9 Pick the correct statement about the functions of sand in mortar.', options: ['Sand does not increase mortar strength and is used only for bulk', 'Sand prevents excessive shrinkage during drying', 'Sand particles increase resistance to crushing and provide a spreading surface for the binder', 'All of these are correct'], correct: 3 },
+            { question: '6.10 Pick the correct statement about tests for sand.', options: ['Clay is detected by shaking sand with water and observing the settled layer', 'Salts in sand are detected by tasting', 'The size and sharpness of grains are examined by touch and sight', 'All of these are correct'], correct: 3 },
+            { question: '6.11 Which of the following may be used as a substitute for sand in mortar?', options: ['Stone screenings', 'Surkhi', 'Cinder or coal ash', 'All of these'], correct: 3 },
+            { question: '6.12 Pick the correct statement about lime mortar.', options: ['Lime is used as the binding material', 'The volume of lime may be two to three times the volume of sand', 'For hydraulic lime, the lime-to-sand proportion is approximately 1:2', 'All of these are correct'], correct: 3 },
+            { question: '6.13 Pick the correct statement about surkhi mortar.', options: ['Surkhi is used instead of sand', 'Surkhi should conform to BIS No. 9 sieve', 'The residue on sieve No. 9 should not exceed 10% by weight', 'All of these are correct'], correct: 3 },
+            { question: '6.14 Pick the correct statement about cement mortar.', options: ['The cement-to-sand proportion by volume varies according to required strength', 'Sand can be used as the adulterant', 'It provides high strength and water resistance', 'All of these are correct'], correct: 3 },
+            { question: '6.15 Pick the correct statement about gauged mortar.', options: ['It is obtained by adding cement to lime mortar', 'It is economical, strong and dense', 'The normal cement-to-lime proportion by volume is about 1:6 to 1:8', 'All of these are correct'], correct: 3 },
+            { question: '6.16 Gauged mortar is also known as:', options: ['Composite mortar', 'Lime-cement mortar', 'Cement-clay mortar', 'Both composite mortar and lime-cement mortar'], correct: 3 },
+            { question: '6.17 Pick the correct statement about fire-resistant mortar.', options: ['It is made from aluminous cement and finely crushed firebrick powder', 'It contains one part aluminous cement and two parts firebrick powder', 'It is used with firebricks for lining furnaces and fireplaces', 'All of these are correct'], correct: 3 },
+            { question: '6.18 Lightweight mortar made by adding sawdust or wood powder to lime or cement mortar is used for:', options: ['Soundproof construction', 'Heatproof construction', 'Both soundproof and heatproof construction', 'Neither of these'], correct: 2 },
+            { question: '6.19 Pick the correct statement about packing mortar used in oil wells.', options: ['It has high homogeneity', 'It is water-resistant', 'It has a predetermined setting time and forms solid waterproof cracks', 'All of these are correct'], correct: 3 },
+            { question: '6.20 Which of the following is a packing mortar?', options: ['Cement-sand mortar', 'Cement-loam mortar', 'Cement-loam-sand mortar', 'All of these'], correct: 3 },
+            { question: '6.21 Sound-absorbing mortar used to reduce noise contains:', options: ['Portland cement', 'Lime or gypsum', 'Slag and lightweight porous materials', 'All of these'], correct: 3 },
+            { question: '6.22 Which term is generally used to describe the handling characteristics of mortar?', options: ['Mobility', 'Placeability', 'Both mobility and placeability', 'Neither of these'], correct: 2 },
+            { question: '6.23 Pick the correct statement about the usable period of mortar.', options: ['Lime mortar should be consumed within 36 hours', 'Cement mortar should be consumed within 30 minutes after adding water', 'Gauged mortar should be consumed within two hours after adding water', 'All of these are correct'], correct: 3 },
+            { question: '6.24 Pick the correct statement about using and curing mortar.', options: ['Sea water may be used with hydraulic lime or cement when it prevents rapid drying', 'Building units should be soaked before mortar is spread over them', 'New construction should be kept damp by sprinkling water', 'All of these are correct'], correct: 3 },
+            { question: '6.25 Pick the correct statement about cement-mortar proportions.', options: ['For damp-proof courses and cement-concrete roads, the proportion is 1:2', 'For partition and parapet walls, the proportion is 1:3', 'For plastering it is 1:3 to 1:4, and for pointing it is 1:1 to 1:2', 'All of these are correct'], correct: 3 },
+
+            { question: '7.1 A tree of at least 60 cm girth used as a building material should possess:', options: ['Low heat conductivity', 'Relatively high strength', 'Small bulk density and amenability to mechanical working', 'All of these'], correct: 3 },
+            { question: '7.2 Pick the correct statement about timber as a building material.', options: ['It is susceptible to decay and inflammation', 'Its properties fluctuate with moisture content', 'It has different strengths along and across its fibres', 'All of these are correct'], correct: 3 },
+            { question: '7.3 Wood dust, including sawdust and shavings, mixed with organic resin is used to make:', options: ['Fibre slabs', 'Fibreboards', 'Both fibre slabs and fibreboards', 'Neither of these'], correct: 2 },
+            { question: '7.4 Pick the correct statement about exogenous trees.', options: ['They increase in bulk by growing outward', 'They have consecutive horizontal rings', 'They provide good timber for engineering purposes', 'All of these are correct'], correct: 3 },
+            { question: '7.5 Pick the correct statement about coniferous trees.', options: ['Conifers are exogenous trees', 'They bear cone-shaped fruits', 'They yield soft, light wood and show distinct annual rings', 'All of these are correct'], correct: 3 },
+            { question: '7.6 Pick the correct statement about deciduous trees.', options: ['They are broad-leaved trees', 'They shed their leaves in autumn and grow new ones in spring', 'They provide most timber used for engineering purposes', 'All of these are correct'], correct: 3 },
+            { question: '7.7 Deciduous trees usually yield hardwood that is:', options: ['Close-grained and strong', 'Heavy and dark-coloured', 'Durable and non-resinous', 'All of these'], correct: 3 },
+            { question: '7.8 Pick the correct statement about exogenous trees.', options: ['Conifers are varieties of exogenous trees', 'Conifers show distinct annual rings', 'Deciduous trees yield hardwood with close-grained fibres', 'All of these are correct'], correct: 3 },
+            { question: '7.9 Which of the following trees is not endogenous?', options: ['Deodar', 'Bamboo', 'Cane', 'Palm'], correct: 0 },
+            { question: '7.10 Pick the correct statement about the macrostructure of an exogenous tree trunk.', options: ['The central core is called the pith or medulla', 'The inner annual rings surrounding the pith form heartwood', 'Heartwood is usually dark and constitutes the dead part of the tree', 'All of these are correct'], correct: 3 },
+            { question: '7.11 Pick the correct statement about sapwood.', options: ['It represents the recent growth of the tree', 'It mainly contains sap', 'It carries sap upward and is generally called alburnum', 'All of these are correct'], correct: 3 },
+            { question: '7.12 Pick the correct statement about the cambium layer.', options: ['It is a thin sap layer between sapwood and inner bark', 'It contains pure sap', 'It is exposed when the bark is removed', 'All of these are correct'], correct: 3 },
+            { question: '7.13 Medullary rays in a tree trunk:', options: ['Are thin radial fibres extending from the pith to the cambium layer', 'Bind together the annual rings of heartwood and sapwood', 'Perform both of these functions', 'Perform neither function'], correct: 2 },
+            { question: '7.14 A living cell of a tree consists of:', options: ['A membrane', 'Protoplasm', 'Sap and a core', 'All of these'], correct: 3 },
+            { question: '7.15 The protoplasm in a living tree cell is a granular, transparent, viscous vegetable protein composed of:', options: ['Carbon', 'Hydrogen', 'Oxygen and nitrogen', 'All of these'], correct: 3 },
+            { question: '7.16 The core of a living tree cell contains:', options: ['Phosphorus', 'Sulphur', 'Magnesium', 'None of these'], correct: 1 },
+            { question: '7.17 Which type of cell is usually found in a medullary ray?', options: ['Conductive cells', 'Mechanical cells', 'Storage cells', 'None of these'], correct: 2 },
+            { question: '7.18 Pick the correct statement about the maturity of timber.', options: ['Timber from immature trees is less durable', 'Mature trees produce decay-resistant timber', 'The appropriate felling age of good trees is about 50–100 years', 'All of these are correct'], correct: 3 },
+            { question: '7.19 Pick the correct statement about felling trees.', options: ['Applied-mechanics equilibrium principles are used for felling mature trees', 'A freshly felled tree should be sawn after removing its bark', 'Wooden wedges are driven gradually to ensure smooth felling', 'All of these are correct'], correct: 3 },
+            { question: '7.20 Pick the correct statement about the appropriate season for felling trees.', options: ['Felling during autumn and spring is not recommended when sap movement is vigorous', 'Trees in hilly regions should be felled in midsummer', 'Midwinter is suitable for felling trees in plains', 'All of these are correct'], correct: 3 },
+            { question: '7.21 The decay of wood due to fungi occurs:', options: ['When the moisture content of timber exceeds 20%', 'When air and warmth are available for fungal growth', 'When both conditions are present', 'When neither condition is present'], correct: 2 },
+            { question: '7.22 Which of the following timber defects is caused by fungi?', options: ['Wet rot', 'Dry rot', 'White rot or heart rot', 'All of these'], correct: 3 },
+            { question: '7.23 Pick the correct statement about dry rot.', options: ['The conversion of wood into clay-like powder by fungi is called dry rot', 'It occurs in improperly ventilated places', 'It attacks unseasoned softwood and sapwood', 'All of these are correct'], correct: 3 },
+            { question: '7.24 After removing a dry-rotted portion, the remaining unaffected timber should be painted with:', options: ['A solution of copper sulphate', 'Dilute hydrochloric acid', 'Nitric acid', 'None of these'], correct: 0 },
+            { question: '7.25 Pick the correct statement about timber rot.', options: ['Heart rot develops when timber is exposed to atmospheric agents', 'Wet rot converts timber into greyish-brown powder', 'Well-seasoned underground or exterior timber should receive protective painting', 'All of these are correct'], correct: 3 },
+            { question: '7.26 Pick the correct statement about insect attacks on timber.', options: ['Timber attacked by beetles may turn into flour-like powder', 'Beetle-attacked timber may appear sound until it completely fails', 'Marine borers reduce the colour and strength of wood', 'All of these are correct'], correct: 3 },
+            { question: '7.27 Pick the correct statement about defects in timber.', options: ['A branch stump nourished after removal ultimately forms a knot', 'A pin knot has a diameter up to approximately 6.5 mm', 'Curved swellings on the body of a tree are called rind galls', 'All of these are correct'], correct: 3 },
+            { question: '7.28 Curved cracks that partly separate one annual ring from another are called:', options: ['Cup shakes', 'Heart shakes', 'Ring shakes', 'Radial shakes'], correct: 0 },
+            { question: '7.29 Cracks extending from the pith to the sapwood in the direction of medullary rays are called:', options: ['Cup shakes', 'Heart shakes', 'Ring shakes', 'Star shakes'], correct: 3 },
+            { question: '7.30 Cracks in the form of cup shakes that cover the entire annual ring are called:', options: ['Heart shakes', 'Ring shakes', 'Radial shakes', 'Star shakes'], correct: 1 },
+            { question: '7.31 Cracks in the cross-section of timber that extend from the bark toward the sapwood are called:', options: ['Ring shakes', 'Star shakes', 'Heart shakes', 'Cup shakes'], correct: 1 },
+            { question: '7.32 Pick the correct statement about radial shakes.', options: ['They are similar to star shakes', 'They radiate a short distance from the bark toward the centre', 'They may follow annual rings and ultimately run toward the pith', 'All of these are correct'], correct: 3 },
+            { question: '7.33 Pick the correct statement about sound conductivity in timber.', options: ['It is faster along the fibres', 'It is lower in the radial direction', 'It is slowest along the core of the cross-section', 'All of these are correct'], correct: 3 },
+            { question: '7.34 A good timber preservative should effectively penetrate to a depth of at least:', options: ['6–8 mm', '8–12 mm', '6–16 mm', '6–25 mm'], correct: 3 },
+            { question: '7.35 ASCU timber preservative contains by weight:', options: ['One part hydrated arsenic pentoxide', 'Three parts copper sulphate', 'Four parts potassium or sodium dichromate', 'All of these'], correct: 3 },
+            { question: '7.36 Pick the correct statement about ASCU preservative.', options: ['It is available in powder form', 'Six parts ASCU and two parts water are mixed to prepare the solution', 'It protects timber against white ants and is odourless', 'All of these are correct'], correct: 3 },
+            { question: '7.37 Which of the following are water-borne timber preservatives?', options: ['Copper sulphate', 'Mercury chloride', 'Sodium fluoride or zinc chloride', 'All of these'], correct: 3 },
+            { question: '7.38 Pick the correct statement about coal-tar treatment.', options: ['Hot coal tar is applied using a brush', 'Coal tar has an unpleasant smell and appearance', 'It makes timber unsuitable for painting but improves fire resistance', 'All of these are correct'], correct: 3 },
+            { question: '7.39 Pick the correct statement about creosoting timber.', options: ['Creosote oil is pumped into a chamber containing thoroughly seasoned timber', 'Timber is removed after it absorbs the creosote oil', 'Creosote is an effective antiseptic against wood-attacking fungi but has an unpleasant odour', 'All of these are correct'], correct: 3 },
+            { question: '7.40 Pick the correct statement about oil paints used on timber.', options: ['They should be applied to well-seasoned timber', 'They protect timber from moisture', 'They improve timber durability', 'All of these are correct'], correct: 3 },
+            { question: '7.41 Which treatment is most suitable for protecting timber from white ants?', options: ['ASCU treatment', 'Coal-tar treatment', 'Creosote oil treatment', 'Solignum paint treatment'], correct: 0 },
+            { question: '7.42 Which of the following is refractory timber?', options: ['Sal', 'Teak', 'Deodar', 'None of these'], correct: 3 },
+            { question: '7.43 Anti-pyrites used to make timber fire-resistant contain:', options: ['Ammonium salts', 'Boric salts', 'Phosphoric acids', 'All of these'], correct: 3 },
+            { question: '7.44 What is the correct sequence in Sir Abel’s process for making timber fire-resistant?', options: ['Dilute sodium silicate → Cream-like slaked-lime paste → Concentrated sodium silicate', 'Cream-like slaked-lime paste → Concentrated sodium silicate → Dilute sodium silicate', 'Concentrated sodium silicate → Dilute sodium silicate → Cream-like slaked-lime paste', 'None of these'], correct: 0 },
+            { question: '7.45 Pick the correct statement about seasoning timber.', options: ['Drying timber is known as seasoning', 'Irregular drying causes shrinkage and internal stresses', 'Improper seasoning may produce warps and shakes', 'All of these are correct'], correct: 3 },
+            { question: '7.46 Pick the correct statement about moisture in timber.', options: ['The ability of wood to absorb water vapour is called hygroscopicity', 'Changes in moisture from zero to fibre-saturation point cause cracking, warping, swelling and shrinkage', 'At fibre saturation, timber-cell cavities contain no free water', 'All of these are correct'], correct: 3 },
+            { question: '7.47 The seasoning time for moderately refractory timber of 25 mm thickness is:', options: ['8 days', '10 days', '12 days', '14 days'], correct: 1 },
+            { question: '7.48 A timber piece with parallel sides, thickness below 50 mm and width above 200 mm is called:', options: ['Board', 'Batten', 'Baulk', 'Pole'], correct: 0 },
+            { question: '7.49 Pick the correct definition of timber sections.', options: ['A piece not exceeding 50 mm in breadth and thickness is a batten', 'A tree trunk after removing branches is called a log', 'A parallel-sided piece below 50 mm thick and above 50 mm wide is a plank', 'All of these are correct'], correct: 3 },
+            { question: '7.50 Which Indian timber is used for veneers approximately 0.4–6 mm thick?', options: ['Mahogany', 'Rosewood', 'Sissoo', 'All of these'], correct: 3 },
+            { question: '7.51 Veneers are generally used for making:', options: ['Plywood', 'Batten boards', 'Laminated boards', 'All of these'], correct: 3 },
+            { question: '7.52 Pick the correct statement about plywood.', options: ['Three or more odd-numbered veneers are glued with successive grains at right angles', 'Cross-grain placement increases longitudinal and transverse strength', 'A pressure of approximately 7–14 kg/cm² is applied during gluing', 'All of these are correct'], correct: 3 },
+            { question: '7.53 Pick the correct statement about timber boards.', options: ['Batten boards are widely used for partition walls and shutters', 'The total thickness of laminated board is about 50 mm', 'Plywood with more than three plies is called multiply', 'All of these are correct'], correct: 3 },
+            { question: '7.54 Pick the correct statement about plywood.', options: ['It has uniform tensile strength in all directions', 'It is easy to work and suitable for many designs', 'It is elastic and resists splitting or cracking due to atmospheric changes', 'All of these are correct'], correct: 3 },
+            { question: '7.55 Which of the following is an impregnated timber fully or partly covered with resin?', options: ['Formica', 'Sunglass', 'Sunmica', 'All of these'], correct: 3 },
+
+            { question: '8.1 Pick the correct statement about paints, varnishes and distempers.', options: ['Paints are fluid coatings applied to timber and metal surfaces', 'Varnishes are transparent or nearly transparent resin solutions', 'Distempers are applied over plastered surfaces', 'All of these are correct'], correct: 3 },
+            { question: '8.2 Pick the correct statement about the base of paint.', options: ['It is a finely divided solid substance', 'It forms the bulk of paint', 'It determines paint character and improves durability', 'All of these are correct'], correct: 3 },
+            { question: '8.3 Which of the following are ingredients of oil-borne paint?', options: ['Base and colouring pigment', 'Vehicle or carrier', 'Solvent and drier', 'All of these'], correct: 3 },
+            { question: '8.4 Pick the correct statement about white lead.', options: ['It forms the base of lead paints', 'It is a widely used base', 'It is suitable for wood and is dense, permanent and waterproof', 'All of these are correct'], correct: 3 },
+            { question: '8.5 Pick the correct statement about red lead.', options: ['It forms the base of lead paints', 'It is used as a primer on wood', 'It acts as a drier when mixed with linseed oil', 'All of these are correct'], correct: 3 },
+            { question: '8.6 Pick the correct statement about zinc oxide.', options: ['It is an oxide of zinc', 'It forms the base of zinc paints', 'It is smooth, transparent and non-poisonous', 'All of these are correct'], correct: 3 },
+            { question: '8.7 Pick the correct statement about iron oxide.', options: ['It forms the base of iron paints', 'It mixes easily with the vehicle', 'It prevents rust and is used as a primer on iron surfaces', 'All of these are correct'], correct: 3 },
+            { question: '8.8 Pick the correct statement about aluminium powder.', options: ['It is used as a primer for new woodwork', 'It forms the bulk of aluminium paint', 'It prevents cracking and warping while stabilizing surface moisture', 'All of these are correct'], correct: 3 },
+            { question: '8.9 Pick the correct statement about lithopone.', options: ['It is a mixture of zinc sulphide and barytes', 'It is cheap and easy to apply', 'It changes colour in daylight and is used for interior work', 'All of these are correct'], correct: 3 },
+            { question: '8.10 Pick the correct statement about the vehicle in paint.', options: ['It holds paint ingredients in liquid suspension', 'It spreads paint evenly as a thin layer', 'It binds the ingredients and makes them adhere to the surface', 'All of these are correct'], correct: 3 },
+            { question: '8.11 Pick the correct statement about driers in paint.', options: ['They accelerate drying', 'They absorb oxygen from the air and help harden linseed oil', 'Soluble driers dissolve in linseed oil', 'All of these are correct'], correct: 3 },
+            { question: '8.12 Which is the most commonly used drier in paint?', options: ['Litharge', 'Red lead', 'Manganese sulphate', 'None of these'], correct: 0 },
+            { question: '8.13 Pick the correct statement about solvents in paint.', options: ['They thin paint for easy application', 'They help paint penetrate porous surfaces', 'Spirit of turpentine is a commonly used solvent', 'All of these are correct'], correct: 3 },
+            { question: '8.14 Pick the correct statement about spirit of turpentine.', options: ['It is inflammable and evaporates rapidly', 'It is a transparent volatile liquid', 'It has a pungent odour and may be replaced by benzine or naphtha', 'All of these are correct'], correct: 3 },
+            { question: '8.15 Pick the correct statement about pure turpentine.', options: ['It leaves no residue after evaporation', 'It should not froth when vigorously shaken', 'When gently warmed, it should not smell of resin or coal tar', 'All of these are correct'], correct: 3 },
+            { question: '8.16 Pick the correct statement about aluminium paint.', options: ['It contains finely ground aluminium suspended in varnish', 'It forms a metallic aluminium film after the spirit or oil evaporates', 'It is visible in darkness', 'All of these are correct'], correct: 3 },
+            { question: '8.17 Pick the correct statement about aluminium paint.', options: ['It provides good corrosion protection', 'One litre covers approximately 200 m²', 'It is impervious to moisture and highly resistant to electricity', 'All of these are correct'], correct: 3 },
+            { question: '8.18 Pick the correct statement about anti-corrosive paint.', options: ['It mainly consists of oil and a strong drier', 'It contains chromium-oxide pigment mixed with fine sand', 'It lasts a long time and is black in appearance', 'All of these are correct'], correct: 3 },
+            { question: '8.19 Pick the correct statement about bituminous paint.', options: ['It is prepared by dissolving asphalt in petroleum', 'It is available in many varieties and is black', 'It is used for painting ironwork under water', 'All of these are correct'], correct: 3 },
+            { question: '8.20 Pick the correct statement about cellulose paint.', options: ['It is prepared from photographic films', 'It hardens through evaporation of its thinner', 'It is washable and withstands extreme heat and cold', 'All of these are correct'], correct: 3 },
+            { question: '8.21 Pick the correct statement about cement paint.', options: ['It consists of white cement, pigment, accelerator and additives', 'It is available in dry-powder form', 'It is waterproof and durable', 'All of these are correct'], correct: 3 },
+            { question: '8.22 Pick the correct statement about applying cement paint.', options: ['It is suitable for damp surfaces', 'For corrugated iron sheets, it is mixed with boiled linseed oil', 'The surface should be kept wet for about two days after the final coat', 'All of these are correct'], correct: 3 },
+            { question: '8.23 Pick the correct statement about emulsion paint.', options: ['It contains polyvinyl acetate as the binding material', 'It has excellent alkali resistance', 'It is odourless', 'All of these are correct'], correct: 3 },
+            { question: '8.24 Pick the correct statement about enamel paint.', options: ['It contains white lead or zinc white', 'It dries slowly and forms a hard, durable surface', 'It resists acids, alkalis, fumes, gases and extreme temperatures', 'All of these are correct'], correct: 3 },
+            { question: '8.25 Pick the correct statement about graphite paint.', options: ['It has a black colour', 'It is applied to iron surfaces exposed to ammonia, chlorine and sulphur gases', 'It is used in mines and underground railways', 'All of these are correct'], correct: 3 },
+            { question: '8.26 Pick the correct statement about inodorous paint.', options: ['It does not use turpentine', 'It uses white lead or zinc white mixed with methylated spirit', 'It may use shellac, linseed oil and castor oil and leaves a shellac film', 'All of these are correct'], correct: 3 },
+            { question: '8.27 Pick the correct statement about luminous paint.', options: ['It contains calcium sulphite with varnish', 'Its surface shines in darkness like the radium dial of a watch', 'It is applied to a surface free from corrosion or lead paint', 'All of these are correct'], correct: 3 },
+            { question: '8.28 Pick the correct statement about oil paint.', options: ['It is generally applied in three coats', 'It has good capacity and low gloss', 'It should not be applied during humid or damp weather', 'All of these are correct'], correct: 3 },
+            { question: '8.29 Pick the correct statement about plastic paint.', options: ['It contains the necessary variety of plastic', 'It can be applied by brush or spray', 'It is widely used in showrooms and auditoriums', 'All of these are correct'], correct: 3 },
+            { question: '8.30 The typical composition of one litre of plastic-emulsion paint includes:', options: ['0.20 kg binders', '0.5 kg pigments', '0.10 kg other solids and 0.6 kg water', 'All of these'], correct: 3 }
+        ]
+    };
+
+    console.log('questionSet defined');
+    startTest(questionSet);
+    console.log('startTest called');
+})(); 
+</script>
+<script src="/js/text-protect.js" defer></script>
+<script src="/js/logo.js"></script>
+</body>
+</html>
+
+
+
+

@@ -243,6 +243,8 @@ ul li span {
     right: 20px;
     z-index: 99;
 }
+.top-btn{position:fixed;bottom:24px;right:24px;width:42px;height:42px;background:#1B5E20;color:#fff;border:none;border-radius:50%;font-size:1.2rem;cursor:pointer;box-shadow:0 3px 10px rgba(27,94,32,.4);z-index:999;display:flex;align-items:center;justify-content:center}
+        .top-btn:hover{background:#0d3310}
 
 .card.viewed {
     border-top-color: #2E7D32;

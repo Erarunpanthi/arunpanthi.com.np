@@ -199,7 +199,7 @@ ul li span {
   box-shadow: 0 2px 8px rgba(46, 125, 50, 0.3);
 }
 
-.answer {
+.mcqanswer {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.4s ease;
@@ -209,7 +209,7 @@ ul li span {
   text-align: left;
 }
 
-.answer.show {
+.mcqanswer.show {
   max-height: 500px;
   padding: 20px;
   border-left: 4px solid var(--primary-color);

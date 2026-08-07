@@ -84,10 +84,7 @@
 </head>
 <body>
 
-    
-    
 
-    
     <section class="hero" aria-labelledby="hero-heading">
         <h1 id="hero-heading">📘 Second Paper – Subjective</h1>
         <p>Nepal Engineering Service · Civil Group · Third Class</p>
@@ -113,19 +110,19 @@
         </div>
 
         <div class="book-list" id="geotechnicalGrid">
-            <!-- injected by JS -->
+            
         </div>
 
-        <!-- ========================================================== -->
+        
         <!-- SECTION C – WATER RESOURCE ENGINEERING                     -->
-        <!-- ========================================================== -->
+        
         <div class="section-divider">
             <h2>Section C – Water Resource Engineering</h2>
             <div class="sub-meta">25 Marks · 4 Topics</div>
         </div>
 
         <div class="book-list" id="waterResourceGrid">
-            <!-- injected by JS -->
+            
         </div>
 
         <div class="section-divider">
@@ -149,7 +146,6 @@
 
     </main>
 
-  
 
     <script>
         (function() {
@@ -244,7 +240,6 @@
                 }]
             };
 
-            // -------- RENDER TOPICS INTO .book CARDS ---------------------
             function renderTopics(containerId, topics) {
                 const container = document.getElementById(containerId);
                 if (!container) return;
@@ -284,7 +279,6 @@
                 });
             }
 
-            // -------- INIT ------------------------------------------------
             renderTopics('structuralGrid', topicsData.structural);
             renderTopics('geotechnicalGrid', topicsData.geotechnical);
             renderTopics('waterResourceGrid', topicsData.waterResource);

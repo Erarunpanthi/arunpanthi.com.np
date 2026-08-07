@@ -1,9 +1,9 @@
 (function() {
     'use strict';
 
-    // ============================================================
+    
     //  CONFIGURATION – adjust to match your deployment
-    // ============================================================
+    
     var CONFIG = {
         // Base URL for exam files – set to '/Test/' or '/model-exam-sets/Set/'
         BASE_URL: '',
@@ -24,9 +24,7 @@
         CONFIG.BASE_URL += '/';
     }
 
-    // ============================================================
-    //  UTILITY FUNCTIONS
-    // ============================================================
+
     function isImageUrl(url) {
         if (!url || typeof url !== 'string') return false;
         var clean = url.split('?')[0].split('#')[0];
@@ -128,9 +126,9 @@
         return 'set_' + Math.abs(hash).toString(16).slice(0, 8);
     }
 
-    // ============================================================
+    
     //  RESET FUNCTION – supports ?reset=1 on any page
-    // ============================================================
+    
     function resetTest(questionSet) {
         var id = generateSetId(questionSet);
         var keys = ['_status', '_answers', '_startTime', '_endTime', '_marks', '_submittedAt'];
@@ -142,9 +140,7 @@
         window.location.replace(url.toString());
     }
 
-    // ============================================================
-    //  MAIN EXPOSED FUNCTION
-    // ============================================================
+
     window.startTest = function(questionSet, options) {
         options = options || {};
         var baseUrl = options.baseUrl || CONFIG.BASE_URL || '';
@@ -192,7 +188,7 @@
             'results-set-name', 'results-score', 'results-denom',
             'results-percentage', 'results-time-taken', 'results-detail',
             'warning-modal', 'modal-unanswered-count', 'btn-modal-cancel', 'btn-modal-submit',
-            // Reset button (new)
+            
             'btn-reset-test'
         ];
         ids.forEach(function(id) { state.$[id] = getElement(id); });
@@ -233,7 +229,7 @@
             });
         }
 
-        // ---- Reset button (new) ----
+        
         if (state.$['btn-reset-test']) {
             state.$['btn-reset-test'].addEventListener('click', function() {
                 if (confirm('⚠️ Are you sure you want to reset this test? All progress will be lost.')) {
@@ -243,9 +239,9 @@
         }
     };
 
-    // ============================================================
+    
     //  showPreTest – now includes reset button
-    // ============================================================
+    
     function showPreTest(state) {
         var $ = state.$;
         if ($['pre-test-section']) $['pre-test-section'].style.display = 'block';
@@ -282,7 +278,7 @@
             $['btn-start-test'].textContent = '🚀 Start Test';
         }
 
-        // Show reset button in pre-test section if configured
+        
         if (CONFIG.SHOW_RESET_BUTTON && $['btn-reset-test']) {
             $['btn-reset-test'].style.display = 'inline-block';
         }
@@ -290,9 +286,9 @@
         disableTestRestrictions(state);
     }
 
-    // ============================================================
+    
     //  showResults – now includes reset button
-    // ============================================================
+    
     function showResults(state, marksOverride, timeOverride, auto) {
         var $ = state.$;
         if ($['pre-test-section']) $['pre-test-section'].style.display = 'none';
@@ -322,7 +318,7 @@
             $['results-time-taken'].textContent = '⏱️ Time taken: ' + formatTimeLong(timeTaken) + (auto ? ' (Auto-submitted)' : '');
         }
 
-        // Show reset button in results section
+        
         if (CONFIG.SHOW_RESET_BUTTON && $['btn-reset-test']) {
             $['btn-reset-test'].style.display = 'inline-block';
             $['btn-reset-test'].textContent = '🔄 Reset Test';
@@ -378,9 +374,7 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // ============================================================
-    //  All other functions (unchanged from original)
-    // ============================================================
+
     function beginTest(state) {
         var status = LSget(state.STORAGE_KEY_STATUS);
         if (status === 'completed' || status === 'submitted') {
@@ -478,7 +472,7 @@
             });
         }
 
-        // Hide reset button during test
+        
         if ($['btn-reset-test']) {
             $['btn-reset-test'].style.display = 'none';
         }
@@ -741,7 +735,7 @@
 
     function unblockBackButton(state) {}
 
-    // Export for use in other scripts
+    
     window.resetTest = resetTest;
 
 })();

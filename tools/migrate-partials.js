@@ -29,9 +29,9 @@ const socialPath = path.join(__dirname, '../partials/social.html');
 const footerPath = path.join(__dirname, '../partials/footer.html');
 const cssLink = 'https://arunpanthi.com.np/styles.css';
 
-const navbarPlaceholder = '<!-- navbar-placeholder -->';
-const socialPlaceholder = '<!-- social-placeholder -->';
-const footerPlaceholder = '<!-- footer-placeholder -->';
+const navbarPlaceholder = '';
+const socialPlaceholder = '';
+const footerPlaceholder = '';
 
 pages.forEach(page => {
     const pagePath = path.join(__dirname, `../${page}`);

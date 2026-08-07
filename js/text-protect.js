@@ -93,7 +93,7 @@
       }
     }, true);
 
-    // Continuously clear any selection that sneaks through
+    
     setInterval(() => {
       const sel = window.getSelection();
       if (sel && sel.rangeCount > 0 && sel.toString().length > 0) {
@@ -110,7 +110,7 @@
         e.stopPropagation();
         e.stopImmediatePropagation();
 
-        // Overwrite clipboard with empty string
+        
         if (e.clipboardData) {
           e.clipboardData.setData("text/plain", "");
           e.clipboardData.setData("text/html", "");
@@ -119,7 +119,7 @@
       }, true);
     });
 
-    // Also override clipboard API
+    
     if (navigator.clipboard) {
       const origWrite = navigator.clipboard.writeText;
       const origRead = navigator.clipboard.readText;
@@ -270,7 +270,7 @@
 
       // ═══ F5 / Ctrl+F5 : Allow refresh (don't block) ═══
 
-      // ═══ PrintScreen ═══
+      
       if (code === "PrintScreen" || e.keyCode === 44) {
         e.preventDefault();
         e.stopImmediatePropagation();
@@ -332,7 +332,7 @@
 
      │    §6. SCREENSHOT COUNTERMEASURES        │
 
-  // Nuke clipboard silently
+  
   const nukeClipboard = () => {
     try {
       navigator.clipboard.writeText("").catch(() => {});
@@ -350,7 +350,7 @@
     } catch (_) {}
   };
 
-  // Flash white screen to corrupt any in-progress screenshot
+  
   const flashScreen = () => {
     const flash = document.createElement("div");
     flash.style.cssText = `
@@ -369,7 +369,7 @@
   const blockVisibilityScreenshot = () => {
     document.addEventListener("visibilitychange", () => {
       if (document.visibilityState === "hidden") {
-        // Clear any selection
+        
         window.getSelection()?.removeAllRanges();
         nukeClipboard();
       }
@@ -386,7 +386,7 @@
       }, true);
     });
 
-    // Mark all images as non-draggable
+    
     const disableImgDrag = () => {
       document.querySelectorAll("img").forEach((img) => {
         img.setAttribute("draggable", "false");
@@ -396,17 +396,17 @@
 
     disableImgDrag();
 
-    // Watch for new images
+    
     new MutationObserver(() => disableImgDrag())
       .observe(document.body, { childList: true, subtree: true });
   };
 
      │    §8. BLOCK PRINT (SILENT)              │
   const blockPrint = () => {
-    // Override window.print
+    
     window.print = function () { return false; };
 
-    // Block beforeprint
+    
     window.addEventListener("beforeprint", (e) => {
       e.preventDefault();
       document.body.style.display = "none";
@@ -416,7 +416,7 @@
       document.body.style.display = "";
     });
 
-    // Media query listener
+    
     if (window.matchMedia) {
       window.matchMedia("print").addEventListener("change", (mq) => {
         document.body.style.display = mq.matches ? "none" : "";
@@ -437,7 +437,7 @@
     }
   };
 
-  //
+  
   const detectBySize = () => {
     const threshold = 160;
     const wDiff = window.outerWidth - window.innerWidth;
@@ -445,7 +445,7 @@
     setDevToolsState(wDiff > threshold || hDiff > threshold);
   };
 
-  //
+  
   const detectByConsole = () => {
     const probe = new Image();
     Object.defineProperty(probe, "id", {
@@ -458,7 +458,7 @@
     }, 2000);
   };
 
-  //
+  
   const detectByToString = () => {
     const check = /./;
     check.toString = function () {
@@ -472,7 +472,7 @@
     }, 2000);
   };
 
-  //
+  
   const detectByDebugger = () => {
     setInterval(() => {
       const t1 = performance.now();
@@ -494,12 +494,12 @@
      │    §10. SOURCE & EXTENSION PROTECTION    │
   const sourceProtection = () => {
 
-    //
+    
     if (window.location.protocol === "view-source:") {
       document.documentElement.innerHTML = "";
     }
 
-    //
+    
     if (window.self !== window.top) {
       try {
         window.top.location = window.self.location;
@@ -508,7 +508,7 @@
       }
     }
 
-    //
+    
     const origFetch = window.fetch;
     window.fetch = function (...args) {
       const url = (args[0] || "").toString();
@@ -518,7 +518,7 @@
       return origFetch.apply(this, args);
     };
 
-    //
+    
     const OrigXHR = window.XMLHttpRequest;
     window.XMLHttpRequest = function () {
       const xhr = new OrigXHR();
@@ -526,14 +526,14 @@
       xhr.open = function (method, url, ...rest) {
         const resolved = new URL(url, window.location.href).href;
         if (resolved === window.location.href) {
-          return; // Silently block
+          return; 
         }
         return origOpen.call(this, method, url, ...rest);
       };
       return xhr;
     };
 
-    //
+    
     const guardProperty = (proto, prop) => {
       const desc = Object.getOwnPropertyDescriptor(proto, prop);
       if (desc && desc.get) {
@@ -557,7 +557,7 @@
      │    §11. DISABLE READER MODE              │
   const blockReaderMode = () => {
     // Reader mode typically looks for <article> structure
-    // Injecting invisible counter-elements confuses parsers
+    
     const decoy = document.createElement("div");
     decoy.setAttribute("aria-hidden", "true");
     decoy.style.cssText = "position:absolute;left:-9999px;top:-9999px;width:0;height:0;overflow:hidden;";
@@ -570,19 +570,19 @@
      │    §12. DISABLE DOCUMENT INTERACTIONS    │
   const blockMiscInteractions = () => {
 
-    //
+    
     Object.defineProperty(document, "designMode", {
       get: () => "off",
       set: () => {},
     });
 
-    //
+    
     Object.defineProperty(document.body, "contentEditable", {
       get: () => "false",
       set: () => {},
     });
 
-    //
+    
     const origExec = document.execCommand;
     document.execCommand = function (cmd, ...args) {
       const blocked = ["copy", "cut", "selectAll"];
@@ -590,7 +590,7 @@
       return origExec.call(this, cmd, ...args);
     };
 
-    //
+    
     const origGetSel = window.getSelection;
     window.getSelection = function () {
       const sel = origGetSel.call(this);
@@ -603,10 +603,10 @@
       return sel;
     };
 
-    //
+    
     document.addEventListener("touchstart", (e) => {
       if (e.touches.length > 1) {
-        e.preventDefault(); // Block multi-touch (pinch can open menus)
+        e.preventDefault(); 
       }
     }, { passive: false, capture: true });
 
@@ -628,12 +628,12 @@
 
      │    §13. CONSOLE WARFARE                  │
   const consoleLockdown = () => {
-    // Periodically clear console
+    
     setInterval(() => {
       try { console.clear(); } catch (_) {}
     }, 1500);
 
-    // Override console methods to suppress output
+    
     const noop = () => {};
     const methods = [
       "log", "debug", "info", "warn", "error",
@@ -643,7 +643,7 @@
       "timeStamp", "count", "assert"
     ];
 
-    // Delay this so our own init logs still work
+    
     setTimeout(() => {
       methods.forEach((m) => {
         try { console[m] = noop; } catch (_) {}
@@ -661,16 +661,16 @@
         m.addedNodes.forEach((node) => {
           if (node.nodeType !== 1) return;
 
-          // Block injected scripts from unknown sources
+          
           if (node.tagName === "SCRIPT") {
             const src = node.getAttribute("src") || "";
-            // Allow same-origin scripts only
+            
             if (src && !src.startsWith("/") && !src.startsWith(window.location.origin)) {
               node.remove();
             }
           }
 
-          // Block injected iframes
+          
           if (node.tagName === "IFRAME") {
             const src = node.getAttribute("src") || "";
             if (!src.startsWith(window.location.origin) && !src.startsWith("/")) {
@@ -686,7 +686,7 @@
   const init = () => {
     injectStyles();
 
-    //
+    
     blockRightClick();
     blockSelection();
     blockClipboard();

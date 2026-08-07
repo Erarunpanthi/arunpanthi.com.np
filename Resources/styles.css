@@ -1,39 +1,39 @@
-/* General Styles */
+
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #e8f5e9; /* Light green background */
+    background-color: #e8f5e9; 
     color: #333;
     margin: 0;
     padding: 0;
-    line-height: 1.6; /* Improved readability */
+    line-height: 1.6; 
 }
 
 h1, h2 {
-    color: #388E3C; /* Dark green headings */
+    color: #388E3C; 
 }
 
-/* Navbar Styles */
+
 .navbar {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    background-color: #2E7D32; /* Darker green navbar */
+    background-color: #2E7D32; 
     padding: 10px 0;
 }
 
 .navbar a {
-    color: #fff; /* Link color */
-    padding: 8px 10px; /* Reduced padding for compactness */
-    text-decoration: none; /* Remove underline */
-    font-size: 14px; /* Smaller font size */
-    transition: background-color 0.3s; /* Animation */
+    color: #fff; 
+    padding: 8px 10px; 
+    text-decoration: none; 
+    font-size: 14px; 
+    transition: background-color 0.3s; 
 }
 
 .navbar a:hover {
-    background-color: #1B5E20; /* Even darker green on hover */
+    background-color: #1B5E20; 
 }
 
-/* Container Styles */
+
 .container {
     max-width: 800px;
     margin: 20px auto;
@@ -43,14 +43,14 @@ h1, h2 {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
-/* Form Styles */
+
 .form-group {
     margin-bottom: 1.5rem;
 }
 
 label {
-    display: flex; /* Change to flex to align items */
-    align-items: center; /* Center items vertically */
+    display: flex; 
+    align-items: center; 
     margin-bottom: 0.5rem;
     color: #2E7D32;
     font-weight: bold;
@@ -71,10 +71,10 @@ input:focus, select:focus, textarea:focus {
 }
 
 input[type="radio"] {
-    margin-right: 10px; /* Space between radio button and text */
+    margin-right: 10px; 
 }
 
-/* Button Styles */
+
 button {
     width: 100%;
     padding: 12px;
@@ -91,108 +91,108 @@ button:hover {
     background: #1B5E20;
 }
 
-/* Timer Styles */
+
 .timer {
-    font-size: 36px; /* Larger font size for the timer */
-    color: #388E3C; /* Dark green color for the timer */
-    margin: 20px 0; /* Space around the timer */
-    background-color: #e8f5e9; /* Light green background for timer */
-    padding: 10px; /* Padding around the timer */
-    border-radius: 10px; /* Rounded corners for timer */
+    font-size: 36px; 
+    color: #388E3C; 
+    margin: 20px 0; 
+    background-color: #e8f5e9; 
+    padding: 10px; 
+    border-radius: 10px; 
 }
 
-/* Hero Section Styles */
+
 .hero {
-    background-color: #4CAF50; /* Green background for hero section */
-    color: white; /* White text for hero section */
-    padding: 20px 20px; /* Reduced padding */
+    background-color: #4CAF50; 
+    color: white; 
+    padding: 20px 20px; 
     text-align: center;
-    border-radius: 10px; /* Rounded corners */
-    margin: 30px auto; /* Increased margin */
-    max-width: 800px; /* Centered with max width */
+    border-radius: 10px; 
+    margin: 30px auto; 
+    max-width: 800px; 
 }
 
 .hero h1 {
-    font-size: 36px; /* Heading size */
-    color: white; /* White color for heading */
-    margin: 10px 0; /* Reduced margin */
+    font-size: 36px; 
+    color: white; 
+    margin: 10px 0; 
 }
 
 .hero p {
-    margin: 10px 0; /* Reduced margin for paragraph */
+    margin: 10px 0; 
 }
 
-/* Call-to-Action Button Styles */
+
 .cta-button {
-    background-color: #28a745; /* Green button background */
-    color: white; /* White text for button */
-    padding: 10px 20px; /* Reduced padding */
+    background-color: #28a745; 
+    color: white; 
+    padding: 10px 20px; 
     text-decoration: none;
-    border-radius: 25px; /* Rounded button */
+    border-radius: 25px; 
     font-size: 18px;
     transition: background-color 0.3s ease, transform 0.3s ease;
-    margin-top: 10px; /* Space above button */
-    display: inline-block; /* Ensure proper spacing */
+    margin-top: 10px; 
+    display: inline-block; 
 }
 
 .cta-button:hover {
-    background-color: #218838; /* Darker green on hover */
+    background-color: #218838; 
     transform: scale(1.05);
 }
 
-/* Secondary Button Styles */
+
 .secondary-button {
-    background-color: #6c757d; /* Grey button background */
-    color: white; /* White text for button */
-    padding: 10px 20px; /* Padding */
+    background-color: #6c757d; 
+    color: white; 
+    padding: 10px 20px; 
     text-decoration: none;
-    border-radius: 25px; /* Rounded button */
+    border-radius: 25px; 
     font-size: 18px;
     transition: background-color 0.3s ease, transform 0.3s ease;
-    margin-top: 15px; /* Increased space above secondary button */
-    display: inline-block; /* Ensure proper spacing */
+    margin-top: 15px; 
+    display: inline-block; 
 }
 
 .secondary-button:hover {
-    background-color: #5a6268; /* Darker grey on hover */
+    background-color: #5a6268; 
     transform: scale(1.05);
 }
 
-/* Section Styles */
+
 .section {
-    margin: 30px auto; /* Increased margin */
+    margin: 30px auto; 
     padding: 20px;
-    border-radius: 20px; /* Increased border radius for more rounded edges */
+    border-radius: 20px; 
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    background-color: white; /* Section background */
-    width: 90%; /* Width for sections */
-    max-width: 800px; /* Max width for sections */
-    text-align: center; /* Center text */
+    background-color: white; 
+    width: 90%; 
+    max-width: 800px; 
+    text-align: center; 
 }
 
-/* Social Media Styles */
+
 .social-media {
     background: linear-gradient(135deg, #4CAF50, #2E7D32);
-    color: white; /* White text for social media section */
-    padding: 30px 20px; /* Reduced padding */
+    color: white; 
+    padding: 30px 20px; 
     text-align: center;
-    border-radius: 20px; /* Increased border radius */
-    margin: 30px auto; /* Increased margin */
+    border-radius: 20px; 
+    margin: 30px auto; 
 }
 
 .social-media h2 {
-    color: white; /* White color for heading */
-    margin: 10px 0; /* Reduced margin */
+    color: white; 
+    margin: 10px 0; 
 }
 
 .social-media p {
-    margin: 10px 0; /* Reduced margin for paragraph */
+    margin: 10px 0; 
 }
 
 .social-media .icons {
     display: flex;
     justify-content: center;
-    gap: 20px; /* Space between icons */
+    gap: 20px; 
 }
 
 .social-media .icons a {
@@ -205,7 +205,7 @@ button:hover {
     transform: scale(1.2);
 }
 
-/* Footer Styles */
+
 footer {
     background-color: #4CAF50;
     color: #fff;
@@ -224,29 +224,29 @@ footer a:hover {
     text-decoration: underline;
 }
 
-/* Media Queries */
+
 @media (max-width: 768px) {
     .hero {
-        padding: 15px; /* Further reduce padding for smaller screens */
+        padding: 15px; 
     }
     .section {
-        padding: 15px; /* Adjust section padding */
+        padding: 15px; 
     }
     .social-media {
-        padding: 20px; /* Further reduce padding */
+        padding: 20px; 
     }
 }
 
-/* Book List Styles */
+
 .book-list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 30px; /* Increased gap between books */
+    gap: 30px; 
 }
 
 .book {
     background: #ffffff;
-    border-radius: 15px; /* Rounded edges for book items */
+    border-radius: 15px; 
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     padding: 15px;
     text-align: center;
@@ -289,7 +289,7 @@ footer a:hover {
     }
 }
 .semester {
-    background: linear-gradient(135deg, #4CAF50, #2E7D32); /* Professional green gradient */
+    background: linear-gradient(135deg, #4CAF50, #2E7D32); 
     color: #fff;
     padding: 20px;
     margin: 15px 0;
@@ -304,7 +304,7 @@ footer a:hover {
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
 }
 
-/* Styling for the heading */
+
 .semester h2 {
     display: flex;
     align-items: center;
@@ -312,13 +312,13 @@ footer a:hover {
     margin: 0;
 }
 
-/* Icon styling */
+
 .semester h2 i {
     margin-right: 10px;
     font-size: 1.8rem;
 }
 
-/* Responsive design */
+
 @media (max-width: 768px) {
     .semester {
         padding: 15px;
@@ -392,72 +392,72 @@ footer a:hover {
     background-color: #0056b3;
     transform: scale(1.05);
 }
-/* CSS for a professional card-container class */
+
 .card-container {
-    display: flex; /* Allows for multiple cards to align in a row */
-    flex-wrap: wrap; /* Ensures cards wrap to the next line if needed */
-    gap: 20px; /* Adds spacing between cards */
-    justify-content: center; /* Centers the cards horizontally */
-    padding: 20px; /* Adds padding around the container */
-    background-color: #f8f9fa; /* Light background for contrast */
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 20px; 
+    justify-content: center; 
+    padding: 20px; 
+    background-color: #f8f9fa; 
 }
 
 .card-container .card {
-    background-color: #ffffff; /* White background for the card */
-    border: 1px solid #e0e0e0; /* Subtle border */
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for a 3D effect */
-    overflow: hidden; /* Ensures content stays inside the card */
-    width: 300px; /* Fixed width for uniformity */
-    max-width: 100%; /* Responsive design for smaller screens */
-    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth hover effects */
+    background-color: #ffffff; 
+    border: 1px solid #e0e0e0; 
+    border-radius: 8px; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    overflow: hidden; 
+    width: 300px; 
+    max-width: 100%; 
+    transition: transform 0.2s ease, box-shadow 0.2s ease; 
 }
 
 .card-container .card:hover {
-    transform: translateY(-5px); /* Slight lift on hover */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+    transform: translateY(-5px); 
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); 
 }
 
 .card-container .card img {
-    width: 100%; /* Ensures image spans the full card width */
-    height: auto; /* Maintains image aspect ratio */
-    border-bottom: 1px solid #e0e0e0; /* Divider between image and content */
+    width: 100%; 
+    height: auto; 
+    border-bottom: 1px solid #e0e0e0; 
 }
 
 .card-container .card .card-content {
-    padding: 15px; /* Inner padding for content */
-    text-align: center; /* Center-aligns the text */
+    padding: 15px; 
+    text-align: center; 
 }
 
 .card-container .card .card-content h3 {
-    font-size: 1.5rem; /* Larger heading font size */
-    font-weight: bold; /* Bold text for emphasis */
-    color: #333333; /* Dark text for readability */
-    margin: 0 0 10px; /* Spacing below the heading */
+    font-size: 1.5rem; 
+    font-weight: bold; 
+    color: #333333; 
+    margin: 0 0 10px; 
 }
 
 .card-container .card .card-content p {
-    font-size: 1rem; /* Standard paragraph font size */
-    color: #666666; /* Subtle gray text for descriptions */
-    margin: 0; /* Removes default margins */
-    line-height: 1.6; /* Improves readability */
+    font-size: 1rem; 
+    color: #666666; 
+    margin: 0; 
+    line-height: 1.6; 
 }
 
 .card-container .card .card-actions {
     padding: 15px;
-    border-top: 1px solid #e0e0e0; /* Divider above actions */
-    text-align: center; /* Center-aligns the actions */
+    border-top: 1px solid #e0e0e0; 
+    text-align: center; 
 }
 
 .card-container .card .card-actions a {
-    text-decoration: none; /* Removes underline */
-    color: #007bff; /* Blue link for visibility */
-    font-weight: bold; /* Makes links stand out */
-    transition: color 0.2s ease; /* Smooth color transition */
+    text-decoration: none; 
+    color: #007bff; 
+    font-weight: bold; 
+    transition: color 0.2s ease; 
 }
 
 .card-container .card .card-actions a:hover {
-    color: #0056b3; /* Darker blue on hover */
+    color: #0056b3; 
 }
 .semester {
     background-color: #ffffff;
@@ -486,7 +486,7 @@ footer a:hover {
     margin-right: 10px;
 }
 
-/* Subject Box */
+
 .subjects {
     display: none;
     padding: 10px 0;
@@ -522,86 +522,85 @@ footer a:hover {
     margin-right: 8px;
 }
 .Binitagauatm .chapter-title {
-    font-family: "Times New Roman", serif; /* Set font to Times New Roman */
-    font-size: 25px; /* Set font size to 18px */
-    font-weight: normal; /* You can change this to bold if you prefer */
-    margin-bottom: 15px; /* Adds some space below the chapter title */
-    color: #333; /* Set text color to dark gray (you can adjust the color) */
+    font-family: "Times New Roman", serif; 
+    font-size: 25px; 
+    font-weight: normal; 
+    margin-bottom: 15px; 
+    color: #333; 
 }
 
 .Binitagauatm {
-    padding: 15px; /* Adds padding inside the card */
-    background-color: #f9f9f9; /* Light background color */
-    border: 1px solid #ddd; /* Border color */
-    border-radius: 5px; /* Slight rounding of corners */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
-    margin: 10px; /* Margin for spacing between cards */
+    padding: 15px; 
+    background-color: #f9f9f9; 
+    border: 1px solid #ddd; 
+    border-radius: 5px; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+    margin: 10px; 
 }
 .Binitagauatm .chapter-title {
-    font-family: "Times New Roman", serif; /* Set font to Times New Roman */
-    font-size: 25px; /* Set font size to 18px */
-    font-weight: normal; /* You can change this to bold if you prefer */
-    margin-bottom: 15px; /* Adds some space below the chapter title */
-    color: #333; /* Set text color to dark gray (you can adjust the color) */
+    font-family: "Times New Roman", serif; 
+    font-size: 25px; 
+    font-weight: normal; 
+    margin-bottom: 15px; 
+    color: #333; 
 }
 
 .Binitagauatm {
-    padding: 15px; /* Adds padding inside the card */
-    background-color: #f9f9f9; /* Light background color */
-    border: 1px solid #ddd; /* Border color */
-    border-radius: 5px; /* Slight rounding of corners */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
-    margin: 10px; /* Margin for spacing between cards */
+    padding: 15px; 
+    background-color: #f9f9f9; 
+    border: 1px solid #ddd; 
+    border-radius: 5px; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+    margin: 10px; 
 }
 .cardBinita {
-    width: 90%; /* Adjust the width to suit your layout */
+    width: 90%; 
     margin: 20px auto; /* Center the cards with automatic left/right margins */
-    padding: 20px; /* Add some inner spacing */
-    border: 1px solid #ccc; /* Light border for separation */
-    border-radius: 8px; /* Rounded corners for a softer look */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    background-color: #f9f9f9; /* Light background color */
-    transition: transform 0.3s, box-shadow 0.3s; /* Smooth animations */
+    padding: 20px; 
+    border: 1px solid #ccc; 
+    border-radius: 8px; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    background-color: #f9f9f9; 
+    transition: transform 0.3s, box-shadow 0.3s; 
 }
 
 .cardBinita:hover {
-    transform: translateY(-5px); /* Slight upward motion on hover */
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+    transform: translateY(-5px); 
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15); 
 }
 
 .cardBinita h2 {
-    font-size: 1.5rem; /* Slightly larger heading font */
-    margin-bottom: 10px; /* Space below the heading */
-    color: #333; /* Darker text for headings */
-    text-align: center; /* Center align the heading */
+    font-size: 1.5rem; 
+    margin-bottom: 10px; 
+    color: #333; 
+    text-align: center; 
 }
 
 .cardBinita p {
-    font-size: 1rem; /* Standard font size for paragraphs */
-    line-height: 1.6; /* Improve readability */
-    color: #555; /* Medium gray for body text */
-    text-align: justify; /* Align text for a neat appearance */
+    font-size: 1rem; 
+    line-height: 1.6; 
+    color: #555; 
+    text-align: justify; 
 }
 
 .cardBinita button {
-    display: block; /* Ensure button takes up its own line */
-    margin: 10px auto; /* Center button horizontally */
-    padding: 10px 20px; /* Add spacing inside the button */
-    font-size: 1rem; /* Standard button text size */
-    color: #fff; /* White text color */
-    background-color: #007BFF; /* Blue background color */
-    border: none; /* Remove default border */
-    border-radius: 5px; /* Rounded button corners */
-    cursor: pointer; /* Pointer cursor on hover */
-    transition: background-color 0.3s; /* Smooth color transition */
+    display: block; 
+    margin: 10px auto; 
+    padding: 10px 20px; 
+    font-size: 1rem; 
+    color: #fff; 
+    background-color: #007BFF; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    transition: background-color 0.3s; 
 }
 
 .cardBinita button:hover {
-    background-color: #0056b3; /* Darker blue on hover */
+    background-color: #0056b3; 
 }
 
 
-        /* Responsive Menu Toggle */
         @media (max-width: 768px) {
             .menu {
                 width: 200px;
@@ -621,11 +620,11 @@ footer a:hover {
             }
         }
 .section h1 {
-    font-size: 16px; /* Adjust as needed */
-    white-space: nowrap; /* Prevents text from wrapping */
-    overflow: hidden; /* Hides overflow text */
+    font-size: 16px; 
+    white-space: nowrap; 
+    overflow: hidden; 
     text-overflow: ellipsis; /* Adds '...' if the text is too long */
-    width: 100%; /* Ensures the text does not exceed the card width */
-    text-align: center; /* Center the text */
-    padding: 5px; /* Adds some spacing */
+    width: 100%; 
+    text-align: center; 
+    padding: 5px; 
 }

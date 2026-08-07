@@ -28,7 +28,7 @@
         input, select, textarea { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; font-family: inherit; }
         input:focus, select:focus, textarea:focus { outline: none; border-color: #3498db; box-shadow: 0 0 0 2px rgba(52,152,219,0.2); }
         
-        /* Error message styles */
+        
         .error-msg {
             color: #e74c3c;
             font-size: 0.8rem;
@@ -65,7 +65,7 @@
             margin-top: 4px;
         }
 
-        /* Button Styling */
+        
         #submit-btn { 
             background: #2c3e50; 
             color: white; 
@@ -121,7 +121,7 @@
 
     <h2 style="text-align: center;"><i class="fas fa-paper-plane" style="color:var(--primary)"></i>Contact Us</h2>
     <form id="contact-form">
-        <!-- Full Name -->
+        
         <div class="form-group">
             <label><i class="fas fa-user"></i> Full Name <span class="required-star">*</span></label>
             <div class="name-row">
@@ -149,21 +149,21 @@
             </div>
         </div>
 
-        <!-- Mobile Number -->
+        
         <div class="form-group">
             <label><i class="fas fa-phone"></i> Mobile Number (10 Digits) <span class="required-star">*</span></label>
             <input type="tel" name="mobile" id="mobile" placeholder="98XXXXXXXX" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '');" required>
             <div id="mobile-error" class="error-msg" style="display: none;"><i class="fas fa-exclamation-circle"></i> Mobile must be exactly 10 digits</div>
         </div>
 
-        <!-- Email -->
+        
         <div class="form-group">
             <label><i class="fas fa-envelope"></i> Email ID (@gmail.com) <span class="required-star">*</span></label>
             <input type="email" name="email" id="email" placeholder="example@gmail.com" required>
             <div id="email-error" class="error-msg" style="display: none;"><i class="fas fa-exclamation-circle"></i> Must be a valid @gmail.com address</div>
         </div>
 
-        <!-- Location -->
+        
         <div class="form-group">
             <label><i class="fas fa-map-marker-alt"></i> Location <span class="required-star">*</span></label>
             <div class="name-row">
@@ -183,7 +183,7 @@
             </div>
         </div>
 
-        <!-- Semester -->
+        
         <div class="form-group">
             <label><i class="fas fa-graduation-cap"></i> Semester <span class="required-star">*</span></label>
             <select name="semester" id="semester" required>
@@ -215,12 +215,12 @@
                 <input type="text" id="other-university-name" name="other_university" placeholder="Please enter your university name" autocomplete="off">
                 <div class="field-note"><i class="fas fa-edit"></i> Specify your institution</div>
             </div>
-            <!-- hidden field to store final value for submission -->
+            
             <input type="hidden" name="university" id="final-university-value">
             <div id="university-error" class="error-msg" style="display: none;"><i class="fas fa-exclamation-circle"></i> Please select a university or specify the name.</div>
         </div>
 
-        <!-- Message Field with dynamic error messages -->
+        
         <div class="form-group">
             <label for="message"><i class="fas fa-comment"></i> Your Message <span class="required-star">*</span></label>
             <textarea id="message" name="message" rows="5" placeholder="Please write your detailed query here... (Minimum 50 characters, must include uppercase, lowercase, a space, and a period)" required></textarea>
@@ -232,7 +232,7 @@
         <button type="submit" id="submit-btn" disabled>Submit Details</button>
     </form>
 
-    <!-- Thank you message (hidden initially) -->
+    
     <div id="thank-you-message" style="display:none; text-align: center; padding: 20px;">
         <div class="thankyou-box">
             <i class="fas fa-check-circle" style="font-size: 60px; color: #27ae60;"></i>
@@ -256,9 +256,7 @@
 <script src="/js/layout.js"></script>
 
 <script>
-    // -------------------------------
     // 1. Province & District Data
-    // -------------------------------
     const provinceDistricts = {
         "Koshi": ["Bhojpur", "Dhankuta", "Ilam", "Jhapa", "Khotang", "Morang", "Okhaldhunga", "Panchthar", "Sankhuwasabha", "Solukhumbu", "Sunsari", "Taplejung", "Terhathum", "Udayapur"],
         "Madhesh": ["Bara", "Dhanusha", "Mahottari", "Parsa", "Rautahat", "Saptari", "Sarlahi", "Siraha"],

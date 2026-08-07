@@ -1,9 +1,8 @@
-// layout.js
 
 (function () {
   "use strict";
 
-  // Configuration
+  
   var CSS_FILE     = "styles.css";
   var FAVICON_FILE = "favicon.ico";
   var FONT_AWESOME = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css";
@@ -56,8 +55,6 @@
   cleanURLBar();
 
 
-  // Base path resolution (GitHub Pages aware)
-
   function getBasePath() {
     var parts = location.pathname.split("/").filter(Boolean);
     if (location.hostname.endsWith("github.io") && parts.length > 0) {
@@ -71,8 +68,6 @@
     return (base + relativePath.replace(/^\/+/, "")).replace(/\/+/g, "/");
   }
 
-
-  // Head injections
 
   function addFavicon() {
     if (document.querySelector("link[rel='icon']")) return;
@@ -103,8 +98,6 @@
   }
 
 
-  // Partial loader
-
   async function loadSection(placeholderId, filePath) {
     var el = document.getElementById(placeholderId);
     if (!el) return;
@@ -119,7 +112,6 @@
   }
 
 
-  // Link normalization
   // Converts relative hrefs to absolute, strips /index.html and trailing slashes
 
   function fixAllLinks() {
@@ -140,8 +132,6 @@
     }
   }
 
-
-  // Navbar toggle and active-link highlighting
 
   function initNavbar() {
     var toggler = document.querySelector(".menu-toggle");
@@ -169,8 +159,6 @@
   }
 
 
-  // Footer year
-
   function initFooter() {
     var yearEl = document.getElementById("year");
     if (yearEl) yearEl.textContent = new Date().getFullYear();
@@ -178,8 +166,7 @@
 
 
   // Lazy loading — images, iframes, videos, background images, and HTML sections
-  // Uses IntersectionObserver with a graceful fallback for older browsers
-
+  
   function initLazyLoading() {
 
     var mediaElements   = document.querySelectorAll("img.lazy, iframe.lazy, video.lazy");
@@ -191,7 +178,7 @@
       return;
     }
 
-    // Media observer (images, iframes, videos)
+    
     if (mediaElements.length) {
       var mediaObserver = new IntersectionObserver(function (entries, observer) {
         entries.forEach(function (entry) {
@@ -209,7 +196,7 @@
       mediaElements.forEach(function (el) { mediaObserver.observe(el); });
     }
 
-    // Section observer (fetch external HTML into a container)
+    
     if (sectionElements.length) {
       var sectionObserver = new IntersectionObserver(function (entries, observer) {
         entries.forEach(function (entry) {
@@ -240,7 +227,7 @@
       sectionElements.forEach(function (el) { sectionObserver.observe(el); });
     }
 
-    // Background-image observer
+    
     if (bgElements.length) {
       var bgObserver = new IntersectionObserver(function (entries, observer) {
         entries.forEach(function (entry) {
@@ -261,8 +248,7 @@
     }
   }
 
-  // Fallback for browsers without IntersectionObserver
-
+  
   function fallbackLoadAll(mediaEls, sectionEls, bgEls) {
     mediaEls.forEach(function (el) {
       if (el.dataset.src)    el.src    = el.dataset.src;
@@ -290,8 +276,6 @@
     });
   }
 
-
-  // Initialization
 
   document.addEventListener("DOMContentLoaded", async function () {
     addFavicon();

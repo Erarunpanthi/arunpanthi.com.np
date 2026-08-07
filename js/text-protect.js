@@ -1,17 +1,13 @@
-
-
 (function () {
   "use strict";
 
-  /* ┌─────────────────────────────────────────┐
      │      §1. INJECT PROTECTION CSS           │
-     └─────────────────────────────────────────┘ */
   const injectStyles = () => {
     const css = document.createElement("style");
     css.id = "cs-shield-styles";
     css.textContent = `
 
-      /* ── Disable All Text Selection ── */
+      
       body, body * {
         -webkit-user-select: none !important;
         -moz-user-select: none !important;
@@ -20,7 +16,7 @@
         -webkit-touch-callout: none !important;
       }
 
-      /* ── Disable Drag on All Elements ── */
+      
       body * {
         -webkit-user-drag: none !important;
         -khtml-user-drag: none !important;
@@ -29,12 +25,12 @@
         user-drag: none !important;
       }
 
-      /* ── Disable Image Pointer Events for Saving ── */
+      
       img {
         pointer-events: none;
       }
 
-      /* ── Blur Content When DevTools Detected ── */
+      
       body.cs-dt-open * {
         visibility: hidden !important;
       }
@@ -47,7 +43,7 @@
         visibility: visible !important;
       }
 
-      /* ── Kill Print Entirely ── */
+      
       @media print {
         html, body, body * {
           display: none !important;
@@ -71,9 +67,7 @@
     document.head.appendChild(css);
   };
 
-  /* ┌─────────────────────────────────────────┐
      │    §2. BLOCK RIGHT-CLICK (SILENT)        │
-     └─────────────────────────────────────────┘ */
   const blockRightClick = () => {
     document.addEventListener("contextmenu", (e) => {
       e.preventDefault();
@@ -83,9 +77,7 @@
     }, true);
   };
 
-  /* ┌─────────────────────────────────────────┐
      │    §3. BLOCK TEXT SELECTION (SILENT)      │
-     └─────────────────────────────────────────┘ */
   const blockSelection = () => {
     document.addEventListener("selectstart", (e) => {
       e.preventDefault();
@@ -110,9 +102,7 @@
     }, 300);
   };
 
-  /* ┌─────────────────────────────────────────┐
      │    §4. BLOCK CLIPBOARD (SILENT)          │
-     └─────────────────────────────────────────┘ */
   const blockClipboard = () => {
     ["copy", "cut", "paste"].forEach((evt) => {
       document.addEventListener(evt, (e) => {
@@ -149,9 +139,7 @@
     }
   };
 
-  /* ┌─────────────────────────────────────────┐
      │    §5. BLOCK KEYBOARD SHORTCUTS          │
-     └─────────────────────────────────────────┘ */
   const blockKeyboard = () => {
     document.addEventListener("keydown", (e) => {
       const key = e.key ? e.key.toLowerCase() : "";
@@ -342,9 +330,7 @@
     }, true);
   };
 
-  /* ┌─────────────────────────────────────────┐
      │    §6. SCREENSHOT COUNTERMEASURES        │
-     └─────────────────────────────────────────┘ */
 
   // Nuke clipboard silently
   const nukeClipboard = () => {
@@ -390,9 +376,7 @@
     });
   };
 
-  /* ┌─────────────────────────────────────────┐
      │    §7. BLOCK DRAG & DROP (SILENT)        │
-     └─────────────────────────────────────────┘ */
   const blockDragDrop = () => {
     ["dragstart", "drag", "dragend", "dragenter", "dragover", "dragleave", "drop"].forEach((evt) => {
       document.addEventListener(evt, (e) => {
@@ -417,9 +401,7 @@
       .observe(document.body, { childList: true, subtree: true });
   };
 
-  /* ┌─────────────────────────────────────────┐
      │    §8. BLOCK PRINT (SILENT)              │
-     └─────────────────────────────────────────┘ */
   const blockPrint = () => {
     // Override window.print
     window.print = function () { return false; };
@@ -442,9 +424,7 @@
     }
   };
 
-  /* ┌─────────────────────────────────────────┐
      │    §9. DEVTOOLS DETECTION (SILENT)       │
-     └─────────────────────────────────────────┘ */
   let devtoolsOpen = false;
 
   const setDevToolsState = (isOpen) => {
@@ -457,7 +437,7 @@
     }
   };
 
-  // ── Method 1: Window Size Difference ──
+  //
   const detectBySize = () => {
     const threshold = 160;
     const wDiff = window.outerWidth - window.innerWidth;
@@ -465,7 +445,7 @@
     setDevToolsState(wDiff > threshold || hDiff > threshold);
   };
 
-  // ── Method 2: Console Object Getter ──
+  //
   const detectByConsole = () => {
     const probe = new Image();
     Object.defineProperty(probe, "id", {
@@ -478,7 +458,7 @@
     }, 2000);
   };
 
-  // ── Method 3: Regex toString ──
+  //
   const detectByToString = () => {
     const check = /./;
     check.toString = function () {
@@ -492,7 +472,7 @@
     }, 2000);
   };
 
-  // ── Method 4: Debugger Timing ──
+  //
   const detectByDebugger = () => {
     setInterval(() => {
       const t1 = performance.now();
@@ -511,17 +491,15 @@
     detectBySize();
   };
 
-  /* ┌─────────────────────────────────────────┐
      │    §10. SOURCE & EXTENSION PROTECTION    │
-     └─────────────────────────────────────────┘ */
   const sourceProtection = () => {
 
-    // ── Block view-source protocol ──
+    //
     if (window.location.protocol === "view-source:") {
       document.documentElement.innerHTML = "";
     }
 
-    // ── Block framing (anti-clickjacking) ──
+    //
     if (window.self !== window.top) {
       try {
         window.top.location = window.self.location;
@@ -530,7 +508,7 @@
       }
     }
 
-    // ── Block self-fetch scraping ──
+    //
     const origFetch = window.fetch;
     window.fetch = function (...args) {
       const url = (args[0] || "").toString();
@@ -540,7 +518,7 @@
       return origFetch.apply(this, args);
     };
 
-    // ── Block XMLHttpRequest self-scraping ──
+    //
     const OrigXHR = window.XMLHttpRequest;
     window.XMLHttpRequest = function () {
       const xhr = new OrigXHR();
@@ -555,7 +533,7 @@
       return xhr;
     };
 
-    // ── Guard DOM text extraction when DevTools open ──
+    //
     const guardProperty = (proto, prop) => {
       const desc = Object.getOwnPropertyDescriptor(proto, prop);
       if (desc && desc.get) {
@@ -576,9 +554,7 @@
     } catch (_) {}
   };
 
-  /* ┌─────────────────────────────────────────┐
      │    §11. DISABLE READER MODE              │
-     └─────────────────────────────────────────┘ */
   const blockReaderMode = () => {
     // Reader mode typically looks for <article> structure
     // Injecting invisible counter-elements confuses parsers
@@ -591,24 +567,22 @@
     document.body.appendChild(decoy);
   };
 
-  /* ┌─────────────────────────────────────────┐
      │    §12. DISABLE DOCUMENT INTERACTIONS    │
-     └─────────────────────────────────────────┘ */
   const blockMiscInteractions = () => {
 
-    // ── Disable document.designMode ──
+    //
     Object.defineProperty(document, "designMode", {
       get: () => "off",
       set: () => {},
     });
 
-    // ── Disable contentEditable override ──
+    //
     Object.defineProperty(document.body, "contentEditable", {
       get: () => "false",
       set: () => {},
     });
 
-    // ── Block execCommand('copy') ──
+    //
     const origExec = document.execCommand;
     document.execCommand = function (cmd, ...args) {
       const blocked = ["copy", "cut", "selectAll"];
@@ -616,7 +590,7 @@
       return origExec.call(this, cmd, ...args);
     };
 
-    // ── Disable getSelection().toString() override ──
+    //
     const origGetSel = window.getSelection;
     window.getSelection = function () {
       const sel = origGetSel.call(this);
@@ -629,7 +603,7 @@
       return sel;
     };
 
-    // ── Disable right-click "Inspect" on touch devices ──
+    //
     document.addEventListener("touchstart", (e) => {
       if (e.touches.length > 1) {
         e.preventDefault(); // Block multi-touch (pinch can open menus)
@@ -652,9 +626,7 @@
     }, true);
   };
 
-  /* ┌─────────────────────────────────────────┐
      │    §13. CONSOLE WARFARE                  │
-     └─────────────────────────────────────────┘ */
   const consoleLockdown = () => {
     // Periodically clear console
     setInterval(() => {
@@ -679,9 +651,7 @@
     }, 3000);
   };
 
-  /* ┌─────────────────────────────────────────┐
      │    §14. MUTATION GUARD                   │
-     └─────────────────────────────────────────┘
      Watches for injected scripts/iframes that
      might try to extract content
   */
@@ -712,13 +682,11 @@
     }).observe(document.documentElement, { childList: true, subtree: true });
   };
 
-  /* ┌─────────────────────────────────────────┐
      │       🚀 INITIALIZATION                  │
-     └─────────────────────────────────────────┘ */
   const init = () => {
     injectStyles();
 
-    // ── Activate Every Protection Layer ──
+    //
     blockRightClick();
     blockSelection();
     blockClipboard();
@@ -734,7 +702,7 @@
     mutationGuard();
   };
 
-  /* ── Start on DOM Ready ── */
+  
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", init);
   } else {

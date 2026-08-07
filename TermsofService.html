@@ -4,17 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Language" content="en">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; img-src 'self' data: https:; font-src 'self' https://cdnjs.cloudflare.com; connect-src 'self' https://arunpanthi.com.np;">
     <title>Terms of Service | CivPrepMaster — Civil Engineering Resources Nepal</title>
     <meta name="description" content="Read the Terms of Service for CivPrepMaster. Understand user responsibilities, intellectual property rights, and guidelines for using our civil engineering resources.">
     <meta name="keywords" content="CivPrepMaster terms of service, civil engineering platform terms, user responsibilities, intellectual property, educational resources Nepal">
     <meta name="author" content="Er. Arun Panthi">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://arunpanthi.com.np/TermsofService">
+    <link rel="canonical" href="https://arunpanthi.com.np/TermsofService.html">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="CivPrepMaster">
     <meta property="og:title" content="Terms of Service | CivPrepMaster">
     <meta property="og:description" content="CivPrepMaster Terms of Service: Guidelines, user responsibilities, and intellectual property rights for using our civil engineering educational resources.">
-    <meta property="og:url" content="https://arunpanthi.com.np/TermsofService">
+    <meta property="og:url" content="https://arunpanthi.com.np/TermsofService.html">
     <meta property="og:image" content="https://arunpanthi.com.np/assets/preview.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -23,21 +24,23 @@
     <meta name="twitter:title" content="Terms of Service | CivPrepMaster">
     <meta name="twitter:description" content="CivPrepMaster Terms of Service. Rules and guidelines for using our civil engineering study materials, PSC exam prep, and more.">
     <meta name="twitter:image" content="https://arunpanthi.com.np/assets/preview.jpg">
-    <link rel="icon" href="https://arunpanthi.com.np/logo.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" href="https://arunpanthi.com.np/assets/apple-touch-icon.png">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="/css/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
+    <noscript><link rel="stylesheet" href="/css/styles.css"></noscript>
     <link rel="stylesheet" href="/css/shared.css">
-<link rel="stylesheet" href="/css/styles.css">
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "WebPage",
         "name": "Terms of Service - CivPrepMaster",
         "description": "Terms of Service for CivPrepMaster, a trusted platform for civil engineering resources in Nepal.",
-        "url": "https://arunpanthi.com.np/TermsofService",
+        "url": "https://arunpanthi.com.np/TermsofService.html",
         "inLanguage": "en",
         "isPartOf": {
             "@type": "WebSite",
@@ -54,19 +57,17 @@
             "@type": "BreadcrumbList",
             "itemListElement": [
                 { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://arunpanthi.com.np" },
-                { "@type": "ListItem", "position": 2, "name": "Terms of Service", "item": "https://arunpanthi.com.np/TermsofService" }
+                { "@type": "ListItem", "position": 2, "name": "Terms of Service", "item": "https://arunpanthi.com.np/TermsofService.html" }
             ]
         }
     }
     </script>
 </head>
 <body>
-
     <div id="navbar"></div>
 
-
     <header class="hero-section hero-terms">
-        <h1 style="color: white;">Terms of Service</h1>
+        <h1><i class="fas fa-file-contract"></i> Terms of Service</h1>
         <p>Please read these terms carefully before using CivPrepMaster's services.</p>
     </header>
 
@@ -118,10 +119,10 @@
         </div>
 
         <div class="btn-group">
-            <a href="Resources" class="btn btn-gradient-green">
+            <a href="/Resources" class="btn btn-gradient-green">
                 <i class="fas fa-book" aria-hidden="true"></i> Explore Resources
             </a>
-            <a href="contactus" class="btn btn-outline-primary">
+            <a href="/contactus.html" class="btn btn-outline-primary">
                 <i class="fas fa-headset" aria-hidden="true"></i> Contact Support
             </a>
         </div>
@@ -131,6 +132,6 @@
 
     <div id="social-section"></div>
     <div id="footer"></div>
-    <script src="/js/layout.js"></script>
+    <script src="/js/layout.js" defer></script>
 </body>
-    </html>
+</html>

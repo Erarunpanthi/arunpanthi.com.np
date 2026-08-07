@@ -1,4 +1,3 @@
-/* ===== RESET & BASE ===== */
 *,
 *::before,
 *::after {
@@ -44,12 +43,9 @@ body {
     padding: 0;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Keeps 60% elements centered */
+    align-items: center;
 }
 
-/* ============================================================
-   ✅ FULL‑WIDTH ELEMENTS (Navbar, Hero, Social, Footer, Section)
-   ============================================================ */
 .navbar,
 #navbar,
 .social-media,
@@ -57,22 +53,20 @@ body {
 footer,
 #footer,
 .section {
-    width: 100% !important;          /* Force full viewport width */
-    max-width: 100% !important;      /* Remove any max‑width limit */
-    align-self: stretch !important;  /* Override body's align‑items: center */
-    flex-shrink: 0 !important;       /* Prevent shrinking */
+    width: 100% !important;
+    max-width: 100% !important;
+    align-self: stretch !important;
+    flex-shrink: 0 !important;
     margin-left: 0 !important;
     margin-right: 0 !important;
-    border-radius: 0 !important;     /* Remove rounding for full‑width */
+    border-radius: 0 !important;
 }
 
-/* Gap between navbar and hero */
 .navbar,
 #navbar {
     margin-bottom: 25px !important;
 }
 
-/* ===== HERO SECTION STYLES ===== */
 .hero {
    .hero {
   background-color: var(--green-400);
@@ -81,7 +75,7 @@ footer,
   padding: 40px 20px;
   text-align: center;
   border-radius: 25px;
-  margin: 0 auto;   /* This centers the block */
+  margin: 0 auto;
   width: 60%;
 }
 
@@ -95,7 +89,6 @@ footer,
     margin: 10px 0 !important;
 }
 
-/* ===== SOCIAL MEDIA ===== */
 .social-media,
 #social-section {
     background: linear-gradient(135deg, var(--green-400), var(--green-600)) !important;
@@ -104,7 +97,6 @@ footer,
     text-align: center !important;
 }
 
-/* ===== FOOTER ===== */
 footer,
 #footer {
     background-color: var(--green-400) !important;
@@ -114,9 +106,6 @@ footer,
     margin-top: 20px !important;
 }
 
-/* ============================================================
-   ✅ 60% WIDTH ELEMENTS (Container & FAQ)
-   ============================================================ */
 .container,
 .faq {
     width: 60% !important;
@@ -129,7 +118,6 @@ footer,
     transition: var(--transition-medium) !important;
 }
 
-/* ===== HEADINGS ===== */
 .container h1,
 .faq h2 {
     font-size: 2rem !important;
@@ -159,12 +147,9 @@ footer,
     font-size: 1rem !important;
 }
 
-/* ============================================================
-   ✅ BOOK LIST – EXACTLY 2 CARDS PER ROW (FIXED)
-   ============================================================ */
 .book-list {
     display: grid !important;
-    grid-template-columns: repeat(2, 1fr) !important; /* ⬅️ EXACTLY 2 COLUMNS */
+    grid-template-columns: repeat(2, 1fr) !important;
     gap: 24px !important;
     margin-top: 10px !important;
 }
@@ -209,14 +194,11 @@ footer,
     opacity: 1 !important;
 }
 
-/* ============================================================
-   ✅ CIRCULAR IMAGE WITH BORDER
-   ============================================================ */
 .book img {
   width: 120px;
   height: 120px;
-  object-fit: cover;   /* crops without distortion */
-  border-radius: 50%;  /* makes it circular */
+  object-fit: cover;
+  border-radius: 50%;
   border: 4px solid var(--green-600);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.10);
   display: block;
@@ -229,7 +211,6 @@ footer,
     box-shadow: 0 6px 16px rgba(46, 125, 50, 0.25) !important;
 }
 
-/* ===== BOOK TITLE & BUTTON ===== */
 .book h2 {
     font-size: 1.25rem !important;
     font-weight: 700 !important;
@@ -273,11 +254,6 @@ footer,
     font-size: 0.9rem !important;
 }
 
-/* ============================================================
-   RESPONSIVE BREAKPOINTS
-   ============================================================ */
-
-/* Tablets and smaller */
 @media (max-width: 768px) {
     .container,
     .faq {
@@ -291,7 +267,6 @@ footer,
         font-size: 1.5rem !important;
     }
 
-    /* Still exactly 2 columns on tablets */
     .book-list {
         grid-template-columns: repeat(2, 1fr) !important;
         gap: 16px !important;
@@ -322,10 +297,9 @@ footer,
     }
 }
 
-/* Small phones – still 2 columns, but we reduce sizes */
 @media (max-width: 480px) {
     .book-list {
-        grid-template-columns: repeat(2, 1fr) !important; /* Keeps exactly 2 */
+        grid-template-columns: repeat(2, 1fr) !important;
         gap: 12px !important;
     }
 
@@ -335,12 +309,12 @@ footer,
     }
 
     .book h2 {
-        font-size: 0.85rem !important; /* Smaller text to fit 2 columns */
+        font-size: 0.85rem !important;
         margin-bottom: 10px !important;
     }
 
     .book img {
-        width: 60px !important;  /* Smaller image on very small screens */
+        width: 60px !important;
         height: 60px !important;
         border-width: 3px !important;
         margin-bottom: 10px !important;
@@ -362,20 +336,8 @@ footer,
     }
 }
 
-/* For extremely tiny screens (e.g., 320px) you may want 1 column – 
-   but since you said "only two cardview", I kept 2 columns everywhere. 
-   If text gets too squished, you can uncomment this block:
-   
-@media (max-width: 380px) {
-    .book-list {
-        grid-template-columns: 1fr !important;
-    }
-}
-*/
-
-/* Tablet to small desktop */
 @media (min-width: 769px) and (max-width: 1024px) {
     .book-list {
-        grid-template-columns: repeat(2, 1fr) !important; /* Still exactly 2 */
+        grid-template-columns: repeat(2, 1fr) !important;
     }
 }

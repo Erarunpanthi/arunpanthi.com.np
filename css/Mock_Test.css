@@ -147,7 +147,6 @@
         button.btn-submit:hover { background: #E65100; }
         button:disabled { opacity: 0.55; cursor: not-allowed; }
 
-        /* ========== CUSTOM MODAL ========== */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -258,7 +257,6 @@
         }
         .options-list li.selected .option-letter { background: #2E7D32; color: #fff; }
 
-        /* ========== NAVIGATION BAR – PREVIOUS LEFT, SUBMIT CENTER, NEXT RIGHT ========== */
         .nav-buttons {
             display: flex;
             align-items: center;

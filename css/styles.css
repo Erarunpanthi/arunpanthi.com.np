@@ -118,7 +118,7 @@ a {
   width: 60%;
   max-width: 100%;
   box-shadow: var(--shadow-2);
-  /* ----- CENTERING ----- */
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -141,7 +141,7 @@ a {
   border-radius: 0;
   margin: 0;
   width: 100%;
-  /* ----- CENTERING ----- */
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -173,7 +173,7 @@ footer {
   padding: 20px;
   margin-top: 20px;
   width: 100%;
-  /* ----- CENTERING ----- */
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -457,7 +457,6 @@ button:hover {
   margin-right: 8px;
 }
 
-/* ===== LAZY LOAD ===== */
 .lazy,
 .lazy-section,
 .lazy-bg {
@@ -552,7 +551,6 @@ img.lazy {
   }
 }
 
-/* ===== UTILITY ===== */
 .text-center {
   text-align: center;
 }

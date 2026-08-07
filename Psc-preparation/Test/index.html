@@ -102,7 +102,7 @@
             transform: rotate(180deg);
         }
 
-        /* ----- Accordion Body ----- */
+        
         .accordion-body {
             max-height: 0;
             overflow: hidden;
@@ -115,7 +115,7 @@
             padding: 0 20px 20px 20px;
         }
 
-        /* ----- Sets Container ----- */
+        
         .sets-container {
             display: flex;
             flex-direction: column;
@@ -123,7 +123,7 @@
             margin-top: 6px;
         }
 
-        /* ----- Set Card ----- */
+        
         .set-card {
             border: 1px solid var(--gray-200, #e5e7eb);
             border-radius: var(--radius-sm, 8px);
@@ -191,7 +191,7 @@
             gap: 12px;
         }
 
-        /* ----- Start Exam Button ----- */
+        
         .set-body .set-content .start-exam-btn {
             display: inline-flex;
             align-items: center;
@@ -218,7 +218,7 @@
             font-size: 1rem;
         }
 
-        /* ----- Section Divider ----- */
+        
         .section-divider {
             margin: 40px 0 24px 0;
             padding-bottom: 12px;
@@ -243,7 +243,7 @@
             border-radius: 20px;
         }
 
-        /* ----- Topic ID Badge ----- */
+        
         .topic-id-badge {
             display: inline-flex !important;
             align-items: center !important;
@@ -284,7 +284,7 @@
             padding: 6px 0;
         }
 
-        /* ----- Responsive ----- */
+        
         @media (max-width: 640px) {
             .accordion-header {
                 padding: 14px 16px;
@@ -355,21 +355,21 @@
         <h1>📘 Practice Test Sets</h1>
         <p style="margin-bottom: 24px;">Expand any topic below to view available exam sets. Click <strong>Start Exam</strong> to begin the timed test.</p>
 
-        <!-- ===== PART I – AWARENESS ===== -->
+        <!-- PART I – AWARENESS -->
         <div class="section-divider">
             <h2>Part I – General Awareness &amp; Contemporary Issues</h2>
             <div class="sub-meta">25 Marks · 25 × 1 Mark</div>
         </div>
         <div class="book-list" id="awarenessGrid"></div>
 
-        <!-- ===== PART I – REASONING ===== -->
+        <!-- PART I – REASONING -->
         <div class="section-divider">
             <h2>Part I – General Reasoning Test</h2>
             <div class="sub-meta">25 Marks · 25 × 1 Mark</div>
         </div>
         <div class="book-list" id="reasoningGrid"></div>
 
-        <!-- ===== PART II – TECHNICAL ===== -->
+        <!-- PART II – TECHNICAL -->
         <div class="section-divider">
             <h2>Part II – General Technical Subject</h2>
             <div class="sub-meta">50 Marks · 50 × 1 Mark</div>
@@ -389,9 +389,7 @@
         (function() {
             'use strict';
 
-            // ================================================================
             //  CONSTANTS
-            // ================================================================
 
             /** Base URL for exam files – must end with a slash. */
             const TEST_BASE_URL = 'https://arunpanthi.com.np/Psc-preparation/Test/';
@@ -665,9 +663,7 @@
                 }]
             };
 
-            // ================================================================
             //  UTILITY FUNCTIONS
-            // ================================================================
 
             /**
              * Generates a deterministic color from a string ID using a simple hash.
@@ -692,9 +688,7 @@
                 return topicId + '-' + setIndex;
             }
 
-            // ================================================================
             //  DOM BUILDERS
-            // ================================================================
 
             /**
              * Creates a set card DOM element.
@@ -707,7 +701,6 @@
                 const card = document.createElement('div');
                 card.className = 'set-card';
 
-                // ----- Header (toggles set body) -----
                 const header = document.createElement('div');
                 header.className = 'set-header';
                 header.setAttribute('role', 'button');
@@ -726,7 +719,7 @@
                 header.appendChild(nameSpan);
                 header.appendChild(toggleIcon);
 
-                // ----- Body (content + Start button) -----
+                // Body (content + Start button)
                 const body = document.createElement('div');
                 body.className = 'set-body';
 
@@ -746,7 +739,6 @@
                 card.appendChild(header);
                 card.appendChild(body);
 
-                // ----- Toggle event for set card -----
                 header.addEventListener('click', function(e) {
                     e.stopPropagation();
                     const isOpen = card.classList.toggle('open');
@@ -772,7 +764,6 @@
                 const item = document.createElement('div');
                 item.className = 'accordion-item';
 
-                // ----- Header -----
                 const header = document.createElement('div');
                 header.className = 'accordion-header';
                 header.setAttribute('role', 'button');
@@ -802,7 +793,6 @@
                 header.appendChild(marks);
                 header.appendChild(icon);
 
-                // ----- Body -----
                 const body = document.createElement('div');
                 body.className = 'accordion-body';
 
@@ -826,7 +816,6 @@
                 item.appendChild(header);
                 item.appendChild(body);
 
-                // ----- Accordion toggle (single-open) -----
                 header.addEventListener('click', function(e) {
                     // Ignore clicks that originated from a set header inside.
                     if (e.target.closest('.set-header')) return;
@@ -879,7 +868,6 @@
                 });
             }
 
-            
 
             renderTopics('awarenessGrid', topicsData.awareness);
             renderTopics('reasoningGrid', topicsData.reasoning);

@@ -240,16 +240,16 @@
 </head>
 <body>
 
-    <!-- Nepal Time Displays -->
+    
     <div class="nepal-time left" id="nepalTimeLeft">🇳🇵 Nepal: <span id="timeLeft">Loading...</span></div>
     <div class="nepal-time right" id="nepalTimeRight">🇳🇵 Nepal: <span id="timeRight">Loading...</span></div>
 
-    <!-- Countdown Timer Container -->
+    
     <div class="container">
         <h1>⏱️ Persistent Countdown</h1>
         <div class="timer-display" id="timer">00:00:00</div>
 
-        <!-- Quick Time Buttons -->
+        
         <div class="buttons">
             <button onclick="addTime(60)">1m</button>
             <button onclick="addTime(120)">2m</button>
@@ -264,7 +264,7 @@
             <button class="btn-5h" onclick="addTime(18000)">5h</button>
         </div>
 
-        <!-- Control Buttons -->
+        
         <div class="control-buttons">
             <button onclick="startTimer()" id="startBtn">▶ Start</button>
             <button onclick="stopTimer()" id="stopBtn">⏸ Stop</button>
@@ -275,7 +275,7 @@
         <div class="persist-badge">💾 Persistent &nbsp;·&nbsp; <span>✓ survives refresh / close</span></div>
     </div>
 
-    <!-- Message Overlay -->
+    
     <div class="message-overlay" id="messageOverlay">
         <div class="message-card" id="messageCard">
             <h2 id="messageTitle">Message</h2>
@@ -285,10 +285,8 @@
     </div>
 
     <script>
-        // ================================================================
         //  PERSISTENT TIMER with enhanced bell (richer, more attractive)
         //  Rings on start AND at 1‑hour mark. No "Timer Started" message.
-        // ================================================================
 
         // ---- DOM refs ----
         const timerEl = document.getElementById('timer');
@@ -333,7 +331,7 @@
         function saveState(state) {
             try {
                 localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-            } catch (_) { /* ignore */ }
+            } catch (_) {  }
         }
 
         // ---- Compute current remaining seconds ----
@@ -435,7 +433,7 @@
                         osc.start(t);
                         osc.stop(t + 0.3);
                     }
-                } catch (_2) { /* silent fail */ }
+                } catch (_2) {  }
             }
         }
 

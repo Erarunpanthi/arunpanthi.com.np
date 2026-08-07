@@ -24,7 +24,7 @@
     
 	  <div id="navbar"></div><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous">
 
-    <!-- ===== STRUCTURED DATA (JSON-LD) ===== -->
+    
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
@@ -70,7 +70,7 @@
         }
     </script>
 <style>
-	/* ===== CIRCULAR GREEN TOPIC ID BADGE ===== */
+	
 .topic-id-badge {
     display: inline-flex !important;
     align-items: center !important;
@@ -102,8 +102,7 @@
 </head>
 <body>
 
-    
-    
+
     <section class="hero" aria-labelledby="hero-heading">
         <h1 id="hero-heading">Nepal Engineering Service – First Paper</h1>
         <p>Civil Group · Third Class · General Subject (MCQ) – Total 100 Marks</p>
@@ -145,16 +144,13 @@
 
     </main>
 
-    <!-- JAVASCRIPT                                                        -->
 
     <script>
         (function() {
 
-            // -------- BASE URL for all note links ------------------------
             // CHANGE THIS if your page moves to a different location
             const BASE_URL = '/Psc-preparation/first-paper-notes/';
 
-            // -------- DATA -------------------------------------------------
             const topicsData = {
 
                 // ---- Awareness ----
@@ -224,7 +220,6 @@
                 ]
             };
 
-            // -------- HELPER: generate a consistent color for topic ID -----
             function getColorForId(id) {
                 const colors = ['#e8f5e9', '#c8e6c9', '#a5d6a7', '#81c784', '#66bb6a', '#4caf50', '#43a047', '#388e3c',
                     '#2e7d32', '#1b5e20'
@@ -236,7 +231,6 @@
                 return colors[Math.abs(hash) % colors.length];
             }
 
-            // -------- RENDER TOPICS INTO .book CARDS ---------------------
             function renderTopics(containerId, topics) {
                 const container = document.getElementById(containerId);
                 if (!container) return;
@@ -279,7 +273,6 @@
                 });
             }
 
-            // -------- INIT ------------------------------------------------
             renderTopics('awarenessGrid', topicsData.awareness);
             renderTopics('reasoningGrid', topicsData.reasoning);
             renderTopics('technicalGrid', topicsData.technical);

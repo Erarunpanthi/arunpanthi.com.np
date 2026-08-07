@@ -7,14 +7,14 @@
 (function () {
   "use strict";
 
-  // ---------- CONFIG ----------
+  
   const CONFIG = {
-    rootMargin: "120px 0px",          // start loading a bit before visible
+    rootMargin: "120px 0px",          
     threshold: 0.12,
-    animationDuration: 0.55,          // seconds
+    animationDuration: 0.55,          
     animationEasing: "cubic-bezier(0.22, 0.61, 0.36, 1)",
-    minElementSize: 12,               // ignore tiny elements
-    lazyMediaOffset: 100,             // how far below viewport to lazy media
+    minElementSize: 12,               
+    lazyMediaOffset: 100,             
   };
 
   const SKIP_TAGS = new Set([
@@ -40,7 +40,7 @@
   let observer;
   const processed = new WeakSet();
 
-  // ---------- STYLE INJECTION ----------
+  
   function injectStyles() {
     if (document.getElementById("auto-lazy-styles")) return;
 
@@ -59,7 +59,7 @@
           opacity ${CONFIG.animationDuration}s ${CONFIG.animationEasing},
           transform ${CONFIG.animationDuration}s ${CONFIG.animationEasing};
       }
-      /* simple shimmer for deferred images */
+      
       .ll-shimmer-wrap {
         position: relative;
         overflow: hidden;
@@ -85,7 +85,7 @@
     document.head.appendChild(style);
   }
 
-  // ---------- HELPERS ----------
+  
   function inInitialViewport(rect) {
     const vh = window.innerHeight || document.documentElement.clientHeight || 0;
     return rect.top < vh + 20 && rect.bottom > -20;
@@ -107,14 +107,13 @@
     return true;
   }
 
-  // ---------- MEDIA DEFERRING ----------
+  
   function makeImageLazy(img, rect) {
     if (img.dataset.llSrc || img.dataset.llSrcset) return;
     const src = img.getAttribute("src");
     const srcset = img.getAttribute("srcset");
     if (!src && !srcset) return;
-    if (!isBelowInitialViewport(rect)) return; // only defer if below first screen
-
+    if (!isBelowInitialViewport(rect)) return; 
     if (src) {
       img.dataset.llSrc = src;
       img.removeAttribute("src");
@@ -124,11 +123,11 @@
       img.removeAttribute("srcset");
     }
 
-    // tiny transparent placeholder so layout keeps size
+    
     img.src =
       "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1'%3E%3C/svg%3E";
 
-    // simple shimmer wrapper
+    
     if (!img.parentElement.classList.contains("ll-shimmer-wrap")) {
       const w = img.getAttribute("width") || img.style.width || "100%";
       const h = img.getAttribute("height") || img.style.height || "200";
@@ -239,23 +238,23 @@
     else if (tag === "VIDEO") restoreVideo(el);
     restoreBackground(el);
 
-    // Also restore any lazy media inside this element
+    
     el.querySelectorAll("img[data-ll-src], iframe[data-ll-src], video[data-ll-src]").forEach(restoreMedia);
     el.querySelectorAll("[data-ll-bg]").forEach(restoreBackground);
   }
 
-  // ---------- ELEMENT PREP / REVEAL ----------
+  // ELEMENT PREP / REVEAL
   function prepareElement(el, rect) {
     if (processed.has(el)) return;
     processed.add(el);
 
-    // store original inline styles in case they exist
+    
     if (!el.dataset.llOrigOpacity) el.dataset.llOrigOpacity = el.style.opacity || "";
     if (!el.dataset.llOrigTransform) el.dataset.llOrigTransform = el.style.transform || "";
 
     el.classList.add("ll-lazy");
 
-    // set up lazy media ONLY for elements starting below first screen
+    
     if (isBelowInitialViewport(rect)) {
       makeMediaLazy(el, rect);
       observer.observe(el);
@@ -268,17 +267,17 @@
   function revealElement(el) {
     if (el.classList.contains("ll-visible")) return;
 
-    // restore any deferred media
+    
     restoreMedia(el);
 
-    // trigger CSS animation by toggling classes
+    
     el.classList.add("ll-visible");
     el.classList.remove("ll-lazy");
 
     // optional: cleanup after animation
     const t = (CONFIG.animationDuration + 0.1) * 1000;
     setTimeout(() => {
-      // restore original inline styles if any
+      
       if (el.dataset.llOrigOpacity !== undefined) {
         el.style.opacity = el.dataset.llOrigOpacity;
         delete el.dataset.llOrigOpacity;
@@ -291,7 +290,7 @@
     }, t);
   }
 
-  // ---------- SCANNING ----------
+  
   function scan(root = document.body) {
     if (!root) return;
 
@@ -314,7 +313,7 @@
     }
   }
 
-  // ---------- OBSERVERS ----------
+  
   function createIntersectionObserver() {
     if (!("IntersectionObserver" in window)) {
       // fallback: show everything & restore media
@@ -346,7 +345,7 @@
         m.addedNodes.forEach((n) => {
           if (n.nodeType !== 1) return;
           if (SKIP_TAGS.has(n.tagName)) return;
-          // scan the new subtree
+          
           scan(n);
         });
       });
@@ -358,7 +357,7 @@
     });
   }
 
-  // ---------- PUBLIC API ----------
+  
   window.AutoLazy = {
     refresh() {
       scan(document.body);
@@ -368,7 +367,7 @@
     }
   };
 
-  // ---------- INIT ----------
+  
   function init() {
     injectStyles();
     observer = createIntersectionObserver();

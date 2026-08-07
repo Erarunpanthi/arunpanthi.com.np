@@ -60,7 +60,7 @@ p,
   overflow-wrap: break-word;
 }
 
-/* Headings remain aligned as defined */
+
 h1,
 h2,
 h3,
@@ -122,7 +122,7 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center; /* fallback */
+  text-align: center; 
 }
 .hero h1 {
   font-size: 36px;
@@ -145,7 +145,7 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center; /* fallback */
+  text-align: center; 
 }
 .social-media .icons {
   display: flex;
@@ -160,13 +160,13 @@ a {
 .social-media .icons a:hover {
   transform: scale(1.2);
 }
-/* Center any button inside social section */
+
 .social-media .cta-button,
 .social-media .secondary-button {
   margin: 10px auto 0 auto;
 }
 
-/* ===== FOOTER – fully centered with Flexbox ===== */
+/* Footer – fully centered with Flexbox */
 footer {
   background-color: var(--green-400);
   color: #fff;
@@ -177,7 +177,7 @@ footer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center; /* fallback */
+  text-align: center; 
 }
 footer a {
   color: #fff;
@@ -187,7 +187,7 @@ footer a:hover {
   text-decoration: underline;
 }
 
-/* ===== 60% WIDTH CONTAINERS ===== */
+/* 60% WIDTH CONTAINERS */
 .container {
   width: 60%;
   max-width: 100%;
@@ -408,11 +408,11 @@ button:hover {
   display: none;
   padding: 10px 0;
 }
-/* Hide the checkbox itself */
+
 .semester-toggle {
   display: none;
 }
-/* Show subjects when checkbox is checked */
+
 .semester-toggle:checked + .semester .subjects {
   display: block;
 }
@@ -483,7 +483,7 @@ img.lazy {
   background-position: center;
 }
 
-/* ===== RESPONSIVE – fixes hero & containers on mobile ===== */
+/* RESPONSIVE – fixes hero & containers on mobile */
 @media (max-width: 768px) {
   .hero {
     width: 92%;

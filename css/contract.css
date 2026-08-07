@@ -1,39 +1,39 @@
-/* General Styles */
+
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #e8f5e9; /* Light green background */
+    background-color: #e8f5e9; 
     color: #333;
     margin: 0;
     padding: 0;
-    line-height: 1.6; /* Improved readability */
+    line-height: 1.6; 
 }
 
 h1, h2 {
-    color: #388E3C; /* Dark green headings */
+    color: #388E3C; 
 }
 
-/* Navbar Styles */
+
 .navbar {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    background-color: #2E7D32; /* Darker green navbar */
+    background-color: #2E7D32; 
     padding: 10px 0;
 }
 
 .navbar a {
-    color: #fff; /* Link color */
-    padding: 8px 10px; /* Reduced padding for compactness */
-    text-decoration: none; /* Remove underline */
-    font-size: 14px; /* Smaller font size */
-    transition: background-color 0.3s; /* Animation */
+    color: #fff; 
+    padding: 8px 10px; 
+    text-decoration: none; 
+    font-size: 14px; 
+    transition: background-color 0.3s; 
 }
 
 .navbar a:hover {
-    background-color: #1B5E20; /* Even darker green on hover */
+    background-color: #1B5E20; 
 }
 
-/* Container */
+
 .Binitacontainer {
     max-width: 800px;
     margin: 30px auto;
@@ -44,7 +44,7 @@ h1, h2 {
     border: 1px solid #c8e6c9;
 }
 
-/* Header */
+
 .Binitacontainer h1 {
     color: #004d40;
     margin-bottom: 20px;
@@ -52,7 +52,7 @@ h1, h2 {
     font-size: 28px;
 }
 
-/* Form */
+
 form {
     display: flex;
     flex-direction: column;
@@ -82,7 +82,7 @@ input:focus, select:focus, textarea:focus {
     box-shadow: 0 0 5px rgba(0, 77, 64, 0.5);
 }
 
-/* Name Row */
+
 .name-row {
     display: flex;
     gap: 10px;
@@ -91,7 +91,7 @@ input:focus, select:focus, textarea:focus {
     flex: 1;
 }
 
-/* Phone Number */
+
 .phone-number {
     display: flex;
     gap: 10px;
@@ -100,7 +100,7 @@ input:focus, select:focus, textarea:focus {
     width: 100px;
 }
 
-/* Submit Button */
+
 button {
     padding: 12px 20px;
     border: none;
@@ -116,24 +116,23 @@ button:hover {
     transform: translateY(-2px);
 }
 .cta-button {
-    background-color: #28a745; /* Green button background */
-    color: white; /* White text for button */
-    padding: 10px 20px; /* Reduced padding */
+    background-color: #28a745; 
+    color: white; 
+    padding: 10px 20px; 
     text-decoration: none;
-    border-radius: 25px; /* Rounded button */
+    border-radius: 25px; 
     font-size: 18px;
     transition: background-color 0.3s ease, transform 0.3s ease;
-    margin-top: 10px; /* Space above button */
-    display: inline-block; /* Ensure proper spacing */
+    margin-top: 10px; 
+    display: inline-block; 
 }
 
 .cta-button:hover {
-    background-color: #218838; /* Darker green on hover */
+    background-color: #218838; 
     transform: scale(1.05);
 }
 
 
-/* Social Media Section */
 .social-media {
     text-align: center;
     margin-top: 30px;
@@ -152,41 +151,41 @@ button:hover {
     color: #00e676;
 }
 
-/* Footer */
+
 .section {
-    margin: 30px auto; /* Increased margin */
+    margin: 30px auto; 
     padding: 20px;
-    border-radius: 20px; /* Increased border radius for more rounded edges */
+    border-radius: 20px; 
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    background-color: white; /* Section background */
-    width: 90%; /* Width for sections */
-    max-width: 800px; /* Max width for sections */
-    text-align: center; /* Center text */
+    background-color: white; 
+    width: 90%; 
+    max-width: 800px; 
+    text-align: center; 
 }
 
-/* Social Media Styles */
+
 .social-media {
     background: linear-gradient(135deg, #4CAF50, #2E7D32);
-    color: white; /* White text for social media section */
-    padding: 30px 20px; /* Reduced padding */
+    color: white; 
+    padding: 30px 20px; 
     text-align: center;
-    border-radius: 20px; /* Increased border radius */
-    margin: 30px auto; /* Increased margin */
+    border-radius: 20px; 
+    margin: 30px auto; 
 }
 
 .social-media h2 {
-    color: white; /* White color for heading */
-    margin: 10px 0; /* Reduced margin */
+    color: white; 
+    margin: 10px 0; 
 }
 
 .social-media p {
-    margin: 10px 0; /* Reduced margin for paragraph */
+    margin: 10px 0; 
 }
 
 .social-media .icons {
     display: flex;
     justify-content: center;
-    gap: 20px; /* Space between icons */
+    gap: 20px; 
 }
 
 .social-media .icons a {
@@ -199,7 +198,7 @@ button:hover {
     transform: scale(1.2);
 }
 
-/* Footer Styles */
+
 footer {
     background-color: #4CAF50;
     color: #fff;
@@ -217,7 +216,7 @@ footer a {
 footer a:hover {
     text-decoration: underline;
 }
-/* Responsive Design */
+
 @media (max-width: 600px) {
     .name-row {
         flex-direction: column;

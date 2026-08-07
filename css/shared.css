@@ -307,7 +307,7 @@ main > p {
     transform: scale(1.04);
 }
 
-/* Handle both icon-accent and icon-primary classes */
+
 .content-section h2 .icon-accent,
 .content-section h2 .icon-primary {
     background: var(--primary-light);
@@ -1000,7 +1000,7 @@ main > p {
     transform: scale(1.04);
 }
 
-/* Handle both icon-accent and icon-primary classes */
+
 .content-section h2 .icon-accent,
 .content-section h2 .icon-primary {
     background: var(--primary-light);

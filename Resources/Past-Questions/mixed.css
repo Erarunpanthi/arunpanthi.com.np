@@ -3,8 +3,6 @@
    Applied to: /Resources/Past-Questions
    Color Palette: Green (#2E7D32) · White · Black
    ============================================ */
-
-/* ──────────────── CSS Variables ──────────────── */
 :root {
     --green-900: #1B5E20;
     --green-800: #2E7D32;
@@ -42,8 +40,6 @@
     --max-width: 900px;
     --max-width-wide: 1200px;
 }
-
-/* ──────────────── Reset & Base ──────────────── */
 *,
 *::before,
 *::after {
@@ -71,8 +67,6 @@ body {
     background: var(--green-800);
     color: var(--white);
 }
-
-/* ──────────────── Page Header ──────────────── */
 .page-header {
     background: linear-gradient(160deg, var(--green-900) 0%, var(--green-800) 50%, var(--green-700) 100%);
     color: var(--white);
@@ -136,8 +130,6 @@ body {
     color: var(--white);
     font-weight: 700;
 }
-
-/* ──────────────── Breadcrumb ──────────────── */
 .breadcrumb {
     max-width: var(--max-width-wide);
     margin: 0 auto;
@@ -187,8 +179,6 @@ body {
     color: var(--black-600);
     font-weight: 600;
 }
-
-/* ──────────────── Card Container Grid ──────────────── */
 .card-container {
     max-width: var(--max-width-wide);
     margin: 0 auto;
@@ -197,8 +187,6 @@ body {
     grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
     gap: 24px;
 }
-
-/* ──────────────── Section Cards ──────────────── */
 .section {
     background: var(--white);
     border: 1px solid var(--black-100);
@@ -253,8 +241,6 @@ body {
 .section:hover::after {
     opacity: 1;
 }
-
-/* ──────────────── Semester Badge ──────────────── */
 .semester-badge {
     display: inline-flex;
     align-items: center;
@@ -279,8 +265,6 @@ body {
     border-color: var(--green-800);
     box-shadow: 0 2px 10px rgba(46, 125, 50, 0.25);
 }
-
-/* ──────────────── Subject Heading ──────────────── */
 .section h2 {
     font-family: var(--font-heading);
     font-size: clamp(1.08rem, 2.8vw, 1.25rem);
@@ -295,8 +279,6 @@ body {
 .section:hover h2 {
     color: var(--green-900);
 }
-
-/* ──────────────── CTA Button ──────────────── */
 .section .cta-button {
     display: inline-flex;
     align-items: center;
@@ -353,8 +335,6 @@ body {
     font-size: 0.88rem;
     flex-shrink: 0;
 }
-
-/* ──────────────── SEO Content Section ──────────────── */
 .seo-content {
     max-width: var(--max-width);
     margin: 28px auto 48px;
@@ -405,8 +385,6 @@ body {
     color: var(--black-700);
     font-weight: 600;
 }
-
-/* ──────────────── Scrollbar ──────────────── */
 ::-webkit-scrollbar {
     width: 7px;
 }
@@ -423,8 +401,6 @@ body {
 ::-webkit-scrollbar-thumb:hover {
     background: var(--black-400);
 }
-
-/* ──────────────── Accessibility ──────────────── */
 a:focus-visible,
 button:focus-visible {
     outline: 3px solid var(--green-500);
@@ -436,8 +412,6 @@ button:focus-visible {
     border-color: var(--green-800);
     box-shadow: var(--shadow-md), 0 0 0 3px rgba(46, 125, 50, 0.1);
 }
-
-/* ──────────────── Responsive – Tablet ──────────────── */
 @media (max-width: 1024px) {
     .card-container {
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -445,8 +419,6 @@ button:focus-visible {
         padding: 30px 20px 16px;
     }
 }
-
-/* ──────────────── Responsive – Mobile Large ──────────────── */
 @media (max-width: 768px) {
     .page-header {
         padding: 48px 18px 40px;
@@ -489,8 +461,6 @@ button:focus-visible {
         padding: 12px 16px;
     }
 }
-
-/* ──────────────── Responsive – Mobile Small ──────────────── */
 @media (max-width: 480px) {
     body {
         font-size: 15.5px;
@@ -553,8 +523,6 @@ button:focus-visible {
         font-size: 0.8rem;
     }
 }
-
-/* ──────────────── Responsive – Ultra Small ──────────────── */
 @media (max-width: 360px) {
     .page-header {
         padding: 32px 12px 26px;
@@ -578,8 +546,6 @@ button:focus-visible {
         gap: 6px;
     }
 }
-
-/* ──────────────── Print Styles ──────────────── */
 @media print {
     .page-header {
         background: none;
@@ -650,8 +616,6 @@ button:focus-visible {
         color: var(--black-700);
     }
 }
-
-/* ──────────────── Reduced Motion ──────────────── */
 @media (prefers-reduced-motion: reduce) {
     html {
         scroll-behavior: auto;

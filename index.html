@@ -5,25 +5,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; img-src 'self' data: https:; font-src 'self' https://cdnjs.cloudflare.com; connect-src 'self' https://arunpanthi.com.np;">
+  
   <title>Civil Engineering Resources Nepal | Notes, Books, Past Questions &amp; Solutions | CivPrepMaster</title>
   <meta name="description" content="Free civil engineering notes, books, past questions and solutions for TU, PU, KU, IOE, PSC and NEC License exams in Nepal. Download study materials and ace your exams with CivPrepMaster.">
   <meta name="keywords" content="civil engineering notes Nepal, TU IOE past questions, civil engineering books PDF, PSC civil engineering, NEC license preparation, KU PU engineering notes, exam solutions civil engineering">
-
-  <link rel="canonical" href="https://arunpanthi.com.np/Home" />
-  <link rel="alternate" hreflang="en-NP" href="https://arunpanthi.com.np/Home" />
-  <link rel="alternate" hreflang="en" href="https://arunpanthi.com.np/Home" />
-
+  
+  <link rel="canonical" href="https://arunpanthi.com.np/" />
+  <link rel="alternate" hreflang="en-NP" href="https://arunpanthi.com.np/" />
+  <link rel="alternate" hreflang="en" href="https://arunpanthi.com.np/" />
   
   <meta property="og:title" content="Civil Engineering Resources Nepal | CivPrepMaster">
   <meta property="og:description" content="Free notes, books, past questions and solutions for civil engineering students in Nepal.">
-  <meta property="og:url" content="https://arunpanthi.com.np/Home">
+  <meta property="og:url" content="https://arunpanthi.com.np/">
   <meta property="og:image" content="https://arunpanthi.com.np/assets/preview.jpg">
   <meta property="og:image:alt" content="CivPrepMaster Civil Engineering Resources">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="CivPrepMaster">
 
-  
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Civil Engineering Resources Nepal | CivPrepMaster">
   <meta name="twitter:description" content="Free notes, books, past questions and solutions for civil engineering exams in Nepal.">
@@ -31,9 +30,12 @@
   <meta name="twitter:image:alt" content="CivPrepMaster Civil Engineering Resources">
 
   <!-- Favicon & Stylesheets -->
-  <link rel="icon" href="https://arunpanthi.com.np/favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="css/styles.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="preload" href="/css/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="/css/styles.css"></noscript>
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous"></noscript>
+  <link rel="stylesheet" href="/css/shared.css">
 
   <!-- Structured Data: WebSite -->
   <script type="application/ld+json">
@@ -72,7 +74,7 @@
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://arunpanthi.com.np/Home"
+        "item": "https://arunpanthi.com.np/"
       }
     ]
   }
@@ -106,9 +108,10 @@
 </head>
 
 <body>
-    <div id="navbar"></div>
+  <a href="#main-content" class="skip-link" aria-label="Skip to main content">Skip to main content</a>
+  <div id="navbar"></div>
 
-  <main id="main-content">
+  <main id="main-content" tabindex="-1">
 
     <header class="hero">
       <h1>Nepal's Free Civil Engineering Resource Hub — CivPrepMaster</h1>
@@ -134,7 +137,7 @@
       <p>Detailed, worked-out solutions for tricky numericals and theory questions — understand the <strong>how</strong> and <strong>why</strong> behind every answer.</p>
       <a href="/Home/Solutions" class="cta-button" aria-label="View detailed solutions">View Solutions</a>
     </section>
-	  <div class="section" id="license-prep">
+      <div class="section" id="license-prep">
         <h2><i class="fas fa-certificate"></i> License Preparation</h2>
         <p>Prepare for your engineering license exams with our tailored resources.</p>
         <a href="NEC-license-preparation" class="cta-button">Start License Prep</a>
@@ -150,6 +153,6 @@
   </main>
 
   <div id="footer"></div>
-  <script src="/js/layout.js"></script>
+  <script src="/js/layout.js" defer></script>
 </body>
-    </html>
+</html>

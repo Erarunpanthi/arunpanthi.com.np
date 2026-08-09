@@ -1,3 +1,4 @@
+
 # Logs and temp files
 *.log
 *.tmp
@@ -67,3 +68,10 @@ htmlcov/
 *.a
 *.obj
 *.out
+=======
+```html
+<!-- PrivacyPolicy.html -->
+<!-- TermsofService.html --> 
+<!-- aboutus.html -->
+```
+

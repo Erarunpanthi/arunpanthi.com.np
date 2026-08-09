@@ -806,6 +806,16 @@ img.lazy {
   font-size: 2.5rem;
   color: var(--green-400);
   margin-bottom: 15px;
+  display: block;
+}
+
+.feature-card .icon img,
+.feature-card .icon svg,
+.feature-card .icon i {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  display: inline-block;
 }
 
 .feature-card h3 {
@@ -864,66 +874,147 @@ img.lazy {
 .author-card {
   background: var(--surface);
   border-radius: var(--radius-lg);
-  padding: 35px;
-  margin: 35px auto;
+  padding: 3rem;
+  margin: 3rem auto;
   width: 60%;
-  max-width: 100%;
+  max-width: 700px;
   box-shadow: var(--shadow-2);
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 25px;
+  border-left: 5px solid var(--accent-blue);
 }
 
-.author-photo-wrapper {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  overflow: hidden;
-  box-shadow: var(--shadow-2);
-  border: 4px solid var(--green-400);
-}
-
-.author-photo {
-  width: 100%;
-  height: 100%;
+.author-card > img {
+  width: 150px;
+  height: 150px;
   object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid var(--green-400);
+  box-shadow: var(--shadow-2);
+  margin-bottom: 1rem;
 }
 
 .author-details {
   width: 100%;
 }
 
-.author-details .card {
-  background: var(--green-50);
-  border-radius: var(--radius-sm);
-  padding: 15px 20px;
-  margin-bottom: 16px;
-  border: none;
-  box-shadow: none;
+.author-details h3 {
+  color: var(--green-600);
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
 }
 
-.author-details .card:hover {
-  transform: none;
+.author-details .title {
+  color: var(--muted);
+  font-weight: 600;
+  font-size: 1rem;
+  display: block;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.author-details .info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  text-align: left;
+  padding: 1rem;
+  background: var(--green-50);
+  border-radius: var(--radius-sm);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.author-details .info-item:hover {
+  transform: translateX(5px);
   box-shadow: var(--shadow-1);
 }
 
-.author-details h3 {
-  color: var(--green-600);
+.author-details .info-item i {
+  color: var(--green-400);
   font-size: 1.2rem;
-  margin-bottom: 8px;
+  margin-top: 0.2rem;
+  min-width: 20px;
 }
 
-.author-details p {
+.author-details .info-item strong {
+  display: block;
+  color: var(--green-600);
+  margin-bottom: 0.3rem;
+  font-size: 0.95rem;
+}
+
+.author-details .info-item p {
   color: var(--muted-2);
   font-size: 0.95rem;
   line-height: 1.6;
+  margin: 0;
 }
 
-.author-role {
-  color: var(--accent-blue);
+.author-details .info-item a {
+  color: var(--green-600);
+  text-decoration: none;
   font-weight: 600;
-  font-size: 0.95rem;
+  transition: color var(--transition-fast);
+}
+
+.author-details .info-item a:hover {
+  color: var(--accent-blue);
+}
+
+/* YouTube CTA Section */
+.youtube-cta {
+  background: linear-gradient(135deg, #ff0000, #b00000);
+  border-radius: 14px;
+  padding: 1.5rem 2rem;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 2rem;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.youtube-cta .youtube-content {
+  flex: 1;
+  min-width: 250px;
+}
+
+.youtube-cta h4 {
+  font-size: 1.2rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  color: #fff;
+}
+
+.youtube-cta p {
+  font-size: 0.9rem;
+  opacity: 0.9;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.btn-youtube {
+  background: #fff !important;
+  color: #ff0000 !important;
+  border: none;
+  font-weight: 800;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  white-space: nowrap;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-youtube:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
 /* CTA Section (About Us) */
@@ -1008,7 +1099,22 @@ img.lazy {
   }
   
   .author-card {
-    padding: 25px;
+    padding: 2rem;
+  }
+  
+  .author-details .info-item {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .youtube-cta {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .youtube-cta .youtube-content {
+    min-width: auto;
   }
 }
 

@@ -1,25 +1,15 @@
-# Common media files
-*.jpg
-*.jpeg
-*.png
-*.gif
-*.bmp
-*.webm
-
-# Build artifacts and compiled files
+```
+# Compiled and build artifacts
 *.pyc
-*.class
+__pycache__/
 *.o
+*.obj
+*.class
 *.exe
 *.dll
 *.so
 *.a
-*.obj
 *.out
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
 
 # Dependencies
 node_modules/
@@ -29,34 +19,38 @@ venv/
 .env.local
 .env.*
 
-# Distribution / packaging
-dist/
-build/
-*.egg-info/
-
-# Logs
+# Logs and temp files
 *.log
-
-# IDE specific
-.vscode/
-.idea/
+*.tmp
 *.swp
 *.swo
-*.tmp
 
-# OS generated files
+# Editors
+.vscode/
+.idea/
+
+# System files
 .DS_Store
 Thumbs.db
 
-# Testing
-.coverage
+# Coverage reports
+coverage/
 htmlcov/
-.coverage.*
-.cache
-.pytest_cache/
-.mypy_cache/
+.coverage
 
-# Compression
+# Build directories
+dist/
+build/
+target/
+.gradle/
+
+# Python specific
+.mypy_cache/
+.pytest_cache/
+*.pyc
+__pycache__/
+
+# Compressed files
 *.zip
 *.gz
 *.tar
@@ -79,14 +73,4 @@ htmlcov/
 *.tar.bz2
 *.tar.xz
 *.tar.zst
-
-# Java
-target/
-.gradle/
-
-# Python virtual environments
-venv/
-.venv/
-.env
-.env.local
-.env.*
+```

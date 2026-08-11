@@ -19,6 +19,10 @@
     <meta name="twitter:title" content="BE Notes - Engineering Study Materials">
     <meta name="twitter:description" content="Free BE notes and study materials for engineering students in Nepal">
     
+    <link rel="stylesheet" href="https://arunpanthi.com.np/styles.css">
+    <link rel="icon" href="https://arunpanthi.com.np/logo.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -159,6 +163,7 @@
     </style>
 </head>
 <body>
+    <div id="navbar"></div>
     <div class="container">
         <header>
             <h1>📚 BE Notes - Engineering Study Materials</h1>
@@ -173,32 +178,14 @@
                     <p>Comprehensive engineering examination questions and solutions</p>
                 </div>
                 <iframe 
-                    src="http://s1.thulo.eu.org/Exam/set-1.pdf#toolbar=0&navpanes=0" 
+                    src="https://saru.c0m.in/set-1.pdf#toolbar=0&navpanes=0" 
                     class="pdf-viewer" 
                     title="Engineering Exam Set 1 PDF"
                     loading="lazy">
                 </iframe>
                 <div class="pdf-actions">
-                    <a href="http://s1.thulo.eu.org/Exam/set-1.pdf" class="btn btn-primary" target="_blank" rel="noopener noreferrer">📥 Download PDF</a>
-                    <a href="http://s1.thulo.eu.org/Exam/set-1.pdf" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">🔗 Open in New Tab</a>
-                </div>
-            </article>
-
-            <!-- PDF Card 2 - Add more as needed -->
-            <article class="pdf-card">
-                <div class="pdf-header">
-                    <h3>Engineering Exam Set 2</h3>
-                    <p>Additional practice questions and study materials</p>
-                </div>
-                <iframe 
-                    src="http://s1.thulo.eu.org/Exam/set-2.pdf#toolbar=0&navpanes=0" 
-                    class="pdf-viewer" 
-                    title="Engineering Exam Set 2 PDF"
-                    loading="lazy">
-                </iframe>
-                <div class="pdf-actions">
-                    <a href="http://s1.thulo.eu.org/Exam/set-2.pdf" class="btn btn-primary" target="_blank" rel="noopener noreferrer">📥 Download PDF</a>
-                    <a href="http://s1.thulo.eu.org/Exam/set-2.pdf" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">🔗 Open in New Tab</a>
+                    <a href="https://saru.c0m.in/set-1.pdf" class="btn btn-primary" target="_blank" rel="noopener noreferrer">📥 Download PDF</a>
+                    <a href="https://saru.c0m.in/set-1.pdf" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">🔗 Open in New Tab</a>
                 </div>
             </article>
         </div>
@@ -207,7 +194,8 @@
             <a href="/Resources/">⬅ Back to Resources</a>
         </div>
     </div>
-
+    
+    <script src="/js/layout.js"></script>
     <script>
         // Handle iframe loading errors gracefully
         document.querySelectorAll('.pdf-viewer').forEach(iframe => {

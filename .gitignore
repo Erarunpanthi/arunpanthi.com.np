@@ -1,13 +1,41 @@
+
 # Dependencies
 node_modules/
 
 # Editors
 .vscode/
+=======
+# Examples
+## Example 1
+*.html
+
+## Example 2 (Project with artifacts)
+# Compiled and build artifacts
+*.pyc
+__pycache__/
+*.o
+*.obj
+dist/
+build/
+target/
+
+# Dependencies
+.venv/
+venv/
+node_modules/
+.julia/
+zig*/
+
+# Logs and temp files
+*.log
+*.tmp
+*.swp
 
 # Environment
 .env
 .env.local
 .env.*
+
 
 # Logs and temp files
 *.log
@@ -69,3 +97,11 @@ Thumbs.db
 *.tar.bz2
 *.tar.xz
 *.tar.zst
+=======
+# Editors
+.vscode/
+.idea/
+
+# Original rules preserved
+*.log
+

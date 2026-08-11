@@ -33,7 +33,7 @@ venv/
 .DS_Store
 Thumbs.db
 
-# Coverage reports
+# Coverage
 coverage/
 htmlcov/
 .coverage
@@ -47,8 +47,6 @@ target/
 # Python specific
 .mypy_cache/
 .pytest_cache/
-*.pyc
-__pycache__/
 
 # Compressed files
 *.zip

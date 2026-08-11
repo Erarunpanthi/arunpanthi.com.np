@@ -1,15 +1,3 @@
-
-# Dependencies
-node_modules/
-
-# Editors
-.vscode/
-=======
-# Examples
-## Example 1
-*.html
-
-## Example 2 (Project with artifacts)
 # Compiled and build artifacts
 *.pyc
 __pycache__/
@@ -17,14 +5,11 @@ __pycache__/
 *.obj
 dist/
 build/
-target/
 
 # Dependencies
 .venv/
 venv/
 node_modules/
-.julia/
-zig*/
 
 # Logs and temp files
 *.log
@@ -36,43 +21,31 @@ zig*/
 .env.local
 .env.*
 
+# Editors
+.vscode/
+.idea/
 
-# Logs and temp files
-*.log
-*.tmp
+# System files
+.DS_Store
+Thumbs.db
 
-# Build artifacts
-dist/
-build/
-target/
+# Coverage
+coverage/
+htmlcov/
+.coverage
 
-# Python
-__pycache__/
+# Python specific
 *.pyc
 *.pyo
 *.pyd
 .Python
-env/
-venv/
-.venv/
-.venv.bak/
-pip-log.txt
-pip-delete-this-directory.txt
+*.so
+*.egg-info/
+.eggs/
 
-# Coverage
-.coverage
-coverage/
-htmlcov/
-
-# Testing
-.pytest_cache/
-.mypy_cache/
-.tox/
-.nox/
-
-# OS
-.DS_Store
-Thumbs.db
+# Build directories
+target/
+.gradle/
 
 # Compressed files
 *.zip
@@ -97,11 +70,3 @@ Thumbs.db
 *.tar.bz2
 *.tar.xz
 *.tar.zst
-=======
-# Editors
-.vscode/
-.idea/
-
-# Original rules preserved
-*.log
-

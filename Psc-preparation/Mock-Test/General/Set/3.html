@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Civil Engineering Loksewa - Model Set S2</title>
+<link rel="icon" href="https://arunpanthi.com.np/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="/css/Mock_Test.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar" id="navbar">
+<span class="brand" id="navbar-brand">Civil Engineering Loksewa - Model Set S2</span>
+<span class="timer-display" id="timer-display" style="display:none;">--:--</span>
+</nav>
+
+
+<div id="warning-modal" class="modal-overlay" style="display: none;">
+<div class="modal-dialog">
+<div class="warning-icon">⚠️</div>
+<h3>Unanswered Questions</h3>
+<p>You haven't answered all the questions.</p>
+<span class="unanswered-count" id="modal-unanswered-count">0 unanswered</span>
+<p style="margin-top:8px;"><strong>⚠ This test cannot be retaken once submitted!</strong></p>
+<div class="modal-buttons">
+<button class="btn-cancel" id="btn-modal-cancel">Cancel</button>
+<button class="btn-submit-warning" id="btn-modal-submit">Submit Anyway</button>
+</div>
+</div>
+</div>
+
+<div id="pre-test-section">
+<div class="hero" id="hero-card">
+<h1 id="hero-set-name">Loading...</h1>
+<p class="set-details" id="hero-details"></p>
+<div class="set-meta">
+<div class="meta-item"><span id="hero-q-count">0</span> Questions</div>
+<div class="meta-item"><span id="hero-time">0:00</span> Time (min)</div>
+</div>
+<button class="btn-start" id="btn-start-test">🚀 Start Test</button>
+<p style="margin-top:10px;font-size:0.85rem;opacity:0.8;" id="hero-note"></p>
+</div>
+</div>
+
+<div id="test-section" style="display:none;">
+<div class="test-container">
+<div class="question-area">
+<div class="question-card">
+<div class="q-number" id="q-number-label">QUESTION 1</div>
+<div class="q-text" id="q-text">Loading question...</div>
+<ul class="options-list" id="options-list"></ul>
+</div>
+<div class="nav-buttons">
+<div class="nav-left"><button class="btn-nav" id="btn-prev">◀ Previous</button></div>
+<div class="nav-center"><button class="btn-submit" id="btn-submit-test">✅ Submit Test</button></div>
+<div class="nav-right"><button class="btn-nav" id="btn-next">Next ▶</button></div>
+</div>
+</div>
+<aside class="sidebar">
+<h3>📋 Question </h3>
+<div class="total-questions" id="sidebar-total">Total: 0</div>
+<div class="answered-count">Answered: <strong id="sidebar-answered-num">0</strong></div>
+<div class="q-grid" id="q-grid"></div>
+<div class="legend">
+<span><span class="dot-sample blue"></span> Answered</span>
+<span><span class="dot-sample gray"></span> Unanswered</span>
+</div>
+</aside>
+</div>
+</div>
+
+<div id="results-section" style="display:none;">
+<div class="results-container">
+<div class="results-header">
+<h2 style="color:#2E7D32;">📊 Test Results</h2>
+<p style="color:#666;" id="results-set-name"></p>
+<div class="score-circle">
+<span class="score-num" id="results-score">0</span>
+<span class="score-denom" id="results-denom">/ 0</span>
+</div>
+<div class="percentage" id="results-percentage">0%</div>
+<p style="margin-top:8px;color:#888;font-size:0.9rem;" id="results-time-taken"></p>
+</div>
+<div id="results-detail"></div>
+</div>
+</div>
+
+
+<script src="/js/Mock_Test.js"></script>
+
+<script>
+(function () {
+  console.log('Inline script running');
+  const questionSet = {
+    name: 'Civil Engineering Loksewa - Model Set S2 - Objective Type Questions',
+    details: 'Contains 100 multiple-choice questions from Civil Engineering Loksewa Model Set S2. Correct uses zero-based index: A = 0, B = 1, C = 2, D = 3. Questions with missing figures are marked as [Question figure missing].',
+    questions: [
+      { question: '1. Most commonly used material for accelerating hardening of the concrete is:', options: ['sodium chloride', 'calcium chloride', 'potassium chloride', 'aluminium chloride'], correct: 1 },
+      { question: '2. Removal of formwork for vertical sides of concrete beams may be done after:', options: ['2 days of concreting', '7 days of concreting', '14 days of concreting', '21 days of concreting'], correct: 0 },
+      { question: '3. In prestressed concrete structure, the prestressing of the concrete is done to compensate the stress caused by:', options: ['dead load', 'working loads', 'live loads', 'dynamic loads'], correct: 1 },
+      { question: '4. The correct quantity of water required for a particular concrete mix does not depend upon:', options: ['mix proportion', 'aggregate grading', 'method of compaction', 'road to be applied'], correct: 3 },
+      { question: '5. The strength of concrete is directly proportional to:', options: ['cement water ratio', 'water cement ratio', 'sand cement ratio', 'water aggregate ratio'], correct: 0 },
+      { question: '6. Resource smoothing means:', options: ['gradual increase in resources', 'adjustment of resources to have the least variations', 'optimization and economical utilization of resources', 'all of the above'], correct: 1 },
+      { question: '7. The time by which a particular activity can be delayed without affecting the preceding and succeeding activities is known as:', options: ['free float', 'interfering float', 'independent float', 'total float'], correct: 2 },
+      { question: '8. The area under the Beta-distribution curve is divided into two equal parts by:', options: ['most likely time', 'optimistic time', 'pessimistic time', 'expected time'], correct: 3 },
+      { question: '9. The Earned Value Technique in construction management is also known as:', options: ['CPM', 'PERT', 'S-curve', 'Gantt chart'], correct: 2 },
+      { question: '10. When float or slack of an activity is positive, it represents:', options: ['the availability of extra resources', 'the requirement of additional resource', 'criticality of the activity', 'both a) and c)'], correct: 0 },
+      { question: '11. The pictorial representation of activities and events of a project is called:', options: ['flow chart', 'algorithm', 'flow net', 'network'], correct: 3 },
+      { question: '12. The term used to spread the cost of an asset over the span of several years is:', options: ['spreadsheet', 'book value', 'depreciation', 'appreciation'], correct: 2 },
+      { question: '13. The unit of measurement is per quintal for the following:', options: ['collapsible gates with rails', 'rolling shutters', 'expanded metal wire netting', 'M.S. reinforcement of R.C.C. works'], correct: 3 },
+      { question: '14. If B is the width of formation, d is the height of the embankment, and side slope is s:1 for a highway with no transverse slope, the area of cross-section is:', options: ['B + d = sd^2', 'Bd + sd^2', 'Bd = sd^2', '1/2 (Bd + sd^2)'], correct: 1 },
+      { question: '15. For the cost estimation of a building project at concept-development phase, the method used is:', options: ['plinth rate', 'cubic content rate', 'assumption based on similar project', 'detail estimate'], correct: 2 },
+      { question: '16. The original investment less depreciation for the period of existence is:', options: ['salvage value', 'scrap value', 'annuity', 'none of the above'], correct: 0 },
+      { question: '17. Contour lines run close together represents:', options: ['flat ground', 'steep slope', 'uniform slope', 'none of the above'], correct: 1 },
+      { question: '18. Line of collimation is:', options: ['the line which passes through the point of intersection of the cross hairs of the eyepiece and optical diaphragm', 'the line which passes through the eyepiece and any point on the objective', 'the line passing through the eyepiece', 'none of the above'], correct: 0 },
+      { question: '19. The use of an alidade is associated with the use of:', options: ['abney level', 'theodolite', 'altimeter', 'plane table'], correct: 3 },
+      { question: '20. The sum of interior angles of a closed traverse with n number of sides is:', options: ['(2n - 4) × 90°', '(2n + 4) × 90°', '(n - 4) × 90°', '(n + 4) × 90°'], correct: 0 },
+      { question: '21. The two point and three point problems are methods of:', options: ['orientation', 'resection', 'traversing and resection', 'orientation and resection'], correct: 3 },
+      { question: '22. A point temporarily used to transfer an elevation in levelling is called:', options: ['benchmark', 'backsight', 'foresight', 'turning point'], correct: 3 },
+      { question: '23. The main principle of surveying is to work:', options: ['from part to the whole', 'from whole to the part', 'from higher to the lower level', 'from lower level to higher level'], correct: 1 },
+      { question: '24. The minimum value of NPV for selection of an engineering project should be:', options: ['one', 'more than one', 'zero', 'ten'], correct: 2 },
+      { question: '25. The financial analysis helps to judge:', options: ['the operational efficiency of the firm', 'the financial position', 'both a) and b)', 'none of the above'], correct: 2 },
+      { question: '26. Directed cost of a project is due to:', options: ['establishment charges as salaries of administrative staff', 'loss or gain of revenue', 'penalty imposed', 'cost of materials and wages of labour'], correct: 3 },
+      { question: '27. The theorem of three moments for the solution of continuous beam is formulated by:', options: ['Young', 'Maxwell', 'Williot-Mohr', 'Clapeyron'], correct: 3 },
+      { question: '28. For the application of moment area method, for finding deflection at the section in the beam:', options: ['the position of at least one tangent to the elastic curve at any section should be known', 'the moment diagram must be a triangle', 'the beam must be of uniform moment of inertia', 'the BM diagram if known is sufficient'], correct: 0 },
+      { question: '29. Which of the following stress is used in identifying the quality of structural steel?', options: ['ultimate stress', 'proof stress', 'yield stress', 'none of the above'], correct: 2 },
+      { question: '30. The slope deflection method is a structural analysis for:', options: ['beams and columns', 'foundation', 'column only', 'beam only'], correct: 0 },
+      { question: '31. In the slope deflection equations, the deformations are considered to be caused by:', options: ['bending moment and shear force', 'bending moment only', 'shear force and axial force', 'bending moment, shear force and axial force'], correct: 1 },
+      { question: '32. The paint which gives illumination during night is called:', options: ['fluorescent paint', 'cellulose paint', 'enamel paint', 'none of the above'], correct: 0 },
+      { question: '33. The property due to which steel can withstand hammer blow is called:', options: ['toughness', 'hardness', 'ductility', 'malleability'], correct: 0 },
+      { question: '34. The carbon content in mild steel is in the range of:', options: ['0.1 to 0.2%', '0.15 to 0.30%', '1 to 1.5%', '2 to 25%'], correct: 1 },
+      { question: '35. The chemical formula of slaked or hydrated lime is:', options: ['CaO', 'CaCO3', 'Ca(OH)2', 'CaCl2'], correct: 2 },
+      { question: '36. Bricks shall be soaked in water before use for a minimum period of:', options: ['one hour', 'two hours', 'three hours', 'four hours'], correct: 0 },
+      { question: '37. Bitumen is a bi-product of:', options: ['woods', 'ground waters and minerals', 'petroleum', 'none of the above'], correct: 2 },
+      { question: '38. The drawing scale best for 1:25 is:', options: ['building details', 'electrical wiring', 'reinforcement layout', 'pipe layout'], correct: 0 },
+      { question: '39. The maps showing city development, town maps, country maps and maps prepared to show ownership and which are drawn to a large scale are:', options: ['topographical maps', 'engineering maps', 'cadastral maps', 'none of the above'], correct: 2 },
+      { question: '40. An object can be drawn:', options: ['by graphic method', 'by sketching', 'by creating contrast', 'all of the above'], correct: 3 },
+      { question: '41. Site plan is a:', options: ['structural plan', 'architectural plan', 'section plan', 'none of the above'], correct: 1 },
+      { question: '42. Which of the following do you consider to be ethical as an engineer?', options: ['to leave a job you just got for another job that is of same pay but a more professionally rewarding one', 'to make comments on the works of another engineer', 'to work for a client on the project which you have appraised as infeasible sometime ago', 'to provide your services at a rate considered due to be too low'], correct: 0 },
+      { question: '43. "Fraudulent Practice" means:', options: ['offering, giving, receiving of anything of value to influence the action of a public official in the procurement process', 'misrepresentation of facts to influence a procurement process', 'both a) and b)', 'none of the above'], correct: 1 },
+      { question: '44. Nepal Engineering Council is an autonomous body formed under:', options: ['NEC Act 2054 B.S.', 'NEC Act 2055 B.S.', 'NEC Act 2056 B.S.', 'NEC Act 2057 B.S.'], correct: 1 },
+      { question: '45. In hydrometer analysis the principal used is:', options: ['Newton's Law', 'Darcy's Law', 'Rehbohn's Law', 'Stoke's Law'], correct: 3 },
+      { question: '46. The effective size of soil particle is:', options: ['D10', 'D30', 'D60', 'D90'], correct: 0 },
+      { question: '47. If the volume of voids is equal to the volume of soil solids, then the values of porosity and void ratio are respectively:', options: ['0 and 0.5', '0 and 1', '0.5 and 1', '1 and 0.5'], correct: 2 },
+      { question: '48. The intermolecular force of attraction of soil, the cohesion:', options: ['decreases as the moisture content increases', 'increases as the moisture content decreases', 'depends upon the external load applied', 'is more in well compacted clays'], correct: 3 },
+      { question: '49. Which of the following thrust is inactive in Himalayan Region?', options: ['Main Central Thrust', 'Main Frontal Thrust', 'Main Boundary Thrust', 'Main Himalayan Thrust'], correct: 0 },
+      { question: '50. To obtain the required shape of the tunnel section, we use:', options: ['trimmers', 'cut holes', 'chisels', 'easers'], correct: 0 },
+      { question: '51. Which of the following options correctly describes the affected region of the Karnali River, the longest river in Nepal?', options: ['From Dhaulagiri to Saipal Himal', 'From Dhaulagiri to Byas Himal', 'From Annapurna to Saipal Himal', 'From Langtang to Dhaulagiri Himal'], correct: 1 },
+      { question: '52. Which community celebrates the Durah festival?', options: ['Gangai', 'Thami', 'Danuwar', 'Bote'], correct: 0 },
+      { question: '53. In which district is the Praganna Canal located?', options: ['Rupandehi', 'Dang', 'Kapilvastu', 'Bardia'], correct: 1 },
+      { question: '54. Which ethnic group lives in Lo Manthang of Mustang?', options: ['Lhomi', 'Lhopa', 'Thakali', 'Sherpa'], correct: 1 },
+      { question: '55. In which place of Nepal is the Thimah system practiced?', options: ['Jajarkot', 'Salyan', 'Bajhang', 'Humla'], correct: 3 },
+      { question: '56. According to the National Census of 2078 B.S., what percentage of households had ordinary mobile phones?', options: ['69', '72.65', '73.15', '75'], correct: 2 },
+      { question: '57. How many domestic airports are in all weather operation as per economic survey FY 2081/82?', options: ['33', '37', '39', '42'], correct: 3 },
+      { question: '58. The theme of World Biodiversity Day 2026 is:', options: ['Acting locally for global impact', 'Be part of the Plan', 'Our solutions are in nature', 'Biodiversity and Sustainable Tourism'], correct: 0 },
+      { question: '59. Bhutan has hosted the SAARC Summit for a single time in:', options: ['2009 AD', '2010 AD', '2012 AD', '2013 AD'], correct: 1 },
+      { question: '60. The second country to use veto power is:', options: ['Russia', 'China', 'UK', 'USA'], correct: 2 },
+      { question: '61. Who invented the magnetic detector?', options: ['Galileo Galilei', 'John Dalton', 'Newton', 'Guglielmo Marconi'], correct: 3 },
+      { question: '62. The current plan is the ............. plan after the promulgation of the constitution by the historic constituent assembly.', options: ['Second', 'Third', 'Fourth', 'Fifth'], correct: 1 },
+      { question: '63. Who built Tangal Durbar?', options: ['Bhim Shumsher', 'Bir Shumsher', 'Juddha Shumsher', 'Mohan Shumsher'], correct: 0 },
+      { question: '64. Who was the Prime Minister when a fire broke out at Ghantaghar on Baisakh 29, 2039 B.S.?', options: ['Lokendra Bahadur Chand', 'Surya Bahadur Thapa', 'Nagendra Prasad Rijal', 'Kirtinidhi Bista'], correct: 1 },
+      { question: '65. The institutional land used as trust for the fulfillment of a specific public or common goal is called:', options: ['Raikar land', 'Birta land', 'Guthi land', 'Kipat land'], correct: 2 },
+      { question: '66. "Sunadaha" is in the borderline of ................ districts.', options: ['Humla and Mugu', 'Dolpa and Baglung', 'Darchula and Bajhang', 'Kavre and Sindhuli'], correct: 1 },
+      { question: '67. Which article provides a citizen of Nepal shall not discriminate against anyone on the basis of religion, caste and sex?', options: ['Article 16', 'Article 18', 'Article 35', 'Article 46'], correct: 1 },
+      { question: '68. Under which part of Nepal's Constitution is the Public Service Commission provisioned?', options: ['Part 22', 'Part 23', 'Part 24', 'Part 25'], correct: 1 },
+      { question: '69. How many times has the civil service rules been amended so far?', options: ['8', '13', '15', '19'], correct: 2 },
+      { question: '70. Under whose leadership was the Administrative Reform Commission, 2025 B.S., formed?', options: ['Bedananda Jha', 'Bhesh Bahadur Thapa', 'Nar Bahadur Karmacharya', 'Bhimarjun Acharya'], correct: 0 },
+      { question: '71. Detecting irregularities is possible through:', options: ['Staffing', 'Controlling', 'Planning', 'Decision making'], correct: 1 },
+      { question: '72. The budget divided into regular, capital and financial managements since:', options: ['FY 2013/14', 'FY 2038/39', 'FY 2055/56', 'FY 2061/62'], correct: 3 },
+      { question: '73. In which district was the National Veterinary Conference, 2026 organized?', options: ['Kaski', 'Lalitpur', 'Rupandehi', 'Chitwan'], correct: 2 },
+      { question: '74. Recently, which of the following South East Asian countries declared an energy emergency?', options: ['Malaysia', 'Philippines', 'Indonesia', 'Oman'], correct: 1 },
+      { question: '75. According to the Microsoft AI Report, 2025 Nepal ranked in which position?', options: ['78th', '77th', '76th', '75th'], correct: 2 },
+      { question: '76. A person placed three sheets with two carbons to get two extra copies of the original. Then he decided to get more carbon copies and folded the paper in such a way that the upper half of the sheets were on top of the lower half. Then he typed. How many carbon copies did he get?', options: ['1', '2', '3', '4'], correct: 1 },
+      { question: '77. After distributing the sweets equally among 25 children, 8 sweets remain. Had the number of children been 28, 22 sweets would have been left after equal distribution. What was the total number of sweets?', options: ['328', '348', '358', '368'], correct: 2 },
+      { question: '78. In a family, each daughter has the same number of brothers as she has sisters and each son has twice as many sisters as he has brothers. How many sons are there in the family?', options: ['2', '3', '4', '5'], correct: 2 },
+      { question: '79. 99, 82, 18, 11, ?', options: ['5', '6', '7', '8'], correct: 0 },
+      { question: '80. If Fasttrack = 10, Engineering = 12, Institute will be written as:', options: ['10', '8', '11', '14'], correct: 0 },
+      { question: '81. Number of bacteria in a container doubles in every one minute. If the container gets completely filled with bacteria in 30 minutes, then in how many minutes will 1/4th of the container be filled with bacteria?', options: ['14', '15', '16', 'None of These'], correct: 3 },
+      { question: '82. If the salary of a person is consecutively decreased by 10%, 20% and 30%, how much percentage increase in salary should be made to get back to the original price?', options: ['40', '50', '60', '100'], correct: 3 },
+      { question: '83. A person expenses his income of 3 months for a period of 4 months. If monthly income is 1000, then annual saving will be:', options: ['3000', '4000', '5000', '6000'], correct: 0 },
+      { question: '84. Mahesh asked 32 men to build his house in 20 days. 80% of the work got completed in just 12 days. So Mahesh removed some workers. Now how many persons does he need to complete the remaining work in decided time?', options: ['10', '12', '16', '32'], correct: 1 },
+      { question: '85. The average of 15 numbers is 15. If the average of first five numbers is 14 and that of other 9 numbers is 16, then find the middle number.', options: ['9', '10', '11', '12'], correct: 2 },
+      { question: '86. Statement: Most articles in the shop are expensive. The conclusion drawn will be:', options: ['There are no cheap articles available in that shop', 'Handmade articles in that shop are cheap', 'There are cheap articles also in that shop', 'Handmade articles in the shop are expensive'], correct: 2 },
+      { question: '87. Statement: Should rapists be hanged? Arguments: I. Yes, they are sinners and must be hanged. II. No, they are human beings, give them one more chance.', options: ['Only argument I is strong', 'Only argument II is strong', 'Both I and II are strong', 'Both are wrong'], correct: 1 },
+      { question: '88. [Question figure missing]', options: ['44', '45', '46', '47'], correct: 0 },
+      { question: '89. [Question figure missing]', options: ['A', 'B', 'C', 'D'], correct: 1 },
+      { question: '90. A man is 16th from the left end in a row of boys and Vivek is 18th from the right end. Gagan is 11th from Aman towards the right and 3rd from Vivek towards the right end. How many boys are there in the row?', options: ['40', '41', '42', '43'], correct: 1 },
+      { question: '91. Raj is standing in the middle of a square field. He starts walking diagonally to North-East. Then he turns right and reaches the far end of the field. Then he turns right and starts walking. In the midway he again turns right and starts walking. In halfway, he turns to his left and reaches a new far end. In what direction is Raj now?', options: ['North West', 'South West', 'North', 'West'], correct: 1 },
+      { question: '92. If birthday of Hemraj Regmi Bhai falls on date 2001 November 25, which day was he born?', options: ['Sunday', 'Monday', 'Tuesday', 'Wednesday'], correct: 0 },
+      { question: '93. [Question figure missing]', options: ['1', '2', '3', '4'], correct: 3 },
+      { question: '94. [Question figure missing]', options: ['1', '2', '3', '4'], correct: 3 },
+      { question: '95. [Question figure missing]', options: ['1', '2', '3', '4'], correct: 1 },
+      { question: '96. [Question figure missing]', options: ['1', '2', '3', '4'], correct: 1 },
+      { question: '97. [Question figure missing]', options: ['1', '2', '3', '4'], correct: 1 },
+      { question: '98. [Question figure missing]', options: ['1', '2', '3', '5'], correct: 0 },
+      { question: '99. [Question figure missing]', options: ['1', '2', '3', '4'], correct: 0 },
+      { question: '100. [Question figure missing]', options: ['A', 'B', 'C', 'D'], correct: 2 }
+    ]
+  };
+  
+     
+    console.log('questionSet defined');
+    startTest(questionSet);
+    console.log('startTest called');
+})(); 
+</script>
+<script src="/js/text-protect.js" defer></script>
+<script src="/js/logo.js"></script>
+</body>
+</html>

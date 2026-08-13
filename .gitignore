@@ -1,1 +1,1 @@
-Nothing needs to be added to .gitignore since the only modified file is an HTML file (Set/3.html), which is a source/config file and not a build artifact, dependency, or temporary file.
+Nothing should be ignored based on the provided file changes. The modification of 'Psc-preparation/model-exam-sets/Set/3.html' is a source file change, and there are no build artifacts, dependencies, or temporary files in the changes list.

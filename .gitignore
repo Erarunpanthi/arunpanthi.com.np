@@ -1,9 +1,9 @@
-# Compiled and build artifacts
+```
+# Build artifacts
 *.pyc
 __pycache__/
 *.o
 *.obj
-*.class
 *.exe
 *.dll
 *.so
@@ -11,36 +11,20 @@ __pycache__/
 *.out
 
 # Dependencies
-.venv/
-venv/
 node_modules/
-.mypy_cache/
-.pytest_cache/
-dist/
-build/
-target/
-.gradle/
+venv/
+.venv/
+.env
+.env.local
+.env.*
 
-# Logs and temp files
+# Logs and temporary files
 *.log
 *.tmp
 *.swp
 *.swo
 
-# Environment
-.env
-.env.local
-*.env.*
-
-# Editors
-.vscode/
-.idea/
-
-# System files
-.DS_Store
-Thumbs.db
-
-# Coverage
+# Coverage reports
 coverage/
 htmlcov/
 .coverage
@@ -68,3 +52,116 @@ htmlcov/
 *.tar.bz2
 *.tar.xz
 *.tar.zst
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDE specific files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Python specific
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+.Python
+*.so
+
+# Distribution / packaging
+.Python
+*.so
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Testing
+.pytest_cache/
+.mypy_cache/
+
+# Documentation
+docs/_build/
+
+# Environment variables
+.env*
+!.env.example
+
+# Compiled CSS/JS
+*.min.css
+*.min.js
+*.css.map
+*.js.map
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Backup files
+*~
+\#*\#
+*.bak
+*.backup
+
+# Local configuration
+config/local.yml
+settings_local.py
+
+# Sensitive files
+secrets.yml
+credentials.json
+*.key
+*.pem
+id_rsa
+id_rsa.pub
+
+# Performance monitoring
+profile.out
+*.prof
+
+# Virtual environments
+.env/
+venv/
+ENV/
+env/
+.venv/
+env.bak/
+venv.bak/
+
+# Package manager cache
+.npm/
+.yarn/
+.pip/
+.cache/
+
+# Build systems
+target/
+.gradle/
+.jekyll-cache/
+.sass-cache/
+
+# Editor swap files
+*.swp
+*.swo
+*~
+
+# Thumbnails
+._*
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+ehthumbs.db
+Thumbs.db
+
+# Windows
+Desktop.ini
+$RECYCLE.BIN/
+Thumbs.db
+```

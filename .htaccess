@@ -17,6 +17,21 @@ RewriteRule ^(.+)/$ /$1 [R=301,L]
 RewriteCond %{THE_REQUEST} \s/+(.*/)?index\.php[?\s] [NC]
 RewriteRule ^(.*/)?index\.php$ /$1 [R=301,L]
 
+# Remove .html extension from URLs (for specific pages)
+RewriteCond %{THE_REQUEST} \s/+TermsofService\.html [NC]
+RewriteRule ^TermsofService\.html$ /TermsofService [R=301,L]
+
+RewriteCond %{THE_REQUEST} \s/+aboutus\.html [NC]
+RewriteRule ^aboutus\.html$ /aboutus [R=301,L]
+
+RewriteCond %{THE_REQUEST} \s/+Home\.html [NC]
+RewriteRule ^Home\.html$ / [R=301,L]
+
+# Serve .html files when extension-less URL is requested
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.+)$ $1.html [L]
+
 # Browser caching
 <IfModule mod_expires.c>
     ExpiresActive On

@@ -144,7 +144,7 @@
     }
 
     var currentPath = cleanPath(location.pathname);
-    var allLinks    = document.querySelectorAll(".nav-links a");
+    var allLinks    = document.querySelectorAll(".nav-links a, .navbar a");
 
     for (var j = 0; j < allLinks.length; j++) {
       var href = allLinks[j].getAttribute("href");
@@ -154,6 +154,7 @@
 
       if (currentPath === href || (href !== "/" && currentPath.startsWith(href + "/"))) {
         allLinks[j].classList.add("active-link");
+        allLinks[j].classList.add("active");
       }
     }
   }

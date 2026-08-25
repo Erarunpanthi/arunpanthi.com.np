@@ -117,11 +117,18 @@ a {
   background-color: transparent;
 }
 
+/* Active page indicator */
+.navbar a.active {
+  border-bottom: 2px solid #fff;
+  font-weight: 700;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
 
 .hero {
   background-color: var(--green-400);
   color: #fff;
-  padding: 40px 30px;
+  padding: 28px 30px;
   border-radius: 25px;
   margin: 0 auto 25px auto;
   width: 60%;
@@ -144,6 +151,18 @@ a {
 }
 .hero .cta-button {
   margin-top: 18px;
+  padding: 18px 36px;
+  font-size: 22px;
+  font-weight: 800;
+  background-color: #ff9800;
+  color: #fff;
+  box-shadow: 0 6px 16px rgba(255, 152, 0, 0.5);
+}
+
+.hero .cta-button:hover {
+  background-color: #f57c00;
+  transform: scale(1.1);
+  box-shadow: 0 8px 20px rgba(255, 152, 0, 0.6);
 }
 
 
@@ -160,9 +179,11 @@ a {
   align-items: center;
   text-align: center; 
 }
-.social-media h1 {
+.social-media h1,
+.social-media h2 {
   font-size: 28px;
   margin-bottom: 8px;
+  color: #fff;
 }
 .social-media p {
   font-size: 1rem;
@@ -237,7 +258,7 @@ footer a:hover {
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-1);
   background-color: var(--surface);
-  text-align: left;
+  text-align: center;
 }
 
 .section h2 {
@@ -245,6 +266,7 @@ footer a:hover {
   margin-bottom: 10px;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
 }
 
@@ -349,7 +371,7 @@ footer a:hover {
   display: inline-block;
   padding: 14px 28px;
   border-radius: 25px;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
   transition: background-color var(--transition-medium), transform var(--transition-medium);
   margin-top: 10px;

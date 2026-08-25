@@ -60,6 +60,15 @@ p,
   overflow-wrap: break-word;
 }
 
+.section p {
+  margin-bottom: 12px;
+}
+
+.section p strong {
+  font-weight: 800;
+  color: var(--green-700);
+}
+
 
 h1,
 h2,
@@ -78,7 +87,7 @@ h1 {
 }
 h2,
 h3 {
-  color: #388e3c;
+  color: var(--green-600);
   margin: 0 0 0.5rem;
 }
 a {
@@ -131,13 +140,17 @@ a {
 }
 .hero p {
   margin: 10px 0;
+  font-size: 1.05rem;
+}
+.hero .cta-button {
+  margin-top: 18px;
 }
 
 
 .social-media {
   background: linear-gradient(135deg, var(--green-400), var(--green-600));
   color: #fff;
-  padding: 30px 20px;
+  padding: 20px 20px;
   border-radius: 0;
   margin: 0;
   width: 100%;
@@ -147,14 +160,28 @@ a {
   align-items: center;
   text-align: center; 
 }
+.social-media h1 {
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+.social-media p {
+  font-size: 1rem;
+  margin-bottom: 12px;
+}
 .social-media .icons {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  align-items: center;
+  gap: 12px;
 }
 .social-media .icons a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
   color: #fff;
-  font-size: 36px;
+  font-size: 24px;
   transition: transform var(--transition-medium);
 }
 .social-media .icons a:hover {
@@ -170,7 +197,7 @@ a {
 footer {
   background-color: var(--green-400);
   color: #fff;
-  padding: 20px;
+  padding: 15px 20px;
   margin-top: 20px;
   width: 100%;
 
@@ -179,9 +206,14 @@ footer {
   align-items: center;
   text-align: center; 
 }
+footer p {
+  margin: 0;
+  font-size: 0.9rem;
+}
 footer a {
   color: #fff;
-  margin: 0 10px;
+  margin: 0 12px;
+  padding: 0 4px;
 }
 footer a:hover {
   text-decoration: underline;
@@ -200,12 +232,25 @@ footer a:hover {
 .section {
   width: 60%;
   max-width: 100%;
-  margin: 30px auto;
-  padding: 30px 30px;
+  margin: 20px auto;
+  padding: 20px 25px;
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-1);
   background-color: var(--surface);
   text-align: left;
+}
+
+.section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.section h2 i {
+  color: var(--green-600);
+  font-size: 1.4rem;
 }
 
 
@@ -302,19 +347,22 @@ footer a:hover {
 .cta-button,
 .secondary-button {
   display: inline-block;
-  padding: 10px 20px;
+  padding: 14px 28px;
   border-radius: 25px;
-  font-size: 18px;
+  font-size: 20px;
+  font-weight: 700;
   transition: background-color var(--transition-medium), transform var(--transition-medium);
   margin-top: 10px;
 }
 .cta-button {
-  background-color: #28a745;
+  background-color: #ff9800;
   color: #fff;
+  box-shadow: 0 4px 12px rgba(255, 152, 0, 0.4);
 }
 .cta-button:hover {
-  background-color: #218838;
-  transform: scale(1.05);
+  background-color: #f57c00;
+  transform: scale(1.08);
+  box-shadow: 0 6px 16px rgba(255, 152, 0, 0.5);
 }
 .secondary-button {
   background-color: #6c757d;

@@ -118,7 +118,8 @@ a {
 }
 
 /* Active page indicator */
-.navbar a.active {
+.navbar a.active,
+.navbar a.active-link {
   border-bottom: 2px solid #fff;
   font-weight: 700;
   background-color: rgba(255, 255, 255, 0.1);
@@ -188,6 +189,7 @@ a {
 .social-media p {
   font-size: 1rem;
   margin-bottom: 12px;
+  color: #fff;
 }
 .social-media .icons {
   display: flex;
@@ -793,11 +795,12 @@ img.lazy {
   width: 60%;
   max-width: 100%;
   border-left: 4px solid var(--green-400);
+  box-shadow: var(--shadow-1);
 }
 
 .note-box-primary {
-  border-left-color: var(--accent-blue);
-  background: #e3f2fd;
+  border-left-color: var(--green-600);
+  background: var(--green-50);
 }
 
 .note-box-accent {

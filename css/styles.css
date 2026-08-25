@@ -1,8 +1,8 @@
 :root {
   --green-50: #e8f5e9;
-  --green-400: #4caf50;
-  --green-600: #2e7d32;
-  --green-700: #1b5e20;
+  --green-400: #2e7d32;
+  --green-600: #1b5e20;
+  --green-700: #0d3d12;
   --accent-blue: #007bff;
   --muted: #666666;
   --muted-2: #555555;
@@ -454,7 +454,7 @@ button:hover {
 
 .timer {
   font-size: 36px;
-  color: #388e3c;
+  color: var(--green-700);
   margin: 20px 0;
   background-color: var(--green-50);
   padding: 10px;

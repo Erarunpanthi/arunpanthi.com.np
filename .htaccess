@@ -8,14 +8,19 @@ RewriteRule ^ https://arunpanthi.com.np%{REQUEST_URI} [R=301,L]
 RewriteCond %{HTTP_HOST} ^www\.arunpanthi\.com\.np$ [NC]
 RewriteRule ^ https://arunpanthi.com.np%{REQUEST_URI} [R=301,L]
 
+# Add trailing slash for real directories
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteCond %{REQUEST_URI} !/$
+RewriteRule ^(.+)$ $1/ [R=301,L]
+
 # Remove trailing slash except for real directories
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_URI} .+/$
 RewriteRule ^(.+)/$ /$1 [R=301,L]
 
-# Redirect index.php to clean URL
-RewriteCond %{THE_REQUEST} \s/+(.*/)?index\.php[?\s] [NC]
-RewriteRule ^(.*/)?index\.php$ /$1 [R=301,L]
+# Redirect index.html and index.php to clean URL
+RewriteCond %{THE_REQUEST} \s/+(.*/)?index\.(html|php)[?\s] [NC]
+RewriteRule ^(.*/)?index\.(html|php)$ /$1 [R=301,L]
 
 # Remove .html extension from URLs (for specific pages)
 RewriteCond %{THE_REQUEST} \s/+TermsofService\.html [NC]

@@ -242,8 +242,8 @@ a {
 .social-media {
   background-color: var(--green-600);
   color: #fff;
-  padding: 15px 20px;
-  margin-top: 20px;
+  padding: 20px 20px;
+  margin-top: 0;
   width: 100%;
 
   display: flex;
@@ -253,12 +253,13 @@ a {
 }
 .social-media h1,
 .social-media h2 {
-  font-size: 24px;
+  font-size: 18px;
   margin-bottom: 8px;
   color: #fff;
+  font-weight: 700;
 }
 .social-media p {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   margin-bottom: 12px;
   color: #fff;
 }
@@ -266,17 +267,17 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 25px;
+  gap: 20px;
   margin-top: 10px;
 }
 .social-media .icons a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   color: #fff;
-  font-size: 20px;
+  font-size: 18px;
   transition: transform var(--transition-medium);
 }
 .social-media .icons a:hover {
@@ -298,12 +299,13 @@ footer {
 }
 footer p {
   margin: 0;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
 }
 footer a {
   color: #fff;
   margin: 0 8px;
   padding: 0 4px;
+  font-size: 0.85rem;
 }
 footer a:hover {
   text-decoration: underline;
@@ -751,7 +753,9 @@ img.lazy {
     font-size: 1.5rem;
   }
   .social-media .icons a {
-    font-size: 28px;
+    font-size: 18px;
+    width: 32px;
+    height: 32px;
   }
 }
 
@@ -791,7 +795,9 @@ img.lazy {
     min-height: auto;
   }
   .social-media .icons a {
-    font-size: 24px;
+    font-size: 16px;
+    width: 28px;
+    height: 28px;
   }
 }
 

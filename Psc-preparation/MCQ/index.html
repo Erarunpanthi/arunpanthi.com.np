@@ -362,16 +362,23 @@
                     { id: '3.8', name: 'Engineering Drawing (Sheet composition, scales, projections, drafting tools, symbols, topographic/electrical/plumbing/structural drawings, community buildings)', marks: 4 },
                     { id: '3.9', name: 'Engineering Economics (Benefit-cost analysis, sensitivity, IRR, time value, demand-supply, NPV, financial & economic evaluation)', marks: 3 },
                     { id: '3.10', name: 'Professional Practices (Ethics, Nepal Engineering Council Act, client relations, public procurement, National Building Code, building bylaws)', marks: 3 },
-                    { id: '3.11', name: 'IQ - Number Series Completion', marks: 1 },
-                    { id: '3.12', name: 'IQ - Coding-Decoding', marks: 1 },
-                    { id: '3.13', name: 'IQ - Odd One Out (Classification)', marks: 1 },
-                    { id: '3.14', name: 'IQ - Missing Number Patterns', marks: 1 },
-                    { id: '3.15', name: 'IQ - Blood Relations', marks: 1 },
-                    { id: '3.16', name: 'IQ - Shape Classification', marks: 1 },
-                    { id: '3.17', name: 'IQ - Logical Reasoning (Syllogisms)', marks: 1 },
-                    { id: '3.18', name: 'IQ - Letter Sequences', marks: 1 },
-                    { id: '3.19', name: 'IQ - Mirror Images', marks: 1 },
-                    { id: '3.20', name: 'IQ - Work-Time Problem', marks: 1 }
+                    { 
+                        id: '3.11', 
+                        name: 'IQ (Intelligence Quotient)', 
+                        marks: 10,
+                        subtopics: [
+                            { id: '3.11.1', name: 'Number Series Completion' },
+                            { id: '3.11.2', name: 'Coding-Decoding' },
+                            { id: '3.11.3', name: 'Odd One Out (Classification)' },
+                            { id: '3.11.4', name: 'Missing Number Patterns' },
+                            { id: '3.11.5', name: 'Blood Relations' },
+                            { id: '3.11.6', name: 'Shape Classification' },
+                            { id: '3.11.7', name: 'Logical Reasoning (Syllogisms)' },
+                            { id: '3.11.8', name: 'Letter Sequences' },
+                            { id: '3.11.9', name: 'Mirror Images' },
+                            { id: '3.11.10', name: 'Work-Time Problem' }
+                        ]
+                    }
                 ]
             };
 
@@ -407,16 +414,43 @@
                     marks.className = 'topic-marks';
                     marks.textContent = `${topic.marks} Mark${topic.marks > 1 ? 's' : ''}`;
 
-                    const btn = document.createElement('a');
-                    btn.className = 'mcq-button';
-                    btn.innerHTML = ' ✍️ View MCQ';
-                    btn.href = MCQ_BASE_URL + topic.id + '';
-                    btn.setAttribute('aria-label', `View MCQ for topic ${topic.id}: ${topic.name}`);
+                    // Check if topic has subtopics (like IQ)
+                    if (topic.subtopics && topic.subtopics.length > 0) {
+                        // Create a container for subtopic buttons
+                        const subtopicContainer = document.createElement('div');
+                        subtopicContainer.style.display = 'flex';
+                        subtopicContainer.style.flexDirection = 'column';
+                        subtopicContainer.style.gap = '8px';
+                        subtopicContainer.style.width = '100%';
+                        subtopicContainer.style.marginTop = '10px';
 
-                    card.appendChild(badge);
-                    card.appendChild(title);
-                    card.appendChild(marks);
-                    card.appendChild(btn);
+                        topic.subtopics.forEach((subtopic) => {
+                            const subBtn = document.createElement('a');
+                            subBtn.className = 'mcq-button';
+                            subBtn.style.fontSize = '0.85rem';
+                            subBtn.style.padding = '8px 16px';
+                            subBtn.innerHTML = '📝 ' + subtopic.name;
+                            subBtn.href = MCQ_BASE_URL + subtopic.id + '.html';
+                            subBtn.setAttribute('aria-label', `View MCQ for ${subtopic.name}`);
+                            subtopicContainer.appendChild(subBtn);
+                        });
+
+                        card.appendChild(badge);
+                        card.appendChild(title);
+                        card.appendChild(marks);
+                        card.appendChild(subtopicContainer);
+                    } else {
+                        const btn = document.createElement('a');
+                        btn.className = 'mcq-button';
+                        btn.innerHTML = ' ✍️ View MCQ';
+                        btn.href = MCQ_BASE_URL + topic.id + '.html';
+                        btn.setAttribute('aria-label', `View MCQ for topic ${topic.id}: ${topic.name}`);
+
+                        card.appendChild(badge);
+                        card.appendChild(title);
+                        card.appendChild(marks);
+                        card.appendChild(btn);
+                    }
                     container.appendChild(card);
                 });
             }

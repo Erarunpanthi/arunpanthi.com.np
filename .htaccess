@@ -14,6 +14,14 @@ RewriteRule ^(.+)$ $1/ [R=301,L]
 RewriteCond %{THE_REQUEST} \s/+(([^/]+/)*)index\.(html|php)[?\s] [NC]
 RewriteRule ^ %1 [R=301,L]
 
+# Redirect PrivacyPolicy.html to lowercase privacy-policy
+Redirect 301 /PrivacyPolicy.html https://arunpanthi.com.np/privacy-policy
+Redirect 301 /PrivacyPolicy https://arunpanthi.com.np/privacy-policy
+
+# Redirect TermsofService.html to lowercase terms-of-service
+Redirect 301 /TermsofService.html https://arunpanthi.com.np/terms-of-service
+Redirect 301 /TermsofService https://arunpanthi.com.np/terms-of-service
+
 # Remove .html extension from URLs (for specific pages)
 RewriteCond %{THE_REQUEST} \s/+TermsofService\.html [NC]
 RewriteRule ^TermsofService\.html$ /TermsofService [R=301,L]

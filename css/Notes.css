@@ -41,6 +41,11 @@
         .note-box { border: 1px solid #388E3C; padding: 14px 18px; margin: 20px 0; background: #f6fdf6; border-radius: 8px; }
         .note-box h3 { color: #388E3C; margin-bottom: 8px; }
 
+        .important-note { border: 2px solid #388E3C; padding: 16px 20px; margin: 24px 0; background: #f6fdf6; border-radius: 8px; }
+        .important-note h3 { color: #388E3C; margin-bottom: 8px; }
+        .important-note ul { margin: 8px 0 0 0; padding-left: 20px; }
+        .important-note li { margin-bottom: 6px; font-size: 14px; line-height: 1.6; }
+
         .page-divider { text-align: center; margin: 30px 0 10px; padding: 10px; background: #388E3C; color: #fff; font-weight: 700; font-size: 16px; border-radius: 8px; }
 
         .syllabus-wrapper hr { border: none; border-top: 1px solid #ccc; margin: 30px 0; }

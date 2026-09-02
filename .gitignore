@@ -1,3 +1,6 @@
+
+(js/text-protect.js)
+
 ```gitignore
 # Compiled and binary files
 *.pyc

@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-     │      §1. INJECT PROTECTION CSS           │
+
   const injectStyles = () => {
     const css = document.createElement("style");
     css.id = "cs-shield-styles";
@@ -30,20 +30,6 @@
         pointer-events: none;
       }
 
-      
-      body.cs-dt-open * {
-        visibility: hidden !important;
-      }
-      body.cs-dt-open::after {
-        content: "";
-        position: fixed;
-        inset: 0;
-        background: #fff;
-        z-index: 2147483647;
-        visibility: visible !important;
-      }
-
-      
       @media print {
         html, body, body * {
           display: none !important;
@@ -67,7 +53,7 @@
     document.head.appendChild(css);
   };
 
-     │    §2. BLOCK RIGHT-CLICK (SILENT)        │
+
   const blockRightClick = () => {
     document.addEventListener("contextmenu", (e) => {
       e.preventDefault();
@@ -77,7 +63,7 @@
     }, true);
   };
 
-     │    §3. BLOCK TEXT SELECTION (SILENT)      │
+
   const blockSelection = () => {
     document.addEventListener("selectstart", (e) => {
       e.preventDefault();
@@ -102,7 +88,7 @@
     }, 300);
   };
 
-     │    §4. BLOCK CLIPBOARD (SILENT)          │
+
   const blockClipboard = () => {
     ["copy", "cut", "paste"].forEach((evt) => {
       document.addEventListener(evt, (e) => {
@@ -139,7 +125,7 @@
     }
   };
 
-     │    §5. BLOCK KEYBOARD SHORTCUTS          │
+
   const blockKeyboard = () => {
     document.addEventListener("keydown", (e) => {
       const key = e.key ? e.key.toLowerCase() : "";
@@ -330,7 +316,7 @@
     }, true);
   };
 
-     │    §6. SCREENSHOT COUNTERMEASURES        │
+
 
   
   const nukeClipboard = () => {
@@ -376,7 +362,7 @@
     });
   };
 
-     │    §7. BLOCK DRAG & DROP (SILENT)        │
+
   const blockDragDrop = () => {
     ["dragstart", "drag", "dragend", "dragenter", "dragover", "dragleave", "drop"].forEach((evt) => {
       document.addEventListener(evt, (e) => {
@@ -401,7 +387,7 @@
       .observe(document.body, { childList: true, subtree: true });
   };
 
-     │    §8. BLOCK PRINT (SILENT)              │
+
   const blockPrint = () => {
     
     window.print = function () { return false; };
@@ -424,16 +410,73 @@
     }
   };
 
-     │    §9. DEVTOOLS DETECTION (SILENT)       │
+
   let devtoolsOpen = false;
+  let warningShown = false;
+  let redirectAttempted = false;
+
+  const showWarningAndClose = () => {
+    if (warningShown) return;
+    warningShown = true;
+    
+    // Show full-screen warning overlay
+    const existingWarning = document.getElementById('cs-devtools-warning');
+    if (existingWarning) return;
+    
+    const warning = document.createElement("div");
+    warning.id = 'cs-devtools-warning';
+    warning.style.cssText = `
+      position:fixed; inset:0; z-index:2147483647;
+      background:#000; color:#fff; display:flex;
+      align-items:center; justify-content:center;
+      flex-direction:column; font-family:Arial,sans-serif;
+    `;
+    warning.innerHTML = `
+      <h1 style="color:#f00; font-size:48px; margin-bottom:20px;">⚠️ WARNING</h1>
+      <p style="font-size:24px; margin-bottom:30px;">Developer Tools Detected!</p>
+      <p style="font-size:18px; color:#aaa;">Closing this tab immediately...</p>
+    `;
+    
+    // Clear everything and show warning
+    document.body.innerHTML = "";
+    document.body.style.margin = "0";
+    document.body.style.padding = "0";
+    document.body.appendChild(warning);
+    
+    // Immediate redirect to blank page
+    if (!redirectAttempted) {
+      redirectAttempted = true;
+      
+      // Method 1: Replace location with about:blank
+      window.location.replace("about:blank");
+      
+      // Method 2: Try to close (works only if opened by script)
+      setTimeout(() => {
+        try { window.close(); } catch(e) {}
+      }, 100);
+      
+      // Method 3: Navigate back in history
+      setTimeout(() => {
+        try { 
+          window.history.back();
+          window.history.go(-1);
+        } catch(e) {}
+      }, 200);
+      
+      // Method 4: Final redirect
+      setTimeout(() => {
+        if (!window.closed && !redirectAttempted) {
+          window.location.href = "about:blank";
+        }
+      }, 500);
+    }
+  };
 
   const setDevToolsState = (isOpen) => {
     if (isOpen === devtoolsOpen) return;
     devtoolsOpen = isOpen;
     if (isOpen) {
-      document.body.classList.add("cs-dt-open");
-    } else {
-      document.body.classList.remove("cs-dt-open");
+      showWarningAndClose();
     }
   };
 
@@ -491,7 +534,7 @@
     detectBySize();
   };
 
-     │    §10. SOURCE & EXTENSION PROTECTION    │
+
   const sourceProtection = () => {
 
     
@@ -539,8 +582,7 @@
       if (desc && desc.get) {
         Object.defineProperty(proto, prop, {
           get() {
-            if (devtoolsOpen) return "";
-            return desc.get.call(this);
+            return "";
           },
           configurable: true,
         });
@@ -554,7 +596,7 @@
     } catch (_) {}
   };
 
-     │    §11. DISABLE READER MODE              │
+
   const blockReaderMode = () => {
     // Reader mode typically looks for <article> structure
     
@@ -567,7 +609,7 @@
     document.body.appendChild(decoy);
   };
 
-     │    §12. DISABLE DOCUMENT INTERACTIONS    │
+
   const blockMiscInteractions = () => {
 
     
@@ -596,7 +638,6 @@
       const sel = origGetSel.call(this);
       if (sel) {
         try {
-          const origToStr = sel.toString;
           sel.toString = function () { return ""; };
         } catch (_) {}
       }
@@ -626,7 +667,7 @@
     }, true);
   };
 
-     │    §13. CONSOLE WARFARE                  │
+
   const consoleLockdown = () => {
     
     setInterval(() => {
@@ -651,10 +692,7 @@
     }, 3000);
   };
 
-     │    §14. MUTATION GUARD                   │
-     Watches for injected scripts/iframes that
-     might try to extract content
-  */
+  // Watches for injected scripts/iframes that might try to extract content
   const mutationGuard = () => {
     new MutationObserver((mutations) => {
       mutations.forEach((m) => {
@@ -682,7 +720,7 @@
     }).observe(document.documentElement, { childList: true, subtree: true });
   };
 
-     │       🚀 INITIALIZATION                  │
+
   const init = () => {
     injectStyles();
 

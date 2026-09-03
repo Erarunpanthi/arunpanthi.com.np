@@ -4,8 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Design of Beams - Singly and Doubly Reinforced Beams with examples and design steps for PSC Preparation">
-    <meta name="keywords" content="Beam Design, Singly Reinforced Beam, Doubly Reinforced Beam, RCC, Structural Engineering, PSC Preparation">
+    <meta name="keywords" content="Beam Design, Singly Reinforced Beam, Doubly Reinforced Beam, RCC, Structural Engineering, PSC Preparation, IS 456:2000">
     <meta name="author" content="Arun Panthi">
+    <meta name="robots" content="index, follow">
     
     <title>Design of Beams - Singly & Doubly Reinforced | PSC Preparation</title>
     
@@ -13,16 +14,40 @@
     <meta property="og:description" content="Complete guide on beam design including singly and doubly reinforced beams with examples" />
     <meta property="og:url" content="https://arunpanthi.com.np/Psc-preparation/Subjective-Note/1.1" />
     <meta property="og:image" content="https://arunpanthi.com.np/Photos/logo.png" />
+    <meta property="og:image:alt" content="Design of Beams - Singly and Doubly Reinforced" />
     <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Arun Panthi" />
+    
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Design of Beams - Singly & Doubly Reinforced" />
+    <meta name="twitter:description" content="Complete guide on beam design including singly and doubly reinforced beams with examples" />
+    <meta name="twitter:image" content="https://arunpanthi.com.np/Photos/logo.png" />
     
     <link rel="canonical" href="https://arunpanthi.com.np/Psc-preparation/Subjective-Note/1.1" />
+    <link rel="alternate" hreflang="en-NP" href="https://arunpanthi.com.np/Psc-preparation/Subjective-Note/1.1" />
+    <link rel="alternate" hreflang="en" href="https://arunpanthi.com.np/Psc-preparation/Subjective-Note/1.1" />
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="/css/styles.css">
-    <link rel="stylesheet" href="/css/grid.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preload" href="/css/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="/css/grid.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/css/styles.css"></noscript>
+    <noscript><link rel="stylesheet" href="/css/grid.css"></noscript>
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous"></noscript>
     
     <!-- MathJax for Mathematical Equations -->
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['\\[', '\\]'], ['$$', '$$']]
+            },
+            startup: {
+                ready: () => {
+                    MathJax.startup.defaultReady();
+                }
+            }
+        };
+    </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
     <style>
@@ -476,66 +501,78 @@
                 
                 <ol class="step-list">
                     <li>
-                        <div class="step-title">Calculate Maximum Bending Moment (M<sub>u</sub>)</div>
+                        <div class="step-title">Calculate Maximum Bending Moment ($M_u$)</div>
                         <p>For simply supported beam with UDL:</p>
-                        <div class="formula-box equation">
-                            \[ M_u = \frac{w_u L^2}{8} \]
+                        <div class="formula-box">
+                            <div class="equation">
+                                \[ M_u = \frac{w_u L^2}{8} \]
+                            </div>
                         </div>
-                        <p>Where: w<sub>u</sub> = Factored UDL, L = Effective span</p>
+                        <p>Where: $w_u$ = Factored UDL, $L$ = Effective span</p>
                     </li>
                     
                     <li>
-                        <div class="step-title">Calculate Limiting Moment of Resistance (M<sub>lim</sub>)</div>
-                        <div class="formula-box equation">
-                            \[ M_{\text{lim}} = k \cdot f_{ck} \cdot b \cdot d^2 \]
+                        <div class="step-title">Calculate Limiting Moment of Resistance ($M_{lim}$)</div>
+                        <div class="formula-box">
+                            <div class="equation">
+                                \[ M_{\text{lim}} = k \cdot f_{ck} \cdot b \cdot d^2 \]
+                            </div>
                         </div>
                         <p>Where:</p>
                         <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
-                            <li>k = 0.148 for Fe 250 steel</li>
-                            <li>k = 0.138 for Fe 415 steel</li>
-                            <li>k = 0.133 for Fe 500 steel</li>
-                            <li>f<sub>ck</sub> = Characteristic strength of concrete</li>
-                            <li>b = Width of beam</li>
-                            <li>d = Effective depth of beam</li>
+                            <li>$k = 0.148$ for Fe 250 steel</li>
+                            <li>$k = 0.138$ for Fe 415 steel</li>
+                            <li>$k = 0.133$ for Fe 500 steel</li>
+                            <li>$f_{ck}$ = Characteristic strength of concrete</li>
+                            <li>$b$ = Width of beam</li>
+                            <li>$d$ = Effective depth of beam</li>
                         </ul>
                     </li>
                     
                     <li>
-                        <div class="step-title">Compare M<sub>u</sub> with M<sub>lim</sub></div>
+                        <div class="step-title">Compare $M_u$ with $M_{lim}$</div>
                         <div class="formula-box">
                             <ul style="margin-left: 1.5rem;">
-                                <li>If M<sub>u</sub> ≤ M<sub>lim</sub> → Design as Singly Reinforced Beam</li>
-                                <li>If M<sub>u</sub> > M<sub>lim</sub> → Design as Doubly Reinforced Beam</li>
+                                <li>If $M_u \leq M_{lim}$ → Design as Singly Reinforced Beam</li>
+                                <li>If $M_u > M_{lim}$ → Design as Doubly Reinforced Beam</li>
                             </ul>
                         </div>
                     </li>
                     
                     <li>
-                        <div class="step-title">Calculate Area of Steel Required (A<sub>st,req</sub>)</div>
+                        <div class="step-title">Calculate Area of Steel Required ($A_{st,req}$)</div>
                         <p>For singly reinforced beam:</p>
-                        <div class="formula-box equation">
-                            \[ M_u = 0.87 \cdot f_y \cdot A_{st} \cdot d \left(1 - \frac{A_{st} \cdot f_y}{b \cdot d \cdot f_{ck}}\right) \]
+                        <div class="formula-box">
+                            <div class="equation">
+                                \[ M_u = 0.87 \cdot f_y \cdot A_{st} \cdot d \left(1 - \frac{A_{st} \cdot f_y}{b \cdot d \cdot f_{ck}}\right) \]
+                            </div>
                         </div>
                         <p>Or use approximate formula:</p>
-                        <div class="formula-box equation">
-                            \[ A_{st,\text{req}} = \frac{M_u}{0.87 \cdot f_y \cdot j \cdot d} \]
+                        <div class="formula-box">
+                            <div class="equation">
+                                \[ A_{st,\text{req}} = \frac{M_u}{0.87 \cdot f_y \cdot j \cdot d} \]
+                            </div>
                         </div>
-                        <p>Where j ≈ 0.9 (lever arm factor)</p>
+                        <p>Where $j \approx 0.9$ (lever arm factor)</p>
                     </li>
                     
                     <li>
                         <div class="step-title">Calculate Number of Bars</div>
-                        <div class="formula-box equation">
-                            \[ \text{Number of bars} = \frac{A_{st,\text{req}}}{\text{Area of one bar}} = \frac{A_{st,\text{req}}}{\frac{\pi}{4} \phi^2} \]
+                        <div class="formula-box">
+                            <div class="equation">
+                                \[ \text{Number of bars} = \frac{A_{st,\text{req}}}{\text{Area of one bar}} = \frac{A_{st,\text{req}}}{\frac{\pi}{4} \phi^2} \]
+                            </div>
                         </div>
-                        <p>Where φ = diameter of bar</p>
+                        <p>Where $\phi$ = diameter of bar</p>
                         <p><strong>Note:</strong> Always round up to next whole number. Minimum 2 bars required.</p>
                     </li>
                     
                     <li>
-                        <div class="step-title">Calculate Provided Area of Steel (A<sub>st,prov</sub>)</div>
-                        <div class="formula-box equation">
-                            \[ A_{st,\text{prov}} = \text{Number of bars} \times \text{Area of one bar} \]
+                        <div class="step-title">Calculate Provided Area of Steel ($A_{st,prov}$)</div>
+                        <div class="formula-box">
+                            <div class="equation">
+                                \[ A_{st,\text{prov}} = \text{Number of bars} \times \text{Area of one bar} \]
+                            </div>
                         </div>
                     </li>
                     
@@ -659,19 +696,44 @@
                 }
             });
         });
-        
-        // Add loading indicator for MathJax
-        window.MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']]
-            },
-            startup: {
-                ready: () => {
-                    console.log('MathJax loaded successfully');
-                    MathJax.startup.defaultReady();
-                }
-            }
-        };
     </script>
+    
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Design of Beams - Singly & Doubly Reinforced",
+        "description": "Complete guide on beam design including singly and doubly reinforced beams with examples and design steps for PSC Preparation",
+        "author": {
+            "@type": "Person",
+            "name": "Arun Panthi",
+            "url": "https://arunpanthi.com.np"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Arun Panthi",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://arunpanthi.com.np/Photos/logo.png"
+            }
+        },
+        "datePublished": "2024-01-01",
+        "dateModified": "2024-01-01",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://arunpanthi.com.np/Psc-preparation/Subjective-Note/1.1"
+        },
+        "image": "https://arunpanthi.com.np/Photos/logo.png",
+        "articleSection": "Structural Engineering",
+        "keywords": "Beam Design, Singly Reinforced Beam, Doubly Reinforced Beam, RCC, Structural Engineering, PSC Preparation"
+    }
+    </script>
+    
+    <div id="navbar"></div>
+    <div id="social-section"></div>
+    <div id="footer"></div>
+    
+    <script src="/js/layout.js" defer></script>
 </body>
 </html>

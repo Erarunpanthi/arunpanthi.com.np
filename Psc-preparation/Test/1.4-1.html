@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="canonical" href="https://arunpanthi.com.np/Psc-preparation/Test/1.4-1.html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>History and Political Development of Nepal - Practice Questions</title>
+<link rel="icon" href="https://arunpanthi.com.np/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="/css/Mock_Test.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar" id="navbar">
+<span class="brand" id="navbar-brand">History and Political Development of Nepal - Practice Questions</span>
+<span class="timer-display" id="timer-display" style="display:none;">--:--</span>
+</nav>
+
+
+<div id="warning-modal" class="modal-overlay" style="display: none;">
+<div class="modal-dialog">
+<div class="warning-icon">⚠️</div>
+<h3>Unanswered Questions</h3>
+<p>You haven't answered all the questions.</p>
+<span class="unanswered-count" id="modal-unanswered-count">0 unanswered</span>
+<p style="margin-top:8px;"><strong>⚠ This test cannot be retaken once submitted!</strong></p>
+<div class="modal-buttons">
+<button class="btn-cancel" id="btn-modal-cancel">Cancel</button>
+<button class="btn-submit-warning" id="btn-modal-submit">Submit Anyway</button>
+</div>
+</div>
+</div>
+
+<div id="pre-test-section">
+<div class="hero" id="hero-card">
+<h1 id="hero-set-name">Loading...</h1>
+<p class="set-details" id="hero-details"></p>
+<div class="set-meta">
+<div class="meta-item"><span id="hero-q-count">0</span> Questions</div>
+<div class="meta-item"><span id="hero-time">0:00</span> Time (min)</div>
+</div>
+<button class="btn-start" id="btn-start-test">🚀 Start Test</button>
+<p style="margin-top:10px;font-size:0.85rem;opacity:0.8;" id="hero-note"></p>
+</div>
+</div>
+
+<div id="test-section" style="display:none;">
+<div class="test-container">
+<div class="question-area">
+<div class="question-card">
+<div class="q-number" id="q-number-label">QUESTION 1</div>
+<div class="q-text" id="q-text">Loading question...</div>
+<ul class="options-list" id="options-list"></ul>
+</div>
+<div class="nav-buttons">
+<div class="nav-left"><button class="btn-nav" id="btn-prev">◀ Previous</button></div>
+<div class="nav-center"><button class="btn-submit" id="btn-submit-test">✅ Submit Test</button></div>
+<div class="nav-right"><button class="btn-nav" id="btn-next">Next ▶</button></div>
+</div>
+</div>
+<aside class="sidebar">
+<h3>📋 Question </h3>
+<div class="total-questions" id="sidebar-total">Total: 0</div>
+<div class="answered-count">Answered: <strong id="sidebar-answered-num">0</strong></div>
+<div class="q-grid" id="q-grid"></div>
+<div class="legend">
+<span><span class="dot-sample blue"></span> Answered</span>
+<span><span class="dot-sample gray"></span> Unanswered</span>
+</div>
+</aside>
+</div>
+</div>
+
+<div id="results-section" style="display:none;">
+<div class="results-container">
+<div class="results-header">
+<h2 style="color:#2E7D32;">📊 Test Results</h2>
+<p style="color:#666;" id="results-set-name"></p>
+<div class="score-circle">
+<span class="score-num" id="results-score">0</span>
+<span class="score-denom" id="results-denom">/ 0</span>
+</div>
+<div class="percentage" id="results-percentage">0%</div>
+<p style="margin-top:8px;color:#888;font-size:0.9rem;" id="results-time-taken"></p>
+</div>
+<div id="results-detail"></div>
+</div>
+</div>
+<script src="/js/Mock_Test.js"></script>
+<script>
+(function () {
+    console.log('Inline script running');
+
+    const questionSet = {
+        name: 'History and Political Development of Nepal - Practice Questions',
+        details: 'Covers the Shah dynasty, Nepal unification, Anglo-Nepal War, Rana regime, democratic movements, political history, national personalities, treaties, governance, and notable events of Nepal.',
+        questions: [
+            { question: 'Who is the first person to be entitled “Shah”?', options: ['Rishiraj Ranaji Khan', 'Kulmandan Khan', 'Jagadev Khan', 'Bichitra Khan'], correct: 1 },
+            { question: 'Who is the first king of the Shah dynasty?', options: ['Prithvi Narayan Shah', 'Yashobrahma Shah', 'Kulmandan Shah', 'Dravya Shah'], correct: 2 },
+            { question: 'Who is the first king of Gorkha representing the Shah dynasty?', options: ['Purna Shah', 'Yashobrahma Shah', 'Narahari Shah', 'Dravya Shah'], correct: 3 },
+            { question: 'When did Dravya Shah establish the Gorkha State after defeating the Khadka king?', options: ['1515 Bhadra 25', '1616 Bhadra 25', '1717 Bhadra 25', '1818 Bhadra 25'], correct: 1 },
+            { question: 'Who is the last Shah king of Gorkha?', options: ['Narabhupal Shah', 'Ram Shah', 'Prithvi Narayan Shah', 'Pratap Singh Shah'], correct: 2 },
+            { question: 'When was Prithvi Narayan Shah born?', options: ['1723 A.D.', '1724 A.D.', '1725 A.D.', '1726 A.D.'], correct: 0 },
+            { question: 'Which of the following pairs is incorrect?', options: ['Father of Unification Campaign – Prithvi Narayan Shah', 'Founder of Gorkha State – Dravya Shah', 'Father of Nation and Democracy – King Tribhuvan', 'Rana Bahadur Shah – Youngest king of Nepal'], correct: 3 },
+            { question: 'Which was the first state annexed by Prithvi Narayan Shah during the unification campaign?', options: ['Nuwakot', 'Belkot', 'Taldum', 'Changu'], correct: 0 },
+            { question: 'What was the chief of a district called during the rule of Prithvi Narayan Shah?', options: ['Chotdar', 'Subba', 'Sardar', 'Wokil'], correct: 1 },
+            { question: 'When did Gorkha attain victory over Nuwakot?', options: ['1800', '1801', '1802', '1803'], correct: 1 },
+            { question: 'When was Kathmandu declared the capital city of Nepal?', options: ['1769', '1768', '1767', '1766'], correct: 0 },
+            { question: 'In which battle did Kazi Kalu Pandey die?', options: ['The first battle of Nuwakot', 'The second battle of Makwanpur', 'The first battle of Kirtipur', 'The last battle of Kirtipur'], correct: 2 },
+            { question: 'Who was the first Kazi of Nepal, whose actual name was Banshidhar Pandey?', options: ['Kalu Pandey', 'Damodar Pandey', 'Bamsharaj Pandey', 'None'], correct: 0 },
+            { question: 'Who among the following was not a leader of the “Jayatu Sanskritam Andolan” of 2004 B.S.?', options: ['Nara Bahadur Karmacharya', 'Rajeshwor Devkota', 'Shree Bhadra Sharma', 'Kashinath Gautam'], correct: 0 },
+            { question: 'Who is known as the indecisive ruler?', options: ['Rajendra Shah', 'Mahendra Shah', 'Gyanendra Shah', 'None of the above'], correct: 0 },
+            { question: 'Where did Prithvi Narayan Shah die?', options: ['Devghat', 'Devighat', 'Dipalghat', 'Rupalghat'], correct: 1 },
+            { question: 'Who introduced the system of Red Seal in Nepal?', options: ['Ram Shah', 'Narabhupal Shah', 'Prithvi Narayan Shah', 'All'], correct: 2 },
+            { question: 'Prithvi Narayan Shah extended the territory of Nepal from Gorkha to which places in the east and west?', options: ['Mechi–Marsyangdi', 'Mechi–Trishuli', 'Mechi–Madi', 'Mechi–Gandaki'], correct: 0 },
+            { question: 'Who extended the territory of Nepal from Tista in the east to Kangada in the west?', options: ['Rana Bahadur Shah', 'Bhimsen Thapa', 'Bahadur Shah', 'Rajendra Bikram Shah'], correct: 2 },
+            { question: 'What was the real name of Bahadur Shah, who ruled as a regent for nine years?', options: ['Fatya Bahadur Shah', 'Gorakh Bahadur Shah', 'Bishnu Bahadur Shah', 'Rajendra Bikram Shah'], correct: 0 },
+            { question: 'Who introduced Gaijatra in Nepal?', options: ['Gunakamadev', 'Jay Prakash Malla', 'Pratap Singh Shah', 'Rana Bahadur Shah'], correct: 0 },
+            { question: 'Who introduced the system of riding the chariot of Kumari in Indrajatra?', options: ['Jay Prakash Malla', 'Rana Bahadur Shah', 'Girbanyuddha Bikram Shah', 'Surendra Bikram Shah'], correct: 0 },
+            { question: 'When did the first Nepal–Tibet War take place?', options: ['1788', '1789', '1790', '1792'], correct: 0 },
+            { question: 'When was the Kerung Treaty signed?', options: ['2 June 1789', '5 October 1792', '24 March 1856', '31 July 1950'], correct: 0 },
+            { question: 'The Thapathali Treaty was signed on 24 March 1856 between which countries?', options: ['Nepal and China', 'Nepal and Tibet', 'Nepal and India', 'Nepal and India'], correct: 1 },
+            { question: 'When was the Nepal–Anglo War fought between Nepal and the British East India Company?', options: ['1814–1816', '1815–1817', '1816–1818', '1817–1819'], correct: 0 },
+            { question: 'Who was the defensive commander of Nepal at Nalapani during the Nepal–Anglo War?', options: ['Bhakti Thapa', 'Amar Singh Thapa', 'Balabhadra Kunwar', 'Bhimsen Thapa'], correct: 2 },
+            { question: 'In which battle did Bhakti Thapa lose his life?', options: ['Almoda', 'Kamaon', 'Gadhwal', 'Deuthal'], correct: 3 },
+            { question: 'Who was the commander of the Nepal Army in the western region during the Nepal–Anglo War?', options: ['Ujir Singh Thapa', 'Ranojir Singh Thapa', 'Ranabir Singh Thapa', 'Amar Singh Thapa'], correct: 3 },
+            { question: 'Who is called the “Hero of the Nepal–Anglo War” and “The Living Lion of Nepal”?', options: ['Amar Singh Thapa', 'Balabhadra Kunwar', 'Bhakti Thapa', 'Surbir Thapa'], correct: 0 },
+            { question: 'Where did Balabhadra die?', options: ['India', 'Pakistan', 'Afghanistan', 'UK'], correct: 2 },
+            { question: 'Where did Amar Singh Thapa commit suicide?', options: ['Damodar Kunda', 'Dudh Kunda', 'Gosainkunda', 'Narad Kunda'], correct: 2 },
+            { question: 'When was the Treaty of Sugauli signed?', options: ['3 March 1816', '4 March 1816', '5 March 1816', '6 March 1816'], correct: 0 },
+            { question: 'When was the Panchayat system, a partyless system, introduced in Nepal?', options: ['2015 Poush 22', '2016 Poush 22', '2017 Poush 22', '2018 Poush 22'], correct: 2 },
+            { question: 'Who signed the Betrawati Treaty representing Nepal after the second Nepal–Tibet War?', options: ['Devi Dutta Thapa', 'Bhakti Thapa', 'Pratap Shah', 'Kalu Pandey'], correct: 0 },
+            { question: 'Who was the first king to receive the title “Bikram”?', options: ['Girbanyuddha', 'Rana Bahadur', 'Bahadur Shah', 'Trailokya'], correct: 0 },
+            { question: 'When did the Kot Massacre take place?', options: ['1903 Ashwin 2', '1903 Ashwin 3', '1903 Ashwin 4', '1903 Ashwin 5'], correct: 0 },
+            { question: 'Who was the first person killed in Kot Parva?', options: ['Abhiman Singh Basnyat', 'Birdhoj Basnyat', 'Bir Kishor Pandey', 'Kamal Mani Thapa'], correct: 0 },
+            { question: 'Which of the following statements about the Kot Massacre is incorrect?', options: ['There were six prime ministers in Nepal before the Rana regime', 'The prime minister who died in Kot Parva was Fateh Jung Shah', 'Jung Bahadur Rana became the prime minister of Nepal after the massacre', 'The immediate cause of the massacre was the killing of Mathabar Singh Thapa'], correct: 3 },
+            { question: 'For how many years did Rana rule last in Nepal?', options: ['102', '103', '104', '105'], correct: 2 },
+            { question: 'When did the Bhandarkhal Massacre take place?', options: ['1903 Ashwin 2', '1903 Kartik 12', '1903 Mangsir 16', '1903 Poush 23'], correct: 1 },
+            { question: 'The place named “Alaau” lies in which place of Nepal?', options: ['Birgunj', 'Bihar', 'Sitaramdi', 'Govargadha'], correct: 0 },
+            { question: 'Who was the first Rana prime minister of Nepal to establish Durbar High School?', options: ['Jung Bahadur Rana', 'Bal Narsingh Rana', 'Prem Rana', 'None'], correct: 0 },
+            { question: 'Who was the first Prime Minister of Nepal to visit Europe?', options: ['B.P. Koirala', 'Jung Bahadur Rana', 'Bhimsen Thapa', 'Bir Shumsher'], correct: 1 },
+            { question: 'Who enforced the first civil code of Nepal, Muluki Ain?', options: ['B.P. Koirala', 'Jung Bahadur Rana', 'Bhimsen Thapa', 'Bir Shumsher'], correct: 1 },
+            { question: 'When was the Public Service Commission formed in Nepal?', options: ['2008 Asar', '2009 Asar', '2007 Asar', '2010 Asar'], correct: 0 },
+            { question: 'Who introduced women’s education in Nepal?', options: ['Jung Bahadur Rana', 'Bir Shumsher', 'Dev Shumsher', 'Raman Shumsher'], correct: 1 },
+            { question: 'Who is known as the Dhankute Maharaja?', options: ['Jung Bahadur Rana', 'Bir Shumsher', 'Dev Shumsher', 'Dambar Shumsher'], correct: 2 },
+            { question: 'When was Sati Pratha abolished in Nepal?', options: ['1977 Asar 25', '1978 Asar 25', '1979 Asar 25', '1980 Asar 25'], correct: 0 },
+            { question: 'Who was the Prime Minister of Nepal during the Second World War?', options: ['Chandra Shumsher', 'Juddha Shumsher', 'Mohan Shumsher', 'Dhir Shumsher'], correct: 1 },
+            { question: 'Who is known as the father of school and the Father of Education in Nepal?', options: ['Mohan Shumsher and Padma Shumsher', 'Juddha Shumsher and Dhir Shumsher', 'Padma Shumsher and Dev Shumsher', 'Dhir Shumsher and Khadga Shumsher'], correct: 2 },
+            { question: 'Who crowned Jung Bahadur Rana with the title “Shree 3” of Lamjung and Kaski?', options: ['King Surendra', 'King Rajendra', 'Trailokya', 'Bahadur Shah'], correct: 0 },
+            { question: 'Who introduced Agnate Pratha in Nepal?', options: ['Ranaudip Singh Kunwar', 'Dhir Shumsher', 'Jagat Jung', 'Jung Bahadur Rana'], correct: 3 },
+            { question: 'Who was the first Prime Minister of Nepal after the Rana rule or after the declaration of democracy?', options: ['Mohan Shumsher', 'Juddha Shumsher', 'Padma Shumsher', 'B.P. Koirala'], correct: 0 },
+            { question: 'Which of the following pairs is incorrect?', options: ['B.P. Koirala: first publicly elected Prime Minister of Nepal', 'Matrika Prasad Koirala: first Prime Minister from the general public', 'Manmohan Adhikari: first communist prime minister', 'Marich Man Singh Shrestha: last Prime Minister of the Panchayat system'], correct: 3 },
+            { question: 'Who was the last Rana Prime Minister of Nepal?', options: ['Mohan Shumsher', 'Padma Shumsher', 'Bhim Shumsher', 'Juddha Shumsher'], correct: 0 },
+            { question: 'Which was the first commercial bank of Nepal?', options: ['Nepal Arab Bank', 'Rastriya Banijya Bank Limited', 'Nepal Rastra Bank', 'Nepal Bank Limited'], correct: 3 },
+            { question: 'Who was the first martyr of Nepal?', options: ['Gangalal Shrestha', 'Shukraraj Shastri', 'Lakhan Thapa', 'Dashrath Chand'], correct: 2 },
+            { question: 'When was the first general election held in Nepal?', options: ['2012', '2013', '2014', '2015'], correct: 3 },
+            { question: 'When was the first publicly elected government formed in Nepal?', options: ['2016 Jetha 13', '2016 Asar 16', '2016 Shrawan 13', '2016 Bhadra 5'], correct: 1 },
+            { question: 'Who was the first female minister of Nepal?', options: ['Shailaja Acharya', 'Dwarika Devi Thakurani', 'Purnima Shrestha', 'Manchhura Devi'], correct: 1 },
+            { question: 'When was the only referendum held in Nepal?', options: ['2036 Baisakh 10', '2037 Jetha 20', '2037 Baisakh 20', '2039 Asar 2'], correct: 2 },
+            { question: 'Who is known as the political king in Nepalese history?', options: ['King Birendra', 'King Mahendra', 'King Gyanendra', 'King Surendra'], correct: 1 },
+            { question: 'In which year did the BIPPA agreement between Nepal and India take place?', options: ['2009', '2010', '2011', '2012'], correct: 2 },
+            { question: 'Who was the first female president of Nepal?', options: ['Shailaja Acharya', 'Sushila Karki', 'Bidhya Devi Bhandari', 'Sushila Thapa'], correct: 2 },
+            { question: 'Who was the first female Chief Justice of Nepal?', options: ['Shailaja Acharya', 'Sushila Karki', 'Bidhya Devi Bhandari', 'Sushila Thapa'], correct: 1 },
+            { question: 'Who was the first female Deputy Prime Minister of Nepal?', options: ['Shailaja Acharya', 'Sushila Karki', 'Bidhya Devi Bhandari', 'Sushila Thapa'], correct: 0 },
+            { question: 'Which is the only temple of Nepal that does not have a pinnacle?', options: ['Pashupatinath', 'Krishna Mandir', 'Ashok Vinayak', 'Swayambhunath'], correct: 2 },
+            { question: 'Who was the first editor of Gorkhapatra?', options: ['Nara Dev Pandey', 'Subash Chandra Nembang', 'Krishna Prasad Bhattarai', 'Ratna Shumsher JBR'], correct: 0 },
+            { question: 'Who was the first chairperson of the Constituent Assembly?', options: ['Mahendra Narayan Nidhi', 'Subash Chandra Nembang', 'Krishna Prasad Bhattarai', 'Baburam Bhattarai'], correct: 1 },
+            { question: 'Who was the first chairman of the Public Service Commission?', options: ['Anirudra Pratap Singh', 'Sanjay Dhauranjikar', 'Krishna Prasad Bhattarai', 'Madhav Prasad Regmi'], correct: 0 },
+            { question: 'Who was the first scientist of Nepal?', options: ['Khadga Shumsher', 'Gehendra Shumsher', 'Binaya Singh Rana', 'Dhir Shumsher JBR'], correct: 1 },
+            { question: 'Who built Rani Mahal of Palpa?', options: ['Prem Singh Basnet', 'Khadga Shumsher', 'Arjun Narsingh Rana', 'Bhim Budhha Pulami'], correct: 1 },
+            { question: 'Who is known as the Badakaji in Nepalese history?', options: ['Bhakti Thapa', 'Kalu Pandey', 'Balbir Thapa', 'Amar Singh Thapa'], correct: 3 },
+            { question: 'Who built Singha Durbar?', options: ['Jung Bahadur Rana', 'Juddha Shumsher', 'Padma Shumsher', 'Chandra Shumsher'], correct: 3 },
+            { question: 'When did the Royal Massacre happen in the Royal Palace of Nepal?', options: ['1 June 2001', '2 June 2001', '3 June 2001', '4 June 2001'], correct: 0 },
+            { question: 'When was MRI introduced by the Government of Nepal?', options: ['2066', '2067', '2068', '2069'], correct: 1 },
+            { question: 'Who was the first person from the general public to wear the Royal Crown, Shreepech?', options: ['Jung Bahadur Rana', 'Dhir Shumsher', 'Bir Shumsher', 'Dev Shumsher'], correct: 0 },
+            { question: 'When was the Kamaiya system abolished in Nepal?', options: ['2056 B.S.', '2057 B.S.', '2058 B.S.', '2059 B.S.'], correct: 1 },
+            { question: 'Who was the only king to enforce two constitutions of Nepal?', options: ['Tribhuvan Shah', 'Mahendra Shah', 'Surendra Shah', 'Gyanendra Shah'], correct: 1 },
+            { question: 'Who is known as the Bullet Maharaja?', options: ['Tribhuvan Shah', 'Mahendra Shah', 'Surendra Shah', 'Trailokya Shah'], correct: 3 },
+            { question: '“If soldiers are strong, the palace will be strong.” Who said this?', options: ['Tribhuvan Shah', 'Mahendra Shah', 'Surendra Shah', 'Prithvi Narayan Shah'], correct: 3 },
+            { question: 'During whose reign did the Tri Rule, Trayee Sashan or rule by three, exist in Nepal?', options: ['Girban Yuddha Bikram Shah', 'Mahendra Shah', 'Surendra Shah', 'Prithvi Narayan Shah'], correct: 0 },
+            { question: 'Which king, nicknamed “Swami Maharaja,” was killed by his own brother?', options: ['Rana Bahadur Shah', 'Sher Bahadur Shah', 'Pratap Singh Shah', 'Rajendra Bikram Shah'], correct: 0 },
+            { question: 'Which department carried out construction work during the Rana regime?', options: ['Chaprasi Adda', 'Sarraf Khana', 'Pipa Goshwara', 'Shrestha Apil'], correct: 0 },
+            { question: 'Which department carried out government audit activities during the Rana regime?', options: ['Kumari Chowk', 'Lekha Adda', 'Lekhaphadi Adda', 'Goth Tahabil'], correct: 0 },
+            { question: 'The medal of honour “Gorkha Dakshin Bahu” was introduced during whose kingship?', options: ['Prithvi Bir Bikram Shah', 'King Tribhuvan', 'King Mahendra', 'King Birendra'], correct: 0 },
+            { question: 'Which department was established by Prithvi Narayan Shah to carry out work related to land and land reform?', options: ['Munsikhana', 'Jaisi Kotha', 'Chhebhadel Adda', 'Sadar Daphtarkhana'], correct: 3 },
+            { question: 'Which department acted as a bank during the reign of Prithvi Narayan Shah?', options: ['Kaushitosha Khana', 'Hiti Chowk', 'Bhandarkhal Tahabil', 'Census Goshwara'], correct: 2 },
+            { question: 'What function did the department named “Kadel Chowk” perform during the Rana regime?', options: ['Gold and silver management', 'Cattle and horse management', 'Maintenance of water supply', 'Looking after arms and ammunition'], correct: 0 },
+            { question: 'Who signed the Treaty of Peace and Friendship between Nepal and India on 31 July 1950?', options: ['Subarna Shumsher', 'Mahabir Shumsher', 'Mohan Shumsher', 'Matrika Prasad Koirala'], correct: 2 },
+            { question: 'When was the Comprehensive Peace Accord between the Government of Nepal and the Maoist Party signed?', options: ['2062 Mangsir 5', '2063 Mangsir 7', '2063 Mangsir 13', '2063 Mangsir 5'], correct: 3 },
+            { question: 'When was the first historical election of the Constituent Assembly held?', options: ['10 April 2008', '10 April 2008', '12 April 2008', '14 April 2008'], correct: 1 },
+            { question: 'When was the royal proclamation declaring the restoration of the House of Representatives made?', options: ['2063 Baisakh 11', '2063 Baisakh 12', '2063 Baisakh 13', '2063 Baisakh 14'], correct: 0 },
+            { question: 'When was Nepal declared a republic?', options: ['10 April 2008', '28 May 2008', '13 June 2008', '13 July 2008'], correct: 1 },
+            { question: 'Who was the last national dignitary of Nepal, declared on 28 June 2021?', options: ['Balabhadra Kunwar', 'Shirshaha Thapa', 'Amar Singh Thapa', 'Bhakti Thapa'], correct: 3 },
+            { question: 'When was Singha Durbar caught on fire?', options: ['2030 Baisakh 25', '2030 Jetha 25', '2030 Asar 25', '2030 Bhadra 25'], correct: 2 },
+            { question: 'When was the historical Constituent Assembly dissolved in Nepal?', options: ['25 May 2012', '26 May 2012', '27 May 2012', '28 May 2012'], correct: 3 },
+            { question: 'When was the House of Representatives in Nepal dissolved for the last time?', options: ['2077 Jetha 7', '2077 Jetha 8', '2077 Jetha 9', '2077 Jetha 10'], correct: 1 },
+            { question: 'Who is known as “Panchayat ko Malami” in the history of Nepal?', options: ['Lokendra Bahadur Chand', 'Surya Bahadur Thapa', 'Marich Man Singh Shrestha', 'Manmohan Adhikari'], correct: 2 },
+            { question: 'Who shifted the capital from Kathmandu to Nuwakot?', options: ['Prithvi Narayan Shah', 'Kalu Pandey', 'Bahadur Shah', 'Damodar Pandey'], correct: 3 },
+            { question: 'Who designed the Martyrs’ Gate, Nepal Smarak?', options: ['Laxman Prasad Chalise', 'Shankar Nath Rimal', 'Muktilal Kayastha', 'Gopal Man Chitrakar'], correct: 1 },
+            { question: 'From which date did the Government of Nepal start publishing the Gazette?', options: ['2008 Shrawan 22', '2008 Magh 21', '2008 Asar 2', '2008 Ashwin 3'], correct: 0 },
+            { question: 'Who was the Prime Minister of Nepal when Nepal signed the BIPPA agreement with India?', options: ['Pushpa Kamal Dahal', 'Baburam Bhattarai', 'Sher Bahadur Deuba', 'Sushil Koirala'], correct: 1 },
+            { question: 'When did the first aircraft land in Nepal?', options: ['2006 Baisakh 10', '2006 Baisakh 11', '2006 Baisakh 12', '2006 Baisakh 13'], correct: 1 },
+            { question: 'When did Nepal attain membership of the International Civil Aviation Organization (ICAO)?', options: ['29 May 1960', '29 June 1960', '29 July 1960', '29 August 1960'], correct: 2 },
+            { question: 'When was the House of Representatives dissolved for the last time?', options: ['2077 Poush 05', '2077 Falgun 11', '2078 Jetha 08', '2078 Asar 28'], correct: 2 },
+            { question: 'When was the House of Representatives reinstated for the last time?', options: ['2077 Poush 05', '2077 Falgun 11', '2078 Jetha 08', '2078 Asar 28'], correct: 3 },
+            { question: 'When was Jaya Prithvi Bahadur Singh declared the 18th and last national dignitary of Nepal?', options: ['2079 Asar 05 / 19 June 2022', '2079 Asar 06 / 20 June 2022', '2079 Asar 07 / 21 June 2022', '2079 Asar 08 / 22 June 2022'], correct: 1 },
+            { question: '“If I die, the nation will not die, but if Bhimsen Thapa dies, the nation will collapse.” Who said this?', options: ['Bahadur Shah', 'Rana Bahadur Shah', 'Bhimsen Thapa', 'Bhakti Thapa'], correct: 1 }
+        ]
+    };
+
+  
+console.log('questionSet defined');
+    startTest(questionSet);
+    console.log('startTest called');
+})(); 
+</script>
+<script src="/js/text-protect.js" defer></script>
+<script src="/js/logo.js"></script>
+</body>
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Model Set-4</title>
+<link rel="icon" href="https://arunpanthi.com.np/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="/css/Mock_Test.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar" id="navbar">
+<span class="brand" id="navbar-brand">Model Set -4 </span>
+<span class="timer-display" id="timer-display" style="display:none;">--:--</span>
+</nav>
+
+<div id="warning-modal" class="modal-overlay" style="display: none;">
+<div class="modal-dialog">
+<div class="warning-icon">⚠️</div>
+<h3>Unanswered Questions</h3>
+<p>You haven't answered all the questions.</p>
+<span class="unanswered-count" id="modal-unanswered-count">0 unanswered</span>
+<p style="margin-top:8px;"><strong>⚠ This test cannot be retaken once submitted!</strong></p>
+<div class="modal-buttons">
+<button class="btn-cancel" id="btn-modal-cancel">Cancel</button>
+<button class="btn-submit-warning" id="btn-modal-submit">Submit Anyway</button>
+</div>
+</div>
+</div>
+
+<div id="pre-test-section">
+<div class="hero" id="hero-card">
+<h1 id="hero-set-name">Loading...</h1>
+<p class="set-details" id="hero-details"></p>
+<div class="set-meta">
+<div class="meta-item"><span id="hero-q-count">0</span> Questions</div>
+<div class="meta-item"><span id="hero-time">0:00</span> Time (min)</div>
+</div>
+<button class="btn-start" id="btn-start-test">🚀 Start Test</button>
+<p style="margin-top:10px;font-size:0.85rem;opacity:0.8;" id="hero-note"></p>
+</div>
+</div>
+
+<div id="test-section" style="display:none;">
+<div class="test-container">
+<div class="question-area">
+<div class="question-card">
+<div class="q-number" id="q-number-label">QUESTION 1</div>
+<div class="q-text" id="q-text">Loading question...</div>
+<ul class="options-list" id="options-list"></ul>
+</div>
+<div class="nav-buttons">
+<div class="nav-left"><button class="btn-nav" id="btn-prev">◀ Previous</button></div>
+<div class="nav-center"><button class="btn-submit" id="btn-submit-test">✅ Submit Test</button></div>
+<div class="nav-right"><button class="btn-nav" id="btn-next">Next ▶</button></div>
+</div>
+</div>
+<aside class="sidebar">
+<h3>📋 Question </h3>
+<div class="total-questions" id="sidebar-total">Total: 0</div>
+<div class="answered-count">Answered: <strong id="sidebar-answered-num">0</strong></div>
+<div class="q-grid" id="q-grid"></div>
+<div class="legend">
+<span><span class="dot-sample blue"></span> Answered</span>
+<span><span class="dot-sample gray"></span> Unanswered</span>
+</div>
+</aside>
+</div>
+</div>
+
+<div id="results-section" style="display:none;">
+<div class="results-container">
+<div class="results-header">
+<h2 style="color:#2E7D32;">📊 Test Results</h2>
+<p style="color:#666;" id="results-set-name"></p>
+<div class="score-circle">
+<span class="score-num" id="results-score">0</span>
+<span class="score-denom" id="results-denom">/ 0</span>
+</div>
+<div class="percentage" id="results-percentage">0%</div>
+<p style="margin-top:8px;color:#888;font-size:0.9rem;" id="results-time-taken"></p>
+</div>
+<div id="results-detail"></div>
+</div>
+</div>
+<script src="/js/Mock_Test.js"></script>
+<script>
+(function() {
+    console.log('Inline script running');
+    const questionSet = {
+        name: 'MODEL SET-4',
+        details: 'Model Exam W03 - Objective Type Questions. Correct uses zero-based index: A = 0, B = 1, C = 2, D = 3. Questions with missing figures are marked with image placeholders.',
+        questions: [
+            { question: '1. A freely floating needle slightly gets inclined to the horizontal anywhere except on the equator. It is called:', options: ['declination', 'dip', 'local attraction', 'secular variation'], correct: 1 },
+            { question: '2. In a theodolite the line of collimation is:', options: ['parallel to axis of plate levels', 'parallel to the vertical axis', 'perpendicular to the trunnion axis', 'parallel to the horizontal axis'], correct: 1 },
+            { question: '3. Radiation plane table survey is the best suited when:', options: ['distance are long but accessible', 'distance are short but accessible', 'distance are long but inaccessible', 'distance are short and inaccessible'], correct: 1 },
+            { question: '4. The instrument used for centring the plane table accuracy is:', options: ['spirit level', 'trough compass', 'plumbing fork', 'alidade'], correct: 2 },
+            { question: '5. Theodolite is an instrument used for measuring:', options: ['horizontal angles', 'vertical angles', 'both vertical and horizontal angles', 'none of the above'], correct: 2 },
+            { question: '6. Intersection is preferred to radiation when:', options: ['the points are inaccessible', 'it is not possible to measure any distance', 'the points are too far and invisible', 'the lengths are too short'], correct: 0 },
+            { question: '7. Reciprocal levelling eliminates:', options: ['collimation error', 'collimation, curvature and refraction error', 'curvature and refraction error', 'collimation and curvature error fully and refraction error partly'], correct: 3 },
+            { question: '8. Two principal requirements of engineering drawing are to specify:', options: ['shape and size', 'shape and lines', 'shape and symbols', 'lines and symbols'], correct: 0 },
+            { question: '9. The number of mutually perpendicular planes that can surround an object in space is:', options: ['0', '2', '4', '6'], correct: 3 },
+            { question: '10. In orthographic projection, the projectors to the plane of projection are:', options: ['parallel', 'perpendicular', 'inclined', 'oblique'], correct: 1 },
+            { question: '11. The best drawing paper used for water colour is:', options: ['handmade paper (handmade drawing sheet)', 'tracing drawing sheet', 'ordinary drawing sheet', 'ammonia paper'], correct: 0 },
+            { question: '12. The total project cost:', options: ['increases with increase in time', 'reduces with increases in time', 'initially reduces with time and then increases with increase in time', 'initially increases and then reduces with increase in time'], correct: 2 },
+            { question: '13. The occurrence of the completion of an activity is called its:', options: ['head event', 'tail event', 'dual role event', 'none of the above'], correct: 0 },
+            { question: '14. Project evaluation is:', options: ['to keep track of and to check systematically all project activities', 'collecting recording and reporting information concerning to any and all aspects of project performance', 'an objective and systematic process for determining the efficiency, effectiveness, relevance and impact of the project in light of its objectives', 'both a) and b) of the above'], correct: 2 },
+            { question: '15. PERT is:', options: ['activity oriented', 'event oriented', 'time oriented', 'resources oriented'], correct: 1 },
+            { question: '16. The minimum number of parties to occur any type of disputes should be:', options: ['1', '2', '3', '4'], correct: 1 },
+            { question: '17. The earliest step among following for any contract procedure is:', options: ['publishing the tender', 'submitting the tender', 'deposition of performance bond', 'deposition of bid security'], correct: 0 },
+            { question: '18. Using benefit cost ratio analysis, the project is said to be feasible if:', options: ['B/C < 1', 'C/B > 1', 'C/B < 1', 'B/C = 1'], correct: 2 },
+            { question: '19. For a financial institution the most important study of a project to be taken for risk management is:', options: ['appraisal', 'environmental and social', 'technical', 'financial and economical'], correct: 0 },
+            { question: '20. The decision rule for project acceptance is that:', options: ['if IRR > 0', 'if IIR > MARR', 'if IRR = 0', 'if IRR ≥ MARR'], correct: 1 },
+            { question: '21. In a cantilever beam, main reinforcement is provided:', options: ['bottom face of beam', 'top face of beam', 'middle of beam', 'side of beam'], correct: 1 },
+            { question: '22. The basic unknowns in displacement method of structural analysis are:', options: ['displacements', 'forces', 'displacement and forces', 'none of the above'], correct: 0 },
+            { question: "23. Which of the following is not an elastic constant?", options: ["Young's modulus", "Shear modulus", "Poisson's ratio", "Modulus of rupture"], correct: 3 },
+            { question: "24. The Poisson's ratio for steel varies from:", options: ['0.23 to 0.27', '0.25 to 0.33', '0.31 to 0.34', '0.32 to 0.42'], correct: 1 },
+            { question: '25. A simply supported beam is loaded with a gradually varying load of zero intensity at both support and 2W at the centre. If the span length is 2L, the maximum bending moment at centre of span is:', options: ['WL^2', '2WL^2', '2/3 WL^2', '3/2 WL^2'], correct: 2 },
+            { question: '26. A compound truss may be formed by connecting two simple rigid frames by:', options: ['two bars', 'three bars', 'three parallel bars', 'three bars intersecting at a point'], correct: 1 },
+            { question: '27. The liquid medium used in oil paint is:', options: ['alcohol', 'thinner', 'linseed oil', 'turpentine'], correct: 2 },
+            { question: '28. The soil suitable for making brick is:', options: ['sandy soil', 'clay soil', 'alluvial soil', 'sand & silt soil'], correct: 1 },
+            { question: '29. Corner stones having two faces made plane in a masonry is termed as:', options: ['closer', 'queen', 'quoin', 'rubble'], correct: 2 },
+            { question: '30. Addition of chromium to steel makes it:', options: ['soft', 'more elastic', 'more abrasive', 'very hard'], correct: 3 },
+            { question: '31. Which type of timber is used for construction of houses in Himalayan Region of Nepal?', options: ['sal wood', 'rosewood', 'pine wood', 'oak'], correct: 2 },
+            { question: '32. What is the minimum thickness of stone masonry wall in Nepal?', options: ['200 mm', '300 mm', '350 mm', '400 mm'], correct: 2 },
+            { question: '33. While preparing an estimate the percentage added on account of physical contingencies, as per public procurement regulation is:', options: ['2.5%', '5%', '10%', '15%'], correct: 2 },
+            { question: '34. As provisioned in the estimating norms for rate analysis, a timber formwork may be reused for:', options: ['1 time only', '3 times', '4 times', '6 times'], correct: 3 },
+            { question: '35. The quantity of wood for door and window shutter is calculated in:', options: ['sq. m', 'cu. m', 'meter', 'cu. ft.'], correct: 0 },
+            { question: '36. The type of estimate used to calculate the cost of a building for budgetary purpose is, in general:', options: ['cubic content estimate', 'detailed estimate', 'preliminary estimate', 'plinth area estimate'], correct: 2 },
+            { question: '37. Which of the following is not a part of estimating norms for rate analysis?', options: ['labour cost', 'material cost', 'equipment cost', 'taxes'], correct: 3 },
+            { question: '38. Which one is not concerned with the Nepal Engineering Council (NEC)?', options: ['authority of opening engineering college', 'recognition of the academic institution', 'registration of engineers', 'accreditation of certificates of academic qualifications'], correct: 0 },
+            { question: "39. Which is the agency where an engineer must be registered to be legally eligible for engineering practice in Nepal?", options: ["Nepal Engineers' associations", "Nepal Engineering Council", "Society of Consulting Engineering and Architectural Firms", "Tribhuvan University"], correct: 1 },
+            { question: '40. As per the Public Procurement Regulation of Nepal, what is the minimum weightage for a technical proposal for consulting service?', options: ['90%', '80%', '70%', '60%'], correct: 2 },
+            { question: '41. The resistance of an aggregate to wear is known as:', options: ['shear resistance', 'crushing resistance', 'abrasion resistance', 'impact value'], correct: 2 },
+            { question: '42. Gypsum is added to the cement clinker to:', options: ['impact grey colour to it', 'control the flash setting of cement', 'control the shrinkage cracks in cement concrete', 'increase workability of cement mortar'], correct: 1 },
+            { question: '43. The approximate value of the ratio between direct tensile strength and flexural strength is:', options: ['1.00', '0.75', '0.60', '0.50'], correct: 3 },
+            { question: '44. The cube strength of the concrete used for pre-stressed members should not be less than:', options: ['10 MPa', '25 MPa', '35 MPa', '40 MPa'], correct: 2 },
+            { question: '45. In hydrometer analysis for a soil mass:', options: ['Both meniscus correction and dispersing agent correction are negative', 'Both meniscus correction and dispersing agent correction are positive', 'Meniscus correction is positive while dispersing agent correction is negative', 'Meniscus correction is negative while dispersing agent correction is positive'], correct: 2 },
+            { question: '46. The most suitable soil for compressed air tunnelling is:', options: ['silt', 'clay', 'sand', 'gravel'], correct: 1 },
+            { question: '47. For testing a saturated clay for shear strength, the test recommended is:', options: ['direct shear test', 'Tri-axial compression test', 'unconfined compression test', 'all of above'], correct: 2 },
+            { question: '48. A narrow gradation of soil is called:', options: ['gap gradation', 'uniform gradation', 'rich gradation', 'open gradation'], correct: 1 },
+            { question: '49. Approximately what percentage of earthquake occur at plate boundary?', options: ['0.1', '0.3', '0.6', '0.9'], correct: 3 },
+            { question: '50. The plastic limit and liquid limit exist in:', options: ['sandy soil', 'silty soil', 'gravel soil', 'clay soil'], correct: 3 },
+            { question: '51. Which place is called "Banaras of Nepal"?', options: ['Jiri', 'Ridi', 'Jumla', 'Silgadhi'], correct: 1 },
+            { question: '52. Which of the following is not included in the list of four Vinayak of Kathmandu Valley?', options: ['Siddhi Vinayak', 'Surya Vinayak', 'Chandra Vinayak', 'Jal Vinayak'], correct: 0 },
+            { question: '53. Ghatu Dance belongs to which community?', options: ['Tharu', 'Gurung', 'Tamang', 'Gandharba'], correct: 1 },
+            { question: '54. What is minimum population a local government must have in Terai to be a municipality?', options: ['20000', '40000', '50000', '75000'], correct: 3 },
+            { question: '55. Jamire Cave is situated in:', options: ['Surkhet', 'Baglung', 'Rukum', 'Parbat'], correct: 0 },
+            { question: "56. When was Nepal's first national economic census conducted?", options: ['2073 BS', '2074 BS', '2075 BS', '2076 BS'], correct: 2 },
+            { question: '57. Which river originates from Ladhag Peak?', options: ['Budhi Ganga', 'Mugu Karnali', 'Humla Karnali', 'Seti Ganga'], correct: 1 },
+            { question: '58. Who was the last prime minister of Panchayat System?', options: ['Surya Bhadur Thapa', 'Marichman Singh Shrestha', 'Lokendra Bahadur Chand', 'Nagendra Prasad Rijal'], correct: 2 },
+            { question: '59. What was the function of the "Munsi Khana" during the Rana administration?', options: ['Foreign Affairs', 'Revenue Collection', 'Auditing', 'Records of civil servants'], correct: 0 },
+            { question: '60. What was the priority area of 13th plan?', options: ['Sustainable Development Goals', 'Poverty alleviation', 'LDC Graduation', 'All of above'], correct: 3 },
+            { question: '61. Which is the first organization involved in nature conservation?', options: ['NTNC', 'IUCN', 'WWF', 'UNESCO'], correct: 1 },
+            { question: '62. The first Indian and Asian to receive the Nobel Prize in Physics was:', options: ['Subas Chandra Bose', 'Rabindranath Tagore', 'C.V. Raman', 'Sahil Chandrasekhar'], correct: 2 },
+            { question: '63. First secretary general from African continent is:', options: ['Kurt Waldheim', 'Kofi Annan', 'Boutros Boutros Ghali', 'Dagg Hammarskjold'], correct: 2 },
+            { question: '64. When did SAFTA come into operation?', options: ['2004 February 17', '2006 January 01', '2008 January 01', '2010 May 02'], correct: 1 },
+            { question: '65. What is the area of Dhorpatan Hunting Wildlife Reserve?', options: ['1325 Sq.km', '1555 Sq.km', '1768 Sq.km', '1955 Sq.km'], correct: 0 },
+            { question: '66. The marriage tradition or rituals of the Muslim community is called:', options: ['Kurban', 'Nikah', 'Bueqa', 'Sahada'], correct: 1 },
+            { question: '67. Who recommends for the nomination of Chief of Province?', options: ['President', 'Chief Minister', 'Government of Nepal', 'Province Assembly'], correct: 2 },
+            { question: '68. Schedule 7 of the present constitution has the list of power of:', options: ['Federation', 'Federation and Province', 'Province', 'Province and Local level'], correct: 1 },
+            { question: '69. According to Civil Service Act - 2049, provision of reservation can be reviewed in how many years?', options: ['5 years', '6 years', '7 years', '8 years'], correct: 2 },
+            { question: "70. What is called for the public service charter of Nepal?", options: ["Service Charter, 1992 AD", "Citizen's Charter, 1994 AD", "Citizen Charter, 2000 AD", "Citizen Charter, 2001 AD"], correct: 2 },
+            { question: "71. Which step in Maslow and Hierarchy of Needs Theory deals with achieving one's potential?", options: ['Physiological', 'Social', 'Esteem', 'Self-actualization'], correct: 3 },
+            { question: '72. First budget of Nepal falls under which category?', options: ['Balanced Budget', 'Surplus Budget', 'Deficit Budget', 'Line Item Budget'], correct: 2 },
+            { question: '73. On which date was Ruby Kumari Thakur elected as the new Deputy Speaker of the House of Representatives?', options: ['Chaitra 22, 2082', 'Chaitra 25, 2082', 'Chaitra 27, 2082', 'Chaitra 29, 2082'], correct: 2 },
+            { question: '74. Which country won the SAFF U-20 Championship 2026?', options: ['India', 'Bangladesh', 'Nepal', 'Maldives'], correct: 1 },
+            { question: '75. Who is the woman who climbed Mount Everest three times within 13 days?', options: ['Junko Tabei', 'Lakpa Footi Sherpa', 'Santoshi Yadav', 'Purnima Shrestha'], correct: 3 },
+            { question: '76. I start from my home and go 2 km straight. Then, I turn towards my right and go 1 km. I turn again towards my right and go 1 km again. If I am north-west from my house, then in which direction did I go in the beginning?', options: ['East', 'West', 'North', 'South'], correct: 1 },
+            { question: '77. In a row of girls, Veena is 12th from the start and 19 from the end. In another row of girls, Sunita is 14th from the start and 20th from the end. How many girls are there in both the rows together?', options: ['61', '63', '65', '72'], correct: 1 },
+            { question: '78. What will be the angle between the hands of clock at 9:30?', options: ['75', '90', '105', '120'], correct: 2 },
+            { question: '79. A word and number arrangement machine rearranges an input line of words and numbers following a particular rule. Input: 25 woman 29 92 88 South toy boy for giving. Which of the following word/number would be 4th position from left in Step II?', options: ['South', 'toy', '88', 'woman'], correct: 0 },
+            { question: '80. Statements: Some tyres are rains. Some rains are flowers. All flowers are jungles. All jungles are tubes. Conclusions: I. Some jungles are tyres. II. Some tubes are rains. III. Some jungles are rains. IV. Some tubes are flowers.', options: ['Only I, III and IV follow', 'Only I, II and III follow', 'Only II, III and IV follow', 'All follow'], correct: 2 },
+            { question: '81. Assertion (A): Ventilators are provided near the roof. Reason (R): Conduction takes place better near the roof.', options: ['Both A and R are true and R is the correct explanation of A', 'Both A and R are true but R is not the correct explanation of A', 'A is true but R is false', 'A is false but R is true'], correct: 2 },
+            { question: '82. <img src="https://saru.c0m.in/P/30.jpeg" alt="Question 82" style="max-width:100%;height:auto;">', options: ['a', 'b', 'c', 'd'], correct: 0 },
+            { question: '83. Select the pair that has the same relationship as the original pair of words. Purity : Adulteration', options: ['Rare : Scanty', 'Treachery : Sincerity', 'Sink : Drown', 'Profuse : Availability'], correct: 1 },
+            { question: '84. If in a certain code language CLUB is written as XOFY, NOT is written as MLG, then how will PUNCTUAL be written in that code language?', options: ['KFMXGFOZ', 'KFMGXZFO', 'KFMGZFO', 'KFMXGFZO'], correct: 3 },
+            { question: '85. The average weight of first 11 persons among 12 persons is 95 kg. The weight of 12th person is 33 kg more than the average weight of all the 12 persons. The weight of the 12th person is:', options: ['131 kg', '97.45 kg', '128 kg', '128.75 kg'], correct: 0 },
+            { question: '86. A dozen pairs of socks quoted at Rs.180 are available at discount of 20%. How many pairs of socks can be bought for Rs.48?', options: ['2', '3', '4', '5'], correct: 2 },
+            { question: '87. A man spends 75% of his income. His income increases by 20% and his expenditure also increases by 10%. The percentage of increase in his savings is:', options: ['0.3', '0.25', '0.5', '0.4'], correct: 2 },
+            { question: '88. A water tank can be filled by a tap in 30 minutes and another tap can fill it in 60 minutes. If both taps are kept open for 5 minutes and then the first tap is closed, how long will it take for the tank to be full?', options: ['45 minutes', '20 minutes', '25 minutes', '30 minutes'], correct: 0 },
+            { question: '89. What is the age of C, in a group of A, B, C, D and E, whose average age is 45 years? I. Average of the ages of A and B is 53 years. II. Average of the ages of D and E is 47 years.', options: ['if either the statement I alone or the statement II alone is sufficient to answer the question', 'if the statement I alone is sufficient to answer the question, but the statement II alone is not sufficient', 'if both statements I and II together are needed to answer the question', 'if you cannot get the answer from the statements I and II together, but need even more data'], correct: 2 },
+            { question: '90. When a person cycled at 10 km per hour he arrived at his office 6 minutes late. He arrived 6 minutes early, when he increased his speed by 2 km per hour. The distance of his office from the starting place is:', options: ['7 km', '12 km', '16 km', '6 km'], correct: 1 },
+            { question: '91. What should come in place of the question mark (?) in the following number series? 12, 14, 32, 102, 416, 2090, ?', options: ['12552', '17552', '15522', '13525'], correct: 0 },
+            { question: '92. Gold is 19 times as heavy as water and copper 9 times. In what ratio should these metals be mixed so that the mixture may be 15 times as heavy as water?', options: ['3:2', '4:5', '1:2', '2:3'], correct: 0 },
+            { question: '93. <img src="https://saru.c0m.in/P/31.jpeg" alt="Question 93" style="max-width:100%;height:auto;">', options: ['a', 'b', 'c', 'd'], correct: 0 },
+            { question: '94. <img src="https://saru.c0m.in/P/32.jpeg" alt="Question 94" style="max-width:100%;height:auto;">', options: ['a', 'b', 'c', 'd'], correct: 0 },
+            { question: '95. <img src="https://saru.c0m.in/P/33.jpeg" alt="Question 95" style="max-width:100%;height:auto;">', options: ['a', 'b', 'c', 'd'], correct: 2 },
+            { question: '96. <img src="https://saru.c0m.in/P/34.jpeg" alt="Question 96" style="max-width:100%;height:auto;">', options: ['22', '23', '24', '25'], correct: 2 },
+            { question: '97. <img src="https://saru.c0m.in/P/35.jpeg" alt="Question 97" style="max-width:100%;height:auto;">', options: ['a', 'b', 'c', 'd'], correct: 0 },
+            { question: '98. <img src="https://saru.c0m.in/P/36.jpeg" alt="Question 98" style="max-width:100%;height:auto;">', options: ['a', 'b', 'c', 'd'], correct: 2 },
+            { question: '99. <img src="https://saru.c0m.in/P/37.jpeg" alt="Question 99" style="max-width:100%;height:auto;">', options: ['a', 'b', 'c', 'd'], correct: 2 },
+            { question: '100. <img src="https://saru.c0m.in/P/38.jpeg" alt="Question 100" style="max-width:100%;height:auto;">', options: ['a', 'b'], correct: null }
+        ]
+    };
+
+    console.log('questionSet defined');
+    startTest(questionSet);
+    console.log('startTest called');
+})();
+</script>
+<script src="/js/text-protect.js" defer></script>
+<script src="/js/logo.js"></script>
+</body>
+</html>

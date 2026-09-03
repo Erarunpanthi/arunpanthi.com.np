@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Design of Beams - Singly and Doubly Reinforced Beams with examples and design steps for PSC Preparation">
+    <meta name="keywords" content="Beam Design, Singly Reinforced Beam, Doubly Reinforced Beam, RCC, Structural Engineering, PSC Preparation">
+    <meta name="author" content="Arun Panthi">
+    
+    <title>Design of Beams - Singly & Doubly Reinforced | PSC Preparation</title>
+    
+    <meta property="og:title" content="Design of Beams - Singly & Doubly Reinforced" />
+    <meta property="og:description" content="Complete guide on beam design including singly and doubly reinforced beams with examples" />
+    <meta property="og:url" content="https://arunpanthi.com.np/Psc-preparation/Subjective-Note/1.1" />
+    <meta property="og:image" content="https://arunpanthi.com.np/Photos/logo.png" />
+    <meta property="og:type" content="article" />
+    
+    <link rel="canonical" href="https://arunpanthi.com.np/Psc-preparation/Subjective-Note/1.1" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/grid.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- MathJax for Mathematical Equations -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <style>
+        :root {
+            --green-600: #2E7D32;
+            --green-400: #4CAF50;
+            --transition-fast: 0.3s ease;
+            --primary-color: #2E7D32;
+            --secondary-color: #1565C0;
+            --text-dark: #1a1a1a;
+            --text-light: #666;
+            --bg-light: #f8f9fa;
+            --border-color: #e0e0e0;
+            --white: #ffffff;
+            --shadow: 0 2px 8px rgba(0,0,0,0.1);
+            --shadow-hover: 0 4px 16px rgba(0,0,0,0.15);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            color: var(--text-dark);
+            background: var(--bg-light);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .page-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--green-400));
+            color: var(--white);
+            padding: 3rem 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+        }
+        
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .page-header p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+        
+        .breadcrumb {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            font-size: 0.9rem;
+        }
+        
+        .breadcrumb a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color var(--transition-fast);
+        }
+        
+        .breadcrumb a:hover {
+            color: var(--green-400);
+            text-decoration: underline;
+        }
+        
+        .breadcrumb span {
+            color: var(--text-light);
+        }
+        
+        .content-section {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+        }
+        
+        .content-section:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--green-400);
+            display: inline-block;
+        }
+        
+        .subsection-title {
+            color: var(--secondary-color);
+            font-size: 1.4rem;
+            margin: 1.5rem 0 1rem;
+            font-weight: 600;
+        }
+        
+        .definition-box {
+            background: linear-gradient(135deg, #e8f5e9, #f1f8e9);
+            border-left: 4px solid var(--primary-color);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+        }
+        
+        .formula-box {
+            background: #f5f5f5;
+            border: 2px solid var(--border-color);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+        
+        .formula-box .equation {
+            text-align: center;
+            font-size: 1.2rem;
+            margin: 1rem 0;
+            padding: 0.5rem;
+        }
+        
+        .example-box {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+        }
+        
+        .important-note {
+            background: #fff8e1;
+            border: 2px dashed #ffc107;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+        }
+        
+        .step-list {
+            counter-reset: step-counter;
+            list-style: none;
+        }
+        
+        .step-list li {
+            counter-increment: step-counter;
+            position: relative;
+            padding-left: 3.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .step-list li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 2.5rem;
+            height: 2.5rem;
+            background: var(--primary-color);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+        
+        .step-title {
+            font-weight: 600;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: var(--white);
+            box-shadow: var(--shadow);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .comparison-table th {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .comparison-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .comparison-table tr:hover {
+            background: #f5f5f5;
+        }
+        
+        .diagram-placeholder {
+            background: #f0f0f0;
+            border: 2px dashed #ccc;
+            padding: 2rem;
+            text-align: center;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+            color: #666;
+        }
+        
+        .key-points {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+        }
+        
+        .key-points ul {
+            margin-left: 1.5rem;
+        }
+        
+        .key-points li {
+            margin-bottom: 0.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .page-header {
+                padding: 2rem 1rem;
+            }
+            
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .content-section {
+                padding: 1.5rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+        
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            margin-bottom: 1rem;
+            font-weight: 500;
+            transition: all var(--transition-fast);
+        }
+        
+        .back-link:hover {
+            color: var(--green-400);
+            transform: translateX(-5px);
+        }
+        
+        .exam-tip {
+            background: linear-gradient(135deg, #fce4ec, #f8bbd9);
+            border-left: 4px solid #e91e63;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+        }
+        
+        .exam-tip i {
+            color: #e91e63;
+            margin-right: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Breadcrumb Navigation -->
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            <span>/</span>
+            <a href="/Psc-preparation/">PSC Preparation</a>
+            <span>/</span>
+            <a href="/Psc-preparation/Subjective-Note/">Subjective Notes</a>
+            <span>/</span>
+            <span>Design of Beams</span>
+        </nav>
+        
+        <!-- Back Link -->
+        <a href="/Psc-preparation/Subjective-Note/" class="back-link">
+            <i class="fas fa-arrow-left"></i>
+            Back to Subjective Notes
+        </a>
+        
+        <!-- Page Header -->
+        <header class="page-header">
+            <h1><i class="fas fa-ruler-combined"></i> Design of Beams</h1>
+            <p>Understanding Singly and Doubly Reinforced Beams with Complete Design Steps</p>
+        </header>
+        
+        <!-- Main Content -->
+        <main>
+            <!-- Section 1: Definition of Beam -->
+            <section class="content-section">
+                <h2 class="section-title">1. Definition of Beam</h2>
+                
+                <div class="definition-box">
+                    <p><strong>Beam:</strong> A beam is a horizontal structural member that carries loads perpendicular to its longitudinal axis. It resists loads applied laterally to the beam's axis primarily through bending and shear.</p>
+                </div>
+                
+                <p>Beams are designed for two main forces:</p>
+                <ul style="margin-left: 2rem; margin-top: 1rem;">
+                    <li><strong>Bending Moment (M):</strong> Maximum at mid-span for simply supported beams</li>
+                    <li><strong>Shear Force (V):</strong> Maximum at supports</li>
+                </ul>
+                
+                <div class="key-points">
+                    <p><strong><i class="fas fa-lightbulb"></i> Key Point:</strong> Beams are also known as <em>flexural members</em> since they are designed for both shear force and bending moment.</p>
+                </div>
+            </section>
+            
+            <!-- Section 2: Types of Beams Based on Reinforcement -->
+            <section class="content-section">
+                <h2 class="section-title">2. Classification Based on Reinforcement</h2>
+                
+                <p>Based on the location of longitudinal reinforcement, beams are classified into two types:</p>
+                
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Singly Reinforced Beam (SRB)</th>
+                            <th>Doubly Reinforced Beam (DRB)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Definition</strong></td>
+                            <td>Longitudinal reinforcement provided only in tension zone</td>
+                            <td>Longitudinal reinforcement provided in both tension and compression zones</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Reinforcement Location</strong></td>
+                            <td>Tension zone only</td>
+                            <td>Both tension and compression zones</td>
+                        </tr>
+                        <tr>
+                            <td><strong>When Used</strong></td>
+                            <td>When M<sub>u</sub> ≤ M<sub>lim</sub></td>
+                            <td>When M<sub>u</sub> > M<sub>lim</sub></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Economy</strong></td>
+                            <td>More economical</td>
+                            <td>Less economical but necessary for high moments</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            
+            <!-- Section 3: Singly Reinforced Beam -->
+            <section class="content-section">
+                <h2 class="section-title">3. Singly Reinforced Beam (SRB)</h2>
+                
+                <div class="definition-box">
+                    <p><strong>Singly Reinforced Beam:</strong> If longitudinal reinforcement is provided only in the tension zone, then it is called a Singly Reinforced Beam.</p>
+                </div>
+                
+                <h3 class="subsection-title">Examples:</h3>
+                
+                <h4 style="margin: 1rem 0 0.5rem; color: var(--text-dark);">a) Simply Supported Beam</h4>
+                <p>When a simply supported beam carries load from top, it deflects downward creating a <strong>sagging moment</strong> (positive moment). The bottom fibers are in tension and top fibers are in compression.</p>
+                
+                <div class="diagram-placeholder">
+                    <i class="fas fa-drafting-compass" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+                    <p><strong>Figure:</strong> Simply Supported Beam showing sagging moment<br/>
+                    (Tension reinforcement at bottom fiber)</p>
+                </div>
+                
+                <h4 style="margin: 1rem 0 0.5rem; color: var(--text-dark);">b) Cantilever Beam</h4>
+                <p>In a cantilever beam, negative <strong>hogging moment</strong> occurs. The top fibers are in tension and bottom fibers are in compression. Hence, main reinforcement is provided at the top.</p>
+                
+                <div class="diagram-placeholder">
+                    <i class="fas fa-drafting-compass" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+                    <p><strong>Figure:</strong> Cantilever Beam showing hogging moment<br/>
+                    (Tension reinforcement at top fiber)</p>
+                </div>
+            </section>
+            
+            <!-- Section 4: Doubly Reinforced Beam -->
+            <section class="content-section">
+                <h2 class="section-title">4. Doubly Reinforced Beam (DRB)</h2>
+                
+                <div class="definition-box">
+                    <p><strong>Doubly Reinforced Beam:</strong> If longitudinal reinforcement is provided in both tension and compression zones, then it is called a Doubly Reinforced Beam.</p>
+                </div>
+                
+                <h3 class="subsection-title">When is DRB Required?</h3>
+                <p>A doubly reinforced beam is required when:</p>
+                <ul style="margin-left: 2rem; margin-top: 1rem;">
+                    <li>The factored bending moment (M<sub>u</sub>) exceeds the limiting moment of resistance (M<sub>lim</sub>)</li>
+                    <li>Depth of beam is restricted due to architectural or other constraints</li>
+                    <li>Both sagging and hogging moments occur (e.g., fixed beams)</li>
+                    <li>To reduce long-term deflection</li>
+                </ul>
+                
+                <div class="formula-box">
+                    <p><strong>Condition for DRB:</strong></p>
+                    <div class="equation">
+                        \[ \text{If } M_u > M_{\text{lim}} \rightarrow \text{Provide Doubly Reinforced Beam} \]
+                    </div>
+                </div>
+                
+                <h3 class="subsection-title">Example: Fixed Beam</h3>
+                <p>In fixed beams, both sagging (positive) and hogging (negative) moments occur. At mid-span, positive moment causes tension at bottom, while at supports, negative moment causes tension at top.</p>
+                
+                <div class="diagram-placeholder">
+                    <i class="fas fa-drafting-compass" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+                    <p><strong>Figure:</strong> Fixed Beam showing points of contraflexure<br/>
+                    (Reinforcement at both top and bottom fibers)</p>
+                </div>
+            </section>
+            
+            <!-- Section 5: Design Steps for Singly Reinforced Beam -->
+            <section class="content-section">
+                <h2 class="section-title">5. Design Steps for Singly Reinforced Beam</h2>
+                
+                <div class="exam-tip">
+                    <p><i class="fas fa-exclamation-triangle"></i> <strong>Exam Tip:</strong> For 10 marks questions, write all 8 steps. For 5 marks questions, write up to Step 6 and draw the figure. Checking steps may be omitted for 5-mark questions.</p>
+                </div>
+                
+                <ol class="step-list">
+                    <li>
+                        <div class="step-title">Calculate Maximum Bending Moment (M<sub>u</sub>)</div>
+                        <p>For simply supported beam with UDL:</p>
+                        <div class="formula-box equation">
+                            \[ M_u = \frac{w_u L^2}{8} \]
+                        </div>
+                        <p>Where: w<sub>u</sub> = Factored UDL, L = Effective span</p>
+                    </li>
+                    
+                    <li>
+                        <div class="step-title">Calculate Limiting Moment of Resistance (M<sub>lim</sub>)</div>
+                        <div class="formula-box equation">
+                            \[ M_{\text{lim}} = k \cdot f_{ck} \cdot b \cdot d^2 \]
+                        </div>
+                        <p>Where:</p>
+                        <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                            <li>k = 0.148 for Fe 250 steel</li>
+                            <li>k = 0.138 for Fe 415 steel</li>
+                            <li>k = 0.133 for Fe 500 steel</li>
+                            <li>f<sub>ck</sub> = Characteristic strength of concrete</li>
+                            <li>b = Width of beam</li>
+                            <li>d = Effective depth of beam</li>
+                        </ul>
+                    </li>
+                    
+                    <li>
+                        <div class="step-title">Compare M<sub>u</sub> with M<sub>lim</sub></div>
+                        <div class="formula-box">
+                            <ul style="margin-left: 1.5rem;">
+                                <li>If M<sub>u</sub> ≤ M<sub>lim</sub> → Design as Singly Reinforced Beam</li>
+                                <li>If M<sub>u</sub> > M<sub>lim</sub> → Design as Doubly Reinforced Beam</li>
+                            </ul>
+                        </div>
+                    </li>
+                    
+                    <li>
+                        <div class="step-title">Calculate Area of Steel Required (A<sub>st,req</sub>)</div>
+                        <p>For singly reinforced beam:</p>
+                        <div class="formula-box equation">
+                            \[ M_u = 0.87 \cdot f_y \cdot A_{st} \cdot d \left(1 - \frac{A_{st} \cdot f_y}{b \cdot d \cdot f_{ck}}\right) \]
+                        </div>
+                        <p>Or use approximate formula:</p>
+                        <div class="formula-box equation">
+                            \[ A_{st,\text{req}} = \frac{M_u}{0.87 \cdot f_y \cdot j \cdot d} \]
+                        </div>
+                        <p>Where j ≈ 0.9 (lever arm factor)</p>
+                    </li>
+                    
+                    <li>
+                        <div class="step-title">Calculate Number of Bars</div>
+                        <div class="formula-box equation">
+                            \[ \text{Number of bars} = \frac{A_{st,\text{req}}}{\text{Area of one bar}} = \frac{A_{st,\text{req}}}{\frac{\pi}{4} \phi^2} \]
+                        </div>
+                        <p>Where φ = diameter of bar</p>
+                        <p><strong>Note:</strong> Always round up to next whole number. Minimum 2 bars required.</p>
+                    </li>
+                    
+                    <li>
+                        <div class="step-title">Calculate Provided Area of Steel (A<sub>st,prov</sub>)</div>
+                        <div class="formula-box equation">
+                            \[ A_{st,\text{prov}} = \text{Number of bars} \times \text{Area of one bar} \]
+                        </div>
+                    </li>
+                    
+                    <li>
+                        <div class="step-title">Check the Beam</div>
+                        <p>The designed beam must be checked for:</p>
+                        <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                            <li>Percentage of steel</li>
+                            <li>Deflection</li>
+                            <li>Shear reinforcement (stirrups/rings)</li>
+                        </ul>
+                    </li>
+                    
+                    <li>
+                        <div class="step-title">Draw Detailing Figure</div>
+                        <p>Draw the longitudinal section and cross-section showing reinforcement details.</p>
+                    </li>
+                </ol>
+            </section>
+            
+            <!-- Section 6: Checks for Beam Design -->
+            <section class="content-section">
+                <h2 class="section-title">6. Important Checks</h2>
+                
+                <h3 class="subsection-title">a) Check Percentage of Steel</h3>
+                <div class="formula-box">
+                    <p><strong>Minimum Steel:</strong></p>
+                    <div class="equation">
+                        \[ A_{st,\text{min}} = \frac{0.85 \cdot b \cdot d}{f_y} \]
+                    </div>
+                    
+                    <p><strong>Maximum Steel:</strong></p>
+                    <div class="equation">
+                        \[ A_{st,\text{max}} = 0.04 \cdot b \cdot D = 4\% \text{ of gross cross-sectional area} \]
+                    </div>
+                    
+                    <p style="margin-top: 1rem;"><strong>Condition:</strong> A<sub>st,min</sub> ≤ A<sub>st,prov</sub> ≤ A<sub>st,max</sub></p>
+                </div>
+                
+                <h3 class="subsection-title">b) Check Deflection</h3>
+                <div class="formula-box">
+                    <div class="equation">
+                        \[ \left(\frac{L}{d}\right)_{\text{provided}} \leq \left(\frac{L}{d}\right)_{\text{basic}} \times K_t \times K_c \times K_f \]
+                    </div>
+                    
+                    <p>Where:</p>
+                    <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                        <li>(L/d)<sub>basic</sub> = 20 for simply supported beam (span ≤ 10m)</li>
+                        <li>(L/d)<sub>basic</sub> = 26 for continuous beam</li>
+                        <li>(L/d)<sub>basic</sub> = 7 for cantilever beam</li>
+                        <li>K<sub>t</sub> = Tension modification factor (depends on % of tension steel and stress in steel)</li>
+                        <li>K<sub>c</sub> = Compression modification factor (depends on % of compression steel)</li>
+                        <li>K<sub>f</sub> = Flange modification factor (for T-beam and L-beam)</li>
+                    </ul>
+                </div>
+                
+                <div class="important-note">
+                    <p><strong>Note:</strong> K<sub>t</sub> varies from 0.5 to 2.0, K<sub>c</sub> varies from 1.0 to 1.5. Values are obtained from IS 456:2000 curves.</p>
+                </div>
+                
+                <h3 class="subsection-title">c) Shear Reinforcement</h3>
+                <p>Stirrups (rings) must be provided to resist shear force. The spacing and diameter of stirrups are calculated based on the shear force diagram.</p>
+            </section>
+            
+            <!-- Section 7: Summary -->
+            <section class="content-section">
+                <h2 class="section-title">7. Summary</h2>
+                
+                <div class="key-points">
+                    <h3 style="margin-bottom: 1rem;"><i class="fas fa-check-circle"></i> Key Points to Remember:</h3>
+                    <ul>
+                        <li>Beam is a horizontal structural member carrying transverse loads</li>
+                        <li>Singly Reinforced Beam: Steel only in tension zone</li>
+                        <li>Doubly Reinforced Beam: Steel in both tension and compression zones</li>
+                        <li>Use DRB when M<sub>u</sub> > M<sub>lim</sub> or depth is restricted</li>
+                        <li>Simply supported beam → Sagging moment → Tension at bottom</li>
+                        <li>Cantilever beam → Hogging moment → Tension at top</li>
+                        <li>Always check: % of steel, deflection, and shear reinforcement</li>
+                        <li>Minimum 2 bars must be provided in beams</li>
+                    </ul>
+                </div>
+                
+                <div class="exam-tip">
+                    <p><i class="fas fa-book-open"></i> <strong>For Exams:</strong></p>
+                    <ul style="margin-top: 0.5rem; margin-left: 1.5rem;">
+                        <li>Define beam first before defining SRB/DRB</li>
+                        <li>Draw clear diagrams with proper labeling</li>
+                        <li>Write all formulas even if numerical is not asked</li>
+                        <li>Mention IS code provisions where applicable</li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+        
+        <!-- Footer Navigation -->
+        <div style="margin-top: 3rem; padding-top: 2rem; border-top: 2px solid var(--border-color);">
+            <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+                <a href="/Psc-preparation/Subjective-Note/" class="back-link">
+                    <i class="fas fa-arrow-left"></i>
+                    Previous: Subjective Notes Index
+                </a>
+                <a href="#" class="back-link" style="transform: rotate(180deg);">
+                    Next Topic
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Add loading indicator for MathJax
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            },
+            startup: {
+                ready: () => {
+                    console.log('MathJax loaded successfully');
+                    MathJax.startup.defaultReady();
+                }
+            }
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+/* Shared CSS - Accessibility and Security Improvements */
+
+/* Skip link for accessibility */
+.skip-link {
+  position: absolute;
+  top: -9999px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--primary, #388E3C);
+  color: #fff;
+  padding: 12px 24px;
+  z-index: 10000;
+  border-radius: 0 0 8px 8px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.skip-link:focus {
+  top: 0;
+  outline: 3px solid var(--accent, #f59e0b);
+  outline-offset: 2px;
+}
+
+/* Focus visible styles for better keyboard navigation */
+:focus-visible {
+  outline: 3px solid var(--primary, #388E3C);
+  outline-offset: 2px;
+}
+
+/* Ensure minimum touch target size (44x44px) */
+button, a, input, select, textarea {
+  min-height: 44px;
+}
+
+/* Better color contrast for green text on white */
+.section h2 i {
+  color: var(--primary-dark, #2E7D32) !important;
+}
+
+.syllabus-content h3 {
+  color: var(--primary-dark, #2E7D32) !important;
+}
+
+/* Fix hardcoded green colors that fail contrast */
+.timer {
+  color: var(--primary-dark, #2E7D32) !important;
+}
+
+/* Responsive container widths - fix 60% hardcoded issue */
+@media (min-width: 1400px) {
+  .container,
+  .section,
+  .hero {
+    max-width: 1200px !important;
+    width: 85% !important;
+  }
+}
+
+@media (min-width: 1920px) {
+  .container,
+  .section,
+  .hero {
+    max-width: 1400px !important;
+    width: 75% !important;
+  }
+}
+
+/* Print styles - ensure content is printable */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #main-content, #main-content * {
+    visibility: visible;
+  }
+  #main-content {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+  .navbar, .footer, .social-media {
+    display: none !important;
+  }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --primary: #006400;
+    --primary-dark: #004d00;
+    --accent: #ff8c00;
+  }
+  
+  a {
+    text-decoration: underline !important;
+  }
+}

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="canonical" href="https://arunpanthi.com.np/Psc-preparation/Test/3.3-2.html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Building Materials (Advanced) - Practice Questions </title>
+<link rel="icon" href="https://arunpanthi.com.np/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="/css/Mock_Test.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar" id="navbar">
+<span class="brand" id="navbar-brand">Building Materials (Advanced) - Practice Questions</span>
+<span class="timer-display" id="timer-display" style="display:none;">--:--</span>
+</nav>
+<div id="warning-modal" class="modal-overlay" style="display: none;">
+<div class="modal-dialog">
+<div class="warning-icon">⚠️</div>
+<h3>Unanswered Questions</h3>
+<p>You haven't answered all the questions.</p>
+<span class="unanswered-count" id="modal-unanswered-count">0 unanswered</span>
+<p style="margin-top:8px;"><strong>⚠ This test cannot be retaken once submitted!</strong></p>
+<div class="modal-buttons">
+<button class="btn-cancel" id="btn-modal-cancel">Cancel</button>
+<button class="btn-submit-warning" id="btn-modal-submit">Submit Anyway</button>
+</div>
+</div>
+</div>
+<div id="pre-test-section">
+<div class="hero" id="hero-card">
+<h1 id="hero-set-name">Loading...</h1>
+<p class="set-details" id="hero-details"></p>
+<div class="set-meta">
+<div class="meta-item"><span id="hero-q-count">0</span> Questions</div>
+<div class="meta-item"><span id="hero-time">0:00</span> Time (min)</div>
+</div>
+<button class="btn-start" id="btn-start-test">🚀 Start Test</button>
+<p style="margin-top:10px;font-size:0.85rem;opacity:0.8;" id="hero-note"></p>
+</div>
+</div>
+<div id="test-section" style="display:none;">
+<div class="test-container">
+<div class="question-area">
+<div class="question-card">
+<div class="q-number" id="q-number-label">QUESTION 1</div>
+<div class="q-text" id="q-text">Loading question...</div>
+<ul class="options-list" id="options-list"></ul>
+</div>
+<div class="nav-buttons">
+<div class="nav-left"><button class="btn-nav" id="btn-prev">◀ Previous</button></div>
+<div class="nav-center"><button class="btn-submit" id="btn-submit-test">✅ Submit Test</button></div>
+<div class="nav-right"><button class="btn-nav" id="btn-next">Next ▶</button></div>
+</div>
+</div>
+<aside class="sidebar">
+<h3>📋 Question </h3>
+<div class="total-questions" id="sidebar-total">Total: 0</div>
+<div class="answered-count">Answered: <strong id="sidebar-answered-num">0</strong></div>
+<div class="q-grid" id="q-grid"></div>
+<div class="legend">
+<span><span class="dot-sample blue"></span> Answered</span>
+<span><span class="dot-sample gray"></span> Unanswered</span>
+</div>
+</aside>
+</div>
+</div>
+<div id="results-section" style="display:none;">
+<div class="results-container">
+<div class="results-header">
+<h2 style="color:#2E7D32;">📊 Test Results</h2>
+<p style="color:#666;" id="results-set-name"></p>
+<div class="score-circle">
+<span class="score-num" id="results-score">0</span>
+<span class="score-denom" id="results-denom">/ 0</span>
+</div>
+<div class="percentage" id="results-percentage">0%</div>
+<p style="margin-top:8px;color:#888;font-size:0.9rem;" id="results-time-taken"></p>
+</div>
+<div id="results-detail"></div>
+</div>
+</div>
+<script src="/js/Mock_Test.js"></script>
+<script>
+(function () {
+    console.log('Inline script running');
+
+    const questionSet = {
+        name: 'Building Materials (Advanced) - Practice Questions',
+        details: 'Covers rocks and minerals, stones, quarrying, clay products, bricks, lime, cement, testing methods, properties, manufacturing processes, and construction applications. Every question contains exactly four options.',
+        questions: [
+            { question: '1.1 Which construction material is not a constituent of cement concrete?', options: ['Lime', 'Mortar', 'Cement', 'Stone'], correct: 1 },
+            { question: '1.2 Paints are used in construction as:', options: ['Cement materials', 'Protective materials', 'Solid materials', 'Liquid materials'], correct: 1 },
+            { question: '1.3 Which of the following is classified as a solid material?', options: ['Stones', 'Bricks', 'Timber', 'All of these'], correct: 3 },
+            { question: '1.4 To address the shortage of conventional building materials, engineers manufacture materials that are:', options: ['Cheap', 'Environment-friendly', 'Energy-efficient', 'All of these'], correct: 3 },
+            { question: '1.5 Which definition is correct?', options: ['Molten or partly molten rock material inside the Earth is called magma', 'Rocks formed by cooling magma are called igneous rocks', 'Both statements are correct', 'Neither statement is correct'], correct: 2 },
+            { question: '1.6 Pick the correct statement about rocks.', options: ['Granite possesses an extremely coarse-grained crystalline structure', 'Dolerite possesses a finely grained crystalline structure', 'Basalt is extremely fine-grained and may contain non-crystalline glass', 'All of these are correct'], correct: 3 },
+            { question: '1.7 Pick the correct statement about the formation of igneous rocks.', options: ['Granite forms through slow cooling of magma at considerable depth', 'Dolerite forms through relatively quick cooling of magma at shallow depth', 'Basalt forms through rapid cooling of magma on the Earth’s surface', 'All of these are correct'], correct: 3 },
+            { question: '1.8 Pick the correct statement about weathering deposits.', options: ['Weathered material remaining at its place of origin is called a residual deposit', 'Insoluble weathered products deposited after transportation are sedimentary deposits', 'Soluble weathered products deposited by chemical processes are chemical deposits', 'All of these are correct'], correct: 3 },
+            { question: '1.9 Which of the following rocks is not sedimentary?', options: ['Gravel', 'Sandstone', 'Basalt', 'Gypsum'], correct: 2 },
+            { question: '1.10 Pick the correct statement about metamorphic and sedimentary rocks.', options: ['Metamorphic rocks generally possess a foliated structure', 'Sedimentary rocks are distinctly stratified', 'Both statements are correct', 'Neither statement is correct'], correct: 2 },
+            { question: '1.11 Argil or clay predominates in:', options: ['Argillaceous rocks', 'Calcareous rocks', 'Siliceous rocks', 'None of these'], correct: 0 },
+            { question: '1.12 Marble belongs to which category of rocks?', options: ['Calcareous rocks', 'Argillaceous rocks', 'Siliceous rocks', 'None of these'], correct: 0 },
+            { question: '1.13 Quartz and sand are classified as:', options: ['Monomineralic rocks', 'Polymineralic rocks', 'Sedimentary rocks', 'Calcareous rocks'], correct: 0 },
+            { question: '1.14 Which statement about augite or pyroxene is correct?', options: ['It contains octagonal crystals', 'It changes to chlorite by hydration', 'Its density lies between 2.3 and 3.6 g/cm³', 'All of these are correct'], correct: 3 },
+            { question: '1.15 Hornblende is:', options: ['A heavy mineral', 'A durable mineral', 'Not a brittle mineral', 'A strong mineral'], correct: 2 },
+            { question: '1.16 Pick the correct statement about mica.', options: ['Mica is a silicate of aluminium with potassium', 'Muscovite mica is known as white mica', 'Biotite mica is known as black mica', 'All of these are correct'], correct: 3 },
+            { question: '1.17 Pick the correct statement about quartz.', options: ['Quartz is the crystalline form of silica', 'Quartz is weatherproof and resists acids except hydrofluoric acid', 'Transparent quartz crystal is called rock crystal', 'All of these are correct'], correct: 3 },
+            { question: '1.18 Which acid does not react chemically with quartz?', options: ['Sulphuric acid', 'Nitric acid', 'Hydrochloric acid', 'Uric acid'], correct: 3 },
+            { question: '1.19 Pick the correct statement about calcite.', options: ['It is a chief constituent of many sedimentary rocks', 'It is calcium carbonate, CaCO₃', 'It produces carbon dioxide when attacked by mineral acids', 'All of these are correct'], correct: 3 },
+            { question: '1.20 Pick the correct statement about dolomite.', options: ['It consists of brittle crystals', 'It is not soluble in ordinary water', 'It is stronger and heavier than calcite', 'All of these are correct'], correct: 3 },
+            { question: '1.21 Dolomite, a mineral found in sedimentary rocks, is:', options: ['Magnesium bicarbonate', 'Calcium bicarbonate', 'A bicarbonate of magnesium and calcium', 'None of these'], correct: 2 },
+            { question: '1.22 What are the percentage contents of magnesium carbonate and calcium carbonate in dolomite?', options: ['MgCO₃ 46% and CaCO₃ 54%', 'MgCO₃ 50% and CaCO₃ 50%', 'MgCO₃ 54% and CaCO₃ 46%', 'MgCO₃ 48% and CaCO₃ 52%'], correct: 0 },
+            { question: '1.23 Pick the correct statement about gypsum.', options: ['It is hydrated calcium sulphate, CaSO₄·2H₂O', 'It is white in its pure state', 'It has very poor solubility in water', 'All of these are correct'], correct: 3 },
+            { question: '1.24 Composite masonry includes:', options: ['Brick walls faced with stone', 'Stone walls faced with brick', 'Both of these', 'Neither of these'], correct: 2 },
+
+            { question: '2.1 Why has the popularity of stone as a building material decreased due to RCC and steel structures?', options: ['They have good strength', 'They are durable', 'They are suitable for multistoreyed buildings', 'All of these'], correct: 3 },
+            { question: '2.2 Pick the correct statement about the natural bed of stone.', options: ['The plane along which stone splits easily is its natural bed', 'The natural bed indicates the plane in which sedimentary stone was deposited', 'The natural bed lies along the stratification planes of sedimentary rocks', 'All of these are correct'], correct: 3 },
+            { question: '2.3 Maximum strength in stone is obtained by placing the applied load:', options: ['Perpendicular to the natural bed', 'Along the natural bed', 'At 45° to the natural bed', 'Parallel to the exposed face'], correct: 0 },
+            { question: '2.4 Pick the correct statement about the placement of stone.', options: ['In arches, stones are placed with their natural beds radially', 'In cornices, stones are placed with their natural beds vertically', 'In walls, stones are placed with their natural beds horizontally', 'All of these are correct'], correct: 3 },
+            { question: '2.5 Pick the correct statement about stone tests.', options: ['Hydrochloric acid can detect calcium carbonate in sandstone', 'The attrition test determines the wear rate of road stones', 'The attrition machine contains two cylinders of diameter 20 cm and length 34 cm', 'All of these are correct'], correct: 3 },
+            { question: '2.6 Which procedure is used to test the compressive strength of stone?', options: ['Three stone cubes of side 40 mm are used', 'The cubes are immersed in water for about 72 hours', 'The load-bearing faces are prepared with plaster of Paris or 5 mm plywood', 'All of these are correct'], correct: 3 },
+            { question: '2.7 The compressive strength of stone is determined by which test?', options: ['Crushing test', 'Hardness test', 'Impact test', 'Smith’s test'], correct: 0 },
+            { question: '2.8 What is the diameter and height of the test cylinder used for hardness and impact tests?', options: ['10 mm', '15 mm', '20 mm', '25 mm'], correct: 3 },
+            { question: '2.9 Smith’s test of stones is performed to determine:', options: ['The presence of soluble matter', 'Tensile strength', 'The presence of lime', 'Compressive strength'], correct: 0 },
+            { question: '2.10 Which statement about water absorption, porosity and specific gravity tests of stone is correct?', options: ['Absorption by weight after 24 hours is (W₂ − W₁)/W₁ × 100', 'Absorption by volume after 24 hours is (W₂ − W₁)/(W₂ − W₃) × 100', 'Porosity by volume is (W₄ − W₁)/(W₂ − W₃)', 'All of these are correct'], correct: 3 },
+            { question: '2.11 Which qualities are required in a good structural stone?', options: ['Crushing strength greater than 1000 kg/cm²', 'Durability', 'Ability to be carved, moulded and dressed', 'All of these'], correct: 3 },
+            { question: '2.12 Which mineral suddenly expands at a temperature below 600°C?', options: ['Quartz', 'Calcite', 'Dolomite', 'Gypsum'], correct: 0 },
+            { question: '2.13 Pick the correct statement about the fire resistance of stone.', options: ['Limestone is fire-resistant up to about 800°C', 'Sandstone with silicates is a good insulating material', 'Argillaceous stone resists fire well but is poor in strength', 'All of these are correct'], correct: 3 },
+            { question: '2.14 Pick the correct statement about seasoning and classification of stone.', options: ['Freshly quarried stones contain quarry sap', 'Limestone splits into CaO and CO₂ at about 800°C', 'Stones should be seasoned for 6 to 12 months before use', 'All of these are correct'], correct: 3 },
+            { question: '2.15 Lighter varieties of stone are preferably used for:', options: ['Domes', 'Roof coverings', 'Both domes and roof coverings', 'Neither domes nor roof coverings'], correct: 2 },
+            { question: '2.16 Pick the correct statement about the toughness index of stone.', options: ['Below 13 indicates a stone that is not tough', 'Between 13 and 19 indicates moderate toughness', 'More than 19 indicates high toughness', 'All of these are correct'], correct: 3 },
+            { question: '2.17 Water absorption of a good stone by weight after 24 hours should not exceed:', options: ['0.5%', '0.6%', '0.7%', '0.4%'], correct: 1 },
+            { question: '2.18 In cold regions, porous stones should not be used at places subjected to:', options: ['Frost', 'Moisture', 'Both frost and moisture', 'Neither frost nor moisture'], correct: 2 },
+            { question: '2.19 Pick the correct statement about the uses of stone.', options: ['Soft stones are used for carving structural portions', 'Light stones are suitable for arches', 'Hard stones are required to withstand high pressure', 'All of these are correct'], correct: 3 },
+            { question: '2.20 The process of taking out stones from great depth below the ground is called:', options: ['Quarrying', 'Mining', 'Both quarrying and mining', 'Neither quarrying nor mining'], correct: 2 },
+            { question: '2.21 Pick the correct statement about the wedging method of quarrying.', options: ['Holes of 12 mm diameter are drilled 10–15 cm apart', 'Plug and feathers are placed in holes 20–25 cm deep', 'Plugs are conical steel wedges and feathers are curved flat-steel wedges', 'All of these are correct'], correct: 3 },
+            { question: '2.22 Pick the correct statement about detonators used in blasting.', options: ['Detonators are used in blasting rocks', 'They are copper cylinders about 6 mm in diameter and 25 mm long', 'They are closed at one end and have a projecting fuse at the other', 'All of these are correct'], correct: 3 },
+            { question: '2.23 Pick the correct statement about blasting powder.', options: ['Blasting powder is commonly known as gunpowder', 'It is a mixture of charcoal, saltpetre and sulphur', 'The usual proportion is 15:75:10', 'All of these are correct'], correct: 3 },
+            { question: '2.24 Approximately how much gunpowder is required for a rock whose line of least resistance is 1 m?', options: ['100 g', '125 g', '150 g', '175 g'], correct: 2 },
+            { question: '2.25 Gunpowder consists of:', options: ['75% sandy earth saturated with 25% nitroglycerine', '60% sandy earth saturated with 40% nitroglycerine', '50% sandy earth saturated with 50% nitroglycerine', '25% sandy earth saturated with 75% nitroglycerine'], correct: 3 },
+            { question: '2.26 The approximate rate of burning of a good gunpowder fuse is:', options: ['1 cm per second', '2 cm per second', '1 cm per minute', '2 cm per minute'], correct: 0 },
+
+            { question: '3.1 Pick the correct statement about clay.', options: ['Clay occurs abundantly in nature', 'Clay is a product of the chemical weathering of igneous rocks', 'Orthoclase feldspar is mainly responsible for producing natural clay', 'All of these are correct'], correct: 3 },
+            { question: '3.2 Pick the correct statement about the composition of clay.', options: ['Orthoclase feldspar is the main source of clay', 'Decomposed orthoclase produces kaolinite', 'Alumina and silica compounds in kaolin remain in a colloidal state', 'All of these are correct'], correct: 3 },
+            { question: '3.3 Wet clay mixed with water possesses:', options: ['A high degree of tenacity', 'A high degree of plasticity', 'Both tenacity and plasticity', 'Neither tenacity nor plasticity'], correct: 2 },
+            { question: '3.4 Which steps are used to prepare clay for manufacturing tiles?', options: ['Selected clay is freed from impurities', 'Pure clay is powdered into fine particles', 'Water is added and the clay is mixed thoroughly in a tank', 'All of these'], correct: 3 },
+            { question: '3.5 Which material is added to raw clay to make tiles hard and impervious?', options: ['Ground glass', 'Pottery ware', 'Both ground glass and pottery ware', 'Neither of these'], correct: 2 },
+            { question: '3.6 Pick the correct statement about Allahabad tiles.', options: ['They are moulded under pressure in machines', 'They are burnt to attain greater strength', 'They have projections for interlocking', 'All of these are correct'], correct: 3 },
+            { question: '3.7 Pick the correct statement about clay wares.', options: ['Sanitary pipes and chemical stoneware are salt-glazed', 'Terracotta fire-clay wares and earthenware are lead-glazed', 'Sanitary articles use opaque glazing', 'All of these are correct'], correct: 3 },
+            { question: '3.8 Why is brick a leading construction material?', options: ['Its durability', 'Its strength', 'Its reliability and low cost', 'All of these'], correct: 3 },
+            { question: '3.9 Which statement is true for good brick earth?', options: ['Alumina provides plasticity', 'Silica provides uniform shape', 'Lime reduces shrinkage of raw bricks', 'All of these are correct'], correct: 3 },
+            { question: '3.10 Pick the correct statement about excess constituents in brick earth.', options: ['Excess alumina causes raw bricks to shrink and warp', 'Excess silica destroys cohesion and makes bricks brittle', 'Excess lime causes bricks to melt and lose shape', 'All of these are correct'], correct: 3 },
+            { question: '3.11 A small quantity of magnesia in brick earth imparts:', options: ['A red tint', 'A yellow tint', 'A black tint', 'No tint'], correct: 2 },
+            { question: '3.12 What may result from the presence of alkalis in brick earth?', options: ['Bricks may fuse, twist and warp', 'Bricks may melt and lose shape', 'Bricks may absorb atmospheric moisture when used in masonry', 'All of these'], correct: 3 },
+            { question: '3.13 About 66% silica and 27% alumina are contained in:', options: ['Loamy clay', 'Calcareous clay', 'Pure clay', 'Sandy clay'], correct: 0 },
+            { question: '3.14 Brick earth containing about 48% lime and magnesia and 35% silica is known as:', options: ['Calcareous clay', 'Sandy clay', 'Pure clay', 'Loamy clay'], correct: 0 },
+            { question: '3.15 Brick earth containing about 50% silica and 34% alumina is:', options: ['Sandy clay', 'Pure clay', 'Calcareous clay', 'Loamy clay'], correct: 1 },
+            { question: '3.16 Pick the correct statement about improving brick earth.', options: ['Lime in loamy clay helps fuse sand and increases hardness', 'Sand neutralizes the undesirable effects of lime in calcareous clay', 'Sand and ash reduce cracking, shrinking and warping in pure clay', 'All of these are correct'], correct: 3 },
+            { question: '3.17 Which field test can indicate excessive sand content in clay?', options: ['A dry clay ball crumbles when pressed by hand', 'A dried clay thread develops cracks after four days in the sun', 'Both tests', 'Neither test'], correct: 2 },
+            { question: '3.18 What is the correct sequence for preparing clay for brickmaking?', options: ['Weathering → Blending → Tempering', 'Blending → Tempering → Weathering', 'Tempering → Weathering → Blending', 'Blending → Weathering → Tempering'], correct: 0 },
+            { question: '3.19 Pick the correct statement about clay preparation.', options: ['Exposing clay to the atmosphere for softening is weathering', 'Turning clay vertically is blending', 'Preparing clay to the required hardness for moulding is tempering', 'All of these are correct'], correct: 3 },
+            { question: '3.20 Pick the correct statement about brick moulds.', options: ['Steel brick moulds are generally 6 mm thick', 'Bricks shrink during drying and burning', 'Moulds are made approximately 8–12% larger in all directions', 'All of these are correct'], correct: 3 },
+            { question: '3.21 Pick the correct statement about moulded bricks.', options: ['Bricks made by dipping the mould in water are slop-moulded bricks', 'Bricks made by sprinkling fine sand or ash inside the mould are sand-moulded bricks', 'Sand-moulded bricks have sharp and straight edges', 'All of these are correct'], correct: 3 },
+            { question: '3.22 Pick the correct statement about the frog in a brick.', options: ['The frog is a 10–20 mm deep mark made during moulding', 'It may indicate the manufacturer’s trade name', 'It provides a key for the next upper brick', 'All of these are correct'], correct: 3 },
+            { question: '3.23 Burning of earth bricks:', options: ['Is an important brick-manufacturing operation', 'Imparts hardness and strength', 'Makes bricks dense and durable', 'All of these'], correct: 3 },
+            { question: '3.24 Pick the correct statement about burning bricks.', options: ['Earth bricks are normally burnt at about 1100°C', 'At 1100°C, alumina and sand bind to provide strength and density', 'Bricks burnt beyond 1100°C may fuse into a glassy mass', 'All of these are correct'], correct: 3 },
+            { question: '3.25 Which kiln is not a continuous kiln?', options: ['Bull’s trench kiln', 'Hoffman’s kiln', 'Tunnel kiln', 'Intermittent kiln'], correct: 3 },
+            { question: '3.26 Pick the correct statement about good bricks.', options: ['They should be uniform in shape and standard in size', 'They should give a clear metallic ringing sound when struck', 'First-class bricks should not absorb more than 20% water by weight', 'All of these are correct'], correct: 3 },
+            { question: '3.27 Bricks are laid so that they are not subjected to:', options: ['Tensile stresses', 'Compressive stresses', 'Shear stresses', 'All of these stresses'], correct: 0 },
+            { question: '3.28 Pick the correct statement about brick grading and strength.', options: ['After 16 hours in water, a brick should not absorb more than 20% of its dry weight', 'Minimum crushing strength is 35 kg/cm²', 'Bricks with crushing strength over 140 kg/cm² are graded AA', 'All of these are correct'], correct: 3 },
+            { question: '3.29 Pick the correct statement about brick efflorescence.', options: ['No grey or white deposit indicates absence of soluble salts', 'Up to 10% white deposit is slight efflorescence', 'Up to 50% white deposit is moderate efflorescence', 'All of these are correct'], correct: 3 },
+            { question: '3.30 Which statement about brick dimensions and weight is correct?', options: ['The nominal modular brick size is 20 cm × 10 cm × 10 cm', 'One cubic metre of brick earth weighs about 1800 kg', 'The average weight of an earth brick is 3–3.5 kg', 'All of these are correct'], correct: 3 },
+            { question: '3.31 Construction bricks are classified into:', options: ['Four categories', 'Five categories', 'Three categories', 'Two categories'], correct: 0 },
+            { question: '3.32 Pick the correct statement about the colour of bricks.', options: ['Excess iron may give earth clay a red colour', 'Pure clay may produce white bricks', 'Iron and manganese may produce yellow bricks', 'All of these are correct'], correct: 3 },
+            { question: '3.33 The brick shown with one rounded longitudinal edge is called:', options: ['Saddle brick', 'Half-round brick', 'Bullnose brick', 'Chamfered brick'], correct: 2 },
+            { question: '3.34 The brick shown with an angled longitudinal cut is called:', options: ['Chamfered brick', 'Mitred closer', 'Saddleback brick', 'Bullnose brick'], correct: 1 },
+            { question: '3.35 Pick the correct statement about special bricks.', options: ['Clamp-burnt bricks are tough and strong', 'Bricks are laid with the frog facing upward', 'Sand-lime bricks are free from efflorescence', 'All of these are correct'], correct: 3 },
+
+            { question: '4.1 The property by which lime sets in damp places without free air is called:', options: ['Calcination', 'Hydraulicity', 'Both calcination and hydraulicity', 'Neither of these'], correct: 1 },
+            { question: '4.2 Lime is obtained by heating limestone to remove:', options: ['Moisture', 'Carbon dioxide', 'Both moisture and carbon dioxide', 'Neither of these'], correct: 2 },
+            { question: '4.3 Pick the correct statement about lime.', options: ['The chemical composition of lime is calcium oxide, CaO', 'During calcination, CaCO₃ becomes CaO + CO₂', 'Both statements are correct', 'Neither statement is correct'], correct: 2 },
+            { question: '4.4 Pick the correct statement about quicklime.', options: ['Quicklime from pure limestone is known as caustic soda', 'Quicklime has a great affinity for moisture', 'Quicklime is amorphous and has no affinity for carbon dioxide', 'All of these are correct'], correct: 3 },
+            { question: '4.5 Pick the correct statement about slaking lime.', options: ['Slaking quicklime produces hydrated lime', 'The theoretical amount of water required is about 32% of quicklime weight', 'Both statements are correct', 'Neither statement is correct'], correct: 2 },
+            { question: '4.6 Pick the correct statement about slaked lime.', options: ['A thin pourable suspension of slaked lime is milk of lime', 'Slaked lime absorbs atmospheric carbon dioxide in moisture', 'The chemical formula of carbonic acid is H₂CO₃', 'All of these are correct'], correct: 3 },
+            { question: '4.7 What happens when sufficient water is added to quicklime?', options: ['It cracks', 'It swells', 'It becomes powder', 'All of these'], correct: 3 },
+            { question: '4.8 Which of the following is an air-binding material?', options: ['Gypsum', 'Acid-resistant cement', 'Quicklime', 'All of these'], correct: 3 },
+            { question: '4.9 What is the role of clay in limestone?', options: ['It produces hydraulicity', 'It provides insolubility in water', 'In a small quantity, it retards slaking', 'All of these are correct'], correct: 3 },
+            { question: '4.10 The hydraulicity of lime is due to the presence of:', options: ['Calcium silicate', 'Magnesium silicate', 'Aluminium silicate', 'All of these'], correct: 3 },
+            { question: '4.11 Pick the correct statement about silicates in lime.', options: ['Calcium, magnesium and aluminium silicates remain inactive at low temperature', 'They become active and combine with lime at high temperature', 'Both statements are correct', 'Neither statement is correct'], correct: 2 },
+            { question: '4.12 Pick the correct statement about magnesium in limestone.', options: ['Magnesium permits lime to slake and set slowly', 'Magnesium carbonate imparts strength to lime', 'Without clay, 30% magnesium carbonate renders lime hydraulic', 'All of these are correct'], correct: 3 },
+            { question: '4.13 Fat lime is also known as:', options: ['High-calcium lime', 'Pure lime', 'Rich or white lime', 'All of these'], correct: 3 },
+            { question: '4.14 Fat lime slakes vigorously and its volume increases by approximately:', options: ['1.5 times the quicklime volume', '2 times the quicklime volume', '3 times the quicklime volume', '4 times the quicklime volume'], correct: 1 },
+            { question: '4.15 Pick the correct statement about fat lime.', options: ['It contains roughly 95% calcium oxide', 'It hardens very slowly', 'It is perfectly white and slakes vigorously', 'All of these are correct'], correct: 3 },
+            { question: '4.16 Pick the correct statement about hydraulic lime.', options: ['It is popularly known as water lime', 'It sets under water', 'It contains clay and some ferrous oxide', 'All of these are correct'], correct: 3 },
+            { question: '4.17 Hydraulic lime resembles natural cement when its clay content is:', options: ['15%', '20%', '25%', '30%'], correct: 3 },
+            { question: '4.18 Pick the correct statement about poor or impure lime.', options: ['It contains more than 30% clay', 'It slakes very slowly', 'It hardens very slowly and is muddy white', 'All of these are correct'], correct: 3 },
+            { question: '4.19 According to BIS 712:1984, Class A lime:', options: ['Is semi-hydraulic lime used for masonry mortar', 'Has minimum 7-day mortar strength of 17.50 kg/cm²', 'Has minimum 28-day mortar strength of 28.00 kg/cm²', 'All of these'], correct: 3 },
+            { question: '4.20 What is the minimum compressive strength of Class B lime with lime-sand mortar?', options: ['12.50 kg/cm² after 14 days', '17.50 kg/cm² after 28 days', 'Both specified strengths', 'Neither specified strength'], correct: 2 },
+            { question: '4.21 Pick the correct statement about Class C lime.', options: ['It is fat lime', 'It is used in the finishing coat of plastering', 'It produces artificial hydraulic mortar with surkhi', 'All of these'], correct: 3 },
+            { question: '4.22 What is the correct sequence of operations for manufacturing fat lime?', options: ['Collection of limestone → Calcination → Slaking', 'Collection of limestone → Slaking → Calcination', 'Slaking → Collection → Calcination', 'Calcination → Collection → Slaking'], correct: 0 },
+            { question: '4.23 What are the top, middle and bottom dimensions of a continuous lime kiln of 4 m³/day capacity?', options: ['1.8 m, 2.30 m and 1.4 m', '1.6 m, 2.20 m and 1.3 m', '2.0 m, 2.50 m and 1.6 m', '2.2 m, 2.70 m and 1.8 m'], correct: 0 },
+            { question: '4.24 Pick the correct statement about burning limestone in a continuous kiln.', options: ['Bright red stones indicate complete burning', 'Burnt stones are withdrawn after CO₂ is driven off', 'Dark red stones indicate the presence of CO₂', 'All of these are correct'], correct: 3 },
+            { question: '4.25 Pick the correct statement about lime burning.', options: ['Sudden heating may break stones due to released moisture and CO₂', 'Imperfectly calcined lime that does not slake is dead-burnt lime', 'About 6 kg of fuel is sufficient for burning 100 kg of CaCO₃', 'All of these are correct'], correct: 3 },
+
+            { question: '5.1 Natural cement is obtained by burning and crushing stones containing:', options: ['Clay', 'Calcium carbonate', 'Some magnesium carbonate', 'All of these'], correct: 3 },
+            { question: '5.2 In which year did Joseph Parker discover that burnt argillaceous limestone forms an excellent hydraulic cement?', options: ['1756', '1766', '1786', '1796'], correct: 3 },
+            { question: '5.3 Which operation is not required for manufacturing cement?', options: ['Burning calcareous and argillaceous materials at high temperature', 'Using the correct proportion of calcareous and argillaceous materials', 'Adding a small quantity of gypsum before pulverization', 'All of these operations are required'], correct: 3 },
+            { question: '5.4 Pick the correct properties of cement.', options: ['It is an excellent binding material', 'It provides resistance to moisture', 'It has good plasticity and stiffens early', 'All of these'], correct: 3 },
+            { question: '5.5 Pick the correct statement about ordinary cement.', options: ['Calcium carbonate predominates in the argillaceous ingredient', 'Clay predominates in the calcareous ingredient', 'Clay predominates in the argillaceous material and calcium carbonate in the calcareous material', 'Neither material predominates'], correct: 2 },
+            { question: '5.6 Which chemical formulae represent ingredients of ordinary cement?', options: ['Lime: CaO', 'Silica: SiO₂', 'Alumina: Al₂O₃', 'All of these'], correct: 3 },
+            { question: '5.7 In good-quality cement, the approximate percentage of calcium sulphate is:', options: ['2%', '3%', '4%', '5%'], correct: 2 },
+            { question: '5.8 Pick the correct statement about lime in cement.', options: ['Excess lime makes cement unsound', 'Deficient lime reduces strength and causes quick setting', 'Both statements are correct', 'Neither statement is correct'], correct: 2 },
+            { question: '5.9 Pick the correct statement about silica in cement.', options: ['It contributes strength through calcium silicates', 'Excess silica increases strength but prolongs setting', 'Both statements are correct', 'Neither statement is correct'], correct: 2 },
+            { question: '5.10 Pick the correct statement about alumina in cement.', options: ['It imparts quick-setting properties', 'It acts as a flux and lowers clinker temperature', 'In excess, it reduces cement strength', 'All of these are correct'], correct: 3 },
+            { question: '5.11 What is the effect of calcium sulphate in cement?', options: ['It is not present in gypsum form', 'It increases the initial setting time', 'It decreases the initial setting time', 'It makes cement unsound'], correct: 1 },
+            { question: '5.12 Pick the correct statement about cement ingredients.', options: ['Calcium sulphate increases initial setting time', 'Excess magnesia makes cement unsound', 'Iron oxide imparts hardness and strength', 'All of these are correct'], correct: 3 },
+            { question: '5.13 Ordinary Portland cement:', options: ['Attains about 70% of final strength in 28 days', 'Attains about 90% of final strength in one year', 'Both statements are correct', 'Neither statement is correct'], correct: 2 },
+            { question: '5.14 Match the cement compounds with their chemical descriptions: C₃A, C₄AF, C₃S and C₂S.', options: ['C₃A–tetracalcium aluminate; C₄AF–tricalcium silicate; C₃S–dicalcium silicate; C₂S–tetracalcium alumino-ferrite', 'C₃A–dicalcium silicate; C₄AF–tricalcium silicate; C₃S–tetracalcium alumino-ferrite; C₂S–tricalcium aluminate', 'C₃A–tricalcium aluminate; C₄AF–tetracalcium alumino-ferrite; C₃S–tricalcium silicate; C₂S–dicalcium silicate', 'C₃A–tricalcium silicate; C₄AF–dicalcium silicate; C₃S–tricalcium aluminate; C₂S–tetracalcium alumino-ferrite'], correct: 2 },
+            { question: '5.15 What is the decreasing order of reaction rates of cement compounds when water is added?', options: ['C₃A → C₄AF → C₃S → C₂S', 'C₄AF → C₃S → C₂S → C₃A', 'C₃S → C₂S → C₃A → C₄AF', 'C₃A → C₄AF → C₂S → C₃S'], correct: 0 },
+            { question: '5.16 Which cement compound reacts most quickly when water is added?', options: ['Tricalcium aluminate, C₃A', 'Tetracalcium alumino-ferrite, C₄AF', 'Tricalcium silicate, C₃S', 'Dicalcium silicate, C₂S'], correct: 0 },
+            { question: '5.17 Pick the correct statement about cement compounds.', options: ['Hydration of C₃S practically ends after 28 days', 'C₃A reacts most quickly with water', 'High-strength concrete at later ages contains more C₂S', 'All of these are correct'], correct: 3 },
+            { question: '5.18 Which compound is used for manufacturing quick-hardening Portland cement?', options: ['C₃A', 'C₄AF', 'C₃S', 'C₂S'], correct: 0 },
+            { question: '5.19 Pick the correct statement about Portland cement compounds.', options: ['More than 50–60% C₃S is called Alite', 'About 12% C₃A is called Aluminate', 'About 35% C₂S is called Belite', 'All of these are correct'], correct: 3 },
+            { question: '5.20 Pick the correct statement about a steel rotary kiln for ordinary Portland cement.', options: ['Its diameter is approximately 2.5–3 m', 'Its length is approximately 90–120 m', 'Its gradient is approximately 1 in 25 to 1 in 30', 'All of these are correct'], correct: 3 },
+            { question: '5.21 A 50 kg cement bag contains approximately:', options: ['0.035 m³ of cement', '0.025 m³ of cement', '0.033 m³ of cement', '0.050 m³ of cement'], correct: 0 },
+            { question: '5.22 The ratio of alumina to iron oxide in cement should not be less than:', options: ['0.30', '0.33', '0.55', '0.66'], correct: 3 },
+            { question: '5.23 The total sulphur content in cement should not exceed:', options: ['1.50%', '1.75%', '2.50%', '2.75%'], correct: 3 },
+            { question: '5.24 The weight of magnesia in cement should not exceed:', options: ['2.5%', '3.5%', '4.0%', '5.0%'], correct: 3 },
+            { question: '5.25 A 100 g cement sample continuously sieved for 15 minutes through IS sieve No. 9 should not retain more than:', options: ['5% of the original weight', '7.5% of the original weight', '10% of the original weight', '12.5% of the original weight'], correct: 2 },
+            { question: '5.26 The water-cement ratio maintained for cement-sand mortar of ratio 1:3 is:', options: ['0.25', '0.30', '0.35', '0.40'], correct: 3 },
+            { question: '5.27 The compressive strength of a cement-sand test cube should not be less than:', options: ['115 kg/cm² after 3 days and 175 kg/cm² after 7 days', '95 kg/cm² after 3 days and 160 kg/cm² after 7 days', '80 kg/cm² after 3 days and 210 kg/cm² after 7 days', '65 kg/cm² after 3 days and 140 kg/cm² after 7 days'], correct: 0 },
+            { question: '5.28 The tensile strength of a 1:3 cement-sand test specimen should not be less than:', options: ['20 kg/cm² after 3 days and 25 kg/cm² after 7 days', '15 kg/cm² after 3 days and 20 kg/cm² after 7 days', '10 kg/cm² after 3 days and 15 kg/cm² after 7 days', '5 kg/cm² after 3 days and 10 kg/cm² after 7 days'], correct: 0 },
+            { question: '5.29 The Vicat apparatus is used to test:', options: ['Initial setting time', 'Final setting time', 'Soundness', 'Both initial and final setting times'], correct: 3 },
+            { question: '5.30 The interval between adding water to cement and beginning to fill the Vicat mould is called gauging time and should be:', options: ['2.5–3.5 minutes', '3–4 minutes', '2.75–4.25 minutes', 'More than 5 minutes'], correct: 2 },
+            { question: '5.31 Pick the correct statement about the Vicat apparatus.', options: ['The square needle tests initial setting time', 'The plunger tests consistency', 'The annular-collar needle tests final setting time', 'All of these are correct'], correct: 3 },
+            { question: '5.32 The initial setting time of ordinary Portland cement should not be less than:', options: ['20 minutes', '25 minutes', '30 minutes', '36 minutes'], correct: 2 },
+            { question: '5.33 The final setting time of ordinary Portland cement should not exceed:', options: ['6 hours', '8 hours', '10 hours', '12 hours'], correct: 2 }
+        ]
+    };
+
+    console.log('questionSet defined');
+    startTest(questionSet);
+    console.log('startTest called');
+})(); 
+</script>
+<script src="/js/text-protect.js" defer></script>
+<script src="/js/logo.js"></script>
+</body>
+</html>
+
+

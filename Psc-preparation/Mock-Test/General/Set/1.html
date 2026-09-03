@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="canonical" href="https://arunpanthi.com.np/Psc-preparation/Mock-Test/General/Set/1.html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Set -1</title>
+<link rel="icon" href="https://arunpanthi.com.np/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="/css/Mock_Test.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar" id="navbar">
+<span class="brand" id="navbar-brand">Set -1  2067/12/10</span>
+<span class="timer-display" id="timer-display" style="display:none;">--:--</span>
+</nav>
+
+
+<div id="warning-modal" class="modal-overlay" style="display: none;">
+<div class="modal-dialog">
+<div class="warning-icon">⚠️</div>
+<h3>Unanswered Questions</h3>
+<p>You haven't answered all the questions.</p>
+<span class="unanswered-count" id="modal-unanswered-count">0 unanswered</span>
+<p style="margin-top:8px;"><strong>⚠ This test cannot be retaken once submitted!</strong></p>
+<div class="modal-buttons">
+<button class="btn-cancel" id="btn-modal-cancel">Cancel</button>
+<button class="btn-submit-warning" id="btn-modal-submit">Submit Anyway</button>
+</div>
+</div>
+</div>
+
+<div id="pre-test-section">
+<div class="hero" id="hero-card">
+<h1 id="hero-set-name">Loading...</h1>
+<p class="set-details" id="hero-details"></p>
+<div class="set-meta">
+<div class="meta-item"><span id="hero-q-count">0</span> Questions</div>
+<div class="meta-item"><span id="hero-time">0:00</span> Time (min)</div>
+</div>
+<button class="btn-start" id="btn-start-test">🚀 Start Test</button>
+<p style="margin-top:10px;font-size:0.85rem;opacity:0.8;" id="hero-note"></p>
+</div>
+</div>
+
+<div id="test-section" style="display:none;">
+<div class="test-container">
+<div class="question-area">
+<div class="question-card">
+<div class="q-number" id="q-number-label">QUESTION 1</div>
+<div class="q-text" id="q-text">Loading question...</div>
+<ul class="options-list" id="options-list"></ul>
+</div>
+<div class="nav-buttons">
+<div class="nav-left"><button class="btn-nav" id="btn-prev">◀ Previous</button></div>
+<div class="nav-center"><button class="btn-submit" id="btn-submit-test">✅ Submit Test</button></div>
+<div class="nav-right"><button class="btn-nav" id="btn-next">Next ▶</button></div>
+</div>
+</div>
+<aside class="sidebar">
+<h3>📋 Question </h3>
+<div class="total-questions" id="sidebar-total">Total: 0</div>
+<div class="answered-count">Answered: <strong id="sidebar-answered-num">0</strong></div>
+<div class="q-grid" id="q-grid"></div>
+<div class="legend">
+<span><span class="dot-sample blue"></span> Answered</span>
+<span><span class="dot-sample gray"></span> Unanswered</span>
+</div>
+</aside>
+</div>
+</div>
+
+<div id="results-section" style="display:none;">
+<div class="results-container">
+<div class="results-header">
+<h2 style="color:#2E7D32;">📊 Test Results</h2>
+<p style="color:#666;" id="results-set-name"></p>
+<div class="score-circle">
+<span class="score-num" id="results-score">0</span>
+<span class="score-denom" id="results-denom">/ 0</span>
+</div>
+<div class="percentage" id="results-percentage">0%</div>
+<p style="margin-top:8px;color:#888;font-size:0.9rem;" id="results-time-taken"></p>
+</div>
+<div id="results-detail"></div>
+</div>
+</div>
+
+
+<script src="/js/Mock_Test.js"></script>
+
+<script>
+(function() {
+    console.log('Inline script running');
+    const questionSet = {
+        name: 'Civil Engineering Exam Set-1 (2067/12/10)',
+        details: 'Comprehensive exam covering engineering drawing, surveying, materials, structures, concrete technology, project management, and professional ethics.',
+        questions: [
+            { question: 'The proportion by which the actual size of an object is enlarged or reduced in drawing is simply known as :', options: ['multiplication factor', 'Scale', 'reflection factor', 'none of them'], correct: 1 },
+            { question: 'One method of preparing perspective view of an object is :', options: ['lattice', 'vanishing point method', 'evolution method', 'equilibrium method'], correct: 1 },
+            { question: 'Free hand sketching can be done only when, one has :', options: ['proper proficiency', 'good practice', 'Proper patience', 'Proper proportion'], correct: 1 },
+            { question: 'Circles of small radii are draw by means of a :', options: ['set square', 'bow compass', 'straight bar', 'divider'], correct: 1 },
+            { question: 'The optical square is used to measure angles by :', options: ['double reflection', 'refraction', 'reflection', 'double refraction'], correct: 0 },
+            { question: 'The instrument used for setting out an offset at a right angle, is called :', options: ['optical square', 'open cross - staff', 'french cross - staff', 'adjustable cross-staff'], correct: 0 },
+            { question: 'Bench marks are fixed by :', options: ['Profile leveling', 'trigonometric leveling', 'barometric leveling', 'spirit leveling'], correct: 0 },
+            { question: 'The sensitivity of the double tube can be increased by :', options: ['increasing the viscosity of fluid', 'decreasing the radius of fluid', 'decreasing the length of double', 'increasing the diameter of the tube'], correct: 2 },
+            { question: 'The method most suitable for plotting in hilly areas is :', options: ['traversing', 'radiation', 'intersection', 'resection'], correct: 0 },
+            { question: 'The types of level normally used in hilly area is ;', options: ['hand level', 'abney level', 'dumpy level', 'none of the above'], correct: 1 },
+            { question: 'Chainage is a distance measured :', options: ['perpendicular to a tie line', 'along a chain line', 'perpendicular to a chain line', 'none of the above'], correct: 1 },
+            { question: 'Cadastral map is a map having :', options: ['large scale', 'small scale', 'medium scale', 'all of the above'], correct: 1 },
+            { question: 'An agreement between two parties or more to do or not so any work is known as :', options: ['work to proceed', 'contract', 'specification', 'tender'], correct: 1 },
+            { question: 'The discount rate that makes the net present value equal to zero is known as :', options: ['break even point', 'internal rate of return', 'external rate of return', 'none of above'], correct: 1 },
+            { question: 'A technique that measures the change in the profitability of a project caused by changes in the factors that affect the cash inflows of the project is called :', options: ['capital analysis', 'cost benefit analysis', 'sensitivity analysis', 'risk analysis'], correct: 2 },
+            { question: 'For the selection of any project the NPV should :', options: ['Zero', 'less than 0', 'both of the above', 'none of the above'], correct: 1 },
+            { question: 'The difference between actual cost of the project with the targeted cost is called :', options: ['loss', 'profit', 'variance', 'all of the above'], correct: 2 },
+            { question: 'As the benefit cost ratio of a project increases, the attractiveness of project increases. But minimumvalue of benefit cost ratio should be ............. for the acception of project.', options: ['greater than one', 'less than one', 'equal to one', 'none of the above'], correct: 0 },
+            { question: 'Payback period is counted only after :', options: ['commissioning of the project', 'tendering for the project', 'starting of the construction of the project', 'completion of the construction of the project'], correct: 3 },
+            { question: 'In analysis of the rates the profit for the contractor is generally taken as', options: ['25%', '10%', '15%', '20%'], correct: 1 },
+            { question: 'Nepal Engineering Council Regulation, 2057 is effective from :', options: ['2057/3/8', '2057/4/8', '2057/5/8', '2057/6/8'], correct: 1 },
+            { question: 'Which of the following is not concerned with the authority of Engineers?', options: ['express an opinion on Engineering matter', 'good behavior with client', 'conscious with his profession', 'divulge the confidential matter'], correct: 3 },
+            { question: 'Ethics as a normative science needs code of conduct and guidelines to maintaining high level of standard of good behavior in the society. This is applicable to :', options: ['lawyers', 'doctors', 'engineers', 'all of the above'], correct: 3 },
+            { question: 'Engineering profession needs cooperation with the profession of :', options: ['medical professionals', 'accountant', 'lawyer', 'all of the above'], correct: 3 },
+            { question: 'The total number of members in Nepal Engineering council is :', options: ['18', '9', '12', '15'], correct: 1 },
+            { question: 'Design of a timber joist, in general, is most critical in :', options: ['torsion', 'bending moment', 'shear force', 'deflection'], correct: 1 },
+            { question: 'Strain is defined as ........... per unit length caused by normal force in its direction:', options: ['deflection', 'deformation', 'both of the above', 'none of the above'], correct: 1 },
+            { question: 'In the slope-deflection equations, the deformations are considered to be caused by :', options: ['bending moment', 'shear force', 'axial force', 'both A & B'], correct: 3 },
+            { question: 'For no torsion the plane of bending should :', options: ['pass through centre of gravity of the section', 'be parallel to one of the principle axis', 'pass through shear center of section', 'pass through neutral axis of the section'], correct: 3 },
+            { question: 'A cantilever of span, L has a load, P acting at the free end. The bending moment at free end will be :', options: ['PL²', 'O', 'PL', '- PL'], correct: 1 },
+            { question: 'Maximum deflection for a beam as show in figure will be :', options: ['6.82 WL³/384 EL', '5.5 W/384 EI', '5.5 WL³/384 EI', '6.82 W/384 EI'], correct: 0 },
+            { question: 'For finding forces in the member of a Truss by the graphical method, the force diagram is suggested by:', options: ['Betti', 'Mohr', 'Timoshenko', 'Maxwell'], correct: 0 },
+            { question: 'The acceptable limit for the safety and serviceability required before failure occurs is :', options: ['ultimate limit', 'limit state of collapse', 'limit state of serviceability', 'limit state'], correct: 1 },
+            { question: 'The floor slab of a building is supported on reinforced cement floor beams. The ratio of the end and intermediate span is kept :', options: ['0.6', '0.7', '0.8', '0.9'], correct: 1 },
+            { question: 'Doubly reinforced RCCbeam is provided with ............:', options: ['reinforcement in compression zone only', 'double amount of reinforcement', 'reinforcement in compression zone as well', 'reinforcement in tension zone only'], correct: 2 },
+            { question: 'If \'A\' is the section area of a prestressed rectangular beam provided with a tendon prestressed by a force \'P\' through its centroidal longitudinal axis the compressive stress induced in concrete is :', options: ['2A/P', 'P/A', 'A/P', 'P/2A'], correct: 1 },
+            { question: 'When a column is subjected to an eccentric load, the stress induced in the column will be :', options: ['direct stress only', 'bending stress only', 'shear stress only', 'direct and bending stress both'], correct: 3 },
+            { question: 'A column is regarded as long column if ratio of its effective length and lateral dimension, exceeds :', options: ['25', '10', '15', '20'], correct: 0 },
+            { question: 'The maximum ratio of span of a cantilever slab, is :', options: ['14', '8', '10', '12'], correct: 1 },
+            { question: 'For the construction of RCC slabs, columns, beams, walls etc. the nominal mix of concrete to be used is :', options: ['1:1: 2', '1: 3: 6', '1: 1½/₂: 3', '1:2:4'], correct: 1 },
+            { question: 'The concrete not used for structure is :', options: ['M25', 'M10', 'M15', 'M20'], correct: 1 },
+            { question: 'The main purpose of seasoning is :', options: ['to make the timber water proof', '', 'to make timber five resistant', '', 'to remove moisture from the timber at uniform rate', '', 'none of the above', ''], correct: 2 },
+            { question: 'A column splice is used to increase :', options: ['cross-sectional area of the column', '', 'length of the column', '', 'strength of the column', '', 'none of these', ''], correct: 1 },
+            { question: 'Which of the following is the best compression member section?', options: ['tubular section', 'Single angle section', 'strength of the column', 'none of these'], correct: 0 },
+            { question: 'Bearing stiffeners are designed as :', options: ['ties', 'beam', 'columns', 'beam ties'], correct: 2 },
+            { question: 'Which of the following wood (trade name of timber) have all grades modulus of elasticity?', options: ['Kala-siris', 'Mango', 'eucalyptus', 'Sal'], correct: 3 },
+            { question: 'Seasoning of timber is ............:', options: ['removing sap', 'painting', 'tarring', 'watering'], correct: 0 },
+            { question: 'On the laboratory thread test of a fine grain soil is carried out to determine :', options: ['dry strength', 'liquid limit', 'plastic limit', 'none of the above'], correct: 1 },
+            { question: 'The lime used for plastering and white washing is :', options: ['hydraulic lime', 'fat lime', 'quick lime', 'none of the above'], correct: 1 },
+            { question: 'The arrangement, size and shape of the constituent mineral grains of a stone gives the information about its :', options: ['lusture', 'texture', 'toughness', 'all of the above'], correct: 1 },
+            { question: 'A good quality stone absorbs water less than:', options: ['5%', '20%', '15%', '10%'], correct: 0 },
+            { question: 'Stones used for ornamental work must be:', options: ['heavy', 'hard', 'soft', 'light'], correct: 1 },
+            { question: 'Durability of building stone is affected by its:', options: ['resistance to atmosphere', 'chemical composition', 'texture', 'all the above'], correct: 3 },
+            { question: 'Bitumen felt is used for:', options: ['water proofing', 'damp proofing', 'both of the above', 'none of the above'], correct: 2 },
+            { question: 'All burnt bricks should be soaked in water for at least ......... hours to be used with cement mortar:', options: ['1', '1/4', '1/2', '¾'], correct: 0 },
+            { question: 'Initial setting time of ordinary Portland cement is ........:', options: ['40 minutes', '10 minutes', '20 minutes', '30 minutes'], correct: 3 },
+            { question: 'Tung oil is used for making:', options: ['superior paints and varnishe', 'very dilute colours', 'colourless paints and varnishe', 'very delicate colour'], correct: 0 },
+            { question: 'In blasting rocks with dynamites the recommended diameter of drill for depth 1.80 to 3.50m is:', options: ['60mm', '25mm', '40mm', '5 0mm'], correct: 1 },
+            { question: 'The property by which the metals deforms continuously at a slow rate without further increase in stress is called:', options: ['plasticity', 'creep', 'fatigue', 'resilience'], correct: 1 },
+            { question: 'Which method is quickest to find the water content of soils?', options: ['sand bath method', 'oven dry method', 'alcohol method', 'calcium carbide method'], correct: 3 },
+            { question: 'Concreting should be stopped when temperature falls below ....:', options: ['4.5⁰ C', '20⁰ C', '15⁰ C', '10⁰ C'], correct: 0 },
+            { question: 'Humidity causes ................. of cement in bag.', options: ['decaying', 'setting', 'strengthening', 'disintegration'], correct: 1 },
+            { question: 'The purpose of reinforcement in prestressed concrete is :', options: ['to impact initial compressive stress in concrete', 'to provide adequate bond stress', 'to resist tensile stress', 'all of the above'], correct: 0 },
+            { question: 'Reduction in aggregate - cement ratio while keeping W/C ratio constant causes :', options: ['increase in workability', 'decrease in workability', 'workability is not affected', 'none of the above'], correct: 1 },
+            { question: 'Low water - cement ratio in concrete :', options: ['reduces the permeability of concrete', 'increase the compressive strength', 'improves the frost - resistance of concrete', 'all of the above'], correct: 3 },
+            { question: 'Plaster of Paris is obtained by calcination of ............:', options: ['marble', 'lime stone', 'bauxite', 'gypsum'], correct: 3 },
+            { question: 'The concrete mix of grade M25 means that the compressive strength of 15 cm cubes at 25 days after mixing is :', options: ['30 N/mm²', '15 N/mm²', '20 N/mm²', '25 N/mm2'], correct: 3 },
+            { question: 'The process of proper and accurate measurement of concrete ingredients for uniformity of proportion is known as :', options: ['mixing', 'batching', 'grading', 'none of the above'], correct: 1 },
+            { question: 'Modulus of rupture of concrete is measure of:', options: ['compressive strength', 'flexural tensile strength', 'direct tensile strength', 'none of the above'], correct: 1 },
+            { question: 'The concrete having a slump of 6.5 cm, is said to be :', options: ['plastic', 'dry', 'earth moist', 'semi plastic'], correct: 0 },
+            { question: 'Concrete gains strength due to :', options: ['hydration of cement', 'chemical reaction of cement with sand and coarse aggregates', 'evaporation of water from concrete', 'all of the above'], correct: 1 },
+            { question: 'Surface vibration is effective only when the thickness of concrete does not exceed :', options: ['20 cm', '5 cm', '10 cm', '15 cm'], correct: 2 },
+            { question: 'PERT requires :', options: ['four time estimate', 'single time estimate', 'double time estimate', 'triple time estimate'], correct: 0 },
+            { question: 'CPM stands for :', options: ['Critical path method', 'combined process method', 'Common planning method', 'Critical process method'], correct: 0 },
+            { question: 'The chart which gives an estimate about the amount of materials handling between various work station is known as ;', options: ['operation chart', 'flow chart', 'process chart', 'travel chart'], correct: 3 },
+            { question: 'Bar chart is suitable for :', options: ['minor works', 'large project', 'major work', 'large project with major works'], correct: 0 },
+            { question: 'F.W. Taylor introduced a system of organization known as :', options: ['functional organization', '', 'line organization', '', 'line and staff organization', '', 'line, staff and functional organization', ''], correct: 0 },
+            { question: 'Acquisition of land for any construction should be performed ;', options: ['before tender', 'after tender', 'at the time of tender', 'security deposit'], correct: 0 },
+            { question: 'The money of the contractor retained by the department during payments is called :', options: ['tender money', 'retention money', 'earnest money', 'security deposit'], correct: 1 },
+            { question: 'A written offer submitted by contractors to execute certain work at certain rates within a fixed time is called :', options: ['measurement book', 'muster roll', 'contract', 'tender'], correct: 3 },
+            { question: 'An agreement which is enforceable by law is a :', options: ['muster roll', 'tender', 'contract', 'bid'], correct: 2 },
+            { question: 'All measurement should be neatly recorded in a :', options: ['measurement book', 'note book', 'muster roll', 'daily book'], correct: 0 },
+            { question: 'Basic record of payments madeto daily labour is kept in a :', options: ['daily book', 'measurement book', 'muster roll', 'labour roll'], correct: 2 },
+            { question: 'Float is :', options: ['time available-time required for an activity', 'the earliest time by which an activity may commence', 'latest time by which an activity can be delayed without hampering the completion of the project', 'latest allowable time-earliest expected time'], correct: 2 },
+            { question: 'An estimate is :', options: ['a random guess of project cost with similar project in the locality', '', 'actual cost of construction of a project', '', 'the probable cost arrived at before commencement of the project', '', 'none of the above', ''], correct: 2 },
+            { question: 'A document containing detailed description of all items of the work (but their quantities are not mentioned) together with their current rates are called :', options: ['abstract estimate', 'tender', 'schedule of rates', 'analysis of rates'], correct: 2 },
+            { question: 'Working out the exact quantities of various items of work is known as :', options: ['valuation', 'estimating', 'mensuration', 'quantity surveying'], correct: 3 },
+            { question: 'The essential requirements to prepare good estimate are :', options: ['schedule of rates', '', 'fully dimensioned drawing to the scale', '', 'detailed specifications', '', 'all of the above', ''], correct: 3 },
+            { question: 'The covered area of a proposed building rectangular is shape is 120 sq.m with central courtyardmeasuring 5 m ×4 m. if plinth area rate of constructions of similar building in the locality is Rs. 1200 per sq.m The plinth area of the proposed building is :', options: ['Rs. 2,00,000', 'Rs. 1,20,000', 'Rs. 1,44,000', 'Rs. 1,68,000'], correct: 2 },
+            { question: 'The unit of measurement of brick soling is :', options: ['lump sum', 'meter', 'square meter', 'cubic meter'], correct: 2 },
+            { question: 'The techniques of finding fair price of an existing building of property is known as :', options: ['costing', 'estimation', 'pricing', 'valuation'], correct: 3 },
+            { question: 'Annual periodic payments made for repayment of capital invested is known as :', options: ['solatium', 'annuity', 'depreciation', 'sinking fund'], correct: 1 },
+            { question: 'The specific weight of reinforced cement concrete is :', options: ['3000 kg/cubic meter', '1200 kg/cubic meter', '1500 kg /cubic meter', '2500 kg/cubic meter'], correct: 3 },
+            { question: 'Unit of measurement of reinforcement steel and iron work is taken in terms of :', options: ['meter', 'square meter', 'cubic meter', 'kilogram'], correct: 3 },
+            { question: 'Free hand sketch is normally used for :', options: ['discussion', 'concept', 'final', 'none of the above'], correct: 1 },
+            { question: 'The measurement of standard A3 size drawing sheet in mm is :', options: ['594×891', '297×420', '210×297', '420×594'], correct: 1 },
+            { question: 'Which of the following is not a drawing hand tool?', options: ['alidade', 'straight edge', 'French curve', 'set squares'], correct: 0 },
+            { question: 'Orthographic projection means :', options: ['900', '30⁰', '45⁰', 'none of these'], correct: 0 },
+            { question: 'Working drawing is prepared not for :', options: ['bill of quantities', 'estimation', 'layout', 'specification'], correct: 2 },
+            { question: 'French curves are used to draw :', options: ['regular curves', 'circle', 'irregular curves', 'none of these'], correct: 2 }
+        ]
+    };
+    
+    console.log('questionSet defined');
+    startTest(questionSet);
+    console.log('startTest called');
+})(); 
+</script>
+<script src="/js/text-protect.js" defer></script>
+<script src="/js/logo.js"></script>
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="canonical" href="https://arunpanthi.com.np/Psc-preparation/Mock-Test/General/Set/2.html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Civil Engineering Engineer 2068/11/09</title>
+<link rel="icon" href="https://arunpanthi.com.np/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="/css/Mock_Test.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar" id="navbar">
+<span class="brand" id="navbar-brand">Civil Engineering Engineer 2068/11/09</span>
+<span class="timer-display" id="timer-display" style="display:none;">--:--</span>
+</nav>
+
+
+<div id="warning-modal" class="modal-overlay" style="display: none;">
+<div class="modal-dialog">
+<div class="warning-icon">⚠️</div>
+<h3>Unanswered Questions</h3>
+<p>You haven't answered all the questions.</p>
+<span class="unanswered-count" id="modal-unanswered-count">0 unanswered</span>
+<p style="margin-top:8px;"><strong>⚠ This test cannot be retaken once submitted!</strong></p>
+<div class="modal-buttons">
+<button class="btn-cancel" id="btn-modal-cancel">Cancel</button>
+<button class="btn-submit-warning" id="btn-modal-submit">Submit Anyway</button>
+</div>
+</div>
+</div>
+
+<div id="pre-test-section">
+<div class="hero" id="hero-card">
+<h1 id="hero-set-name">Loading...</h1>
+<p class="set-details" id="hero-details"></p>
+<div class="set-meta">
+<div class="meta-item"><span id="hero-q-count">0</span> Questions</div>
+<div class="meta-item"><span id="hero-time">0:00</span> Time (min)</div>
+</div>
+<button class="btn-start" id="btn-start-test">🚀 Start Test</button>
+<p style="margin-top:10px;font-size:0.85rem;opacity:0.8;" id="hero-note"></p>
+</div>
+</div>
+
+<div id="test-section" style="display:none;">
+<div class="test-container">
+<div class="question-area">
+<div class="question-card">
+<div class="q-number" id="q-number-label">QUESTION 1</div>
+<div class="q-text" id="q-text">Loading question...</div>
+<ul class="options-list" id="options-list"></ul>
+</div>
+<div class="nav-buttons">
+<div class="nav-left"><button class="btn-nav" id="btn-prev">◀ Previous</button></div>
+<div class="nav-center"><button class="btn-submit" id="btn-submit-test">✅ Submit Test</button></div>
+<div class="nav-right"><button class="btn-nav" id="btn-next">Next ▶</button></div>
+</div>
+</div>
+<aside class="sidebar">
+<h3>📋 Question </h3>
+<div class="total-questions" id="sidebar-total">Total: 0</div>
+<div class="answered-count">Answered: <strong id="sidebar-answered-num">0</strong></div>
+<div class="q-grid" id="q-grid"></div>
+<div class="legend">
+<span><span class="dot-sample blue"></span> Answered</span>
+<span><span class="dot-sample gray"></span> Unanswered</span>
+</div>
+</aside>
+</div>
+</div>
+
+<div id="results-section" style="display:none;">
+<div class="results-container">
+<div class="results-header">
+<h2 style="color:#2E7D32;">📊 Test Results</h2>
+<p style="color:#666;" id="results-set-name"></p>
+<div class="score-circle">
+<span class="score-num" id="results-score">0</span>
+<span class="score-denom" id="results-denom">/ 0</span>
+</div>
+<div class="percentage" id="results-percentage">0%</div>
+<p style="margin-top:8px;color:#888;font-size:0.9rem;" id="results-time-taken"></p>
+</div>
+<div id="results-detail"></div>
+</div>
+</div>
+
+
+<script src="/js/Mock_Test.js"></script>
+
+<script>
+(function () {
+    console.log('Inline script running');
+
+    const questionSet = {
+        name: 'Civil Engineering Engineer 2068/11/09',
+        details: 'Covers strength of materials, RCC, steel, surveying, engineering drawing, construction materials, public procurement, estimation, project management, financial analysis, and engineering council provisions.',
+        questions: [
+            { question: '1. A rectangular section with depth \'d\' and breadth \'b\' of a beam subjected to shear force \'V\', the magnitude of shear stress at the top edge of rectangle is:', options: ['V/bd', '3V/2bd', '3V/4bd', 'zero'], correct: 3 },
+            { question: '2. A simply supported beam span \'L\' is carrying load \'W\' at mid span. What is the deflection at centre of the beam?', options: ['WL²/EI', 'WL³/48EI', '5WL³/384EI', 'WL³/EI'], correct: 1 },
+            { question: '3. When a thin cylindrical shell is subjected to internal fluid pressure, which of the following stress is developed in its wall?', options: ['circumferential and longitudinal stress', 'longitudinal stress', 'normal stress', 'circumferential'], correct: 0 },
+            { question: '4. In a circular shaft shear stress developed by twisting moment is directly proportional to :', options: ['moment of inertia of shaft', 'radius of shaft', 'length of shaft', 'area of shaft'], correct: 1 },
+            { question: '5. Ordinate of influence line diagram for vertical reaction of A at B of the given beam is equal to :', options: ['1', '0', '1/2', '2'], correct: 1 },
+            { question: '6. Bending moment at point of inflection of a continuous beam subjected to uniformly distributed gravity load is :', options: ['positive', 'positive or negative', 'Zero', 'negative'], correct: 2 },
+            { question: '7. The moment at any point on the conjugate beam is equal to :', options: ['the deflection at the corresponding point on the real beam', 'the slope at the corresponding point on the real beam', 'the bending moment at the corresponding point on the real beam', 'the shear force at the corresponding point on the real beam'], correct: 0 },
+            { question: '8. Horizontal reaction at B is equal to :', options: ['30KN', '10 KN', '0', '5 KN'], correct: 1 },
+            { question: '9. Nature of the axial force in the upper chord of a pin connected truss subjected to gravity load is :', options: ['compressive', 'tensile', 'compressive or tensile', 'zero'], correct: 0 },
+            { question: '10. The ratio of linear stress to the linear strain is called :', options: ['modulus of rigidity', 'modulus of elasticity', 'bulk modulus', 'poisson\'s ratio'], correct: 1 },
+            { question: '11. The ratio of the maximum shear stress in the rectangular section of a beam and the corresponding average shear stress is :', options: ['1.15', '1.25', '1.50', '1.75'], correct: 2 },
+            { question: '12. In a single reinforced concrete beam, as the load increase :', options: ['only concrete will resist tension', 'only steel bars will resist tension', 'both concrete & steel ill resist tension', 'both concrete & steel will resists compression'], correct: 1 },
+            { question: '13. A concentrated load rolls along a simply supported beam. When the load is at a section X, the maximum bending moment in the beam is :', options: ['at 1/4 of span from the left support', 'at middle of the span', 'at section X', 'none of the above'], correct: 2 },
+            { question: '14. The major loss of pre-stress is caused sue to :', options: ['creep and shrinkage of concrete', 'relaxation of steel', 'slip in anchorage', 'all of the above'], correct: 3 },
+            { question: '15. A continuous beam of two equal spans is subjected to a uniformly distributed load throughout the beam. The maximum absolute bending moment takes place :', options: ['at 1/3 span from either of an support', 'at middle of each span', 'at middle support', 'none of the above'], correct: 1 },
+            { question: '16. The working stress is the stress which may be developed in the member :', options: ['causing structural damage to it', 'without causing structural damage to it', 'causing residual strain', 'none of the above'], correct: 2 },
+            { question: '17. The dead load includes :', options: ['weight of stationary equipment', 'weight of furniture', 'self weight of the structure', 'all of the above'], correct: 0 },
+            { question: '18. Designing for ductility in RCC structure, the spacing of lateral reinforcement is provided closer at beam-column joints :', options: ['in beams and columns portions both', 'in column portions only', 'in beam portion only', 'in upper column portions only'], correct: 1 },
+            { question: '19. In determining characteristics strength of cement concrete, 28 days compressive strength is carried. The percentage of test specimens that can fall below the designated strength is :', options: ['upto 10%', 'upto 5%', 'upto 3%', 'upto 0%'], correct: 1 },
+            { question: '20. The strength at which steel fails under repeated application of load is known as :', options: ['impact strength', 'tensile strength', 'yield strength', 'fatigue strength'], correct: 3 },
+            { question: '21. The process of removing stone its natural bed is known as :', options: ['stratification', 'layering', 'quarrying', 'staking'], correct: 2 },
+            { question: '22. Tar is made by the distillation of :', options: ['bitumen', 'asphalt', 'coal', 'petrol'], correct: 2 },
+            { question: '23. The materials which give the paint its colour is :', options: ['body', 'thinner', 'vehicle', 'pigment'], correct: 3 },
+            { question: '24. Expansive cement expands mostly during its :', options: ['initial hardening period', 'final hardening period', 'whole life', 'all of the above'], correct: 0 },
+            { question: '25. Mixture of sand, silt and clay-size particles in nearly equal proportion is called is :', options: ['loam', 'loess', 'laterite', 'mooram'], correct: 0 },
+            { question: '26. The best method of compaction of sand is by using a :', options: ['sheep-foot roller', 'vibrator', 'pneumatic-tyred rollers', 'power rollers'], correct: 1 },
+            { question: '27. The good clay for making bricks is :', options: ['unweathered clay', 'silted sol', 'black cotton soil', 'weathered clay'], correct: 3 },
+            { question: '28. The percentage of absorption to its weight of water after one day\'s of immersion in a good building stone should not be more than :', options: ['5%', '10%', '15%', '25%'], correct: 0 },
+            { question: '29. Crushing strength for most of the building stone should be more than :', options: ['500 Kg/cm²', '1000 Kg/cm²', '1500 Kg/cm²', '2000 Kg/cm²'], correct: 1 },
+            { question: '30. Timber can be made reasonable fire resistant :', options: ['by soaking it in ammonium sulphate', 'by applying tar paint', 'by pumping creosote oil into timber under high pressure', 'none of the above'], correct: 0 },
+            { question: '31. The paint highly resistant to fire is :', options: ['enamel paint', 'asbestos paint', 'aluminum paint', 'cement paint'], correct: 1 },
+            { question: '32. Bitumen is used for :', options: ['water proofing', 'damp proofing', 'joint filler', 'all of the above'], correct: 3 },
+            { question: '33. Sand stone consists of :', options: ['quartz and lime', 'quartz and silica', 'quartz, lime and silica', 'silica, lime and alumina'], correct: 1 },
+            { question: '34. Marble is an example of :', options: ['aqueous rock', 'metamorphic rock', 'sedimentary rock', 'igneous rock'], correct: 1 },
+            { question: '35. Granite is an example of :', options: ['igneous rock', 'metamorphic rock', 'sedimentary rock', 'aqueous rock'], correct: 0 },
+            { question: '36. Abrams water/cement ratio law states that the strength of concrete is only dependent upon water/cement ratio provided :', options: ['The mix is hot', 'the Portland cement is used', 'The mix is workable', 'the mix is dry'], correct: 2 },
+            { question: '37. The most effective way to reduce the cracking tendency of the concrete is to reduce the :', options: ['cement', 'coarse aggregate', 'fine aggregate', 'water cement ratio'], correct: 3 },
+            { question: '38. Creep is defined as the increase in strain under :', options: ['maximum stress', 'minimum stress', 'sustained stress', 'medium stress'], correct: 2 },
+            { question: '39. The free moisture in the fine aggregate used in the concrete result in :', options: ['increase in weight', 'decrease in weight', 'bulking of volume', 'dryness of concrete'], correct: 2 },
+            { question: '40. While compacting the concrete by a mechanical vibrator, the slump should not exceed :', options: ['2.5 cm', '5.0cm', '7.5 cm', '10 cm'], correct: 1 },
+            { question: '41. The durability of concrete is proportion to :', options: ['sand content', 'water cement', 'aggregate ratio', 'cement aggregate ratio'], correct: 3 },
+            { question: '42. If concrete is M20, then what could be the modular ration?', options: ['7.00', '7.08', '9.08', '13.33'], correct: 3 },
+            { question: '43. The process of mixing, transporting, placing and compacting concrete using ordinary Portland cement should not take more than:', options: ['30 minutes', '40 minutes', '60 minutes', '75 minutes'], correct: 2 },
+            { question: '44. If the slump of concrete mix is 60 mm, its workability is :', options: ['low', 'medium', 'high', 'very high'], correct: 1 },
+            { question: '45. Plain cement concrete is strong in taking :', options: ['tensile stress', 'compressive stress', 'shear stress', 'all of the above'], correct: 1 },
+            { question: '46. The removal of excess air after placing concrete helps in increasing the strength of concrete by :', options: ['15 to 20 %', '20 to 30 %', '30 to 50 %', '50 to 70 %'], correct: 2 },
+            { question: '47. The function of aggregates in concrete is to serve as :', options: ['binding material', 'catalyst', 'filler', 'all of the above'], correct: 2 },
+            { question: '48. According to the Public Procurement Regulation, 2064, Who approves the prequalification criteria ?', options: ['concerned project chief', 'concerned department chief', 'concerned secretary', 'concerned minister'], correct: 3 },
+            { question: '49. Updating of schedule is carried out in a project :', options: ['to accommodate configuration on changes', 'to assign new target date against the planned date', 'to reflect remedial actions for correction of deviations', 'all of the above'], correct: 1 },
+            { question: '50. The activity having no float/slack in a project network diagram is called :', options: ['preceding activity', 'following activity', 'critical activity', 'all of the above'], correct: 2 },
+            { question: '51. The document announcing to prospective bidder that the owner is ready to receive bids is called:', options: ['notice to bidders', 'instruction to bidders', 'bill of quantities', 'intension to acceptance'], correct: 0 },
+            { question: '52. Which of the following is not Bid document ?', options: ['condition of contract', 'specification', 'performance security form', 'letter of acceptance'], correct: 3 },
+            { question: '53. The purpose of bid evaluation is to determine', options: ['lowest bid', 'responsive bid', 'substantially responsive bid', 'lowest evaluated substantially responsive bid'], correct: 3 },
+            { question: '54. The time between ordering of the goods or materials and receiving and placing them into use at the point of need is called -', options: ['order-interval', 'lead time', 'usage time', 'delayed time'], correct: 1 },
+            { question: '55. Which of the following is not direct cost for a project ?', options: ['wages of labour', 'cost of materials', 'insurance cost', 'sun contract cost'], correct: 2 },
+            { question: '56. In Nepal, which of the following Act contains the provisions of health and safety of the Workers ?', options: ['Contract act', 'Industry act', 'labour act', 'all of the above'], correct: 2 },
+            { question: '57. Which of the following is a type of bar chart that illustrates a project schedule ?', options: ['Gantt Chart', 'Pie chart', 'smith chart', 'slant chart'], correct: 0 },
+            { question: '58. One of the tools for monitoring and evaluation of projects is :', options: ['target seeking Approach', 'Goal seeking approach', 'logical framework approach', 'progressive approach'], correct: 2 },
+            { question: '59. Which of the following is not a reason for establishing good occupational health and safety standard ?', options: ['economic', 'legal', 'religious', 'moral'], correct: 2 },
+            { question: '60. The value of structure without being dismantled at the end of its utility period is known as :', options: ['scrap value', 'savage value', 'market value', 'book value'], correct: 1 },
+            { question: '61. Provisional sum provided in the bill if quantities is paid to the contractor on the basis of :', options: ['lump sum', 'percentage of work', 'actual cost', 'all of the above'], correct: 2 },
+            { question: '62. The most reliable estimate is :', options: ['detailed estimate', 'preliminary estimate', 'plinth area estimate', 'cube rate estimate'], correct: 0 },
+            { question: '63. Which of the following factors is a reasons of the need to provide for contingency in the cost estimate of a project ?', options: ['unreliability', 'uncertainty', 'under estimation', 'unstable market'], correct: 1 },
+            { question: '64. An explicit set of requirements to be satisfied by a material, product or service is called a set of :', options: ['estimates', 'specifications', 'drawings', 'documents'], correct: 1 },
+            { question: '65. "Bill of quantities" are prepared by ……….', options: ['Quantity surveyors', 'Vendors', 'Geodetic surveyor', 'suppliers'], correct: 0 },
+            { question: '66. The preliminary or Approximate Estimate is prepared based on the:', options: ['Plinth are rate', 'cost of similar work', 'detailed rate analysis', 'labour rate'], correct: 1 },
+            { question: '67. The amount provisioned for tools and plants to Earthwork excavation item in norms for rate analysis is :', options: ['3 % of materials', '3 % of labour', '5 % of material', '5 % of labour'], correct: 2 },
+            { question: '68. The damp proof course is measured in :', options: ['cu. m', 'sq. m', 'meters', 'none of these'], correct: 1 },
+            { question: '69. The document in which the quality of the work or materials is mentioned is called :', options: ['detailed estimate', 'Norms', 'specification', 'Bill of Quantities'], correct: 2 },
+            { question: '70. Sketching is usually done -', options: ['with French curves', 'free hand', 'with drafting', 'with protractor'], correct: 1 },
+            { question: '71. The ratio of the length on the drawing the actual length known :', options: ['scale factor', 'representative factor', 'drawing factor', 'isometric factor'], correct: 1 },
+            { question: '72. The plane on which perspective is formed is called -', options: ['Picture Plane', 'central plane', 'Horizontal Plane', 'Ground Plane'], correct: 0 },
+            { question: '73. When a 2 mm, long edge of an object is shown in a drawing by a line 1 cm long, then the representative fraction (RF) is -', options: ['1', '2', '5', '10'], correct: 2 },
+            { question: '74. In Engineering Drawing, French Curves mean :', options: ['the shape of an hourglass', 'drafting tools used to draw non-linear figures', 'drafting tools used to draw oblong figures', 'helical designs patented in France'], correct: 1 },
+            { question: '75. The set of technical drawings used during the manufacturing phase of a product including civil construction, are known as :', options: ['guideline drawings', 'structural drawings', 'manuals', 'working drawings'], correct: 3 },
+            { question: '76. Which of the following is not intended while making a \'sketch\' in the context of technical drawing ?', options: ['a fished product', 'freehand sketching', 'a preliminary product', 'a quick way to record an idea for work'], correct: 0 },
+            { question: '77. The principle of oblique view drawings is to keep :', options: ['width axes at 90⁰', 'width and height axes at 90⁰', 'width, height and depth axes at 90⁰', 'all of these'], correct: 1 },
+            { question: '78. The maps which are on sufficient large scale to enable the individual features shown on the map to be identified on the ground by their shape and position are called :', options: ['topographical maps', 'geographical maps', 'geological maps', 'site plan'], correct: 0 },
+            { question: '79. The letter "H" labelled in a Drawing Pencil indicates -', options: ['relative hardness', 'thickness of line', 'both of above', 'none of the above'], correct: 0 },
+            { question: '80. If the whole circle bearing of a line is 270⁰ . its reduced bearing is :', options: ['N 90⁰ W', 'S 90⁰ W', 'W 90⁰', '90⁰ N'], correct: 2 },
+            { question: '81. The precise determination of the relative or absolute positions on the earth\'s surface of a system of widely separated points is called :', options: ['geographical surveying', 'plane surveying', 'geometric surveying', 'geodetic surveying'], correct: 3 },
+            { question: '82. The instrument which uses measurement of air pressure to approximately indicate altitude of a place is called:', options: ['tachometer', 'manometer', 'barometer', 'odometer'], correct: 2 },
+            { question: '83. If the whole circle bearing of a line is 210⁰ 30\' , then its quadrantal bearing will be :', options: ['S 59⁰ 30\' W', 'S 120⁰ 30\' E', 'N 159⁰ 30\' W', 'S 30⁰ 30\' W'], correct: 3 },
+            { question: '84. A clinometers is commonly used to measure :', options: ['horizontal distance', 'vertical distance', 'included angles', 'angles of slope'], correct: 3 },
+            { question: '85. A relatively fixed point of known elevation above datum is called', options: ['bench mark', 'datum mark', 'reduced level', 'reference point'], correct: 0 },
+            { question: '86. The latitude of a traverse leg is obtained by multiplying its length by :', options: ['tangent of its reduced bearing', 'sine of its reduced bearing', 'cosine of its reduced bearing', 'cosecant of its reduced bearing'], correct: 2 },
+            { question: '87. A closed contour line with one or more lower ones inside it represent a :', options: ['lake', 'hill', 'valley', 'cliff'], correct: 1 },
+            { question: '88. The locus of points for which the sum of the distance from each point to two fixed points is equal is called :', options: ['a hyperbola', 'an ellipse', 'a cone', 'a parabola'], correct: 1 },
+            { question: '89. If P is the principle amount, i is the rate of interest and n is the number of periods in years, then the interest factor is :', options: ['(1+ni)', '(ni-1)', 'ni', 'none of these'], correct: 0 },
+            { question: '90. The financial analysis helps to judge :', options: ['The operational efficiency of the firm', 'The financial position of the firm', 'both of the above', 'none of the above'], correct: 2 },
+            { question: '91. Internal rate of return IRR is the discount rate that …………', options: ['equals to a projects NPV to zero', 'equals to a project\'s NPV to - 1', 'equals to project\'s NPV to +1', 'none of the above'], correct: 0 },
+            { question: '92. The main objectives of sensitivity analysis of a project is to examine the ……………', options: ['productivity', 'profitability', 'uncertainty', 'sustainability'], correct: 2 },
+            { question: '93. The internal rate of return (IRR) is a rate of return used in capital budgeting to measure and compare the …………. of investments', options: ['vulnerability', 'subtract', 'multiply', 'none of these'], correct: 3 },
+            { question: '94. If the investments a firm makes would …………… value from the firm, it means that NPV<0 .', options: ['add', 'subtract', 'multiply', 'none of these'], correct: 1 },
+            { question: '95. The ratio obtained diving quick assets by current liabilities is called:', options: ['turnover ratio', 'acid test ratio', 'solvency ratio', 'none of these'], correct: 1 },
+            { question: '96. Which of the following has least significance in Benefit cost analysis of a public project ?', options: ['identification of relevant benefits and costs', 'measurement of the benefits and costs', 'treatment of uncertainty', 'calculation of payback period'], correct: 2 },
+            { question: '97. In which year (B.S) was the Nepal Engineering Act promulgated ?', options: ['2051', '2055', '2056', '2057'], correct: 1 },
+            { question: '98. As per Nepal Engineering council Act 2055, the tenure of the members of the council is :', options: ['3 years', '4 years', '5 years', '6 years'], correct: 1 },
+            { question: '99. The registered engineers in Nepal Engineering council should have to renew their registration in :', options: ['every year', 'every two years', 'every four years', 'none of the above'], correct: 3 },
+            { question: '100. Engineers shall not disclose, without ……… confidential information concerning the business affairs or technical processes of any present or former client or employer, or public body on which they serve:', options: ['editing', 'getting paid', 'remuneration', 'consent'], correct: 3 }
+        ]
+    };
+
+     
+    console.log('questionSet defined');
+    startTest(questionSet);
+    console.log('startTest called');
+})(); 
+</script>
+<script src="/js/text-protect.js" defer></script>
+<script src="/js/logo.js"></script>
+</body>
+</html>

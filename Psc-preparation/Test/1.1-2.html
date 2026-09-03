@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="canonical" href="https://arunpanthi.com.np/Psc-preparation/Test/1.1-2.html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title> Nepal Geography, Society, Culture and Demography</title>
+<link rel="icon" href="https://arunpanthi.com.np/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="/css/Mock_Test.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar" id="navbar">
+<span class="brand" id="navbar-brand"> Nepal Geography, Society, Culture and Demography </span>
+<span class="timer-display" id="timer-display" style="display:none;">--:--</span>
+</nav>
+
+
+<div id="warning-modal" class="modal-overlay" style="display: none;">
+<div class="modal-dialog">
+<div class="warning-icon">⚠️</div>
+<h3>Unanswered Questions</h3>
+<p>You haven't answered all the questions.</p>
+<span class="unanswered-count" id="modal-unanswered-count">0 unanswered</span>
+<p style="margin-top:8px;"><strong>⚠ This test cannot be retaken once submitted!</strong></p>
+<div class="modal-buttons">
+<button class="btn-cancel" id="btn-modal-cancel">Cancel</button>
+<button class="btn-submit-warning" id="btn-modal-submit">Submit Anyway</button>
+</div>
+</div>
+</div>
+
+<div id="pre-test-section">
+<div class="hero" id="hero-card">
+<h1 id="hero-set-name">Loading...</h1>
+<p class="set-details" id="hero-details"></p>
+<div class="set-meta">
+<div class="meta-item"><span id="hero-q-count">0</span> Questions</div>
+<div class="meta-item"><span id="hero-time">0:00</span> Time (min)</div>
+</div>
+<button class="btn-start" id="btn-start-test">🚀 Start Test</button>
+<p style="margin-top:10px;font-size:0.85rem;opacity:0.8;" id="hero-note"></p>
+</div>
+</div>
+
+<div id="test-section" style="display:none;">
+<div class="test-container">
+<div class="question-area">
+<div class="question-card">
+<div class="q-number" id="q-number-label">QUESTION 1</div>
+<div class="q-text" id="q-text">Loading question...</div>
+<ul class="options-list" id="options-list"></ul>
+</div>
+<div class="nav-buttons">
+<div class="nav-left"><button class="btn-nav" id="btn-prev">◀ Previous</button></div>
+<div class="nav-center"><button class="btn-submit" id="btn-submit-test">✅ Submit Test</button></div>
+<div class="nav-right"><button class="btn-nav" id="btn-next">Next ▶</button></div>
+</div>
+</div>
+<aside class="sidebar">
+<h3>📋 Question </h3>
+<div class="total-questions" id="sidebar-total">Total: 0</div>
+<div class="answered-count">Answered: <strong id="sidebar-answered-num">0</strong></div>
+<div class="q-grid" id="q-grid"></div>
+<div class="legend">
+<span><span class="dot-sample blue"></span> Answered</span>
+<span><span class="dot-sample gray"></span> Unanswered</span>
+</div>
+</aside>
+</div>
+</div>
+
+<div id="results-section" style="display:none;">
+<div class="results-container">
+<div class="results-header">
+<h2 style="color:#2E7D32;">📊 Test Results</h2>
+<p style="color:#666;" id="results-set-name"></p>
+<div class="score-circle">
+<span class="score-num" id="results-score">0</span>
+<span class="score-denom" id="results-denom">/ 0</span>
+</div>
+<div class="percentage" id="results-percentage">0%</div>
+<p style="margin-top:8px;color:#888;font-size:0.9rem;" id="results-time-taken"></p>
+</div>
+<div id="results-detail"></div>
+</div>
+</div>
+<script src="/js/Mock_Test.js"></script>
+<script>
+(function() {
+  console.log('Inline script running');
+
+  const questionSet = {
+    name: 'Paper I - Questions 1 to 100',
+    details: 'Physical, Socio-cultural and Economic Geography and Demography of Nepal. Extracted from the provided scanned pages. Includes questions 1 to 100 only.',
+    questions: [
+{ question: 'Which is the oldest religion of the world?', options: ['Hinduism', 'Buddhism', 'Islam', 'Christianity'], correct: 0 },
+      { question: 'Which is the largest religion of the world?', options: ['Hinduism', 'Christianity', 'Buddhism', 'Islam'], correct: 1 },
+      { question: 'How many religions are observed in Nepal according to census 2021?', options: ['10', '11', '12', '13'], correct: null },
+      { question: 'What percent of people in Nepal observe Hinduism according to the census of 2011?', options: ['80.3%', '81.19%', '82.3%', '83.3%'], correct: 1 },
+      { question: 'What is the religious text of Hinduism called?', options: ['Quran', 'Bible', 'Veda', 'Tripitak'], correct: 2 },
+      { question: 'Hindus believe that existence is a cycle of', options: ['Birth', 'death', 'rebirth', 'Karma', 'All of the above'], correct: 0 },
+      { question: 'Which is the least worshipped god of Hinduism?', options: ['Brahma', 'Vishnu', 'Shiva', 'Saraswati'], correct: 1 },
+      { question: 'Which is the first incarnation of Lord Vishnu?', options: ['Kurma', 'Matsya', 'Varaha', 'Narsimha'], correct: 1 },
+      { question: 'Snake hanged around the neck of Lord Shiva is', options: ['Natraja', 'Bhairava', 'Bashuki', 'Nandi'], correct: 0 },
+      { question: 'Which is the oldest Veda?', options: ['Rig Veda', 'Yajur- Veda', 'Sam Veda', 'Atharva Veda'], correct: 2 },
+      { question: 'Which is the shortest Veda?', options: ['Rig Veda', 'Yajur- Veda', 'Sam Veda', 'Atharva Veda'], correct: 1 },
+      { question: 'Music is believed to have originated from', options: ['Rig Veda', 'Yajur- Veda', 'Sam Veda', 'Atharva Veda'], correct: 1 },
+      { question: 'Shrimad Bhagavad Gita was originally written in which language?', options: ['Sanskrit', 'Pali', 'Tiruhatta', 'Bramhi'], correct: 0 },
+      { question: 'Which is the largest epic of the world?', options: ['Ramayana', 'Mahabharata', 'Upanishad', 'Indra jal'], correct: 1 },
+      { question: 'Who is the composer of Mahabharata?', options: ['Valmiki', 'Ved Vyasa', 'Ganesha', 'Bhanubhakta Acharya'], correct: 1 },
+      { question: 'Who is called the light of Asia?', options: ['Jesus Christ', 'Gurunanak', 'Gautam Buddha', 'Mahabir Jain'], correct: 2 },
+      { question: 'Where did Gautam Buddha attain enlightenment?', options: ['Bodhgaya', 'Sarnath', 'Vaishali', 'Kushinagar'], correct: 3 },
+      { question: 'Which is the oldest Pillar (Idol) of Nepal?', options: ['Ashoka Pillar', 'Virupakshya', 'Vishworupa', 'Kalbhairabh'], correct: 1 },
+      { question: 'Who is the founder of Islam?', options: ['Swetamber Hajrath', 'Guru Nanak', 'Hajarath Musa', 'Pagiambar Mohamad'], correct: 1 },
+      { question: 'What is the religious text of Kirant called?', options: ['Pinak', 'Samran Bachan', 'Sunmima', 'Mundhum'], correct: 0 },
+      { question: '“Dhaan naach” is the cultural dance of which ethnic group?', options: ['Rai', 'Limbu', 'Tamang', 'Newar'], correct: 2 },
+      { question: 'What is the religious priest of Magar called?', options: ['Baiga', 'Deusi', 'Pande', 'Bhusal'], correct: 1 },
+      { question: 'Which ethnic caste is called Praja?', options: ['Raute', 'Praja', 'Dhimal', 'Jirel'], correct: 0 },
+      { question: 'The festival “Tamu Lhosar” is observed by', options: ['Tamang', 'Magar', 'Sherpa', 'Gurung'], correct: 2 },
+      { question: 'The festival “Shiruwa” is observed by which ethnic group of Nepal?', options: ['Rajbanshi', 'Mandal', 'Yadav', 'Satar'], correct: 1 },
+      { question: 'Which caste does not use vermilion in the marriage function?', options: ['Tamang', 'Gurung', 'Sherpa', 'Magar'], correct: 1 },
+      { question: 'Which of the following caste does not fall under marginalized indigenous caste?', options: ['Dhimal', 'Tamang', 'Tharu', 'Danuwar'], correct: 0 },
+      { question: 'How many endangered castes are there in Nepal?', options: ['8', '9', '10', '11'], correct: 2 },
+      { question: 'What is the native place of origin of “Byashi” ethnic group?', options: ['Bajhang', 'Darchula', 'Baitadi', 'Dailekh'], correct: 1 },
+      { question: 'Which caste does not have permanent residence?', options: ['Dhune', 'Banjara', 'Bankariya', 'Raute'], correct: 1 },
+      { question: 'The caste which provides ingua fruit tree (Chiuri tree) as dowry is', options: ['Raute', 'Chepang', 'Hyolmo', 'Lhomi'], correct: 1 },
+      { question: 'Which caste is called “Karvote”?', options: ['Lhomi', 'Hayu', 'Gaine', 'Kishan'], correct: 0 },
+      { question: 'It is sin to touch money. This statement is truth in which caste?', options: ['Raute', 'Chhantyal', 'Free', 'Puma'], correct: 2 },
+      { question: 'When did Chandra Sumsher declare the end of slavery system in Nepal?', options: ['1981 Bhadra 13', '1981 Ashwin 07', '1981 Kartik 29', '1981 Mangsir 14'], correct: 3 },
+      { question: 'Daughters from poor family are bought by the rich and are offered to god as a vow. This social evil is called', options: ['Jhuma Pratha', 'Deuki pratha', 'Jhara Pratha', 'Danguwa Pratha'], correct: 1 },
+      { question: 'Which is the second most spoken language of Nepal?', options: ['Nepali', 'Maithili', 'Bhojpuri', 'Newari'], correct: 1 },
+      { question: 'Language that falls in unknown language group is', options: ['Santhal', 'Tamil', 'Kusunda', 'Mulayam'], correct: 2 },
+      { question: 'What is the language spoken by Raute called?', options: ['Khamjee', 'Khamchi', 'Kham', 'Kagate'], correct: 1 },
+      { question: 'Nepali, Bhojpuri, Maithili fall in which family of language?', options: ['Bharopeli', 'Bhot Burmese', 'Dravid', 'Agneya'], correct: 0 },
+      { question: 'Which is the third least populated caste of Nepal?', options: ['Raute', 'Norang', 'Kusunda', 'Kalar'], correct: 2 },
+      { question: 'Which is the newly added caste in the list of indigenous caste?', options: ['Dhimal', 'Raute', 'Humli', 'Santhal'], correct: 3 },
+      { question: 'https://saru.c0m.in/P/1.jpeg', options: ['a-ii, b-i, c-iv, d-iii', 'a-ii, b-iv, c-i, d-iii', 'a-I, b-ii, c-iii, d-iv', 'a-ii, b-I, c-iii, d-iv'], correct: 3 },
+      { question: 'What is the death of Gautam Buddha called?', options: ['Parinisvikarna', 'Dharma Chakra Pravartan', 'Mahaparinirvana', 'Mahanibhiskaran'], correct: 2 },
+      { question: 'Which of the following does not fall under eight fold path truths (Astangik marga)?', options: ['Right Understanding', 'Right Speech', 'Right meditation', 'Right attitude'], correct: 3 },
+      { question: 'Sati pratha was first included in which Veda?', options: ['Atharva Veda', 'Rig Veda', 'Yajur Veda', 'Sama Veda'], correct: 0 },
+      { question: 'Vedic text are sometimes called', options: ['Mantra', 'Shruti', 'Katha', 'Sonet'], correct: 1 },
+      { question: 'The class system (Brahmin, Kshatriya, Vaishya and Sudra) was conceptualized in which Veda?', options: ['Rig Veda', 'Atharva Veda', 'Yajur Veda', 'Sama Veda'], correct: 0 },
+      { question: 'Which god motivated Valmiki to compose Ramayana?', options: ['Brahma', 'Vishnu', 'Krishna', 'Shiva'], correct: 1 },
+      { question: 'Who translated Ramayana initially written in Sanskrit into Nepali language?', options: ['Bhanu Bhakta Acharya', 'Motiram Bhatta', 'Vedbyas', 'Agnetro'], correct: 0 },
+      { question: 'Identify the incorrect pair regarding the holy places of different religions', options: ['Hindu — Temple', 'Muslim — Mosque/Masjid', 'Christianity — Church', 'Buddhism — Agni Mandir'], correct: 3 },
+      { question: 'https://saru.c0m.in/P/2.jpeg', options: ['a-ii, b-I, c-IV, d-iii', 'a-iii, b-iv, c-I, d-ii', 'a-I, b-ii, c-iii, d-iv', 'a-ii, b-I, c-iii, d-iv'], correct: 1 },
+      { question: 'The largest Hindu temple “Angkor wat” is located at', options: ['Malaysia', 'Brunei', 'Vietnam', 'Cambodia'], correct: 3 },
+      { question: 'Whose statue is found in maximum number in the world?', options: ['Gautam Buddha', 'Jesus Christ', 'Mahabir Jain', 'Hajrath Musa'], correct: 0 },
+      { question: 'Who built Pashupatinath temple?', options: ['Mandev', 'Prachanda Dev', 'Anshuverma', 'Basanta Dev'], correct: 1 },
+      { question: 'Which is the first temple of Nepal?', options: ['Changunarayan', 'Swoyanbhunath', 'Dakshinkali', 'Pashupatinath'], correct: 1 },
+      { question: 'In which country is “Borobudur” the largest Buddha temple of the world?', options: ['Indonesia', 'Malaysia', 'Cambodia', 'Singapore'], correct: 0 },
+      { question: 'Which is the second most spoken mother language of Nepal?', options: ['Bhojpuri', 'Maithili', 'Kirat', 'Dotyali'], correct: 1 },
+      { question: 'When was Nepal declared Secular state?', options: ['2063 Jetha 04', '2063 Mangsir 05', '2063 Kartik 23', '2063 Magh 08'], correct: 0 },
+      { question: 'The famous place where the war of Mahabharata was fought currently lies in which state of India?', options: ['Himachal Pradesh', 'Hariyana', 'Uttar Pradesh', 'Bihar'], correct: 1 },
+      { question: 'https://saru.c0m.in/P/3.jpeg ', options: ['A-3, B-1, C-2', 'A-2, B-1, C-3', 'A-1, B-2, C-3', 'A-2, B-3, C-1'], correct: 3 },
+      { question: 'Which is the first district declared free from Kamlari Pratha?', options: ['Banke', 'Bardiya', 'Dang', 'Kanchanpur'], correct: 2 },
+      { question: 'https://saru.c0m.in/P/4.jpeg', options: ['A-2, B-3, C-4, D-1', 'A-4, B-3, C-2, D-1', 'A-2, B-1, C-4, D-3', 'A-3, B-2, C-1, D-4'], correct: 2 },
+      { question: 'https://saru.c0m.in/P/5.jpeg', options: ['A-2, B-3, C-4, D-1', 'A-4, B-3, C-2, D-1', 'A-2, B-1, C-4, D-3', 'A-3, B-2, C-1, D-4'], correct: 0 },
+      { question: 'What was the name of the father of ancient character Veda vyas?', options: ['Vasudeva', 'Yudhisthira', 'Atri', 'Parashara'], correct: 3 },
+      { question: 'Thakurbaba temple is located in which district?', options: ['Bardiya', 'Banke', 'Dang', 'Kapilvastu'], correct: 0 },
+      { question: 'Which is the first movie of newari language of Nepal?', options: ['Urni', 'Sherni', 'Guni', 'Uni'], correct: 0 },
+      { question: 'What was the name of King Janak\'s queen?', options: ['Kunti', 'Sunayana', 'Mandodari', 'Sugandha'], correct: 1 },
+      { question: 'https://saru.c0m.in/P/6.jpeg', options: ['A-3, B-1, C-4, D-2', 'A-4, B-3, C-2, D-1', 'A-3, B-4, C-1, D-2', 'A-3, B-2, C-4, D-1'], correct: 0 },
+      { question: 'Aradhyadev Pashupatinath temple is built in which style?', options: ['Shikhar', 'Pagoda', 'Mughal', 'Nagra'], correct: 1 },
+      { question: 'Which of the following festivals are celebrated by the Rajvanshi caste?', options: ['Chasok', 'Siruwa', 'Judshital', 'Gaura'], correct: 1 },
+      { question: 'What is the name of the festival celebrated as New Year especially by Tamang, Sherpa, Gurung etc. in Nepal?', options: ['Judshital', 'Lhosar', 'Udhauli', 'Toranlha'], correct: 1 },
+      { question: 'After Nepali language, which is the most spoken language in Nepal?', options: ['Maithili', 'Newari', 'Bhojpuri', 'Tharu'], correct: 0 },
+      { question: 'What is the old name of Rani Pokhari?', options: ['Vishnu Tirtha', 'Swapna Tirtha', 'Saraswati Kunda', 'Dev Kunda'], correct: 0 },
+      { question: 'The Newari language spoken in Nepal belongs to which language family?', options: ['Bharopeli', 'Bhot Burmeli', 'Agneya', 'Arya'], correct: 1 },
+      { question: 'In which district is the Shalik (Idol) of Kiranti King Yalambar?', options: ['Bhojpur', 'Sankhuwasabha', 'Taplejung', 'Terhathum'], correct: 1 },
+      { question: 'Mayadevi, who is associated with the life of Siddhartha Gautama, is also referred to as……', options: ['Mahamaya', 'Prajapati Gautami', 'Yasodhara', 'Nandakumari'], correct: 0 },
+      { question: 'https://saru.c0m.in/P/7.jpeg', options: ['A-3, B-1, C-4, D-2', 'A-4, B-3, C-2, D-1', 'A-3, B-4, C-1, D-2', 'A-3, B-2, C-4, D-1'], correct: 3 },
+      { question: 'Which of the following is correct in the order of least to most spoken languages?', options: ['Tharu, Maithali, Bhojpuri, Nepali', 'Bhojpuri, Tharu, Maithali, Nepali', 'Bhojpuri, Maithali, Tharu, Nepali', 'Tharu, Bhojpuri, Maithali, Nepali'], correct: 3 },
+      { question: 'https://saru.c0m.in/P/8.jpeg', options: ['A-3, B-1, C-4, D-2', 'A-4, B-3, C-2, D-1', 'A-3, B-4, C-1, D-2', 'A-3, B-2, C-4, D-1'], correct: 2 },
+      { question: 'Whose literary nickname is Veda Vyasa?', options: ['Yogesh Raj', 'Lokendra Bahadur Chand', 'Swami Prapannacharya', 'Hemang Dixit'], correct: 3 },
+      { question: 'How many meters above sea level is the Maulakalika temple?', options: ['541', '551', '561', '671'], correct: 2 },
+      { question: 'Which of the following properties of Nepal is not listed in the UNESCO World Heritage List?', options: ['Hanumandhoka Palace', 'Janaki Temple', 'Mayadevi Temple', 'Changunarayan Temple'], correct: 1 },
+      { question: 'Which caste of Nepal has the tradition of ‘choosing Bhalmansa’ and celebrating ‘Tilasankrait’ festival as a new year to organize the development work?', options: ['Rajbanshi', 'Kusunda', 'Sunar', 'Tharu'], correct: 3 },
+      { question: 'https://saru.c0m.in/P/9.jpg', options: ['A-3, B-1, C-4, D-5', 'A-4, B-5, C-2, D-1', 'A-3, B-4, C-5, D-1', 'A-5, B-2, C-4, D-1'], correct: 2 },
+
+      { question: 'During the era of which king of the Kirant era, the Maurya emperor Ashok erected a huge stone pillar in Lumbini, establishing the historical foundation of Lumbini as the birthplace of Buddha?', options: ['Jighro', 'Jitedasti', 'Patuk', 'Sthunko'], correct: 3 },
+      { question: 'Sinja Valley, which is known as the cornerstone of Nepal\'s language, culture and customs, is located in which district?', options: ['Jumla', 'Humla', 'Kalikot', 'Jajarkot'], correct: 0 },
+      { question: 'Which of the following song is sung by the Limbu caste of Nepal?', options: ['Palam', 'Hori', 'Jhyaure', 'Asare'], correct: 0 },
+      { question: 'Which places in Nepal will be promoted as Birthing Hub and Wedding Hub respectively in the budget statement of the fiscal year 2081/82?', options: ['Janakpur and Lumbini', 'Lumbini and Janakpur', 'Lumbini and Pokhara', 'Nepalgunj and Bhaktapur'], correct: 1 },
+      { question: 'Amal system was abolished during which Rana Prime Minister?', options: ['Juddha Sumsher', 'Dev Sumsher', 'Chandra Sumsher', 'Bir Sumsher'], correct: 2 },
+      { question: 'Siruwa Parwa is celebrated by which ethnic caste of Nepal?', options: ['Rajbanshi', 'Satar', 'Dhimal', 'Meche'], correct: 0 },
+      { question: 'Which language was used in the Ashoka pillar of Lumbini?', options: ['Pali', 'Ranjana', 'Brahmi', 'Sirijunga'], correct: 0 },
+      { question: 'Which is the oldest script (Lipi) of Nepal?', options: ['Devnagari', 'Sanskrit', 'Brahmi', 'Kaithi'], correct: 2 },
+      { question: 'What is the land given to a particular caste for enjoyment so that it cannot be sold?', options: ['Raikar', 'Birta', 'Kipat', 'All of the above'], correct: 2 },
+      { question: 'Who was the Malla King who established the Ram Temple with Lavakus at Aryaghat on the banks of Bagmati?', options: ['Jayasthiti Malla', 'Pratap Malla', 'Rudra Malla', 'Yaksha Malla'], correct: 0 },
+      { question: 'Who is the promoter of "Uttar Mimansa (Vedanta)", a scripture of Hindu philosophy?', options: ['Vyasa', 'Jaimini', 'Kapil', 'Kannad'], correct: 0 },
+      { question: 'What do the Tamang\'s call the monasteries built like walls along the road by mentioning prayers and mantras?', options: ['Pyag', 'Mane', 'Chotha', 'Euro'], correct: 1 },
+      { question: 'Mocho Boko Gumba is situated in which of the following district?', options: ['Jumla', 'Humla', 'Mustang', 'Manang'], correct: 3 },
+      { question: 'https://saru.c0m.in/P/10.jpeg', options: ['A-3, B-1, C-4, D-2', 'A-2, B-1, C-4, D-3', 'A-3, B-2, C-4, D-1', 'A-2, B-3, C-4, D-1'], correct: 3 },
+      { question: 'What is the Pitaka called which contains the teachings of Lord Buddha?', options: ['Shukta Pitaka', 'Abhidhamma Pitaka', 'Vinay Pitaka', 'None'], correct: 0 },
+   { question: 'Which of the following statement is false?', options: ['Nepali and Bhojpuri language falls under Bharopeli Language Family.', 'Pata Mela is a festival celebrated by Satar caste.', 'Kumar Shashthi is a cultural festival of Newar community', 'Raute is listed in the list of marginalized indigenous nationalities'], correct: 3 },
+      { question: 'How many minor castes are there in Nepal according to the census of 2078?', options: ['110', '115', '120', '125'], correct: 1 },
+      { question: 'Which of the following is not included in the list of four Vinayaka of Valley?', options: ['Jal Vinayaka', 'Chandra Vinayaka', 'Soorya Vinayaka', 'Siddhi Vinayaka'], correct: 3 },
+      { question: 'Which of the following is not a String instrument (Tarbaza)?', options: ['Bina', 'Sitar', 'Karnal', 'Sarangi'], correct: 2 },
+      { question: 'In which style has the Mahabouddha Temple of Patan been built?', options: ['Pagoda Style', 'Shikhar Style', 'Mughal Style', 'Stupa Style'], correct: 1 },
+      { question: 'https://saru.c0m.in/P/11.jpeg', options: ['a-1, b-2, c-3, d-4', 'a-4, b-3, c-2, d-1', 'a-2, b-1, c-4, d-3', 'a-2, b-3, c-4, d-1'], correct: 2 },
+      { question: '"Saraya dance" is related to which topic? 1. Bisket Jatra is also celebrated as tongue piercing festival. 2. Lord Shiva and Parbati are worshiped in "Pata Mela".', options: ['1 right but 2 wrong', '2 right but 1 wrong', '1 and 2 both right', '1 and 2 both wrong'], correct: 2 },
+      { question: 'Who is known as the guru of the gods?', options: ['Vaidhyanath', 'Dhanwantari', 'Ashwini kumar', 'Bihaspati'], correct: 3 },
+      { question: 'Which of the following statement is incorrect?', options: ['The oldest Veda is Rigveda', 'Chandi dance is famous in Magar tribes', 'The designer of Lumbini Master Plan is Dr. Kenzo Tange', 'Changunarayan is the first temple built in Pagoda Style'], correct: 1 },
+      { question: 'In which caste is "Chyabrung dance" famous?', options: ['Rai', 'Sherpa', 'Limbu', 'Thakali'], correct: 2 },
+      { question: 'Balgopaleshwar temple in the middle of Ranipokhari is built in which style?', options: ['Pagoda', 'Granthakut', 'Shikhar', 'Stupa'], correct: 0 },
+      { question: 'By what other name is Thangka Chitra (painting) known?', options: ['Pauva Chitra', 'Grantha Chitra', 'Bhitte Chitra', 'None'], correct: 3 },
+      { question: 'Limbu language is written in which script?', options: ['Brahmi', 'Ranjana', 'Kutila', 'Srijungha'], correct: 3 },
+      { question: 'Which of the following is not included in Upaveda?', options: ['Dhanurveda', 'Gandharvaveda', 'Atharvaveda', 'Ayurveda'], correct: 2 },
+      { question: 'Which of the following places is not included in the Lumbini master plan?', options: ['Devdah', 'Ramgram', 'Tilaurakot', 'Chandrauta'], correct: 3 },
+      { question: 'Tamang Museum is located in which district?', options: ['Nuwakot', 'Rasuwa', 'Lalitpur', 'Sindhupalchowk'], correct: 1 },
+      { question: 'The word "Poldok" is related to which caste?', options: ['Majhi', 'Jirel', 'Satar', 'Dhimal'], correct: 1 },
+      { question: 'Danguwa Pratha is common in which caste?', options: ['Rajbanshi', 'Malla', 'Satar', 'Banjara'], correct: 0 },
+      { question: 'Arrange the correct order: 1. Tamu Lhosar 2. Maghi Parva 3. Sonam Lhosar 4. Gyalpo Lhosar', options: ['1-2-3-4', '1-3-4-1', '1-4-2-3', '4-3-2-1'], correct: 0 },
+      { question: 'According to the story of the Mahabharata, among the 100 brothers and sons of Dhritarashtra, who participated in the Mahabharata war on the side of the Pandavas?', options: ['Dushshasan', 'Yuyutsu', 'Jarasandha', 'Jayadraya'], correct: 1 },
+      { question: 'How many cultural heritage places are listed in World Heritage site?', options: ['5', '6', '7', '8'], correct: 3 },
+      { question: 'Where did Gautam Buddha deliver his first and last sermon?', options: ['Kapilvastu and Ramgram', 'Sarnath and Kushinagar', 'Kushinagar and Bodhgaya', 'Ramgram and Tilaurakot'], correct: 1 },
+      { question: 'Who is known as the god of rain and mercy?', options: ['Machchhindranath', 'Pashupatinath', 'Budhanilakantha', 'Gorakhnath'], correct: 0 },
+      { question: 'Mahaguru Falgunanda Lingden is associated with which religion?', options: ['Kirati', 'Hindu', 'Islam', 'Christianity'], correct: 0 },
+      { question: 'Who built the historic religious site Boudhanath Stupa?', options: ['Siddhinarsingha Malla', 'Pratap Malla', 'Mandev', 'Jung Bahadur'], correct: 1 },
+      { question: 'Identify the false statement?', options: ['Udauli and Udhauli are the major festivals of Kirat community.', 'Pratap Singh Shah introduced the system of burying the lingo of Indra Jatra.', 'Adams Peak, the center of faith for Hinduism, Buddhism and Islam lies in Srilanka.', 'The caste that lives in forest for 6 months and 6 months in house is Raute'], correct: 3 },
+      { question: 'Adivasi Janajati multi-caste (Bahu jatiya) museum is located in which district?', options: ['Dharan (Sunsari)', 'Pokhara (Kaski)', 'Bhrikutimandap (Kathmandu)', 'Ghalegaun (Lamjung)'], correct: 0 },
+      { question: 'What is the religious text of the Sherpa caste called?', options: ['Upanishad', 'Phogyu', 'Mundhum', 'Manirimdu'], correct: 1 },
+      { question: 'What name did the Limbu give to the religion preached by Mahaguru Falgunanda?', options: ['Paruhang', 'Satyahongma', 'Sunmima', 'Mundhum'], correct: 1 },
+      { question: 'List the Kaurava army commanders who were replaced after each died in the Mahabharata war in chronological order:', options: ['Bhishma, Dronacharcha, Karna, Shalya, Ashwatthama', 'Bhishma, Dronacharcha, Shalya, Karna, Ashwatthama', 'Bhishma, karna, Dronacharcha, Karna, Shalya, Ashwatthama', 'Bhishma, Dronacharcha, Karna, Ashwatthama, Shalya'], correct: 0 },
+      { question: 'According to Hindu mythology, what is the name of Lord Kumar\'s vehicle?', options: ['Garuda', 'Crow', 'Peacock', 'Bhairava'], correct: 2 },
+      { question: 'Who is the father of the planets according to religious texts?', options: ['Krishna', 'Soorya', 'Shiva', 'Ganesha'], correct: 1 },
+      { question: 'Darai castes have settled in which of the following districts?', options: ['Lamjung', 'Kaski', 'Tanahun', 'Myagdi'], correct: 2 },
+      { question: 'In which caste, The Butter Tree (Chiuri Plant) is given as dowry?', options: ['Magar', 'Tamang', 'Dhimal', 'Chepang'], correct: 3 },
+      { question: 'Which caste worships the sedum plant (Siudi Plant)?', options: ['Chepang', 'Raute', 'Satar', 'Meche'], correct: 3 },
+      { question: 'What kind of animal skin is used to make the instrument "Damphu" played by the Tamang people?', options: ['Leopard', 'Rhino', 'Goat', 'Deer'], correct: 3 },
+      { question: 'Chonam is an important cultural festival of which caste?', options: ['Chepang', 'Tamang', 'Gurung', 'Rai'], correct: 0 },
+      { question: 'Which of the following pair is incorrect?', options: ['Chepang — Praja', 'Meche — Bodo', 'Lhomi — Karbhote', 'Magar — Tamu'], correct: 3 },
+      { question: 'Chandi Puja is prevalent in which caste?', options: ['Limbu', 'Rai', 'Tamang', 'Magar'], correct: 1 },
+      { question: 'Which community celebrates Chhath festival?', options: ['Rajbanshi', 'Satar', 'Mithila', 'Byashi'], correct: 2 },
+      { question: 'Sirijat is the main festival celebrated by which caste?', options: ['Rai', 'Chidimar', 'Chepang', 'Dhimal'], correct: 3 },
+      { question: '"Chirai Bhajahar", a festival celebrating an unmarried daughter as a bird, is celebrated in which community of Nepal?', options: ['Gurung', 'Bhramin', 'Chhetri', 'Tharu'], correct: 3 },
+      { question: 'Which caste celebrates Pondiya festival?', options: ['Tharu', 'Newar', 'Rai', 'Gurung'], correct: 0 },
+      { question: 'Identify the incorrect pair regarding the dance of different caste.', options: ['Sakela Dance — Lepcha', 'Balan Dance — Bhramin and Chhetri', 'Maruni Dance — Magar', 'Jhijiya Dance — Tharu'], correct: 0 },
+      { question: 'What of the following statement is/are true? 1. Ghatu Dance belongs to Gurung community 2. Tarbare Dance is danced by Gandharba community 3. Tharu People dance Bahramashe dance 4. Sorathi (Singaru) dance is common in Magar and Gurung Community', options: ['1 and 2 are correct', '2 and 4 correct', '3 and 4 correct', 'All of them are correct'], correct: 3 },
+      { question: 'https://saru.c0m.in/P/12.jpeg', options: ['a-1, b-2, c-3, d-4', 'a-4, b-3, c-2, d-1', 'a-3, b-4, c-1, d-2', 'a-2, b-3, c-4, d-1'], correct: 2 },
+      { question: 'https://saru.c0m.in/P/13.jpeg', options: ['a-1, b-2, c-3, d-4', 'a-4, b-3, c-2, d-1', 'a-3, b-4, c-1, d-2', 'a-2, b-3, c-4, d-1'], correct: 0 },
+      { question: 'https://saru.c0m.in/P/14.jpeg', options: ['a-1, b-2, c-3, d-4', 'a-4, b-1, c-2, d-3', 'a-3, b-4, c-1, d-2', 'a-2, b-3, c-4, d-1'], correct: 1 },
+      { question: 'Which festival of different castes makes the correct pair?', options: ['Satar — Soharaya', 'Rajbanshi — Kaura', 'Newar — Kumari', 'Darai — Chukta'], correct: 1 },
+      { question: 'https://saru.c0m.in/P/15.jpeg', options: ['a-2, b-3, c-4, d-1', 'a-4, b-1, c-2, d-1', 'a-3, b-4, c-1, d-2', 'a-2, b-3, c-4, d-1'], correct: 0 },
+      { question: 'What is the language spoken by the Chepang caste called?', options: ['Khamche', 'Khamji', 'Kham', 'Manirimdu'], correct: 0 },
+      { question: 'On which date does the festival Shivratri fall?', options: ['Falgun Krishna Panchami', 'Falgun Shukla Panchami', 'Falgun Krishna Chaturdashi', 'Falgun Shukla Chaturdashi'], correct: 2 },
+      { question: 'When is the big fair held in Gosaikunda in Rasuwa district?', options: ['Janai Purnima', 'New Year', 'Dashain', 'Maghi'], correct: 0 },
+      { question: 'What is the story told to the newlywed bride in the Maithili community?', options: ['Madhu Gatha', 'Madhu Mahima', 'Madhu Vani', 'Madhu Shravani'], correct: 3 },
+      { question: 'What is the language family of Satars?', options: ['Bhot Burmese', 'Varopeli', 'Agnesiyalii', 'Dravid'], correct: 2 },
+      { question: 'Consider the following statement. 1. The temple of Pashupatinath in Kathmandu is not a pagoda style temple. 2. Damaha Baja does not fall under Panche Baja. 3. The Newari language is the language of the Bharopelo language family. 4. Tarbare dance is not a popular dance in the Gurung community. Which of the above statement/s is not correct?', options: ['1 only', '1, 2, 3 only', '1 and 3 only', '2 and 4 only'], correct: 1 },
+      { question: 'https://saru.c0m.in/P/16.jpeg', options: ['a-2, b-3, c-4, d-1', 'a-4, b-1, c-2, d-3', 'a-3, b-4, c-1, d-2', 'a-2, b-3, c-4, d-1'], correct: 1 },
+      { question: 'Which of the following customs is said to be the human insensitivity or cruel custom?', options: ['Dowry Pratha', 'Sati Pratha', 'Das Pratha', 'Kamaiya Pratha'], correct: 1 },
+      { question: 'https://saru.c0m.in/P/17.jpeg', options: ['a-2, b-3, c-1, d-4', 'a-1, b-2, c-3, d-4', 'a-4, b-2, c-1, d-3', 'a-3, b-1, c-4, d-2'], correct: 2 },
+      { question: 'https://saru.c0m.in/P/118.jpeg', options: ['a-2, b-3, c-1, d-4', 'a-1, b-2, c-3, d-4', 'a-3, b-4, c-1, d-2', 'a-3, b-1, c-4, d-2'], correct: 0 },
+	    
+      { question: 'Which of the following caste does not fall under marginalized group?', options: ['Majhi', 'Sunuwar', 'Siyar', 'Chepang'], correct: 1 },
+      { question: 'When did Nepal sign and ratify the UNESCO Convention on the Protection of Intangible Cultural Heritage, 2003?', options: ['2010 June 15', '2003 October 17', '2005 January 25', '2007 May 21'], correct: 0 },
+      { question: 'Balgopaleshwar temple located in between Ranipokhari is reconstructed in which architecture style?', options: ['Shikhar', 'Pagoda', 'Granthakut', 'Rajput'], correct: 2 },
+      { question: 'Who was the first Licchavi king to see the Bhoto Jatra of Rato Machhindranath?', options: ['Mandev', 'Anshuverma', 'Bar dev', 'Narendra Dev'], correct: 2 },
+      { question: 'Identify the incorrect pair.', options: ['Buddhism — Gautam Buddha', 'Christianity — Jesus Christ', 'Jainism — Mahavir Jain', 'Kirat — Gurunanak'], correct: 3 },
+      { question: 'https://saru.c0m.in/P/19.jpeg', options: ['a-2, b-3, c-1, d-4', 'a-1, b-2, c-3, d-4', 'a-3, b-4, c-1, d-2', 'a-3, b-1, c-4, d-2'], correct: 0 }
+    ]
+  };
+
+
+console.log('questionSet defined');
+    startTest(questionSet);
+    console.log('startTest called');
+})(); 
+</script>
+<script src="/js/text-protect.js" defer></script>
+<script src="/js/logo.js"></script>
+</body>
+</html>

@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loksewa Hydrology 1st Paper – Civil Engineering 7th Level</title>
+<style>
+  :root {
+    --primary: #1a3c6e;
+    --accent:  #c8a227;
+    --light:   #f4f6fb;
+    --correct: #1a7a3c;
+    --wrong:   #c0392b;
+    --neutral: #555;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', sans-serif; background: var(--light); color: #222; }
+
+  /* ── START SCREEN ── */
+  #startScreen {
+    display: flex; flex-direction: column; align-items: center;
+    justify-content: center; min-height: 100vh;
+    background: linear-gradient(135deg, #1a3c6e 0%, #2d6a9f 100%);
+    padding: 20px;
+  }
+  #startScreen .card {
+    background: #fff; border-radius: 16px; padding: 40px 48px;
+    max-width: 520px; width: 100%; box-shadow: 0 12px 40px rgba(0,0,0,.25);
+    text-align: center;
+  }
+  #startScreen .card .logo { font-size: 48px; }
+  #startScreen .card h1 { color: var(--primary); font-size: 1.5rem; margin: 10px 0 4px; line-height: 1.3; }
+  #startScreen .card h2 { color: var(--accent); font-size: 1.1rem; margin-bottom: 24px; }
+  #startScreen .card .info-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 24px; text-align: left;
+  }
+  #startScreen .card .info-item { background: var(--light); border-radius: 8px; padding: 10px 14px; font-size: .88rem; }
+  #startScreen .card .info-item strong { display: block; color: var(--primary); margin-bottom: 2px; }
+  #startScreen .card input[type=text] {
+    width: 100%; padding: 12px 16px; border: 2px solid #ccd;
+    border-radius: 8px; font-size: 1rem; margin-bottom: 18px;
+    transition: border-color .2s;
+  }
+  #startScreen .card input[type=text]:focus { outline: none; border-color: var(--primary); }
+  #startScreen .card button {
+    width: 100%; padding: 14px; background: var(--primary); color: #fff;
+    border: none; border-radius: 8px; font-size: 1.05rem; font-weight: 600;
+    cursor: pointer; transition: background .2s;
+  }
+  #startScreen .card button:hover { background: #254f8f; }
+  #startError { color: var(--wrong); font-size: .9rem; margin-bottom: 10px; display: none; }
+
+  /* ── EXAM SCREEN ── */
+  #examScreen { display: none; }
+
+  #fixedHeader {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    background: var(--primary); color: #fff;
+    padding: 0; box-shadow: 0 2px 8px rgba(0,0,0,.3);
+  }
+  #headerTitle {
+    text-align: center; font-size: .95rem; font-weight: 700;
+    background: var(--accent); color: #1a1a1a;
+    padding: 6px 10px; letter-spacing: .5px;
+  }
+  #headerStats {
+    display: flex; justify-content: space-around; align-items: center;
+    padding: 8px 20px; flex-wrap: wrap; gap: 6px;
+  }
+  .hstat { text-align: center; font-size: .8rem; }
+  .hstat span { display: block; font-size: 1.1rem; font-weight: 700; }
+  #timerDisplay { color: #ffd700; }
+  #timerDisplay.danger { color: #ff6b6b; animation: blink 1s step-start infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  #examBody { margin-top: 115px; max-width: 900px; margin-left: auto; margin-right: auto; padding: 20px; }
+
+  .part-header {
+    background: var(--primary); color: #fff; padding: 12px 20px;
+    border-radius: 10px; margin: 28px 0 16px; font-size: 1.05rem; font-weight: 700;
+  }
+  .section-header {
+    background: #d9e8f7; color: var(--primary); padding: 9px 16px;
+    border-left: 4px solid var(--accent); margin: 16px 0 12px;
+    font-size: .95rem; font-weight: 600; border-radius: 0 6px 6px 0;
+  }
+
+  .question-card {
+    background: #fff; border-radius: 10px; padding: 18px 22px;
+    margin-bottom: 14px; box-shadow: 0 2px 8px rgba(0,0,0,.07);
+    transition: box-shadow .2s;
+  }
+  .question-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.12); }
+  .qnum {
+    display: inline-block; background: var(--primary); color: #fff;
+    border-radius: 50%; width: 28px; height: 28px; line-height: 28px;
+    text-align: center; font-size: .8rem; font-weight: 700; margin-right: 10px;
+  }
+  .qtext { font-size: .95rem; line-height: 1.6; display: inline; }
+  .qmark { font-size: .75rem; color: #888; margin-left: 8px; }
+  .options { margin-top: 14px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  @media(max-width:600px){ .options { grid-template-columns: 1fr; } }
+  .option-label {
+    display: flex; align-items: flex-start; gap: 10px; padding: 10px 14px;
+    border: 2px solid #dde; border-radius: 8px; cursor: pointer;
+    font-size: .88rem; line-height: 1.5; transition: border-color .15s, background .15s;
+    min-height: 50px;
+  }
+  .option-label:hover { border-color: var(--primary); background: #eef4ff; }
+  .option-label input[type=radio] { margin-top: 3px; accent-color: var(--primary); flex-shrink: 0; }
+  .option-key { font-weight: 700; color: var(--primary); flex-shrink: 0; }
+
+  #submitArea { text-align: center; margin: 30px 0 50px; }
+  #submitBtn {
+    padding: 14px 48px; background: #c0392b; color: #fff;
+    border: none; border-radius: 8px; font-size: 1.1rem; font-weight: 700;
+    cursor: pointer; box-shadow: 0 4px 14px rgba(192,57,43,.35);
+    transition: background .2s;
+  }
+  #submitBtn:hover { background: #a93226; }
+  #timeupMsg { display: none; color: var(--wrong); font-weight: 700; font-size: 1rem; margin-top: 8px; }
+
+  /* ── RESULT SCREEN ── */
+  #resultScreen { display: none; max-width: 960px; margin: 0 auto; padding: 20px 20px 60px; }
+
+  #resultHeader {
+    background: var(--primary); color: #fff; border-radius: 14px;
+    padding: 28px 32px; text-align: center; margin-bottom: 24px;
+  }
+  #resultHeader h2 { font-size: 1.5rem; margin-bottom: 8px; }
+  #resultHeader .candidate { font-size: 1.1rem; color: var(--accent); margin-bottom: 16px; }
+  .score-grid { display: flex; justify-content: center; flex-wrap: wrap; gap: 16px; }
+  .score-box {
+    background: rgba(255,255,255,.12); border-radius: 10px;
+    padding: 14px 24px; text-align: center; min-width: 120px;
+  }
+  .score-box .val { font-size: 1.8rem; font-weight: 800; color: #ffd700; }
+  .score-box .lbl { font-size: .75rem; margin-top: 4px; color: #cce; }
+
+  .answer-card {
+    background: #fff; border-radius: 10px; padding: 18px 22px;
+    margin-bottom: 14px; box-shadow: 0 2px 8px rgba(0,0,0,.08);
+    border-left: 5px solid #ccc;
+  }
+  .answer-card.correct { border-left-color: var(--correct); }
+  .answer-card.wrong   { border-left-color: var(--wrong); }
+  .answer-card.skipped { border-left-color: #e67e22; }
+
+  .ans-qtext { font-size: .95rem; line-height: 1.6; font-weight: 600; margin-bottom: 10px; }
+  .ans-options { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 12px; }
+  @media(max-width:600px){ .ans-options { grid-template-columns: 1fr; } }
+  .ans-opt {
+    padding: 8px 14px; border-radius: 7px; font-size: .87rem;
+    border: 2px solid #dde; background: #f9f9fb;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .ans-opt.is-correct { background: #e8f7ed; border-color: var(--correct); color: var(--correct); font-weight: 700; }
+  .ans-opt.is-wrong   { background: #fdecea; border-color: var(--wrong); color: var(--wrong); }
+  .ans-opt .opt-icon  { font-size: 1rem; flex-shrink: 0; }
+  .ans-meta { font-size: .82rem; margin-bottom: 8px; }
+  .ans-meta .tag {
+    display: inline-block; padding: 3px 10px; border-radius: 20px;
+    font-weight: 700; margin-right: 6px; font-size: .78rem;
+  }
+  .tag-correct { background: #e8f7ed; color: var(--correct); }
+  .tag-wrong   { background: #fdecea; color: var(--wrong); }
+  .tag-skipped { background: #fef3e2; color: #c77000; }
+  .tag-penalty { background: #fdecea; color: var(--wrong); }
+  .explanation {
+    background: #f0f7ff; border-radius: 7px; padding: 10px 14px;
+    font-size: .85rem; line-height: 1.7; color: #333;
+    border-left: 3px solid #2d6a9f;
+  }
+  .explanation strong { color: var(--primary); }
+
+  .ans-part-header {
+    background: var(--primary); color: #fff;
+    padding: 10px 18px; border-radius: 8px;
+    margin: 20px 0 10px; font-size: 1rem; font-weight: 700;
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════ START SCREEN ══════════════════════════════ -->
+<div id="startScreen">
+  <div class="card">
+    <div class="logo">📝</div>
+    <h1>Loksewa Hydrology 1st Paper</h1>
+    <h2>7th Level Gazetted Civil Engineering — General Competitive</h2>
+    <div class="info-grid">
+      <div class="info-item"><strong>Total Questions</strong>100 MCQs</div>
+      <div class="info-item"><strong>Total Marks</strong>100 Marks</div>
+      <div class="info-item"><strong>Duration</strong>55 Minutes</div>
+      <div class="info-item"><strong>Negative Marking</strong>–0.20 per wrong/unanswered</div>
+      <div class="info-item"><strong>Part A</strong>General Awareness – 50 Marks</div>
+      <div class="info-item"><strong>Part B</strong>Technical Subject – 50 Marks</div>
+    </div>
+    <p id="startError">⚠ Please enter your full name before starting.</p>
+    <input type="text" id="candidateName" placeholder="Enter your Full Name…" maxlength="80" />
+    <button onclick="startExam()">START EXAMINATION</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════ EXAM SCREEN ══════════════════════════════ -->
+<div id="examScreen">
+  <div id="fixedHeader">
+    <div id="headerTitle">LOKSEWA HYDROLOGY 1ST PAPER — 7TH LEVEL GAZETTED CIVIL ENGINEERING</div>
+    <div id="headerStats">
+      <div class="hstat">👤 Candidate<span id="hName">—</span></div>
+      <div class="hstat">⏱ Time Remaining<span id="timerDisplay">55:00</span></div>
+      <div class="hstat">✅ Attempted<span id="hAttempted">0</span></div>
+      <div class="hstat">❓ Remaining<span id="hRemaining">100</span></div>
+      <div class="hstat">💯 Total Marks<span>100</span></div>
+    </div>
+  </div>
+
+  <div id="examBody">
+    <!-- Questions injected by JS -->
+  </div>
+
+  <div id="submitArea">
+    <button id="submitBtn" onclick="confirmSubmit()">SUBMIT EXAMINATION</button>
+    <p id="timeupMsg">⏰ Time is up! Your answers have been submitted automatically.</p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════ RESULT SCREEN ══════════════════════════════ -->
+<div id="resultScreen">
+  <div id="resultHeader">
+    <h2>📊 Examination Result</h2>
+    <div class="candidate" id="rCandidateName"></div>
+    <div class="score-grid">
+      <div class="score-box"><div class="val" id="rScore">—</div><div class="lbl">Final Score</div></div>
+      <div class="score-box"><div class="val" id="rCorrect">—</div><div class="lbl">Correct (+1 each)</div></div>
+      <div class="score-box"><div class="val" id="rWrong">—</div><div class="lbl">Wrong (−0.2 each)</div></div>
+      <div class="score-box"><div class="val" id="rSkipped">—</div><div class="lbl">Unanswered (−0.2 each)</div></div>
+      <div class="score-box"><div class="val" id="rPercent">—</div><div class="lbl">Percentage</div></div>
+    </div>
+  </div>
+  <div id="answerReview"></div>
+</div>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════
+   QUESTION BANK
+   Fields: id, part, section, text, opts[4], ans (0-indexed), explain
+═══════════════════════════════════════════════════════════════ */
+const QB = [
+/* ── PART A : GENERAL AWARENESS (Q1–Q25) ── */
+{id:1,part:"Part A – General Awareness & Current Affairs",section:"General Awareness & Contemporary Issues (25 × 1 Mark)",
+ text:"Nepal को संविधान २०७२ को कुन अनुसूचीमा प्रदेशहरूको सूची उल्लेख छ?",
+ opts:["अनुसूची ४","अनुसूची ५","अनुसूची ३","अनुसूची ६"],ans:0,
+ explain:"<strong>Correct: अनुसूची ४ (Schedule 4).</strong> Schedule 4 of Nepal's Constitution 2072 lists the names and boundaries of the seven provinces. Schedule 5 deals with federal exclusive powers and Schedule 6 with provincial exclusive powers."},
+
+{id:2,part:"Part A – General Awareness & Current Affairs",section:"General Awareness & Contemporary Issues (25 × 1 Mark)",
+ text:"According to the Constitution of Nepal 2072, which Part contains 'Directive Principles, Policies and Obligations of the State'?",
+ opts:["Part 4","Part 3","Part 5","Part 2"],ans:0,
+ explain:"<strong>Correct: Part 4.</strong> Part 3 contains Fundamental Rights, Part 4 deals with Directive Principles and State Policies (Articles 50–55), and Part 5 defines the structure of the State. This is a common exam confusion."},
+
+{id:3,part:"Part A – General Awareness & Current Affairs",section:"General Awareness & Contemporary Issues (25 × 1 Mark)",
+ text:"Nepal को कुल भूभागमध्ये हिमाली क्षेत्रले लगभग कति प्रतिशत ओगटेको छ?",
+ opts:["१५ प्रतिशत","३५ प्रतिशत","५० प्रतिशत","२५ प्रतिशत"],ans:0,
+ explain:"<strong>Correct: ~15%.</strong> Nepal's land is broadly: Hilly (~68%), Terai (~17%), and Mountain/Himalayan (~15%). The Himalayan zone covers the northern strip and holds most of Nepal's glaciated terrain and high peaks."},
+
+{id:4,part:"Part A – General Awareness & Current Affairs",section:"General Awareness & Contemporary Issues (25 × 1 Mark)",
+ text:"Which of the following rivers does NOT belong to the Koshi river basin system?",
+ opts:["Trishuli River","Tamor River","Arun River","Sun Koshi River"],ans:0,
+ explain:"<strong>Correct: Trishuli River</strong> is a tributary of the Narayani (Gandaki) river system, not the Koshi system. The Koshi (Saptakoshi) system includes Tamor, Arun, Sun Koshi, Tama Koshi, Likhu, Dudhkoshi, and Indrawati."},
+
+{id:5,part:"Part A – General Awareness & Current Affairs",section:"General Awareness & Contemporary Issues (25 × 1 Mark)",
+ text:"नेपालको पन्ध्रौं आवधिक योजना (15th Periodic Plan) को कार्यकाल कुन अवधि हो?",
+ opts:["आ.व. २०७६/७७ – २०८०/८१","आ.व. २०७७/७८ – २०८१/८२","आ.व. २०७५/७६ – २०७९/८०","आ.व. २०७८/७९ – २०८२/८३"],ans:0,
+ explain:"<strong>Correct: FY 2076/77 – 2080/81 (2019–2024).</strong> Nepal's 15th Plan aimed to graduate Nepal from LDC status and achieve an annual growth rate of 9.6%. It was aligned with the SDGs and Nepal's vision of 'Prosperous Nepal, Happy Nepali'."},
+
+{id:6,part:"Part A – General Awareness & Current Affairs",section:"General Awareness & Contemporary Issues (25 × 1 Mark)",
+ text:"BIMSTEC का पूर्ण रूप (full form) के हो? / What is the full form of BIMSTEC?",
+ opts:["Bay of Bengal Initiative for Multi-Sectoral Technical and Economic Cooperation","Bangladesh India Myanmar Sri Lanka Thailand Economic Cooperation","Bay of Bengal Integrated Maritime Strategic Technical Cooperation","Bangladesh Initiative for Maritime Strategic Technical Community"],ans:0,
+ explain:"<strong>Correct: Bay of Bengal Initiative for Multi-Sectoral Technical and Economic Cooperation.</strong> BIMSTEC was founded in 1997 (Bangkok Declaration). Its seven members are Bangladesh, Bhutan, India, Myanmar, Nepal, Sri Lanka, and Thailand. Headquarters: Dhaka, Bangladesh."},
+
+{id:7,part:"Part A – General Awareness & Current Affairs",section:"General Awareness & Contemporary Issues (25 × 1 Mark)",
+ text:"Nepal को संविधान २०७२ को धारा ३० ले कुन मौलिक हकको प्रत्याभूति गर्दछ?",
+ opts:["स्वच्छ वातावरणको हक","सूचनाको हक","शिक्षाको हक","स्वास्थ्यको हक"],ans:0,
+ explain:"<strong>Correct: Right to Clean Environment (स्वच्छ वातावरणको हक) – Article 30.</strong> Article 27 = Right to Information; Article 31 = Right to Education; Article 35 = Right to Health. Article 30 mandates that every citizen shall have the right to live in a clean and healthy environment."},
+
+{id:8,part:"Part A – General Awareness & Current Affairs",section:"General Awareness & Contemporary Issues (25 × 1 Mark)",
+ text:"Which Schedule of the Constitution of Nepal 2072 contains the list of powers of the Local Government (स्थानीय सरकारको एकल अधिकार सूची)?",
+ opts:["Schedule 8","Schedule 7","Schedule 9","Schedule 6"],ans:0,
+ explain:"<strong>Correct: Schedule 8</strong> lists the exclusive powers of Local Government. Schedule 7 = Concurrent powers of Federal and Provincial; Schedule 9 = Concurrent powers of all three tiers; Schedule 6 = Provincial exclusive powers. These schedules are heavily tested."},
+
+{id:9,part:"Part A – General Awareness & Current Affairs",section:"General Awareness & Contemporary Issues (25 × 1 Mark)",
+ text:"सार्क (SAARC) को स्थापना कुन वर्षमा कहाँ भएको थियो?",
+ opts:["१९८५ मा, ढाकामा","१९८७ मा, काठमाण्डौमा","१९८३ मा, नयाँ दिल्लीमा","१९८९ मा, इस्लामाबादमा"],ans:0,
+ explain:"<strong>Correct: 1985, Dhaka (Bangladesh).</strong> SAARC was established on 8 December 1985 in Dhaka with eight member states: Afghanistan, Bangladesh, Bhutan, India, Maldives, Nepal, Pakistan, and Sri Lanka. Its Secretariat is located in Kathmandu."},
+
+{id:10,part:"Part A – General Awareness & Current Affairs",section:"General Awareness & Contemporary Issues (25 × 1 Mark)",
+ text:"Nepal Civil Service Act 2049 अनुसार, कुल रिक्त पदमध्ये कति प्रतिशत पद बढुवाबाट पूर्ति गरिन्छ?",
+ opts:["पचास प्रतिशत (50%)","चालिस प्रतिशत (40%)","साठी प्रतिशत (60%)","तीस प्रतिशत (30%)"],ans:0,
+ explain:"<strong>Correct: 50% by promotion.</strong> Under Nepal's Civil Service Act 2049, vacancies are filled: 50% by promotion and 50% by open competition (including inclusive/reserved category quotas). This ratio applies to posts of Class 7 (7th level) and above."},
+
+{id:11,part:"Part A – General Awareness & Current Affairs",section:"General Awareness & Contemporary Issues (25 × 1 Mark)",
+ text:"According to National Population Census 2078 BS, Nepal's total population is approximately:",
+ opts:["2 crore 91 lakh (29.1 million)","2 crore 71 lakh (27.1 million)","3 crore 15 lakh (31.5 million)","2 crore 50 lakh (25.0 million)"],ans:0,
+ explain:"<strong>Correct: ~29.1 million (2 crore 91 lakh).</strong> Nepal's National Population and Housing Census 2078 BS (2021 AD) counted 29,164,578 people. Population growth rate was 0.92%, reduced from 1.35% in 2011. Male population: 49.5%; Female: 50.5%."},
+
+{id:12,part:"Part A – General Awareness & Current Affairs",section:"General Awareness & Contemporary Issues (25 × 1 Mark)",
+ text:"Henri Fayol's 14 Principles of Management मा निम्नमध्ये कुन सिद्धान्त पर्दैन?",
+ opts:["Scientific Selection of Workers","Division of Work","Unity of Command","Esprit de Corps"],ans:0,
+ explain:"<strong>Correct: 'Scientific Selection of Workers'</strong> is a principle of F.W. Taylor's Scientific Management, NOT Fayol's 14 principles. Fayol's principles include Division of Work, Unity of Command, Esprit de Corps, Scalar Chain, Equity, etc."},
+
+{id:13,part:"Part A – General Awareness & Current Affairs",section:"General Awareness & Contemporary Issues (25 × 1 Mark)",
+ text:"पेरिस जलवायु सम्झौता (Paris Climate Agreement) कुन सालमा लागू (entered into force) भएको थियो?",
+ opts:["२०१६","२०१५","२०१७","२०१४"],ans:0,
+ explain:"<strong>Correct: 4 November 2016.</strong> The Paris Agreement was adopted at COP21 on 12 December 2015, but entered into force on 4 November 2016. Nepal ratified it on 5 October 2016. It aims to limit global temperature rise to well below 2°C above pre-industrial levels."},
+
+{id:14,part:"Part A – General Awareness & Current Affairs",section:"General Awareness & Contemporary Issues (25 × 1 Mark)",
+ text:"Nepal को संविधान अनुसार, लोकसेवा आयोगको गठनसम्बन्धी संवैधानिक व्यवस्था कुन धारामा छ?",
+ opts:["धारा २४२","धारा २४५","धारा २४०","धारा २४८"],ans:0,
+ explain:"<strong>Correct: Article 242.</strong> Article 242 of Nepal's Constitution 2072 provides for the formation of the Public Service Commission. The PSC is chaired by a Chairperson and has a maximum of 6 members. Members serve a 6-year non-renewable term."},
+
+{id:15,part:"Part A – General Awareness & Current Affairs",section:"General Awareness & Contemporary Issues (25 × 1 Mark)",
+ text:"Zero-based Budgeting (ZBB) को अवधारणा विकास कसले गरेको थियो?",
+ opts:["Peter A. Pyhrr","Aaron Wildavsky","Frederick W. Taylor","Henry Mintzberg"],ans:0,
+ explain:"<strong>Correct: Peter A. Pyhrr</strong> developed ZBB at Texas Instruments in the early 1970s. It requires every program and expenditure to be justified from scratch each budget cycle, unlike incremental budgeting. President Jimmy Carter later introduced it to federal government."},
+
+{id:16,part:"Part A – General Awareness & Current Affairs",section:"General Awareness & Contemporary Issues (25 × 1 Mark)",
+ text:"Public Service Charter (सार्वजनिक सेवा वडापत्र) मा सामान्यतः कुन तत्व समावेश हुँदैन?",
+ opts:["संगठनात्मक लेखापरीक्षण प्रक्रिया","सेवा प्रदान मापदण्ड","उजुरी सुन्ने संयन्त्र","सेवा समयसीमा"],ans:0,
+ explain:"<strong>Correct: Organizational audit procedures</strong> are NOT typically part of a Service Charter. A Public Service Charter typically includes: nature of services, service standards, time limits, fee structures, grievance mechanisms, and responsible officer details. Audit is an internal management function."},
+
+{id:17,part:"Part A – General Awareness & Current Affairs",section:"General Awareness & Contemporary Issues (25 × 1 Mark)",
+ text:"नेपालको पहिलो राष्ट्रिय निकुञ्ज कुन हो र यसको स्थापना कुन सालमा भएको थियो?",
+ opts:["चितवन, १९७३","बर्दिया, १९८८","लाङटाङ, १९७६","सगरमाथा, १९७६"],ans:0,
+ explain:"<strong>Correct: Chitwan National Park, 1973.</strong> Chitwan became Nepal's first national park on 22 December 1973. It was declared a UNESCO World Heritage Site in 1984. It is home to one-horned rhinoceros, Bengal tigers, and gharial crocodiles."},
+
+{id:18,part:"Part A – General Awareness & Current Affairs",section:"General Awareness & Contemporary Issues (25 × 1 Mark)",
+ text:"Maslow's Hierarchy of Needs मा 'Self-Actualization' कुन तहमा पर्दछ?",
+ opts:["सबैभन्दा माथिल्लो तह (Fifth tier)","चौथो तह (Fourth tier)","तेस्रो तह (Third tier)","दोस्रो तह (Second tier)"],ans:0,
+ explain:"<strong>Correct: Fifth (topmost) tier.</strong> Maslow's hierarchy from bottom to top: (1) Physiological, (2) Safety, (3) Love/Belonging, (4) Esteem, (5) Self-Actualization. Self-actualization represents the realization of one's full potential, a concept critical to motivation in management."},
+
+{id:19,part:"Part A – General Awareness & Current Affairs",section:"General Awareness & Contemporary Issues (25 × 1 Mark)",
+ text:"Nepal को संविधान २०७२ अनुसार, राष्ट्रिय मानव अधिकार आयोगको स्थापनासम्बन्धी व्यवस्था कुन धारामा छ?",
+ opts:["धारा २४८","धारा २४२","धारा २५०","धारा २४५"],ans:0,
+ explain:"<strong>Correct: Article 248.</strong> Article 248 establishes the National Human Rights Commission. It consists of a Chairperson and 4 members with a 6-year non-renewable term. The NHRC investigates and monitors human rights violations in Nepal."},
+
+{id:20,part:"Part A – General Awareness & Current Affairs",section:"General Awareness & Contemporary Issues (25 × 1 Mark)",
+ text:"Sustainable Development Goals (SDGs) मा जम्मा कतिवटा लक्ष्यहरू (Goals) छन् र कुन सन सम्म पूरा गर्ने लक्ष्य राखिएको छ?",
+ opts:["१७ लक्ष्य, सन् २०३०","१५ लक्ष्य, सन् २०२५","२० लक्ष्य, सन् २०३५","१८ लक्ष्य, सन् २०३०"],ans:0,
+ explain:"<strong>Correct: 17 Goals, 2030.</strong> The 2030 Agenda for Sustainable Development (adopted Sept 2015) has 17 SDGs with 169 specific targets. Nepal is committed to all SDGs, particularly SDG 6 (Clean Water), SDG 11 (Sustainable Cities), and SDG 13 (Climate Action)."},
+
+{id:21,part:"Part A – General Awareness & Current Affairs",section:"General Awareness & Contemporary Issues (25 × 1 Mark)",
+ text:"Nepal को संघीय शासन प्रणाली अन्तर्गत प्रदेश सभाको कार्यकाल कति वर्षको हुन्छ?",
+ opts:["५ वर्ष","४ वर्ष","३ वर्ष","६ वर्ष"],ans:0,
+ explain:"<strong>Correct: 5 years.</strong> Under Article 176 of Nepal's Constitution 2072, the term of the Provincial Assembly is 5 years from the date of its first meeting. Similarly, the House of Representatives and local government terms are also 5 years."},
+
+{id:22,part:"Part A – General Awareness & Current Affairs",section:"General Awareness & Contemporary Issues (25 × 1 Mark)",
+ text:"According to Nepal's Civil Service Regulations, 'Code of Conduct' (आचारसंहिता) provisions are primarily governed by which regulation?",
+ opts:["Civil Service Regulations 2050 BS","Civil Service Act 2049 BS","Government Service Regulations 2064 BS","Public Administration Act 2053 BS"],ans:0,
+ explain:"<strong>Correct: Civil Service Regulations 2050 BS.</strong> The Civil Service Regulations 2050 BS operationalize the Civil Service Act 2049 and detail the code of conduct, service conditions, promotions, transfers, and disciplinary procedures for civil servants in Nepal."},
+
+{id:23,part:"Part A – General Awareness & Current Affairs",section:"General Awareness & Contemporary Issues (25 × 1 Mark)",
+ text:"Nepal को प्रमुख तीनवटा जलाधार प्रणालीमध्ये पश्चिम नेपालको मुख्य जलाधार कुन हो?",
+ opts:["कर्णाली नदी प्रणाली","कोशी नदी प्रणाली","गण्डकी नदी प्रणाली","महाकाली नदी प्रणाली"],ans:0,
+ explain:"<strong>Correct: Karnali River System.</strong> Nepal's three major river systems are: Eastern – Koshi (Saptakoshi), Central – Gandaki (Narayani), Western – Karnali. The Karnali is the largest river basin in Nepal covering ~42,000 km² and originates from the Tibetan Plateau."},
+
+{id:24,part:"Part A – General Awareness & Current Affairs",section:"General Awareness & Contemporary Issues (25 × 1 Mark)",
+ text:"According to the UNO structure, the International Court of Justice (ICJ) is located in which city?",
+ opts:["The Hague, Netherlands","Geneva, Switzerland","New York, USA","Vienna, Austria"],ans:0,
+ explain:"<strong>Correct: The Hague, Netherlands.</strong> The ICJ, established in 1945, is the principal judicial organ of the UN. It settles legal disputes between states and gives advisory opinions. It is housed in the Peace Palace in The Hague. The UN's main offices are in New York and Geneva."},
+
+{id:25,part:"Part A – General Awareness & Current Affairs",section:"General Awareness & Contemporary Issues (25 × 1 Mark)",
+ text:"Which principle of public administration best describes 'accountability of public servants to the elected representatives and citizens'?",
+ opts:["Democratic Accountability","Administrative Neutrality","Bureaucratic Hierarchy","Managerial Efficiency"],ans:0,
+ explain:"<strong>Correct: Democratic Accountability.</strong> Democratic accountability means civil servants are answerable to elected representatives (Parliament/Legislature) and ultimately to citizens. It is distinct from managerial accountability (to superiors) and is a cornerstone of good governance."},
+
+/* ── PART A : LOGICAL REASONING (Q26–Q34) ── */
+{id:26,part:"Part A – General Ability Test",section:"Logical Reasoning (9 × 1 Mark)",
+ text:"In a coding system, if WATER is coded as XBUFS (each letter shifted +1), then HYDRO is coded as:",
+ opts:["IZESP","IYDSP","IZEST","HYDSP"],ans:0,
+ explain:"<strong>Correct: IZESP.</strong> Each letter is shifted +1 in the alphabet: H→I, Y→Z, D→E, R→S, O→P = IZESP. Note: XBUFS confirms the pattern W→X, A→B, T→U, E→F, R→S."},
+
+{id:27,part:"Part A – General Ability Test",section:"Logical Reasoning (9 × 1 Mark)",
+ text:"Statement: All engineers are professionals. Some professionals are managers. Conclusion I: Some engineers are managers. Conclusion II: Some managers are engineers. Which conclusion follows?",
+ opts:["Neither Conclusion I nor II follows","Only Conclusion I follows","Only Conclusion II follows","Both Conclusion I and II follow"],ans:0,
+ explain:"<strong>Correct: Neither follows.</strong> From 'All E are P' and 'Some P are M', we cannot conclude that E and M overlap. The 'some professionals who are managers' may not include engineers. This is a classic syllogism trap — possibility ≠ certainty."},
+
+{id:28,part:"Part A – General Ability Test",section:"Logical Reasoning (9 × 1 Mark)",
+ text:"Find the odd one out from the following numbers: 16, 25, 36, 50, 64, 81",
+ opts:["50","16","36","81"],ans:0,
+ explain:"<strong>Correct: 50.</strong> All others are perfect squares: 16=4², 25=5², 36=6², 64=8², 81=9². The number 50 is not a perfect square (√50 ≈ 7.07), making it the odd one out."},
+
+{id:29,part:"Part A – General Ability Test",section:"Logical Reasoning (9 × 1 Mark)",
+ text:"Rajan walks 5 km North, turns right and walks 3 km East, turns right again and walks 5 km South, then turns left and walks 2 km East. How far is he from his starting point?",
+ opts:["5 km East","3 km East","7 km North-East","2 km South"],ans:0,
+ explain:"<strong>Correct: 5 km (East).</strong> Path: O→5N→A, turn right→3E→B, turn right→5S→C (back to original N-S level), turn left→2E→D. Net displacement: 0 km N/S, (3+2)=5 km East. Distance = 5 km due East of start."},
+
+{id:30,part:"Part A – General Ability Test",section:"Logical Reasoning (9 × 1 Mark)",
+ text:"In a row of students, Priya is 12th from the left end and 8th from the right end. How many students are there in the row?",
+ opts:["19","20","18","21"],ans:0,
+ explain:"<strong>Correct: 19.</strong> Total = (Position from left) + (Position from right) − 1 = 12 + 8 − 1 = 19. This formula applies when a single person is counted from both ends of a linear arrangement."},
+
+{id:31,part:"Part A – General Ability Test",section:"Logical Reasoning (9 × 1 Mark)",
+ text:"If A×B = A is father of B; A−B = A is brother of B; A÷B = A is sister of B. In expression P×Q−R÷S, what is P's relationship to S?",
+ opts:["P is father of S","P is grandfather of S","P is uncle of S","P is brother of S"],ans:0,
+ explain:"<strong>Correct: P is father of S.</strong> P×Q: P is father of Q. Q−R: Q is brother of R → Q and R are siblings, so P is also father of R. R÷S: R is sister of S → R and S are siblings with the same parents. Since P is father of R, P is also father of S."},
+
+{id:32,part:"Part A – General Ability Test",section:"Logical Reasoning (9 × 1 Mark)",
+ text:"Assertion (A): Environmental Impact Assessment (EIA) is mandatory for major hydraulic/infrastructure projects in Nepal. Reason (R): Nepal's Environment Protection Act 2076 requires EIA for projects exceeding prescribed threshold limits.",
+ opts:["Both A and R are true; R is the correct explanation of A","Both A and R are true; but R is NOT the correct explanation of A","A is true but R is false","A is false but R is true"],ans:0,
+ explain:"<strong>Correct: Both A and R are true; R correctly explains A.</strong> Nepal's Environment Protection Act 2076 and EPA Regulations 2077 mandate EIA/IEE for projects above threshold limits (e.g., hydropower >1 MW, irrigation >500 ha). R directly explains why A is mandatory."},
+
+{id:33,part:"Part A – General Ability Test",section:"Logical Reasoning (9 × 1 Mark)",
+ text:"Complete the number series: 2, 6, 12, 20, 30, 42, ?",
+ opts:["56","54","58","52"],ans:0,
+ explain:"<strong>Correct: 56.</strong> The differences are 4, 6, 8, 10, 12, 14 (arithmetic progression +2). Next term = 42 + 14 = 56. Alternatively, the n-th term = n(n+1): 1×2=2, 2×3=6, 3×4=12, 4×5=20, 5×6=30, 6×7=42, 7×8=56."},
+
+{id:34,part:"Part A – General Ability Test",section:"Logical Reasoning (9 × 1 Mark)",
+ text:"In a survey of 120 engineers: 70 know AutoCAD, 50 know Civil 3D, and 30 know BOTH. How many engineers know AT LEAST ONE of the two software?",
+ opts:["90","80","100","120"],ans:0,
+ explain:"<strong>Correct: 90.</strong> By inclusion-exclusion principle: |A∪B| = |A| + |B| − |A∩B| = 70 + 50 − 30 = 90. The remaining 30 engineers (120−90) know neither software. This is a standard Venn diagram problem."},
+
+/* ── PART A : NUMERICAL REASONING (Q35–Q42) ── */
+{id:35,part:"Part A – General Ability Test",section:"Numerical Reasoning (8 × 1 Mark)",
+ text:"A contractor can complete a project in 20 days; a subcontractor in 30 days. They work together for 10 days, after which the subcontractor leaves. How many additional days does the contractor alone need to finish?",
+ opts:["3.33 days","6.67 days","5.00 days","4.00 days"],ans:0,
+ explain:"<strong>Correct: 3.33 days.</strong> Combined rate = 1/20 + 1/30 = 5/60 = 1/12 per day. Work done in 10 days = 10/12 = 5/6. Remaining = 1/6. Contractor alone time = (1/6)÷(1/20) = 20/6 ≈ 3.33 days."},
+
+{id:36,part:"Part A – General Ability Test",section:"Numerical Reasoning (8 × 1 Mark)",
+ text:"In concrete mix design, if the water-cement ratio (w/c) is 0.45 and cement content is 400 kg/m³, what is the water content per m³?",
+ opts:["180 kg/m³","175 kg/m³","185 kg/m³","190 kg/m³"],ans:0,
+ explain:"<strong>Correct: 180 kg/m³.</strong> Water content = w/c × cement = 0.45 × 400 = 180 kg/m³. A w/c ratio of 0.45 is commonly used for M25-M30 grade concrete, providing a balance between workability and durability."},
+
+{id:37,part:"Part A – General Ability Test",section:"Numerical Reasoning (8 × 1 Mark)",
+ text:"A surveying tape measures 500 m but is 0.02 m too long per 30 m. What is the corrected (true) distance?",
+ opts:["500.33 m","499.67 m","500.67 m","499.33 m"],ans:0,
+ explain:"<strong>Correct: 500.33 m.</strong> Error per tape length = +0.02 m/30 m. Total error = (500/30) × 0.02 = 0.333 m. Since tape is LONGER than nominal, the measured distance UNDERESTIMATES actual. Corrected = 500 + 0.333 = 500.33 m."},
+
+{id:38,part:"Part A – General Ability Test",section:"Numerical Reasoning (8 × 1 Mark)",
+ text:"If Manning's roughness coefficient 'n' increases by 10%, by what percentage does channel discharge Q decrease (Q = (1/n)AR²∕³S½)?",
+ opts:["9.09%","10.00%","11.00%","8.50%"],ans:0,
+ explain:"<strong>Correct: 9.09%.</strong> Q ∝ 1/n. New Q = Q_old/1.1 = 0.9091×Q_old. Decrease = (1 − 0.9091) × 100 = 9.09%. This is NOT 10% because the relationship is inverse — a common calculation error in hydraulics exams."},
+
+{id:39,part:"Part A – General Ability Test",section:"Numerical Reasoning (8 × 1 Mark)",
+ text:"The average of five consecutive even numbers is 26. What is the product of the largest and smallest numbers in the set?",
+ opts:["660","616","624","672"],ans:0,
+ explain:"<strong>Correct: 660.</strong> If average = 26, the middle (3rd) number = 26. Five consecutive evens: 22, 24, 26, 28, 30. Largest = 30, Smallest = 22. Product = 30 × 22 = 660."},
+
+{id:40,part:"Part A – General Ability Test",section:"Numerical Reasoning (8 × 1 Mark)",
+ text:"Today is Wednesday. What day of the week will it be after exactly 100 days?",
+ opts:["Friday","Thursday","Saturday","Sunday"],ans:0,
+ explain:"<strong>Correct: Friday.</strong> 100 ÷ 7 = 14 remainder 2. Wednesday + 2 days = Friday. Divisibility by 7 determines the day: the remaining 2 days after 14 complete weeks advances Wednesday to Friday."},
+
+{id:41,part:"Part A – General Ability Test",section:"Numerical Reasoning (8 × 1 Mark)",
+ text:"A circular pipe of diameter D carries flow Q at velocity V. If the diameter is doubled to 2D with the same flow rate Q, what is the new velocity?",
+ opts:["V/4","V/2","V/8","2V"],ans:0,
+ explain:"<strong>Correct: V/4.</strong> Q = V×A = V×(πD²/4). New area = π(2D)²/4 = 4πD²/4 = 4A. New V = Q/(4A) = V/4. Velocity varies inversely with the square of diameter — a fundamental continuity equation concept."},
+
+{id:42,part:"Part A – General Ability Test",section:"Numerical Reasoning (8 × 1 Mark)",
+ text:"Data: Stage (m): 1, 2, 3; Discharge (m³/s): 10, 20, 30. The Pearson correlation coefficient (r) between stage and discharge is:",
+ opts:["1.00 (perfect positive)","0.85 (strong positive)","0.75 (moderate positive)","0.50 (weak positive)"],ans:0,
+ explain:"<strong>Correct: r = 1.00.</strong> The data pairs (1,10),(2,20),(3,30) are perfectly linear (Q=10×H). For perfect linear relationship, r = +1.0. In rating curve analysis, such perfect correlation is theoretical; real curves have scatter due to hysteresis and roughness changes."},
+
+/* ── PART A : SPATIAL REASONING (Q43–Q50) ── */
+{id:43,part:"Part A – General Ability Test",section:"Spatial Reasoning (8 × 1 Mark)",
+ text:"A dot moves clockwise from corner to corner of a square in sequence: Fig.1=Top-Left, Fig.2=Top-Right, Fig.3=Bottom-Right, Fig.4=Bottom-Left. Where is the dot in Figure 5?",
+ opts:["Top-Left corner","Top-Right corner","Bottom-Right corner","Bottom-Left corner"],ans:0,
+ explain:"<strong>Correct: Top-Left corner.</strong> Clockwise sequence repeats every 4 figures: TL→TR→BR→BL→TL. Figure 5 = Figure 1 position = Top-Left corner. This tests recognition of cyclic spatial patterns."},
+
+{id:44,part:"Part A – General Ability Test",section:"Spatial Reasoning (8 × 1 Mark)",
+ text:"A 3×3 cube is painted red on all outer faces, then cut into 27 unit cubes. How many unit cubes have exactly TWO faces painted red?",
+ opts:["12","8","6","24"],ans:0,
+ explain:"<strong>Correct: 12.</strong> In a 3×3×3 cube: Corner cubes (3 faces painted) = 8; Edge cubes (2 faces painted) = 12 (1 per edge × 12 edges); Face-center cubes (1 face painted) = 6; Center cube (0 faces) = 1. Total = 27. Edge cubes have exactly 2 painted faces."},
+
+{id:45,part:"Part A – General Ability Test",section:"Spatial Reasoning (8 × 1 Mark)",
+ text:"What is the angle between the hour and minute hands of a clock at exactly 3:15?",
+ opts:["7.5°","0°","15°","22.5°"],ans:0,
+ explain:"<strong>Correct: 7.5°.</strong> At 3:15: Minute hand = 90° (3-o'clock position). Hour hand = 90° + (15 min × 0.5°/min) = 90° + 7.5° = 97.5°. Angle between them = 97.5° − 90° = 7.5°. The hour hand moves 0.5° per minute, making this deceptively small."},
+
+{id:46,part:"Part A – General Ability Test",section:"Spatial Reasoning (8 × 1 Mark)",
+ text:"A square sheet of paper is folded once horizontally (top over bottom) and once vertically (left over right), then a hole is punched through the center. When fully unfolded, how many holes appear?",
+ opts:["4 holes","2 holes","1 hole","8 holes"],ans:0,
+ explain:"<strong>Correct: 4 holes.</strong> First fold (horizontal) doubles the layers → hole creates 2 openings. Second fold (vertical) doubles again → hole creates 4 openings symmetrically placed at the four quadrant centers of the original sheet."},
+
+{id:47,part:"Part A – General Ability Test",section:"Spatial Reasoning (8 × 1 Mark)",
+ text:"If the mirror image of a clock shows time as 7:20, what is the actual time?",
+ opts:["4:40","5:40","4:20","5:20"],ans:0,
+ explain:"<strong>Correct: 4:40.</strong> Mirror time formula: Actual = 11:60 − Mirror time = 11:60 − 7:20 = 4:40. Alternatively, 12:00 − 7:20 = 4:40. Mirror images in clocks are tested by reflecting across a vertical axis at 12–6 o'clock line."},
+
+{id:48,part:"Part A – General Ability Test",section:"Spatial Reasoning (8 × 1 Mark)",
+ text:"A 4×4 matrix has circles in alternating cells (checkerboard pattern) in row 1, all squares in row 2, triangles in alternating cells in row 3. What completes row 4 in the same pattern?",
+ opts:["All squares filling every cell","All triangles in alternating cells","All circles in every cell","Alternating circles and triangles"],ans:0,
+ explain:"<strong>Correct: All squares filling every cell.</strong> The matrix pattern cycles: Row 1 = alternating circles, Row 2 = all squares, Row 3 = alternating triangles, Row 4 = all squares (repeating Row 2 pattern in a 4-row cycle). Figure matrix questions test pattern detection across rows and columns."},
+
+{id:49,part:"Part A – General Ability Test",section:"Spatial Reasoning (8 × 1 Mark)",
+ text:"Cubes and Dices: A standard die has opposite faces summing to 7. If face showing '3' is facing you and '1' is on top, which number is on the bottom?",
+ opts:["6","1","5","3"],ans:0,
+ explain:"<strong>Correct: 6.</strong> On a standard die, opposite faces always sum to 7: (1,6), (2,5), (3,4). If '1' is on top, '6' must be on the bottom (1+6=7). The face showing '3' facing you means '4' is at the back. This is a standard dice reasoning question."},
+
+{id:50,part:"Part A – General Ability Test",section:"Spatial Reasoning (8 × 1 Mark)",
+ text:"How many unit cubes inside a 3×3×3 cube have ZERO faces painted when all outer surfaces are painted?",
+ opts:["1","8","0","6"],ans:0,
+ explain:"<strong>Correct: 1.</strong> Only the single central cube (3-2=1 per dimension: 1×1×1 = 1 cube) has no painted faces. This cube is completely enclosed by the 26 surrounding cubes. For an n×n×n cube, the unpainted inner cubes = (n−2)³ = (3−2)³ = 1."},
+
+/* ── PART B : GENERAL HYDROLOGY (Q51–Q58) ── */
+{id:51,part:"Part B – General Technical Subject",section:"1. General Hydrology (16%) — 8 Questions",
+ text:"Using SCS-CN method with CN = 75 and storm precipitation P = 100 mm, the direct runoff Q (using Ia = 0.2S) is approximately:",
+ opts:["41.1 mm","38.2 mm","44.7 mm","35.9 mm"],ans:0,
+ explain:"<strong>Correct: ~41.1 mm.</strong> S = (25400/75) − 254 = 84.67 mm. Ia = 0.2×84.67 = 16.93 mm. Q = (P−Ia)²/(P−Ia+S) = (83.07)²/(83.07+84.67) = 6900.6/167.74 ≈ 41.1 mm. CN=75 indicates moderately permeable soils in fair condition."},
+
+{id:52,part:"Part B – General Technical Subject",section:"1. General Hydrology (16%) — 8 Questions",
+ text:"Which of the following is NOT a direct input variable in the FAO Penman-Monteith evapotranspiration equation?",
+ opts:["Soil thermal diffusivity (α)","Net radiation (Rn)","Aerodynamic resistance (ra)","Saturation vapor pressure deficit (es−ea)"],ans:0,
+ explain:"<strong>Correct: Soil thermal diffusivity</strong> is not a direct PM input. The PM equation uses: Net radiation (Rn), Soil heat flux (G), Saturation vapor pressure deficit, Mean air temperature, Wind speed, Relative humidity, and resistances (ra, rc). Soil heat flux G is used, but not thermal diffusivity."},
+
+{id:53,part:"Part B – General Technical Subject",section:"1. General Hydrology (16%) — 8 Questions",
+ text:"Which assumption of Unit Hydrograph (UH) theory is VIOLATED when applying a 1-hr UH to a thunderstorm that moves progressively across the watershed?",
+ opts:["Principle of time invariance","Principle of proportionality","Principle of superposition","Principle of uniform distribution of rainfall"],ans:0,
+ explain:"<strong>Correct: Time Invariance.</strong> UH theory assumes the hydrograph shape remains constant regardless of when the storm occurs. A moving storm violates time invariance because the spatial distribution of rainfall changes with time, producing different runoff patterns than assumed."},
+
+{id:54,part:"Part B – General Technical Subject",section:"1. General Hydrology (16%) — 8 Questions",
+ text:"In the Muskingum flood routing equation S = K[xI + (1−x)O], when x = 0, the storage equation reduces to:",
+ opts:["S = KO (linear reservoir — outflow only)","S = KI (pure translation — inflow only)","S = K(I+O)/2 (equal weighting)","S = K(I−O) (net flux storage)"],ans:0,
+ explain:"<strong>Correct: S = KO (linear reservoir).</strong> When x=0, storage depends only on outflow — equivalent to a linear reservoir. When x=0.5, equal weight to I and O (pure translation, no attenuation). Physically, x=0 gives maximum attenuation and x=0.5 gives minimum attenuation."},
+
+{id:55,part:"Part B – General Technical Subject",section:"1. General Hydrology (16%) — 8 Questions",
+ text:"A confined aquifer has thickness b = 20 m and hydraulic conductivity K = 1×10⁻⁴ m/s. The transmissivity T is:",
+ opts:["2×10⁻³ m²/s","2×10⁻⁴ m²/s","5×10⁻⁴ m²/s","4×10⁻³ m²/s"],ans:0,
+ explain:"<strong>Correct: T = 2×10⁻³ m²/s.</strong> Transmissivity T = K × b = 1×10⁻⁴ m/s × 20 m = 2×10⁻³ m²/s. Transmissivity represents the rate of flow through a unit width of aquifer under a unit hydraulic gradient and is essential for well design."},
+
+{id:56,part:"Part B – General Technical Subject",section:"1. General Hydrology (16%) — 8 Questions",
+ text:"In applying the Thiessen polygon method for mean areal rainfall, which of the following statements is MOST accurate?",
+ opts:["Each rain gauge represents uniform rainfall over its Thiessen polygon area","Rainfall varies linearly between adjacent gauge stations","Gauges near watershed boundaries receive double weighting","All gauges receive equal weight regardless of area"],ans:0,
+ explain:"<strong>Correct: Each gauge represents uniform rainfall over its polygon.</strong> Thiessen assigns weight proportional to polygon area (Ai/A_total). It assumes no variation within each polygon — a step function. The isohyetal method assumes linear variation between gauges and is more accurate for non-uniform storms."},
+
+{id:57,part:"Part B – General Technical Subject",section:"1. General Hydrology (16%) — 8 Questions",
+ text:"The empirical formula for baseflow separation period N (days) is N = A^0.2, where A is catchment area in km². For A = 1024 km², N equals:",
+ opts:["4.00 days","3.98 days","4.50 days","3.50 days"],ans:0,
+ explain:"<strong>Correct: 4.00 days.</strong> N = 1024^0.2 = (2^10)^0.2 = 2^2 = 4.0 days. For A = 1000 km², N = 1000^0.2 = 10^(3×0.2) = 10^0.6 ≈ 3.98. The formula is used to determine how many days after peak flow the baseflow separation line should be drawn."},
+
+{id:58,part:"Part B – General Technical Subject",section:"1. General Hydrology (16%) — 8 Questions",
+ text:"The Rational Method formula in SI units: Q (m³/s) = C × i (mm/hr) × A (ha) / k. What is the value of k?",
+ opts:["360","100","278","1000"],ans:0,
+ explain:"<strong>Correct: k = 360.</strong> Converting: Q(m³/s) = [C × i(mm/hr) × A(ha)] / 360. Derivation: 1 mm/hr over 1 ha = (0.001 m/3600 s) × (10,000 m²) = 1/360 m³/s. So k=360. This formula is fundamental for urban drainage and small watershed design."},
+
+/* ── PART B : METEOROLOGY / CLIMATOLOGY (Q59–Q65) ── */
+{id:59,part:"Part B – General Technical Subject",section:"2. Meteorology / Climatology (14%) — 7 Questions",
+ text:"The Dry Adiabatic Lapse Rate (DALR) of the atmosphere is approximately:",
+ opts:["9.8 °C/km (≈ 10 °C/km)","6.5 °C/km","5.0 °C/km","12.0 °C/km"],ans:0,
+ explain:"<strong>Correct: 9.8°C/km ≈ 10°C/km.</strong> The DALR ≈ g/Cp = 9.81/1005 ≈ 0.00976 K/m ≈ 9.8°C/km for unsaturated air. The Saturated Adiabatic Lapse Rate (SALR) ≈ 6°C/km. The Environmental (Normal) Lapse Rate (ELR) ≈ 6.5°C/km. Atmospheric stability depends on comparing ELR with DALR/SALR."},
+
+{id:60,part:"Part B – General Technical Subject",section:"2. Meteorology / Climatology (14%) — 7 Questions",
+ text:"According to Köppen's climate classification, the Terai (lowland) region of Nepal primarily falls under climate type:",
+ opts:["Cwa (Humid subtropical – dry winter)","Aw (Tropical wet-dry savanna)","BSh (Semi-arid hot steppe)","Dwa (Humid continental – dry winter)"],ans:0,
+ explain:"<strong>Correct: Cwa — Humid subtropical with dry winter and hot summer.</strong> Terai/Siwalik: Cwa; Mid-Hills (1000–3000m): Cwb; High Himalayan: ET/EF. Aw applies to true tropical climates (no month below 18°C), which is mostly applicable to India's Deccan. Nepal's Terai drops below 18°C in winter."},
+
+{id:61,part:"Part B – General Technical Subject",section:"2. Meteorology / Climatology (14%) — 7 Questions",
+ text:"According to the Stefan-Boltzmann Law (E = σT⁴), if the absolute temperature of a blackbody doubles, its emitted radiation increases by a factor of:",
+ opts:["16","4","8","2"],ans:0,
+ explain:"<strong>Correct: 16.</strong> E ∝ T⁴. If T₂ = 2T₁, then E₂/E₁ = (2T₁/T₁)⁴ = 2⁴ = 16. This is critical in understanding the Earth's energy balance — small temperature changes result in very large changes in emitted longwave radiation."},
+
+{id:62,part:"Part B – General Technical Subject",section:"2. Meteorology / Climatology (14%) — 7 Questions",
+ text:"The Lifting Condensation Level (LCL) in atmospheric thermodynamics is the altitude at which:",
+ opts:["A rising unsaturated air parcel first becomes saturated","Convective instability generates cumulonimbus clouds","The tropopause boundary begins","Stratospheric ozone concentration peaks"],ans:0,
+ explain:"<strong>Correct: LCL is where rising unsaturated air becomes saturated (cloud base).</strong> Below LCL, air cools at DALR; above LCL (now saturated), at SALR. The LCL is estimated as: H_LCL ≈ 125×(T−Td) meters, where T = temperature and Td = dewpoint temperature at surface."},
+
+{id:63,part:"Part B – General Technical Subject",section:"2. Meteorology / Climatology (14%) — 7 Questions",
+ text:"The primary atmospheric general circulation cell occurring between 0° and 30° latitude (Equator to subtropical regions) is called the:",
+ opts:["Hadley Cell","Ferrel Cell","Polar Cell","Walker Cell"],ans:0,
+ explain:"<strong>Correct: Hadley Cell.</strong> Atmospheric circulation cells: 0–30° = Hadley Cell (thermally direct); 30–60° = Ferrel Cell (thermally indirect); 60–90° = Polar Cell (thermally direct). Walker Circulation is the equatorial east-west circulation over the Pacific, associated with El Niño/La Niña."},
+
+{id:64,part:"Part B – General Technical Subject",section:"2. Meteorology / Climatology (14%) — 7 Questions",
+ text:"In Nepal's mountain valleys, the nocturnal downslope gravity-driven wind is called:",
+ opts:["Katabatic wind (Mountain breeze)","Anabatic wind (Valley breeze)","Föhn wind (orographic dry wind)","Trade wind (planetary circulation)"],ans:0,
+ explain:"<strong>Correct: Katabatic wind (Mountain breeze).</strong> At night, slopes cool by radiation, making air denser → flows downslope (katabatic). During day, slopes heat up, air becomes less dense → flows upslope (anabatic). Föhn is a warm dry wind on the lee side of mountains due to orographic uplift."},
+
+{id:65,part:"Part B – General Technical Subject",section:"2. Meteorology / Climatology (14%) — 7 Questions",
+ text:"The solar radiation albedo of freshly fallen snow is approximately:",
+ opts:["0.80 – 0.90","0.30 – 0.40","0.50 – 0.60","0.10 – 0.20"],ans:0,
+ explain:"<strong>Correct: 0.80–0.90 (80–90%).</strong> Albedo values: Fresh snow = 0.80–0.90; Old/dirty snow = 0.40–0.60; Grass = 0.20–0.25; Forest = 0.10–0.18; Water (calm) = 0.05–0.10; Asphalt = 0.05–0.10. High snow albedo is crucial in glacier mass balance and snowmelt modeling."},
+
+/* ── PART B : PROBABILITY & STATISTICS (Q66–Q70) ── */
+{id:66,part:"Part B – General Technical Subject",section:"3. Probability and Statistics (10%) — 5 Questions",
+ text:"If the annual exceedance probability (AEP) of a flood is p, its return period T is correctly expressed as:",
+ opts:["T = 1/p","T = 1/(1−p)","T = p","T = −ln(1−p)"],ans:0,
+ explain:"<strong>Correct: T = 1/p.</strong> Return period (recurrence interval) T = 1/p where p = annual exceedance probability. Example: 100-year flood has p = 0.01 (1%). Note: T = 1/(1−p) would be the mean recurrence interval for non-exceedance, which is different and commonly confused."},
+
+{id:67,part:"Part B – General Technical Subject",section:"3. Probability and Statistics (10%) — 5 Questions",
+ text:"In flood frequency analysis using the Gumbel (EV-I) distribution, the reduced variate y for return period T is:",
+ opts:["y = −ln[−ln(1 − 1/T)]","y = −ln(1/T)","y = ln[−ln(T/(T−1))]","y = −ln[ln(T/(T−1))]"],ans:0,
+ explain:"<strong>Correct: y = −ln[−ln(1 − 1/T)].</strong> The non-exceedance probability F = 1 − 1/T. The Gumbel reduced variate y = −ln[−ln(F)] = −ln[−ln(1−1/T)]. This maps the return period to the standard Gumbel variate used to estimate design flood magnitudes."},
+
+{id:68,part:"Part B – General Technical Subject",section:"3. Probability and Statistics (10%) — 5 Questions",
+ text:"In time series analysis, the AUTO-correlation distinguishes from CROSS-correlation in that autocorrelation:",
+ opts:["Correlates a series with its own lagged values","Correlates two different variables at same time","Measures trend in a series over time","Measures periodic cycles in a series"],ans:0,
+ explain:"<strong>Correct: Autocorrelation correlates a series with its own lagged values.</strong> Autocorrelation (serial correlation) r(k) = Cov(Xt, Xt+k)/Var(Xt). Cross-correlation measures association between two different series (e.g., rainfall vs. streamflow). Autocorrelation is fundamental to ARIMA modeling and persistence analysis."},
+
+{id:69,part:"Part B – General Technical Subject",section:"3. Probability and Statistics (10%) — 5 Questions",
+ text:"If the coefficient of determination R² = 0.81 in a rainfall-runoff regression, what percentage of variance in runoff is UNEXPLAINED by the regression model?",
+ opts:["19%","81%","9%","91%"],ans:0,
+ explain:"<strong>Correct: 19%.</strong> R² = 0.81 means 81% of variance in Y (runoff) is explained by X (rainfall). Unexplained variance = 1 − R² = 0.19 = 19%. This unexplained portion represents model error, measurement error, and influence of other variables not included in the regression."},
+
+{id:70,part:"Part B – General Technical Subject",section:"3. Probability and Statistics (10%) — 5 Questions",
+ text:"In the Box-Jenkins ARIMA(p, d, q) model framework for streamflow forecasting, the parameter 'd' represents:",
+ opts:["Order of differencing to achieve stationarity","Degree of autoregressive terms","Order of moving average terms","Degree of seasonal periodicity"],ans:0,
+ explain:"<strong>Correct: 'd' = order of differencing.</strong> In ARIMA: p = autoregressive order, d = differencing order (to make series stationary), q = moving average order. d=1 means first-differencing (Xt − Xt-1); d=2 means second differencing. Most hydrological series require d=1 for stationarity."},
+
+/* ── PART B : FLUID MECHANICS (Q71–Q78) ── */
+{id:71,part:"Part B – General Technical Subject",section:"4. Fluid Mechanics (16%) — 8 Questions",
+ text:"For water at 20°C with dynamic viscosity μ = 1.002×10⁻³ Pa·s and density ρ = 998 kg/m³, the kinematic viscosity ν is closest to:",
+ opts:["1.00×10⁻⁶ m²/s","1.00×10⁻³ m²/s","1.00×10⁻⁹ m²/s","1.00×10⁻⁴ m²/s"],ans:0,
+ explain:"<strong>Correct: ν ≈ 1.00×10⁻⁶ m²/s.</strong> ν = μ/ρ = 1.002×10⁻³/998 ≈ 1.004×10⁻⁶ m²/s ≈ 1 cSt (centistoke). This is the standard value for water at 20°C. Kinematic viscosity decreases with increasing temperature — important for Reynolds number calculations."},
+
+{id:72,part:"Part B – General Technical Subject",section:"4. Fluid Mechanics (16%) — 8 Questions",
+ text:"For a vertical rectangular plate fully submerged in a static fluid, the center of pressure (CP) relative to the centroid (CG) is:",
+ opts:["Always below the centroid","Always at the centroid","Always above the centroid","At the bottom edge always"],ans:0,
+ explain:"<strong>Correct: Always below the centroid.</strong> CP = CG + IG/(Ā×ȳ) where IG = second moment of area about centroidal axis, Ā = area, ȳ = depth of centroid. Since IG/Āȳ > 0, CP is always below CG. As depth increases, CP approaches CG (because ȳ increases while IG/Ā remains constant)."},
+
+{id:73,part:"Part B – General Technical Subject",section:"4. Fluid Mechanics (16%) — 8 Questions",
+ text:"Bernoulli's equation (p/ρg + V²/2g + z = constant) is strictly valid for which flow conditions?",
+ opts:["Steady, incompressible, inviscid flow along a single streamline","Unsteady, compressible, viscous turbulent flow","Steady, compressible, inviscid flow across streamlines","Turbulent, incompressible, viscous pipe flow"],ans:0,
+ explain:"<strong>Correct: Steady, incompressible, inviscid flow along a streamline.</strong> The four key assumptions: (1) Steady flow (∂/∂t=0), (2) Incompressible (ρ = const.), (3) Inviscid/frictionless, (4) Along a streamline. Real engineering applications apply modified Bernoulli with head loss terms (energy equation)."},
+
+{id:74,part:"Part B – General Technical Subject",section:"4. Fluid Mechanics (16%) — 8 Questions",
+ text:"For an incompressible fluid (ρ = constant), the continuity equation ∂ρ/∂t + ∇·(ρV) = 0 reduces to:",
+ opts:["∇·V = 0 (divergence-free velocity field)","∂ρ/∂t = 0","ρ(∇·V) = 0 only if ρ≠0","V·∇ρ = 0"],ans:0,
+ explain:"<strong>Correct: ∇·V = 0.</strong> For incompressible flow ρ = const, so ∂ρ/∂t = 0 and ∇ρ = 0. The continuity equation reduces to ∇·V = ∂u/∂x + ∂v/∂y + ∂w/∂z = 0. This means the velocity field is solenoidal (divergence-free) — no net fluid accumulation at any point."},
+
+{id:75,part:"Part B – General Technical Subject",section:"4. Fluid Mechanics (16%) — 8 Questions",
+ text:"Stokes' law for drag force on a sphere of diameter D moving at velocity V in a viscous fluid (low Re) is:",
+ opts:["F = 3πμDV","F = 6πμDV","F = πμD²V","F = 3πμD²V"],ans:0,
+ explain:"<strong>Correct: F = 3πμDV.</strong> Stokes' drag = 3πμdV where d is diameter (or equivalently 6πμrV where r is radius). This applies for Re < 0.5. Stokes' law is fundamental to sedimentation analysis, particle settling velocity, and the design of settling tanks."},
+
+{id:76,part:"Part B – General Technical Subject",section:"4. Fluid Mechanics (16%) — 8 Questions",
+ text:"A floating body is in stable equilibrium when its metacentric height (GM) is:",
+ opts:["Positive (M above G)","Zero (M coincides with G)","Negative (M below G)","Dependent only on draft depth"],ans:0,
+ explain:"<strong>Correct: GM > 0 (Metacenter above Center of Gravity).</strong> GM = BM − BG where BM = I/V (I = waterplane second moment, V = displaced volume). If GM > 0: stable; GM = 0: neutral; GM < 0: unstable. For ships, typical GM ≈ 0.5–1.5 m."},
+
+{id:77,part:"Part B – General Technical Subject",section:"4. Fluid Mechanics (16%) — 8 Questions",
+ text:"In a 2D potential flow (irrotational, incompressible), velocity potential φ and stream function ψ are related by Cauchy-Riemann equations. Which geometric property holds?",
+ opts:["Streamlines and equipotential lines are mutually perpendicular","Streamlines and equipotential lines are parallel","They intersect at 45° to each other","Streamlines coincide with equipotential lines"],ans:0,
+ explain:"<strong>Correct: Streamlines (ψ = const.) and equipotential lines (φ = const.) are mutually perpendicular.</strong> From Cauchy-Riemann: ∂φ/∂x = ∂ψ/∂y and ∂φ/∂y = −∂ψ/∂x. This orthogonality forms the basis of flow net construction used in seepage analysis through dams and foundations."},
+
+{id:78,part:"Part B – General Technical Subject",section:"4. Fluid Mechanics (16%) — 8 Questions",
+ text:"For flow in a circular pipe, the critical Reynolds number at which laminar-to-turbulent transition typically BEGINS is approximately:",
+ opts:["Re ≈ 2300","Re ≈ 4000","Re ≈ 1000","Re ≈ 500"],ans:0,
+ explain:"<strong>Correct: Re ≈ 2300.</strong> Transition region: 2300 < Re < 4000. Fully turbulent: Re > 4000. Laminar: Re < 2300. At Re = 2300, Hagen-Poiseuille law begins to fail. The transition Re of 2300 was established by Osborne Reynolds in his classic 1883 dye injection experiments."},
+
+/* ── PART B : FLUVIAL HYDRAULICS (Q79–Q85) ── */
+{id:79,part:"Part B – General Technical Subject",section:"5. Fluvial Hydraulics (14%) — 7 Questions",
+ text:"Critical flow in an open channel occurs when the Froude number Fr = V/√(gD) equals:",
+ opts:["Fr = 1.0 (Critical condition)","Fr = 0.0 (Still water)","Fr = 0.5 (Half-critical)","Fr = 2.0 (Fully supercritical)"],ans:0,
+ explain:"<strong>Correct: Fr = 1.0.</strong> Fr < 1: Subcritical (tranquil/slow); Fr = 1: Critical; Fr > 1: Supercritical (rapid). At critical flow, specific energy is minimum for a given discharge, and the flow velocity equals the wave celerity √(gD). D = hydraulic depth = A/T (T = top width)."},
+
+{id:80,part:"Part B – General Technical Subject",section:"5. Fluvial Hydraulics (14%) — 7 Questions",
+ text:"For a wide rectangular channel with Manning's n = 0.015, bed slope S = 0.001, specific discharge q = 10 m³/s/m, the approximate normal depth yn is:",
+ opts:["2.54 m","3.12 m","1.98 m","2.87 m"],ans:0,
+ explain:"<strong>Correct: yn ≈ 2.54 m.</strong> q = (1/n)×yn^(5/3)×S^(1/2) → 10 = (1/0.015)×yn^(5/3)×0.001^(1/2) → yn^(5/3) = 10×0.015/0.03162 = 4.743 → yn = 4.743^(3/5) = 4.743^0.6 ≈ 2.54 m. Manning's equation forms the basis of all normal depth calculations."},
+
+{id:81,part:"Part B – General Technical Subject",section:"5. Fluvial Hydraulics (14%) — 7 Questions",
+ text:"A hydraulic jump is characterized by a rapid transition from:",
+ opts:["Supercritical to subcritical flow (Fr₁>1 → Fr₂<1)","Subcritical to supercritical flow (Fr₁<1 → Fr₂>1)","Laminar to turbulent flow","Turbulent to laminar flow"],ans:0,
+ explain:"<strong>Correct: Supercritical → Subcritical.</strong> A hydraulic jump is an abrupt energy-dissipating transition where fast shallow flow (Fr>1) meets resistance and transitions to slow deep flow (Fr<1). Energy loss depends on Fr₁; momentum (specific force) is conserved across the jump."},
+
+{id:82,part:"Part B – General Technical Subject",section:"5. Fluvial Hydraulics (14%) — 7 Questions",
+ text:"For a rectangular channel at critical flow condition, the minimum specific energy E_min is related to critical depth yc by:",
+ opts:["E_min = (3/2)yc","E_min = yc","E_min = 2yc","E_min = (4/3)yc"],ans:0,
+ explain:"<strong>Correct: E_min = (3/2)yc.</strong> For rectangular channel: E = y + q²/(2gy²). dE/dy = 0 gives yc = (q²/g)^(1/3) and E_min = yc + yc/2 = (3/2)yc. Also, at critical flow: V²/2g = yc/2 (velocity head = half the critical depth). This is a fundamental specific energy concept."},
+
+{id:83,part:"Part B – General Technical Subject",section:"5. Fluvial Hydraulics (14%) — 7 Questions",
+ text:"The sequent depth ratio (y₂/y₁) for a hydraulic jump in a rectangular channel is given by:",
+ opts:["y₂/y₁ = (1/2)(√(1+8Fr₁²) − 1)","y₂/y₁ = (1/2)(√(1+4Fr₁²) − 1)","y₂/y₁ = (1/2)(√(8Fr₁²) − 1)","y₂/y₁ = (1/2)(√(1+8Fr₁²) + 1)"],ans:0,
+ explain:"<strong>Correct: y₂/y₁ = (½)(√(1+8Fr₁²) − 1).</strong> Derived from momentum equation. Note: y₂/y₁ = (½)(√(1+8Fr₁²)+1) gives y₂/y₁ which is > 1, but the standard form gives (−1) not (+1). For Fr₁=2: y₂/y₁ = (½)(√17−1) = (½)(4.123−1) ≈ 1.56."},
+
+{id:84,part:"Part B – General Technical Subject",section:"5. Fluvial Hydraulics (14%) — 7 Questions",
+ text:"The relationship between Chezy's C and Manning's n for the same channel is:",
+ opts:["C = R^(1/6) / n","C = n / R^(1/6)","C = 1 / (n × R^(1/6))","C = n × R^(1/6)"],ans:0,
+ explain:"<strong>Correct: C = R^(1/6)/n.</strong> Derivation: Manning V = (1/n)R^(2/3)S^(1/2) and Chezy V = C√(RS). Equating: C = R^(2/3)/(n×R^(1/2)) × (1/S^(1/2)) × S^(1/2) = R^(1/6)/n. Both equations are equivalent; Manning's is more commonly used in practice for uniform open channel flow."},
+
+{id:85,part:"Part B – General Technical Subject",section:"5. Fluvial Hydraulics (14%) — 7 Questions",
+ text:"A gradually varied flow (GVF) profile classified as M1 in a mild slope channel occurs when:",
+ opts:["y > yn > yc (depth above normal depth on mild slope)","y < yc < yn (depth below critical on mild slope)","yn > y > yc (depth between normal and critical)","y > yc > yn (steep slope profile)"],ans:0,
+ explain:"<strong>Correct: y > yn > yc (M1 profile).</strong> On a mild slope (yn>yc): M1 (backwater): y>yn>yc; M2 (drawdown): yn>y>yc; M3: yn>yc>y. M1 is the most common GVF profile — formed upstream of a dam or control structure. dy/dx > 0: depth increases in flow direction."},
+
+/* ── PART B : WATER RESOURCES PLANNING (Q86–Q90) ── */
+{id:86,part:"Part B – General Technical Subject",section:"6. Water Resources Planning (10%) — 5 Questions",
+ text:"Integrated Water Resources Management (IWRM) as defined by GWP (2000) promotes the coordinated development of:",
+ opts:["Water, land, and related resources to maximize economic/social welfare equitably and sustainably","Water infrastructure only, with land managed separately","Groundwater exclusively to prevent surface water depletion","Privatization of water resources for efficient allocation"],ans:0,
+ explain:"<strong>Correct: Coordinated development of water, land and related resources.</strong> GWP's 2000 definition of IWRM emphasizes coordination across sectors (water, land, ecosystems), governance levels (local to national), and stakeholders (users, government, private sector) to maximize welfare without compromising sustainability."},
+
+{id:87,part:"Part B – General Technical Subject",section:"6. Water Resources Planning (10%) — 5 Questions",
+ text:"If crop coefficient Kc = 1.15 for mid-season rice and FAO-56 reference ETo = 5.0 mm/day, the crop evapotranspiration ETc is:",
+ opts:["5.75 mm/day","4.35 mm/day","6.25 mm/day","5.15 mm/day"],ans:0,
+ explain:"<strong>Correct: 5.75 mm/day.</strong> ETc = Kc × ETo = 1.15 × 5.0 = 5.75 mm/day. Kc>1 indicates crop water demand exceeds reference (grass) ET — typical for tall crops like maize or mid-season rice. This is the FAO-56 dual crop coefficient approach basis."},
+
+{id:88,part:"Part B – General Technical Subject",section:"6. Water Resources Planning (10%) — 5 Questions",
+ text:"Which type of water resource project is characterized by providing firm power through seasonal storage but has significant environmental and social impacts?",
+ opts:["Storage-based hydropower with seasonal reservoir","Run-of-river hydropower without storage","Pumped-storage hydropower scheme","Tidal/wave energy generation project"],ans:0,
+ explain:"<strong>Correct: Storage-based hydropower with seasonal reservoir.</strong> Storage projects (e.g., Kulekhani, Upper Tamakoshi in Nepal) store monsoon flows for year-round regulated release. They provide 'firm' power in dry season but involve dam construction, reservoir inundation, and displacement of communities."},
+
+{id:89,part:"Part B – General Technical Subject",section:"6. Water Resources Planning (10%) — 5 Questions",
+ text:"In Nepal's Water Resources Master Plan context, which document provides the institutional framework for integrated hydrological and meteorological data collection?",
+ opts:["Department of Hydrology and Meteorology (DHM) Act","Department of Irrigation Infrastructure Policy","Nepal Electricity Authority Master Plan","WECS Hydropower Development Policy"],ans:0,
+ explain:"<strong>Correct: Department of Hydrology and Meteorology (DHM).</strong> DHM (established 1988) under MOEWRI is the nodal agency for hydro-meteorological data in Nepal. It operates ~1000+ stations, publishes hydrological records, issues flood forecasts, and provides data for all water resources planning."},
+
+{id:90,part:"Part B – General Technical Subject",section:"6. Water Resources Planning (10%) — 5 Questions",
+ text:"The 'firm yield' of a reservoir is defined as:",
+ opts:["Minimum reliable yield maintained during the critical drought period","Average annual yield over the project life","Maximum yield during peak monsoon period","Yield at 50% flow duration level"],ans:0,
+ explain:"<strong>Correct: Minimum reliable yield during critical drought.</strong> Firm yield (safe yield) is the maximum constant demand that a reservoir can meet through the worst drought on record. It is critical for water supply and irrigation project sizing. It differs from average yield by accounting for hydrological variability."},
+
+/* ── PART B : SURVEY AND MAPPING (Q91–Q95) ── */
+{id:91,part:"Part B – General Technical Subject",section:"7. Survey and Mapping (10%) — 5 Questions",
+ text:"In differential leveling, the collimation (line-of-sight) error is eliminated by:",
+ opts:["Keeping BS and FS distances approximately equal","Using a higher-precision digital level","Taking multiple readings and averaging","Applying atmospheric refraction correction"],ans:0,
+ explain:"<strong>Correct: Equal BS and FS distances.</strong> Collimation error (inclined line of sight) introduces equal errors in BS and FS when distances are equal, causing self-cancellation. This is the field technique to eliminate systematic error without adjusting the instrument — a fundamental leveling principle."},
+
+{id:92,part:"Part B – General Technical Subject",section:"7. Survey and Mapping (10%) — 5 Questions",
+ text:"On a 1:50,000 scale topographic map, two adjacent contours (CI = 5 m) are 10 mm apart. The ground slope is:",
+ opts:["1.0%","0.5%","2.0%","5.0%"],ans:0,
+ explain:"<strong>Correct: 1.0%.</strong> Ground distance = 10 mm × 50,000 = 500,000 mm = 500 m. Height difference = 5 m. Slope = (5/500) × 100 = 1.0%. Contour spacing analysis is essential for watershed characterization and hydrological modeling (determining catchment slope)."},
+
+{id:93,part:"Part B – General Technical Subject",section:"7. Survey and Mapping (10%) — 5 Questions",
+ text:"The fundamental principle 'work from whole to part' in surveying means:",
+ opts:["Establish control network first, then fill in local details","Survey large areas before small ones in area coverage","Use total station before theodolite in precision hierarchy","Complete all traversing before any leveling operations"],ans:0,
+ explain:"<strong>Correct: Establish control network first, then detail survey.</strong> This principle prevents error accumulation. Control points (triangulation/traverse) define the framework; detail survey fills in features. Reversing this leads to propagated errors making the whole survey inconsistent — a critical field management principle."},
+
+{id:94,part:"Part B – General Technical Subject",section:"7. Survey and Mapping (10%) — 5 Questions",
+ text:"In closed traverse adjustment, Bowditch's (Compass) Rule distributes closing error proportional to:",
+ opts:["Length of each traverse leg","Included angle at each traverse station","Departure magnitude of each leg","Latitude magnitude of each leg"],ans:0,
+ explain:"<strong>Correct: Length of each traverse leg.</strong> Bowditch's Rule: correction to departure/latitude of each line = (total closing error) × (length of that line / perimeter). It assumes equal precision per unit length. Transit Rule distributes error proportional to departures/latitudes — used when angular measurements are more precise."},
+
+{id:95,part:"Part B – General Technical Subject",section:"7. Survey and Mapping (10%) — 5 Questions",
+ text:"In GPS/GNSS surveying, a low value of PDOP (Position Dilution of Precision) indicates:",
+ opts:["Favorable satellite geometry giving better positional accuracy","Weak satellite geometry reducing positional accuracy","Strong atmospheric disturbance affecting signals","High multipath error from nearby structures"],ans:0,
+ explain:"<strong>Correct: Low PDOP = favorable satellite geometry = better accuracy.</strong> PDOP < 2: Excellent; 2–5: Good; 5–10: Moderate; >10: Poor. PDOP combines HDOP (horizontal) and VDOP (vertical). It is minimized when satellites are spread across the sky, maximizing the geometric 'tetrahedron' of ranging signals."},
+
+/* ── PART B : PROJECT MANAGEMENT (Q96–Q98) ── */
+{id:96,part:"Part B – General Technical Subject",section:"8. Project Management (6%) — 3 Questions",
+ text:"In CPM network analysis, which statement about critical activities is INCORRECT?",
+ opts:["Critical activities have positive total float (TF > 0)","Critical path is the longest duration path through the network","Any delay in critical activity directly delays project completion","All activities on the critical path have TF = 0"],ans:0,
+ explain:"<strong>Correct (incorrect statement): Critical activities have TF > 0.</strong> By definition, critical activities have Total Float TF = 0 (Late Start − Early Start = 0). TF > 0 means non-critical (float exists). This distinction is the most frequently confused concept in CPM — float = scheduling flexibility."},
+
+{id:97,part:"Part B – General Technical Subject",section:"8. Project Management (6%) — 3 Questions",
+ text:"In PERT analysis, the expected time (te) for an activity with optimistic (to), most likely (tm), and pessimistic (tp) durations is:",
+ opts:["te = (to + 4tm + tp) / 6","te = (to + tm + tp) / 3","te = (to + 2tm + tp) / 4","te = (to + 6tm + tp) / 8"],ans:0,
+ explain:"<strong>Correct: te = (to + 4tm + tp)/6.</strong> This Beta-distribution approximation gives 4× weight to the most likely time. The variance σ² = [(tp−to)/6]². Unlike CPM (single deterministic duration), PERT uses three-point estimates to account for uncertainty — essential for R&D or first-of-kind projects."},
+
+{id:98,part:"Part B – General Technical Subject",section:"8. Project Management (6%) — 3 Questions",
+ text:"The critical conceptual difference between PERT and CPM is:",
+ opts:["PERT uses probabilistic time estimates; CPM uses single deterministic time estimates","CPM is for projects; PERT is only for government programs","PERT uses activity-on-node diagram; CPM uses activity-on-arrow only","CPM uses three time estimates; PERT uses a single time estimate"],ans:0,
+ explain:"<strong>Correct: PERT = probabilistic (3 estimates); CPM = deterministic (1 estimate).</strong> CPM also emphasizes cost-time tradeoffs (crashing) while PERT emphasizes schedule uncertainty. Both use network diagrams. Modern project management tools (MS Project, Primavera) implement both approaches. Option D is the exact reverse of reality."},
+
+/* ── PART B : PROFESSIONAL PRACTICES (Q99–Q100) ── */
+{id:99,part:"Part B – General Technical Subject",section:"9. Professional Practices (4%) — 2 Questions",
+ text:"According to Nepal Engineering Council (NEC) Act 2055 and Regulation 2056, which professional is EXEMPTED from mandatory NEC registration?",
+ opts:["Foreign engineer on government-approved bilateral technical assistance project","Civil engineer employed in a Nepali private construction company","Engineer providing structural design services to municipal authorities","Engineer designing load-bearing structures for commercial buildings"],ans:0,
+ explain:"<strong>Correct: Foreign engineers under government-approved bilateral agreements.</strong> NEC Act 2055, Section 15 provision: Foreign engineers working under bilateral/multilateral government-approved technical assistance need not register. However, they must work under supervision or collaboration with NEC-registered engineers."},
+
+{id:100,part:"Part B – General Technical Subject",section:"9. Professional Practices (4%) — 2 Questions",
+ text:"In engineering ethics, a 'conflict of interest' most accurately arises when an engineer:",
+ opts:["Has personal/financial interests that may improperly influence professional judgment","Disagrees with a colleague on technical design methodology","Faces budget constraints preventing optimal engineering solution","Receives late payments from a client for completed services"],ans:0,
+ explain:"<strong>Correct: Personal/financial interests compromising professional judgment.</strong> Conflict of interest (COI) occurs when personal benefit (financial, familial, political) could influence professional decisions. Examples: recommending a contractor in which you hold shares; reviewing a project you designed. ASCE Code of Ethics requires disclosure and recusal when COI exists."}
+];
+
+/* ═══════════════ TIMER & STATE VARIABLES ═══════════════ */
+let candidateName = "";
+let timeLeft = 55 * 60; // 55 minutes in seconds
+let timerInterval = null;
+let userAnswers = new Array(100).fill(null); // null = unanswered
+let attempted = 0;
+let examSubmitted = false;
+
+/* ═══════════════ START EXAM ═══════════════ */
+function startExam() {
+  const nameInput = document.getElementById('candidateName').value.trim();
+  if (!nameInput) {
+    document.getElementById('startError').style.display = 'block';
+    return;
+  }
+  candidateName = nameInput;
+  document.getElementById('startScreen').style.display = 'none';
+  document.getElementById('examScreen').style.display = 'block';
+  document.getElementById('hName').textContent = candidateName;
+  buildExam();
+  startTimer();
+}
+
+/* ═══════════════ BUILD EXAM HTML ═══════════════ */
+function buildExam() {
+  let html = '';
+  let currentPart = '', currentSection = '';
+
+  QB.forEach((q, idx) => {
+    if (q.part !== currentPart) {
+      currentPart = q.part;
+      html += `<div class="part-header">📚 ${q.part}</div>`;
+      currentSection = '';
+    }
+    if (q.section !== currentSection) {
+      currentSection = q.section;
+      html += `<div class="section-header">🔹 ${q.section}</div>`;
+    }
+
+    html += `<div class="question-card" id="qcard-${idx}">
+      <div>
+        <span class="qnum">${q.id}</span>
+        <span class="qtext">${q.text}</span>
+        <span class="qmark">[1 Mark]</span>
+      </div>
+      <div class="options">`;
+
+    const optLabels = ['A', 'B', 'C', 'D'];
+    q.opts.forEach((opt, oi) => {
+      html += `<label class="option-label" id="opt-${idx}-${oi}">
+        <input type="radio" name="q${idx}" value="${oi}" onchange="selectAnswer(${idx}, ${oi})">
+        <span class="option-key">${optLabels[oi]}.</span>
+        <span>${opt}</span>
+      </label>`;
+    });
+
+    html += `</div></div>`;
+  });
+
+  document.getElementById('examBody').innerHTML = html;
+}
+
+/* ═══════════════ SELECT ANSWER ═══════════════ */
+function selectAnswer(qIdx, optIdx) {
+  const wasNull = userAnswers[qIdx] === null;
+  userAnswers[qIdx] = optIdx;
+  if (wasNull) {
+    attempted++;
+    document.getElementById('hAttempted').textContent = attempted;
+    document.getElementById('hRemaining').textContent = 100 - attempted;
+  }
+}
+
+/* ═══════════════ TIMER ═══════════════ */
+function startTimer() {
+  timerInterval = setInterval(() => {
+    timeLeft--;
+    const min = Math.floor(timeLeft / 60);
+    const sec = timeLeft % 60;
+    const display = document.getElementById('timerDisplay');
+    display.textContent = `${String(min).padStart(2,'0')}:${String(sec).padStart(2,'0')}`;
+    if (timeLeft <= 300) display.classList.add('danger');
+    if (timeLeft <= 0) {
+      clearInterval(timerInterval);
+      document.getElementById('timeupMsg').style.display = 'block';
+      document.getElementById('submitBtn').disabled = true;
+      document.querySelectorAll('input[type=radio]').forEach(r => r.disabled = true);
+      setTimeout(showResults, 1500);
+    }
+  }, 1000);
+}
+
+/* ═══════════════ CONFIRM SUBMIT ═══════════════ */
+function confirmSubmit() {
+  const unanswered = userAnswers.filter(a => a === null).length;
+  let msg = `You have answered ${100 - unanswered} out of 100 questions.\n`;
+  if (unanswered > 0) msg += `⚠ ${unanswered} unanswered questions will each receive −0.20 negative marks.\n`;
+  msg += `\nAre you sure you want to SUBMIT the examination?`;
+  if (confirm(msg)) {
+    clearInterval(timerInterval);
+    document.querySelectorAll('input[type=radio]').forEach(r => r.disabled = true);
+    showResults();
+  }
+}
+
+/* ═══════════════ CALCULATE & SHOW RESULTS ═══════════════ */
+function showResults() {
+  if (examSubmitted) return;
+  examSubmitted = true;
+
+  let correct = 0, wrong = 0, skipped = 0;
+  userAnswers.forEach((ans, idx) => {
+    if (ans === null) skipped++;
+    else if (ans === QB[idx].ans) correct++;
+    else wrong++;
+  });
+
+  const score = correct * 1.0 - wrong * 0.20 - skipped * 0.20;
+  const percentage = ((score / 100) * 100).toFixed(2);
+
+  document.getElementById('examScreen').style.display = 'none';
+  document.getElementById('resultScreen').style.display = 'block';
+
+  document.getElementById('rCandidateName').textContent = '👤 ' + candidateName;
+  document.getElementById('rScore').textContent = score.toFixed(2);
+  document.getElementById('rCorrect').textContent = correct;
+  document.getElementById('rWrong').textContent = wrong;
+  document.getElementById('rSkipped').textContent = skipped;
+  document.getElementById('rPercent').textContent = percentage + '%';
+
+  let html = '';
+  let currentPart = '';
+  const optLabels = ['A','B','C','D'];
+
+  QB.forEach((q, idx) => {
+    if (q.part !== currentPart) {
+      currentPart = q.part;
+      html += `<div class="ans-part-header">📚 ${q.part}</div>`;
+    }
+
+    const userAns = userAnswers[idx];
+    const correctAns = q.ans;
+    let cardClass = 'skipped';
+    let tagHtml = '';
+    let penaltyHtml = '';
+
+    if (userAns === null) {
+      cardClass = 'skipped';
+      tagHtml = `<span class="tag tag-skipped">⏭ Unanswered</span>`;
+      penaltyHtml = `<span class="tag tag-penalty">−0.20 Mark</span>`;
+    } else if (userAns === correctAns) {
+      cardClass = 'correct';
+      tagHtml = `<span class="tag tag-correct">✅ Correct</span>`;
+      penaltyHtml = `<span class="tag tag-correct">+1.00 Mark</span>`;
+    } else {
+      cardClass = 'wrong';
+      tagHtml = `<span class="tag tag-wrong">❌ Incorrect</span>`;
+      penaltyHtml = `<span class="tag tag-penalty">−0.20 Mark</span>`;
+    }
+
+    let optsHtml = '';
+    q.opts.forEach((opt, oi) => {
+      let optClass = '';
+      let icon = '';
+      if (oi === correctAns) { optClass = 'is-correct'; icon = '✅'; }
+      else if (userAns !== null && oi === userAns && userAns !== correctAns) { optClass = 'is-wrong'; icon = '❌'; }
+      optsHtml += `<div class="ans-opt ${optClass}"><span class="opt-icon">${icon}</span><strong>${optLabels[oi]}.</strong>&nbsp;${opt}</div>`;
+    });
+
+    const yourAnswerText = userAns !== null
+      ? `Your Answer: <strong>${optLabels[userAns]}. ${q.opts[userAns]}</strong>`
+      : `Your Answer: <strong>Not Attempted</strong>`;
+    const correctAnswerText = `Correct Answer: <strong style="color:var(--correct)">${optLabels[correctAns]}. ${q.opts[correctAns]}</strong>`;
+
+    html += `<div class="answer-card ${cardClass}">
+      <div class="ans-qtext">Q${q.id}. ${q.text}</div>
+      <div class="ans-options">${optsHtml}</div>
+      <div class="ans-meta">
+        ${tagHtml} ${penaltyHtml}
+        &nbsp;|&nbsp; ${yourAnswerText}
+        &nbsp;|&nbsp; ${correctAnswerText}
+      </div>
+      <div class="explanation">💡 <strong>Explanation:</strong> ${q.explain}</div>
+    </div>`;
+  });
+
+  document.getElementById('answerReview').innerHTML = html;
+  window.scrollTo(0, 0);
+}
+</script>
+</body>
+</html>

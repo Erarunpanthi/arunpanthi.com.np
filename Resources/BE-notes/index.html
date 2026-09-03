@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BE Notes - Bachelor of Engineering Study Materials | Arun Panthi</title>
+    <link rel="canonical" href="https://arunpanthi.com.np/Resources/BE-notes">
+    <meta name="description" content="Free BE (Bachelor of Engineering) notes and study materials for Nepal engineering students. Download PDF notes or view online.">
+    <meta name="keywords" content="BE notes, engineering notes, Nepal engineering, study materials, PDF notes, Bachelor of Engineering">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="BE Notes - Engineering Study Materials">
+    <meta property="og:description" content="Free BE notes and study materials for engineering students in Nepal">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://arunpanthi.com.np/Resources/BE-notes/">
+    <meta property="og:site_name" content="Arun Panthi">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="BE Notes - Engineering Study Materials">
+    <meta name="twitter:description" content="Free BE notes and study materials for engineering students in Nepal">
+    
+    <link rel="stylesheet" href="https://arunpanthi.com.np/styles.css">
+    <link rel="icon" href="https://arunpanthi.com.np/logo.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #ffffff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            margin-bottom: 30px;
+        }
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            background: linear-gradient(90deg, #f093fb, #f5576c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        header p {
+            color: #a8b2d8;
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .pdf-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        .pdf-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .pdf-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
+        }
+        .pdf-header {
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .pdf-header h3 {
+            font-size: 1.3rem;
+            color: #f093fb;
+            margin-bottom: 5px;
+        }
+        .pdf-header p {
+            color: #a8b2d8;
+            font-size: 0.9rem;
+        }
+        .pdf-viewer {
+            width: 100%;
+            height: 500px;
+            border: none;
+            background: white;
+        }
+        .pdf-actions {
+            padding: 15px 20px;
+            background: rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+        }
+        .btn-primary {
+            background: linear-gradient(90deg, #f093fb, #f5576c);
+            color: white;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(245, 87, 108, 0.4);
+        }
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .back-link {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+        }
+        .back-link a {
+            color: #f093fb;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+        .back-link a:hover {
+            color: #f5576c;
+        }
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            .pdf-grid {
+                grid-template-columns: 1fr;
+            }
+            .pdf-viewer {
+                height: 400px;
+            }
+            .pdf-actions {
+                flex-direction: column;
+            }
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="navbar"></div>
+    <div class="container">
+        <header>
+            <h1>📚 BE Notes - Engineering Study Materials</h1>
+            <p>Access Bachelor of Engineering study materials and notes. View PDFs directly in your browser or download them for offline study.</p>
+        </header>
+
+        <div class="pdf-grid">
+            <!-- PDF Card 1 -->
+            <article class="pdf-card">
+                <div class="pdf-header">
+                    <h3>Engineering Exam Set 1</h3>
+                    <p>Comprehensive engineering examination questions and solutions</p>
+                </div>
+                <iframe 
+                    src="https://saru.c0m.in/set-1.pdf#toolbar=0&navpanes=0" 
+                    class="pdf-viewer" 
+                    title="Engineering Exam Set 1 PDF"
+                    loading="lazy">
+                </iframe>
+                <div class="pdf-actions">
+                    <a href="https://saru.c0m.in/set-1.pdf" class="btn btn-primary" target="_blank" rel="noopener noreferrer">📥 Download PDF</a>
+                    <a href="https://saru.c0m.in/set-1.pdf" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">🔗 Open in New Tab</a>
+                </div>
+            </article>
+        </div>
+
+        <div class="back-link">
+            <a href="/Resources/">⬅ Back to Resources</a>
+        </div>
+    </div>
+    
+    <script src="/js/layout.js"></script>
+    <script>
+        // Handle iframe loading errors gracefully
+        document.querySelectorAll('.pdf-viewer').forEach(iframe => {
+            iframe.addEventListener('error', function() {
+                this.parentElement.innerHTML = `
+                    <div class="pdf-header">
+                        <h3>${this.previousElementSibling.querySelector('h3').textContent}</h3>
+                        <p>PDF viewer unavailable. Please use the download button below.</p>
+                    </div>
+                    <div style="padding: 40px; text-align: center; background: rgba(0,0,0,0.2);">
+                        <p style="color: #a8b2d8; margin-bottom: 20px;">Unable to load PDF preview</p>
+                    </div>
+                    <div class="pdf-actions">
+                        <a href="${this.src.split('#')[0]}" class="btn btn-primary" target="_blank" rel="noopener noreferrer">📥 Download PDF</a>
+                        <a href="${this.src.split('#')[0]}" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">🔗 Open in New Tab</a>
+                    </div>
+                `;
+            });
+        });
+    </script>
+</body>
+</html>

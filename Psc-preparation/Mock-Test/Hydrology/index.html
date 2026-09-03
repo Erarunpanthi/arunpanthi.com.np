@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Hydrology Mock Test | Online Practice Sets</title>
+  <meta name="description" content="Practice Hydrology mock tests online. Start all available Hydrology test sets for exam preparation with a fast and mobile-friendly page." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://arunpanthi.com.np/Psc-preparation/Mock-Test/Hydrology">
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Hydrology Mock Test | Online Practice Sets" />
+  <meta property="og:description" content="Practice Hydrology online with all available test sets." />
+  <meta property="og:url" content="https://arunpanthi.com.np/Psc-preparation/Mock-Test/Hydrology/" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Hydrology Mock Test | Online Practice Sets" />
+  <meta name="twitter:description" content="Practice Hydrology mock tests online with all available sets." />
+<link rel="stylesheet" href="/css/styles.css">
+  
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Hydrology Mock Test",
+    "url": "https://arunpanthi.com.np/Psc-preparation/Mock-Test/Hydrology/",
+    "description": "Hydrology online mock test sets for exam practice."
+  }
+  </script>
+
+ 
+</head>
+<body>
+ <body>
+  <div id="navbar"></div>
+
+  <header class="hero">
+    <h1>Hydrology Mock Tests</h1>
+    <p>
+      A complete collection of practice sets for
+      <strong>PSC Civil 7<sup>th</sup> Loksewa</strong>
+      exam success. Test your knowledge, identify weak areas, and build confidence.
+    </p>
+    <a href="#test-sets" class="cta-button" aria-label="Go to the test sets">View Test Sets</a>
+  
+  </header>
+
+  <main>
+  <div class="card-container" id="testContainer">
+    <section class="test-section" id="test-sets" aria-labelledby="tests-heading">
+      <h2 style="text-align: center;">Available Practice Sets</h2>  <div id="setCount" class="count-box">Loading test sets...</div>
+
+      
+        <div id="loading-message">
+          <p><i class="fas fa-spinner fa-spin"></i> Finding available test sets...</p>
+        </div>
+      </div>
+
+      <div id="no-tests-message" style="display: none;">
+        <p>No test sets found. More will be added soon!</p>
+      </div>
+
+      <div id="errorBox" style="display: none;">
+        <p>There was a problem loading the test sets.</p>
+      </div>
+    </section>
+
+    <noscript>
+      <p>JavaScript is required to load available test sets.</p>
+    </noscript>
+
+    <div id="social-section"></div>
+  </main>
+
+  <div id="footer"></div>
+  <script src="/js/layout.js"></script>
+
+  <script>
+    const GITHUB_OWNER = "Erarunpanthi";
+    const GITHUB_REPO = "arunpanthi.com.np";
+    const GITHUB_BRANCH = "main";
+
+    const GITHUB_FOLDER = "Psc-preparation/Mock-Test/Hydrology/Test";
+    const SITE_TEST_PATH = "/Psc-preparation/Mock-Test/Hydrology/Test/";
+
+    const testContainer = document.getElementById("testContainer");
+    const setCount = document.getElementById("setCount");
+    const errorBox = document.getElementById("errorBox");
+    const noTestsMessage = document.getElementById("no-tests-message");
+
+    function encodeFolderPath(path) {
+      return path.split("/").map(part => encodeURIComponent(part)).join("/");
+    }
+
+    function getSetNumber(filename) {
+      const match = filename.match(/\d+/);
+      return match ? parseInt(match[0], 10) : 999999;
+    }
+
+    function isTestFile(filename) {
+      return /^set[\s_-]?\d+\.html?$/i.test(filename);
+    }
+
+    function createCard(file, index) {
+      const setNumber = getSetNumber(file.name);
+      const title = setNumber !== 999999 ? `Hydrology Set ${setNumber}` : `Hydrology Test ${index + 1}`;
+
+      const card = document.createElement("div");
+      card.className = "section";
+      card.innerHTML = `
+        <h2>${title}</h2>
+        <p>Start this Hydrology practice set now.</p>
+        <a href="${SITE_TEST_PATH}${encodeURIComponent(file.name)}" class="cta-button">
+          <i class="fas fa-stopwatch"></i> Start Test
+        </a>
+      `;
+      return card;
+    }
+
+    async function loadTests() {
+      try {
+        const apiUrl = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${encodeFolderPath(GITHUB_FOLDER)}?ref=${encodeURIComponent(GITHUB_BRANCH)}`;
+
+        const response = await fetch(apiUrl, {
+          headers: { "Accept": "application/vnd.github+json" }
+        });
+
+        if (!response.ok) {
+          throw new Error("GitHub API error: " + response.status);
+        }
+
+        const files = await response.json();
+
+        const testFiles = files
+          .filter(file => file.type === "file" && isTestFile(file.name))
+          .sort((a, b) => getSetNumber(a.name) - getSetNumber(b.name));
+
+        testContainer.innerHTML = "";
+        errorBox.style.display = "none";
+        noTestsMessage.style.display = "none";
+
+        if (testFiles.length === 0) {
+          setCount.textContent = "No test sets found";
+          noTestsMessage.style.display = "block";
+          return;
+        }
+
+        testFiles.forEach((file, index) => {
+          testContainer.appendChild(createCard(file, index));
+        });
+
+        setCount.textContent = `${testFiles.length} test set${testFiles.length > 1 ? "s" : ""} available`;
+      } catch (error) {
+        console.error(error);
+        setCount.textContent = "Could not load test sets";
+        errorBox.style.display = "block";
+        errorBox.textContent = "Please check the GitHub folder path, repo visibility, and branch name.";
+      }
+    }
+
+    loadTests();
+  </script>
+</body>
+</html>

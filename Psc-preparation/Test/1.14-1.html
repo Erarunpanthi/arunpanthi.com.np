@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="canonical" href="https://arunpanthi.com.np/Psc-preparation/Test/1.14-1.html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Government Planning, Accounting and Budgeting System - Practice Questions</title>
+<link rel="icon" href="https://arunpanthi.com.np/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="/css/Mock_Test.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar" id="navbar">
+<span class="brand" id="navbar-brand">Government Planning, Accounting and Budgeting System - Practice Questions</span>
+<span class="timer-display" id="timer-display" style="display:none;">--:--</span>
+</nav>
+
+
+<div id="warning-modal" class="modal-overlay" style="display: none;">
+<div class="modal-dialog">
+<div class="warning-icon">⚠️</div>
+<h3>Unanswered Questions</h3>
+<p>You haven't answered all the questions.</p>
+<span class="unanswered-count" id="modal-unanswered-count">0 unanswered</span>
+<p style="margin-top:8px;"><strong>⚠ This test cannot be retaken once submitted!</strong></p>
+<div class="modal-buttons">
+<button class="btn-cancel" id="btn-modal-cancel">Cancel</button>
+<button class="btn-submit-warning" id="btn-modal-submit">Submit Anyway</button>
+</div>
+</div>
+</div>
+
+<div id="pre-test-section">
+<div class="hero" id="hero-card">
+<h1 id="hero-set-name">Loading...</h1>
+<p class="set-details" id="hero-details"></p>
+<div class="set-meta">
+<div class="meta-item"><span id="hero-q-count">0</span> Questions</div>
+<div class="meta-item"><span id="hero-time">0:00</span> Time (min)</div>
+</div>
+<button class="btn-start" id="btn-start-test">🚀 Start Test</button>
+<p style="margin-top:10px;font-size:0.85rem;opacity:0.8;" id="hero-note"></p>
+</div>
+</div>
+
+<div id="test-section" style="display:none;">
+<div class="test-container">
+<div class="question-area">
+<div class="question-card">
+<div class="q-number" id="q-number-label">QUESTION 1</div>
+<div class="q-text" id="q-text">Loading question...</div>
+<ul class="options-list" id="options-list"></ul>
+</div>
+<div class="nav-buttons">
+<div class="nav-left"><button class="btn-nav" id="btn-prev">◀ Previous</button></div>
+<div class="nav-center"><button class="btn-submit" id="btn-submit-test">✅ Submit Test</button></div>
+<div class="nav-right"><button class="btn-nav" id="btn-next">Next ▶</button></div>
+</div>
+</div>
+<aside class="sidebar">
+<h3>📋 Question </h3>
+<div class="total-questions" id="sidebar-total">Total: 0</div>
+<div class="answered-count">Answered: <strong id="sidebar-answered-num">0</strong></div>
+<div class="q-grid" id="q-grid"></div>
+<div class="legend">
+<span><span class="dot-sample blue"></span> Answered</span>
+<span><span class="dot-sample gray"></span> Unanswered</span>
+</div>
+</aside>
+</div>
+</div>
+
+<div id="results-section" style="display:none;">
+<div class="results-container">
+<div class="results-header">
+<h2 style="color:#2E7D32;">📊 Test Results</h2>
+<p style="color:#666;" id="results-set-name"></p>
+<div class="score-circle">
+<span class="score-num" id="results-score">0</span>
+<span class="score-denom" id="results-denom">/ 0</span>
+</div>
+<div class="percentage" id="results-percentage">0%</div>
+<p style="margin-top:8px;color:#888;font-size:0.9rem;" id="results-time-taken"></p>
+</div>
+<div id="results-detail"></div>
+</div>
+</div>
+<script src="/js/Mock_Test.js"></script>
+<script>
+(function () {
+    console.log('Inline script running');
+
+    const questionSet = {
+        name: 'Government Planning, Accounting and Budgeting System - Practice Questions',
+        details: 'Covers Medium Term Expenditure Framework, periodic plans and plan holidays, National Development Council, government accounting and audit system, budget types and concepts, Economic Survey 2079/80 data, Money Bill provisions, gender responsive budget and public financial management of Nepal.',
+        questions: [
+            { question: '1. What is the role of Medium Term Expenditure Framework?', options: ['To help in accounting', 'To help in Auditing', 'To help in establishing tie between planning and budget', 'None of the above'], correct: 2 },
+            { question: '2. In Nepal which of the following fiscal year is not observed as plan holiday?', options: ['2018\\19', '2047\\48', '2048\\49', '2016\\17'], correct: 3 },
+            { question: '3. National Development Council consist of how many members?', options: ['15', '12', '17', '13'], correct: 1 },
+            { question: '4. Who is the prime Minister to commence and materialize the concept of periodic plan in Nepal?', options: ['Juddha Sumsher', 'Tanka Prasad Aacharya', 'B.P. Koirala', 'K.I. Singh'], correct: 1 },
+            { question: '5. Which is not the features of government accounting of Nepal?', options: ['Provision of Central and Operating level accounting', 'Books of account maintained for each budget head', 'Use of forms of accounts prepared by FCGO and approved by Auditor General', 'Based on Single Accounting System'], correct: 3 },
+            { question: '6. In Nepal Internal Audit of Public office is done by which organization?', options: ['District Treasury Controller office', 'Province Treasury controller office', 'Internal Audit Mechanism of Local level', 'All of the above'], correct: 3 },
+            { question: '7. Final Audit of public expenditure is done in Nepal by which organization?', options: ['Financial Comptroller General Office', 'Auditor General', 'District Treasury controller office', 'None of the above'], correct: 1 },
+            { question: '7b. New Accounting System based on double entry book keeping system was introduced in Nepal from when?', options: ['Chaitra 2, 2018 B.S', 'Baisakh 1, 2017', 'Chaitra 1, 2016', 'Mangsir 8, 2015'], correct: 0 },
+            { question: '8. CGAS is.....', options: ['A name of software', 'Auditor General Form', 'Book of Account', 'None of the above'], correct: 0 },
+            { question: '9. Single Treasury Account (TSA) has been implemented in how many district of Nepal till date?', options: ['72', '75', '77', '74'], correct: 2 },
+            { question: '10. Nepal adopted surplus budget in which fiscal year?', options: ['2033\\34 B.S.', '2032\\33 B.S.', '2034\\35 B.S.', '2035\\36 B.S'], correct: 0 },
+            { question: '11. Among the given below which of the following budget emphasizes incrementalism?', options: ['Line Item Budget', 'Program Budget', 'Zero based Budget', 'None of the above'], correct: 0 },
+            { question: '12. Balanced budget is emphasized by whom?', options: ['Modern economist', 'Classical economist', 'Neo Classical economist', 'Neo Modern economist'], correct: 1 },
+            { question: '13. Current budget has projected the inflation rate to be contained within…', options: ['7%', '6%', '6.5%', '7.3%'], correct: 3 },
+            { question: '14. First budget of Nepal falls under which category?', options: ['Surplus Budget', 'Deficit Budget', 'Balanced Budget', 'Line Item Budget'], correct: 1 },
+            { question: '15. Which is the first country in the world to exercise the concept of development planning?', options: ['Russia', 'USA', 'U.K.', 'Denmark'], correct: 0 },
+            { question: '16. Performance budgeting is based on ..', options: ['Items of expenditure', 'Items of investment', 'Objective of expenditure', 'Plan of implementation'], correct: 3 },
+            { question: '17. Which is the first country in the world to introduce the concept of Gender Responsive Budget?', options: ['U.S.A', 'U.K.', 'Austria', 'Australia'], correct: 3 },
+            { question: '18. What is the full form of LMBIS?', options: ['Local Mainstreaming Budget Information System', 'Land Management Budget Information System', 'Line Ministry Budget Information System', 'None'], correct: 2 },
+            { question: '19. According to economic survey 2079/80 how many public enterprises are in net profit?', options: ['26', '19', '20', '21'], correct: 0 },
+            { question: '20. Per Capita Income of every Nepalese has reached to?', options: ['1045 US$', '1095 US$', '1395 US$', '1405 US$'], correct: 3 },
+            { question: '21. According to economic survey 2079/80 how many public enterprises are in loss?', options: ['15', '19', '20', '21'], correct: 0 },
+            { question: '22. According to economic survey of current year how many percentage of people have access to basic drinking water?', options: ['97%', '96.75%', '95.75', 'None'], correct: 1 },
+            { question: '23. According to economic survey of current year Human Development index of Nepal is?', options: ['0.589', '0.601', '0.569', '0.625'], correct: 2 },
+            { question: '24. Everyday expenditure of Tourist in Nepal is?', options: ['41 US$', '50 US$', '60 US$', '45 US$'], correct: 0 },
+            { question: '25. Headquarter of INTOSAI is located in which country?', options: ['Vienna Austria', 'Geneva Switzerland', 'New York U.S.A', 'London, U.K'], correct: 0 },
+            { question: '26. Who is the finance minister of Nepal to present budget in parliament for most number of times?', options: ['Subarna Shumsher', 'Mahes Aacharya', 'Ram Sharan Mahat', 'Bishnu Paudel'], correct: 1 },
+            { question: '27. Among the given below which is not the basic element of programme budget?', options: ['Function', 'Programme', 'Project', 'Procedure'], correct: 3 },
+            { question: '28. Direct gender responsive budget falls under which category?', options: ['Activities below 50%', 'Activities equal to 50%', 'Activities above 50%', 'Activities between 20 and 50%'], correct: 2 },
+            { question: '29. Among the given below which bill is introduced only in house of representative?', options: ['Money Bill', 'Civil service Bill', 'Guthee Bill', 'Election Bill'], correct: 0 },
+            { question: '30. Money Bill is concerned with which of the following?', options: ['Imposition of tax', 'Regulation of tax', 'Alteration of tax', 'All of the above'], correct: 3 },
+            { question: '31. In how many days National Assembly should send back the Money Bill passed by House of Representative and transmitted to National Assembly?', options: ['Within 10 days', 'Within 20 days', 'Within 15 days', 'Within 30 days'], correct: 2 },
+            { question: '32. Among the given below which Bill can only be introduced as government bill?', options: ['Money Bill', 'Bill concerning a security body', 'Both', 'None of the above'], correct: 2 },
+            { question: '33. Except Money Bill, in how many days National Assembly should return the concerned bill to House of Representative?', options: ['30 days', '60 days', '15 days', '90 days'], correct: 1 },
+            { question: '34. In the budget of current fiscal year how much percentage has been allocated for capital expenditure?', options: ['18.94%', '24%', '42%', '23.%'], correct: 0 },
+            { question: '35. In which article of present constitution there is provision of estimation of revenue and expenditure of village body and municipality?', options: ['Article 228', 'Article 230', 'Article 119', 'Article 207'], correct: 1 }
+        ]
+    };
+
+   
+                  		console.log('questionSet defined');
+    startTest(questionSet);
+    console.log('startTest called');
+})(); 
+</script>
+<script src="/js/text-protect.js" defer></script>
+<script src="/js/logo.js"></script>
+</body>
+</html>

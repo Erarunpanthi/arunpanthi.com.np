@@ -167,6 +167,66 @@
             font-size: 1rem;
         }
 
+        /* Expandable Subtopics Section */
+        .subtopics-section {
+            width: 100%;
+            margin-top: 10px;
+            display: none;
+        }
+        .subtopics-section.expanded {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .expand-btn {
+            background: var(--green-500, #4caf50);
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background var(--transition-fast, 0.2s), transform 0.1s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 10px;
+        }
+        .expand-btn:hover {
+            background: var(--green-600, #2e7d32);
+            transform: scale(1.02);
+        }
+        .expand-btn i {
+            transition: transform 0.2s;
+        }
+        .expand-btn.expanded i {
+            transform: rotate(180deg);
+        }
+        .subtopic-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: var(--green-600, #2e7d32);
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-decoration: none;
+            transition: background var(--transition-fast, 0.2s), transform 0.1s;
+            border: none;
+            box-shadow: 0 2px 6px rgba(46, 125, 50, 0.25);
+            width: 100%;
+            max-width: 100%;
+        }
+        .subtopic-btn:hover {
+            background: var(--green-700, #1b5e20);
+            transform: scale(1.02);
+            box-shadow: 0 3px 10px rgba(46, 125, 50, 0.35);
+        }
+
         .section-divider {
             margin: 40px 0 24px 0;
             padding: 16px 20px;
@@ -432,28 +492,40 @@
 
                     // Check if topic has subtopics (like IQ)
                     if (topic.subtopics && topic.subtopics.length > 0) {
-                        // Create a container for subtopic buttons
+                        const expandBtn = document.createElement('button');
+                        expandBtn.className = 'expand-btn';
+                        expandBtn.innerHTML = '📝 View Subtopics <i class="fas fa-chevron-down"></i>';
+                        expandBtn.setAttribute('aria-expanded', 'false');
+                        expandBtn.setAttribute('aria-label', 'Expand subtopics for ' + topic.name);
+
                         const subtopicContainer = document.createElement('div');
-                        subtopicContainer.style.display = 'flex';
-                        subtopicContainer.style.flexDirection = 'column';
-                        subtopicContainer.style.gap = '8px';
-                        subtopicContainer.style.width = '100%';
-                        subtopicContainer.style.marginTop = '10px';
+                        subtopicContainer.className = 'subtopics-section';
+                        subtopicContainer.id = 'subtopics-' + topic.id.replace(/\./g, '-');
 
                         topic.subtopics.forEach((subtopic) => {
                             const subBtn = document.createElement('a');
-                            subBtn.className = 'mcq-button';
-                            subBtn.style.fontSize = '0.85rem';
-                            subBtn.style.padding = '8px 16px';
+                            subBtn.className = 'subtopic-btn';
                             subBtn.innerHTML = '📝 ' + subtopic.name;
                             subBtn.href = MCQ_BASE_URL + subtopic.id + '.html';
                             subBtn.setAttribute('aria-label', `View MCQ for ${subtopic.name}`);
                             subtopicContainer.appendChild(subBtn);
                         });
 
+                        expandBtn.addEventListener('click', function() {
+                            const isExpanded = expandBtn.classList.toggle('expanded');
+                            subtopicContainer.classList.toggle('expanded');
+                            expandBtn.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+                            if (isExpanded) {
+                                expandBtn.innerHTML = '✖️ Hide Subtopics <i class="fas fa-chevron-up"></i>';
+                            } else {
+                                expandBtn.innerHTML = '📝 View Subtopics <i class="fas fa-chevron-down"></i>';
+                            }
+                        });
+
                         card.appendChild(badge);
                         card.appendChild(title);
                         card.appendChild(marks);
+                        card.appendChild(expandBtn);
                         card.appendChild(subtopicContainer);
                     } else {
                         const btn = document.createElement('a');

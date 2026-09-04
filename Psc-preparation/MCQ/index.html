@@ -407,24 +407,25 @@
 
                 reasoning: [
                     { 
-                        id: '2.1', 
+                        id: '2', 
                         name: 'Logical Reasoning (Verbal, Alphanumeric, Analogies, Classification, Coding-Decoding, Order & Ranking, Distance & Directions, Analytical & Logical Reasoning, Assertion & Reason, Statement & Conclusion, Input-Output, Venn-diagram)', 
                         marks: 9,
                         subtopics: [
-                            { id: '2.1.1', name: 'Number Series Completion' },
-                            { id: '2.1.2', name: 'Coding-Decoding' },
-                            { id: '2.1.3', name: 'Odd One Out (Classification)' },
-                            { id: '2.1.4', name: 'Missing Number Patterns' },
-                            { id: '2.1.5', name: 'Blood Relations' },
-                            { id: '2.1.6', name: 'Shape Classification' },
-                            { id: '2.1.7', name: 'Logical Reasoning (Syllogisms)' },
-                            { id: '2.1.8', name: 'Letter Sequences' },
-                            { id: '2.1.9', name: 'Mirror Images' },
-                            { id: '2.1.10', name: 'Work-Time Problem' }
+                            { id: '2.1', name: 'Number Series Completion' },
+                            { id: '2.2', name: 'Coding-Decoding' },
+                            { id: '2.3', name: 'Odd One Out (Classification)' },
+                            { id: '2.4', name: 'Missing Number Patterns' },
+                            { id: '2.5', name: 'Blood Relations' },
+                            { id: '2.6', name: 'Shape Classification' },
+                            { id: '2.7', name: 'Logical Reasoning (Syllogisms)' },
+                            { id: '2.8', name: 'Letter Sequences' },
+                            { id: '2.9', name: 'Mirror Images' },
+                            { id: '2.10', name: 'Work-Time Problem' },
+                            { id: '2.11', name: 'Embedded Images' },
+                            
                         ]
-                    },
-                    { id: '2.2', name: 'Numerical Reasoning (Arithmetic Series, Analogy, Classification, Arithmetical Reasoning, Fraction, Percentage, Ratio, Average, Profit & Loss, Time & Work, Date & Calendar, Data Sufficiency, Data Interpretation & Verification)', marks: 8 },
-                    { id: '2.3', name: 'Spatial Reasoning (Figure Series, Analogy, Classification, Matrix, Pattern Completion, Embedded Images, Image Formation & Analysis, Mirror & Water Images, Cubes & Dices, Paper Folding & Cutting)', marks: 8 }
+                    }
+                   
                 ],
 
                 technical: [
@@ -438,21 +439,6 @@
                     { id: '3.8', name: 'Engineering Drawing (Sheet composition, scales, projections, drafting tools, symbols, topographic/electrical/plumbing/structural drawings, community buildings)', marks: 4 },
                     { id: '3.9', name: 'Engineering Economics (Benefit-cost analysis, sensitivity, IRR, time value, demand-supply, NPV, financial & economic evaluation)', marks: 3 },
                     { id: '3.10', name: 'Professional Practices (Ethics, Nepal Engineering Council Act, client relations, public procurement, National Building Code, building bylaws)', marks: 3 },
-                    { 
-                        id: '3.11', 
-                        name: 'IQ (Intelligence Quotient)', 
-                        marks: 10,
-                        subtopics: [
-                            { id: '3.11.1', name: 'Number Series Completion' },
-                            { id: '3.11.2', name: 'Coding-Decoding' },
-                            { id: '3.11.3', name: 'Odd One Out (Classification)' },
-                            { id: '3.11.4', name: 'Missing Number Patterns' },
-                            { id: '3.11.5', name: 'Blood Relations' },
-                            { id: '3.11.6', name: 'Shape Classification' },
-                            { id: '3.11.7', name: 'Logical Reasoning (Syllogisms)' },
-                            { id: '3.11.8', name: 'Letter Sequences' },
-                            { id: '3.11.9', name: 'Mirror Images' },
-                            { id: '3.11.10', name: 'Work-Time Problem' }
                         ]
                     }
                 ]
@@ -505,7 +491,7 @@
                         topic.subtopics.forEach((subtopic) => {
                             const subBtn = document.createElement('a');
                             subBtn.className = 'subtopic-btn';
-                            subBtn.innerHTML = '📝 ' + subtopic.name;
+                            subBtn.innerHTML = ' ' + subtopic.name;
                             subBtn.href = MCQ_BASE_URL + subtopic.id + '.html';
                             subBtn.setAttribute('aria-label', `View MCQ for ${subtopic.name}`);
                             subtopicContainer.appendChild(subBtn);
@@ -516,9 +502,9 @@
                             subtopicContainer.classList.toggle('expanded');
                             expandBtn.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
                             if (isExpanded) {
-                                expandBtn.innerHTML = '✖️ Hide Subtopics <i class="fas fa-chevron-up"></i>';
+                                expandBtn.innerHTML = ' Hide Subtopics <i class="fas fa-chevron-up"></i>';
                             } else {
-                                expandBtn.innerHTML = '📝 View Subtopics <i class="fas fa-chevron-down"></i>';
+                                expandBtn.innerHTML = ' View Subtopics <i class="fas fa-chevron-down"></i>';
                             }
                         });
 
@@ -530,7 +516,7 @@
                     } else {
                         const btn = document.createElement('a');
                         btn.className = 'mcq-button';
-                        btn.innerHTML = ' ✍️ View MCQ';
+                        btn.innerHTML = '  View MCQ';
                         btn.href = MCQ_BASE_URL + topic.id + '.html';
                         btn.setAttribute('aria-label', `View MCQ for topic ${topic.id}: ${topic.name}`);
 

@@ -344,9 +344,9 @@
         <!-- Sticky Table of Contents Navigation -->
         <nav class="toc-nav" aria-label="Table of Contents">
             <ul>
-                <li><a href="#part-awareness">Part I-A: General Awareness</a></li>
-                <li><a href="#part-reasoning">Part I-B: General Reasoning</a></li>
-                <li><a href="#part-technical">Part II: Technical Subject</a></li>
+                <li ><a href="#part-awareness"> <div class="sub-meta">Part I-A: General Awareness</div></a></li>
+                <li class="sub-meta" ><a href="#part-reasoning">Part I-B: General Reasoning</a></li>
+                <li class="sub-meta" ><a href="#part-technical">Part II: Technical Subject</a></li>
             </ul>
         </nav>
 
@@ -420,9 +420,7 @@
                             { id: '2.8', name: 'Letter Sequences' },
                             { id: '2.9', name: 'Mirror Images' },
                             { id: '2.10', name: 'Work-Time Problem' },
-                            
                             { id: '2.11', name: 'Embedded Images' },
-                            { id: '2.12', name: 'Ordering and Ranking' },
                             
                         ]
                     }
@@ -479,7 +477,7 @@
                     if (topic.subtopics && topic.subtopics.length > 0) {
                         const expandBtn = document.createElement('button');
                         expandBtn.className = 'expand-btn';
-                        expandBtn.innerHTML = ' View Subtopics <i class="fas fa-chevron-down"></i>';
+                        expandBtn.innerHTML = '📝 View Subtopics <i class="fas fa-chevron-down"></i>';
                         expandBtn.setAttribute('aria-expanded', 'false');
                         expandBtn.setAttribute('aria-label', 'Expand subtopics for ' + topic.name);
 
@@ -491,7 +489,7 @@
                             const subBtn = document.createElement('a');
                             subBtn.className = 'subtopic-btn';
                             subBtn.innerHTML = ' ' + subtopic.name;
-                            subBtn.href = MCQ_BASE_URL + subtopic.id + '';
+                            subBtn.href = MCQ_BASE_URL + subtopic.id + '.html';
                             subBtn.setAttribute('aria-label', `View MCQ for ${subtopic.name}`);
                             subtopicContainer.appendChild(subBtn);
                         });

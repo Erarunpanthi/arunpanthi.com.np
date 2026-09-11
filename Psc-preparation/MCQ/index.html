@@ -479,7 +479,7 @@
                     if (topic.subtopics && topic.subtopics.length > 0) {
                         const expandBtn = document.createElement('button');
                         expandBtn.className = 'expand-btn';
-                        expandBtn.innerHTML = '📝 View Subtopics <i class="fas fa-chevron-down"></i>';
+                        expandBtn.innerHTML = ' View Subtopics <i class="fas fa-chevron-down"></i>';
                         expandBtn.setAttribute('aria-expanded', 'false');
                         expandBtn.setAttribute('aria-label', 'Expand subtopics for ' + topic.name);
 
@@ -491,7 +491,7 @@
                             const subBtn = document.createElement('a');
                             subBtn.className = 'subtopic-btn';
                             subBtn.innerHTML = ' ' + subtopic.name;
-                            subBtn.href = MCQ_BASE_URL + subtopic.id + '.html';
+                            subBtn.href = MCQ_BASE_URL + subtopic.id + '';
                             subBtn.setAttribute('aria-label', `View MCQ for ${subtopic.name}`);
                             subtopicContainer.appendChild(subBtn);
                         });

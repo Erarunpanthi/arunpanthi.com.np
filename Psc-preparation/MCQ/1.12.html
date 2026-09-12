@@ -1346,32 +1346,7 @@
   <div class="answer"><strong>a) Regular updates and revisions</strong></div>
 </div>
 
-<style>
-  .answer {
-    display: none;
-  }
 
-  .answer.show {
-    display: block;
-  }
-</style>
-
-<script>
-  document.addEventListener("click", function (event) {
-    const button = event.target.closest(".nav-btn");
-
-    if (!button) return;
-
-    const card = button.closest(".card");
-    const answer = card.querySelector(".answer");
-
-    answer.classList.toggle("show");
-
-    button.textContent = answer.classList.contains("show")
-      ? "Hide Answer"
-      : "Show Answer";
-  });
-</script>
 
 
    </div>

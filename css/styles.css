@@ -134,17 +134,17 @@ a {
 }
 
 .nav-item i {
-  font-size: 20px;
+  font-size: 45px;
 }
 
-/* CORRECTION: Removed green background on hover/active */
+
 .nav-item:hover,
 .nav-item:active {
   background-color: rgba(255, 255, 255, 0.15);
   transform: translateY(-2px);
 }
 
-/* Active page indicator */
+
 .nav-item.active,
 .nav-item.active-link {
   border-bottom: 2px solid #fff;
@@ -165,7 +165,7 @@ a {
   }
   
   .nav-item {
-    font-size: 14px;
+    font-size: 25px;
     padding: 8px 12px;
     min-height: 45px;
   }
@@ -192,7 +192,7 @@ a {
   }
   
   .nav-item i {
-    font-size: 20px;
+    font-size: 60px;
   }
 }
 
@@ -253,7 +253,7 @@ a {
 }
 .social-media h1,
 .social-media h2 {
-  font-size: 18px;
+  font-size: 36px;
   margin-bottom: 8px;
   color: #fff;
   font-weight: 700;
@@ -267,7 +267,7 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: 12px;
   margin-top: 8px;
   margin-bottom: 8px;
 }
@@ -278,7 +278,7 @@ a {
   width: 44px;
   height: 44px;
   color: #fff;
-  font-size: 22px;
+  font-size: 50px;
   transition: transform var(--transition-medium);
   border-radius: 50%;
 }
@@ -286,14 +286,13 @@ a {
   transform: scale(1.2);
 }
 
-/* Footer – fully centered with Flexbox */
+
 footer {
   background-color: var(--green-600);
   color: #fff;
   padding: 30px 20px 40px 20px;
   margin-top: 0;
   width: 100%;
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -316,7 +315,7 @@ footer hr {
   display: none;
 }
 
-/* 60% WIDTH CONTAINERS */
+
 .container {
   width: 60%;
   max-width: 100%;

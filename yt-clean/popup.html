@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>yt-clean Settings</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      width: 380px;
+      min-height: 500px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #333;
+      overflow-y: auto;
+    }
+
+    .header {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 20px;
+      text-align: center;
+      color: white;
+    }
+
+    .header h1 {
+      font-size: 24px;
+      margin-bottom: 5px;
+    }
+
+    .header p {
+      font-size: 12px;
+      opacity: 0.9;
+    }
+
+    .content {
+      padding: 15px;
+      background: white;
+      max-height: 500px;
+      overflow-y: auto;
+    }
+
+    .section {
+      margin-bottom: 20px;
+      padding: 15px;
+      background: #f8f9fa;
+      border-radius: 8px;
+    }
+
+    .section-title {
+      font-size: 14px;
+      font-weight: bold;
+      color: #667eea;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .toggle-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px solid #e9ecef;
+    }
+
+    .toggle-row:last-child {
+      border-bottom: none;
+    }
+
+    .toggle-label {
+      font-size: 13px;
+      flex: 1;
+    }
+
+    .toggle-switch {
+      position: relative;
+      width: 40px;
+      height: 20px;
+    }
+
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: 0.3s;
+      border-radius: 20px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      left: 2px;
+      bottom: 2px;
+      background-color: white;
+      transition: 0.3s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: #667eea;
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(20px);
+    }
+
+    .select-row {
+      padding: 8px 0;
+    }
+
+    .select-row label {
+      font-size: 13px;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .select-row select {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 13px;
+    }
+
+    .input-row {
+      padding: 8px 0;
+    }
+
+    .input-row label {
+      font-size: 13px;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .input-row input[type="number"] {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 13px;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 10px;
+      background: #667eea;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 13px;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: background 0.3s;
+    }
+
+    .btn:hover {
+      background: #5568d3;
+    }
+
+    .btn-danger {
+      background: #e74c3c;
+    }
+
+    .btn-danger:hover {
+      background: #c0392b;
+    }
+
+    .about-section {
+      text-align: center;
+      padding: 15px;
+      background: #f8f9fa;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+
+    .about-section h3 {
+      font-size: 14px;
+      color: #667eea;
+      margin-bottom: 10px;
+    }
+
+    .about-section p {
+      font-size: 12px;
+      color: #666;
+      margin-bottom: 10px;
+    }
+
+    .about-section a {
+      color: #667eea;
+      text-decoration: none;
+      font-size: 12px;
+    }
+
+    .about-section a:hover {
+      text-decoration: underline;
+    }
+
+    .status-msg {
+      text-align: center;
+      padding: 10px;
+      background: #d4edda;
+      color: #155724;
+      border-radius: 4px;
+      font-size: 12px;
+      display: none;
+      margin-top: 10px;
+    }
+
+    .status-msg.show {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>🎬 yt-clean</h1>
+    <p>Clean Your YouTube Experience</p>
+  </div>
+
+  <div class="content">
+    <!-- UI Cleaning -->
+    <div class="section">
+      <div class="section-title">🧹 UI Cleaning</div>
+      <div class="toggle-row">
+        <span class="toggle-label">Hide Shorts</span>
+        <label class="toggle-switch">
+          <input type="checkbox" id="hideShorts" checked>
+          <span class="slider"></span>
+        </label>
+      </div>
+      <div class="toggle-row">
+        <span class="toggle-label">Hide Recommendations</span>
+        <label class="toggle-switch">
+          <input type="checkbox" id="hideRecommendations" checked>
+          <span class="slider"></span>
+        </label>
+      </div>
+      <div class="toggle-row">
+        <span class="toggle-label">Hide Live Chat</span>
+        <label class="toggle-switch">
+          <input type="checkbox" id="hideLive" checked>
+          <span class="slider"></span>
+        </label>
+      </div>
+      <div class="toggle-row">
+        <span class="toggle-label">Hide Like/Dislike</span>
+        <label class="toggle-switch">
+          <input type="checkbox" id="hideLikeDislike" checked>
+          <span class="slider"></span>
+        </label>
+      </div>
+      <div class="toggle-row">
+        <span class="toggle-label">Hide Watermark</span>
+        <label class="toggle-switch">
+          <input type="checkbox" id="hideWatermark" checked>
+          <span class="slider"></span>
+        </label>
+      </div>
+      <div class="toggle-row">
+        <span class="toggle-label">Hide Comments</span>
+        <label class="toggle-switch">
+          <input type="checkbox" id="hideComments">
+          <span class="slider"></span>
+        </label>
+      </div>
+      <div class="toggle-row">
+        <span class="toggle-label">Hide YouTube Logo</span>
+        <label class="toggle-switch">
+          <input type="checkbox" id="hideYtLogo">
+          <span class="slider"></span>
+        </label>
+      </div>
+      <div class="toggle-row">
+        <span class="toggle-label">Hide Notifications</span>
+        <label class="toggle-switch">
+          <input type="checkbox" id="hideNotifications">
+          <span class="slider"></span>
+        </label>
+      </div>
+      <div class="toggle-row">
+        <span class="toggle-label">Hide Account Section</span>
+        <label class="toggle-switch">
+          <input type="checkbox" id="hideAccount">
+          <span class="slider"></span>
+        </label>
+      </div>
+      <div class="toggle-row">
+        <span class="toggle-label">Disable Infinite Scroll</span>
+        <label class="toggle-switch">
+          <input type="checkbox" id="disableInfiniteScroll" checked>
+          <span class="slider"></span>
+        </label>
+      </div>
+      <div class="toggle-row">
+        <span class="toggle-label">Disable "Not Interested"</span>
+        <label class="toggle-switch">
+          <input type="checkbox" id="disableNotInterested" checked>
+          <span class="slider"></span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Video Player -->
+    <div class="section">
+      <div class="section-title">🎥 Video Player</div>
+      <div class="toggle-row">
+        <span class="toggle-label">Block Ads</span>
+        <label class="toggle-switch">
+          <input type="checkbox" id="blockAds" checked>
+          <span class="slider"></span>
+        </label>
+      </div>
+      <div class="toggle-row">
+        <span class="toggle-label">Disable Autoplay</span>
+        <label class="toggle-switch">
+          <input type="checkbox" id="disableAutoplay" checked>
+          <span class="slider"></span>
+        </label>
+      </div>
+      <div class="toggle-row">
+        <span class="toggle-label">Hide Cards</span>
+        <label class="toggle-switch">
+          <input type="checkbox" id="hideCards" checked>
+          <span class="slider"></span>
+        </label>
+      </div>
+      <div class="toggle-row">
+        <span class="toggle-label">Hide End Elements</span>
+        <label class="toggle-switch">
+          <input type="checkbox" id="hideEndElements" checked>
+          <span class="slider"></span>
+        </label>
+      </div>
+      <div class="toggle-row">
+        <span class="toggle-label">Increase Volume</span>
+        <label class="toggle-switch">
+          <input type="checkbox" id="increaseVolume">
+          <span class="slider"></span>
+        </label>
+      </div>
+      <div class="toggle-row">
+        <span class="toggle-label">Night Mode</span>
+        <label class="toggle-switch">
+          <input type="checkbox" id="nightMode">
+          <span class="slider"></span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Advanced -->
+    <div class="section">
+      <div class="section-title">⚙️ Advanced</div>
+      <div class="input-row">
+        <label for="sleepTimer">Sleep Timer (minutes, 0 to disable)</label>
+        <input type="number" id="sleepTimer" min="0" value="0">
+      </div>
+      <div class="select-row">
+        <label for="theme">Theme</label>
+        <select id="theme">
+          <option value="default">Default</option>
+          <option value="dark">Dark</option>
+          <option value="light">Light</option>
+          <option value="blue">Blue</option>
+          <option value="purple">Purple</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Blocking -->
+    <div class="section">
+      <div class="section-title">🚫 Blocking</div>
+      <button class="btn btn-danger" id="clearBlocked">Clear Blocked Channels/Videos</button>
+    </div>
+
+    <!-- About -->
+    <div class="about-section">
+      <h3>About Developer</h3>
+      <p>Created with ❤️ for a cleaner YouTube experience</p>
+      <a href="https://arunpanthi.com.np/aboutus" target="_blank">Visit Developer Website</a>
+    </div>
+
+    <div class="status-msg" id="statusMsg">Settings saved successfully!</div>
+    <button class="btn" id="saveBtn">Save Settings</button>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

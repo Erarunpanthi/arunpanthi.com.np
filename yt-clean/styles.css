@@ -1,0 +1,162 @@
+/* yt-clean - Main Styles */
+
+/* Video player enhancements */
+#skipcut-btn {
+  background: rgba(0, 0, 0, 0.6) !important;
+  border-radius: 50% !important;
+  width: 40px !important;
+  height: 40px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin-right: 10px !important;
+  transition: all 0.3s ease !important;
+}
+
+#skipcut-btn:hover {
+  background: rgba(102, 126, 234, 0.8) !important;
+  transform: scale(1.1) !important;
+}
+
+#skipcut-btn svg {
+  fill: white !important;
+}
+
+/* Volume indicator animation */
+#volume-indicator {
+  transition: opacity 0.3s ease !important;
+}
+
+/* Night mode filter */
+.night-mode-active {
+  filter: brightness(0.7) contrast(1.2) sepia(0.3) !important;
+}
+
+/* Hide various UI elements */
+ytd-rich-section-renderer[primary-content="Shorts"],
+ytd-reel-shelf-renderer,
+ytd-short-lockup-view-model,
+a[href*="/shorts/"],
+.shortsLockupViewModelHost {
+  display: none !important;
+}
+
+/* Ad-related hiding */
+.ytp-ad-player-overlay,
+.ytp-ad-text,
+.ytp-ad-skip-button-container {
+  pointer-events: none !important;
+}
+
+/* Smooth transitions for theme changes */
+body {
+  transition: background-color 0.3s ease, color 0.3s ease !important;
+}
+
+/* Custom scrollbar for popup */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #667eea;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #5568d3;
+}
+
+/* Ensure video controls stay visible */
+.ytp-chrome-bottom {
+  z-index: 9999 !important;
+}
+
+/* Hide annotation cards when enabled */
+.ytp-ce-element--type-visit,
+.ytp-ce-element--type-channel,
+.ytp-annotation,
+.ytp-annotation-dialog {
+  display: none !important;
+}
+
+/* Premium upsell removal */
+.ytd-premium-upsell-renderer,
+#premium-yt-icon {
+  display: none !important;
+}
+
+/* Hide autoplay switch if disabled */
+.ytp-autonav-toggle-button-container[disabled] {
+  display: none !important;
+}
+
+/* Clean up sidebar */
+#related ytd-compact-video-renderer,
+#related ytd-compact-radio-renderer {
+  display: none !important;
+}
+
+/* Hide chips/bar at top */
+ytd-feed-filter-chip-bar-renderer {
+  display: none !important;
+}
+
+/* Hide story/shelves */
+ytd-emergency-one-column-renderer,
+ytd-horizontal-card-list-renderer {
+  display: none !important;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  #skipcut-btn {
+    width: 35px !important;
+    height: 35px !important;
+  }
+  
+  .ytp-button {
+    min-width: 35px !important;
+    min-height: 35px !important;
+  }
+}
+
+/* Accessibility improvements */
+.ytp-button:focus,
+button:focus {
+  outline: 2px solid #667eea !important;
+  outline-offset: 2px !important;
+}
+
+/* Loading states */
+.loading {
+  opacity: 0.6 !important;
+  pointer-events: none !important;
+}
+
+/* Toast notifications */
+.yt-clean-toast {
+  position: fixed !important;
+  bottom: 80px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  background: rgba(0, 0, 0, 0.85) !important;
+  color: white !important;
+  padding: 12px 24px !important;
+  border-radius: 4px !important;
+  font-size: 14px !important;
+  z-index: 10000 !important;
+  animation: fadeInOut 2s ease-in-out !important;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateX(-50%) translateY(10px); }
+  15% { opacity: 1; transform: translateX(-50%) translateY(0); }
+  85% { opacity: 1; transform: translateX(-50%) translateY(0); }
+  100% { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+}

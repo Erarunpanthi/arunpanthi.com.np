@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Icon Generator</title>
+</head>
+<body>
+  <canvas id="canvas16" width="16" height="16"></canvas>
+  <canvas id="canvas48" width="48" height="48"></canvas>
+  <canvas id="canvas128" width="128" height="128"></canvas>
+  
+  <script>
+    function createIcon(size) {
+      const canvas = document.getElementById(`canvas${size}`);
+      const ctx = canvas.getContext('2d');
+      
+      // Background gradient
+      const gradient = ctx.createLinearGradient(0, 0, size, size);
+      gradient.addColorStop(0, '#667eea');
+      gradient.addColorStop(1, '#764ba2');
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, size, size);
+      
+      // Play button icon
+      ctx.fillStyle = 'white';
+      const padding = size * 0.25;
+      ctx.beginPath();
+      ctx.moveTo(padding, padding);
+      ctx.lineTo(padding, size - padding);
+      ctx.lineTo(size - padding, size / 2);
+      ctx.closePath();
+      ctx.fill();
+      
+      return canvas.toDataURL('image/png');
+    }
+    
+    console.log('16px:', createIcon(16));
+    console.log('48px:', createIcon(48));
+    console.log('128px:', createIcon(128));
+  </script>
+</body>
+</html>

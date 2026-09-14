@@ -35,6 +35,7 @@ body {
   margin: 0;
   padding: 0;
   line-height: 1.7;
+  font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -119,7 +120,7 @@ a {
 .nav-item {
   color: #fff;
   padding: 10px 15px;
-  font-size: 13px;
+  font-size: 14px;
   text-align: center;
   transition: all var(--transition-medium);
   border-radius: 5px;
@@ -127,14 +128,14 @@ a {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 4px;
+  gap: 6px;
   min-height: 55px;
   text-decoration: none;
   white-space: nowrap;
 }
 
 .nav-item i {
-  font-size: 45px;
+  font-size: 24px;
 }
 
 
@@ -164,13 +165,13 @@ a {
   }
   
   .nav-item {
-    font-size: 25px;
+    font-size: 14px;
     padding: 8px 12px;
     min-height: 45px;
   }
   
   .nav-item i {
-    font-size: 16px;
+    font-size: 20px;
   }
 }
 
@@ -191,7 +192,7 @@ a {
   }
   
   .nav-item i {
-    font-size: 60px;
+    font-size: 28px;
   }
 }
 
@@ -252,7 +253,7 @@ a {
 }
 .social-media h1,
 .social-media h2 {
-  font-size: 36px;
+  font-size: 24px;
   margin-bottom: 8px;
   color: #fff;
   font-weight: 700;
@@ -277,7 +278,7 @@ a {
   width: 44px;
   height: 44px;
   color: #fff;
-  font-size: 50px;
+  font-size: 24px;
   transition: transform var(--transition-medium);
   border-radius: 50%;
 }
@@ -299,13 +300,13 @@ footer {
 }
 footer p {
   margin: 0;
-  font-size: 0.85rem;
+  font-size: 14px;
 }
 footer a {
   color: #fff;
   margin: 0 8px;
   padding: 0 4px;
-  font-size: 0.85rem;
+  font-size: 14px;
 }
 footer a:hover {
   text-decoration: underline;
@@ -758,9 +759,9 @@ img.lazy {
     font-size: 1.5rem;
   }
   .social-media .icons a {
-    font-size: 18px;
-    width: 32px;
-    height: 32px;
+    font-size: 20px;
+    width: 36px;
+    height: 36px;
   }
 }
 
@@ -800,9 +801,9 @@ img.lazy {
     min-height: auto;
   }
   .social-media .icons a {
-    font-size: 16px;
-    width: 28px;
-    height: 28px;
+    font-size: 18px;
+    width: 32px;
+    height: 32px;
   }
 }
 

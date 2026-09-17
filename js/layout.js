@@ -3,7 +3,7 @@
   "use strict";
 
   
-  var CSS_FILE     = "styles.css";
+  var CSS_FILE     = "css/styles.css";
   var FAVICON_FILE = "favicon.ico";
   var FONT_AWESOME = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css";
 
@@ -79,7 +79,7 @@
   }
 
   function addGlobalCSS() {
-    if (document.querySelector("link[data-global-css]")) return;
+    if (document.querySelector("link[data-global-css], link[href$='styles.css']")) return;
     var link  = document.createElement("link");
     link.rel  = "stylesheet";
     link.href = buildPath(CSS_FILE);
@@ -88,7 +88,7 @@
   }
 
   function addFontAwesome() {
-    if (document.querySelector("link[data-font-awesome]")) return;
+    if (document.querySelector("link[data-font-awesome], link[href*='font-awesome'], link[href*='fontawesome']")) return;
     var link  = document.createElement("link");
     link.rel  = "stylesheet";
     link.href = FONT_AWESOME;

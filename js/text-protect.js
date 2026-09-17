@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-     │      §1. INJECT PROTECTION CSS           │
+     // │      §1. INJECT PROTECTION CSS           │
   const injectStyles = () => {
     const css = document.createElement("style");
     css.id = "cs-shield-styles";
@@ -67,7 +67,7 @@
     document.head.appendChild(css);
   };
 
-     │    §2. BLOCK RIGHT-CLICK (SILENT)        │
+     // │    §2. BLOCK RIGHT-CLICK (SILENT)        │
   const blockRightClick = () => {
     document.addEventListener("contextmenu", (e) => {
       e.preventDefault();
@@ -77,7 +77,7 @@
     }, true);
   };
 
-     │    §3. BLOCK TEXT SELECTION (SILENT)      │
+     // │    §3. BLOCK TEXT SELECTION (SILENT)      │
   const blockSelection = () => {
     document.addEventListener("selectstart", (e) => {
       e.preventDefault();
@@ -102,7 +102,7 @@
     }, 300);
   };
 
-     │    §4. BLOCK CLIPBOARD (SILENT)          │
+     // │    §4. BLOCK CLIPBOARD (SILENT)          │
   const blockClipboard = () => {
     ["copy", "cut", "paste"].forEach((evt) => {
       document.addEventListener(evt, (e) => {
@@ -139,7 +139,7 @@
     }
   };
 
-     │    §5. BLOCK KEYBOARD SHORTCUTS          │
+     // │    §5. BLOCK KEYBOARD SHORTCUTS          │
   const blockKeyboard = () => {
     document.addEventListener("keydown", (e) => {
       const key = e.key ? e.key.toLowerCase() : "";
@@ -330,7 +330,7 @@
     }, true);
   };
 
-     │    §6. SCREENSHOT COUNTERMEASURES        │
+     // │    §6. SCREENSHOT COUNTERMEASURES        │
 
   
   const nukeClipboard = () => {
@@ -376,7 +376,7 @@
     });
   };
 
-     │    §7. BLOCK DRAG & DROP (SILENT)        │
+     // │    §7. BLOCK DRAG & DROP (SILENT)        │
   const blockDragDrop = () => {
     ["dragstart", "drag", "dragend", "dragenter", "dragover", "dragleave", "drop"].forEach((evt) => {
       document.addEventListener(evt, (e) => {
@@ -401,7 +401,7 @@
       .observe(document.body, { childList: true, subtree: true });
   };
 
-     │    §8. BLOCK PRINT (SILENT)              │
+     // │    §8. BLOCK PRINT (SILENT)              │
   const blockPrint = () => {
     
     window.print = function () { return false; };
@@ -424,7 +424,7 @@
     }
   };
 
-     │    §9. DEVTOOLS DETECTION (SILENT)       │
+     // │    §9. DEVTOOLS DETECTION (SILENT)       │
   let devtoolsOpen = false;
 
   const setDevToolsState = (isOpen) => {
@@ -438,10 +438,21 @@
   };
 
   
+  // Baseline devicePixelRatio captured before any user zoom.
+  // Browser zoom changes devicePixelRatio; devtools docking does not.
+  const initialDpr = window.devicePixelRatio || 1;
+
   const detectBySize = () => {
     const threshold = 160;
-    const wDiff = window.outerWidth - window.innerWidth;
-    const hDiff = window.outerHeight - window.innerHeight;
+
+    // Zoom shrinks innerWidth/innerHeight in CSS px while outerWidth/outerHeight
+    // stay constant, which previously produced false positives (page hidden at
+    // >=110% zoom). Compensate for the zoom share of the difference.
+    const zoom = (window.devicePixelRatio || 1) / initialDpr;
+    const zoomShare = zoom > 1 ? zoom - 1 : 0;
+
+    const wDiff = window.outerWidth - window.innerWidth - window.innerWidth * zoomShare;
+    const hDiff = window.outerHeight - window.innerHeight - window.innerHeight * zoomShare;
     setDevToolsState(wDiff > threshold || hDiff > threshold);
   };
 
@@ -491,7 +502,7 @@
     detectBySize();
   };
 
-     │    §10. SOURCE & EXTENSION PROTECTION    │
+     // │    §10. SOURCE & EXTENSION PROTECTION    │
   const sourceProtection = () => {
 
     
@@ -554,7 +565,7 @@
     } catch (_) {}
   };
 
-     │    §11. DISABLE READER MODE              │
+     // │    §11. DISABLE READER MODE              │
   const blockReaderMode = () => {
     // Reader mode typically looks for <article> structure
     
@@ -567,7 +578,7 @@
     document.body.appendChild(decoy);
   };
 
-     │    §12. DISABLE DOCUMENT INTERACTIONS    │
+     // │    §12. DISABLE DOCUMENT INTERACTIONS    │
   const blockMiscInteractions = () => {
 
     
@@ -626,7 +637,7 @@
     }, true);
   };
 
-     │    §13. CONSOLE WARFARE                  │
+     // │    §13. CONSOLE WARFARE                  │
   const consoleLockdown = () => {
     
     setInterval(() => {
@@ -651,7 +662,7 @@
     }, 3000);
   };
 
-     │    §14. MUTATION GUARD                   │
+     /* │    §14. MUTATION GUARD                   │
      Watches for injected scripts/iframes that
      might try to extract content
   */
@@ -682,7 +693,7 @@
     }).observe(document.documentElement, { childList: true, subtree: true });
   };
 
-     │       🚀 INITIALIZATION                  │
+     // │       🚀 INITIALIZATION                  │
   const init = () => {
     injectStyles();
 

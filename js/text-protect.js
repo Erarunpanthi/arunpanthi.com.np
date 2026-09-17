@@ -1,723 +1,438 @@
+/* =======================================================================
+   CS-SHIELD — Best-effort content protection
+   -----------------------------------------------------------------------
+   Blocks: right-click, text selection, copy/cut/paste, drag/drop,
+           printing, and common keyboard shortcuts (Ctrl+C, Ctrl+U, F12…).
+   Cannot block: browser menu actions, OS screenshots, extensions,
+                 DevTools already open, or a determined user.
+   ======================================================================= */
 (function () {
   "use strict";
 
-     // │      §1. INJECT PROTECTION CSS           │
-  const injectStyles = () => {
-    const css = document.createElement("style");
-    css.id = "cs-shield-styles";
-    css.textContent = `
+  /* Never install twice */
+  if (window.__csShield) return;
+  window.__csShield = true;
 
-      
+  /* ------------------------------------------------------------------
+     0 · CONFIG
+     ------------------------------------------------------------------ */
+  const CFG = {
+    protectFormFields : true,   // keep inputs / textareas usable
+    silenceConsole    : true,
+    devToolsOverlay   : true,   // show a blank overlay when DevTools open
+    devToolsStrikes   : 2       // consecutive detections before acting
+  };
+
+  /* ------------------------------------------------------------------
+     1 · HELPERS
+     ------------------------------------------------------------------ */
+  const run = (fn) => { try { fn(); } catch (_) {} };
+
+  const kill = (e) => {
+    if (!e) return false;
+    try { e.preventDefault(); } catch (_) {}
+    try { e.stopPropagation(); } catch (_) {}
+    try { e.stopImmediatePropagation(); } catch (_) {}
+    return false;
+  };
+
+  const bind = (type, handler, target, opts) => {
+    const t = target || document;
+    try { t.addEventListener(type, handler, opts || true); }
+    catch (_) {}
+  };
+
+  const isField = (el) => {
+    if (!el || el.nodeType !== 1) return false;
+    const t = el.tagName;
+    return t === "INPUT" || t === "TEXTAREA" || t === "SELECT" ||
+           el.isContentEditable === true;
+  };
+
+  const body = () => document.body || document.documentElement;
+
+  /* Native refs captured before patching anything */
+  const nativeLog   = (console && console.log)   ? console.log.bind(console)   : function () {};
+  const nativeClear = (console && console.clear) ? console.clear.bind(console) : null;
+  const nativeExec  = document.execCommand ? document.execCommand.bind(document) : null;
+
+  /* ------------------------------------------------------------------
+     2 · CSS
+     ------------------------------------------------------------------ */
+  const injectCSS = () => {
+    if (document.getElementById("cs-shield-css")) return;
+
+    const s = document.createElement("style");
+    s.id = "cs-shield-css";
+    s.textContent = `
       body, body * {
         -webkit-user-select: none !important;
         -moz-user-select: none !important;
         -ms-user-select: none !important;
         user-select: none !important;
         -webkit-touch-callout: none !important;
-      }
-
-      
-      body * {
         -webkit-user-drag: none !important;
-        -khtml-user-drag: none !important;
-        -moz-user-drag: none !important;
-        -o-user-drag: none !important;
-        user-drag: none !important;
       }
-
-      
-      img {
-        pointer-events: none;
+      input, textarea, select,
+      [contenteditable]:not([contenteditable="false"]) {
+        -webkit-user-select: text !important;
+        -moz-user-select: text !important;
+        -ms-user-select: text !important;
+        user-select: text !important;
       }
-
-      
-      body.cs-dt-open * {
-        visibility: hidden !important;
+      img { -webkit-user-drag: none !important; }
+      #cs-shield-blank {
+        position: fixed !important;
+        inset: 0 !important;
+        z-index: 2147483647 !important;
+        background: #ffffff !important;
       }
-      body.cs-dt-open::after {
-        content: "";
-        position: fixed;
-        inset: 0;
-        background: #fff;
-        z-index: 2147483647;
-        visibility: visible !important;
-      }
-
-      
       @media print {
-        html, body, body * {
-          display: none !important;
-          visibility: hidden !important;
-          opacity: 0 !important;
-          height: 0 !important;
-          width: 0 !important;
-          overflow: hidden !important;
-          margin: 0 !important;
-          padding: 0 !important;
-        }
-        html::after, body::after {
-          display: none !important;
-        }
-        @page {
-          size: 0 0;
-          margin: 0;
-        }
+        html, body { display: none !important; visibility: hidden !important; }
+        #cs-shield-blank { display: none !important; }
       }
     `;
-    document.head.appendChild(css);
+    (document.head || document.documentElement).appendChild(s);
   };
 
-     // │    §2. BLOCK RIGHT-CLICK (SILENT)        │
+  /* ------------------------------------------------------------------
+     3 · RIGHT-CLICK
+     ------------------------------------------------------------------ */
   const blockRightClick = () => {
-    document.addEventListener("contextmenu", (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      e.stopImmediatePropagation();
-      return false;
-    }, true);
+    bind("contextmenu", kill);
   };
 
-     // │    §3. BLOCK TEXT SELECTION (SILENT)      │
+  /* ------------------------------------------------------------------
+     4 · TEXT SELECTION
+     ------------------------------------------------------------------ */
   const blockSelection = () => {
-    document.addEventListener("selectstart", (e) => {
-      e.preventDefault();
-      e.stopImmediatePropagation();
-      return false;
-    }, true);
-
-    // Block shift+click range selection
-    document.addEventListener("mousedown", (e) => {
-      if (e.shiftKey) {
-        e.preventDefault();
-        return false;
-      }
-    }, true);
-
-    
-    setInterval(() => {
-      const sel = window.getSelection();
-      if (sel && sel.rangeCount > 0 && sel.toString().length > 0) {
-        sel.removeAllRanges();
-      }
-    }, 300);
-  };
-
-     // │    §4. BLOCK CLIPBOARD (SILENT)          │
-  const blockClipboard = () => {
-    ["copy", "cut", "paste"].forEach((evt) => {
-      document.addEventListener(evt, (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        e.stopImmediatePropagation();
-
-        
-        if (e.clipboardData) {
-          e.clipboardData.setData("text/plain", "");
-          e.clipboardData.setData("text/html", "");
-        }
-        return false;
-      }, true);
+    bind("selectstart", (e) => {
+      if (CFG.protectFormFields && isField(e.target)) return;
+      kill(e);
     });
 
-    
-    if (navigator.clipboard) {
-      const origWrite = navigator.clipboard.writeText;
-      const origRead = navigator.clipboard.readText;
+    bind("mousedown", (e) => {
+      if (!e.shiftKey) return;
+      if (CFG.protectFormFields && isField(e.target)) return;
+      kill(e);
+    });
 
-      navigator.clipboard.writeText = function () {
-        return Promise.resolve();
-      };
-      navigator.clipboard.readText = function () {
-        return Promise.resolve("");
-      };
-      navigator.clipboard.write = function () {
-        return Promise.resolve();
-      };
-      navigator.clipboard.read = function () {
-        return Promise.resolve([]);
-      };
-    }
+    /* Fallback: kill stray selections outside form fields */
+    setInterval(() => {
+      try {
+        const sel = window.getSelection && window.getSelection();
+        if (!sel || sel.rangeCount === 0 || sel.isCollapsed) return;
+        const node = sel.anchorNode;
+        const el = node ? (node.nodeType === 1 ? node : node.parentElement) : null;
+        if (CFG.protectFormFields && isField(el)) return;
+        sel.removeAllRanges();
+      } catch (_) {}
+    }, 700);
   };
 
-     // │    §5. BLOCK KEYBOARD SHORTCUTS          │
+  /* ------------------------------------------------------------------
+     5 · CLIPBOARD EVENTS
+     ------------------------------------------------------------------ */
+  const blockClipboard = () => {
+    ["copy", "cut", "paste"].forEach((type) => {
+      bind(type, (e) => {
+        if (CFG.protectFormFields && isField(e.target)) return;
+        try {
+          if (e.clipboardData) {
+            e.clipboardData.setData("text/plain", "");
+            e.clipboardData.setData("text/html", "");
+          }
+        } catch (_) {}
+        kill(e);
+      });
+    });
+  };
+
+  /* ------------------------------------------------------------------
+     6 · KEYBOARD SHORTCUTS
+     ------------------------------------------------------------------ */
   const blockKeyboard = () => {
-    document.addEventListener("keydown", (e) => {
-      const key = e.key ? e.key.toLowerCase() : "";
-      const code = e.code || "";
-      const ctrl = e.ctrlKey || e.metaKey;
-      const shift = e.shiftKey;
-      const alt = e.altKey;
+    const BLOCKED = new Set([
+      "mod+c","mod+x","mod+v","mod+a",
+      "mod+s","mod+p","mod+u","mod+j",
+      "mod+g","mod+f","mod+h",
+      "mod+shift+s","mod+shift+i","mod+shift+j",
+      "mod+shift+c","mod+shift+k","mod+shift+e",
+      "mod+shift+m","mod+shift+q",
+      "f12","f7","printscreen"
+    ]);
 
-      // ═══ F12: DevTools ═══
-      if (code === "F12" || e.keyCode === 123) {
-        e.preventDefault();
-        e.stopImmediatePropagation();
-        return false;
+    const TEXT_OK = new Set(["mod+c","mod+x","mod+v","mod+a"]);
+
+    const combo = (e) => {
+      const p = [];
+      if (e.ctrlKey || e.metaKey) p.push("mod");
+      if (e.shiftKey) p.push("shift");
+      if (e.altKey) p.push("alt");
+      p.push(String(e.key || "").toLowerCase());
+      return p.join("+");
+    };
+
+    bind("keydown", (e) => {
+      const c = combo(e);
+
+      if (c === "printscreen" || c === "alt+printscreen") {
+        kill(e);
+        handlePrintScreen();
+        return;
       }
 
-      // ═══ Ctrl+Shift+I : Inspector ═══
-      if (ctrl && shift && (key === "i" || e.keyCode === 73)) {
-        e.preventDefault();
-        e.stopImmediatePropagation();
-        return false;
+      if (!BLOCKED.has(c)) return;
+
+      if (CFG.protectFormFields && TEXT_OK.has(c) && isField(e.target)) return;
+
+      kill(e);
+    });
+
+    bind("keyup", (e) => {
+      if (String(e.key || "").toLowerCase() === "printscreen") {
+        kill(e);
+        handlePrintScreen();
       }
-
-      // ═══ Ctrl+Shift+J : Console ═══
-      if (ctrl && shift && (key === "j" || e.keyCode === 74)) {
-        e.preventDefault();
-        e.stopImmediatePropagation();
-        return false;
-      }
-
-      // ═══ Ctrl+Shift+C : Element Picker ═══
-      if (ctrl && shift && (key === "c" || e.keyCode === 67)) {
-        e.preventDefault();
-        e.stopImmediatePropagation();
-        return false;
-      }
-
-      // ═══ Ctrl+Shift+K : Console (Firefox) ═══
-      if (ctrl && shift && (key === "k" || e.keyCode === 75)) {
-        e.preventDefault();
-        e.stopImmediatePropagation();
-        return false;
-      }
-
-      // ═══ Ctrl+Shift+M : Responsive Mode ═══
-      if (ctrl && shift && (key === "m" || e.keyCode === 77)) {
-        e.preventDefault();
-        e.stopImmediatePropagation();
-        return false;
-      }
-
-      // ═══ Ctrl+Shift+S : Screenshot (some browsers) ═══
-      if (ctrl && shift && (key === "s" || e.keyCode === 83)) {
-        e.preventDefault();
-        e.stopImmediatePropagation();
-        flashScreen();
-        return false;
-      }
-
-      // ═══ Ctrl+U : View Source ═══
-      if (ctrl && (key === "u" || e.keyCode === 85) && !shift) {
-        e.preventDefault();
-        e.stopImmediatePropagation();
-        return false;
-      }
-
-      // ═══ Ctrl+S : Save As ═══
-      if (ctrl && (key === "s" || e.keyCode === 83) && !shift) {
-        e.preventDefault();
-        e.stopImmediatePropagation();
-        return false;
-      }
-
-      // ═══ Ctrl+P : Print ═══
-      if (ctrl && (key === "p" || e.keyCode === 80)) {
-        e.preventDefault();
-        e.stopImmediatePropagation();
-        return false;
-      }
-
-      // ═══ Ctrl+C : Copy ═══
-      if (ctrl && (key === "c" || e.keyCode === 67) && !shift) {
-        e.preventDefault();
-        e.stopImmediatePropagation();
-        return false;
-      }
-
-      // ═══ Ctrl+X : Cut ═══
-      if (ctrl && (key === "x" || e.keyCode === 88)) {
-        e.preventDefault();
-        e.stopImmediatePropagation();
-        return false;
-      }
-
-      // ═══ Ctrl+A : Select All ═══
-      if (ctrl && (key === "a" || e.keyCode === 65)) {
-        e.preventDefault();
-        e.stopImmediatePropagation();
-        return false;
-      }
-
-      // ═══ Ctrl+V : Paste ═══
-      if (ctrl && (key === "v" || e.keyCode === 86)) {
-        e.preventDefault();
-        e.stopImmediatePropagation();
-        return false;
-      }
-
-      // ═══ Ctrl+Shift+E : Network Tab (Firefox) ═══
-      if (ctrl && shift && (key === "e" || e.keyCode === 69)) {
-        e.preventDefault();
-        e.stopImmediatePropagation();
-        return false;
-      }
-
-      // ═══ Ctrl+Shift+Q : Browser Quit (Firefox old) ═══
-      if (ctrl && shift && (key === "q" || e.keyCode === 81)) {
-        e.preventDefault();
-        e.stopImmediatePropagation();
-        return false;
-      }
-
-      // ═══ F7 : Caret Browsing ═══
-      if (code === "F7" || e.keyCode === 118) {
-        e.preventDefault();
-        e.stopImmediatePropagation();
-        return false;
-      }
-
-      // ═══ F5 / Ctrl+F5 : Allow refresh (don't block) ═══
-
-      
-      if (code === "PrintScreen" || e.keyCode === 44) {
-        e.preventDefault();
-        e.stopImmediatePropagation();
-        nukeClipboard();
-        flashScreen();
-        return false;
-      }
-
-      // ═══ Alt+PrintScreen ═══
-      if (alt && (code === "PrintScreen" || e.keyCode === 44)) {
-        e.preventDefault();
-        e.stopImmediatePropagation();
-        nukeClipboard();
-        flashScreen();
-        return false;
-      }
-
-      // ═══ Win+Shift+S : Windows Snip Tool ═══
-      if (e.metaKey && shift && (key === "s" || e.keyCode === 83)) {
-        e.preventDefault();
-        e.stopImmediatePropagation();
-        flashScreen();
-        return false;
-      }
-
-      // ═══ Ctrl+J : Downloads (some browsers) ═══
-      if (ctrl && (key === "j" || e.keyCode === 74) && !shift) {
-        e.preventDefault();
-        e.stopImmediatePropagation();
-        return false;
-      }
-
-      // ═══ Ctrl+G / Ctrl+F : Find ═══
-      if (ctrl && ((key === "g" || e.keyCode === 71) || (key === "f" || e.keyCode === 70))) {
-        e.preventDefault();
-        e.stopImmediatePropagation();
-        return false;
-      }
-
-      // ═══ Ctrl+H : History ═══
-      if (ctrl && (key === "h" || e.keyCode === 72)) {
-        e.preventDefault();
-        e.stopImmediatePropagation();
-        return false;
-      }
-
-    }, true);
-
-    // ═══ KeyUp: Catch PrintScreen release ═══
-    document.addEventListener("keyup", (e) => {
-      if (e.code === "PrintScreen" || e.keyCode === 44) {
-        e.preventDefault();
-        e.stopImmediatePropagation();
-        nukeClipboard();
-        flashScreen();
-      }
-    }, true);
+    });
   };
 
-     // │    §6. SCREENSHOT COUNTERMEASURES        │
+  /* ------------------------------------------------------------------
+     7 · SCREENSHOT COUNTER-MEASURES
+     ------------------------------------------------------------------ */
+  let flashing = null;
 
-  
-  const nukeClipboard = () => {
+  const flashScreen = () => {
+    if (flashing) return;
+    flashing = document.createElement("div");
+    flashing.style.cssText =
+      "position:fixed;inset:0;z-index:2147483647;background:#fff;" +
+      "opacity:1;pointer-events:none;transition:opacity .25s linear;";
+    body().appendChild(flashing);
+
+    requestAnimationFrame(() => {
+      if (!flashing) return;
+      flashing.style.opacity = "0";
+      setTimeout(() => {
+        if (flashing && flashing.parentNode) flashing.parentNode.removeChild(flashing);
+        flashing = null;
+      }, 320);
+    });
+  };
+
+  const clearClipboard = () => {
     try {
-      navigator.clipboard.writeText("").catch(() => {});
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText("").catch(() => {});
+      }
     } catch (_) {}
 
-    // Fallback: textarea method
+    if (!nativeExec) return;
     try {
       const ta = document.createElement("textarea");
       ta.value = " ";
+      ta.setAttribute("aria-hidden", "true");
       ta.style.cssText = "position:fixed;left:-9999px;top:-9999px;opacity:0;";
-      document.body.appendChild(ta);
+      body().appendChild(ta);
       ta.select();
-      document.execCommand("copy");
+      nativeExec("copy");
       ta.remove();
     } catch (_) {}
   };
 
-  
-  const flashScreen = () => {
-    const flash = document.createElement("div");
-    flash.style.cssText = `
-      position:fixed; inset:0; z-index:2147483647;
-      background:#fff; opacity:1; pointer-events:none;
-      transition: opacity 0.25s ease;
-    `;
-    document.body.appendChild(flash);
-    requestAnimationFrame(() => {
-      flash.style.opacity = "0";
-      setTimeout(() => flash.remove(), 300);
-    });
+  const handlePrintScreen = () => {
+    clearClipboard();
+    flashScreen();
   };
 
-  // Visibility change: flash on tab switch (disrupts Alt+Tab screenshot)
-  const blockVisibilityScreenshot = () => {
-    document.addEventListener("visibilitychange", () => {
-      if (document.visibilityState === "hidden") {
-        
-        window.getSelection()?.removeAllRanges();
-        nukeClipboard();
-      }
-    });
-  };
-
-     // │    §7. BLOCK DRAG & DROP (SILENT)        │
+  /* ------------------------------------------------------------------
+     8 · DRAG & DROP
+     ------------------------------------------------------------------ */
   const blockDragDrop = () => {
-    ["dragstart", "drag", "dragend", "dragenter", "dragover", "dragleave", "drop"].forEach((evt) => {
-      document.addEventListener(evt, (e) => {
-        e.preventDefault();
-        e.stopImmediatePropagation();
-        return false;
-      }, true);
+    ["dragstart","drag","dragend","dragenter",
+     "dragover","dragleave","drop"].forEach((type) => {
+      bind(type, (e) => {
+        if (type === "drop" && CFG.protectFormFields && isField(e.target)) return;
+        kill(e);
+      });
     });
 
-    
-    const disableImgDrag = () => {
+    run(() => {
       document.querySelectorAll("img").forEach((img) => {
-        img.setAttribute("draggable", "false");
-        img.addEventListener("mousedown", (e) => e.preventDefault(), true);
-      });
-    };
-
-    disableImgDrag();
-
-    
-    new MutationObserver(() => disableImgDrag())
-      .observe(document.body, { childList: true, subtree: true });
-  };
-
-     // │    §8. BLOCK PRINT (SILENT)              │
-  const blockPrint = () => {
-    
-    window.print = function () { return false; };
-
-    
-    window.addEventListener("beforeprint", (e) => {
-      e.preventDefault();
-      document.body.style.display = "none";
-    });
-
-    window.addEventListener("afterprint", () => {
-      document.body.style.display = "";
-    });
-
-    
-    if (window.matchMedia) {
-      window.matchMedia("print").addEventListener("change", (mq) => {
-        document.body.style.display = mq.matches ? "none" : "";
-      });
-    }
-  };
-
-     // │    §9. DEVTOOLS DETECTION (SILENT)       │
-  let devtoolsOpen = false;
-
-  const setDevToolsState = (isOpen) => {
-    if (isOpen === devtoolsOpen) return;
-    devtoolsOpen = isOpen;
-    if (isOpen) {
-      document.body.classList.add("cs-dt-open");
-    } else {
-      document.body.classList.remove("cs-dt-open");
-    }
-  };
-
-  
-  // Baseline devicePixelRatio captured before any user zoom.
-  // Browser zoom changes devicePixelRatio; devtools docking does not.
-  const initialDpr = window.devicePixelRatio || 1;
-
-  const detectBySize = () => {
-    const threshold = 160;
-
-    // Zoom shrinks innerWidth/innerHeight in CSS px while outerWidth/outerHeight
-    // stay constant, which previously produced false positives (page hidden at
-    // >=110% zoom). Compensate for the zoom share of the difference.
-    const zoom = (window.devicePixelRatio || 1) / initialDpr;
-    const zoomShare = zoom > 1 ? zoom - 1 : 0;
-
-    const wDiff = window.outerWidth - window.innerWidth - window.innerWidth * zoomShare;
-    const hDiff = window.outerHeight - window.innerHeight - window.innerHeight * zoomShare;
-    setDevToolsState(wDiff > threshold || hDiff > threshold);
-  };
-
-  
-  const detectByConsole = () => {
-    const probe = new Image();
-    Object.defineProperty(probe, "id", {
-      get: () => { setDevToolsState(true); }
-    });
-
-    setInterval(() => {
-      console.log("%c", probe);
-      console.clear();
-    }, 2000);
-  };
-
-  
-  const detectByToString = () => {
-    const check = /./;
-    check.toString = function () {
-      setDevToolsState(true);
-      return "";
-    };
-
-    setInterval(() => {
-      console.log(check);
-      console.clear();
-    }, 2000);
-  };
-
-  
-  const detectByDebugger = () => {
-    setInterval(() => {
-      const t1 = performance.now();
-      (function () {}).constructor("debugger")();
-      if (performance.now() - t1 > 100) {
-        setDevToolsState(true);
-      }
-    }, 3000);
-  };
-
-  const startDevToolsDetection = () => {
-    setInterval(detectBySize, 800);
-    detectByConsole();
-    detectByToString();
-    detectByDebugger();
-    detectBySize();
-  };
-
-     // │    §10. SOURCE & EXTENSION PROTECTION    │
-  const sourceProtection = () => {
-
-    
-    if (window.location.protocol === "view-source:") {
-      document.documentElement.innerHTML = "";
-    }
-
-    
-    if (window.self !== window.top) {
-      try {
-        window.top.location = window.self.location;
-      } catch (_) {
-        document.body.innerHTML = "";
-      }
-    }
-
-    
-    const origFetch = window.fetch;
-    window.fetch = function (...args) {
-      const url = (args[0] || "").toString();
-      if (url === "" || url === window.location.href || url === window.location.pathname) {
-        return Promise.reject(new Error("Blocked"));
-      }
-      return origFetch.apply(this, args);
-    };
-
-    
-    const OrigXHR = window.XMLHttpRequest;
-    window.XMLHttpRequest = function () {
-      const xhr = new OrigXHR();
-      const origOpen = xhr.open;
-      xhr.open = function (method, url, ...rest) {
-        const resolved = new URL(url, window.location.href).href;
-        if (resolved === window.location.href) {
-          return; 
+        if (img.getAttribute("draggable") !== "false") {
+          img.setAttribute("draggable", "false");
         }
-        return origOpen.call(this, method, url, ...rest);
-      };
-      return xhr;
-    };
-
-    
-    const guardProperty = (proto, prop) => {
-      const desc = Object.getOwnPropertyDescriptor(proto, prop);
-      if (desc && desc.get) {
-        Object.defineProperty(proto, prop, {
-          get() {
-            if (devtoolsOpen) return "";
-            return desc.get.call(this);
-          },
-          configurable: true,
-        });
-      }
-    };
-
-    try {
-      guardProperty(HTMLElement.prototype, "innerText");
-      guardProperty(HTMLElement.prototype, "innerHTML");
-      guardProperty(Node.prototype, "textContent");
-    } catch (_) {}
+      });
+    });
   };
 
-     // │    §11. DISABLE READER MODE              │
+  /* ------------------------------------------------------------------
+     9 · PRINT
+     ------------------------------------------------------------------ */
+  const blockPrint = () => {
+    try { window.print = function () { return false; }; } catch (_) {}
+    bind("beforeprint", kill, window);
+  };
+
+  /* ------------------------------------------------------------------
+     10 · DEVTOOLS DETECTION
+     ------------------------------------------------------------------ */
+  const DevTools = (() => {
+    let open    = false;
+    let strikes = 0;
+    let overlay = null;
+
+    const isTouch = (() => {
+      try { return window.matchMedia("(pointer: coarse)").matches; }
+      catch (_) { return "ontouchstart" in window; }
+    })();
+
+    const show = () => {
+      if (!CFG.devToolsOverlay || overlay) return;
+      overlay = document.createElement("div");
+      overlay.id = "cs-shield-blank";
+      overlay.setAttribute("aria-hidden", "true");
+      body().appendChild(overlay);
+    };
+
+    const hide = () => {
+      if (overlay && overlay.parentNode) overlay.parentNode.removeChild(overlay);
+      overlay = null;
+    };
+
+    const set = (next) => {
+      if (next === open) return;
+      open = next;
+      next ? show() : hide();
+    };
+
+    /* size delta (desktop only — mobile URL bars cause false positives) */
+    const sizeSignal = () => {
+      if (isTouch) return false;
+      const ow = window.outerWidth, oh = window.outerHeight;
+      if (!ow || !oh) return false;
+      return (ow - window.innerWidth) > 200 || (oh - window.innerHeight) > 200;
+    };
+
+    /* console object inspection */
+    let consoleSignal = false;
+
+    const installConsoleProbe = () => {
+      const probe = new Image();
+      try {
+        Object.defineProperty(probe, "id", {
+          configurable: true,
+          get() { consoleSignal = true; return ""; }
+        });
+      } catch (_) { return; }
+
+      setInterval(() => {
+        try { nativeLog("%c", probe); } catch (_) {}
+        setTimeout(() => { try { if (nativeClear) nativeClear(); } catch (_) {} }, 60);
+      }, 2000);
+    };
+
+    const tick = () => {
+      const strong = consoleSignal;
+      const weak   = sizeSignal();
+
+      if (strong)     strikes = CFG.devToolsStrikes + 1;
+      else if (weak)  strikes = Math.min(strikes + 1, CFG.devToolsStrikes + 1);
+      else            strikes = 0;
+
+      set(strikes >= CFG.devToolsStrikes);
+      consoleSignal = false;
+    };
+
+    const start = () => {
+      installConsoleProbe();
+      setInterval(tick, 1000);
+      tick();
+    };
+
+    return { start };
+  })();
+
+  /* ------------------------------------------------------------------
+     11 · SOURCE / FRAME PROTECTION
+     ------------------------------------------------------------------ */
+  const sourceProtection = () => {
+    /* frame-busting (only when browser allows) */
+    run(() => {
+      if (window.self !== window.top) {
+        try { window.top.location = window.self.location; }
+        catch (_) {}
+      }
+    });
+
+    /* lock designMode */
+    run(() => {
+      Object.defineProperty(document, "designMode", {
+        configurable: true,
+        get: () => "off",
+        set: () => {}
+      });
+    });
+  };
+
+  /* ------------------------------------------------------------------
+     12 · READER-MODE DECOY
+     ------------------------------------------------------------------ */
   const blockReaderMode = () => {
-    // Reader mode typically looks for <article> structure
-    
     const decoy = document.createElement("div");
     decoy.setAttribute("aria-hidden", "true");
-    decoy.style.cssText = "position:absolute;left:-9999px;top:-9999px;width:0;height:0;overflow:hidden;";
-    decoy.innerHTML = Array(20).fill(0).map((_, i) =>
-      `<article><p>${String.fromCharCode(8203).repeat(50)}</p></article>`
-    ).join("");
-    document.body.appendChild(decoy);
+    decoy.style.cssText =
+      "position:absolute;left:-9999px;top:-9999px;width:0;height:0;overflow:hidden;";
+
+    let html = "";
+    for (let i = 0; i < 12; i++) {
+      html += "<article><p>" + "\u200B".repeat(40) + "</p></article>";
+    }
+    decoy.innerHTML = html;
+    body().appendChild(decoy);
   };
 
-     // │    §12. DISABLE DOCUMENT INTERACTIONS    │
-  const blockMiscInteractions = () => {
-
-    
-    Object.defineProperty(document, "designMode", {
-      get: () => "off",
-      set: () => {},
-    });
-
-    
-    Object.defineProperty(document.body, "contentEditable", {
-      get: () => "false",
-      set: () => {},
-    });
-
-    
-    const origExec = document.execCommand;
-    document.execCommand = function (cmd, ...args) {
-      const blocked = ["copy", "cut", "selectAll"];
-      if (blocked.includes(cmd)) return false;
-      return origExec.call(this, cmd, ...args);
-    };
-
-    
-    const origGetSel = window.getSelection;
-    window.getSelection = function () {
-      const sel = origGetSel.call(this);
-      if (sel) {
-        try {
-          const origToStr = sel.toString;
-          sel.toString = function () { return ""; };
-        } catch (_) {}
-      }
-      return sel;
-    };
-
-    
-    document.addEventListener("touchstart", (e) => {
-      if (e.touches.length > 1) {
-        e.preventDefault(); 
-      }
-    }, { passive: false, capture: true });
-
-    let touchTimer;
-    document.addEventListener("touchstart", () => {
-      touchTimer = setTimeout(() => {
-        // Long-press triggers context menu — already blocked
-      }, 500);
-    }, true);
-
-    document.addEventListener("touchend", () => {
-      clearTimeout(touchTimer);
-    }, true);
-
-    document.addEventListener("touchmove", () => {
-      clearTimeout(touchTimer);
-    }, true);
-  };
-
-     // │    §13. CONSOLE WARFARE                  │
+  /* ------------------------------------------------------------------
+     13 · CONSOLE LOCKDOWN
+     ------------------------------------------------------------------ */
   const consoleLockdown = () => {
-    
-    setInterval(() => {
-      try { console.clear(); } catch (_) {}
-    }, 1500);
+    if (nativeClear) {
+      setInterval(() => { try { nativeClear(); } catch (_) {} }, 2000);
+    }
 
-    
-    const noop = () => {};
-    const methods = [
-      "log", "debug", "info", "warn", "error",
-      "table", "trace", "dir", "dirxml",
-      "group", "groupCollapsed", "groupEnd",
-      "profile", "profileEnd", "time", "timeEnd",
-      "timeStamp", "count", "assert"
-    ];
+    if (!CFG.silenceConsole) return;
 
-    
-    setTimeout(() => {
-      methods.forEach((m) => {
-        try { console[m] = noop; } catch (_) {}
-      });
-    }, 3000);
+    const noop = function () {};
+    [
+      "log","debug","info","warn","error","trace",
+      "dir","dirxml","table","group","groupCollapsed",
+      "groupEnd","count","assert","time","timeEnd",
+      "timeStamp","profile","profileEnd"
+    ].forEach((m) => {
+      try { console[m] = noop; } catch (_) {}
+    });
   };
 
-     /* │    §14. MUTATION GUARD                   │
-     Watches for injected scripts/iframes that
-     might try to extract content
-  */
-  const mutationGuard = () => {
-    new MutationObserver((mutations) => {
-      mutations.forEach((m) => {
-        m.addedNodes.forEach((node) => {
-          if (node.nodeType !== 1) return;
-
-          
-          if (node.tagName === "SCRIPT") {
-            const src = node.getAttribute("src") || "";
-            
-            if (src && !src.startsWith("/") && !src.startsWith(window.location.origin)) {
-              node.remove();
-            }
-          }
-
-          
-          if (node.tagName === "IFRAME") {
-            const src = node.getAttribute("src") || "";
-            if (!src.startsWith(window.location.origin) && !src.startsWith("/")) {
-              node.remove();
-            }
-          }
-        });
-      });
-    }).observe(document.documentElement, { childList: true, subtree: true });
-  };
-
-     // │       🚀 INITIALIZATION                  │
+  /* ------------------------------------------------------------------
+     14 · INIT
+     ------------------------------------------------------------------ */
   const init = () => {
-    injectStyles();
-
-    
-    blockRightClick();
-    blockSelection();
-    blockClipboard();
-    blockKeyboard();
-    blockDragDrop();
-    blockPrint();
-    blockVisibilityScreenshot();
-    startDevToolsDetection();
-    sourceProtection();
-    blockReaderMode();
-    blockMiscInteractions();
-    consoleLockdown();
-    mutationGuard();
+    run(injectCSS);
+    run(blockRightClick);
+    run(blockSelection);
+    run(blockClipboard);
+    run(blockKeyboard);
+    run(blockDragDrop);
+    run(blockPrint);
+    run(sourceProtection);
+    run(blockReaderMode);
+    run(DevTools.start);
+    run(consoleLockdown);
   };
 
-  
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", init);
+    document.addEventListener("DOMContentLoaded", init, { once: true });
   } else {
     init();
   }
-
 })();

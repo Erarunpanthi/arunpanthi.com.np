@@ -1,113 +1,433 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Practice Structural Engineering MCQs for PSC and License Exams in Nepal. Question on Slope Deflection Method - direction of positive moment. Comprehensive explanations for Civil Engineering aspirants." />
-    <meta name="keywords" content="Slope Deflection Method MCQ, Structural Analysis, Positive Moment Direction, PSC Exam Preparation, Civil Engineering Nepal, License Exam Questions, Structural Engineering MCQ, Clockwise Moment, Nepal Engineering Service, Loksewa Preparation" />
-    <meta name="author" content="CivPrepMaster" />
+    <meta name="description" content="Practice Structural Analysis MCQs for PSC and Engineering License Exams in Nepal. Topics include influence lines, conjugate beams, static indeterminacy, displacement methods, arches and virtual work." />
+    <meta name="keywords" content="Structural Analysis MCQ, Influence Line Diagram, Muller Breslau Principle, Static Indeterminacy, Displacement Method, Two Hinged Arch, PSC Preparation, Engineering License Exam Nepal" />
+    <meta name="author" content="Arun Panthi" />
     <meta name="robots" content="index, follow" />
-    <link rel="canonical" href="https://arunpanthi.com.np/Psc-preparation/MCQ/3.1" />
+    <link rel="canonical" href="https://arunpanthi.com.np/Psc-preparation/MCQ/3.1.html" />
 
-    
-    <meta property="og:title" content="Slope Deflection Method MCQ | Positive Moment Direction | PSC & License Exam Nepal" />
-    <meta property="og:description" content="Practice Structural Engineering MCQ: While using slope deflection method, in which direction is moment taken as positive? Learn with detailed explanation." />
-    <meta property="og:url" content="https://arunpanthi.com.np/Psc-preparation/MCQ/3.1" />
+    <meta property="og:title" content="Structural Analysis MCQ | PSC &amp; Engineering License Exam Nepal" />
+    <meta property="og:description" content="Topic-wise Structural Analysis multiple-choice questions covering influence lines, indeterminacy, displacement methods, arches and virtual work." />
+    <meta property="og:url" content="https://arunpanthi.com.np/Psc-preparation/MCQ/3.1.html" />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
 
-    <title>Slope Deflection Method MCQ | Positive Moment Direction | Structural Analysis | PSC & License Exam Nepal</title>
+    <title>Structural Analysis MCQ | PSC &amp; Engineering License Exam Nepal</title>
 
     <link rel="stylesheet" href="/css/styles.css" />
     <link rel="stylesheet" href="/css/Mcq.css" />
-
-    <div id="navbar"></div>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous" />
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
-    </script>
 
     <style>
-                .section-divider {
+        .page-header {
             text-align: center;
-            margin: 2rem 0 1rem;
-            font-size: 1.3rem;
-            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .page-header h1 {
             color: #1a3a5c;
-            border-bottom: 2px dashed #ccc;
-            padding-bottom: 0.5rem;
+            margin-bottom: 0.5rem;
         }
-        .section-divider i {
-            margin-right: 10px;
+
+        .page-header p {
+            color: #4b5563;
+            margin: 0;
         }
-        
+
+        .topic-nav {
+            background: #f0f7ff;
+            border: 1px solid #c9def2;
+            border-radius: 10px;
+            padding: 1rem 1.25rem;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .topic-nav strong {
+            color: #1a3a5c;
+        }
+
+        .topic-nav ul {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem 1.25rem;
+            list-style: none;
+            margin: 0.75rem 0 0;
+            padding: 0;
+        }
+
+        .topic-nav li {
+            background: transparent;
+            box-shadow: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .topic-nav a {
+            color: #2d6a9f;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .topic-nav a:hover,
+        .topic-nav a:focus {
+            color: #1a3a5c;
+            text-decoration: underline;
+        }
+
+        .topic-section {
+            margin: 2rem 0;
+            scroll-margin-top: 1rem;
+        }
+
+        .topic-heading {
+            align-items: center;
+            border-bottom: 2px dashed #cbd5e1;
+            color: #1a3a5c;
+            display: flex;
+            gap: 0.65rem;
+            margin: 0 0 1rem;
+            padding-bottom: 0.6rem;
+        }
+
+        .topic-heading i {
+            color: #2e7d32;
+        }
+
+        .card + .card {
+            margin-top: 1.25rem;
+        }
+
+        .question-label {
+            color: #2e7d32;
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .question-text {
+            margin-top: 0;
+        }
+
+        .mcq-options {
+            background: #f8fafc;
+            border-left: 4px solid #e2e8f0;
+            border-radius: 8px;
+            color: #374151;
+            line-height: 1.7;
+            margin: 0 0 1.2rem;
+            padding: 0.8rem 1rem 0.8rem 2.75rem;
+        }
+
+        .mcq-options li {
+            background: transparent;
+            box-shadow: none;
+            margin: 0;
+            padding: 0.2rem 0;
+            text-align: left;
+        }
+
+        .mcq-options li:hover {
+            transform: none;
+        }
+
+        .answer strong {
+            color: #1b5e20;
+        }
+
+        .formula {
+            background: #eef6ee;
+            border-radius: 4px;
+            color: #1b5e20;
+            font-family: Georgia, serif;
+            padding: 0.1rem 0.35rem;
+            white-space: nowrap;
+        }
+
+        .featured-card {
+            border-top-color: #2d6a9f;
+        }
+
+        .featured-card .question-label {
+            color: #2d6a9f;
+        }
+
+        @media (max-width: 600px) {
+            .topic-nav ul {
+                display: block;
+            }
+
+            .topic-nav li {
+                margin-bottom: 0.45rem;
+            }
+
+            .topic-heading {
+                font-size: 1.25rem;
+            }
+        }
     </style>
 </head>
 
 <body>
+    <div id="navbar"></div>
 
-    <section id="top">
+    <main id="top">
         <div class="container">
-            
-            <!-- Main Question Section -->
-            <div class="section-divider">
-                <h1 style="font-size: 1.5rem; margin-bottom: 1rem; color: #1a3a5c;">
-                    <i class="fas fa-book-open"></i> Slope Deflection Method MCQ
-                </h1>
-                <div class="card">
-                    <p>
-                        <strong>Question:</strong> While using slope deflection method, in which direction is moment taken as positive?<br><br>
-                        a) Clockwise<br>
-                        b) Anti-clockwise<br>
-                        c) Depends upon case<br>
-                        d) Depends upon loading<br>
+            <header class="page-header">
+                <h1><i class="fas fa-book-open" aria-hidden="true"></i> Structural Analysis MCQ</h1>
+                <p>Topic-wise practice for PSC and Engineering License Exams in Nepal</p>
+            </header>
+
+            <nav class="topic-nav" aria-label="Structural Analysis topics">
+                <strong><i class="fas fa-list" aria-hidden="true"></i> Browse by topic</strong>
+                <ul>
+                    <li><a href="#slope-deflection">Slope Deflection</a></li>
+                    <li><a href="#moving-loads">Moving Loads &amp; Influence Lines</a></li>
+                    <li><a href="#conjugate-beam">Conjugate Beam</a></li>
+                    <li><a href="#indeterminacy">Static Indeterminacy</a></li>
+                    <li><a href="#displacement">Displacement &amp; Degrees of Freedom</a></li>
+                    <li><a href="#arches">Two-Hinged Arches</a></li>
+                    <li><a href="#virtual-work">Virtual Work</a></li>
+                </ul>
+            </nav>
+
+            <section class="topic-section" id="slope-deflection" aria-labelledby="slope-deflection-heading">
+                <h2 class="topic-heading" id="slope-deflection-heading">
+                    <i class="fas fa-arrows-rotate" aria-hidden="true"></i> Slope Deflection Method
+                </h2>
+
+                <article class="card featured-card">
+                    <span class="question-label">Featured question</span>
+                    <p class="question-text">
+                        <strong>While using slope deflection method, in which direction is moment taken as positive?</strong>
                     </p>
+                    <ol class="mcq-options" type="A">
+                        <li>Clockwise</li>
+                        <li>Anti-clockwise</li>
+                        <li>Depends upon case</li>
+                        <li>Depends upon loading</li>
+                    </ol>
                     <div class="options">
-                        <button class="nav-btn">Show Answer</button>
+                        <button class="nav-btn" type="button">Show Answer</button>
                     </div>
                     <div class="answer">
-                        <strong>a) Clockwise</strong><br><br>
-                        <strong>Explanation:</strong> Clockwise moments are always taken as positive while using the slope deflection method. This sign convention is standard in structural analysis for consistency in calculations and equations. The slope deflection method is a displacement method used for analyzing indeterminate structures, and maintaining a consistent sign convention (clockwise = positive) is crucial for accurate results.
+                        <strong>A. Clockwise</strong><br /><br />
+                        Clockwise moments are taken as positive while using the slope deflection method. It is a displacement method used for analysing statically indeterminate beams and frames.
                     </div>
-                </div>
-            </div>
-            
-            <!-- SEO Content Section -->
-            <div class="section-divider" style="margin-top: 2rem;">
-                <div class="card" style="text-align: left;">
-                    <h2 style="color: #1a3a5c; font-size: 1.4rem; margin-bottom: 1rem;">
-                        <i class="fas fa-graduation-cap"></i> About Slope Deflection Method
-                    </h2>
-                    <p style="line-height: 1.8; color: #333;">
-                        The <strong>Slope Deflection Method</strong> is a fundamental structural analysis technique used for analyzing statically indeterminate beams and frames. This method was developed by George A. Maney in 1915 and remains an essential topic for Civil Engineering students preparing for PSC (Public Service Commission) exams and Nepal Engineering License examinations.
-                    </p>
-                    
-                    <h3 style="color: #2E7D32; font-size: 1.2rem; margin-top: 1.5rem;">Key Points to Remember:</h3>
-                    <ul style="line-height: 1.8; color: #333; margin-left: 20px;">
-                        <li>Clockwise moments are considered <strong>positive (+)</strong></li>
-                        <li>Anti-clockwise moments are considered <strong>negative (-)</strong></li>
-                        <li>This method uses joint rotations and displacements as unknowns</li>
-                        <li>It is classified as a <strong>displacement method</strong> of structural analysis</li>
-                        <li>Suitable for analyzing continuous beams and rigid frames</li>
-                    </ul>
-                    
-                    <h3 style="color: #2E7D32; font-size: 1.2rem; margin-top: 1.5rem;">Why This Matters for PSC & License Exams?</h3>
-                    <p style="line-height: 1.8; color: #333;">
-                        Understanding the sign convention in the slope deflection method is crucial for solving structural analysis problems in competitive exams like <strong>Nepal Engineering Service (NES)</strong>, <strong>Loksewa</strong>, and <strong>Nepal Engineering Council (NEC) License Exams</strong>. Questions on structural analysis frequently appear in these examinations, and mastering the fundamentals can significantly improve your score.
-                    </p>
-                </div>
-            </div>
+                </article>
+            </section>
 
+            <section class="topic-section" id="moving-loads" aria-labelledby="moving-loads-heading">
+                <h2 class="topic-heading" id="moving-loads-heading">
+                    <i class="fas fa-train" aria-hidden="true"></i> Moving Loads and Influence Lines
+                </h2>
+
+                <article class="card">
+                    <span class="question-label">MCQ 1</span>
+                    <p class="question-text"><strong>The maximum bending moment due to a train of wheel loads on a simply supported girder ____________.</strong></p>
+                    <ol class="mcq-options" type="A">
+                        <li>Always occurs under a wheel load</li>
+                        <li>Never occurs under a wheel load</li>
+                        <li>Always occurs at centre of span</li>
+                        <li>None</li>
+                    </ol>
+                    <div class="options"><button class="nav-btn" type="button">Show Answer</button></div>
+                    <div class="answer"><strong>A. Always occurs under a wheel load</strong></div>
+                </article>
+
+                <article class="card">
+                    <span class="question-label">MCQ 2</span>
+                    <p class="question-text"><strong>Muller-Breslau principle is used mainly to draw:</strong></p>
+                    <ol class="mcq-options" type="A">
+                        <li>Bending moment diagrams</li>
+                        <li>Shear force diagrams</li>
+                        <li>Deflected shape only</li>
+                        <li>Influence line diagrams</li>
+                    </ol>
+                    <div class="options"><button class="nav-btn" type="button">Show Answer</button></div>
+                    <div class="answer"><strong>D. Influence line diagrams</strong></div>
+                </article>
+            </section>
+
+            <section class="topic-section" id="conjugate-beam" aria-labelledby="conjugate-beam-heading">
+                <h2 class="topic-heading" id="conjugate-beam-heading">
+                    <i class="fas fa-ruler-combined" aria-hidden="true"></i> Conjugate Beam Method
+                </h2>
+
+                <article class="card">
+                    <span class="question-label">MCQ 3</span>
+                    <p class="question-text"><strong>The fixed support in a real beam becomes in the conjugate beam a __________.</strong></p>
+                    <ol class="mcq-options" type="A">
+                        <li>Hinged support</li>
+                        <li>Roller support</li>
+                        <li>Fixed support</li>
+                        <li>Free end</li>
+                    </ol>
+                    <div class="options"><button class="nav-btn" type="button">Show Answer</button></div>
+                    <div class="answer"><strong>D. Free end</strong></div>
+                </article>
+            </section>
+
+            <section class="topic-section" id="indeterminacy" aria-labelledby="indeterminacy-heading">
+                <h2 class="topic-heading" id="indeterminacy-heading">
+                    <i class="fas fa-sitemap" aria-hidden="true"></i> Static Indeterminacy
+                </h2>
+
+                <article class="card">
+                    <span class="question-label">MCQ 4</span>
+                    <p class="question-text"><strong>Degree of static indeterminacy of a rigid-jointed plane frame having 15 members, 3 reaction components and 14 joints is:</strong></p>
+                    <ol class="mcq-options" type="A">
+                        <li>3</li>
+                        <li>2</li>
+                        <li>6</li>
+                        <li>8</li>
+                    </ol>
+                    <div class="options"><button class="nav-btn" type="button">Show Answer</button></div>
+                    <div class="answer">
+                        <strong>C. 6</strong><br /><br />
+                        For a rigid-jointed plane frame, the degree of static indeterminacy is <span class="formula">3m + r − 3j</span>. Therefore, <span class="formula">3(15) + 3 − 3(14) = 6</span>.
+                    </div>
+                </article>
+
+                <article class="card">
+                    <span class="question-label">MCQ 5</span>
+                    <p class="question-text"><strong>If there are <em>m</em> unknown member forces, <em>r</em> unknown reaction components and <em>j</em> number of joints, then the degree of static indeterminacy of a pin-jointed plane frame is given by:</strong></p>
+                    <ol class="mcq-options" type="A">
+                        <li><em>m − r + 2j</em></li>
+                        <li><em>m + r − 2j</em></li>
+                        <li><em>m + r + 2j</em></li>
+                        <li><em>m + r − 3j</em></li>
+                    </ol>
+                    <div class="options"><button class="nav-btn" type="button">Show Answer</button></div>
+                    <div class="answer"><strong>B. m + r − 2j</strong></div>
+                </article>
+            </section>
+
+            <section class="topic-section" id="displacement" aria-labelledby="displacement-heading">
+                <h2 class="topic-heading" id="displacement-heading">
+                    <i class="fas fa-up-down-left-right" aria-hidden="true"></i> Displacement Methods and Degrees of Freedom
+                </h2>
+
+                <article class="card">
+                    <span class="question-label">MCQ 6</span>
+                    <p class="question-text"><strong>In the displacement method of structural analysis, the basic unknowns are ____________.</strong></p>
+                    <ol class="mcq-options" type="A">
+                        <li>Force</li>
+                        <li>Displacements</li>
+                        <li>Displacements and forces</li>
+                        <li>None</li>
+                    </ol>
+                    <div class="options"><button class="nav-btn" type="button">Show Answer</button></div>
+                    <div class="answer"><strong>B. Displacements</strong></div>
+                </article>
+
+                <article class="card">
+                    <span class="question-label">MCQ 7</span>
+                    <p class="question-text"><strong>Independent displacement components at each joint of a rigid-jointed plane frame are ____________.</strong></p>
+                    <ol class="mcq-options" type="A">
+                        <li>Two linear movements and one rotation</li>
+                        <li>Three linear movements</li>
+                        <li>One linear movement and two rotations</li>
+                        <li>Three rotations</li>
+                    </ol>
+                    <div class="options"><button class="nav-btn" type="button">Show Answer</button></div>
+                    <div class="answer"><strong>A. Two linear movements and one rotation</strong></div>
+                </article>
+
+                <article class="card">
+                    <span class="question-label">MCQ 8</span>
+                    <p class="question-text"><strong>The number of unknown internal forces in each member of a rigid-jointed plane frame is ____________.</strong></p>
+                    <ol class="mcq-options" type="A">
+                        <li>2</li>
+                        <li>1</li>
+                        <li>3</li>
+                        <li>6</li>
+                    </ol>
+                    <div class="options"><button class="nav-btn" type="button">Show Answer</button></div>
+                    <div class="answer"><strong>C. 3</strong></div>
+                </article>
+
+                <article class="card">
+                    <span class="question-label">MCQ 9</span>
+                    <p class="question-text"><strong>The number of independent displacement components at each joint of a rigid-jointed space frame is ____________.</strong></p>
+                    <ol class="mcq-options" type="A">
+                        <li>1</li>
+                        <li>3</li>
+                        <li>2</li>
+                        <li>6</li>
+                    </ol>
+                    <div class="options"><button class="nav-btn" type="button">Show Answer</button></div>
+                    <div class="answer"><strong>D. 6</strong></div>
+                </article>
+            </section>
+
+            <section class="topic-section" id="arches" aria-labelledby="arches-heading">
+                <h2 class="topic-heading" id="arches-heading">
+                    <i class="fas fa-archway" aria-hidden="true"></i> Two-Hinged Arches
+                </h2>
+
+                <article class="card">
+                    <span class="question-label">MCQ 10</span>
+                    <p class="question-text"><strong>For a two-hinged arch, if one of the supports settles down vertically, then the horizontal thrust ____________.</strong></p>
+                    <ol class="mcq-options" type="A">
+                        <li>Is decreased</li>
+                        <li>Remains unchanged</li>
+                        <li>Is increased</li>
+                        <li>Becomes zero</li>
+                    </ol>
+                    <div class="options"><button class="nav-btn" type="button">Show Answer</button></div>
+                    <div class="answer"><strong>B. Remains unchanged</strong></div>
+                </article>
+
+                <article class="card">
+                    <span class="question-label">MCQ 11</span>
+                    <p class="question-text"><strong>For a symmetrical two-hinged parabolic arch, if one of the supports settles horizontally, then the horizontal thrust ____________.</strong></p>
+                    <ol class="mcq-options" type="A">
+                        <li>Remains unchanged</li>
+                        <li>Is decreased</li>
+                        <li>Is increased</li>
+                        <li>Becomes zero</li>
+                    </ol>
+                    <div class="options"><button class="nav-btn" type="button">Show Answer</button></div>
+                    <div class="answer"><strong>B. Is decreased</strong></div>
+                </article>
+            </section>
+
+            <section class="topic-section" id="virtual-work" aria-labelledby="virtual-work-heading">
+                <h2 class="topic-heading" id="virtual-work-heading">
+                    <i class="fas fa-scale-balanced" aria-hidden="true"></i> Principle of Virtual Work
+                </h2>
+
+                <article class="card">
+                    <span class="question-label">MCQ 12</span>
+                    <p class="question-text"><strong>The principle of virtual work can be applied to an elastic system by considering the virtual work of ____________.</strong></p>
+                    <ol class="mcq-options" type="A">
+                        <li>External forces only</li>
+                        <li>Internal forces only</li>
+                        <li>Internal as well as external forces</li>
+                        <li>None</li>
+                    </ol>
+                    <div class="options"><button class="nav-btn" type="button">Show Answer</button></div>
+                    <div class="answer"><strong>C. Internal as well as external forces</strong></div>
+                </article>
+            </section>
         </div>
-    </section>
+    </main>
 
-<button class="top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to Top">↑</button>
- <div id="social-section"></div>
+    <button class="top-btn" type="button" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" title="Back to Top" aria-label="Back to top">↑</button>
+    <div id="social-section"></div>
     <div id="footer"></div>
-   <script src="/js/logo.js"defer></script>
+
+    <script src="/js/logo.js" defer></script>
     <script src="/js/layout.js" defer></script>
     <script src="/js/lazy-load.js" defer></script>
     <script src="/js/text-protect.js" defer></script>
-	<script src="/js/mcq-script.js" defer></script>
+    <script src="/js/mcq-script.js" defer></script>
 </body>
 </html>

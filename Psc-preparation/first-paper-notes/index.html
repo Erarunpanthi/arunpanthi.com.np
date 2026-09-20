@@ -114,7 +114,7 @@
     
     <main class="container" id="main-content">
 
-        <h1>📘 Syllabus Topics</h1>
+        <h1>Syllabus Topics</h1>
         <p>Click <strong>View Notes</strong> on any topic to access detailed study material.</p>
 
         <!-- PART I – AWARENESS                                           -->
@@ -259,10 +259,10 @@
                     meta.textContent = `${topic.marks} Mark${topic.marks > 1 ? 's' : ''}`;
 
                     // ---- View Notes button ----
-                    // ✅ FIX: Use absolute path with BASE_URL
+                    // FIX: Use absolute path with BASE_URL
                     const btn = document.createElement('a');
                     btn.className = 'cta-button';
-                    btn.textContent = '📖 View Notes';
+                    btn.textContent = 'View Notes';
                     btn.href = BASE_URL + topic.id;
                     btn.setAttribute('aria-label', `View notes for topic ${topic.id}: ${topic.name}`);
 

@@ -1,0 +1,270 @@
+/* Styles scoped to the Second Paper syllabus page to avoid legacy global grid conflicts. */
+.subjective-index {
+    background: #f4f7f5;
+    color: #17231b;
+    display: block;
+    min-height: 100vh;
+}
+
+.subjective-index .subjective-shell {
+    width: min(1180px, calc(100% - 40px));
+    margin-inline: auto;
+}
+
+.subjective-index #navbar {
+    margin-bottom: 0 !important;
+}
+
+.subjective-index .subjective-hero {
+    width: 100%;
+    margin: 0;
+    padding: 64px 0 58px;
+    border-radius: 0;
+    color: #fff;
+    text-align: center;
+    background:
+        radial-gradient(circle at 12% 20%, rgba(255,255,255,.12), transparent 28%),
+        linear-gradient(135deg, #0d3b12 0%, #1b5e20 58%, #2e7d32 100%);
+}
+
+.subjective-index .subjective-hero .eyebrow,
+.subjective-index .subjective-hero .hero-summary {
+    margin: 0;
+    text-align: center;
+    hyphens: none;
+}
+
+.subjective-index .subjective-hero .eyebrow {
+    color: #d9f2dc;
+    font: 700 .78rem/1.4 "Segoe UI", system-ui, sans-serif;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+}
+
+.subjective-index .subjective-hero h1 {
+    color: #fff !important;
+    margin: 10px 0 8px !important;
+    font: 800 clamp(2rem, 5vw, 3.6rem)/1.08 "Segoe UI", system-ui, sans-serif !important;
+    letter-spacing: -.035em;
+}
+
+.subjective-index .subjective-hero .hero-summary {
+    color: rgba(255,255,255,.86);
+    font: 400 1.05rem/1.6 "Segoe UI", system-ui, sans-serif;
+}
+
+.subjective-index .hero-facts {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 9px;
+    margin-top: 24px;
+}
+
+.subjective-index .hero-facts span {
+    padding: 8px 14px;
+    border: 1px solid rgba(255,255,255,.22);
+    border-radius: 999px;
+    background: rgba(255,255,255,.1);
+    font: 700 .83rem/1.2 "Segoe UI", system-ui, sans-serif;
+}
+
+.subjective-index .subjective-main {
+    max-width: none !important;
+    margin: 0 auto !important;
+    padding: 48px 0 64px !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+.subjective-index .page-intro {
+    max-width: 720px;
+    margin-bottom: 36px;
+}
+
+.subjective-index .page-intro h2 {
+    margin: 0 0 8px;
+    color: #123b1b;
+    font: 800 clamp(1.7rem, 3vw, 2.25rem)/1.2 "Segoe UI", system-ui, sans-serif;
+}
+
+.subjective-index .page-intro p {
+    margin: 0;
+    color: #516057;
+    text-align: left;
+    font: 400 1rem/1.7 "Segoe UI", system-ui, sans-serif;
+}
+
+.subjective-index .syllabus-section {
+    margin-top: 42px;
+}
+
+.subjective-index .section-heading {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 16px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #d8e1da;
+}
+
+.subjective-index .section-heading > div {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.subjective-index .section-letter {
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    flex: 0 0 38px;
+    border-radius: 10px;
+    color: #fff;
+    background: #1b5e20;
+    font: 800 1rem/1 "Segoe UI", system-ui, sans-serif;
+}
+
+.subjective-index .section-heading h2 {
+    margin: 0;
+    color: #17231b;
+    font: 750 clamp(1.2rem, 2.6vw, 1.55rem)/1.25 "Segoe UI", system-ui, sans-serif;
+}
+
+.subjective-index .section-heading p {
+    margin: 0;
+    flex: 0 0 auto;
+    color: #647168;
+    text-align: right;
+    font: 600 .85rem/1.4 "Segoe UI", system-ui, sans-serif;
+}
+
+.subjective-index .topic-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.subjective-index .topic-card {
+    display: flex;
+    min-width: 0;
+    min-height: 230px;
+    flex-direction: column;
+    padding: 22px;
+    overflow: hidden;
+    border: 1px solid #dce5de;
+    border-radius: 14px;
+    background: #fff;
+    box-shadow: 0 3px 14px rgba(15, 48, 22, .055);
+    transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+}
+
+.subjective-index .topic-card:hover {
+    transform: translateY(-2px);
+    border-color: #b9ccbd;
+    box-shadow: 0 8px 24px rgba(15, 48, 22, .09);
+}
+
+.subjective-index .topic-card.available {
+    border-top: 4px solid #2e7d32;
+    padding-top: 19px;
+}
+
+.subjective-index .topic-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.subjective-index .topic-number {
+    display: inline-flex;
+    padding: 6px 9px;
+    border-radius: 7px;
+    color: #15531c;
+    background: #e8f5e9;
+    font: 800 .78rem/1 "Segoe UI", system-ui, sans-serif;
+    letter-spacing: .03em;
+}
+
+.subjective-index .marks {
+    color: #66736a;
+    font: 700 .76rem/1.2 "Segoe UI", system-ui, sans-serif;
+    text-transform: uppercase;
+}
+
+.subjective-index .topic-card h3 {
+    margin: 0 0 9px;
+    color: #18341e;
+    font: 750 1.08rem/1.35 "Segoe UI", system-ui, sans-serif;
+}
+
+.subjective-index .topic-card p {
+    margin: 0 0 20px;
+    color: #5a675e;
+    text-align: left;
+    hyphens: none;
+    font: 400 .9rem/1.6 "Segoe UI", system-ui, sans-serif;
+}
+
+.subjective-index .notes-button,
+.subjective-index .coming-soon {
+    margin-top: auto;
+    font: 750 .84rem/1.2 "Segoe UI", system-ui, sans-serif;
+}
+
+.subjective-index .notes-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 11px 13px;
+    border-radius: 9px;
+    color: #fff;
+    background: #1b5e20;
+    text-decoration: none;
+    transition: background .2s ease, transform .2s ease;
+}
+
+.subjective-index .notes-button:hover,
+.subjective-index .notes-button:focus-visible {
+    color: #fff;
+    background: #0d3b12;
+}
+
+.subjective-index .notes-button:focus-visible {
+    outline: 3px solid rgba(46,125,50,.28);
+    outline-offset: 3px;
+}
+
+.subjective-index .coming-soon {
+    display: inline-flex;
+    align-self: flex-start;
+    padding: 8px 10px;
+    border-radius: 7px;
+    color: #68736b;
+    background: #f0f3f1;
+}
+
+@media (max-width: 900px) {
+    .subjective-index .topic-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 620px) {
+    .subjective-index .subjective-shell { width: min(100% - 28px, 1180px); }
+    .subjective-index .subjective-hero { padding: 44px 0 40px; }
+    .subjective-index .subjective-main { padding-top: 34px !important; }
+    .subjective-index .section-heading { align-items: flex-start; flex-direction: column; gap: 8px; }
+    .subjective-index .section-heading p { padding-left: 50px; text-align: left; }
+    .subjective-index .topic-grid { grid-template-columns: 1fr; }
+    .subjective-index .topic-card { min-height: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .subjective-index .topic-card,
+    .subjective-index .notes-button { transition: none; }
+}

@@ -5,7 +5,7 @@
   
   var CSS_FILE     = "css/styles.css";
   var FAVICON_FILE = "favicon.ico";
-  var FONT_AWESOME = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css";
+  var FONT_AWESOME = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css";
 
   var PARTIALS = {
     "navbar":         "partials/navbar.html",
@@ -166,6 +166,49 @@
   }
 
 
+  // Auto "Last updated" date — always shows the LAST DAY of the current month.
+  // Any <time data-auto-date="month-end"> element is updated automatically, so the
+  // stamp rolls over on its own at the end of each month with no manual edits.
+  // Also keeps the page JSON-LD dateModified in sync when present (#page-schema).
+
+  function getMonthEndDates(now) {
+    var lastDay = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+    var mm = String(lastDay.getMonth() + 1);
+    if (mm.length < 2) mm = "0" + mm;
+    var dd = String(lastDay.getDate());
+    if (dd.length < 2) dd = "0" + dd;
+    var iso = lastDay.getFullYear() + "-" + mm + "-" + dd;
+    var long = lastDay.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+    return { iso: iso, long: long };
+  }
+
+  function initAutoLastUpdated() {
+    var dates;
+    try {
+      dates = getMonthEndDates(new Date());
+    } catch (err) {
+      return; // keep the static fallback text in the HTML
+    }
+
+    var times = document.querySelectorAll('time[data-auto-date="month-end"]');
+    for (var i = 0; i < times.length; i++) {
+      times[i].setAttribute("datetime", dates.iso);
+      times[i].textContent = dates.long;
+    }
+
+    var schemaEl = document.getElementById("page-schema");
+    if (schemaEl) {
+      try {
+        var data = JSON.parse(schemaEl.textContent);
+        data.dateModified = dates.iso;
+        schemaEl.textContent = JSON.stringify(data);
+      } catch (err) {
+        // keep the static fallback JSON-LD
+      }
+    }
+  }
+
+
   // Lazy loading — images, iframes, videos, background images, and HTML sections
   
   function initLazyLoading() {
@@ -293,6 +336,7 @@
     fixAllLinks();
     initNavbar();
     initFooter();
+    initAutoLastUpdated();
     initLazyLoading();
   });
 

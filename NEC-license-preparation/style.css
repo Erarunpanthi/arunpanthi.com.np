@@ -536,7 +536,7 @@ main {
 }
 
 .cta-section .cta-button::after {
-    content: '→';
+    content: '';
     font-size: 1rem;
 }
 

@@ -31,12 +31,26 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       }
       
+      // This button already carries an inline navigation handler — it is a
+      // section shortcut, not an answer toggle, so leave its label untouched.
+      if (originalOnClick && originalOnClick.includes('location')) {
+        return;
+      }
+      
+      const card = button.closest('.card');
+      const cardAnswer = card ? card.querySelector('.answer') : null;
+      // Only decorate buttons that actually control an answer block.
+      if (!cardAnswer) return;
+      if (button.dataset.mcqReady === 'true') return;
+      button.dataset.mcqReady = 'true';
+      button.setAttribute('type', 'button');
+      
       // Add eye icon with proper aria-label
       const icon = document.createElement('i');
       icon.className = 'fas fa-eye';
       icon.setAttribute('aria-hidden', 'true');
       
-      const buttonText = button.textContent.trim();
+      const buttonText = button.textContent.trim() || 'Show Answer';
       button.innerHTML = '';
       button.appendChild(icon);
       button.appendChild(document.createTextNode(' ' + buttonText));
@@ -44,23 +58,30 @@ document.addEventListener('DOMContentLoaded', function() {
       // Add keyboard accessibility
       button.setAttribute('role', 'button');
       button.setAttribute('tabindex', '0');
-      button.setAttribute('aria-pressed', 'false');
+      button.setAttribute('aria-expanded', 'false');
       
       // Click handler with proper cleanup
       const clickHandler = function(event) {
-        if (originalOnClick && originalOnClick.includes("location.href='#")) {
-          return;
-        }
-        
         const card = button.closest('.card');
         if (!card) return;
         
         const answer = card.querySelector('.answer');
         if (!answer) return;
         
-        answer.classList.toggle('visible');
-        answer.classList.toggle('show');
-        card.classList.add('viewed');
+        const willShow = !(answer.classList.contains('show') || answer.classList.contains('visible'));
+        if (willShow) {
+          answer.classList.add('show', 'visible');
+          // Exact height keeps long explanations from being clipped by the
+          // 0.4s max-height transition used in css/Mcq.css.
+          answer.style.maxHeight = answer.scrollHeight + 'px';
+        } else {
+          answer.style.maxHeight = answer.scrollHeight + 'px';
+          void answer.offsetHeight;
+          answer.classList.remove('show', 'visible');
+          answer.style.maxHeight = '';
+        }
+        answer.setAttribute('aria-hidden', willShow ? 'false' : 'true');
+        card.classList.toggle('viewed', willShow);
         
         const iconEl = button.querySelector('i');
         const isShowing = answer.classList.contains('show') || answer.classList.contains('visible');
@@ -70,13 +91,13 @@ document.addEventListener('DOMContentLoaded', function() {
           button.innerHTML = '';
           button.appendChild(iconEl);
           button.appendChild(document.createTextNode(' Hide Answer'));
-          button.setAttribute('aria-pressed', 'true');
+          button.setAttribute('aria-expanded', 'true');
         } else {
           iconEl.className = 'fas fa-eye';
           button.innerHTML = '';
           button.appendChild(iconEl);
           button.appendChild(document.createTextNode(' Show Answer'));
-          button.setAttribute('aria-pressed', 'false');
+          button.setAttribute('aria-expanded', 'false');
         }
       };
       
@@ -100,6 +121,13 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
   
+  // Keep expanded answers readable after a viewport change
+  window.addEventListener('resize', () => {
+    document.querySelectorAll('.answer.show').forEach(answer => {
+      answer.style.maxHeight = answer.scrollHeight + 'px';
+    });
+  });
+
   // Fix section IDs with spaces
   const sections = document.querySelectorAll('section[id]');
   sections.forEach(section => {

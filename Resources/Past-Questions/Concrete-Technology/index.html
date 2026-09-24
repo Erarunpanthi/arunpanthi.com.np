@@ -54,18 +54,26 @@
             transform: translateY(-3px);
             box-shadow: 0 10px 25px rgba(245,87,108,0.4);
         }
+
+        /* The card was wider than a phone screen: the long unbroken heading plus
+           100px of side padding pushed the page sideways. */
+        @media (max-width: 560px) {
+            .card { padding: 36px 20px; }
+            h1 { font-size: 1.6rem; }
+            h2 { font-size: 1.3rem; }
+        }
     </style>
 
     <meta property="og:title" content="Concrete Technology Past Questions - CivPrepMaster">
     <meta property="og:description" content="Download Concrete Technology past questions with solutions for civil engineering exams in Nepal.">
     <meta property="og:url" content="https://arunpanthi.com.np/Resources/Past-Questions/Concrete-Technology/">
-    <meta property="og:image" content="https://arunpanthi.com.np/assets/preview.jpg">
+    <meta property="og:image" content="/assets/preview.jpg">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="CivPrepMaster">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Concrete Technology Past Questions - CivPrepMaster">
     <meta name="twitter:description" content="Download Concrete Technology past questions with solutions for civil engineering exams in Nepal.">
-    <meta name="twitter:image" content="https://arunpanthi.com.np/assets/preview.jpg">
+    <meta name="twitter:image" content="/assets/preview.jpg">
 </head>
 <body>
     <div class="card">

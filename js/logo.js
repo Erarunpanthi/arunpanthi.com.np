@@ -2,7 +2,9 @@
 (function () {
   "use strict";
 
-  var WATERMARK_LOGO = "https://arunpanthi.com.np/Photos/watermark.png";
+  // Root-relative so the watermark also loads on previews / mirrors of the site,
+  // not only on the production domain.
+  var WATERMARK_LOGO = "/Photos/watermark.png";
 
   function addWatermark() {
     var wm = document.createElement("div");

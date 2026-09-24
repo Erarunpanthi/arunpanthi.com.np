@@ -67,18 +67,17 @@ footer,
     margin-bottom: 25px !important;
 }
 
+/* Invalid nested block removed: ".hero { .hero { ... } }" could never match,
+   so the declarations below are the ones that actually style the hero.
+   They are kept in sync with the hero in css/styles.css. */
 .hero {
-   .hero {
-  background-color: var(--green-400);
-         text-align: center !important;
-  color: #fff;
-  padding: 40px 20px;
-  text-align: center;
-  border-radius: 25px;
-  margin: 0 auto;
-  width: 60%;
-}
-
+    background-color: var(--green-600);
+    color: #fff;
+    padding: 15px 30px;
+    text-align: center;
+    border-radius: 0;
+    margin: 0 auto 25px auto;
+    width: 100%;
 }
 .hero h1 {
     font-size: 36px !important;
@@ -89,21 +88,24 @@ footer,
     margin: 10px 0 !important;
 }
 
+/* The injected social bar and footer must look identical to the rest of the
+   site (see css/styles.css) — flat brand green instead of a different gradient
+   or the lighter --green-400. */
 .social-media,
 #social-section {
-    background: linear-gradient(135deg, var(--green-400), var(--green-600)) !important;
+    background: var(--green-600) !important;
     color: #fff !important;
-    padding: 30px 20px !important;
+    padding: 26px 20px !important;
     text-align: center !important;
 }
 
 footer,
 #footer {
-    background-color: var(--green-400) !important;
+    background-color: var(--green-600) !important;
     color: #fff !important;
     text-align: center !important;
-    padding: 20px !important;
-    margin-top: 20px !important;
+    padding: 24px 20px 26px !important;
+    margin-top: 0 !important;
 }
 
 .container,

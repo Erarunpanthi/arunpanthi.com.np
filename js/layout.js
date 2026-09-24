@@ -3,9 +3,14 @@
   "use strict";
 
   
-  var CSS_FILE     = "css/styles.css";
+  // Version query busts the 1-year immutable cache set in .htaccess when the
+  // stylesheet changes.
+  var ASSET_VERSION = "?v=20260924";
+  var CSS_FILE     = "css/styles.css" + ASSET_VERSION;
   var FAVICON_FILE = "favicon.ico";
-  var FONT_AWESOME = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css";
+  // Self-hosted Font Awesome so the navbar / social / footer icons always render
+  // (no CDN dependency, and every page uses the same icon version).
+  var FONT_AWESOME = "assets/fontawesome/css/all.min.css" + ASSET_VERSION;
 
   var PARTIALS = {
     "navbar":         "partials/navbar.html",
@@ -79,7 +84,7 @@
   }
 
   function addGlobalCSS() {
-    if (document.querySelector("link[data-global-css], link[href$='styles.css']")) return;
+    if (document.querySelector("link[data-global-css], link[href*='styles.css'], link[href*='styles.css?v=']")) return;
     var link  = document.createElement("link");
     link.rel  = "stylesheet";
     link.href = buildPath(CSS_FILE);
@@ -88,12 +93,11 @@
   }
 
   function addFontAwesome() {
-    if (document.querySelector("link[data-font-awesome], link[href*='font-awesome'], link[href*='fontawesome']")) return;
+    if (document.querySelector("link[data-font-awesome], link[href*='font-awesome'], link[href*='fontawesome'], link[href*='all.min.css']")) return;
     var link  = document.createElement("link");
     link.rel  = "stylesheet";
-    link.href = FONT_AWESOME;
+    link.href = buildPath(FONT_AWESOME);
     link.setAttribute("data-font-awesome", "true");
-    link.crossOrigin = "anonymous";
     document.head.appendChild(link);
   }
 
@@ -106,8 +110,13 @@
       var resp = await fetch(buildPath(filePath));
       if (!resp.ok) throw new Error("HTTP " + resp.status);
       el.innerHTML = await resp.text();
+      // Mark the host element (but do not copy the component class onto it —
+      // the partial already carries .navbar / .social-media / .footer and a
+      // duplicated class would double up padding and backgrounds).
+      el.classList.add("global-partial");
     } catch (err) {
       console.error("Failed to load partial '" + filePath + "':", err);
+      el.classList.add("global-partial");
     }
   }
 
@@ -162,7 +171,21 @@
 
   function initFooter() {
     var yearEl = document.getElementById("year");
-    if (yearEl) yearEl.textContent = new Date().getFullYear();
+    if (!yearEl) {
+      // The footer partial could not be injected (offline / blocked fetch):
+      // print a complete footer instead of leaving an empty strip at the bottom.
+      var host = document.getElementById("footer");
+      if (host && !host.querySelector(".footer")) {
+        host.classList.add("global-partial", "footer");
+        host.innerHTML =
+          '<p>©<span id="year"></span> CivPrepMaster. All rights reserved.<br>' +
+          '<a href="' + buildPath("PrivacyPolicy") + '">Privacy Policy</a> | ' +
+          '<a href="' + buildPath("TermsofService") + '">Terms of Service</a></p>';
+      }
+      yearEl = document.getElementById("year");
+      if (!yearEl) return;
+    }
+    yearEl.textContent = new Date().getFullYear();
   }
 
 

@@ -52,7 +52,16 @@
             transform: translateY(-3px);
             box-shadow: 0 10px 25px rgba(245,87,108,0.4);
         }
+
+        /* The card was wider than a phone screen: the long unbroken heading plus
+           100px of side padding pushed the page sideways. */
+        @media (max-width: 560px) {
+            .card { padding: 36px 20px; }
+            h1 { font-size: 1.6rem; }
+            h2 { font-size: 1.3rem; }
+        }
     </style>
+    <link rel="stylesheet" href="/assets/fontawesome/css/all.min.css?v=20260924">
 </head>
 <body>
     <div class="card">

@@ -210,7 +210,9 @@ ul li span {
 }
 
 .answer.show {
-  max-height: 500px;
+  /* Tall enough that long explanations are never clipped;
+     js/Mcq.js + js/mcq-script.js set the exact height for a smooth reveal. */
+  max-height: 1500px;
   padding: 20px;
   border-left: 4px solid var(--primary-color);
 }

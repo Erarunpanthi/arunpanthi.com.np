@@ -17,10 +17,10 @@
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Hydrology Mock Test | Online Practice Sets" />
   <meta name="twitter:description" content="Practice Hydrology mock tests online with all available sets." />
-<link rel="stylesheet" href="/css/styles.css">
+<link rel="stylesheet" href="/css/styles.css?v=20260924">
   
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="/assets/fontawesome/css/all.min.css?v=20260924" />
 
   <script type="application/ld+json">
   {
@@ -77,7 +77,7 @@
   </main>
 
   <div id="footer"></div>
-  <script src="/js/layout.js"></script>
+  <script src="/js/layout.js?v=20260924"></script>
 
   <script>
     const GITHUB_OWNER = "Erarunpanthi";
@@ -121,6 +121,32 @@
       return card;
     }
 
+    // Fallback list used when the GitHub API is unavailable (offline, rate limit,
+    // 404, certificate problem ...). Without it the section collapses into an
+    // error box and the visitor cannot reach any test set.
+    const FALLBACK_TESTS = [1, 2, 3, 4, 5].map(n => ({ type: "file", name: `set-${n}.htm` }));
+
+    function renderTests(testFiles) {
+      if (!testContainer) return;
+      testContainer.innerHTML = "";
+
+      if (!testFiles.length) {
+        if (setCount) setCount.textContent = "No test sets found";
+        if (noTestsMessage) noTestsMessage.style.display = "block";
+        return;
+      }
+
+      if (errorBox) errorBox.style.display = "none";
+      if (noTestsMessage) noTestsMessage.style.display = "none";
+
+      testFiles.forEach((file, index) => {
+        testContainer.appendChild(createCard(file, index));
+      });
+
+      const label = testFiles.length === 1 ? "test set" : "test sets";
+      if (setCount) setCount.textContent = `${testFiles.length} ${label} available`;
+    }
+
     async function loadTests() {
       try {
         const apiUrl = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${encodeFolderPath(GITHUB_FOLDER)}?ref=${encodeURIComponent(GITHUB_BRANCH)}`;
@@ -139,26 +165,11 @@
           .filter(file => file.type === "file" && isTestFile(file.name))
           .sort((a, b) => getSetNumber(a.name) - getSetNumber(b.name));
 
-        testContainer.innerHTML = "";
-        errorBox.style.display = "none";
-        noTestsMessage.style.display = "none";
-
-        if (testFiles.length === 0) {
-          setCount.textContent = "No test sets found";
-          noTestsMessage.style.display = "block";
-          return;
-        }
-
-        testFiles.forEach((file, index) => {
-          testContainer.appendChild(createCard(file, index));
-        });
-
-        setCount.textContent = `${testFiles.length} test set${testFiles.length > 1 ? "s" : ""} available`;
+        renderTests(testFiles.length ? testFiles : FALLBACK_TESTS);
       } catch (error) {
         console.error(error);
-        setCount.textContent = "Could not load test sets";
-        errorBox.style.display = "block";
-        errorBox.textContent = "Please check the GitHub folder path, repo visibility, and branch name.";
+        // Still show the set links (they are plain files next to this page).
+        renderTests(FALLBACK_TESTS);
       }
     }
 

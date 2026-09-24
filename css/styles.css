@@ -3,6 +3,10 @@
   --green-400: #2e7d32;
   --green-600: #1b5e20;
   --green-700: #0d3d12;
+  /* Brand colour for the shared chrome (navbar / social bar / footer).
+     Kept separate from --green-600 so a page that re-declares --green-600 in its
+     own :root block cannot make the header or footer a different green. */
+  --brand-green: #1b5e20;
   --accent-blue: #007bff;
   --muted: #666666;
   --muted-2: #555555;
@@ -101,7 +105,7 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: var(--green-600);
+  background-color: var(--brand-green);
   padding: 10px 20px;
   width: 100%;
   margin-bottom: 15px;
@@ -111,54 +115,99 @@ a {
 .navbar-links {
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 8px 10px;
   width: 100%;
   max-width: 900px;
 }
 
 .nav-item {
   color: #fff;
-  padding: 6px 10px;
+  padding: 8px 12px;
   font-size: 15px;
+  font-weight: 500;
+  line-height: 1.25;
   text-align: center;
-  transition: background-color var(--transition-medium);
-  border-radius: 5px;
+  transition: background-color var(--transition-medium), color var(--transition-medium),
+    border-color var(--transition-medium);
+  border: 0;
+  border-bottom: 2px solid transparent;
+  border-radius: 6px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 8px;
+  min-height: 44px;
   text-decoration: none;
   white-space: nowrap;
+}
+
+/* Icons sit on the text baseline instead of touching the label */
+.nav-item i {
+  font-size: 1em;
+  line-height: 1;
+  width: 1.15em;
+  text-align: center;
+  flex: 0 0 auto;
+}
+
+.nav-item span {
+  line-height: 1.25;
 }
 
 
 .nav-item:hover,
 .nav-item:active {
   background-color: rgba(255, 255, 255, 0.15);
+  color: #fff;
 }
 
 
 .nav-item.active,
 .nav-item.active-link {
-  border-bottom: 2px solid #fff;
+  border-bottom-color: #fff;
+  background-color: rgba(255, 255, 255, 0.12);
   font-weight: 700;
-  }
+  color: #fff;
+}
 
-/* Tablet view - 6 items per row */
+/* Focus rings must be visible on the dark green header, social and footer bars */
+.navbar :focus-visible,
+.social-media :focus-visible,
+footer :focus-visible,
+.footer :focus-visible {
+  outline: 3px solid #ffd54f;
+  outline-offset: 2px;
+}
+
+/* Tablet / small laptop view - all 6 items on one row */
 @media (min-width: 768px) {
   .navbar {
     flex-direction: row;
     justify-content: center;
-    padding: 8px 20px;
+    padding: 8px 16px;
   }
   
   .navbar-links {
-    gap: 12px;
+    gap: 6px 8px;
+    max-width: 1000px;
   }
   
   .nav-item {
+    font-size: 14px;
+    padding: 8px 10px;
+  }
+}
+
+@media (min-width: 1000px) {
+  .navbar-links {
+    gap: 8px 12px;
+  }
+
+  .nav-item {
     font-size: 15px;
-    padding: 6px 12px;
+    padding: 8px 12px;
   }
 }
 
@@ -169,12 +218,20 @@ a {
   }
   
   .navbar-links {
-    gap: 4px 8px;
+    gap: 4px 6px;
   }
   
   .nav-item {
     font-size: 13px;
-    padding: 6px 8px;
+    gap: 6px;
+    padding: 8px 10px;
+    min-height: 44px;
+    flex: 1 1 auto;
+    max-width: calc(33.333% - 4px);
+  }
+
+  .nav-item i {
+    font-size: 0.95em;
   }
 }
 
@@ -221,9 +278,9 @@ a {
 
 
 .social-media {
-  background-color: var(--green-600);
+  background-color: var(--brand-green);
   color: #fff;
-  padding: 20px 20px;
+  padding: 26px 20px;
   margin-top: 0;
   margin-bottom: 25px;
   width: 100%;
@@ -242,58 +299,118 @@ a {
 }
 .social-media p {
   font-size: 0.9rem;
-  margin-bottom: 8px;
+  margin: 0 auto 14px;
   color: #fff;
+  text-align: center;
+  max-width: 640px;
 }
 .social-media .icons {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  gap: 6px 14px;
-  margin-top: 6px;
-  margin-bottom: 4px;
+  gap: 10px 12px;
+  margin-top: 2px;
+  margin-bottom: 0;
 }
 .social-media .icons a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 4px 6px;
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  margin: 0;
   color: #fff;
-  font-size: 15px;
+  font-size: 20px;
+  line-height: 1;
+  text-decoration: none;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.12);
+  transition: background-color var(--transition-medium), transform var(--transition-medium),
+    color var(--transition-medium);
+}
+.social-media .icons a i {
+  font-size: inherit;
+  line-height: 1;
+}
+.social-media .icons a:hover,
+.social-media .icons a:focus-visible {
+  background-color: #ffffff;
+  color: var(--brand-green);
+  transform: translateY(-2px);
   text-decoration: none;
 }
-.social-media .icons a:hover {
-  text-decoration: underline;
-}
 
 
-footer {
-  background-color: var(--green-600);
+footer,
+.footer {
+  background-color: var(--brand-green);
   color: #fff;
-  padding: 30px 20px 40px 20px;
+  padding: 24px 20px 26px 20px;
   margin-top: 0;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  gap: 6px;
   text-align: center; 
 }
-footer p {
-  margin: 0;
+footer p,
+.footer p {
+  margin: 0 auto;
   font-size: 14px;
+  line-height: 1.6;
+  text-align: center;
+  max-width: 100%;
 }
-footer a {
+footer a,
+.footer a {
   color: #fff;
-  margin: 0 8px;
-  padding: 0 4px;
+  margin: 0 4px;
+  padding: 2px 4px;
   font-size: 14px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  display: inline-block;
+  border-radius: 4px;
 }
-footer a:hover {
+footer a:hover,
+footer a:focus-visible,
+.footer a:hover,
+.footer a:focus-visible {
+  color: #ffd54f;
   text-decoration: underline;
 }
-footer hr {
+footer hr,
+.footer hr {
   display: none;
+}
+
+/* Wrappers that receive the JS-injected header / social / footer partials.
+   Keeping them full-width (and background-free) means the injected blocks always
+   line up edge-to-edge with the hero, exactly like the static <header>/<footer>. */
+#navbar,
+#footer,
+#social-section {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border-radius: 0;
+  text-align: center;
+  display: block;
+}
+
+#navbar > .navbar {
+  margin-bottom: 15px;
+}
+
+#footer > .footer,
+#footer > footer {
+  margin-top: 0;
 }
 
 
@@ -327,10 +444,18 @@ footer hr {
   gap: 10px;
 }
 
-.section h2 i,
-.social-media h2 i {
+.section h2 i {
   color: var(--green-600);
   font-size: 1.4rem;
+}
+
+/* The social bar sits on dark green, so its heading icon must stay white —
+   a dark green icon on the dark green bar is invisible. */
+.social-media h1 i,
+.social-media h2 i {
+  color: #ffffff;
+  font-size: 1.4rem;
+  line-height: 1;
 }
 
 
@@ -740,8 +865,10 @@ img.lazy {
     font-size: 1.5rem;
   }
   .social-media .icons a {
-    font-size: 14px;
-    padding: 4px 5px;
+    width: 44px;
+    height: 44px;
+    font-size: 18px;
+    padding: 0;
   }
 }
 
@@ -781,8 +908,10 @@ img.lazy {
     min-height: auto;
   }
   .social-media .icons a {
-    font-size: 13px;
-    padding: 3px 4px;
+    width: 42px;
+    height: 42px;
+    font-size: 17px;
+    padding: 0;
   }
 }
 
@@ -1927,5 +2056,104 @@ img.lazy {
   .page-cta,
   .info-box {
     padding: 20px 18px;
+  }
+}
+
+/* =========================================
+   GLOBAL NAVBAR / SOCIAL / FOOTER PARITY
+   =========================================
+   The header, social bar and footer are injected by js/layout.js on every page,
+   but several pages load an extra stylesheet (css/grid.css, css/style.css,
+   Resources/styles.css ...) that re-declares the same component classes with a
+   different look. These rules run last so the three components render exactly the
+   same everywhere — desktop and mobile. */
+
+/* Keep the navbar a single, evenly-spaced row of pills on desktop;
+   phones keep the 3-per-row layout from the media query above. */
+.navbar .navbar-links {
+  align-items: center;
+}
+
+.navbar .nav-item {
+  gap: 8px;
+  min-height: 44px;
+}
+
+@media (min-width: 768px) {
+  .navbar .nav-item {
+    flex: 0 0 auto;
+  }
+}
+
+/* Font Awesome is loaded locally from /assets/fontawesome (see js/layout.js).
+   The icon slots keep a fixed width so a late/blocked icon can never shift the
+   label next to it. */
+.navbar .nav-item i,
+.social-media .icons a i,
+.footer i {
+  display: inline-block;
+  min-width: 1em;
+  text-align: center;
+}
+
+/* Social + footer: identical geometry on every page */
+.social-media {
+  border-radius: 0;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.social-media .icons a {
+  box-sizing: border-box;
+}
+
+.footer,
+footer.footer {
+  background-color: var(--brand-green);
+  color: #ffffff;
+}
+
+/* Prev / Topics / Next pager used at the bottom of long article pages.
+   It used to be an inline flex row with a 120px–300px gap, which overflowed
+   the viewport on phones; now it wraps and stays inside the page. */
+.topic-pager {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.topic-pager button {
+  flex: 0 1 auto;
+  min-height: 44px;
+}
+
+@media (max-width: 600px) {
+  .topic-pager {
+    gap: 10px;
+  }
+
+  .topic-pager button {
+    flex: 1 1 30%;
+    padding: 10px 12px !important;
+    font-size: 0.9rem;
+  }
+}
+
+/* Wide content tables (engineering note pages) used to push the whole page
+   sideways on phones. Below 768px they become horizontally scrollable blocks
+   inside the page instead of overflowing the viewport. */
+@media (max-width: 768px) {
+  main table,
+  .container table,
+  .section table,
+  .syllabus-wrapper table,
+  .notes-content table {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
 }

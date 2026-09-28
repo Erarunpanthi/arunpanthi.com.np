@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Model Set-5</title>
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="/css/Mock_Test.css">
+<link rel="stylesheet" href="/assets/fontawesome/css/all.min.css?v=20260924">
+</head>
+<body>
+<nav class="navbar" id="navbar">
+<span class="brand" id="navbar-brand">Model Set -5 </span>
+<span class="timer-display" id="timer-display" style="display:none;">--:--</span>
+</nav>
+
+<div id="warning-modal" class="modal-overlay" style="display: none;">
+<div class="modal-dialog">
+<div class="warning-icon">⚠️</div>
+<h3>Unanswered Questions</h3>
+<p>You haven't answered all the questions.</p>
+<span class="unanswered-count" id="modal-unanswered-count">0 unanswered</span>
+<p style="margin-top:8px;"><strong>⚠ This test cannot be retaken once submitted!</strong></p>
+<div class="modal-buttons">
+<button class="btn-cancel" id="btn-modal-cancel">Cancel</button>
+<button class="btn-submit-warning" id="btn-modal-submit">Submit Anyway</button>
+</div>
+</div>
+</div>
+
+<div id="pre-test-section">
+<div class="hero" id="hero-card">
+<h1 id="hero-set-name">Loading...</h1>
+<p class="set-details" id="hero-details"></p>
+<div class="set-meta">
+<div class="meta-item"><span id="hero-q-count">0</span> Questions</div>
+<div class="meta-item"><span id="hero-time">0:00</span> Time (min)</div>
+</div>
+<button class="btn-start" id="btn-start-test">🚀 Start Test</button>
+<p style="margin-top:10px;font-size:0.85rem;opacity:0.8;" id="hero-note"></p>
+</div>
+</div>
+
+<div id="test-section" style="display:none;">
+<div class="test-container">
+<div class="question-area">
+<div class="question-card">
+<div class="q-number" id="q-number-label">QUESTION 1</div>
+<div class="q-text" id="q-text">Loading question...</div>
+<ul class="options-list" id="options-list"></ul>
+</div>
+<div class="nav-buttons">
+<div class="nav-left"><button class="btn-nav" id="btn-prev">◀ Previous</button></div>
+<div class="nav-center"><button class="btn-submit" id="btn-submit-test">✅ Submit Test</button></div>
+<div class="nav-right"><button class="btn-nav" id="btn-next">Next ▶</button></div>
+</div>
+</div>
+<aside class="sidebar">
+<h3>📋 Question </h3>
+<div class="total-questions" id="sidebar-total">Total: 0</div>
+<div class="answered-count">Answered: <strong id="sidebar-answered-num">0</strong></div>
+<div class="q-grid" id="q-grid"></div>
+<div class="legend">
+<span><span class="dot-sample blue"></span> Answered</span>
+<span><span class="dot-sample gray"></span> Unanswered</span>
+</div>
+</aside>
+</div>
+</div>
+
+<div id="results-section" style="display:none;">
+<div class="results-container">
+<div class="results-header">
+<h2 style="color:#2E7D32;">📊 Test Results</h2>
+<p style="color:#666;" id="results-set-name"></p>
+<div class="score-circle">
+<span class="score-num" id="results-score">0</span>
+<span class="score-denom" id="results-denom">/ 0</span>
+</div>
+<div class="percentage" id="results-percentage">0%</div>
+<p style="margin-top:8px;color:#888;font-size:0.9rem;" id="results-time-taken"></p>
+</div>
+<div id="results-detail"></div>
+</div>
+</div>
+<script src="/js/Mock_Test.js"></script>
+<script>
+(function() {
+    console.log('Inline script running');
+    const questionSet = {
+        name: 'MODEL SET-5',
+        details: 'Model Exam W7 - Objective Type Questions. Correct uses zero-based index: A = 0, B = 1, C = 2, D = 3. Questions with missing figures are marked with image placeholders.',
+        questions: [
+            { question: '1. Which is the largest rural municipality in Nepal in terms of the number of wards?', options: ['Gajuri Rural Municipality', 'Putha Uttarganga Rural Municipality', 'Bhume Rural Municipality', 'Sisne Rural Municipality'], correct: 1 },
+            { question: '2. Who becomes the first Home minister of Nepal after democracy of Nepal ?', options: ['Ganeshman Singh', 'Bhadrakali Mishra', 'B.P. Koirala', 'Nripjung Rana'], correct: 2 },
+            { question: '3. According to the Civil Service Act 2049, how many types of punishments can be imposed under minor disciplinary action against a civil servant?', options: ['6', '4', '3', '2'], correct: 2 },
+            { question: '4. Statements : The secret of success is constancy of purpose. Conclusions : I. Constant dropping wears the stone. II. Single-minded devotion is necessary for achieving success.', options: ['Only conclusion II follows', 'Only conclusion I follows', 'Neither I nor II follows', 'Both I and II follow'], correct: 3 },
+            { question: '5. Complete the following Series : 1,3,5,11,21,43,?', options: ['84', '85', '86', '87'], correct: 1 },
+            { question: '6. Most common method of prestressing used in factory production is', options: ['Long line method', 'Freyssinet system', 'Magnel-Blaton System', 'Lee-Macall System'], correct: 0 },
+            { question: '7. Which of the following does not represent an activity?', options: ['site located', 'foundation is being dug', 'the office area is being cleaned', 'the invitations are being sent'], correct: 0 },
+            { question: '8. The most of the texture can be drawn with the help of drawing pen with line thickness', options: ['.1mm', '.5mm', '.8mm', '1 mm'], correct: 1 },
+            { question: '9. Which of the following classes represent earthquakes with magnitudes between 4 and 4.9', options: ['Moderate', 'Strong', 'Light', 'Very strong'], correct: 2 },
+            { question: '10. A metamophosed mineral entirely composed of silica is', options: ['marble', 'granite', 'slate', 'quartz'], correct: 3 },
+            { question: '11. Which geographical region of Nepal has the most suitable climate for human health?', options: ['Chure Range', 'High Himalayan Region', 'Mahabharat Range', 'Bhabar Region'], correct: 2 },
+            { question: '12. The "Rong Script" used in Nepal is the script of which language?', options: ['Gurung', 'Maithili', 'Sherpa', 'Lepcha'], correct: 3 },
+            { question: '13. Who determines Nepal\'s fiscal policy?', options: ['Ministry of Finance', 'Nepal Rastra Bank', 'National Planning Commission', 'All of the above'], correct: 0 },
+            { question: '14. Statement : Should there be only one rate of interest for term deposits of varying durations in banks ? Arguments : I. No, People will refrain from keeping money for longer duration resulting into reduction of liquidity level of banks. II. Yes. This will be much simple for the common people and they may be encouraged to keep more money in banks.', options: ['Only argument I is strong.', 'Neither I nor II is strong.', 'Both I and II are strong.', 'Only Argument II is strong.'], correct: 0 },
+            { question: '15. Question: How many children does M have ? Statements: H is the only daughter of X who is wife of M. K and J are brothers of M.', options: ['I alone is sufficient while II alone is not sufficient', 'II alone is sufficient while I alone is not sufficient', 'Neither I nor II is sufficient', 'Both I and II are sufficient'], correct: 2 },
+            { question: '16. Use of rounded stones instead of angular stones druing slump test would result in', options: ['greater slump', 'equal slump', 'lesser slump', 'no specific result'], correct: 0 },
+            { question: '17. The registered engineers in Nepal Enginering Council should have to renew their registration in', options: ['every year', 'every two year', 'every four year', 'none of the above'], correct: 3 },
+            { question: '18. The quantity of works of G.I. ridge of a sloped roof is calculated in', options: ['cubic meter', 'square meter', 'running meter', 'kg'], correct: 2 },
+            { question: '19. Which of the following is considered to be an advantage of the heading and benching method of tunnel construction?', options: ['It is suitable for construction in unstable rocks', 'In this method, it is easy to install timber support', 'Tunneling can be continuous and the work can be expedited', 'In case of excessive water, it is easy to take correct steps'], correct: 2 },
+            { question: '20. Crushing strength for most of the building stone should be more than', options: ['500 kg/m^2', '1000 kg/m^2', '1500 kg/m^2', '2000 kg/m^2'], correct: 1 },
+            { question: '21. Arrange the following events in chronological order and choose the correct code: a) Beginning of the reign of Prithvi Narayan Shah b) Beginning of the Nepal Era (Nepal Sambat) c) Publication of Gorkhapatra d) Library Movement (Library Incident)', options: ['a, d, b, c', 'd, b, a, c', 'b, a, c, d', 'c, d, b, a'], correct: 2 },
+            { question: '22. In which architectural style was the Changunarayan Temple built?', options: ['Pagoda', 'Shikhar', 'Stupa', 'Mugal'], correct: 0 },
+            { question: '23. How many Nepali scientists were included in the list of the world\'s top 2% most influential scientists in 2025?', options: ['31', '33', '35', '37'], correct: 0 },
+            { question: '24. <img src="https://saru.c0m.in/P/39.jpeg" alt="Question 24" style="max-width:100%;height:auto;">', options: ['A', 'B', 'C', 'D'], correct: 3 },
+            { question: '25. <img src="https://saru.c0m.in/P/40.jpeg" alt="Question 25" style="max-width:100%;height:auto;">', options: ['1', '2', '3', '4'], correct: 1 },
+            { question: '26. The process of mixing, tranportating, placing and compacting concrete using ordinary portland cement should not take kore than', options: ['30 minutes', '40 minutes', '60 minutes', '75 minutes'], correct: 0 },
+            { question: '27. Labour Act was first introduced in', options: ['2053 BS', '2048 BS', '2055 BS', '2074 BS'], correct: 1 },
+            { question: '28. Which of the following is not a part of estimating norms for rate analysis', options: ['Tax', 'labour cost', 'Material cost', 'None of above'], correct: 0 },
+            { question: '29. Which of the following is true abount Kinematic theorem?', options: ['It represents lower limit to true ultimate load', 'It represent plastic load', 'It has small factor of safety', 'It satisfies equilibrium and yield condition'], correct: 2 },
+            { question: '30. What is the common name of calcinated gympsum?', options: ['kankar', 'lime', 'plaster of paris', 'cement'], correct: 2 },
+            { question: '31. The Kangla Pass, situated at an altitude of 5,320 meters above sea level, lies in which district?', options: ['Manang', 'Mustang', 'Lamjung', 'Kaski'], correct: 0 },
+            { question: '32. According to economic survey 2082/83, how much remittance did Nepal receive in the fiscal year 2081/82 ?', options: ['NPR 1,187.35 billion', 'NPR 1,220.56 billion', 'NPR 1,322.47 billion', 'NPR 1,449.70 billion'], correct: 3 },
+            { question: '33. Who became the first football player to score goals in six different FIFA World Cups?', options: ['Lionel Messi', 'Cristiano Ronaldo', 'Kylian Mbappé', 'Jude Bellingham'], correct: 1 },
+            { question: '34. <img src="https://saru.c0m.in/P/41.jpeg" alt="Question 34" style="max-width:100%;height:auto;">', options: ['16', '17', '18', '19'], correct: 1 },
+            { question: '35. <img src="https://saru.c0m.in/P/42.jpeg" alt="Question 35" style="max-width:100%;height:auto;">', options: ['1', '2', '3', '4'], correct: 3 },
+            { question: '36. Which of the following chemical should be added to reduce the curing time of concrete?', options: ['sodium chloride', 'calcium chloride', 'potassium', 'magnesium'], correct: 1 },
+            { question: '37. Which of the following is not the duty of Nepal Engineering Council?', options: ['to recognize institutions and degree or certificates', 'to remove the name of a registered engineers who violates the code of coduct', 'to cancel the qualification of someone who violates the code of conduct', 'to register names of engineers who are qualified'], correct: 2 },
+            { question: '38. Specification for holdfast are given in terms of', options: ['number', 'volume', 'weight', 'length'], correct: 2 },
+            { question: '39. The locus of reaction of two hinged semi-circular arch is', options: ['straight line', 'parabola', 'circle', 'hyperbola'], correct: 0 },
+            { question: '40. White cement as compared to grey cement have', options: ['similar properties', 'inferior properties', 'better properties', 'superior properties'], correct: 0 },
+            { question: '41. According to the National Population Census 2078 B.S., what is the population of persons with disabilities in Nepal?', options: ['547744', '647744', '747744', '447744'], correct: 1 },
+            { question: '42. Who invented the MRI (Magnetic Resonance Imaging) machine?', options: ['Paul Lauterbur', 'Raymond Damadian', 'Peter Mansfield', 'Godfrey Hounsfield'], correct: 1 },
+            { question: '43. Which film won the Best Film Award at the "National Film Awards 2083" ceremony organized by the Film Development Board Nepal ?', options: ['Oonko Sweater', 'Shambala', 'Anjila', 'Bulaki'], correct: 0 },
+            { question: '44. <img src="https://saru.c0m.in/P/43.jpeg" alt="Question 44" style="max-width:100%;height:auto;">', options: ['10000', '12000', '14000', '15000'], correct: 1 },
+            { question: '45. <img src="https://saru.c0m.in/P/44.jpeg" alt="Question 45" style="max-width:100%;height:auto;">', options: ['3', '6', '4', 'None of These'], correct: 3 },
+            { question: '46. In vicats\'s Apparatus test the diameter of viact plunger is', options: ['5 mm', '10 mm', '15 mm', '20 mm'], correct: 1 },
+            { question: '47. The ratio of earning before interest and taxes for a particular reporting period to the amount of interest charges for the same period is called', options: ['Debt ratio', 'total asset ratio', 'solvency ratio', 'interest coverage ratio'], correct: 3 },
+            { question: '48. In long and short wall method of estimation, the length of long wall is the centre to centre distance between the walls and', options: ['breadth of the wall', 'one fourth breadth of wall on each side', 'half breadth of wall on each side', 'none of above'], correct: 2 },
+            { question: '49. A multi span continuous beam is simply supported at the two ends. One of the intermediate supports sinks with respect to other supports. Due to this settlemet, the bending moment will get modified at', options: ['only the two supports adjacent to that sinked support', 'only the supports that sinks', 'all the supports', 'all the supports except the two end supports.'], correct: 3 },
+            { question: '50. The instrument which is used in plane tabling for obtaining horizontal and vetical distnaces directly without resorting to chainaing is', options: ['plane alidade', 'telescopic alidade', 'clinometer', 'tacheometer'], correct: 1 },
+            { question: '51. Before the Treaty of Sugauli, Nepal\'s eastern boundary extended up to which river?', options: ['Mechi River', 'Teesta River', 'Ghaghara River', 'Sarayu River'], correct: 1 },
+            { question: '52. The "Game Changer Plan" was incorporated into which periodic plan of Nepal?', options: ['10th plan', '12th plan', '14th plan', '15th plan'], correct: 3 },
+            { question: '53. Select the pair which has the same relationship.SYMPHONY:COMPOSER', options: ['Leonardo:music', 'Fresco:painter', 'colours:pallet', 'art:appreciation'], correct: 1 },
+            { question: '54. Pipes A, B and C can fill a tank in 20, 30 and 60 hours, respectively. Pipes A, B and C are opened at 7 a.m., 8 a.m. and 9 a.m., respectively, on the same day. When will the tank be full?', options: ['4:40 p.m', '5:40 p.m', '6:40 p.m', '7:40 p.m'], correct: 1 },
+            { question: '55. <img src="https://saru.c0m.in/P/45.jpeg" alt="Question 55" style="max-width:100%;height:auto;">', options: ['1', '2', '3', '4'], correct: 1 },
+            { question: '56. In Construction industry arbitation method is used for', options: ['inviting the tender', 'opening the tender', 'awarding the tender', 'none of the above'], correct: 3 },
+            { question: '57. For a financial institution the most important study of a project to be taken for risks management is', options: ['appraisal', 'environment and social', 'technical', 'financial and economical'], correct: 3 },
+            { question: '58. The number of corrugation in a galvanized corrugated sheet is usually', options: ['12', '10', '8', '6'], correct: 1 },
+            { question: '59. When a single load W move ober a simply supported beam, The maximum B.M. at a section will occur when the load is placed', options: ['over the section', 'at the center of span', 'over the nearer support', 'none of above'], correct: 0 },
+            { question: '60. A 15 cm theodolite means', options: ['length of telescope is 15cm', 'diameter of lower plate is 15cm', 'height of standrds is 15cm', 'radius of upper plate is 15cm'], correct: 1 },
+            { question: '61. Which of the following countries is not included in the Big Seven (G7) countries that contribute the most financially to the United Nations (UNO)?', options: ['Japan', 'Germany', 'India', 'United Kingdom'], correct: 2 },
+            { question: '62. According to the Constitution of Nepal, which of the following rights cannot be suspended even during a state of emergency?', options: ['Right to Property', 'Right to Privacy', 'Right to Employment', 'Right to Equality'], correct: 3 },
+            { question: '63. Choose the word which is different from the rest.', options: ['Hypothesis', 'Assumption', 'Observation', 'Experiment'], correct: 3 },
+            { question: '64. The average of some natural numbers is 15. If 30 is added to the first number and 5 is subtracted from the last number the average becomes 17.5 then the number of natural numbers is', options: ['8', '9', '10', '11'], correct: 2 },
+            { question: '65. <img src="https://saru.c0m.in/P/46.jpeg" alt="Question 65" style="max-width:100%;height:auto;">', options: ['a', 'b', 'c', 'd'], correct: 1 },
+            { question: '66. Who is responsible when dispute arises over quantities in any contract work?', options: ['Employer', 'Consultant', 'Engineer', 'Both b and c'], correct: 2 },
+            { question: '67. The sunk cost include', options: ['an unrecovered balance', 'an invested capital that cannot be recovered', 'a past expenditure', 'all of above'], correct: 3 },
+            { question: '68. If the temperature at the time of test is more than that of callibration of the hydrometer, the hydrometer reading will be', options: ['same', 'more', 'less', 'none of above'], correct: 2 },
+            { question: '69. A support over which the real beam is continuous will corespond to', options: ['an internal hinge in the conjugate beam', 'a hinged support in the conjugate beam', 'a fixed support in the conjugate beam', 'a discontinuity in the conjugat beam'], correct: 0 },
+            { question: '70. Which among the following is the most recent features incorporated in total station?', options: ['transit or electronic theodolite', 'remote control', 'GPS', 'electronic distance meter'], correct: 2 },
+            { question: '71. Which year did SAARC observe as the "Poverty Alleviation Year"?', options: ['1989 AD', '1991 AD', '1993 AD', '1995 AD'], correct: 3 },
+            { question: '72. According to the Constitution of Nepal, which body is responsible for the general direction, control, and operation of the governance system of Nepal?', options: ['Government of Nepal', 'Council of Ministers', 'Federal Parliament', 'Parliamentary Committees'], correct: 1 },
+            { question: '73. Choose the missing terms out of the given alternatives : C, Z, F, X, I, V, L, T, O, ?, ?', options: ['O,P', 'P,Q', 'R,R', 'S,R'], correct: 2 },
+            { question: '74. The maximum gap between two successive leap year is', options: ['4', '8', '28', '11'], correct: 1 },
+            { question: '75. <img src="https://saru.c0m.in/P/47.jpeg" alt="Question 75" style="max-width:100%;height:auto;">', options: ['1', '2', '3', '4'], correct: 1 },
+            { question: '76. The validity of perfomance bond shall be', options: ['upto the end of contract period', 'Upto the end of defect liabiltiy period', 'Upto One month beyond defect liabilty period', 'Upto one month beyond the end of contract period'], correct: 2 },
+            { question: '77. Topographic map is used to represent the', options: ['natural detail', 'construction detail', 'artificial detail', 'all of above'], correct: 0 },
+            { question: '78. The shearing strength of a cohesionless soil depends upon', options: ['dry density', 'rate of loading', 'confining pressure', 'nature of loading'], correct: 2 },
+            { question: '79. Tar is made by the distillation of', options: ['petrol', 'coal', 'asphalt', 'bitumen'], correct: 1 },
+            { question: '80. Which of the following statement is not correct regarding field work levelling?', options: ['levelling should always start and finish at points of known RL so that misclosure can be detected', 'all sight length should be more than 60 m', 'staff must be held vertically by suitable use if bracket bubble', 'reading should be booked immediately after they are observed'], correct: 1 },
+            { question: '81. Which country held the world\'s first underwater cabinet meeting in 2009 to draw global attention to the effects of climate change?', options: ['Srilanka', 'Netherlands', 'Maldives', 'New Zealand'], correct: 2 },
+            { question: '82. Which of the following is considered the essence of management?', options: ['Control', 'Direction', 'Coordination', 'Decision-making'], correct: 2 },
+            { question: '83. In a certain code, FAVOUR is written as EBUPTS. How is DANGER written in that code?', options: ['CBFFDS', 'CBMHDS', 'EBFHDS', 'EBHHFS'], correct: 1 },
+            { question: '84. A merchant buys an article for Rs. 27 and sells it at a profit of 10 percent of the selling price. The selling price of the article is', options: ['28', '29.7', '30', '31'], correct: 2 },
+            { question: '85. <img src="https://saru.c0m.in/P/48.jpeg" alt="Question 85" style="max-width:100%;height:auto;">', options: ['1', '2', '3', '4'], correct: 0 },
+            { question: '86. The supplementary specification prepared and applied if the standard specification does not cover the requirement of works under a contract is called', options: ['general specification', 'contract specification', 'performance specification', 'special specification'], correct: 3 },
+            { question: '87. Horizontal lines are drawn', options: ['left to right', 'right ot left', 'top to down', 'both A and B'], correct: 3 },
+            { question: '88. The property of soil which is of great importance in finding settlement of structure is', options: ['permeability', 'shear strength', 'consolidation', 'compressibility'], correct: 2 },
+            { question: '89. What type of primer coat should be applied in painting galvanized iron surface?', options: ['lead oxide', 'iron oxide', 'zinc oxide', 'None of above'], correct: 0 },
+            { question: '90. Transiting is also known as', options: ['swinging', 'changing face', 'centering', 'plunging'], correct: 3 },
+            { question: '91. Which of the following books (Creation) is not written by literature Balkrishna Sama?', options: ['Mutuko Byatha', 'Mukunda Indira', 'Chiso chulho', 'Tarun tapasi'], correct: 3 },
+            { question: '92. Which of the following items is not included in a Citizen Charter?', options: ['Fees/revenue required to obtain the service', 'Grievance hearing officer', 'Time required to receive the service', 'Duties of the service recipient'], correct: 3 },
+            { question: '93. A man leaves from his office for his home. He walks towards East. After moving a distance of 20 m, he turns South and walks 10 m. Then he walks 35 m towards the west and further 5 m towards the north. He then turns towards east and walks 15 m. What is the straight distance (in metres) between his initial and final position?', options: ['5', '10', '15', '20'], correct: 0 },
+            { question: '94. The salaries of A, B and C are in the ratio 1 : 3 : 4. If the salaries are increased by 5%, 10% and 15% respectively, then the increased salaries will be in the ratio', options: ['20 : 66 : 95', '21 : 66 : 96', '21 : 66 : 92', '21 : 66 : 96'], correct: 2 },
+            { question: '95. <img src="https://saru.c0m.in/P/49.jpeg" alt="Question 95" style="max-width:100%;height:auto;">', options: ['124', '135', '134', '345'], correct: 1 },
+            { question: '96. What is the validity period of sealed quotation?', options: ['15 days', '30 days', '45 days', '60 days'], correct: 2 },
+            { question: '97. If a plane is parallel to the plane of projection, it appears', options: ['true size', 'as a line or edge', 'foreshotened', 'as an oblique surface'], correct: 0 },
+            { question: '98. Total lateral earth pressure is proportional to', options: ['depth of soil', 'square of depth of soil', 'amgle of internal friction of soil', 'none of above'], correct: 1 },
+            { question: '99. The range of acrbon content in mild steel is generally', options: ['less than .1%', '.2% to .5%', '.5% to 1%', '2% to 5%'], correct: 1 },
+            { question: '100. The graduation in prismatic compass', options: ['are upright and run clockwise having 0 at south', 'are inverted and run clockwise having 0 at south', 'are inverted and run clockwise having 0 at north', 'are upright and run clockwise having 0 at north'], correct: 1 }
+        ]
+    };
+
+    console.log('questionSet defined');
+    startTest(questionSet);
+    console.log('startTest called');
+})();
+</script>
+<script src="/js/text-protect.js" defer></script>
+<script src="/js/logo.js?v=20260924"></script>
+</body>
+</html>

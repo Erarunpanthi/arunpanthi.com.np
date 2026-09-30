@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<title>NEC License Model Test Set 4</title>
+<meta name="description" content="NEC License Exam Model Test Set 4 for civil engineers in Nepal. Timed practice test with instant results and detailed solutions.">
+<link rel="canonical" href="https://arunpanthi.com.np/NEC-license-preparation/Test/set-4">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="/css/Mock_Test.css">
+<link rel="stylesheet" href="/assets/fontawesome/css/all.min.css?v=20260924">
+</head>
+<body>
+<nav class="navbar" id="navbar">
+<span class="brand" id="navbar-brand">NEC Model Test Set 4 </span>
+<span class="timer-display" id="timer-display" style="display:none;">--:--</span>
+</nav>
+
+
+<div id="warning-modal" class="modal-overlay" style="display: none;">
+<div class="modal-dialog">
+<div class="warning-icon">⚠️</div>
+<h3>Unanswered Questions</h3>
+<p>You haven't answered all the questions.</p>
+<span class="unanswered-count" id="modal-unanswered-count">0 unanswered</span>
+<p style="margin-top:8px;"><strong>⚠ This test cannot be retaken once submitted!</strong></p>
+<div class="modal-buttons">
+<button class="btn-cancel" id="btn-modal-cancel">Cancel</button>
+<button class="btn-submit-warning" id="btn-modal-submit">Submit Anyway</button>
+</div>
+</div>
+</div>
+
+<div id="pre-test-section">
+<div class="hero" id="hero-card">
+<h1 id="hero-set-name">Loading...</h1>
+<p class="set-details" id="hero-details"></p>
+<div class="set-meta">
+<div class="meta-item"><span id="hero-q-count">0</span> Questions</div>
+<div class="meta-item"><span id="hero-time">0:00</span> Time (min)</div>
+</div>
+<button class="btn-start" id="btn-start-test">🚀 Start Test</button>
+<p style="margin-top:10px;font-size:0.85rem;opacity:0.8;" id="hero-note"></p>
+</div>
+</div>
+
+<div id="test-section" style="display:none;">
+<div class="test-container">
+<div class="question-area">
+<div class="question-card">
+<div class="q-number" id="q-number-label">QUESTION 1</div>
+<div class="q-text" id="q-text">Loading question...</div>
+<ul class="options-list" id="options-list"></ul>
+</div>
+<div class="nav-buttons">
+<div class="nav-left"><button class="btn-nav" id="btn-prev">◀ Previous</button></div>
+<div class="nav-center"><button class="btn-submit" id="btn-submit-test">✅ Submit Test</button></div>
+<div class="nav-right"><button class="btn-nav" id="btn-next">Next ▶</button></div>
+</div>
+</div>
+<aside class="sidebar">
+<h3>📋 Question </h3>
+<div class="total-questions" id="sidebar-total">Total: 0</div>
+<div class="answered-count">Answered: <strong id="sidebar-answered-num">0</strong></div>
+<div class="q-grid" id="q-grid"></div>
+<div class="legend">
+<span><span class="dot-sample blue"></span> Answered</span>
+<span><span class="dot-sample gray"></span> Unanswered</span>
+</div>
+</aside>
+</div>
+</div>
+
+<div id="results-section" style="display:none;">
+<div class="results-container">
+<div class="results-header">
+<h2 style="color:#2E7D32;">📊 Test Results</h2>
+<p style="color:#666;" id="results-set-name"></p>
+<div class="score-circle">
+<span class="score-num" id="results-score">0</span>
+<span class="score-denom" id="results-denom">/ 0</span>
+</div>
+<div class="percentage" id="results-percentage">0%</div>
+<p style="margin-top:8px;color:#888;font-size:0.9rem;" id="results-time-taken"></p>
+</div>
+<div id="results-detail"></div>
+</div>
+</div>
+<script src="/js/Mock_Test.js"></script>
+<script>
+(function() {
+    console.log('Inline script running');
+    const questionSet = {
+        id: 'nec-model-test-set-4',
+        name: 'NEC License Model Test Set 4 - Civil Engineering',
+        details: 'Covers structural analysis, RCC and steel design, engineering drawing, estimation and professional practice.',
+        questions: 
+        [
+            { question: 'The bending moment at the free end of a cantilever beam carrying a load is', options: ['Maximum', 'Minimum', 'Zero', 'Equal to WL'], correct: 2 },
+            { question: 'In a simply supported beam carrying UDL, the maximum bending moment occurs at', options: ['The support', 'The mid-span', 'The quarter span', 'The end of the beam'], correct: 1 },
+            { question: 'The degree of static indeterminacy of a fixed beam (both ends fixed) is', options: ['1', '2', '3', '4'], correct: 2 },
+            { question: 'The influence line diagram for the reaction at the support of a simply supported beam is', options: ['A triangle with maximum ordinate 1 at that support', 'A rectangle of constant height', 'A parabola', 'A straight line of constant ordinate 0.5'], correct: 0 },
+            { question: 'Euler\'s formula for crippling load of columns is valid for', options: ['Short columns', 'Long columns', 'Intermediate columns', 'All types of columns'], correct: 1 },
+            { question: 'The slenderness ratio of a compression member is defined as', options: ['Effective length divided by least radius of gyration', 'Actual length divided by diameter', 'Effective length divided by diameter', 'Radius of gyration divided by length'], correct: 0 },
+            { question: 'The maximum percentage of tension reinforcement in a RCC beam as per IS 456 is', options: ['2%', '4%', '6%', '8%'], correct: 1 },
+            { question: 'The development length of a reinforcing bar depends on the', options: ['Bond stress and diameter of the bar', 'Cover of concrete only', 'Span of the member only', 'Shear force in the member'], correct: 0 },
+            { question: 'Vertical stirrups in a RCC beam are provided to resist', options: ['Bending moment', 'Shear force', 'Torsion', 'Temperature stresses'], correct: 1 },
+            { question: 'For Fe 415 steel and M20 concrete, the limiting value of (xu,max/d) in a singly reinforced section is', options: ['0.48', '0.53', '0.46', '0.62'], correct: 0 },
+            { question: 'The modular ratio used in the working stress method for M20 grade concrete is approximately', options: ['8.0', '10.0', '13.33', '18.67'], correct: 2 },
+            { question: 'A three hinged arch is', options: ['Statically determinate', 'Statically indeterminate to first degree', 'Statically indeterminate to second degree', 'Unstable'], correct: 0 },
+            { question: 'The three moment equation is used for the analysis of', options: ['Continuous beams', 'Plane trusses', 'Arches', 'Columns'], correct: 0 },
+            { question: 'The percentage of carbon in mild steel is', options: ['Less than 0.25%', '0.25% to 0.60%', '0.60% to 1.50%', 'More than 1.50%'], correct: 0 },
+            { question: 'The angle of isometric projection between the isometric axes is', options: ['30 degrees', '45 degrees', '60 degrees', '120 degrees'], correct: 3 },
+            { question: 'A scale of 1:100 means', options: ['1 unit on the drawing represents 100 units on the ground', '100 units on the drawing represent 1 unit on the ground', '1 unit on the drawing represents 10 units on the ground', 'The drawing is 100 times larger than the object'], correct: 0 },
+            { question: 'The unit of measurement of steel reinforcement in estimation is', options: ['Cubic metre', 'Square metre', 'Running metre', 'Quintal'], correct: 3 },
+            { question: 'The measurement of earthwork in excavation is done in', options: ['Square metre', 'Cubic metre', 'Running metre', 'Litre'], correct: 1 },
+            { question: 'PERT and CPM are techniques used in', options: ['Quality control', 'Project management', 'Cost estimation', 'Land surveying'], correct: 1 },
+            { question: 'As per professional ethics, an engineer must hold paramount the', options: ['Safety, health and welfare of the public', 'Profit of the employer', 'Personal financial gain', 'Speed of construction'], correct: 0 },
+        ]
+    };
+
+    console.log('questionSet defined');
+    startTest(questionSet);
+    console.log('startTest called');
+})();
+</script>
+<script src="/js/text-protect.js" defer></script>
+<script src="/js/logo.js?v=20260924"></script>
+</body>
+</html>

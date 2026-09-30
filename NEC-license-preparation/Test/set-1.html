@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<title>NEC License Model Test Set 1</title>
+<meta name="description" content="NEC License Exam Model Test Set 1 for civil engineers in Nepal. Timed practice test with instant results and detailed solutions.">
+<link rel="canonical" href="https://arunpanthi.com.np/NEC-license-preparation/Test/set-1">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="/css/Mock_Test.css">
+<link rel="stylesheet" href="/assets/fontawesome/css/all.min.css?v=20260924">
+</head>
+<body>
+<nav class="navbar" id="navbar">
+<span class="brand" id="navbar-brand">NEC Model Test Set 1 </span>
+<span class="timer-display" id="timer-display" style="display:none;">--:--</span>
+</nav>
+
+
+<div id="warning-modal" class="modal-overlay" style="display: none;">
+<div class="modal-dialog">
+<div class="warning-icon">⚠️</div>
+<h3>Unanswered Questions</h3>
+<p>You haven't answered all the questions.</p>
+<span class="unanswered-count" id="modal-unanswered-count">0 unanswered</span>
+<p style="margin-top:8px;"><strong>⚠ This test cannot be retaken once submitted!</strong></p>
+<div class="modal-buttons">
+<button class="btn-cancel" id="btn-modal-cancel">Cancel</button>
+<button class="btn-submit-warning" id="btn-modal-submit">Submit Anyway</button>
+</div>
+</div>
+</div>
+
+<div id="pre-test-section">
+<div class="hero" id="hero-card">
+<h1 id="hero-set-name">Loading...</h1>
+<p class="set-details" id="hero-details"></p>
+<div class="set-meta">
+<div class="meta-item"><span id="hero-q-count">0</span> Questions</div>
+<div class="meta-item"><span id="hero-time">0:00</span> Time (min)</div>
+</div>
+<button class="btn-start" id="btn-start-test">🚀 Start Test</button>
+<p style="margin-top:10px;font-size:0.85rem;opacity:0.8;" id="hero-note"></p>
+</div>
+</div>
+
+<div id="test-section" style="display:none;">
+<div class="test-container">
+<div class="question-area">
+<div class="question-card">
+<div class="q-number" id="q-number-label">QUESTION 1</div>
+<div class="q-text" id="q-text">Loading question...</div>
+<ul class="options-list" id="options-list"></ul>
+</div>
+<div class="nav-buttons">
+<div class="nav-left"><button class="btn-nav" id="btn-prev">◀ Previous</button></div>
+<div class="nav-center"><button class="btn-submit" id="btn-submit-test">✅ Submit Test</button></div>
+<div class="nav-right"><button class="btn-nav" id="btn-next">Next ▶</button></div>
+</div>
+</div>
+<aside class="sidebar">
+<h3>📋 Question </h3>
+<div class="total-questions" id="sidebar-total">Total: 0</div>
+<div class="answered-count">Answered: <strong id="sidebar-answered-num">0</strong></div>
+<div class="q-grid" id="q-grid"></div>
+<div class="legend">
+<span><span class="dot-sample blue"></span> Answered</span>
+<span><span class="dot-sample gray"></span> Unanswered</span>
+</div>
+</aside>
+</div>
+</div>
+
+<div id="results-section" style="display:none;">
+<div class="results-container">
+<div class="results-header">
+<h2 style="color:#2E7D32;">📊 Test Results</h2>
+<p style="color:#666;" id="results-set-name"></p>
+<div class="score-circle">
+<span class="score-num" id="results-score">0</span>
+<span class="score-denom" id="results-denom">/ 0</span>
+</div>
+<div class="percentage" id="results-percentage">0%</div>
+<p style="margin-top:8px;color:#888;font-size:0.9rem;" id="results-time-taken"></p>
+</div>
+<div id="results-detail"></div>
+</div>
+</div>
+<script src="/js/Mock_Test.js"></script>
+<script>
+(function() {
+    console.log('Inline script running');
+    const questionSet = {
+        id: 'nec-model-test-set-1',
+        name: 'NEC License Model Test Set 1 - Civil Engineering',
+        details: 'Covers construction materials, building construction, surveying, soil mechanics, RCC design and hydraulics.',
+        questions: 
+        [
+            { question: 'The initial setting time of ordinary Portland cement should not be less than', options: ['15 minutes', '30 minutes', '45 minutes', '60 minutes'], correct: 1 },
+            { question: 'Bulking of sand is maximum at a moisture content of about', options: ['2%', '5%', '8%', '12%'], correct: 1 },
+            { question: 'Le Chatelier\'s apparatus is used to determine which property of cement?', options: ['Fineness', 'Soundness', 'Consistency', 'Compressive strength'], correct: 1 },
+            { question: 'Slump test on fresh concrete is performed to determine its', options: ['Workability', 'Strength', 'Durability', 'Segregation'], correct: 0 },
+            { question: 'The compound of cement responsible for the early strength of concrete is', options: ['Dicalcium silicate', 'Tricalcium silicate', 'Tricalcium aluminate', 'Tetracalcium aluminoferrite'], correct: 1 },
+            { question: 'M20 grade of concrete means a characteristic compressive strength of', options: ['10 N/mm2', '15 N/mm2', '20 N/mm2', '25 N/mm2'], correct: 2 },
+            { question: 'Which of the following is a sedimentary rock?', options: ['Granite', 'Basalt', 'Sandstone', 'Gneiss'], correct: 2 },
+            { question: 'The minimum curing period for ordinary Portland cement concrete is', options: ['3 days', '7 days', '14 days', '28 days'], correct: 1 },
+            { question: 'The principle of \'working from whole to part\' in surveying is adopted to', options: ['Prevent the accumulation of errors and localise them', 'Save time in the field', 'Reduce the cost of survey', 'Increase the area covered'], correct: 0 },
+            { question: 'The magnetic declination at a place is 5 degrees East. If the magnetic bearing of a line is 45 degrees, its true bearing is', options: ['40 degrees', '45 degrees', '50 degrees', '55 degrees'], correct: 2 },
+            { question: 'Contour lines of different elevations can intersect each other only in the case of', options: ['A ridge', 'A valley', 'An overhanging cliff', 'A saddle'], correct: 2 },
+            { question: 'A theodolite is primarily used to measure', options: ['Horizontal and vertical angles', 'Horizontal distances only', 'Reduced levels only', 'Areas only'], correct: 0 },
+            { question: 'Plane table surveying is a', options: ['Geodetic method', 'Graphical method', 'Trigonometric method', 'Barometric method'], correct: 1 },
+            { question: 'The combined correction for curvature and refraction in levelling is', options: ['0.0673 D2 subtracted from the staff reading', '0.0673 D2 added to the staff reading', '0.0785 D2 added to the staff reading', '0.0112 D2 subtracted from the staff reading'], correct: 0 },
+            { question: 'The shear strength of a soil is due to', options: ['Cohesion only', 'Internal friction only', 'Both cohesion and internal friction', 'Surface tension of pore water'], correct: 2 },
+            { question: 'The standard penetration test (SPT) is used for determining', options: ['Bearing capacity and relative density of soil', 'Permeability of soil', 'Liquid limit of soil', 'Specific gravity of soil'], correct: 0 },
+            { question: 'If the liquid limit and plastic limit of a soil are 60% and 30% respectively, its plasticity index is', options: ['30', '20', '90', '0.5'], correct: 0 },
+            { question: 'The maximum bending moment in a simply supported beam of span L carrying a central point load W is', options: ['WL/2', 'WL/4', 'WL/8', 'WL/16'], correct: 1 },
+            { question: 'An under-reinforced RCC beam fails by', options: ['Crushing of concrete first', 'Yielding of tensile steel first', 'Shear failure of concrete', 'Bond failure of steel'], correct: 1 },
+            { question: 'The hydraulic radius of a rectangular channel of width B and depth D is', options: ['BD/(B + 2D)', 'BD/(B + D)', 'D/2', 'B/2'], correct: 0 },
+        ]
+    };
+
+    console.log('questionSet defined');
+    startTest(questionSet);
+    console.log('startTest called');
+})();
+</script>
+<script src="/js/text-protect.js" defer></script>
+<script src="/js/logo.js?v=20260924"></script>
+</body>
+</html>

@@ -1,73 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="index, follow">
-    <title>Under Construction - Test | CivPrepMaster</title>
-    <meta name="description" content="Test resources for NEC License Exam preparation coming soon at CivPrepMaster.">
-    <link rel="canonical" href="https://arunpanthi.com.np/NEC-license-preparation/Test">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-            color: white;
-        }
-        .card {
-            text-align: center;
-            padding: 60px 50px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 24px;
-            border: 1px solid rgba(255,255,255,0.15);
-            backdrop-filter: blur(12px);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-            max-width: 500px;
-        }
-        .icon { font-size: 4rem; margin-bottom: 20px; }
-        h1 {
-            font-size: 2.2rem;
-            margin-bottom: 12px;
-            background: linear-gradient(90deg, #f093fb, #f5576c);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        p { font-size: 1rem; color: #a8b2d8; margin-bottom: 30px; line-height: 1.6; }
-        a {
-            display: inline-block;
-            padding: 12px 35px;
-            background: linear-gradient(90deg, #f093fb, #f5576c);
-            color: white;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 0.95rem;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        a:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(245,87,108,0.4);
-        }
-
-        /* The card was wider than a phone screen: the long unbroken heading plus
-           100px of side padding pushed the page sideways. */
-        @media (max-width: 560px) {
-            .card { padding: 36px 20px; }
-            h1 { font-size: 1.6rem; }
-            h2 { font-size: 1.3rem; }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="description" content="NEC License Exam Model Test Sets for Civil Engineering in Nepal. Practice with 5 timed test sets covering construction materials, soil mechanics, surveying, RCC design, hydraulics, irrigation, transportation and estimation.">
+  <meta name="keywords" content="NEC License Exam, Nepal Engineering Council, Civil Engineering, Model Test Sets, Mock Test, Practice Exams, NEC preparation">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="index, follow">
+  <title>NEC License Exam Model Test Sets</title>
+  <link rel="canonical" href="https://arunpanthi.com.np/NEC-license-preparation/Test">
+  <link rel="stylesheet" href="/css/styles.css?v=20260924">
+  <link rel="stylesheet" href="/css/grid.css?v=20260924">
+  <link rel="stylesheet" href="/assets/fontawesome/css/all.min.css?v=20260924">
 </head>
 <body>
-    <div class="card">
-        <div class="icon">🚧</div>
-        <h1>Test</h1>
-        <p>This page is currently under construction.<br>We're working hard to bring you comprehensive Test resources for NEC License Exam soon!</p>
-        <a href="/NEC-license-preparation">← Back</a>
-    </div>
+  <div id="navbar"></div>
+
+  <main class="container" id="mocktest-cards">
+    <h1 style="text-align: center;">NEC License Exam Model Test Sets</h1>
+    <div class="book-list" id="book-list"></div>
+  </main>
+
+  <section class="faq" hidden>
+    <h2>Frequently Asked Questions</h2>
+    <details>
+      <summary>What are NEC Model Test Sets?</summary>
+      <p>They are practice tests structured like the actual NEC (Nepal Engineering Council) license exam for civil engineers, helping you prepare under timed exam conditions.</p>
+    </details>
+    <details>
+      <summary>How are the sets different from each other?</summary>
+      <p>Each set contains a fresh mix of questions covering construction materials, soil mechanics, surveying, structural analysis, RCC design, hydraulics, irrigation, transportation, estimation and construction management.</p>
+    </details>
+    <details>
+      <summary>Can I see my score?</summary>
+      <p>Yes, each test shows your score, percentage and detailed solutions immediately after submission.</p>
+    </details>
+  </section>
+
+  <script>
+    const totalSets = 5;
+    const examList = document.getElementById("book-list");
+    for (let i = 1; i <= totalSets; i++) {
+      const article = document.createElement("article");
+      article.className = "book";
+      const link = `/NEC-license-preparation/Test/set-${i}`;
+      article.innerHTML = `
+        <h2>Model Test Set ${i}</h2>
+        <img src="/Photos/logo.png"
+     alt="Set No: ${i}"
+     width="150"
+     height="150"
+     loading="lazy">
+        <p>Practice NEC license exam set ${i} with instant results.</p>
+        <a href="${link}" class="cta-button">Start Test</a>
+      `;
+      examList.appendChild(article);
+    }
+  </script>
+    <div id="social-section"></div>
+  <div id="footer"></div>
+  <script src="/js/layout.js?v=20260924"></script>
 </body>
 </html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<title>NEC License Model Test Set 5</title>
+<meta name="description" content="NEC License Exam Model Test Set 5 for civil engineers in Nepal. Timed practice test with instant results and detailed solutions.">
+<link rel="canonical" href="https://arunpanthi.com.np/NEC-license-preparation/Test/set-5">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="/css/Mock_Test.css">
+<link rel="stylesheet" href="/assets/fontawesome/css/all.min.css?v=20260924">
+</head>
+<body>
+<nav class="navbar" id="navbar">
+<span class="brand" id="navbar-brand">NEC Model Test Set 5 </span>
+<span class="timer-display" id="timer-display" style="display:none;">--:--</span>
+</nav>
+
+
+<div id="warning-modal" class="modal-overlay" style="display: none;">
+<div class="modal-dialog">
+<div class="warning-icon">⚠️</div>
+<h3>Unanswered Questions</h3>
+<p>You haven't answered all the questions.</p>
+<span class="unanswered-count" id="modal-unanswered-count">0 unanswered</span>
+<p style="margin-top:8px;"><strong>⚠ This test cannot be retaken once submitted!</strong></p>
+<div class="modal-buttons">
+<button class="btn-cancel" id="btn-modal-cancel">Cancel</button>
+<button class="btn-submit-warning" id="btn-modal-submit">Submit Anyway</button>
+</div>
+</div>
+</div>
+
+<div id="pre-test-section">
+<div class="hero" id="hero-card">
+<h1 id="hero-set-name">Loading...</h1>
+<p class="set-details" id="hero-details"></p>
+<div class="set-meta">
+<div class="meta-item"><span id="hero-q-count">0</span> Questions</div>
+<div class="meta-item"><span id="hero-time">0:00</span> Time (min)</div>
+</div>
+<button class="btn-start" id="btn-start-test">🚀 Start Test</button>
+<p style="margin-top:10px;font-size:0.85rem;opacity:0.8;" id="hero-note"></p>
+</div>
+</div>
+
+<div id="test-section" style="display:none;">
+<div class="test-container">
+<div class="question-area">
+<div class="question-card">
+<div class="q-number" id="q-number-label">QUESTION 1</div>
+<div class="q-text" id="q-text">Loading question...</div>
+<ul class="options-list" id="options-list"></ul>
+</div>
+<div class="nav-buttons">
+<div class="nav-left"><button class="btn-nav" id="btn-prev">◀ Previous</button></div>
+<div class="nav-center"><button class="btn-submit" id="btn-submit-test">✅ Submit Test</button></div>
+<div class="nav-right"><button class="btn-nav" id="btn-next">Next ▶</button></div>
+</div>
+</div>
+<aside class="sidebar">
+<h3>📋 Question </h3>
+<div class="total-questions" id="sidebar-total">Total: 0</div>
+<div class="answered-count">Answered: <strong id="sidebar-answered-num">0</strong></div>
+<div class="q-grid" id="q-grid"></div>
+<div class="legend">
+<span><span class="dot-sample blue"></span> Answered</span>
+<span><span class="dot-sample gray"></span> Unanswered</span>
+</div>
+</aside>
+</div>
+</div>
+
+<div id="results-section" style="display:none;">
+<div class="results-container">
+<div class="results-header">
+<h2 style="color:#2E7D32;">📊 Test Results</h2>
+<p style="color:#666;" id="results-set-name"></p>
+<div class="score-circle">
+<span class="score-num" id="results-score">0</span>
+<span class="score-denom" id="results-denom">/ 0</span>
+</div>
+<div class="percentage" id="results-percentage">0%</div>
+<p style="margin-top:8px;color:#888;font-size:0.9rem;" id="results-time-taken"></p>
+</div>
+<div id="results-detail"></div>
+</div>
+</div>
+<script src="/js/Mock_Test.js"></script>
+<script>
+(function() {
+    console.log('Inline script running');
+    const questionSet = {
+        id: 'nec-model-test-set-5',
+        name: 'NEC License Model Test Set 5 - Civil Engineering',
+        details: 'Comprehensive revision set covering concrete technology, structural analysis, geotechnical engineering, transportation and estimation.',
+        questions: 
+        [
+            { question: 'The water-cement ratio of concrete is directly related to its', options: ['Strength and durability', 'Workability only', 'Cost only', 'Setting time only'], correct: 0 },
+            { question: 'Curing of concrete helps in the', options: ['Hydration of cement', 'Evaporation of mixing water', 'Carbonation of concrete', 'Segregation of aggregates'], correct: 0 },
+            { question: 'Which type of cement is most suitable for mass concrete structures?', options: ['Ordinary Portland cement', 'Low heat cement', 'Rapid hardening cement', 'White cement'], correct: 1 },
+            { question: 'The slump value of a very dry concrete mix is usually', options: ['0 to 25 mm', '50 to 100 mm', '100 to 150 mm', 'More than 150 mm'], correct: 0 },
+            { question: 'As per IS 456, the maximum water-cement ratio for RCC work in moderate exposure condition is', options: ['0.40', '0.45', '0.50', '0.55'], correct: 2 },
+            { question: 'The moment distribution method of structural analysis was developed by', options: ['Hardy Cross', 'Kani', 'Muller Breslau', 'Macaulay'], correct: 0 },
+            { question: 'Kani\'s method is used for the analysis of', options: ['Continuous beams and frames', 'Plane trusses only', 'Arches only', 'Columns only'], correct: 0 },
+            { question: 'The maximum deflection at the mid-span of a simply supported beam of span L carrying UDL w is', options: ['wL4/(8EI)', '5wL4/(384EI)', 'wL4/(384EI)', 'wL4/(48EI)'], correct: 1 },
+            { question: 'The relationship between porosity n and void ratio e of a soil is', options: ['n = e/(1 + e)', 'e = n/(1 + n)', 'n = e(1 + e)', 'e = n(1 + n)'], correct: 0 },
+            { question: 'The most suitable type of dam for a narrow gorge with strong abutments is', options: ['Gravity dam', 'Arch dam', 'Earth dam', 'Buttress dam'], correct: 1 },
+            { question: 'The efflorescence of bricks is caused by the presence of excess', options: ['Lime', 'Silica', 'Iron oxide', 'Alumina'], correct: 0 },
+            { question: 'The soundness of cement is tested by', options: ['Le Chatelier apparatus and autoclave', 'Slump cone and Vicat apparatus', 'Compressive strength machine', 'IS sieve analysis'], correct: 0 },
+            { question: 'The weight of one cubic metre of steel is approximately', options: ['7850 kg', '7200 kg', '8500 kg', '6850 kg'], correct: 0 },
+            { question: 'A traverse in which the finishing point coincides with the starting point is called a', options: ['Closed traverse', 'Open traverse', 'Link traverse', 'Compound traverse'], correct: 0 },
+            { question: 'The back sight reading in levelling is taken on a point whose reduced level is', options: ['Known', 'Unknown', 'Continuously changing', 'Always zero'], correct: 0 },
+            { question: 'The contour interval on a map depends upon the', options: ['Nature of the ground and scale of the map', 'Length of the map only', 'Time of survey only', 'Number of instruments used'], correct: 0 },
+            { question: 'The penetration test on bitumen is used to determine its', options: ['Hardness or consistency', 'Ductility', 'Softening point', 'Flash point'], correct: 0 },
+            { question: 'The most commonly used binder in flexible pavement construction is', options: ['Cement', 'Bitumen', 'Lime', 'Epoxy'], correct: 1 },
+            { question: 'Depreciation of a building is mainly caused by', options: ['Wear and tear with time', 'Increase in market rates', 'Bank interest', 'Property taxes'], correct: 0 },
+            { question: 'The salvage value of a property is its value', options: ['At the end of its useful life', 'At the time of purchase', 'As per the market rate', 'As per the book of accounts'], correct: 0 },
+        ]
+    };
+
+    console.log('questionSet defined');
+    startTest(questionSet);
+    console.log('startTest called');
+})();
+</script>
+<script src="/js/text-protect.js" defer></script>
+<script src="/js/logo.js?v=20260924"></script>
+</body>
+</html>

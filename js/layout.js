@@ -84,6 +84,8 @@
   }
 
   function addGlobalCSS() {
+    // Standalone pages (Timer, Sani) carry their own styles — never apply the site theme.
+    if (document.documentElement.hasAttribute("data-standalone")) return;
     if (document.querySelector("link[data-global-css], link[href*='styles.css'], link[href*='styles.css?v=']")) return;
     var link  = document.createElement("link");
     link.rel  = "stylesheet";

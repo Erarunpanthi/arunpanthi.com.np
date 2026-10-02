@@ -2,61 +2,369 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="description" content="NEC License Exam Model Test Sets for Civil Engineering in Nepal. Practice with 5 timed test sets covering construction materials, soil mechanics, surveying, RCC design, hydraulics, irrigation, transportation and estimation.">
-  <meta name="keywords" content="NEC License Exam, Nepal Engineering Council, Civil Engineering, Model Test Sets, Mock Test, Practice Exams, NEC preparation">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="robots" content="index, follow">
-  <title>NEC License Exam Model Test Sets</title>
-  <link rel="canonical" href="https://arunpanthi.com.np/NEC-license-preparation/Test">
+  <meta name="description" content="Prepare for Nepal's NEC Civil Engineering License Exam with five timed tests. Practice civil engineering MCQs and review your score and correct answers.">
+  <meta name="keywords" content="NEC Civil Engineering License Exam, NEC license exam model tests, NEC civil engineering model test, NEC mock test Nepal, Nepal Engineering Council exam practice, NEC license practice test, civil engineering MCQ test Nepal, ACiE license exam preparation, timed civil engineering quiz">
+  <meta name="author" content="Arun Panthi">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+  <meta name="geo.region" content="NP">
+  <meta name="geo.placename" content="Nepal">
+
+  <title>NEC Civil Engineering License Exam Model Tests | Free</title>
+  <link rel="canonical" href="https://arunpanthi.com.np/NEC-license-preparation/Test/">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <meta property="og:title" content="NEC Civil Engineering License Exam Model Tests | Free">
+  <meta property="og:description" content="Prepare for Nepal's NEC Civil Engineering License Exam with five timed tests. Practice civil engineering MCQs and review your score and correct answers.">
+  <meta property="og:url" content="https://arunpanthi.com.np/NEC-license-preparation/Test/">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://arunpanthi.com.np/assets/preview.jpg">
+  <meta property="og:image:alt" content="Free NEC Civil Engineering License Exam model test sets">
+  <meta property="og:locale" content="en_NP">
+  <meta property="og:site_name" content="CivPrepMaster">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="NEC Civil Engineering License Exam Model Tests">
+  <meta name="twitter:description" content="Five timed civil engineering practice tests for the Nepal Engineering Council license exam. Check your score and correct answers after submission.">
+  <meta name="twitter:image" content="https://arunpanthi.com.np/assets/preview.jpg">
+  <meta name="twitter:image:alt" content="Free NEC Civil Engineering License Exam model test sets">
+
   <link rel="stylesheet" href="/css/styles.css?v=20260924">
   <link rel="stylesheet" href="/css/grid.css?v=20260924">
   <link rel="stylesheet" href="/assets/fontawesome/css/all.min.css?v=20260924">
+
+  <style>
+    #mocktest-cards.container,
+    #test-faq.faq {
+      width: min(92%, 1120px) !important;
+      max-width: 1120px !important;
+    }
+
+    #mocktest-cards.container {
+      margin: 0 auto 24px !important;
+      padding: 28px clamp(18px, 4vw, 48px) 40px !important;
+    }
+
+    .breadcrumbs {
+      margin: 0 0 22px;
+      color: #5f6b61;
+      font-size: 0.9rem;
+      text-align: left;
+    }
+
+    .breadcrumbs ol {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      list-style: none;
+      padding: 0;
+    }
+
+    .breadcrumbs li + li::before {
+      content: "/";
+      margin-right: 0.4rem;
+      color: #879187;
+    }
+
+    .breadcrumbs a,
+    .resource-links a {
+      color: #1b5e20;
+      text-underline-offset: 3px;
+    }
+
+    .page-intro .lead {
+      max-width: 850px;
+      margin: 0 auto 12px;
+      color: #39443b;
+      font-size: 1.08rem;
+      text-align: center;
+    }
+
+    .page-intro .disclaimer {
+      max-width: 850px;
+      margin: 0 auto 28px;
+      color: #5e665f;
+      font-size: 0.93rem;
+      text-align: center;
+    }
+
+    .content-section {
+      margin-top: 34px;
+    }
+
+    .content-section h2,
+    #test-faq h2 {
+      margin: 0 0 12px;
+      color: #0d3b12;
+      font-size: 1.45rem;
+      line-height: 1.3;
+    }
+
+    .content-section > p,
+    .content-section li,
+    #test-faq details p {
+      color: #414941;
+    }
+
+    .content-section ul,
+    .content-section ol {
+      padding-left: 1.35rem;
+      margin: 12px 0 0;
+    }
+
+    .content-section li {
+      margin: 0 0 7px;
+    }
+
+    #book-list .book {
+      min-height: 210px !important;
+      justify-content: flex-start !important;
+    }
+
+    #book-list .book h2 {
+      margin-bottom: 9px !important;
+    }
+
+    #book-list .book p {
+      flex: 1;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    #book-list .book .cta-button {
+      max-width: 190px !important;
+      min-height: 42px;
+      margin-top: auto;
+    }
+
+    .resource-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 24px;
+      margin-top: 12px !important;
+      padding-left: 0 !important;
+      list-style: none;
+    }
+
+    #test-faq.faq {
+      margin: 0 auto 32px !important;
+      padding: 28px clamp(18px, 4vw, 48px) 36px !important;
+    }
+
+    #test-faq h2 {
+      text-align: left !important;
+    }
+
+    #test-faq h2::after {
+      display: none !important;
+    }
+
+    #test-faq details {
+      padding: 15px 0;
+      border-bottom: 1px solid #e4e9e4;
+    }
+
+    #test-faq summary {
+      color: #173e1c;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    #test-faq details p {
+      margin: 9px 0 0;
+      text-align: left;
+    }
+
+    @media (max-width: 600px) {
+      #mocktest-cards.container,
+      #test-faq.faq {
+        width: 94% !important;
+      }
+
+      #mocktest-cards.container {
+        padding-top: 20px !important;
+      }
+
+      .page-intro .lead {
+        font-size: 1rem;
+      }
+
+      .content-section {
+        margin-top: 26px;
+      }
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": "https://arunpanthi.com.np/NEC-license-preparation/Test/#webpage",
+    "url": "https://arunpanthi.com.np/NEC-license-preparation/Test/",
+    "name": "NEC Civil Engineering License Exam Model Tests",
+    "description": "Five timed civil engineering practice test sets for Nepal Engineering Council license exam candidates, with scores and correct answers shown after submission.",
+    "inLanguage": "en",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "CivPrepMaster",
+      "url": "https://arunpanthi.com.np/"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "CivPrepMaster",
+      "url": "https://arunpanthi.com.np/"
+    },
+    "mainEntity": {
+      "@type": "ItemList",
+      "name": "NEC Civil Engineering License Exam Model Test Sets",
+      "numberOfItems": 5,
+      "itemListOrder": "https://schema.org/ItemListOrderAscending",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "NEC Civil Engineering Model Test Set 1", "url": "https://arunpanthi.com.np/NEC-license-preparation/Test/set-1" },
+        { "@type": "ListItem", "position": 2, "name": "NEC Civil Engineering Model Test Set 2", "url": "https://arunpanthi.com.np/NEC-license-preparation/Test/set-2" },
+        { "@type": "ListItem", "position": 3, "name": "NEC Civil Engineering Model Test Set 3", "url": "https://arunpanthi.com.np/NEC-license-preparation/Test/set-3" },
+        { "@type": "ListItem", "position": 4, "name": "NEC Civil Engineering Model Test Set 4", "url": "https://arunpanthi.com.np/NEC-license-preparation/Test/set-4" },
+        { "@type": "ListItem", "position": 5, "name": "NEC Civil Engineering Model Test Set 5", "url": "https://arunpanthi.com.np/NEC-license-preparation/Test/set-5" }
+      ]
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://arunpanthi.com.np/" },
+      { "@type": "ListItem", "position": 2, "name": "NEC License Preparation", "item": "https://arunpanthi.com.np/NEC-license-preparation/" },
+      { "@type": "ListItem", "position": 3, "name": "NEC Civil Engineering Model Test Sets", "item": "https://arunpanthi.com.np/NEC-license-preparation/Test/" }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Are these official NEC Civil Engineering License Exam papers?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. These are independent practice tests for study and revision. They are not official Nepal Engineering Council exam papers or endorsed by the NEC. Check current official notices and syllabus for exam requirements."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How many NEC civil engineering model test sets are available?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "There are five timed model test sets. Each set focuses on a different mix of civil engineering subjects."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I see my score after submitting a test?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. After submission, the test displays your score, percentage, and the correct answer for each question."
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
   <div id="navbar"></div>
 
   <main class="container" id="mocktest-cards">
-    <h1 style="text-align: center;">NEC License Exam Model Test Sets</h1>
-    <div class="book-list" id="book-list"></div>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li><a href="/NEC-license-preparation/">NEC License Preparation</a></li>
+        <li aria-current="page">Model Test Sets</li>
+      </ol>
+    </nav>
+
+    <header class="page-intro">
+      <h1>NEC Civil Engineering License Exam Model Test Sets</h1>
+      <p class="lead">Prepare for the Nepal Engineering Council (NEC) Civil Engineering License Exam with five timed practice tests. Answer civil engineering multiple-choice questions, then review your score and the correct answers after submission.</p>
+      <p class="disclaimer">These independent study tests are not official NEC exam papers. Use the current official syllabus and notices to confirm exam requirements.</p>
+    </header>
+
+    <section aria-labelledby="test-sets-heading">
+      <h2 id="test-sets-heading" class="section-heading">Choose a free NEC license practice test</h2>
+      <p>Start with any set and use the results to identify topics for revision.</p>
+      <div class="book-list" id="book-list">
+        <article class="book" aria-labelledby="set-1-title">
+          <h2 id="set-1-title">Model Test Set 1</h2>
+          <p>Practice questions on construction materials, building construction, surveying, soil mechanics, RCC design, and hydraulics.</p>
+          <a href="/NEC-license-preparation/Test/set-1" class="cta-button" aria-label="Start NEC Civil Engineering Model Test Set 1">Start Set 1</a>
+        </article>
+        <article class="book" aria-labelledby="set-2-title">
+          <h2 id="set-2-title">Model Test Set 2</h2>
+          <p>Revise construction materials, soil and foundation engineering, structural analysis, surveying, and transportation engineering.</p>
+          <a href="/NEC-license-preparation/Test/set-2" class="cta-button" aria-label="Start NEC Civil Engineering Model Test Set 2">Start Set 2</a>
+        </article>
+        <article class="book" aria-labelledby="set-3-title">
+          <h2 id="set-3-title">Model Test Set 3</h2>
+          <p>Timed practice in fluid mechanics, hydraulics, irrigation engineering, hydrology, and soil mechanics.</p>
+          <a href="/NEC-license-preparation/Test/set-3" class="cta-button" aria-label="Start NEC Civil Engineering Model Test Set 3">Start Set 3</a>
+        </article>
+        <article class="book" aria-labelledby="set-4-title">
+          <h2 id="set-4-title">Model Test Set 4</h2>
+          <p>Test your knowledge of structural analysis, RCC and steel design, engineering drawing, estimation, and professional practice.</p>
+          <a href="/NEC-license-preparation/Test/set-4" class="cta-button" aria-label="Start NEC Civil Engineering Model Test Set 4">Start Set 4</a>
+        </article>
+        <article class="book" aria-labelledby="set-5-title">
+          <h2 id="set-5-title">Model Test Set 5</h2>
+          <p>Review concrete technology, structural analysis, geotechnical engineering, transportation, and estimation questions.</p>
+          <a href="/NEC-license-preparation/Test/set-5" class="cta-button" aria-label="Start NEC Civil Engineering Model Test Set 5">Start Set 5</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="content-section" aria-labelledby="coverage-heading">
+      <h2 id="coverage-heading">Subjects covered in the NEC civil engineering practice tests</h2>
+      <p>Across the five NEC license exam model tests, you can practise questions from construction materials and technology; surveying and engineering drawing; soil and foundation engineering; structural analysis, RCC, and steel design; fluid mechanics, hydrology, and irrigation; transportation engineering; estimation; and professional practice.</p>
+    </section>
+
+    <section class="content-section" aria-labelledby="how-to-heading">
+      <h2 id="how-to-heading">How to use these NEC license exam model tests</h2>
+      <ol>
+        <li>Review the current Nepal Engineering Council civil engineering syllabus.</li>
+        <li>Choose a model test set and complete the timed multiple-choice questions.</li>
+        <li>Check your score and the correct answers, then revisit the subjects you found difficult.</li>
+      </ol>
+    </section>
+
+    <section class="content-section" aria-labelledby="resources-heading">
+      <h2 id="resources-heading">More NEC civil engineering exam preparation resources</h2>
+      <p>Build on your model test practice with the syllabus and subject notes:</p>
+      <ul class="resource-links">
+        <li><a href="/NEC-license-preparation/Syllabus.html">NEC Civil Engineering License Exam syllabus</a></li>
+        <li><a href="/NEC-license-preparation/Notes/">Civil engineering notes for NEC preparation</a></li>
+        <li><a href="/NEC-license-preparation/">NEC license preparation hub</a></li>
+      </ul>
+    </section>
   </main>
 
-  <section class="faq" hidden>
-    <h2>Frequently Asked Questions</h2>
+  <section class="faq" id="test-faq" aria-labelledby="faq-heading">
+    <h2 id="faq-heading">Frequently asked questions about the NEC license practice tests</h2>
     <details>
-      <summary>What are NEC Model Test Sets?</summary>
-      <p>They are practice tests structured like the actual NEC (Nepal Engineering Council) license exam for civil engineers, helping you prepare under timed exam conditions.</p>
+      <summary>Are these official NEC Civil Engineering License Exam papers?</summary>
+      <p>No. These are independent practice tests for study and revision. They are not official Nepal Engineering Council exam papers or endorsed by the NEC. Check current official notices and syllabus for exam requirements.</p>
     </details>
     <details>
-      <summary>How are the sets different from each other?</summary>
-      <p>Each set contains a fresh mix of questions covering construction materials, soil mechanics, surveying, structural analysis, RCC design, hydraulics, irrigation, transportation, estimation and construction management.</p>
+      <summary>How many NEC civil engineering model test sets are available?</summary>
+      <p>There are five timed model test sets. Each set focuses on a different mix of civil engineering subjects.</p>
     </details>
     <details>
-      <summary>Can I see my score?</summary>
-      <p>Yes, each test shows your score, percentage and detailed solutions immediately after submission.</p>
+      <summary>Can I see my score after submitting a test?</summary>
+      <p>Yes. After submission, the test displays your score, percentage, and the correct answer for each question.</p>
     </details>
   </section>
 
-  <script>
-    const totalSets = 5;
-    const examList = document.getElementById("book-list");
-    for (let i = 1; i <= totalSets; i++) {
-      const article = document.createElement("article");
-      article.className = "book";
-      const link = `/NEC-license-preparation/Test/set-${i}`;
-      article.innerHTML = `
-        <h2>Model Test Set ${i}</h2>
-        <img src="/Photos/logo.png"
-     alt="Set No: ${i}"
-     width="150"
-     height="150"
-     loading="lazy">
-        <p>Practice NEC license exam set ${i} with instant results.</p>
-        <a href="${link}" class="cta-button">Start Test</a>
-      `;
-      examList.appendChild(article);
-    }
-  </script>
-    <div id="social-section"></div>
+  <div id="social-section"></div>
   <div id="footer"></div>
   <script src="/js/layout.js?v=20260924"></script>
 </body>

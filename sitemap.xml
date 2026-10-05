@@ -645,7 +645,13 @@
 </url>
 <url>
     <loc>https://arunpanthi.com.np/Psc-preparation/Test/1.6-2.html</loc>
-    <lastmod>2026-08-21</lastmod>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+</url>
+<url>
+    <loc>https://arunpanthi.com.np/Psc-preparation/Test/1.6-3.html</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
 </url>

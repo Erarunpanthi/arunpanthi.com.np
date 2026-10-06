@@ -1,4 +1,4 @@
-/* Styles scoped to the Second Paper syllabus page to avoid legacy global grid conflicts. */
+/* Shared PSC syllabus and practice index styles, scoped to avoid legacy global grid conflicts. */
 .subjective-index {
     background: #f4f7f5;
     color: #17231b;
@@ -191,12 +191,6 @@
     letter-spacing: .03em;
 }
 
-.subjective-index .marks {
-    color: #66736a;
-    font: 700 .76rem/1.2 "Segoe UI", system-ui, sans-serif;
-    text-transform: uppercase;
-}
-
 .subjective-index .topic-card h3 {
     margin: 0 0 9px;
     color: #18341e;
@@ -267,4 +261,96 @@
 @media (prefers-reduced-motion: reduce) {
     .subjective-index .topic-card,
     .subjective-index .notes-button { transition: none; }
+}
+
+/* Section navigation and native, keyboard-accessible resource disclosures. */
+.subjective-index .syllabus-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.subjective-index .syllabus-nav a {
+    padding: 10px 14px;
+    border: 1px solid #cbdcce;
+    border-radius: 9px;
+    color: #15531c;
+    background: #fff;
+    text-decoration: none;
+    font: 700 .85rem/1.4 "Segoe UI", system-ui, sans-serif;
+}
+
+.subjective-index .syllabus-nav a:hover {
+    background: #e8f5e9;
+}
+
+.subjective-index .syllabus-section {
+    scroll-margin-top: 90px;
+}
+
+.subjective-index .topic-resources {
+    margin-top: auto;
+    padding-top: 10px;
+}
+
+.subjective-index .topic-resources summary {
+    padding: 11px 13px;
+    border-radius: 9px;
+    color: #fff;
+    background: #1b5e20;
+    cursor: pointer;
+    font: 750 .84rem/1.4 "Segoe UI", system-ui, sans-serif;
+}
+
+.subjective-index .topic-resources summary:hover {
+    background: #0d3b12;
+}
+
+.subjective-index .resource-count {
+    white-space: nowrap;
+}
+
+.subjective-index .resource-list {
+    display: grid;
+    gap: 12px;
+    margin: 14px 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.subjective-index .resource-list li {
+    margin: 0;
+    padding: 12px;
+    border: 1px solid #dce5de;
+    border-radius: 9px;
+    background: #f4f7f5;
+}
+
+.subjective-index .resource-list h4 {
+    margin: 0 0 10px;
+    color: #18341e;
+    font: 650 .9rem/1.5 "Segoe UI", system-ui, sans-serif;
+}
+
+.subjective-index .syllabus-nav a:focus-visible,
+.subjective-index .topic-resources summary:focus-visible {
+    outline: 3px solid #81c784;
+    outline-offset: 3px;
+}
+
+.subjective-index .syllabus-skip-link {
+    position: absolute;
+    top: 0;
+    left: 14px;
+    z-index: 9999;
+    transform: translateY(-120%);
+    padding: 12px 16px;
+    border-radius: 0 0 9px 9px;
+    color: #fff;
+    background: #0d3b12;
+    font: 700 1rem/1.4 "Segoe UI", system-ui, sans-serif;
+}
+
+.subjective-index .syllabus-skip-link:focus {
+    transform: translateY(0);
 }

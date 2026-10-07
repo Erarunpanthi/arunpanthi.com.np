@@ -191,13 +191,13 @@
   }
 
 
-  // Auto "Last updated" date — always shows the LAST DAY of the current month.
-  // Any <time data-auto-date="month-end"> element is updated automatically, so the
-  // stamp rolls over on its own at the end of each month with no manual edits.
-  // Also keeps the page JSON-LD dateModified in sync when present (#page-schema).
+  // Auto "Last updated" date — always shows the LAST DAY of the PREVIOUS month,
+  // i.e. September 30 while it is October, then October 31 while it is November.
+  // Any <time data-auto-date="previous-month-end"> element rolls over automatically
+  // as the calendar month changes. Also keeps page JSON-LD dateModified in sync.
 
-  function getMonthEndDates(now) {
-    var lastDay = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+  function getPreviousMonthEndDates(now) {
+    var lastDay = new Date(now.getFullYear(), now.getMonth(), 0);
     var mm = String(lastDay.getMonth() + 1);
     if (mm.length < 2) mm = "0" + mm;
     var dd = String(lastDay.getDate());
@@ -210,12 +210,12 @@
   function initAutoLastUpdated() {
     var dates;
     try {
-      dates = getMonthEndDates(new Date());
+      dates = getPreviousMonthEndDates(new Date());
     } catch (err) {
       return; // keep the static fallback text in the HTML
     }
 
-    var times = document.querySelectorAll('time[data-auto-date="month-end"]');
+    var times = document.querySelectorAll('time[data-auto-date="previous-month-end"]');
     for (var i = 0; i < times.length; i++) {
       times[i].setAttribute("datetime", dates.iso);
       times[i].textContent = dates.long;

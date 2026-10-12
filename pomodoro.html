@@ -311,7 +311,6 @@
             color: var(--text-secondary);
             letter-spacing: 0.02em;
             flex-wrap: wrap;
-            justify-content: center;
         }
         .session-dots {
             display: flex;
@@ -373,7 +372,6 @@
         .session-input::-webkit-outer-spin-button {
             opacity: 0.6;
         }
-        /* Session increment/decrement buttons - accessible touch targets */
         .session-btn {
             background: none;
             border: none;
@@ -495,8 +493,12 @@
             border-color: rgba(78, 205, 196, 0.4);
             background: #1a2a28;
         }
+        .toast.warn-toast {
+            border-color: rgba(255, 176, 32, 0.5);
+            background: #2a2318;
+            color: #ffd479;
+        }
 
-        
         .report-overlay {
             position: fixed;
             inset: 0;
@@ -635,6 +637,9 @@
         .report-table tr:hover td {
             background: rgba(255, 255, 255, 0.03);
         }
+        .report-table tr.today-row td {
+            background: rgba(255, 107, 107, 0.07);
+        }
         .report-table .total-row td {
             background: rgba(255, 107, 107, 0.06);
             font-weight: 600;
@@ -646,6 +651,17 @@
         }
         .report-table .break-col {
             color: var(--accent-break);
+        }
+        .today-badge {
+            display: inline-block;
+            font-size: 0.58rem;
+            background: var(--accent-work);
+            color: #fff;
+            padding: 0.05rem 0.35rem;
+            border-radius: 6px;
+            margin-left: 0.4rem;
+            vertical-align: middle;
+            letter-spacing: 0.04em;
         }
         .report-chart-wrap {
             background: var(--surface-2);
@@ -793,7 +809,7 @@
                 <div class="session-settings">
                     <label for="sessionInput">🔁</label>
                     <button class="session-btn" id="sessionDecrement">−</button>
-                    <input type="number" id="sessionInput" class="session-input" value="4" min="1" max="10" step="1">
+                    <input type="number" id="sessionInput" class="session-input" value="4" min="1" max="500" step="1">
                     <button class="session-btn" id="sessionIncrement">+</button>
                 </div>
             </div>
@@ -809,10 +825,8 @@
         </div>
     </div>
 
-    
     <div class="toast" id="toast"></div>
 
-    
     <div class="report-overlay" id="reportOverlay">
         <div class="report-modal">
             <div class="report-header">
@@ -823,9 +837,7 @@
                 </div>
             </div>
             <div class="report-scroll" id="reportScroll">
-                <div id="reportContent">
-                    
-                </div>
+                <div id="reportContent"></div>
             </div>
         </div>
     </div>
@@ -865,18 +877,31 @@
             ringProgress.style.strokeDashoffset = '0';
             ringGlow.style.strokeDashoffset = '0';
 
+            // ---- Background / inactivity policy ----
+            // The timer keeps counting down while the tab is hidden.
+            // After 4 minutes hidden  -> warning sound
+            // After 1 more minute     -> freeze (pause) the timer
+            const INACTIVITY_WARN_MS = 4 * 60 * 1000;   // 4 minutes
+            const INACTIVITY_FREEZE_MS = 60 * 1000;     // +1 minute after warning
+            const TICK_MS = 250;
+
             // ---- Audio ----
             let audioCtx = null;
 
             function getAudioContext() {
-                if (!audioCtx) audioCtx = new(window.AudioContext || window.webkitAudioContext)();
-                if (audioCtx.state === 'suspended') audioCtx.resume();
+                if (!audioCtx) {
+                    const AC = window.AudioContext || window.webkitAudioContext;
+                    if (!AC) return null;
+                    audioCtx = new AC();
+                }
+                if (audioCtx.state === 'suspended') audioCtx.resume().catch(() => {});
                 return audioCtx;
             }
 
             function playTone(f, d, type = 'sine', vol = 0.3, ramp = true) {
                 try {
                     const ctx = getAudioContext();
+                    if (!ctx) return;
                     const osc = ctx.createOscillator();
                     const gain = ctx.createGain();
                     osc.type = type;
@@ -893,9 +918,9 @@
 
             function playStartSound() {
                 const ctx = getAudioContext();
+                if (!ctx) return;
                 [523.25, 659.25, 783.99].forEach((f, i) => {
-                    const osc = ctx.createOscillator(),
-                        gain = ctx.createGain();
+                    const osc = ctx.createOscillator(), gain = ctx.createGain();
                     osc.type = 'sine';
                     osc.frequency.setValueAtTime(f, ctx.currentTime + i * 0.12);
                     gain.gain.setValueAtTime(0.25, ctx.currentTime + i * 0.12);
@@ -910,9 +935,9 @@
 
             function playEndSound() {
                 const ctx = getAudioContext();
+                if (!ctx) return;
                 [880, 1046.5].forEach((f, i) => {
-                    const osc = ctx.createOscillator(),
-                        gain = ctx.createGain();
+                    const osc = ctx.createOscillator(), gain = ctx.createGain();
                     osc.type = 'triangle';
                     osc.frequency.setValueAtTime(f, ctx.currentTime + i * 0.18);
                     gain.gain.setValueAtTime(0.35, ctx.currentTime + i * 0.18);
@@ -925,8 +950,29 @@
                 setTimeout(() => playTone(1200, 0.6, 'sine', 0.2), 400);
             }
 
-            function playClickSound() { playTone(600, 0.08, 'sine', 0.15, false); }
+            // Urgent triple beep — played when the tab has been hidden 4 minutes
+            function playWarningSound() {
+                try {
+                    const ctx = getAudioContext();
+                    if (!ctx) return;
+                    for (let i = 0; i < 3; i++) {
+                        const t = ctx.currentTime + i * 0.42;
+                        const osc = ctx.createOscillator();
+                        const gain = ctx.createGain();
+                        osc.type = 'square';
+                        osc.frequency.setValueAtTime(950, t);
+                        gain.gain.setValueAtTime(0.0001, t);
+                        gain.gain.exponentialRampToValueAtTime(0.28, t + 0.02);
+                        gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.28);
+                        osc.connect(gain);
+                        gain.connect(ctx.destination);
+                        osc.start(t);
+                        osc.stop(t + 0.32);
+                    }
+                } catch (e) {}
+            }
 
+            function playClickSound() { playTone(600, 0.08, 'sine', 0.15, false); }
             function playSkipSound() { playTone(400, 0.12, 'square', 0.08, false); }
 
             // ---- Wake Lock ----
@@ -953,32 +999,48 @@
                 'short-break': { label: 'Short Break', duration: 5 * 60, accent: '#4ecdc4' },
                 'long-break': { label: 'Long Break', duration: 15 * 60, accent: '#5b8def' }
             };
-            let currentMode = 'work',
-                totalSeconds = MODES.work.duration,
-                remainingSeconds = totalSeconds,
-                timerInterval = null,
-                isRunning = false;
-            let completedWorkSessions = 0,
-                MAX_WORK_SESSIONS = 4,
-                wasAutoPaused = false;
-            let totalFocusSeconds = 0,
-                totalBreakSeconds = 0,
-                inactivityTimeout = null;
+
+            let currentMode = 'work';
+            let totalSeconds = MODES.work.duration;
+            let remainingSeconds = totalSeconds;
+
+            let timerInterval = null;
+            let isRunning = false;
+            let endTime = null;          // absolute ms timestamp when timer hits 0
+            let lastTickTime = 0;        // ms timestamp of last accounted second
+
+            let completedWorkSessions = 0;
+            let MAX_WORK_SESSIONS = 4;
+            let wasAutoPaused = false;   // paused after freeze (blinking indicator)
+            let wasFrozen = false;       // true when the inactivity freeze fired
+
+            let totalFocusSeconds = 0;
+            let totalBreakSeconds = 0;
+
+            let currentDateKey = getTodayDateString();
+
+            // Background watch handles
+            let bgWarnTimeout = null;
+            let bgFreezeTimeout = null;
 
             // ---- Storage helpers ----
             function getTodayDateString() {
                 const d = new Date();
-                return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+                return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
             }
 
-            function getStorageKey() { return `pomodoro-totals-${getTodayDateString()}`; }
+            function getStorageKey(dateStr) {
+                return `pomodoro-totals-${dateStr || currentDateKey || getTodayDateString()}`;
+            }
 
+            function isDateKey(str) { return /^\d{4}-\d{2}-\d{2}$/.test(str); }
+
+            // Loads TODAY's totals into memory. Past days stay untouched in storage.
             function loadTotalsFromStorage() {
                 try {
-                    const key = getStorageKey();
-                    const raw = localStorage.getItem(key);
+                    const raw = localStorage.getItem(getStorageKey());
                     if (raw) {
-                        const data = JSON.parse(raw);
+                        const data = JSON.parse(raw) || {};
                         totalFocusSeconds = Math.max(0, parseInt(data.focus, 10) || 0);
                         totalBreakSeconds = Math.max(0, parseInt(data.break, 10) || 0);
                     } else {
@@ -989,17 +1051,30 @@
                     totalFocusSeconds = 0;
                     totalBreakSeconds = 0;
                 }
-                // ensure we save right away so today's entry exists
+                // Make sure today's entry exists in storage right away
                 saveTotalsToStorage();
             }
 
-            function saveTotalsToStorage() {
+            function saveTotalsToStorage(dateStr) {
                 try {
-                    localStorage.setItem(getStorageKey(), JSON.stringify({
+                    localStorage.setItem(getStorageKey(dateStr), JSON.stringify({
                         focus: totalFocusSeconds,
-                        break: totalBreakSeconds
+                        break: totalBreakSeconds,
+                        updated: Date.now()
                     }));
                 } catch (e) {}
+            }
+
+            // If the clock rolls past midnight while the app is open, finalise
+            // yesterday's entry and start a fresh one for the new day.
+            function checkDateRollover() {
+                const today = getTodayDateString();
+                if (today === currentDateKey) return;
+                saveTotalsToStorage(currentDateKey);   // persist the old day first
+                currentDateKey = today;
+                loadTotalsFromStorage();
+                updateTotalTimerDisplay();
+                showToast('New day — today\'s counters reset');
             }
 
             function resetTodayTotals() {
@@ -1012,21 +1087,12 @@
 
             // ---- Formatting ----
             function formatTime(sec) {
-                const m = Math.floor(sec / 60),
-                    s = sec % 60;
-                return `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+                const m = Math.floor(sec / 60), s = sec % 60;
+                return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
             }
 
-            function formatMinutes(sec) { return `${Math.round(sec/60)}m`; }
-
+            function formatMinutes(sec) { return `${Math.round(sec / 60)}m`; }
             function formatHours(sec) { return (sec / 3600).toFixed(1) + 'h'; }
-
-            function formatHoursShort(sec) {
-                const h = Math.floor(sec / 3600);
-                const m = Math.round((sec % 3600) / 60);
-                if (h === 0) return `${m}m`;
-                return `${h}h ${m}m`;
-            }
 
             // ---- UI updates ----
             function updateTotalTimerDisplay() {
@@ -1046,6 +1112,7 @@
                 const offset = CIRCUMFERENCE * (1 - fraction);
                 ringProgress.style.strokeDashoffset = offset;
                 ringGlow.style.strokeDashoffset = offset;
+
                 timeDisplay.classList.remove('paused', 'auto-paused-indicator');
                 if (!isRunning && remainingSeconds < totalSeconds) {
                     timeDisplay.classList.add(wasAutoPaused ? 'auto-paused-indicator' : 'paused');
@@ -1060,8 +1127,9 @@
                 ringGlow.style.stroke = color;
                 btnPlay.style.background = isRunning ? '#3a3a3a' : color;
                 if (!isRunning) btnPlay.style.boxShadow = `0 8px 28px ${color}55`;
-                document.querySelector('.header .dot').style.background = color;
-                document.querySelector('.header .dot').style.boxShadow = `0 0 12px ${color}`;
+                const dot = document.querySelector('.header .dot');
+                dot.style.background = color;
+                dot.style.boxShadow = `0 0 12px ${color}`;
                 document.querySelectorAll('.mode-tab').forEach(tab => {
                     tab.classList.toggle('active', tab.dataset.mode === currentMode);
                 });
@@ -1074,8 +1142,8 @@
                     const dot = document.createElement('span');
                     dot.className = 'session-dot';
                     if (i < completedWorkSessions) dot.classList.add('completed');
-                    if (currentMode === 'work' && isRunning && i === completedWorkSessions && completedWorkSessions <
-                        MAX_WORK_SESSIONS) dot.classList.add('current');
+                    if (currentMode === 'work' && isRunning && i === completedWorkSessions &&
+                        completedWorkSessions < MAX_WORK_SESSIONS) dot.classList.add('current');
                     sessionDotsContainer.appendChild(dot);
                 }
                 sessionCount.textContent = `${completedWorkSessions} / ${MAX_WORK_SESSIONS}`;
@@ -1086,8 +1154,8 @@
                 [...sessionDotsContainer.children].forEach((dot, i) => {
                     dot.classList.remove('completed', 'current');
                     if (i < completedWorkSessions) dot.classList.add('completed');
-                    if (currentMode === 'work' && isRunning && i === completedWorkSessions && completedWorkSessions <
-                        MAX_WORK_SESSIONS) dot.classList.add('current');
+                    if (currentMode === 'work' && isRunning && i === completedWorkSessions &&
+                        completedWorkSessions < MAX_WORK_SESSIONS) dot.classList.add('current');
                 });
                 sessionCount.textContent = `${completedWorkSessions} / ${MAX_WORK_SESSIONS}`;
             }
@@ -1103,77 +1171,90 @@
                 updateTitle();
             }
 
-            function showToast(msg, isBreak = false) {
+            function showToast(msg, isBreak = false, isWarn = false) {
                 toast.textContent = msg;
-                toast.className = 'toast' + (isBreak ? ' break-toast' : '');
+                toast.className = 'toast' + (isBreak ? ' break-toast' : '') + (isWarn ? ' warn-toast' : '');
                 void toast.offsetWidth;
                 toast.classList.add('show');
                 clearTimeout(toast._timeout);
-                toast._timeout = setTimeout(() => toast.classList.remove('show'), 2200);
+                toast._timeout = setTimeout(() => toast.classList.remove('show'), 2600);
             }
 
             function clearAutoPausedFlag() {
-                if (wasAutoPaused) { wasAutoPaused = false;
-                    timeDisplay.classList.remove('auto-paused-indicator'); }
+                if (wasAutoPaused) {
+                    wasAutoPaused = false;
+                    timeDisplay.classList.remove('auto-paused-indicator');
+                }
             }
 
-            function clearInactivityTimeout() {
-                if (inactivityTimeout) { clearTimeout(inactivityTimeout);
-                    inactivityTimeout = null; }
+            // ---- Background watch (4 min -> warn, +1 min -> freeze) ----
+            function clearBackgroundWatch() {
+                if (bgWarnTimeout) { clearTimeout(bgWarnTimeout); bgWarnTimeout = null; }
+                if (bgFreezeTimeout) { clearTimeout(bgFreezeTimeout); bgFreezeTimeout = null; }
             }
 
-            // ---- Timer controls ----
-            function stopTimer(keepWakeLock = false) {
-                if (timerInterval) { clearInterval(timerInterval);
-                    timerInterval = null; }
-                isRunning = false;
-                clearAutoPausedFlag();
-                clearInactivityTimeout();
-                iconPlay.style.display = 'block';
-                iconPause.style.display = 'none';
-                btnPlay.classList.remove('running');
-                btnPlay.style.background = MODES[currentMode].accent;
-                btnPlay.style.boxShadow = `0 8px 28px ${MODES[currentMode].accent}55`;
-                updateDisplay();
-                updateSessionDots();
-                if (!keepWakeLock) releaseWakeLock();
-                saveTotalsToStorage();
+            function startBackgroundWatch() {
+                clearBackgroundWatch();
+
+                bgWarnTimeout = setTimeout(() => {
+                    bgWarnTimeout = null;
+                    // 4 minutes of inactivity reached — play the warning
+                    playWarningSound();
+                    showToast('⚠️ Still there? Timer freezes in 1 minute', false, true);
+
+                    bgFreezeTimeout = setTimeout(() => {
+                        bgFreezeTimeout = null;
+                        // 1 more minute passed without returning — freeze
+                        if (isRunning) {
+                            wasFrozen = true;
+                            pauseTimer('freeze');
+                        }
+                    }, INACTIVITY_FREEZE_MS);
+                }, INACTIVITY_WARN_MS);
             }
 
-            function resetTimer() {
-                stopTimer();
-                remainingSeconds = MODES[currentMode].duration;
-                totalSeconds = remainingSeconds;
-                clearAutoPausedFlag();
-                updateDisplay();
-                updateSessionDots();
-                timeDisplay.classList.remove('paused', 'auto-paused-indicator');
+            // ---- Timer engine (timestamp based so it survives background throttling) ----
+            function stopTicker() {
+                if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
             }
 
-            function switchMode(mode) {
-                if (isRunning) stopTimer();
-                clearAutoPausedFlag();
-                currentMode = mode;
-                totalSeconds = MODES[mode].duration;
-                remainingSeconds = totalSeconds;
-                sessionLabel.textContent = MODES[mode].label;
-                setAccent(MODES[mode].accent);
-                updateDisplay();
-                updateSessionDots();
-                timeDisplay.classList.remove('paused', 'auto-paused-indicator');
-                document.querySelectorAll('.mode-tab').forEach(t => t.classList.toggle('active', t.dataset.mode === mode));
-                saveTotalsToStorage();
+            function timerTick() {
+                if (!isRunning || endTime === null) return;
+
+                const now = Date.now();
+                // Account elapsed real time (works even if the interval was throttled)
+                const accounted = Math.min(now, endTime);
+                const elapsed = Math.floor((accounted - lastTickTime) / 1000);
+                if (elapsed > 0) {
+                    lastTickTime += elapsed * 1000;
+                    if (currentMode === 'work') totalFocusSeconds += elapsed;
+                    else totalBreakSeconds += elapsed;
+                    saveTotalsToStorage();
+                    checkDateRollover();
+                }
+
+                const newRemaining = Math.max(0, Math.ceil((endTime - now) / 1000));
+                if (newRemaining !== remainingSeconds) {
+                    remainingSeconds = newRemaining;
+                    updateDisplay();
+                }
+
+                if (now >= endTime) completeSession();
             }
 
             function startTimer() {
                 if (isRunning) return;
-                if (remainingSeconds <= 0) { remainingSeconds = MODES[currentMode].duration;
-                    totalSeconds = remainingSeconds; }
+                if (remainingSeconds <= 0) remainingSeconds = MODES[currentMode].duration;
                 totalSeconds = MODES[currentMode].duration;
+
                 clearAutoPausedFlag();
-                clearInactivityTimeout();
+                wasFrozen = false;
                 getAudioContext();
+
                 isRunning = true;
+                endTime = Date.now() + remainingSeconds * 1000;
+                lastTickTime = Date.now();
+
                 iconPlay.style.display = 'none';
                 iconPause.style.display = 'block';
                 btnPlay.classList.add('running');
@@ -1182,66 +1263,55 @@
                 timeDisplay.classList.remove('paused', 'auto-paused-indicator');
                 updateSessionDots();
                 updateTitle();
+
                 playStartSound();
                 requestWakeLock();
-                showToast(`${MODES[currentMode].label} session started · ${formatTime(remainingSeconds)}`, currentMode !==
-                    'work');
+                showToast(`${MODES[currentMode].label} session started · ${formatTime(remainingSeconds)}`,
+                    currentMode !== 'work');
 
-                timerInterval = setInterval(() => {
-                    remainingSeconds--;
-                    updateDisplay();
-                    if (currentMode === 'work') totalFocusSeconds++;
-                    else totalBreakSeconds++;
-                    saveTotalsToStorage();
-
-                    if (remainingSeconds <= 0) {
-                        clearInterval(timerInterval);
-                        timerInterval = null;
-                        isRunning = false;
-                        clearAutoPausedFlag();
-                        clearInactivityTimeout();
-                        iconPlay.style.display = 'block';
-                        iconPause.style.display = 'none';
-                        btnPlay.classList.remove('running');
-                        btnPlay.style.background = MODES[currentMode].accent;
-                        btnPlay.style.boxShadow = `0 8px 28px ${MODES[currentMode].accent}55`;
-                        updateDisplay();
-                        releaseWakeLock();
-                        saveTotalsToStorage();
-                        playEndSound();
-
-                        if (currentMode === 'work') {
-                            completedWorkSessions++;
-                            updateSessionDots();
-                            showToast('🎉 Focus complete! Take a break.', true);
-                            if (completedWorkSessions >= MAX_WORK_SESSIONS) {
-                                completedWorkSessions = 0;
-                                updateSessionDots();
-                                switchMode('long-break');
-                                showToast('Great work! Long break ☕', true);
-                            } else {
-                                switchMode('short-break');
-                            }
-                        } else {
-                            showToast('Break over! Ready to focus?', false);
-                            switchMode('work');
-                            updateSessionDots();
-                        }
-                        setTimeout(() => {
-                            if (!isRunning && remainingSeconds === MODES[currentMode].duration) {
-                                startTimer();
-                            }
-                        }, currentMode === 'work' ? 1500 : 1800);
-                    }
-                }, 1000);
+                stopTicker();
+                timerInterval = setInterval(timerTick, TICK_MS);
             }
 
-            function pauseTimer(triggeredByTabSwitch = false) {
+            function pauseTimer(reason = 'manual') {
                 if (!isRunning) return;
-                clearInterval(timerInterval);
-                timerInterval = null;
+
+                stopTicker();
+                // Capture the true remaining time at the moment of pausing
+                if (endTime !== null) {
+                    remainingSeconds = Math.max(0, Math.ceil((endTime - Date.now()) / 1000));
+                }
                 isRunning = false;
-                clearInactivityTimeout();
+                endTime = null;
+
+                iconPlay.style.display = 'block';
+                iconPause.style.display = 'none';
+                btnPlay.classList.remove('running');
+                btnPlay.style.background = MODES[currentMode].accent;
+                btnPlay.style.boxShadow = `0 8px 28px ${MODES[currentMode].accent}55`;
+
+                updateDisplay();
+                updateSessionDots();
+                releaseWakeLock();
+                saveTotalsToStorage();
+
+                if (reason === 'freeze') {
+                    wasAutoPaused = true;
+                    timeDisplay.classList.add('auto-paused-indicator');
+                } else {
+                    timeDisplay.classList.add('paused');
+                }
+            }
+
+            function resetTimer() {
+                if (isRunning) pauseTimer('manual');
+                stopTicker();
+                isRunning = false;
+                endTime = null;
+                clearAutoPausedFlag();
+                wasFrozen = false;
+                remainingSeconds = MODES[currentMode].duration;
+                totalSeconds = remainingSeconds;
                 iconPlay.style.display = 'block';
                 iconPause.style.display = 'none';
                 btnPlay.classList.remove('running');
@@ -1249,29 +1319,85 @@
                 btnPlay.style.boxShadow = `0 8px 28px ${MODES[currentMode].accent}55`;
                 updateDisplay();
                 updateSessionDots();
-                if (triggeredByTabSwitch) {
-                    wasAutoPaused = true;
-                    timeDisplay.classList.add('auto-paused-indicator');
-                } else {
-                    timeDisplay.classList.add('paused');
-                }
+                timeDisplay.classList.remove('paused', 'auto-paused-indicator');
+                saveTotalsToStorage();
+            }
+
+            function switchMode(mode) {
+                stopTicker();
+                isRunning = false;
+                endTime = null;
+                clearAutoPausedFlag();
+                wasFrozen = false;
+                currentMode = mode;
+                totalSeconds = MODES[mode].duration;
+                remainingSeconds = totalSeconds;
+                sessionLabel.textContent = MODES[mode].label;
+                setAccent(MODES[mode].accent);
+                iconPlay.style.display = 'block';
+                iconPause.style.display = 'none';
+                btnPlay.classList.remove('running');
+                updateDisplay();
+                updateSessionDots();
+                timeDisplay.classList.remove('paused', 'auto-paused-indicator');
+                document.querySelectorAll('.mode-tab').forEach(t => t.classList.toggle('active', t.dataset.mode === mode));
+                saveTotalsToStorage();
+            }
+
+            function completeSession() {
+                stopTicker();
+                isRunning = false;
+                endTime = null;
+                remainingSeconds = 0;
+                clearAutoPausedFlag();
+                clearBackgroundWatch();
+
+                iconPlay.style.display = 'block';
+                iconPause.style.display = 'none';
+                btnPlay.classList.remove('running');
+                btnPlay.style.background = MODES[currentMode].accent;
+                btnPlay.style.boxShadow = `0 8px 28px ${MODES[currentMode].accent}55`;
+                updateDisplay();
                 releaseWakeLock();
                 saveTotalsToStorage();
+                playEndSound();
+
+                if (currentMode === 'work') {
+                    completedWorkSessions++;
+                    updateSessionDots();
+                    showToast('🎉 Focus complete! Take a break.', true);
+                    if (completedWorkSessions >= MAX_WORK_SESSIONS) {
+                        completedWorkSessions = 0;
+                        updateSessionDots();
+                        switchMode('long-break');
+                        showToast('Great work! Long break ☕', true);
+                    } else {
+                        switchMode('short-break');
+                    }
+                } else {
+                    showToast('Break over! Ready to focus?', false);
+                    switchMode('work');
+                    updateSessionDots();
+                }
+
+                const delay = currentMode === 'work' ? 1500 : 1800;
+                const modeAtTimeout = currentMode;
+                setTimeout(() => {
+                    // Only auto-start if the user hasn't frozen/paused in the meantime
+                    if (!isRunning && !wasFrozen && currentMode === modeAtTimeout &&
+                        remainingSeconds === MODES[currentMode].duration) {
+                        startTimer();
+                    }
+                }, delay);
             }
 
             function skipSession() {
                 playSkipSound();
-                if (isRunning) {
-                    clearInterval(timerInterval);
-                    timerInterval = null;
-                    isRunning = false;
-                    iconPlay.style.display = 'block';
-                    iconPause.style.display = 'none';
-                    btnPlay.classList.remove('running');
-                    releaseWakeLock();
-                }
+                stopTicker();
+                isRunning = false;
+                endTime = null;
                 clearAutoPausedFlag();
-                clearInactivityTimeout();
+                wasFrozen = false;
                 remainingSeconds = 0;
                 updateDisplay();
                 saveTotalsToStorage();
@@ -1297,224 +1423,231 @@
                 timeDisplay.classList.remove('paused', 'auto-paused-indicator');
             }
 
-            // ---- Visibility with 10-sec grace ----
+            // ---- Visibility handling: keep running in background ----
             document.addEventListener('visibilitychange', async () => {
-                if (document.visibilityState === 'hidden' && isRunning) {
-                    clearInactivityTimeout();
-                    inactivityTimeout = setTimeout(() => {
-                        if (isRunning) pauseTimer(true);
-                        inactivityTimeout = null;
-                    }, 10000);
+                if (document.visibilityState === 'hidden') {
+                    // Timer keeps running — start the inactivity watch
+                    if (isRunning) startBackgroundWatch();
+                    return;
                 }
-                if (document.visibilityState === 'visible') {
-                    if (inactivityTimeout) { clearTimeout(inactivityTimeout);
-                        inactivityTimeout = null; }
-                    if (wasAutoPaused && !isRunning && remainingSeconds > 0 && remainingSeconds < totalSeconds) {
-                        startTimer();
-                    }
+
+                // ---- Back to foreground ----
+                clearBackgroundWatch();
+                checkDateRollover();
+                updateTotalTimerDisplay();
+
+                if (isRunning) {
+                    // Resync immediately with real elapsed time
+                    timerTick();
                     if (isRunning && !wakeLockSentinel) await requestWakeLock();
-                    // ensure today's data is loaded
-                    loadTotalsFromStorage();
-                    updateTotalTimerDisplay();
+                } else if (wasFrozen) {
+                    showToast('⏸ Timer was frozen after 5 min away — press play to resume', false, true);
+                    wasFrozen = false;
                 }
             });
 
-            // ---- Report: Excel-like table + bar chart (from today onward) ----
-            function buildReport() {
-                const historyData = [];
+            // =====================================================================
+            //  REPORT — reads every stored day (yesterday, day before, ... today)
+            // =====================================================================
+            function collectHistory() {
                 const today = getTodayDateString();
+                const historyData = [];
 
-                // Collect all stored days
                 Object.keys(localStorage).forEach(key => {
-                    if (key.startsWith('pomodoro-totals-')) {
-                        const dateStr = key.replace('pomodoro-totals-', '');
-                        // Only include dates from today onward
-                        if (dateStr < today) return;
-                        try {
-                            const raw = localStorage.getItem(key);
-                            const data = JSON.parse(raw);
-                            const focusSec = parseInt(data.focus, 10) || 0;
-                            const breakSec = parseInt(data.break, 10) || 0;
-                            const totalSec = focusSec + breakSec;
-                            if (totalSec > 0 || dateStr === today) {
-                                historyData.push({ dateStr, focusSec, breakSec, totalSec });
-                            }
-                        } catch (e) {}
-                    }
+                    if (!key.startsWith('pomodoro-totals-')) return;
+                    const dateStr = key.slice('pomodoro-totals-'.length);
+                    if (!isDateKey(dateStr)) return;
+                    try {
+                        const data = JSON.parse(localStorage.getItem(key)) || {};
+                        const focusSec = Math.max(0, parseInt(data.focus, 10) || 0);
+                        const breakSec = Math.max(0, parseInt(data.break, 10) || 0);
+                        const totalSec = focusSec + breakSec;
+                        // Keep every day that has data, plus today even if empty
+                        if (totalSec > 0 || dateStr === today) {
+                            historyData.push({ dateStr, focusSec, breakSec, totalSec });
+                        }
+                    } catch (e) {}
                 });
 
-                // Sort by date ascending
                 historyData.sort((a, b) => a.dateStr.localeCompare(b.dateStr));
+                return historyData;
+            }
 
-                // Build table rows
+            function buildReport() {
+                const today = getTodayDateString();
+                const historyData = collectHistory();
                 let html = '';
+
                 if (historyData.length === 0) {
                     html = `
                         <div class="report-empty">
                             <span class="big-icon">📭</span>
-                            <p>No data recorded yet from today onward.<br>Start using the timer to build your log!</p>
+                            <p>No data recorded yet.<br>Start using the timer to build your log!</p>
                         </div>
                     `;
-                } else {
-                    let totalFocusAll = 0,
-                        totalBreakAll = 0;
-                    const rows = historyData.map((entry, idx) => {
-                        totalFocusAll += entry.focusSec;
-                        totalBreakAll += entry.breakSec;
-                        const [y, m, d] = entry.dateStr.split('-').map(Number);
-                        const adDate = new Date(y, m - 1, d);
-                        const displayDate = adDate.toLocaleDateString('en-US', {
-                            weekday: 'short',
-                            month: 'short',
-                            day: 'numeric',
-                            year: 'numeric'
-                        });
-                        const focusH = (entry.focusSec / 3600).toFixed(1);
-                        const breakH = (entry.breakSec / 3600).toFixed(1);
-                        const totalH = (entry.totalSec / 3600).toFixed(1);
-                        return { idx, dateStr: entry.dateStr, displayDate, focusSec: entry.focusSec,
-                            breakSec: entry.breakSec, totalSec: entry.totalSec, focusH, breakH, totalH };
-                    });
+                    reportContent.innerHTML = html;
+                    return;
+                }
 
-                    html += `
-                        <div class="report-table-wrap">
-                            <table class="report-table">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Date</th>
-                                        <th style="text-align:right;">Focus (hr)</th>
-                                        <th style="text-align:right;">Break (hr)</th>
-                                        <th style="text-align:right;">Total (hr)</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                    `;
-                    rows.forEach((r, i) => {
-                        html += `
-                            <tr>
-                                <td>${i+1}</td>
-                                <td>${r.displayDate}</td>
-                                <td class="focus-col" style="text-align:right;">${r.focusH}</td>
-                                <td class="break-col" style="text-align:right;">${r.breakH}</td>
-                                <td style="text-align:right;font-weight:500;">${r.totalH}</td>
-                            </tr>
-                        `;
+                let totalFocusAll = 0, totalBreakAll = 0;
+                const rows = historyData.map((entry, idx) => {
+                    totalFocusAll += entry.focusSec;
+                    totalBreakAll += entry.breakSec;
+                    const [y, m, d] = entry.dateStr.split('-').map(Number);
+                    const adDate = new Date(y, m - 1, d);
+                    const displayDate = adDate.toLocaleDateString('en-US', {
+                        weekday: 'short', month: 'short', day: 'numeric', year: 'numeric'
                     });
-                    // Grand total row
-                    const grandFocus = (totalFocusAll / 3600).toFixed(1);
-                    const grandBreak = (totalBreakAll / 3600).toFixed(1);
-                    const grandTotal = ((totalFocusAll + totalBreakAll) / 3600).toFixed(1);
-                    html += `
-                                <tr class="total-row">
-                                    <td colspan="2" style="font-weight:600;">📊 Grand Total</td>
-                                    <td class="focus-col" style="text-align:right;font-weight:600;">${grandFocus}</td>
-                                    <td class="break-col" style="text-align:right;font-weight:600;">${grandBreak}</td>
-                                    <td style="text-align:right;font-weight:700;">${grandTotal}</td>
+                    return {
+                        idx,
+                        dateStr: entry.dateStr,
+                        displayDate,
+                        isToday: entry.dateStr === today,
+                        focusSec: entry.focusSec,
+                        breakSec: entry.breakSec,
+                        totalSec: entry.totalSec,
+                        focusH: (entry.focusSec / 3600).toFixed(1),
+                        breakH: (entry.breakSec / 3600).toFixed(1),
+                        totalH: (entry.totalSec / 3600).toFixed(1)
+                    };
+                });
+
+                html += `
+                    <div class="report-table-wrap">
+                        <table class="report-table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Date</th>
+                                    <th style="text-align:right;">Focus (hr)</th>
+                                    <th style="text-align:right;">Break (hr)</th>
+                                    <th style="text-align:right;">Total (hr)</th>
                                 </tr>
-                            </tbody></table>
-                        </div>
-                    `;
+                            </thead>
+                            <tbody>
+                `;
 
-                    // ---- Bar chart (from today onward) ----
-                    const chartLabels = rows.map(r => {
-                        const parts = r.dateStr.split('-');
-                        return `${parts[1]}/${parts[2]}`;
-                    });
-                    const chartFocus = rows.map(r => +(r.focusSec / 3600).toFixed(2));
-                    const chartBreak = rows.map(r => +(r.breakSec / 3600).toFixed(2));
-
+                rows.forEach((r, i) => {
                     html += `
-                        <div class="report-chart-wrap">
-                            <canvas id="reportChart" width="800" height="200"></canvas>
-                        </div>
-                        <script>
-                            (function() {
-                                const canvas = document.getElementById('reportChart');
-                                if (!canvas) return;
-                                const ctx = canvas.getContext('2d');
-                                const labels = ${JSON.stringify(chartLabels)};
-                                const focusData = ${JSON.stringify(chartFocus)};
-                                const breakData = ${JSON.stringify(chartBreak)};
+                        <tr class="${r.isToday ? 'today-row' : ''}">
+                            <td>${i + 1}</td>
+                            <td>${r.displayDate}${r.isToday ? '<span class="today-badge">TODAY</span>' : ''}</td>
+                            <td class="focus-col" style="text-align:right;">${r.focusH}</td>
+                            <td class="break-col" style="text-align:right;">${r.breakH}</td>
+                            <td style="text-align:right;font-weight:500;">${r.totalH}</td>
+                        </tr>
+                    `;
+                });
 
-                                const W = canvas.width, H = canvas.height;
-                                const pad = { top: 18, bottom: 30, left: 40, right: 16 };
-                                const chartW = W - pad.left - pad.right;
-                                const chartH = H - pad.top - pad.bottom;
-                                const maxVal = Math.max(0.5, ...focusData, ...breakData);
-                                const barGap = 6;
-                                const groupW = Math.min(48, (chartW - (labels.length-1)*barGap) / labels.length);
-                                const barW = groupW * 0.38;
+                const grandFocus = (totalFocusAll / 3600).toFixed(1);
+                const grandBreak = (totalBreakAll / 3600).toFixed(1);
+                const grandTotal = ((totalFocusAll + totalBreakAll) / 3600).toFixed(1);
 
-                                ctx.clearRect(0,0,W,H);
+                html += `
+                            <tr class="total-row">
+                                <td colspan="2" style="font-weight:600;">📊 Grand Total (${rows.length} day${rows.length > 1 ? 's' : ''})</td>
+                                <td class="focus-col" style="text-align:right;font-weight:600;">${grandFocus}</td>
+                                <td class="break-col" style="text-align:right;font-weight:600;">${grandBreak}</td>
+                                <td style="text-align:right;font-weight:700;">${grandTotal}</td>
+                            </tr>
+                        </tbody></table>
+                    </div>
+                `;
 
-                                if (labels.length === 0) return;
+                // ---- Bar chart ----
+                const chartLabels = rows.map(r => {
+                    const parts = r.dateStr.split('-');
+                    return `${parts[1]}/${parts[2]}`;
+                });
+                const chartFocus = rows.map(r => +(r.focusSec / 3600).toFixed(2));
+                const chartBreak = rows.map(r => +(r.breakSec / 3600).toFixed(2));
 
-                                // grid lines
-                                ctx.strokeStyle = 'rgba(255,255,255,0.06)';
-                                ctx.lineWidth = 1;
-                                for (let i=0; i<=4; i++) {
-                                    const y = pad.top + chartH - (i/4)*chartH;
-                                    ctx.beginPath();
-                                    ctx.moveTo(pad.left, y);
-                                    ctx.lineTo(W - pad.right, y);
-                                    ctx.stroke();
-                                    ctx.fillStyle = 'rgba(255,255,255,0.25)';
-                                    ctx.font = '9px sans-serif';
-                                    ctx.textAlign = 'right';
-                                    ctx.fillText((maxVal*(i/4)).toFixed(1)+'h', pad.left-6, y+3);
+                html += `
+                    <div class="report-chart-wrap">
+                        <canvas id="reportChart" width="800" height="200"></canvas>
+                    </div>
+                    <script>
+                        (function() {
+                            const canvas = document.getElementById('reportChart');
+                            if (!canvas) return;
+                            const ctx = canvas.getContext('2d');
+                            const labels = ${JSON.stringify(chartLabels)};
+                            const focusData = ${JSON.stringify(chartFocus)};
+                            const breakData = ${JSON.stringify(chartBreak)};
+
+                            const W = canvas.width, H = canvas.height;
+                            const pad = { top: 18, bottom: 30, left: 40, right: 16 };
+                            const chartW = W - pad.left - pad.right;
+                            const chartH = H - pad.top - pad.bottom;
+                            const maxVal = Math.max(0.5, ...focusData, ...breakData);
+                            const barGap = 6;
+                            const groupW = Math.max(6, Math.min(48, (chartW - (labels.length - 1) * barGap) / labels.length));
+                            const barW = Math.max(2, groupW * 0.38);
+
+                            ctx.clearRect(0, 0, W, H);
+                            if (labels.length === 0) return;
+
+                            ctx.strokeStyle = 'rgba(255,255,255,0.06)';
+                            ctx.lineWidth = 1;
+                            for (let i = 0; i <= 4; i++) {
+                                const y = pad.top + chartH - (i / 4) * chartH;
+                                ctx.beginPath();
+                                ctx.moveTo(pad.left, y);
+                                ctx.lineTo(W - pad.right, y);
+                                ctx.stroke();
+                                ctx.fillStyle = 'rgba(255,255,255,0.25)';
+                                ctx.font = '9px sans-serif';
+                                ctx.textAlign = 'right';
+                                ctx.fillText((maxVal * (i / 4)).toFixed(1) + 'h', pad.left - 6, y + 3);
+                            }
+
+                            labels.forEach((label, i) => {
+                                const x = pad.left + i * (groupW + barGap) + groupW / 2;
+
+                                const fH = (focusData[i] / maxVal) * chartH;
+                                const fX = x - barW - 2;
+                                const fY = pad.top + chartH - fH;
+                                ctx.fillStyle = '#ff6b6b';
+                                ctx.fillRect(fX, fY, barW, fH);
+                                if (focusData[i] > 0.05 && barW > 10) {
+                                    ctx.fillStyle = 'rgba(255,255,255,0.7)';
+                                    ctx.font = '7px sans-serif';
+                                    ctx.textAlign = 'center';
+                                    ctx.fillText(focusData[i].toFixed(1), fX + barW / 2, fY - 3);
                                 }
 
-                                labels.forEach((label, i) => {
-                                    const x = pad.left + i * (groupW + barGap) + groupW/2;
+                                const bH = (breakData[i] / maxVal) * chartH;
+                                const bX = x + 2;
+                                const bY = pad.top + chartH - bH;
+                                ctx.fillStyle = '#4ecdc4';
+                                ctx.fillRect(bX, bY, barW, bH);
+                                if (breakData[i] > 0.05 && barW > 10) {
+                                    ctx.fillStyle = 'rgba(255,255,255,0.7)';
+                                    ctx.font = '7px sans-serif';
+                                    ctx.textAlign = 'center';
+                                    ctx.fillText(breakData[i].toFixed(1), bX + barW / 2, bY - 3);
+                                }
 
-                                    // focus bar
-                                    const fH = (focusData[i]/maxVal) * chartH;
-                                    const fX = x - barW - 2;
-                                    const fY = pad.top + chartH - fH;
-                                    ctx.fillStyle = '#ff6b6b';
-                                    ctx.fillRect(fX, fY, barW, fH);
-                                    if (focusData[i] > 0.05) {
-                                        ctx.fillStyle = 'rgba(255,255,255,0.7)';
-                                        ctx.font = '7px sans-serif';
-                                        ctx.textAlign = 'center';
-                                        ctx.fillText(focusData[i].toFixed(1), fX+barW/2, fY-3);
-                                    }
-
-                                    // break bar
-                                    const bH = (breakData[i]/maxVal) * chartH;
-                                    const bX = x + 2;
-                                    const bY = pad.top + chartH - bH;
-                                    ctx.fillStyle = '#4ecdc4';
-                                    ctx.fillRect(bX, bY, barW, bH);
-                                    if (breakData[i] > 0.05) {
-                                        ctx.fillStyle = 'rgba(255,255,255,0.7)';
-                                        ctx.font = '7px sans-serif';
-                                        ctx.textAlign = 'center';
-                                        ctx.fillText(breakData[i].toFixed(1), bX+barW/2, bY-3);
-                                    }
-
-                                    // x label
+                                if (labels.length <= 45 || i % Math.ceil(labels.length / 30) === 0) {
                                     ctx.fillStyle = 'rgba(255,255,255,0.5)';
                                     ctx.font = '8px sans-serif';
                                     ctx.textAlign = 'center';
                                     ctx.fillText(label, x, H - 6);
-                                });
+                                }
+                            });
 
-                                // legend
-                                ctx.font = '8px sans-serif';
-                                ctx.fillStyle = '#ff6b6b';
-                                ctx.fillRect(W-120, 6, 12, 10);
-                                ctx.fillStyle = 'rgba(255,255,255,0.6)';
-                                ctx.fillText('Focus', W-104, 15);
-                                ctx.fillStyle = '#4ecdc4';
-                                ctx.fillRect(W-64, 6, 12, 10);
-                                ctx.fillStyle = 'rgba(255,255,255,0.6)';
-                                ctx.fillText('Break', W-48, 15);
-                            })();
-                        <\/script>
-                    `;
-                }
+                            ctx.font = '8px sans-serif';
+                            ctx.fillStyle = '#ff6b6b';
+                            ctx.fillRect(W - 120, 6, 12, 10);
+                            ctx.fillStyle = 'rgba(255,255,255,0.6)';
+                            ctx.fillText('Focus', W - 104, 15);
+                            ctx.fillStyle = '#4ecdc4';
+                            ctx.fillRect(W - 64, 6, 12, 10);
+                            ctx.fillStyle = 'rgba(255,255,255,0.6)';
+                            ctx.fillText('Break', W - 48, 15);
+                        })();
+                    <\/script>
+                `;
 
                 reportContent.innerHTML = html;
             }
@@ -1540,28 +1673,16 @@
                 if (e.key === 'Escape' && reportOverlay.classList.contains('open')) closeReport();
             });
 
-            // ---- Export CSV (Excel-like) ----
+            // ---- Export CSV (all stored days) ----
             exportCsvBtn.addEventListener('click', () => {
-                const rows = [];
-                const today = getTodayDateString();
-                Object.keys(localStorage).forEach(key => {
-                    if (key.startsWith('pomodoro-totals-')) {
-                        const dateStr = key.replace('pomodoro-totals-', '');
-                        if (dateStr < today) return;
-                        try {
-                            const raw = localStorage.getItem(key);
-                            const data = JSON.parse(raw);
-                            const focusSec = parseInt(data.focus, 10) || 0;
-                            const breakSec = parseInt(data.break, 10) || 0;
-                            if (focusSec > 0 || breakSec > 0 || dateStr === today) {
-                                rows.push({ date: dateStr, focus: (focusSec / 3600).toFixed(2),
-                                    break: (breakSec / 3600).toFixed(2),
-                                    total: ((focusSec + breakSec) / 3600).toFixed(2) });
-                            }
-                        } catch (e) {}
-                    }
-                });
-                rows.sort((a, b) => a.date.localeCompare(b.date));
+                const rows = collectHistory()
+                    .map(r => ({
+                        date: r.dateStr,
+                        focus: (r.focusSec / 3600).toFixed(2),
+                        break: (r.breakSec / 3600).toFixed(2),
+                        total: (r.totalSec / 3600).toFixed(2)
+                    }))
+                    .sort((a, b) => a.date.localeCompare(b.date));
 
                 if (rows.length === 0) {
                     showToast('No data to export', false);
@@ -1569,18 +1690,16 @@
                 }
 
                 let csv = 'Date,Focus (hr),Break (hr),Total (hr)\n';
-                rows.forEach(r => {
-                    csv += `${r.date},${r.focus},${r.break},${r.total}\n`;
-                });
-                // grand total
+                rows.forEach(r => { csv += `${r.date},${r.focus},${r.break},${r.total}\n`); });
+
                 const totalFocus = rows.reduce((s, r) => s + parseFloat(r.focus), 0);
                 const totalBreak = rows.reduce((s, r) => s + parseFloat(r.break), 0);
-                csv += `Grand Total,${totalFocus.toFixed(2)},${totalBreak.toFixed(2)},${(totalFocus+totalBreak).toFixed(2)}\n`;
+                csv += `Grand Total,${totalFocus.toFixed(2)},${totalBreak.toFixed(2)},${(totalFocus + totalBreak).toFixed(2)}\n`;
 
                 const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
                 const link = document.createElement('a');
                 link.href = URL.createObjectURL(blob);
-                link.download = `pomodoro-log-${today}.csv`;
+                link.download = `pomodoro-log-${getTodayDateString()}.csv`;
                 link.click();
                 URL.revokeObjectURL(link.href);
                 showToast('CSV exported 📥', false);
@@ -1589,20 +1708,27 @@
             // ---- Event listeners ----
             btnPlay.addEventListener('click', () => {
                 playClickSound();
-                isRunning ? pauseTimer(false) : startTimer();
+                if (isRunning) {
+                    pauseTimer('manual');
+                } else {
+                    wasFrozen = false;
+                    startTimer();
+                }
             });
+
             btnReset.addEventListener('click', () => {
                 playClickSound();
                 resetTimer();
                 showToast('Timer reset');
             });
+
             btnSkip.addEventListener('click', skipSession);
 
             modeTabs.addEventListener('click', (e) => {
                 const tab = e.target.closest('.mode-tab');
                 if (!tab) return;
-                if (tab.dataset.mode === currentMode && !isRunning && remainingSeconds === MODES[currentMode]
-                    .duration) return;
+                if (tab.dataset.mode === currentMode && !isRunning &&
+                    remainingSeconds === MODES[currentMode].duration) return;
                 playClickSound();
                 switchMode(tab.dataset.mode);
                 showToast(`Switched to ${MODES[tab.dataset.mode].label.toLowerCase()}`);
@@ -1628,28 +1754,21 @@
                 switch (e.code) {
                     case 'Space':
                         e.preventDefault();
-                        isRunning ? pauseTimer(false) : startTimer();
+                        if (isRunning) pauseTimer('manual');
+                        else { wasFrozen = false; startTimer(); }
                         break;
                     case 'KeyR':
-                        if (!e.ctrlKey && !e.metaKey) { e.preventDefault();
-                            resetTimer(); }
+                        if (!e.ctrlKey && !e.metaKey) { e.preventDefault(); resetTimer(); }
                         break;
                     case 'KeyS':
-                        if (!e.ctrlKey && !e.metaKey) { e.preventDefault();
-                            skipSession(); }
+                        if (!e.ctrlKey && !e.metaKey) { e.preventDefault(); skipSession(); }
                         break;
                     case 'Digit1':
-                        e.preventDefault();
-                        switchMode('work');
-                        break;
+                        e.preventDefault(); switchMode('work'); break;
                     case 'Digit2':
-                        e.preventDefault();
-                        switchMode('short-break');
-                        break;
+                        e.preventDefault(); switchMode('short-break'); break;
                     case 'Digit3':
-                        e.preventDefault();
-                        switchMode('long-break');
-                        break;
+                        e.preventDefault(); switchMode('long-break'); break;
                 }
             });
 
@@ -1663,12 +1782,18 @@
             sessionLabel.textContent = MODES.work.label;
             sessionInput.value = MAX_WORK_SESSIONS;
 
-            // Rebuild report if it was open on visibility change (keeps data fresh)
+            // Keep the report fresh if it is open when the tab regains focus
             document.addEventListener('visibilitychange', () => {
                 if (document.visibilityState === 'visible' && reportOverlay.classList.contains('open')) {
                     buildReport();
                 }
             });
+
+            // Periodically guard against midnight rollover even if untouched
+            setInterval(() => {
+                checkDateRollover();
+                if (isRunning) timerTick();
+            }, 30000);
         })();
     </script>
 </body>

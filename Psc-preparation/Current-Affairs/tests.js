@@ -7,6 +7,8 @@
       Wednesday's NEPALI (BS) date, format:  "YYYY-MM-DD"
       e.g. 2083 Ashwin 28 -> "2083-06-28"  (Baisakh=01 ... Chaitra=12)
    3. Replace name / details / questions. correct = option index (0-3).
+   4. Run `node tools/generate-current-affairs-exams.js` from the repo root
+      and commit the generated dated page so its URL works on GitHub Pages.
    The Wednesday button on the index page appears automatically;
    it shows "Give Exam / Start exam" as soon as an entry with that
    Wednesday's BS date exists here, otherwise "Questions coming soon".

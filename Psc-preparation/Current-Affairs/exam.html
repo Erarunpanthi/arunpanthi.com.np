@@ -100,24 +100,38 @@
 <script src="/js/Mock_Test.js"></script>
 <script>
 (function () {
-    var ND = window.NepaliDate;
+    // Dated paths work on static hosts; keep ?date= links working for older bookmarks.
+    var match = window.location.pathname.match(/\/Psc-preparation\/Current-Affairs\/exam\/date=(\d{4}-\d{2}-\d{2})(?:\/(?:index\.html)?)?$/);
     var params = new URLSearchParams(window.location.search);
-    var key = params.get('date') || '';           // BS date key, e.g. 2083-06-28
-    var set = (window.CA_TESTS || {})[key];
+    var key = match ? match[1] : (params.get('date') || ''); // BS date, e.g. 2083-06-28
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(key)) key = '';
 
+    // Static hosts may redirect a directory request to a trailing slash. Display
+    // the requested /exam/date=YYYY-MM-DD URL without losing reset/query flags.
+    if (match && window.location.pathname.endsWith('/')) {
+        window.history.replaceState(window.history.state, '',
+            window.location.pathname.slice(0, -1) + window.location.search + window.location.hash);
+    }
+
+    var set = (window.CA_TESTS || {})[key];
     if (!set) {
         // Not uploaded yet (or invalid date) — same behaviour as "Test coming soon" elsewhere.
         document.getElementById('pre-test-section').style.display = 'none';
         document.getElementById('coming-section').style.display = 'block';
-        if (key && ND) {
-            var parts = key.split('-');
+        if (key) {
             document.getElementById('coming-title').textContent =
                 'Current Affairs Test — ' + key + ' BS';
             document.getElementById('coming-text').textContent =
                 'The questions for Wednesday ' + key + ' BS (topic 1.16 – current affairs) have not been uploaded yet. Please check back soon — or practice a previous Wednesday\'s test from the archive.';
+        } else {
+            document.getElementById('coming-title').textContent = 'Choose a Wednesday test';
+            document.getElementById('coming-text').textContent = 'Select a dated exam from the Weekly Current Affairs Test page.';
         }
         return;
     }
+
+    var canonical = document.querySelector('link[rel="canonical"]');
+    if (canonical) canonical.href = 'https://arunpanthi.com.np/Psc-preparation/Current-Affairs/exam/date=' + key;
 
     // Give this Wednesday's set its own id so the one-attempt result is stored per week.
     var questionSet = {

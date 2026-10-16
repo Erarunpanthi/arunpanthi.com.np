@@ -27,6 +27,11 @@ RewriteRule ^aboutus\.html$ /aboutus [R=301,L]
 RewriteCond %{THE_REQUEST} \s/+Home\.html [NC]
 RewriteRule ^Home\.html$ / [R=301,L]
 
+# On Apache, also serve dated exams that don't have a generated static page yet.
+# Published exam folders are used directly by static hosts such as GitHub Pages.
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^Psc-preparation/Current-Affairs/exam/date=[0-9]{4}-[0-9]{2}-[0-9]{2}/?$ /Psc-preparation/Current-Affairs/exam.html [L]
+
 # Serve .html files when extension-less URL is requested (internal rewrite, no redirect)
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f

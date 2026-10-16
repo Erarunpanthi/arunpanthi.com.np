@@ -9,7 +9,7 @@
 
   /* Series starts Wednesday 14 Oct 2026 AD = 28 Ashwin 2083 BS (Set 1). */
   var SERIES_START_AD = new Date(2026, 9, 14); // local midnight
-  var EXAM_URL = '/Psc-preparation/Current-Affairs/exam/';
+  var EXAM_URL = '/Psc-preparation/Current-Affairs/exam/date=';
   var DAY_MS = 86400000;
 
   function startOfDay(d) { return new Date(d.getFullYear(), d.getMonth(), d.getDate()); }
@@ -94,7 +94,7 @@
 
       if (set) {
         var a = el('a', 'notes-button', isLatest ? 'Give Exam →' : 'Start exam →');
-        a.href = EXAM_URL + '?date=' + key;
+        a.href = EXAM_URL + key;
         a.setAttribute('aria-label', 'Give exam for Weekly Current Affairs Test, ' + ND.formatBsEn(bs) + ' (opens the timed exam)');
         card.appendChild(a);
       } else {

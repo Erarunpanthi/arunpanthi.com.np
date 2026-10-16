@@ -1,63 +1,60 @@
-/* Current Affairs extras — layered on top of Subjective-Note/subjective.css */
-.subjective-index .ca-live {
-    color: #b71c1c;
-    background: #ffebee;
+/* Current Affairs — list styles for index.html and the exam page fallback panel.
+   Built on the site defaults in /css/styles.css (.hero, .section, .cta-button). */
+
+.ca-test-list {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+  text-align: center;
 }
-.subjective-index .ca-badge {
-    display: inline-flex;
-    padding: 6px 9px;
-    border-radius: 999px;
-    color: #15531c;
-    background: #e8f5e9;
-    font: 800 .72rem/1 "Segoe UI", system-ui, sans-serif;
-    letter-spacing: .03em;
+
+.ca-test-list li {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border, #e0e0e0);
 }
-.subjective-index .ca-status {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin: 0 0 26px;
+
+.ca-test-list li:last-child {
+  border-bottom: 0;
 }
-.subjective-index .ca-status span {
-    padding: 10px 14px;
-    border: 1px solid #cbdcce;
-    border-radius: 9px;
-    color: #15531c;
-    background: #fff;
-    font: 700 .85rem/1.4 "Segoe UI", system-ui, sans-serif;
+
+.ca-test-list .ca-test-date {
+  display: block;
+  color: var(--green-700, #0d3d12);
+  font-weight: 700;
 }
-.subjective-index .ca-howto {
-    margin-top: 42px;
-    padding: 22px;
-    border: 1px solid #dce5de;
-    border-radius: 14px;
-    background: #fff;
+
+.ca-test-list .ca-test-pending {
+  display: block;
+  margin-top: 6px;
+  color: var(--muted, #666666);
+  font-size: 0.9rem;
 }
-.subjective-index .ca-howto h2 {
-    margin: 0 0 8px;
-    color: #123b1b;
-    font: 800 1.25rem/1.3 "Segoe UI", system-ui, sans-serif;
-}
-.subjective-index .ca-howto p, .subjective-index .ca-howto li {
-    color: #516057;
-    font: 400 .95rem/1.7 "Segoe UI", system-ui, sans-serif;
-}
-.subjective-index .ca-howto p { text-align: left; }
 
 /* Exam page "questions not uploaded yet" panel */
 .ca-coming {
-    max-width: 640px;
-    margin: 60px auto;
-    padding: 36px 28px;
-    border-radius: 14px;
-    background: #fff;
-    box-shadow: 0 3px 14px rgba(15,48,22,.08);
-    text-align: center;
-    font-family: "Segoe UI", system-ui, sans-serif;
+  max-width: 640px;
+  margin: 60px auto;
+  padding: 36px 28px;
+  background-color: var(--surface, #ffffff);
+  box-shadow: var(--shadow-1, 0 2px 6px rgba(0, 0, 0, 0.08));
+  text-align: center;
 }
-.ca-coming h1 { color: #123b1b; margin: 0 0 10px; font-size: 1.5rem; }
-.ca-coming p { color: #516057; line-height: 1.7; }
+
+.ca-coming h1 {
+  color: var(--green-600, #1b5e20);
+  margin: 0 0 10px;
+  font-size: 1.5rem;
+}
+
+.ca-coming p {
+  color: var(--muted, #666666);
+  line-height: 1.7;
+}
+
 .ca-coming a {
-    display: inline-block; margin-top: 14px; padding: 11px 18px; border-radius: 9px;
-    color: #fff; background: #1b5e20; text-decoration: none; font-weight: 700;
+  display: inline-block;
+  margin-top: 14px;
+  color: var(--green-600, #1b5e20);
+  font-weight: 700;
 }

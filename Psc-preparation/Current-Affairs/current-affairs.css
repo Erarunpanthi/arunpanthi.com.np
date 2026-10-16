@@ -1,0 +1,63 @@
+/* Current Affairs extras — layered on top of Subjective-Note/subjective.css */
+.subjective-index .ca-live {
+    color: #b71c1c;
+    background: #ffebee;
+}
+.subjective-index .ca-badge {
+    display: inline-flex;
+    padding: 6px 9px;
+    border-radius: 999px;
+    color: #15531c;
+    background: #e8f5e9;
+    font: 800 .72rem/1 "Segoe UI", system-ui, sans-serif;
+    letter-spacing: .03em;
+}
+.subjective-index .ca-status {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 0 0 26px;
+}
+.subjective-index .ca-status span {
+    padding: 10px 14px;
+    border: 1px solid #cbdcce;
+    border-radius: 9px;
+    color: #15531c;
+    background: #fff;
+    font: 700 .85rem/1.4 "Segoe UI", system-ui, sans-serif;
+}
+.subjective-index .ca-howto {
+    margin-top: 42px;
+    padding: 22px;
+    border: 1px solid #dce5de;
+    border-radius: 14px;
+    background: #fff;
+}
+.subjective-index .ca-howto h2 {
+    margin: 0 0 8px;
+    color: #123b1b;
+    font: 800 1.25rem/1.3 "Segoe UI", system-ui, sans-serif;
+}
+.subjective-index .ca-howto p, .subjective-index .ca-howto li {
+    color: #516057;
+    font: 400 .95rem/1.7 "Segoe UI", system-ui, sans-serif;
+}
+.subjective-index .ca-howto p { text-align: left; }
+
+/* Exam page "questions not uploaded yet" panel */
+.ca-coming {
+    max-width: 640px;
+    margin: 60px auto;
+    padding: 36px 28px;
+    border-radius: 14px;
+    background: #fff;
+    box-shadow: 0 3px 14px rgba(15,48,22,.08);
+    text-align: center;
+    font-family: "Segoe UI", system-ui, sans-serif;
+}
+.ca-coming h1 { color: #123b1b; margin: 0 0 10px; font-size: 1.5rem; }
+.ca-coming p { color: #516057; line-height: 1.7; }
+.ca-coming a {
+    display: inline-block; margin-top: 14px; padding: 11px 18px; border-radius: 9px;
+    color: #fff; background: #1b5e20; text-decoration: none; font-weight: 700;
+}

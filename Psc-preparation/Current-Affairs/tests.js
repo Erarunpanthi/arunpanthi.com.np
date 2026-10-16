@@ -15,7 +15,7 @@
    ============================================================ */
 
 window.CA_TESTS = {
-  "2083-06-30": {
+  "2083-06-28": {
     name: "Weekly Current Affairs Test — 30 Ashwin 2083",
     details: "Syllabus topic 1.16: Major events and current affairs of national and international importance. International awards, organisations & observances (Nobel Peace Prize, IPU, UPU, APEC); Nepal's provincial language policy, disaster events, economic updates & historical facts — with explanations. Sahara Education (HariSir dashboard) weekly quiz, Lok Sewa First Paper pattern.",
     questions: [
@@ -32,7 +32,7 @@ window.CA_TESTS = {
       { question: "जिटुजी अवधारणा केसँग सम्बन्धित छ ?", options: ["पर्यटन प्रवर्धन", "कृषि उत्पादन", "स्थानीय राजस्व", "वैदेशिक रोजगार"], correct: 3, explanation: "जिटुजी अवधारणा वैदेशिक रोजगारसँग सम्बन्धित छ।" }
     ]
   },
-  "2083-06-28": {
+  "2083-07-04": {
     name: "Weekly Current Affairs Test — 28 Ashwin 2083",
     details: "Syllabus topic 1.16: Major events and current affairs of national and international importance. Nepal's current periodic plan, constitution & governance, economy, geography and recent national developments — Lok Sewa First Paper pattern.",
     questions: [

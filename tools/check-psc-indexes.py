@@ -58,8 +58,10 @@ class PSCIndexesTest(unittest.TestCase):
                     url = urlsplit(attrs["href"])
                     self.assertFalse(url.netloc, "Use same-origin resource links")
                     path = ROOT / url.path.lstrip("/")
-                    self.assertTrue(path.is_file() or Path(str(path) + ".html").is_file())
-                    if name == "Test":
+                    self.assertTrue(path.is_file() or Path(str(path) + ".html").is_file()
+                                    or (path / "index.html").is_file())
+                    # Individual exams open a new tab; archive landing pages navigate normally.
+                    if name == "Test" and not (path / "index.html").is_file():
                         self.assertEqual(attrs.get("target"), "_blank")
                         self.assertIn("noopener", attrs.get("rel", ""))
 

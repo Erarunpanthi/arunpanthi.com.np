@@ -40,7 +40,11 @@
 
   function render() {
     var grid = document.getElementById('weeklyTestGrid');
-    if (!grid || !ND) return;
+    if (!grid) return;
+    if (!ND) {
+      grid.textContent = 'Current Affairs tests could not be loaded. Please refresh the page or try again later.';
+      return;
+    }
     var today = startOfDay(new Date());
     var wednesdays = listWednesdays(today);
     var total = wednesdays.length;
@@ -93,7 +97,7 @@
       card.appendChild(sub);
 
       if (set) {
-        var a = el('a', 'notes-button', isLatest ? 'Give Exam →' : 'Start exam →');
+        var a = el('a', 'notes-button', 'Give Exam →');
         a.href = EXAM_URL + key;
         a.setAttribute('aria-label', 'Give exam for Weekly Current Affairs Test, ' + ND.formatBsEn(bs) + ' (opens the timed exam)');
         card.appendChild(a);

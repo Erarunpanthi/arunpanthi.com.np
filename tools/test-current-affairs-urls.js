@@ -41,7 +41,9 @@ for (const file of ['nepali-date.js', 'tests.js', 'current-affairs.js']) {
 }
 const card = nodes.weeklyTestGrid.children[0];
 assert.ok(card, 'The first Wednesday card is rendered');
-assert.equal(card.children.find(child => child.tag === 'a').href, examPath);
+const examLink = card.children.find(child => child.tag === 'a');
+assert.equal(examLink.href, examPath);
+assert.equal(examLink.textContent, 'Give Exam →');
 
 // The same exam runs at the new path (with or without a slash) and at old links.
 const template = read('exam.html');
@@ -102,6 +104,28 @@ assert.equal(missing.elements['coming-section'].style.display, 'block');
 assert.match(missing.elements['coming-title'].textContent, /2083-07-05/);
 assert.equal(openExam('/Psc-preparation/Current-Affairs/exam/').questionSet, undefined);
 
-const generated = read('exam/date=' + date + '/index.html');
-assert.ok(generated.includes('href="https://arunpanthi.com.np' + examPath + '"'));
-console.log('Current Affairs exam URLs and static pages: OK');
+// GitHub Pages routes unknown paths through the existing 404.html. It must
+// forward the requested date to the one existing exam template without creating
+// per-date folders or pages.
+const notFound = fs.readFileSync(path.join(root, '404.html'), 'utf8');
+const fallbackScript = notFound.match(/<script>\s*([\s\S]*?)\s*<\/script>/);
+assert.ok(fallbackScript, '404 route fallback script exists');
+function routeFrom404(pathname, search = '', hash = '') {
+  let redirected;
+  const window = {
+    location: { pathname, search, hash, replace(url) { redirected = url; } }
+  };
+  const context = {
+    window, URLSearchParams,
+    document: { getElementById() { return null; }, querySelector() { return null; } },
+    setTimeout() { return 0; }, setInterval() { return 0; }, clearInterval() {}
+  };
+  vm.runInNewContext(fallbackScript[1], context, { filename: '404.html' });
+  return redirected;
+}
+assert.equal(routeFrom404(examPath), '/Psc-preparation/Current-Affairs/exam.html?date=' + date);
+assert.equal(routeFrom404(examPath + '/', '?reset=1', '#answers'),
+  '/Psc-preparation/Current-Affairs/exam.html?reset=1&date=' + date + '#answers');
+assert.equal(routeFrom404('/unknown-route'), undefined);
+assert.ok(!fs.existsSync(path.join(base, 'exam', 'date=' + date)), 'No generated dated page/folder is required');
+console.log('Current Affairs exam URLs and single-template routing: OK');

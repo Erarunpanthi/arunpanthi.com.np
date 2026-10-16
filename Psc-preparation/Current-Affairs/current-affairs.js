@@ -9,7 +9,7 @@
 
   /* Series starts Wednesday 14 Oct 2026 AD = 28 Ashwin 2083 BS (Set 1). */
   var SERIES_START_AD = new Date(2026, 9, 14); // local midnight
-  var EXAM_URL = '/Psc-preparation/Current-Affairs/exam';
+  var EXAM_URL = '/Psc-preparation/Current-Affairs/exam/';
   var DAY_MS = 86400000;
 
   function startOfDay(d) { return new Date(d.getFullYear(), d.getMonth(), d.getDate()); }

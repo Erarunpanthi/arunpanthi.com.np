@@ -16,7 +16,7 @@
 
 window.CA_TESTS = {
   "2083-06-28": {
-    name: "Weekly Current Affairs Test — 30 Ashwin 2083",
+    name: "Weekly Current Affairs Test — 28 Ashwin 2083",
     details: "Syllabus topic 1.16: Major events and current affairs of national and international importance. International awards, organisations & observances (Nobel Peace Prize, IPU, UPU, APEC); Nepal's provincial language policy, disaster events, economic updates & historical facts — with explanations. Sahara Education (HariSir dashboard) weekly quiz, Lok Sewa First Paper pattern.",
     questions: [
       { question: "सन् २०२६ को नोबेल शान्ति पुरस्कार कसलाई प्रदान गरियो ?", options: ["एन कार्सन", "नाभनेथेम ‘नाभी’ पिल्ले", "फ्रान्सिस हाल्जेन", "रोबर्ट ई. हल"], correct: 1, explanation: "दक्षिण अफ्रिकाकी नाभनेथेम ‘नाभी’ पिल्लेलाई युद्ध अपराध, मानवताविरुद्धको अपराध र नरसंहारमा संलग्नलाई कानुनी दायरामा ल्याउने तथा अन्तर्राष्ट्रिय कानुन सुदृढ बनाउने योगदानका लागि पुरस्कार प्रदान गरिएको हो। साहित्यतर्फ क्यानडाकी एन कार्सन तथा अर्थशास्त्रतर्फ अमेरिकाका रोबर्ट ई. हल र माइकल वुडफर्ड पुरस्कृत भएका छन्।" },
@@ -33,7 +33,7 @@ window.CA_TESTS = {
     ]
   },
   "2083-07-04": {
-    name: "Weekly Current Affairs Test — 28 Ashwin 2083",
+    name: "Weekly Current Affairs Test — 4 Kartik 2083",
     details: "Syllabus topic 1.16: Major events and current affairs of national and international importance. Nepal's current periodic plan, constitution & governance, economy, geography and recent national developments — Lok Sewa First Paper pattern.",
     questions: [
       { question: "Which is the current (Sixteenth) periodic plan period of Nepal?", options: ["2076/77–2080/81", "2081/82–2085/86", "2082/83–2086/87", "2080/81–2084/85"], correct: 1 },

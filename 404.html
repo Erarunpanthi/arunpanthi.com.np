@@ -358,6 +358,21 @@
     (function () {
       "use strict";
 
+      // GitHub Pages does not support .htaccess rewrites. Route dated Current
+      // Affairs URLs through the existing exam.html template instead of
+      // requiring a generated folder/page for every test.
+      const examMatch = window.location.pathname.match(
+        /^\/Psc-preparation\/Current-Affairs\/exam\/date=(\d{4}-\d{2}-\d{2})\/?$/
+      );
+      if (examMatch) {
+        const examParams = new URLSearchParams(window.location.search);
+        examParams.set("date", examMatch[1]);
+        window.location.replace(
+          "/Psc-preparation/Current-Affairs/exam.html?" + examParams.toString() + window.location.hash
+        );
+        return;
+      }
+
       const homepageUrl = "https://arunpanthi.com.np/";
       const car = document.getElementById("car");
       const sign = document.getElementById("sign404");

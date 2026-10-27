@@ -1,0 +1,23 @@
+# Cloudflare Worker deployment (API only; the admin frontend stays on GitHub Pages)
+#
+#   npx wrangler deploy --config admin-server/wrangler.toml
+#
+# Put secrets in with:
+#   npx wrangler secret put GITHUB_TOKEN
+#   npx wrangler secret put ADMIN_PASSWORD_HASH
+#   npx wrangler secret put SESSION_SECRET
+
+name = "arunpanthi-admin-api"
+main = "worker.js"
+compatibility_date = "2026-01-01"
+
+[vars]
+GITHUB_OWNER = "Erarunpanthi"
+GITHUB_REPO = "arunpanthi.com.np"
+GITHUB_BRANCH = "main"
+PUBLIC_SITE_URL = "https://arunpanthi.com.np"
+ALLOWED_ORIGINS = "https://arunpanthi.com.np,https://www.arunpanthi.com.np"
+PUBLISH_MODE = "direct"
+MAX_UPLOAD_MB = "25"
+DRY_RUN = "0"
+READ_ONLY = "0"

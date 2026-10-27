@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /admin/
+Disallow: /admin-server/
 
 Sitemap: https://arunpanthi.com.np/sitemap.xml

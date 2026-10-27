@@ -1,1 +1,12 @@
-(empty)
+# Dependencies (the admin backend has none, but keep this for tooling)
+node_modules/
+
+# Admin backend secrets — never commit these
+admin-server/.env
+admin-server/.dev.vars
+.wrangler/
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.log

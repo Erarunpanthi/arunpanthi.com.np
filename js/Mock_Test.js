@@ -366,6 +366,13 @@
                 });
 
                 card.innerHTML = badge + '<div class="r-q-text">Q' + (idx + 1) + ': ' + renderedQ + '</div><ul class="r-options">' + optsHTML + '</ul>';
+                if (q.explanation) {
+                    var explanation = document.createElement('p');
+                    explanation.className = 'r-explanation';
+                    // Explanations are plain text, not HTML; keep user-provided content safe.
+                    explanation.textContent = 'Explanation: ' + q.explanation;
+                    card.appendChild(explanation);
+                }
                 $['results-detail'].appendChild(card);
             });
         }

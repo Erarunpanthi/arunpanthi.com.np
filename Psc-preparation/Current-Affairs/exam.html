@@ -7,7 +7,7 @@
 <meta name="description" content="Weekly Current Affairs timed exam for PSC Lok Sewa First Paper (topic 1.16). A new test every Wednesday with Nepali date — timer, auto-submit, instant result and answer review.">
 <title>Weekly Current Affairs Test – Wednesday Exam | PSC Lok Sewa</title>
 <link rel="icon" href="/favicon.ico" type="image/x-icon">
-<link rel="stylesheet" href="/css/Mock_Test.css">
+<link rel="stylesheet" href="/css/Mock_Test.css?v=20261030">
 <link rel="stylesheet" href="/assets/fontawesome/css/all.min.css?v=20260924">
 <link rel="stylesheet" href="/Psc-preparation/Current-Affairs/current-affairs.css?v=20261016">
 </head>
@@ -96,8 +96,8 @@
 </div>
 
 <script src="/Psc-preparation/Current-Affairs/nepali-date.js?v=20261016"></script>
-<script src="/Psc-preparation/Current-Affairs/tests.js?v=20261016-2"></script>
-<script src="/js/Mock_Test.js"></script>
+<script src="/Psc-preparation/Current-Affairs/tests.js?v=20261030-3"></script>
+<script src="/js/Mock_Test.js?v=20261030"></script>
 <script>
 (function () {
     // Dated paths work on static hosts; keep ?date= links working for older bookmarks.
@@ -142,7 +142,7 @@
 
     // Give this Wednesday's set its own id so the one-attempt result is stored per week.
     var questionSet = {
-        id: 'ca_' + key.replace(/-/g, ''),
+        id: 'ca_' + key.replace(/-/g, '') + (set.revision ? '_v' + set.revision : ''),
         name: set.name,
         details: set.details,
         questions: set.questions

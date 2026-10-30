@@ -369,6 +369,15 @@
         }
         .result-card .r-badge.correct-badge { background: #c8e6c9; color: #2E7D32; }
         .result-card .r-badge.incorrect-badge { background: #ffcdd2; color: #C62828; }
+        .result-card .r-explanation {
+            margin: 14px 0 0;
+            padding: 12px 14px;
+            border-radius: 6px;
+            background: #f1f8f3;
+            color: #263b2c;
+            line-height: 1.6;
+            white-space: pre-line;
+        }
 
         .image-fallback i { margin-right: 8px; color: #ffa726; }
         @media (max-width: 640px) {

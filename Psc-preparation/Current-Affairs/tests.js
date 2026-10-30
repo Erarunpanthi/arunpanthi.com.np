@@ -1,19 +1,3 @@
-/* ============================================================
-   WEEKLY CURRENT AFFAIRS — QUESTION BANK
-   ------------------------------------------------------------
-   HOW TO ADD NEXT WEDNESDAY'S TEST (no HTML edit needed):
-   1. Copy the whole entry below (from  "2083-06-28": {  to its  }, )
-   2. Paste it above that entry and change the date key to the new
-      Wednesday's NEPALI (BS) date, format:  "YYYY-MM-DD"
-      e.g. 2083 Ashwin 28 -> "2083-06-28"  (Baisakh=01 ... Chaitra=12)
-   3. Replace name / details / questions. correct = option index (0-3).
-   The Wednesday button on the index page appears automatically;
-   it shows "Give Exam / Start exam" as soon as an entry with that
-      Wednesday's BS date exists here, otherwise "Questions coming soon".
-   Note: questions may carry an extra per-question 'explanation' field
-      (the answer description); it is optional and safe to omit.
-   ============================================================ */
-
 window.CA_TESTS = {
   "2083-06-28": {
     name: "Weekly Current Affairs Test — 28 Ashwin 2083",

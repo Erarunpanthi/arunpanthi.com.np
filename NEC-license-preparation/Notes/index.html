@@ -341,729 +341,322 @@
         ]
     }
     </script>
-
-  
-        <style>
-        /* ============================================================
-           NEC License Preparation — Notes index
-           Page-scoped styles only. Colours, radii, shadows and
-           transitions come from the design tokens in css/styles.css.
-           ============================================================ */
-
-        /* Keyboard users land here first: hidden until focused. */
-        .notes-skip {
-            position: absolute;
-            top: 0;
-            left: -9999px;
-            z-index: 100;
-            padding: 10px 16px;
-            border-radius: 0 0 var(--radius-sm) 0;
-            background: var(--green-700);
-            color: #ffffff;
-            font-size: 0.875rem;
-            font-weight: 600;
-        }
-        .notes-skip:focus {
-            left: 0;
-        }
-
-        .notes-crumbs,
-        .notes-main {
-            width: 92%;
-            max-width: 1080px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* Breadcrumb -------------------------------------------------- */
-        .notes-crumbs {
-            margin-top: 16px;
-            font-size: 0.82rem;
-            color: var(--muted);
-        }
-        .notes-crumbs ol {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 0 6px;
-            margin: 0;
-            padding: 0;
-            list-style: none;
-        }
-        .notes-crumbs li + li::before {
-            content: "/";
-            margin-right: 6px;
-            color: #b8b8b8;
-        }
-        .notes-crumbs a {
-            color: var(--green-700);
-            text-decoration: none;
-        }
-        .notes-crumbs a:hover,
-        .notes-crumbs a:focus-visible {
-            text-decoration: underline;
-        }
-        .notes-crumbs [aria-current="page"] {
-            color: var(--muted-2);
-        }
-
-        /* Hero -------------------------------------------------------- */
-        .notes-hero {
-            padding: 34px 24px 30px;
-            margin-bottom: 28px;
-        }
-        .notes-hero h1 {
-            font-size: clamp(1.7rem, 4vw, 2.2rem);
-            letter-spacing: -0.4px;
-            margin: 0 0 10px;
-        }
-        .notes-hero p {
-            max-width: 640px;
-            margin: 0 auto;
-            font-size: 1rem;
-            line-height: 1.65;
-            color: rgba(255, 255, 255, 0.88);
-        }
-        .notes-hero__meta {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            margin: 18px 0 0;
-            padding: 0;
-            list-style: none;
-            font-size: 0.85rem;
-            color: rgba(255, 255, 255, 0.88);
-        }
-        .notes-hero__meta li {
-            padding: 0 14px;
-            border-left: 1px solid rgba(255, 255, 255, 0.3);
-            line-height: 1.3;
-        }
-        .notes-hero__meta li:first-child {
-            border-left: 0;
-            padding-left: 0;
-        }
-        .notes-hero__meta li:last-child {
-            padding-right: 0;
-        }
-        .notes-hero__meta strong {
-            color: #ffffff;
-            font-weight: 700;
-        }
-
-        /* Chapter index ----------------------------------------------- */
-        .notes-toc {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-md);
-            box-shadow: var(--shadow-1);
-            padding: 22px 24px;
-            margin: 0 0 32px;
-        }
-        .notes-toc h2 {
-            margin: 0 0 14px;
-            font-size: 0.78rem;
-            font-weight: 700;
-            letter-spacing: 0.09em;
-            text-transform: uppercase;
-            color: var(--muted);
-        }
-        .notes-toc__list {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 2px 28px;
-            margin: 0;
-            padding: 0;
-            list-style: none;
-        }
-        .notes-toc__list a {
-            display: flex;
-            align-items: baseline;
-            gap: 10px;
-            padding: 8px 6px;
-            border-radius: var(--radius-sm);
-            color: var(--green-700);
-            font-size: 0.95rem;
-            line-height: 1.45;
-            text-decoration: none;
-        }
-        .notes-toc__list a:hover,
-        .notes-toc__list a:focus-visible {
-            background: var(--green-50);
-            text-decoration: underline;
-        }
-        .notes-toc__num {
-            flex: 0 0 auto;
-            min-width: 1.7em;
-            font-size: 0.78rem;
-            font-weight: 700;
-            font-variant-numeric: tabular-nums;
-            color: var(--green-400);
-        }
-        .notes-toc__note {
-            display: flex;
-            align-items: flex-start;
-            gap: 8px;
-            margin: 16px 0 0;
-            padding-top: 14px;
-            border-top: 1px solid var(--border);
-            font-size: 0.82rem;
-            line-height: 1.55;
-            color: var(--muted);
-        }
-        .notes-toc__note i {
-            color: var(--green-400);
-            margin-top: 0.15em;
-        }
-
-        /* Chapters ---------------------------------------------------- */
-        .notes-chapter {
-            margin-bottom: 34px;
-            scroll-margin-top: 96px;
-        }
-        .notes-chapter__head {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: flex-start;
-            gap: 10px 16px;
-            margin-bottom: 18px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid var(--border);
-        }
-        .notes-chapter__num {
-            flex: 0 0 auto;
-            display: grid;
-            place-items: center;
-            width: 44px;
-            height: 44px;
-            border-radius: var(--radius-sm);
-            background: var(--green-50);
-            color: var(--green-700);
-            font-size: 0.95rem;
-            font-weight: 700;
-            font-variant-numeric: tabular-nums;
-        }
-        .notes-chapter__body {
-            flex: 1 1 320px;
-            min-width: 0;
-        }
-        .notes-chapter__head h2 {
-            margin: 0 0 4px;
-            font-size: 1.28rem;
-            line-height: 1.3;
-            color: var(--green-700);
-        }
-        .notes-chapter__head p {
-            margin: 0;
-            max-width: 68ch;
-            font-size: 0.88rem;
-            line-height: 1.6;
-            color: var(--muted);
-        }
-        .notes-chapter__count {
-            flex: 0 0 auto;
-            margin-left: auto;
-            padding: 3px 10px;
-            border: 1px solid var(--border);
-            border-radius: 999px;
-            background: #f5f7f5;
-            font-size: 0.76rem;
-            font-weight: 600;
-            color: var(--muted-2);
-            white-space: nowrap;
-        }
-
-        /* Subject cards ----------------------------------------------- */
-        .notes-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(272px, 1fr));
-            gap: 14px;
-        }
-        .notes-card {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            padding: 18px 18px 16px;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-md);
-            transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
-        }
-        .notes-card:hover {
-            border-color: var(--green-400);
-            box-shadow: var(--shadow-2);
-        }
-        .notes-card__title {
-            margin: 0;
-            font-size: 1.02rem;
-            line-height: 1.4;
-            color: var(--green-700);
-        }
-        .notes-card__title a {
-            color: inherit;
-            text-decoration: none;
-        }
-        /* Stretched link: the whole card is clickable, the heading stays
-           the accessible name of the link. */
-        .notes-card__title a::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            border-radius: inherit;
-        }
-        .notes-card__title a:focus-visible {
-            outline: 2px solid var(--green-400);
-            outline-offset: 4px;
-        }
-        .notes-card__desc {
-            margin: 0;
-            font-size: 0.875rem;
-            line-height: 1.6;
-            color: var(--muted);
-        }
-        .notes-card__status {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            margin: auto 0 0;
-            padding-top: 10px;
-            font-size: 0.78rem;
-            font-weight: 600;
-        }
-        .notes-card__status.is-live {
-            color: var(--green-600);
-        }
-        .notes-card__status.is-soon {
-            color: var(--muted-2);
-        }
-        .notes-card__status i {
-            font-size: 0.8em;
-        }
-
-        /* Next steps -------------------------------------------------- */
-        .notes-next {
-            padding: 22px 24px;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-md);
-            box-shadow: var(--shadow-1);
-        }
-        .notes-next h2 {
-            margin: 0 0 14px;
-            font-size: 1.08rem;
-            color: var(--green-700);
-        }
-        .notes-next__list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-            gap: 12px;
-            margin: 0;
-            padding: 0;
-            list-style: none;
-        }
-        .notes-next__list a {
-            display: block;
-            height: 100%;
-            padding: 14px 16px;
-            border: 1px solid var(--border);
-            border-radius: var(--radius-sm);
-            background: #fafcfa;
-            color: var(--green-700);
-            text-decoration: none;
-            transition: border-color var(--transition-fast), background-color var(--transition-fast);
-        }
-        .notes-next__list a:hover,
-        .notes-next__list a:focus-visible {
-            border-color: var(--green-400);
-            background: var(--green-50);
-        }
-        .notes-next__list strong {
-            display: block;
-            margin-bottom: 3px;
-            font-size: 0.95rem;
-        }
-        .notes-next__list span {
-            font-size: 0.82rem;
-            line-height: 1.5;
-            color: var(--muted);
-        }
-
-        /* Responsive --------------------------------------------------- */
-        @media (max-width: 720px) {
-            .notes-toc {
-                padding: 18px 16px;
-            }
-            .notes-toc__list {
-                grid-template-columns: 1fr;
-            }
-            .notes-chapter__count {
-                margin-left: 0;
-            }
-            .notes-hero {
-                padding: 26px 18px 24px;
-            }
-            .notes-hero__meta li {
-                padding: 0 10px;
-            }
-            .notes-next {
-                padding: 18px 16px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="/Psc-preparation/Subjective-Note/subjective.css?v=20261006">
 </head>
-<body>
-
-    <a class="notes-skip" href="#main-content">Skip to main content</a>
-
+<body class="subjective-index">
+    <a class="syllabus-skip-link" href="#main-content">Skip to main content</a>
     <div id="navbar"></div>
 
-    <nav class="notes-crumbs" aria-label="Breadcrumb">
-        <ol>
-            <li><a href="/">Home</a></li>
-            <li><a href="/NEC-license-preparation">NEC License Preparation</a></li>
-            <li aria-current="page">Notes</li>
-        </ol>
-    </nav>
-
-    <header class="hero notes-hero">
-        <h1>Civil Engineering Notes</h1>
-        <p>
-            Subject notes for the Nepal Engineering Council (ACiE) license examination,
-            arranged by the ten chapters of the official syllabus so you can revise topic
-            by topic.
-        </p>
-        <ul class="notes-hero__meta">
-            <li><strong>26</strong> subjects</li>
-            <li><strong>10</strong> syllabus chapters</li>
-            <li>Updated <time datetime="2026-10-31" data-auto-date="previous-month-end">October 31, 2026</time></li>
-        </ul>
+    <header class="subjective-hero">
+        <div class="subjective-shell">
+            <p class="eyebrow">Nepal Engineering Council · Civil Engineering (ACiE) · License Examination</p>
+            <h1>Civil Engineering Notes</h1>
+            <p class="hero-summary">Subject notes arranged by the ten chapters of the official syllabus, so you can revise topic by topic.</p>
+            <div class="hero-facts" aria-label="Collection summary">
+                <span>26 Subjects</span><span>10 Syllabus Chapters</span><span>Free to Read</span>
+            </div>
+        </div>
     </header>
 
-    <main class="notes-main" id="main-content">
+    <main id="main-content" class="subjective-main subjective-shell">
+        <div class="page-intro">
+            <h2>Syllabus topics</h2>
+            <p>Use <strong>View notes</strong> where study material is available. Subjects still being prepared are marked as coming soon.</p>
+        </div>
 
-        <section class="notes-toc" aria-labelledby="notes-toc-title">
-            <h2 id="notes-toc-title">Chapters</h2>
-            <ol class="notes-toc__list">
-                <li><a href="#chapter-1"><span class="notes-toc__num">01</span>Basic Civil Engineering</a></li>
-                <li><a href="#chapter-2"><span class="notes-toc__num">02</span>Soil Mechanics and Foundation Engineering</a></li>
-                <li><a href="#chapter-3"><span class="notes-toc__num">03</span>Basic Water Resources Engineering</a></li>
-                <li><a href="#chapter-4"><span class="notes-toc__num">04</span>Structural Mechanics</a></li>
-                <li><a href="#chapter-5"><span class="notes-toc__num">05</span>Design of Structures</a></li>
-                <li><a href="#chapter-6"><span class="notes-toc__num">06</span>Water Supply, Sanitation and Environment</a></li>
-                <li><a href="#chapter-7"><span class="notes-toc__num">07</span>Irrigation and Drainage</a></li>
-                <li><a href="#chapter-8"><span class="notes-toc__num">08</span>Hydropower</a></li>
-                <li><a href="#chapter-9"><span class="notes-toc__num">09</span>Transportation</a></li>
-                <li><a href="#chapter-10"><span class="notes-toc__num">10</span>Project Planning, Design and Implementation</a></li>
-            </ol>
-            <p class="notes-toc__note">
-                <i class="fas fa-circle-info" aria-hidden="true"></i>
-                <span>Notes are published subject by subject. A subject marked
-                &ldquo;Coming soon&rdquo; is still being written; the published ones are ready to read now.</span>
-            </p>
-        </section>
+        <nav class="syllabus-nav" aria-label="Syllabus parts">
+            <a href="#chapter-1">Chapters 1&ndash;4 &middot; Fundamentals</a>
+            <a href="#chapter-5">Chapters 5&ndash;9 &middot; Application</a>
+            <a href="#chapter-10">Chapter 10 &middot; Project planning</a>
+        </nav>
 
-        <section class="notes-chapter" id="chapter-1" aria-labelledby="chapter-1-title">
-            <div class="notes-chapter__head">
-                <span class="notes-chapter__num" aria-hidden="true">01</span>
-                <div class="notes-chapter__body">
-                    <h2 id="chapter-1-title">Basic Civil Engineering</h2>
-                    <p>Materials, drawing, building technology, surveying, estimation and geology &mdash; the
-                    foundation chapter of the ACiE syllabus.</p>
+        <section class="syllabus-section" id="chapter-1" aria-labelledby="heading-chapter-1">
+            <header class="section-heading">
+                <div>
+                    <span class="section-letter" aria-hidden="true">01</span>
+                    <h2 id="heading-chapter-1">Basic Civil Engineering</h2>
                 </div>
-                <span class="notes-chapter__count">6 subjects</span>
-            </div>
-            <div class="notes-grid">
-                <article class="notes-card">
-                    <h3 class="notes-card__title"><a href="/NEC-license-preparation/Notes/Engineering-Drawing">Engineering Drawing</a></h3>
-                    <p class="notes-card__desc">Projections, orthographic and isometric views, sections and the drawing conventions used in civil works.</p>
-                    <p class="notes-card__status is-soon"><i class="fas fa-hourglass-half" aria-hidden="true"></i>Coming soon</p>
+                <p>6 subjects</p>
+            </header>
+            <div class="topic-grid">
+                <article class="topic-card">
+                    <div class="topic-top"><span class="topic-number">1.1</span></div>
+                    <h3>Engineering Drawing</h3>
+                    <p>Projections, orthographic and isometric views, sections and drawing conventions.</p>
+                    <span class="coming-soon">Notes coming soon</span>
                 </article>
-                <article class="notes-card">
-                    <h3 class="notes-card__title"><a href="/NEC-license-preparation/Notes/Construction-Materials">Construction Materials</a></h3>
-                    <p class="notes-card__desc">Cement, aggregates, bricks, timber and steel, with the standard NS and IS tests for each.</p>
-                    <p class="notes-card__status is-soon"><i class="fas fa-hourglass-half" aria-hidden="true"></i>Coming soon</p>
+                <article class="topic-card">
+                    <div class="topic-top"><span class="topic-number">1.2</span></div>
+                    <h3>Construction Materials</h3>
+                    <p>Cement, aggregates, bricks, timber and steel, with the standard NS and IS tests.</p>
+                    <span class="coming-soon">Notes coming soon</span>
                 </article>
-                <article class="notes-card">
-                    <h3 class="notes-card__title"><a href="/NEC-license-preparation/Notes/Building-Construction-and-Drawings">Building Construction and Drawings</a></h3>
-                    <p class="notes-card__desc">Foundations, masonry walls, floors, roofing, staircases, doors and windows.</p>
-                    <p class="notes-card__status is-soon"><i class="fas fa-hourglass-half" aria-hidden="true"></i>Coming soon</p>
+                <article class="topic-card">
+                    <div class="topic-top"><span class="topic-number">1.3</span></div>
+                    <h3>Building Construction and Drawings</h3>
+                    <p>Foundations, masonry walls, floors, roofing, staircases, doors and windows.</p>
+                    <span class="coming-soon">Notes coming soon</span>
                 </article>
-                <article class="notes-card">
-                    <h3 class="notes-card__title"><a href="/NEC-license-preparation/Notes/Surveying">Surveying</a></h3>
-                    <p class="notes-card__desc">Chain, compass and plane-table surveying, levelling, theodolite and total station work.</p>
-                    <p class="notes-card__status is-soon"><i class="fas fa-hourglass-half" aria-hidden="true"></i>Coming soon</p>
+                <article class="topic-card">
+                    <div class="topic-top"><span class="topic-number">1.4</span></div>
+                    <h3>Surveying</h3>
+                    <p>Chain, compass and plane-table surveying, levelling, theodolite and total station.</p>
+                    <span class="coming-soon">Notes coming soon</span>
                 </article>
-                <article class="notes-card">
-                    <h3 class="notes-card__title"><a href="/NEC-license-preparation/Notes/Estimation-and-Valuation">Estimation and Valuation</a></h3>
-                    <p class="notes-card__desc">Quantity take-off, rate analysis, detailed and abstract estimates, and property valuation.</p>
-                    <p class="notes-card__status is-soon"><i class="fas fa-hourglass-half" aria-hidden="true"></i>Coming soon</p>
+                <article class="topic-card">
+                    <div class="topic-top"><span class="topic-number">1.5</span></div>
+                    <h3>Estimation and Valuation</h3>
+                    <p>Quantity take-off, rate analysis, detailed and abstract estimates, valuation.</p>
+                    <span class="coming-soon">Notes coming soon</span>
                 </article>
-                <article class="notes-card">
-                    <h3 class="notes-card__title"><a href="/NEC-license-preparation/Notes/Engineering-Geology">Engineering Geology</a></h3>
-                    <p class="notes-card__desc">Minerals, rocks, structural geology, site investigation and slope stability.</p>
-                    <p class="notes-card__status is-soon"><i class="fas fa-hourglass-half" aria-hidden="true"></i>Coming soon</p>
+                <article class="topic-card">
+                    <div class="topic-top"><span class="topic-number">1.6</span></div>
+                    <h3>Engineering Geology</h3>
+                    <p>Minerals, rocks, structural geology, site investigation and slope stability.</p>
+                    <span class="coming-soon">Notes coming soon</span>
                 </article>
             </div>
         </section>
 
-        <section class="notes-chapter" id="chapter-2" aria-labelledby="chapter-2-title">
-            <div class="notes-chapter__head">
-                <span class="notes-chapter__num" aria-hidden="true">02</span>
-                <div class="notes-chapter__body">
-                    <h2 id="chapter-2-title">Soil Mechanics and Foundation Engineering</h2>
-                    <p>Soil behaviour from index properties to bearing capacity, and the design of foundations
-                    and retaining structures.</p>
+        <section class="syllabus-section" id="chapter-2" aria-labelledby="heading-chapter-2">
+            <header class="section-heading">
+                <div>
+                    <span class="section-letter" aria-hidden="true">02</span>
+                    <h2 id="heading-chapter-2">Soil Mechanics and Foundation Engineering</h2>
                 </div>
-                <span class="notes-chapter__count">2 subjects</span>
-            </div>
-            <div class="notes-grid">
-                <article class="notes-card">
-                    <h3 class="notes-card__title"><a href="/NEC-license-preparation/Notes/Soil-Mechanics">Soil Mechanics</a></h3>
-                    <p class="notes-card__desc">Index properties, classification, permeability, seepage, consolidation and shear strength.</p>
-                    <p class="notes-card__status is-soon"><i class="fas fa-hourglass-half" aria-hidden="true"></i>Coming soon</p>
+                <p>2 subjects</p>
+            </header>
+            <div class="topic-grid">
+                <article class="topic-card">
+                    <div class="topic-top"><span class="topic-number">2.1</span></div>
+                    <h3>Soil Mechanics</h3>
+                    <p>Index properties, classification, permeability, consolidation and shear strength.</p>
+                    <span class="coming-soon">Notes coming soon</span>
                 </article>
-                <article class="notes-card">
-                    <h3 class="notes-card__title"><a href="/NEC-license-preparation/Notes/Foundation-Engineering">Foundation Engineering</a></h3>
-                    <p class="notes-card__desc">Bearing capacity, shallow and deep foundations, earth pressure and slope stability.</p>
-                    <p class="notes-card__status is-soon"><i class="fas fa-hourglass-half" aria-hidden="true"></i>Coming soon</p>
+                <article class="topic-card">
+                    <div class="topic-top"><span class="topic-number">2.2</span></div>
+                    <h3>Foundation Engineering</h3>
+                    <p>Bearing capacity, shallow and deep foundations, earth pressure and slope stability.</p>
+                    <span class="coming-soon">Notes coming soon</span>
                 </article>
             </div>
         </section>
 
-        <section class="notes-chapter" id="chapter-3" aria-labelledby="chapter-3-title">
-            <div class="notes-chapter__head">
-                <span class="notes-chapter__num" aria-hidden="true">03</span>
-                <div class="notes-chapter__body">
-                    <h2 id="chapter-3-title">Basic Water Resources Engineering</h2>
-                    <p>Fluid properties, flow through channels and pipes, and the hydrological analysis behind
-                    water projects in Nepal.</p>
+        <section class="syllabus-section" id="chapter-3" aria-labelledby="heading-chapter-3">
+            <header class="section-heading">
+                <div>
+                    <span class="section-letter" aria-hidden="true">03</span>
+                    <h2 id="heading-chapter-3">Basic Water Resources Engineering</h2>
                 </div>
-                <span class="notes-chapter__count">3 subjects</span>
-            </div>
-            <div class="notes-grid">
-                <article class="notes-card">
-                    <h3 class="notes-card__title"><a href="/NEC-license-preparation/Notes/Fluid-Mechanics">Fluid Mechanics</a></h3>
-                    <p class="notes-card__desc">Fluid properties, hydrostatics, Bernoulli's equation, flow measurement and dimensional analysis.</p>
-                    <p class="notes-card__status is-soon"><i class="fas fa-hourglass-half" aria-hidden="true"></i>Coming soon</p>
+                <p>3 subjects</p>
+            </header>
+            <div class="topic-grid">
+                <article class="topic-card">
+                    <div class="topic-top"><span class="topic-number">3.1</span></div>
+                    <h3>Fluid Mechanics</h3>
+                    <p>Fluid properties, hydrostatics, Bernoulli's equation, flow measurement.</p>
+                    <span class="coming-soon">Notes coming soon</span>
                 </article>
-                <article class="notes-card">
-                    <h3 class="notes-card__title"><a href="/NEC-license-preparation/Notes/Hydraulics">Hydraulics</a></h3>
-                    <p class="notes-card__desc">Open channel flow, specific energy, hydraulic jump, gradually varied flow and hydraulic machines.</p>
-                    <p class="notes-card__status is-soon"><i class="fas fa-hourglass-half" aria-hidden="true"></i>Coming soon</p>
+                <article class="topic-card">
+                    <div class="topic-top"><span class="topic-number">3.2</span></div>
+                    <h3>Hydraulics</h3>
+                    <p>Open channel flow, specific energy, hydraulic jump and gradually varied flow.</p>
+                    <span class="coming-soon">Notes coming soon</span>
                 </article>
-                <article class="notes-card">
-                    <h3 class="notes-card__title"><a href="/NEC-license-preparation/Notes/Engineering-Hydrology">Engineering Hydrology</a></h3>
-                    <p class="notes-card__desc">Precipitation, runoff estimation, unit hydrograph, flood routing and frequency analysis.</p>
-                    <p class="notes-card__status is-soon"><i class="fas fa-hourglass-half" aria-hidden="true"></i>Coming soon</p>
+                <article class="topic-card">
+                    <div class="topic-top"><span class="topic-number">3.3</span></div>
+                    <h3>Engineering Hydrology</h3>
+                    <p>Precipitation, runoff, unit hydrograph, flood routing and frequency analysis.</p>
+                    <span class="coming-soon">Notes coming soon</span>
                 </article>
             </div>
         </section>
 
-        <section class="notes-chapter" id="chapter-4" aria-labelledby="chapter-4-title">
-            <div class="notes-chapter__head">
-                <span class="notes-chapter__num" aria-hidden="true">04</span>
-                <div class="notes-chapter__body">
-                    <h2 id="chapter-4-title">Structural Mechanics</h2>
-                    <p>How structures carry load: internal forces, deflections and the classical methods of
-                    structural analysis.</p>
+        <section class="syllabus-section" id="chapter-4" aria-labelledby="heading-chapter-4">
+            <header class="section-heading">
+                <div>
+                    <span class="section-letter" aria-hidden="true">04</span>
+                    <h2 id="heading-chapter-4">Structural Mechanics</h2>
                 </div>
-                <span class="notes-chapter__count">2 subjects</span>
-            </div>
-            <div class="notes-grid">
-                <article class="notes-card">
-                    <h3 class="notes-card__title"><a href="/NEC-license-preparation/Notes/Strength-of-Materials">Strength of Materials</a></h3>
-                    <p class="notes-card__desc">Stress and strain, shear force and bending moment, deflection, torsion and columns.</p>
-                    <p class="notes-card__status is-live"><i class="fas fa-circle-check" aria-hidden="true"></i>Notes available</p>
+                <p>2 subjects</p>
+            </header>
+            <div class="topic-grid">
+                <article class="topic-card available">
+                    <div class="topic-top"><span class="topic-number">4.1</span></div>
+                    <h3>Strength of Materials</h3>
+                    <p>Stress and strain, shear force and bending moment, deflection, torsion, columns.</p>
+                    <a class="notes-button" href="/NEC-license-preparation/Notes/Strength-of-Materials" aria-label="View notes for subject 4.1: Strength of Materials">View notes <span aria-hidden="true">&rarr;</span></a>
                 </article>
-                <article class="notes-card">
-                    <h3 class="notes-card__title"><a href="/NEC-license-preparation/Notes/Theory-of-Structures">Theory of Structures</a></h3>
-                    <p class="notes-card__desc">Moment distribution, slope deflection, influence lines, arches and matrix methods.</p>
-                    <p class="notes-card__status is-soon"><i class="fas fa-hourglass-half" aria-hidden="true"></i>Coming soon</p>
+                <article class="topic-card">
+                    <div class="topic-top"><span class="topic-number">4.2</span></div>
+                    <h3>Theory of Structures</h3>
+                    <p>Moment distribution, slope deflection, influence lines, arches and matrix methods.</p>
+                    <span class="coming-soon">Notes coming soon</span>
                 </article>
             </div>
         </section>
 
-        <section class="notes-chapter" id="chapter-5" aria-labelledby="chapter-5-title">
-            <div class="notes-chapter__head">
-                <span class="notes-chapter__num" aria-hidden="true">05</span>
-                <div class="notes-chapter__body">
-                    <h2 id="chapter-5-title">Design of Structures</h2>
-                    <p>Limit state design of concrete, steel and timber members, together with the properties of
-                    concrete and masonry.</p>
+        <section class="syllabus-section" id="chapter-5" aria-labelledby="heading-chapter-5">
+            <header class="section-heading">
+                <div>
+                    <span class="section-letter" aria-hidden="true">05</span>
+                    <h2 id="heading-chapter-5">Design of Structures</h2>
                 </div>
-                <span class="notes-chapter__count">3 subjects</span>
-            </div>
-            <div class="notes-grid">
-                <article class="notes-card">
-                    <h3 class="notes-card__title"><a href="/NEC-license-preparation/Notes/Concrete-Technology-and-Masonry-Structures">Concrete Technology and Masonry Structures</a></h3>
-                    <p class="notes-card__desc">Mix design, workability, strength testing, durability and masonry construction.</p>
-                    <p class="notes-card__status is-live"><i class="fas fa-circle-check" aria-hidden="true"></i>Notes available</p>
+                <p>3 subjects</p>
+            </header>
+            <div class="topic-grid">
+                <article class="topic-card available">
+                    <div class="topic-top"><span class="topic-number">5.1</span></div>
+                    <h3>Concrete Technology and Masonry Structures</h3>
+                    <p>Mix design, workability, strength testing, durability and masonry construction.</p>
+                    <a class="notes-button" href="/NEC-license-preparation/Notes/Concrete-Technology-and-Masonry-Structures" aria-label="View notes for subject 5.1: Concrete Technology and Masonry Structures">View notes <span aria-hidden="true">&rarr;</span></a>
                 </article>
-                <article class="notes-card">
-                    <h3 class="notes-card__title"><a href="/NEC-license-preparation/Notes/Design-of-RCC-Structures">Design of RCC Structures</a></h3>
-                    <p class="notes-card__desc">Limit state design of beams, slabs, columns, footings, staircases and retaining walls.</p>
-                    <p class="notes-card__status is-soon"><i class="fas fa-hourglass-half" aria-hidden="true"></i>Coming soon</p>
+                <article class="topic-card">
+                    <div class="topic-top"><span class="topic-number">5.2</span></div>
+                    <h3>Design of RCC Structures</h3>
+                    <p>Limit state design of beams, slabs, columns, footings, stairs and retaining walls.</p>
+                    <span class="coming-soon">Notes coming soon</span>
                 </article>
-                <article class="notes-card">
-                    <h3 class="notes-card__title"><a href="/NEC-license-preparation/Notes/Design-of-Steel-and-Timber-Structures">Design of Steel and Timber Structures</a></h3>
-                    <p class="notes-card__desc">Tension and compression members, beams, connections, plate girders and timber design.</p>
-                    <p class="notes-card__status is-soon"><i class="fas fa-hourglass-half" aria-hidden="true"></i>Coming soon</p>
+                <article class="topic-card">
+                    <div class="topic-top"><span class="topic-number">5.3</span></div>
+                    <h3>Design of Steel and Timber Structures</h3>
+                    <p>Tension and compression members, beams, connections, plate girders, timber design.</p>
+                    <span class="coming-soon">Notes coming soon</span>
                 </article>
             </div>
         </section>
 
-        <section class="notes-chapter" id="chapter-6" aria-labelledby="chapter-6-title">
-            <div class="notes-chapter__head">
-                <span class="notes-chapter__num" aria-hidden="true">06</span>
-                <div class="notes-chapter__body">
-                    <h2 id="chapter-6-title">Water Supply, Sanitation and Environment</h2>
-                    <p>Drinking water systems and wastewater management, from demand and source to treatment and
-                    disposal.</p>
+        <section class="syllabus-section" id="chapter-6" aria-labelledby="heading-chapter-6">
+            <header class="section-heading">
+                <div>
+                    <span class="section-letter" aria-hidden="true">06</span>
+                    <h2 id="heading-chapter-6">Water Supply, Sanitation and Environment</h2>
                 </div>
-                <span class="notes-chapter__count">2 subjects</span>
-            </div>
-            <div class="notes-grid">
-                <article class="notes-card">
-                    <h3 class="notes-card__title"><a href="/NEC-license-preparation/Notes/Water-Supply-Engineering">Water Supply Engineering</a></h3>
-                    <p class="notes-card__desc">Water demand, sources, intake structures, treatment, distribution and quality standards.</p>
-                    <p class="notes-card__status is-soon"><i class="fas fa-hourglass-half" aria-hidden="true"></i>Coming soon</p>
+                <p>2 subjects</p>
+            </header>
+            <div class="topic-grid">
+                <article class="topic-card">
+                    <div class="topic-top"><span class="topic-number">6.1</span></div>
+                    <h3>Water Supply Engineering</h3>
+                    <p>Water demand, sources, intake structures, treatment, distribution and quality.</p>
+                    <span class="coming-soon">Notes coming soon</span>
                 </article>
-                <article class="notes-card">
-                    <h3 class="notes-card__title"><a href="/NEC-license-preparation/Notes/Sanitation-Engineering">Sanitation Engineering</a></h3>
-                    <p class="notes-card__desc">Sewerage systems, wastewater treatment, sewage disposal and solid waste management.</p>
-                    <p class="notes-card__status is-soon"><i class="fas fa-hourglass-half" aria-hidden="true"></i>Coming soon</p>
+                <article class="topic-card">
+                    <div class="topic-top"><span class="topic-number">6.2</span></div>
+                    <h3>Sanitation Engineering</h3>
+                    <p>Sewerage systems, wastewater treatment, sewage disposal and solid waste management.</p>
+                    <span class="coming-soon">Notes coming soon</span>
                 </article>
             </div>
         </section>
 
-        <section class="notes-chapter" id="chapter-7" aria-labelledby="chapter-7-title">
-            <div class="notes-chapter__head">
-                <span class="notes-chapter__num" aria-hidden="true">07</span>
-                <div class="notes-chapter__body">
-                    <h2 id="chapter-7-title">Irrigation and Drainage</h2>
-                    <p>Crop water requirements and the design of canals, headworks, cross drainage works and
-                    drainage systems.</p>
+        <section class="syllabus-section" id="chapter-7" aria-labelledby="heading-chapter-7">
+            <header class="section-heading">
+                <div>
+                    <span class="section-letter" aria-hidden="true">07</span>
+                    <h2 id="heading-chapter-7">Irrigation and Drainage</h2>
                 </div>
-                <span class="notes-chapter__count">1 subject</span>
-            </div>
-            <div class="notes-grid">
-                <article class="notes-card">
-                    <h3 class="notes-card__title"><a href="/NEC-license-preparation/Notes/Irrigation-Engineering">Irrigation Engineering</a></h3>
-                    <p class="notes-card__desc">Crop water requirement, canal design, headworks, cross drainage works and irrigation management.</p>
-                    <p class="notes-card__status is-soon"><i class="fas fa-hourglass-half" aria-hidden="true"></i>Coming soon</p>
+                <p>1 subject</p>
+            </header>
+            <div class="topic-grid">
+                <article class="topic-card">
+                    <div class="topic-top"><span class="topic-number">7.1</span></div>
+                    <h3>Irrigation Engineering</h3>
+                    <p>Crop water requirement, canal design, headworks and cross drainage works.</p>
+                    <span class="coming-soon">Notes coming soon</span>
                 </article>
             </div>
         </section>
 
-        <section class="notes-chapter" id="chapter-8" aria-labelledby="chapter-8-title">
-            <div class="notes-chapter__head">
-                <span class="notes-chapter__num" aria-hidden="true">08</span>
-                <div class="notes-chapter__body">
-                    <h2 id="chapter-8-title">Hydropower</h2>
-                    <p>Hydropower development in Nepal, from water conveyance and turbines to powerhouse
-                    layout.</p>
+        <section class="syllabus-section" id="chapter-8" aria-labelledby="heading-chapter-8">
+            <header class="section-heading">
+                <div>
+                    <span class="section-letter" aria-hidden="true">08</span>
+                    <h2 id="heading-chapter-8">Hydropower</h2>
                 </div>
-                <span class="notes-chapter__count">1 subject</span>
-            </div>
-            <div class="notes-grid">
-                <article class="notes-card">
-                    <h3 class="notes-card__title"><a href="/NEC-license-preparation/Notes/Hydropower-Engineering">Hydropower Engineering</a></h3>
-                    <p class="notes-card__desc">Hydropower potential of Nepal, turbines, dams, penstock, surge tank and powerhouse layout.</p>
-                    <p class="notes-card__status is-soon"><i class="fas fa-hourglass-half" aria-hidden="true"></i>Coming soon</p>
+                <p>1 subject</p>
+            </header>
+            <div class="topic-grid">
+                <article class="topic-card">
+                    <div class="topic-top"><span class="topic-number">8.1</span></div>
+                    <h3>Hydropower Engineering</h3>
+                    <p>Hydropower potential of Nepal, turbines, dams, penstock, surge tank and powerhouse.</p>
+                    <span class="coming-soon">Notes coming soon</span>
                 </article>
             </div>
         </section>
 
-        <section class="notes-chapter" id="chapter-9" aria-labelledby="chapter-9-title">
-            <div class="notes-chapter__head">
-                <span class="notes-chapter__num" aria-hidden="true">09</span>
-                <div class="notes-chapter__body">
-                    <h2 id="chapter-9-title">Transportation</h2>
-                    <p>Highway and airport engineering: planning, geometry, traffic, pavements and construction
-                    practice.</p>
+        <section class="syllabus-section" id="chapter-9" aria-labelledby="heading-chapter-9">
+            <header class="section-heading">
+                <div>
+                    <span class="section-letter" aria-hidden="true">09</span>
+                    <h2 id="heading-chapter-9">Transportation</h2>
                 </div>
-                <span class="notes-chapter__count">2 subjects</span>
-            </div>
-            <div class="notes-grid">
-                <article class="notes-card">
-                    <h3 class="notes-card__title"><a href="/NEC-license-preparation/Notes/Transportation-Engineering">Transportation Engineering</a></h3>
-                    <p class="notes-card__desc">Highway planning, geometric design, traffic engineering and pavement design.</p>
-                    <p class="notes-card__status is-soon"><i class="fas fa-hourglass-half" aria-hidden="true"></i>Coming soon</p>
+                <p>2 subjects</p>
+            </header>
+            <div class="topic-grid">
+                <article class="topic-card">
+                    <div class="topic-top"><span class="topic-number">9.1</span></div>
+                    <h3>Transportation Engineering</h3>
+                    <p>Highway planning, geometric design, traffic engineering and pavement design.</p>
+                    <span class="coming-soon">Notes coming soon</span>
                 </article>
-                <article class="notes-card">
-                    <h3 class="notes-card__title"><a href="/NEC-license-preparation/Notes/Airport-Engineering">Airport Engineering</a></h3>
-                    <p class="notes-card__desc">Site selection, runway orientation, taxiway and terminal planning, and airport pavements.</p>
-                    <p class="notes-card__status is-soon"><i class="fas fa-hourglass-half" aria-hidden="true"></i>Coming soon</p>
+                <article class="topic-card">
+                    <div class="topic-top"><span class="topic-number">9.2</span></div>
+                    <h3>Airport Engineering</h3>
+                    <p>Site selection, runway orientation, taxiway and terminal planning, pavements.</p>
+                    <span class="coming-soon">Notes coming soon</span>
                 </article>
             </div>
         </section>
 
-        <section class="notes-chapter" id="chapter-10" aria-labelledby="chapter-10-title">
-            <div class="notes-chapter__head">
-                <span class="notes-chapter__num" aria-hidden="true">10</span>
-                <div class="notes-chapter__body">
-                    <h2 id="chapter-10-title">Project Planning, Design and Implementation</h2>
-                    <p>Managing time, cost, contracts and professional obligations through the life of a
-                    project.</p>
+        <section class="syllabus-section" id="chapter-10" aria-labelledby="heading-chapter-10">
+            <header class="section-heading">
+                <div>
+                    <span class="section-letter" aria-hidden="true">10</span>
+                    <h2 id="heading-chapter-10">Project Planning, Design and Implementation</h2>
                 </div>
-                <span class="notes-chapter__count">4 subjects</span>
-            </div>
-            <div class="notes-grid">
-                <article class="notes-card">
-                    <h3 class="notes-card__title"><a href="/NEC-license-preparation/Notes/Construction-Management">Construction Management</a></h3>
-                    <p class="notes-card__desc">Construction planning, equipment, safety, quality control and contract administration.</p>
-                    <p class="notes-card__status is-soon"><i class="fas fa-hourglass-half" aria-hidden="true"></i>Coming soon</p>
+                <p>4 subjects</p>
+            </header>
+            <div class="topic-grid">
+                <article class="topic-card">
+                    <div class="topic-top"><span class="topic-number">10.1</span></div>
+                    <h3>Construction Management</h3>
+                    <p>Construction planning, equipment, safety, quality control and contract administration.</p>
+                    <span class="coming-soon">Notes coming soon</span>
                 </article>
-                <article class="notes-card">
-                    <h3 class="notes-card__title"><a href="/NEC-license-preparation/Notes/Project-Management">Project Management</a></h3>
-                    <p class="notes-card__desc">CPM and PERT, scheduling, resource allocation, risk and project delivery methods.</p>
-                    <p class="notes-card__status is-soon"><i class="fas fa-hourglass-half" aria-hidden="true"></i>Coming soon</p>
+                <article class="topic-card">
+                    <div class="topic-top"><span class="topic-number">10.2</span></div>
+                    <h3>Project Management</h3>
+                    <p>CPM and PERT, scheduling, resource allocation, risk and delivery methods.</p>
+                    <span class="coming-soon">Notes coming soon</span>
                 </article>
-                <article class="notes-card">
-                    <h3 class="notes-card__title"><a href="/NEC-license-preparation/Notes/Engineering-Economics">Engineering Economics</a></h3>
-                    <p class="notes-card__desc">Time value of money, present and annual worth, depreciation and benefit-cost analysis.</p>
-                    <p class="notes-card__status is-soon"><i class="fas fa-hourglass-half" aria-hidden="true"></i>Coming soon</p>
+                <article class="topic-card">
+                    <div class="topic-top"><span class="topic-number">10.3</span></div>
+                    <h3>Engineering Economics</h3>
+                    <p>Time value of money, present and annual worth, depreciation, benefit-cost analysis.</p>
+                    <span class="coming-soon">Notes coming soon</span>
                 </article>
-                <article class="notes-card">
-                    <h3 class="notes-card__title"><a href="/NEC-license-preparation/Notes/Engineering-Professional-Practices">Engineering Professional Practices</a></h3>
-                    <p class="notes-card__desc">Engineering ethics, NEC Act and rules, contracts, specifications and professional liability.</p>
-                    <p class="notes-card__status is-soon"><i class="fas fa-hourglass-half" aria-hidden="true"></i>Coming soon</p>
+                <article class="topic-card">
+                    <div class="topic-top"><span class="topic-number">10.4</span></div>
+                    <h3>Engineering Professional Practices</h3>
+                    <p>Ethics, NEC Act and rules, contracts, specifications and professional liability.</p>
+                    <span class="coming-soon">Notes coming soon</span>
                 </article>
             </div>
         </section>
 
-        <section class="notes-next" aria-labelledby="notes-next-title">
-            <h2 id="notes-next-title">Continue preparing</h2>
-            <ul class="notes-next__list">
-                <li>
-                    <a href="/NEC-license-preparation/Syllabus">
-                        <strong>Syllabus</strong>
-                        <span>All ten chapters with topic codes</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/NEC-license-preparation/Test">
-                        <strong>Model tests</strong>
-                        <span>Timed practice sets for the license exam</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/NEC-license-preparation/Final-Capsule">
-                        <strong>Final capsule</strong>
-                        <span>600 one-line revision points</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/NEC-license-preparation/MCQ">
-                        <strong>MCQ practice</strong>
-                        <span>Chapter-wise objective questions</span>
-                    </a>
-                </li>
-            </ul>
+        <section class="syllabus-section" aria-labelledby="heading-resources">
+            <header class="section-heading">
+                <div><h2 id="heading-resources">Continue preparing</h2></div>
+            </header>
+            <nav class="syllabus-nav" aria-label="More NEC license resources">
+                <a href="/NEC-license-preparation/Syllabus">Syllabus</a>
+                <a href="/NEC-license-preparation/Test">Model tests</a>
+                <a href="/NEC-license-preparation/Final-Capsule">Final capsule</a>
+                <a href="/NEC-license-preparation/MCQ">MCQ practice</a>
+            </nav>
         </section>
-
     </main>
 
     <div id="social-section"></div>
@@ -1072,6 +665,5 @@
     <script src="/js/logo.js?v=20260924"></script>
     <script src="/js/layout.js?v=20260924"></script>
     <script src="/js/lazy-load.js" defer></script>
-
 </body>
 </html>

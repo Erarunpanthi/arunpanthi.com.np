@@ -6,7 +6,8 @@
     name="viewport"
     content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes"
   >
-  <meta name="description" content="404 - Page not found. Redirecting to homepage.">
+  <meta name="description" content="404 - Page not found.">
+  <meta name="robots" content="noindex, follow">
   <title>404 • Page Not Found</title>
 
   <!-- Final warning: If you repeat this activity, you will be banned from using this website. -->
@@ -25,11 +26,6 @@
       <p class="error-description">
         Our engineers are looking into it. Thanks for your patience!
       </p>
-
-      <div class="countdown-box">
-        <span class="countdown-label">⏳ Redirecting in</span>
-        <span class="countdown" id="countdownTimer" aria-live="polite">5</span>
-      </div>
 
       <a href="https://arunpanthi.com.np/" class="home-link">
         <i class="fas fa-home"></i>
@@ -68,11 +64,8 @@
         return;
       }
 
-      const homepageUrl = "https://arunpanthi.com.np/";
       const car = document.getElementById("car");
       const sign = document.getElementById("sign404");
-      const countdownEl = document.getElementById("countdownTimer");
-      const homeBtn = document.querySelector(".home-link");
 
       if (car && sign) {
         setTimeout(() => {
@@ -80,27 +73,6 @@
           car.classList.add("fall");
           sign.classList.add("show");
         }, 1600);
-      }
-
-      let secondsLeft = 5;
-
-      const countdownInterval = setInterval(() => {
-        secondsLeft -= 1;
-
-        if (countdownEl) {
-          countdownEl.textContent = secondsLeft;
-        }
-
-        if (secondsLeft <= 0) {
-          clearInterval(countdownInterval);
-          window.location.href = homepageUrl;
-        }
-      }, 1000);
-
-      if (homeBtn) {
-        homeBtn.addEventListener("click", function () {
-          clearInterval(countdownInterval);
-        });
       }
     })();
   </script>

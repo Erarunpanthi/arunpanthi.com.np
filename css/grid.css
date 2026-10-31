@@ -90,22 +90,44 @@ footer,
 
 /* The injected social bar and footer must look identical to the rest of the
    site (see css/styles.css) — flat brand green instead of a different gradient
-   or the lighter --green-400. */
-.social-media,
-#social-section {
+   or the lighter --green-400.
+
+   IMPORTANT: only the injected components themselves (.social-media / .footer)
+   may carry the green band and its padding. The wrappers that js/layout.js
+   fills (#social-section / #footer) must stay transparent and unpadded.
+
+   They used to get the same green + padding here as well, which had two
+   visible side effects on every page that loads this file (e.g. PSC Syllabus):
+   the social bar's own 25px bottom gap was painted green instead of showing
+   the page background, and the footer got an extra 24px of green on top — so
+   "Connect with Us" and "© CivPrepMaster. All rights reserved." ran together
+   into one continuous green block with no gap between them. Leaving the
+   wrappers alone restores the same gap every other page on the site has. */
+.social-media {
     background: var(--green-600) !important;
     color: #fff !important;
     padding: 26px 20px !important;
     text-align: center !important;
 }
 
-footer,
-#footer {
+footer.footer,
+.footer {
     background-color: var(--green-600) !important;
     color: #fff !important;
     text-align: center !important;
     padding: 24px 20px 26px !important;
     margin-top: 0 !important;
+}
+
+/* Transparent, unpadded wrappers: the band + padding live on the components
+   above, exactly like css/styles.css does for the rest of the site. */
+#social-section,
+#footer {
+    background: none !important;
+    padding: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    text-align: center !important;
 }
 
 .container,

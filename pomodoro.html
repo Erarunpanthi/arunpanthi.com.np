@@ -351,6 +351,25 @@
     <div id="social-section"></div>
   </main>
 
+  <!-- Toast notification -->
+  <div class="toast" id="toast"></div>
+
+  <!-- Report overlay -->
+  <div class="report-overlay" id="reportOverlay">
+    <div class="report-modal">
+      <div class="report-header">
+        <h2>📊 <span>Pomodoro</span> Daily Log</h2>
+        <div class="report-actions">
+          <button id="exportCsvBtn">⬇ CSV</button>
+          <button id="reportCloseBtn" class="close-btn" aria-label="Close">✕</button>
+        </div>
+      </div>
+      <div class="report-scroll" id="reportScroll">
+        <div id="reportContent"></div>
+      </div>
+    </div>
+  </div>
+
   <div id="footer"></div>
   <script src="/js/layout.js?v=20260924" defer></script>
   <script src="/js/logo.js?v=20261101"></script>

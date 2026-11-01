@@ -44,8 +44,9 @@
     wm.setAttribute("aria-hidden", "true");
     wm.setAttribute("data-no-lazy", "true");
 
-    // Full-page, non-interactive watermark layer: stays fixed while scrolling,
-    // tiles responsively, and never blocks clicks or text selection.
+    // Full-page, non-interactive watermark layer: shows ONE single, bigger
+    // logo instead of tiling many small copies across the page. Stays fixed
+    // while scrolling and never blocks clicks or text selection.
     wm.style.position = "fixed";
     wm.style.top = "0";
     wm.style.left = "0";
@@ -54,9 +55,9 @@
     wm.style.pointerEvents = "none";
     wm.style.userSelect = "none";
     wm.style.backgroundImage = "url('" + WATERMARK_LOGO + "')";
-    wm.style.backgroundRepeat = "repeat";
+    wm.style.backgroundRepeat = "no-repeat";   // single logo, not tiled
     wm.style.backgroundPosition = "center center";
-    wm.style.backgroundSize = "min(200px, 42vmin)";
+    wm.style.backgroundSize = "min(420px, 70vmin)"; // bigger single logo
     wm.style.opacity = "0.10"; // visible, but keeps page content readable
     wm.style.zIndex = "9999";
 

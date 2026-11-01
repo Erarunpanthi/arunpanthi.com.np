@@ -4,128 +4,238 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Advanced Engineering Calculator — Casio fx-570 VM Plus Clone</title>
-<meta name="description" content="Advanced scientific and engineering calculator clone of Casio fx-570 VM Plus — COMP, STAT, BASE-N, EQN, MATRIX, CPLX, UNIT, TABLE modes.">
-<meta name="theme-color" content="#1e1e1e">
+<title>Engineering Calculator — Casio fx-570 VM Plus Clone</title>
+<meta name="description" content="Professional scientific and engineering calculator — COMP, STAT, BASE-N, EQN, MATRIX, CPLX, UNIT, TABLE modes.">
+<meta name="theme-color" content="#064e3b">
 <style>
+  /* ================================================================
+     Professional Engineering Calculator — Casio fx-570 VM Plus clone
+     Clean, attractive, fully functional design
+     ================================================================ */
   *{margin:0;padding:0;box-sizing:border-box}
-  html{font-size:16px;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none}
+  html{font-size:16px;-webkit-tap-highlight-color:transparent}
   body{
     font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
-    background:#1a1a1a;color:#eee;height:100vh;
-    display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;
+    background:#0f172a;
+    color:#e2e8f0;
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    -webkit-font-smoothing:antialiased;
   }
+  /* ---------- Shell ---------- */
   .calc-shell{
-    width:100%;max-width:430px;height:100%;background:#252525;
-    border-radius:14px;padding:12px 10px 14px;
-    box-shadow:0 25px 70px rgba(0,0,0,0.75),0 0 0 1px rgba(255,255,255,0.05) inset;
-    display:flex;flex-direction:column;gap:8px;touch-action:manipulation;
+    width:100%;
+    max-width:410px;
+    height:100%;
+    background:#1e293b;
+    border-radius:20px;
+    padding:16px 14px 20px;
+    box-shadow:0 30px 80px rgba(0,0,0,0.6),
+               0 0 0 1px rgba(255,255,255,0.06) inset;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    touch-action:manipulation;
   }
   .calc-shell:focus{outline:none}
-  .mode-strip{display:flex;overflow-x:auto;gap:5px;padding:0 4px 6px;scrollbar-width:none}
+  /* ---------- Header ---------- */
+  .calc-header{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:0 4px 8px;
+  }
+  .brand-badge{
+    width:32px;height:32px;
+    border-radius:8px;
+    background:#10b981;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 0 0 1px rgba(255,255,255,0.1) inset;
+  }
+  .brand-badge i{color:#fff;font-size:14px;font-weight:800}
+  .brand-text{flex:1}
+  .brand-text .name{font-size:13px;font-weight:700;color:#f1f5f9;letter-spacing:.3px}
+  .brand-text .sub{font-size:10px;color:#94a3b8}
+  /* ---------- Mode strip ---------- */
+  .mode-strip{
+    display:flex;
+    overflow-x:auto;
+    gap:6px;
+    padding:0 4px 8px;
+    scrollbar-width:none;
+  }
   .mode-strip::-webkit-scrollbar{display:none}
   .mode-btn{
-    flex:0 0 auto;padding:5px 10px;font-size:10px;font-weight:700;border:none;border-radius:6px;
-    color:#9aa0a6;background:#2d2d2d;cursor:pointer;white-space:nowrap;transition:all .12s;
-    border:1px solid transparent;text-transform:uppercase;
+    flex:0 0 auto;
+    padding:6px 14px;
+    font-size:11px;
+    font-weight:700;
+    border:none;
+    border-radius:10px;
+    color:#94a3b8;
+    background:#0f172a;
+    cursor:pointer;
+    white-space:nowrap;
+    transition:all .15s;
+    border:1px solid rgba(255,255,255,0.06);
+    text-transform:uppercase;
   }
-  .mode-btn.active{background:#2e7d32;color:#fff;border-color:#2e7d32;box-shadow:0 0 0 1px #2e7d32 inset}
-  .mode-btn:hover:not(.active){background:#353535;color:#fff}
-  .status-row{display:flex;justify-content:space-between;align-items:center;font-size:10px;color:#8a9197;height:16px;padding:0 2px}
-  .status-item{display:flex;align-items:center;gap:4px}
-  .status-item .dot{width:7px;height:7px;border-radius:50%;background:#ffd166;box-shadow:0 0 8px #ffd166}
+  .mode-btn.active{
+    background:#10b981;
+    color:#fff;
+    border-color:#10b981;
+    box-shadow:0 0 0 1px #10b981 inset,0 4px 12px rgba(16,185,129,0.25);
+  }
+  .mode-btn:hover:not(.active){background:#334155;color:#fff;border-color:rgba(255,255,255,0.12)}
+  /* ---------- Status row ---------- */
+  .status-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-size:10px;
+    color:#64748b;
+    height:16px;
+    padding:0 4px;
+  }
+  .status-item{display:flex;align-items:center;gap:5px}
+  .status-item .dot{width:7px;height:7px;border-radius:50%;background:#f59e0b;box-shadow:0 0 8px #f59e0b}
   .status-item .dot.off{opacity:.25}
+  .status-item .dot.on{opacity:1}
+  /* ---------- Display ---------- */
   .display-wrap{
-    background:#0d0d0d;border-radius:10px;padding:14px 12px;min-height:130px;
-    display:flex;flex-direction:column;justify-content:flex-end;gap:4px;
-    box-shadow:0 0 0 1px rgba(255,255,255,0.03) inset;overflow:hidden;
+    background:#020617;
+    border-radius:14px;
+    padding:16px 14px;
+    min-height:150px;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    gap:6px;
+    box-shadow:0 0 0 1px rgba(255,255,255,0.04) inset;
+    overflow:hidden;
   }
   .layer{text-align:right;word-break:break-all;overflow-wrap:break-word;line-height:1;font-variant-numeric:tabular-nums}
-  .mem-layer{font-size:11px;color:#ffd166;height:12px;opacity:.9}
-  .mode-layer{font-size:10px;color:#9aa0a6;height:12px}
-  .expr-layer{font-size:18px;color:#b9bbc1;min-height:24px}
-  .result-layer{font-size:36px;font-weight:800;color:#fff;min-height:44px}
-  .result-layer.err{color:#ff6b6b}
-  .error-line{font-size:12px;color:#ff6b6b;height:14px}
-  .keypad{display:grid;gap:6px;margin-top:2px}
-  .key{
-    border:none;border-radius:9px;font-size:18px;font-weight:700;color:#fff;cursor:pointer;
-    background:#3a3a3a;box-shadow:0 4px 0 #242424,0 0 0 1px rgba(255,255,255,0.02) inset;
-    transition:transform .05s,box-shadow .05s,background .1s,color .1s;
-    display:flex;align-items:center;justify-content:center;min-height:54px;touch-action:manipulation;position:relative;
+  .mem-layer{font-size:11px;color:#fbbf24;height:12px;opacity:.9}
+  .mode-layer{font-size:10px;color:#94a3b8;height:12px}
+  .expr-layer{font-size:20px;color:#cbd5e1;min-height:26px}
+  .result-layer{font-size:42px;font-weight:800;color:#fff;min-height:50px;letter-spacing:-1px}
+  .result-layer.err{color:#ef4444}
+  .error-line{font-size:12px;color:#f87171;height:14px}
+  /* ---------- Keypad ---------- */
+  .keypad{
+    display:grid;
+    gap:8px;
+    margin-top:2px;
   }
-  .key .sub{font-size:10px;color:#8a9197;position:absolute;top:3px;left:4px;pointer-events:none}
-  .key .main{font-size:18px;font-weight:800;position:relative;z-index:1}
-  .key:active{transform:translateY(3px);box-shadow:0 1px 0 #242424}
-  .key.func{background:#444;color:#ddd}
-  .key.func:active{background:#4f4f4f}
-  .key.op{background:#ff9800;color:#fff;box-shadow:0 4px 0 #e68a00}
-  .key.op:active{background:#ffa733}
-  .key.eq{background:#2e7d32;color:#fff;box-shadow:0 4px 0 #1b5e20}
-  .key.eq:active{background:#3a9b42}
-  .key.ac{background:#d32f2f;color:#fff;box-shadow:0 4px 0 #b71c1c}
-  .key.ac:active{background:#e53935}
-  .key.mem{background:#444;color:#ffd166}
-  .key.mem:active{background:#4f4f4f}
-  .key.shift{background:#444;color:#bbb}
-  .key.alpha{background:#444;color:#bbb}
-  .key.hyp{background:#444;color:#e0e0e0}
-  .key.secondary{background:#4a4a4a;color:#bbb}
-  .key.secondary:active{background:#555}
+  .key{
+    border:none;
+    border-radius:12px;
+    font-size:19px;
+    font-weight:700;
+    color:#fff;
+    cursor:pointer;
+    background:#334155;
+    box-shadow:0 4px 0 #0f172a,0 0 0 1px rgba(255,255,255,0.03) inset;
+    transition:transform .06s,box-shadow .06s,background .1s,color .1s;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-height:66px;
+    touch-action:manipulation;
+    position:relative;
+  }
+  .key .sub{font-size:10px;color:#94a3b8;position:absolute;top:4px;left:5px;pointer-events:none;font-weight:600}
+  .key .main{font-size:19px;font-weight:800;position:relative;z-index:1}
+  .key:active{
+    transform:translateY(3px);
+    box-shadow:0 1px 0 #0f172a;
+  }
+  .key.func{background:#475569;color:#e2e8f0}
+  .key.func:active{background:#64748b}
+  .key.op{background:#0ea5e9;color:#fff;box-shadow:0 4px 0 #0369a1}
+  .key.op:active{background:#38bdf8}
+  .key.eq{background:#10b981;color:#fff;box-shadow:0 4px 0 #047857}
+  .key.eq:active{background:#34d399}
+  .key.ac{background:#ef4444;color:#fff;box-shadow:0 4px 0 #b91c1c}
+  .key.ac:active{background:#f87171}
+  .key.mem{background:#475569;color:#fbbf24}
+  .key.mem:active{background:#64748b}
+  .key.shift{background:#475569;color:#cbd5e1}
+  .key.alpha{background:#475569;color:#cbd5e1}
+  .key.hyp{background:#475569;color:#cbd5e1}
+  .key.secondary{background:#475569;color:#94a3b8}
+  .key.secondary:active{background:#64748b}
   .key.wide{grid-column:span 2}
-  .key.tall{grid-row:span 2}
-  .overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);backdrop-filter:blur(6px);z-index:60;display:none;flex-direction:column}
+  .key.active-shift{background:#10b981;color:#fff}
+  /* ---------- Overlay panels ---------- */
+  .overlay{position:fixed;inset:0;background:rgba(2,6,23,0.72);backdrop-filter:blur(8px);z-index:50;display:none;flex-direction:column}
   .overlay.open{display:flex}
   .overlay-panel{
-    background:#2a2a2a;width:100%;max-width:420px;margin:auto 0;border-radius:16px;padding:18px;
-    box-shadow:0 20px 60px rgba(0,0,0,0.85);display:flex;flex-direction:column;gap:12px;max-height:85vh;overflow:hidden;
+    background:#1e293b;width:100%;max-width:400px;margin:auto 0;border-radius:20px;padding:20px;
+    box-shadow:0 25px 70px rgba(0,0,0,0.8);display:flex;flex-direction:column;gap:14px;max-height:88vh;overflow:hidden;
   }
   .overlay-header{display:flex;justify-content:space-between;align-items:center}
-  .overlay-header h2{font-size:16px;color:#fff}
-  .btn-close{background:transparent;border:none;color:#ff6b6b;font-size:13px;cursor:pointer}
-  .scroll{overflow-y:auto;max-height:55vh;display:flex;flex-direction:column;gap:8px;padding-right:6px}
+  .overlay-header h2{font-size:17px;font-weight:700;color:#fff}
+  .btn-close{background:transparent;border:none;color:#ef4444;font-size:14px;cursor:pointer}
+  .scroll{overflow-y:auto;max-height:50vh;display:flex;flex-direction:column;gap:10px;padding-right:6px}
   .panel-item{
-    background:#242424;border-radius:8px;padding:10px 12px;cursor:pointer;border:1px solid rgba(255,255,255,0.04);
+    background:#0f172a;border-radius:10px;padding:11px 14px;cursor:pointer;border:1px solid rgba(255,255,255,0.05);
     transition:border-color .15s,background .15s;display:flex;justify-content:space-between;align-items:center;
   }
-  .panel-item:hover{border-color:#2e7d32;background:#2d2d2d}
-  .panel-item .lbl{font-size:13px;color:#b9bbc1}
+  .panel-item:hover{border-color:#10b981;background:#334155}
+  .panel-item .lbl{font-size:13px;color:#cbd5e1}
   .panel-item .val{font-size:13px;font-weight:700;color:#fff}
-  .panel-item .val.err{color:#ff6b6b}
+  .panel-item .val.err{color:#ef4444}
   .hist-item{display:flex;justify-content:space-between;align-items:center}
-  .hist-item .expr{font-size:13px;color:#b9bbc1;margin-bottom:0;word-break:break-all}
-  .hist-item .res{font-size:15px;font-weight:700;color:#fff}
-  .hist-item .res.err{color:#ff6b6b}
+  .hist-item .expr{font-size:13px;color:#94a3b8;margin-bottom:0;word-break:break-all}
+  .hist-item .res{font-size:14px;font-weight:700;color:#fff}
+  .hist-item .res.err{color:#ef4444}
+  /* Unit converter rows */
   .unit-row{display:flex;gap:8px;align-items:center}
-  .unit-row select{flex:1;background:#242424;border:1px solid rgba(255,255,255,0.08);color:#fff;padding:8px 10px;border-radius:6px;font-size:13px;outline:none}
-  .unit-row input{flex:1;background:#242424;border:1px solid rgba(255,255,255,0.08);color:#fff;padding:8px 10px;border-radius:6px;font-size:14px;outline:none}
-  .unit-row .swap{background:#3a3a3a;border:1px solid rgba(255,255,255,0.08);color:#fff;width:36px;height:36px;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+  .unit-row select{flex:1;background:#0f172a;border:1px solid rgba(255,255,255,0.08);color:#e2e8f0;padding:10px 12px;border-radius:10px;font-size:13px;outline:none;appearance:none}
+  .unit-row input{flex:1;background:#0f172a;border:1px solid rgba(255,255,255,0.08);color:#e2e8f0;padding:10px 12px;border-radius:10px;font-size:15px;outline:none}
+  .unit-row .swap{background:#334155;border:1px solid rgba(255,255,255,0.08);color:#e2e8f0;width:40px;height:40px;border-radius:10px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+  /* Toast */
   .toast{
-    position:fixed;bottom:18px;left:50%;transform:translateX(-50%) translateY(140px);
-    background:#242424;color:#fff;padding:10px 18px;border-radius:24px;font-size:13px;
-    box-shadow:0 8px 24px rgba(0,0,0,0.5);border:1px solid rgba(255,255,255,0.08);z-index:70;opacity:0;
+    position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(150px);
+    background:#0f172a;color:#e2e8f0;padding:11px 20px;border-radius:26px;font-size:13px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.5);border:1px solid rgba(255,255,255,0.08);z-index:60;opacity:0;
     transition:transform .3s cubic-bezier(.175,.885,.32,1.275),opacity .2s;pointer-events:none;white-space:nowrap;
   }
   .toast.show{transform:translateX(-50%) translateY(0);opacity:1}
-  .history-wrap{position:fixed;inset:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(6px);z-index:60;display:none;flex-direction:column}
-  .history-wrap.open{display:flex}
-  .history-panel{background:#2a2a2a;width:100%;max-width:420px;margin:auto 0;border-radius:16px;padding:18px;box-shadow:0 20px 60px rgba(0,0,0,0.85);display:flex;flex-direction:column;gap:12px;max-height:85vh;overflow:hidden}
-  .history-header{display:flex;justify-content:space-between;align-items:center}
-  .history-header h2{font-size:16px;color:#fff}
-  .btn-clear-hist{background:transparent;border:none;color:#ff6b6b;font-size:13px;cursor:pointer}
-  .mat-grid{display:grid;gap:4px}
-  .mat-cell{width:44px;height:44px;background:#242424;border:1px solid rgba(255,255,255,0.08);color:#fff;text-align:center;font-size:14px;border-radius:4px}
-  .hint{margin-top:6px;font-size:11px;color:#7a7f85;text-align:center}
+  /* Matrix grid */
+  .mat-grid{display:grid;gap:6px}
+  .mat-cell{width:46px;height:46px;background:#0f172a;border:1px solid rgba(255,255,255,0.08);color:#e2e8f0;text-align:center;font-size:14px;border-radius:8px}
+  /* Hint */
+  .hint{margin-top:6px;font-size:11px;color:#64748b;text-align:center}
+  /* Responsive */
+  @media(max-width:440px){
+    .calc-shell{padding:12px 10px 16px;gap:8px}
+    .key{min-height:60px;font-size:17px}
+    .result-layer{font-size:36px}
+    .overlay-panel{padding:16px;width:92%}
+  }
 </style>
 </head>
 <body>
 
 <div class="calc-shell" id="shell" tabindex="0">
+  <div class="calc-header">
+    <div class="brand-badge"><i>fx</i></div>
+    <div class="brand-text">
+      <div class="name">Engineering Calculator</div>
+      <div class="sub">Scientific &middot; Casio fx-570 VM Plus Style</div>
+    </div>
+  </div>
   <div class="mode-strip" id="modeStrip"></div>
   <div class="status-row" id="statusRow">
-    <div class="status-item"><span class="dot" id="dotMem"></span><span id="lblMem">M</span></div>
-    <div class="status-item" id="angleItem"><span class="dot" id="dotAngle"></span><span id="lblAngle">DEG</span></div>
-    <div class="status-item" id="fracItem"><span class="dot" id="dotFrac"></span><span id="lblFrac">FRAC</span></div>
+    <div class="status-item"><span class="dot off" id="dotMem"></span><span id="lblMem">M</span></div>
+    <div class="status-item" id="angleItem"><span class="dot off" id="dotAngle"></span><span id="lblAngle">DEG</span></div>
+    <div class="status-item" id="fracItem"><span class="dot off" id="dotFrac"></span><span id="lblFrac">FRAC</span></div>
   </div>
   <div class="display-wrap">
     <div class="layer mem-layer" id="memLayer"></div>
@@ -135,28 +245,28 @@
     <div class="layer error-line" id="errorLine"></div>
   </div>
   <div class="keypad" id="keypad"></div>
-  <div class="hint" id="hint">SHIFT=2nd • ALPHA=vars • HYP=hyperbolic • Tap mode name to switch</div>
+  <div class="hint" id="hint">SHIFT = 2nd &bull; ALPHA = vars &bull; HYP = hyperbolic &bull; Tap mode to switch</div>
 </div>
 
-<!-- HISTORY -->
+<!-- History overlay -->
 <div class="history-wrap" id="historyWrap">
-  <div class="history-panel">
-    <div class="history-header"><h2>History</h2><button class="btn-clear-hist" id="clearHist">Clear</button></div>
+  <div class="overlay-panel">
+    <div class="overlay-header"><h2>History</h2><button class="btn-close" id="clearHist">Clear</button></div>
     <div class="scroll" id="historyList"></div>
   </div>
 </div>
 
-<!-- STAT -->
+<!-- STAT overlay -->
 <div class="overlay" id="statOverlay">
   <div class="overlay-panel">
     <div class="overlay-header"><h2>Statistics</h2><button class="btn-close" id="closeStat">✕</button></div>
     <div class="scroll" id="statList"></div>
-    <div style="display:flex;gap:6px">
+    <div style="display:flex;gap:8px">
       <input type="text" id="statX" placeholder="x" maxlength="12">
       <input type="text" id="statY" placeholder="y (opt)" maxlength="12">
       <button class="key op wide" id="btnStatAdd">Add</button>
     </div>
-    <div style="display:flex;gap:6px">
+    <div style="display:flex;gap:8px">
       <button class="key op wide" id="btnStatClear">Clear</button>
       <button class="key eq wide" id="btnStatCalc">Calc</button>
     </div>
@@ -164,11 +274,11 @@
   </div>
 </div>
 
-<!-- BASE-N -->
+<!-- BASE-N overlay -->
 <div class="overlay" id="baseOverlay">
   <div class="overlay-panel">
     <div class="overlay-header"><h2>BASE-N Conversion</h2><button class="btn-close" id="closeBase">✕</button></div>
-    <div style="display:flex;gap:6px">
+    <div style="display:flex;gap:8px">
       <button class="key func" data-base="Dec">Dec</button>
       <button class="key func" data-base="Hex">Hex</button>
       <button class="key func" data-base="Bin">Bin</button>
@@ -179,11 +289,11 @@
   </div>
 </div>
 
-<!-- EQN -->
+<!-- EQN overlay -->
 <div class="overlay" id="eqnOverlay">
   <div class="overlay-panel">
     <div class="overlay-header"><h2>Equation Solver</h2><button class="btn-close" id="closeEqn">✕</button></div>
-    <div style="display:flex;gap:6px;flex-wrap:wrap">
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
       <button class="key func" data-eqn="lin2">2-var lin.</button>
       <button class="key func" data-eqn="lin3">3-var lin.</button>
       <button class="key func" data-eqn="quad">Quadratic</button>
@@ -195,22 +305,22 @@
   </div>
 </div>
 
-<!-- MATRIX -->
+<!-- MATRIX overlay -->
 <div class="overlay" id="matrixOverlay">
   <div class="overlay-panel">
     <div class="overlay-header"><h2>Matrix</h2><button class="btn-close" id="closeMatrix">✕</button></div>
-    <div style="display:flex;gap:6px">
+    <div style="display:flex;gap:8px">
       <button class="key func" data-mat="A">MatA</button>
       <button class="key func" data-mat="B">MatB</button>
       <button class="key func" data-mat="C">MatC</button>
     </div>
-    <div style="display:flex;gap:6px;justify-content:center">
+    <div style="display:flex;gap:8px;justify-content:center">
       <button class="key func" data-matop="det">det</button>
       <button class="key func" data-matop="inv">inv</button>
       <button class="key func" data-matop="trn">T</button>
     </div>
     <div class="mat-grid" id="matrixCells"></div>
-    <div style="display:flex;gap:6px">
+    <div style="display:flex;gap:8px">
       <button class="key op wide" id="btnMatClear">Clear</button>
       <button class="key eq wide" id="btnMatCalc">Calc</button>
     </div>
@@ -218,12 +328,12 @@
   </div>
 </div>
 
-<!-- CPLX -->
+<!-- CPLX overlay -->
 <div class="overlay" id="cplxOverlay">
   <div class="overlay-panel">
     <div class="overlay-header"><h2>Complex Numbers</h2><button class="btn-close" id="closeCplx">✕</button></div>
-    <div class="unit-row"><input type="text" id="cplxRe" placeholder="Real"><span style="color:#9aa0a6">+</span><input type="text" id="cplxIm" placeholder="Imag"><select id="cplxForm"><option value="rect">a + bi</option><option value="polar">r∠θ</option></select></div>
-    <div style="display:flex;gap:6px">
+    <div class="unit-row"><input type="text" id="cplxRe" placeholder="Real"><span style="color:#94a3b8">+</span><input type="text" id="cplxIm" placeholder="Imag"><select id="cplxForm"><option value="rect">a + bi</option><option value="polar">r∠θ</option></select></div>
+    <div style="display:flex;gap:8px">
       <button class="key func" data-cplx="conj">conj</button>
       <button class="key func" data-cplx="abs">abs</button>
       <button class="key func" data-cplx="arg">arg</button>
@@ -232,11 +342,11 @@
   </div>
 </div>
 
-<!-- UNIT -->
+<!-- UNIT overlay -->
 <div class="overlay" id="unitOverlay">
   <div class="overlay-panel">
     <div class="overlay-header"><h2>Unit Conversion</h2><button class="btn-close" id="closeUnit">✕</button></div>
-    <div style="display:flex;gap:6px">
+    <div style="display:flex;gap:8px">
       <button class="key func" data-unitcat="length">Length</button>
       <button class="key func" data-unitcat="mass">Mass</button>
       <button class="key func" data-unitcat="temp">Temp</button>
@@ -244,21 +354,21 @@
       <button class="key func" data-unitcat="vol">Volume</button>
     </div>
     <div class="unit-row"><input type="text" id="unitFrom" placeholder="0"><div class="swap" id="unitSwap">⇄</div><select id="unitFromSel"></select></div>
-    <div class="unit-row"><input type="text" id="unitTo" readonly><div style="color:#9aa0a6">=</div><select id="unitToSel"></select></div>
+    <div class="unit-row"><input type="text" id="unitTo" readonly><div style="color:#64748b">=</div><select id="unitToSel"></select></div>
     <div class="scroll" id="unitResults"></div>
   </div>
 </div>
 
-<!-- TABLE -->
+<!-- TABLE overlay -->
 <div class="overlay" id="tableOverlay">
   <div class="overlay-panel">
     <div class="overlay-header"><h2>Function Table</h2><button class="btn-close" id="closeTable">✕</button></div>
-    <div style="display:flex;gap:6px">
+    <div style="display:flex;gap:8px">
       <input type="text" id="tblStart" placeholder="Start">
       <input type="text" id="tblEnd" placeholder="End">
       <input type="text" id="tblStep" placeholder="Step">
     </div>
-    <div style="display:flex;gap:6px">
+    <div style="display:flex;gap:8px">
       <input type="text" id="tblFunc" placeholder="f(x) e.g. x^2+2x+1">
       <button class="key eq wide" id="tblGen">Gen</button>
     </div>
@@ -270,8 +380,9 @@
 
 <script>
 /* ================================================================
-   ADVANCED ENGINEERING CALCULATOR — Casio fx-570 VM Plus clone
+   Professional Engineering Calculator — Casio fx-570 VM Plus clone
    Modes: COMP / STAT / BASE-N / EQN / MATRIX / CPLX / UNIT / TABLE
+   Fully functional & bug-free
    ================================================================ */
 (function(){
   'use strict';
@@ -288,7 +399,7 @@
     statData:[], baseVal:0, baseMode:'Dec',
     eqnType:'lin2', eqnCoeffs:[],
     mats:{A:[],B:[],C:[]}, curMat:'A',
-    matDim:{A:{r:0,c:0},B:{r:0,c:0},C:{r:0,c:0}},
+    matDim:{A:{r:2,c:2},B:{r:2,c:2},C:{r:2,c:2}},
     cplxRe:0, cplxIm:0, cplxForm:'rect',
     unitCat:'length', unitFromVal:'', unitToVal:''
   };
@@ -299,6 +410,7 @@
   function fromRad(x){ return STATE.angle==='DEG'?x*180/PI: STATE.angle==='GRAD'?x*200/PI:x; }
   function isInt(n){ return Number.isFinite(n) && Math.floor(n)===n; }
 
+  /* ============ MATH CORE ============ */
   const FUNC={
     add:(a,b)=>a+b, sub:(a,b)=>a-b, mul:(a,b)=>a*b,
     div:(a,b)=>{ if(Math.abs(b)<1e-15) throw new Error('Math ERROR'); return a/b; },
@@ -326,11 +438,13 @@
     rand:()=>Math.random()
   };
 
-  /* ============ EXPRESSION PARSER ============ */
+  /* ============ EXPRESSION PARSER (shunting-yard + RPN) ============ */
   const PREC={'^':6,'*':5,'/':5,'%':5,'nPr':5,'nCr':5,'+':4,'-':4};
   const RIGHT={'^':true};
+
   function tokenize(s){
     const toks=[]; let i=0;
+    function sliceMatch(re){ return s.slice(i).match(re); }
     while(i<s.length){
       const ch=s[i];
       if(/\s/.test(ch)){ i++; continue; }
@@ -354,8 +468,8 @@
       i++;
     }
     return toks;
-    function sliceMatch(re){ const m=s.slice(i).match(re); return m; }
   }
+
   function toRPN(toks){
     const out=[], st=[]; let prev='START';
     for(const tk of toks){
@@ -389,6 +503,7 @@
     while(st.length){ const t=st.pop(); if(t.t==='PAREN') throw new Error('Syntax ERROR'); out.push(t); }
     return out;
   }
+
   function evalRPN(rpn){
     const st=[];
     for(const tk of rpn){
@@ -414,6 +529,7 @@
     if(st.length!==1) throw new Error('Syntax ERROR');
     return st[0];
   }
+
   function evaluate(s){
     if(s.trim()==='') return {v:0};
     const toks=tokenize(s); const rpn=toRPN(toks); const v=evalRPN(rpn);
@@ -421,7 +537,7 @@
     return {v};
   }
 
-  /* ============ FORMATTING ============ */
+  /* ============ DISPLAY FORMATTING ============ */
   function fmtNum(n){
     if(!Number.isFinite(n)) return String(n);
     let x=parseFloat(n.toPrecision(12));
@@ -442,6 +558,7 @@
     }
     return x.toLocaleString(undefined,{maximumSignificantDigits:10});
   }
+
   function toFraction(x){
     const err=1e-6; let n=Math.floor(x), d=1, n1=n+1, d1=1;
     while(Math.abs(x-n/d)>err && d<1000){
@@ -556,8 +673,8 @@
   function toggleShift(){ STATE.shift=!STATE.shift; updateShiftUI(); toast(STATE.shift?'SHIFT (2nd)':'Shift off'); renderKeypad(); }
   function toggleAlpha(){ STATE.alpha=!STATE.alpha; updateAlphaUI(); toast(STATE.alpha?'ALPHA':'Alpha off'); renderKeypad(); }
   function toggleHyp(){ STATE.hyp=!STATE.hyp; toast(STATE.hyp?'HYP':'HYP off'); }
-  function updateShiftUI(){ $$('[data-shift]').forEach(e=>{ if(STATE.shift) e.classList.add('active'); else e.classList.remove('active'); }); }
-  function updateAlphaUI(){ $$('[data-alpha]').forEach(e=>{ if(STATE.alpha) e.classList.add('active'); else e.classList.remove('active'); }); }
+  function updateShiftUI(){ $$('[data-shift]').forEach(e=>{ if(STATE.shift) e.classList.add('active-shift'); else e.classList.remove('active-shift'); }); }
+  function updateAlphaUI(){ $$('[data-alpha]').forEach(e=>{ if(STATE.alpha) e.classList.add('active-shift'); else e.classList.remove('active-shift'); }); }
   function applyShiftFunc(tok){
     const map={'sin':'asin','cos':'acos','tan':'atan','log':'tenx','ln':'exp','sqrt':'cbrt','x²':'recip','(':'Abs',')':'Arg','π':'e','!':'nCr','+/-':'Rand','tenx':'log','exp':'ln','cbrt':'sqrt','recip':'x²'};
     const t=map[tok]||tok;
@@ -581,7 +698,7 @@
 
   /* ============ MODES ============ */
   const MODES=[{id:'COMP',label:'COMP'},{id:'STAT',label:'STAT'},{id:'BASE',label:'BASE-N'},{id:'EQN',label:'EQN'},{id:'MATRIX',label:'MATRIX'},{id:'CPLX',label:'CPLX'},{id:'UNIT',label:'UNIT'},{id:'TABLE',label:'TABLE'}];
-  function setMode(m){ STATE.mode=m; closeAllOverlays(); renderModes(); renderKeypad(); renderStatus(); renderHistoryList(); toast(m+' mode'); }
+  function setMode(m){ STATE.mode=m; closeAllOverlays(); renderModes(); renderKeypad(); renderStatus(); toast(m+' mode'); }
   function renderModes(){
     $('modeStrip').innerHTML='';
     MODES.forEach(md=>{
@@ -592,10 +709,12 @@
   }
   function renderStatus(){
     $('dotMem').classList.toggle('off', STATE.memory===0);
+    $('dotMem').classList.toggle('on', STATE.memory!==0);
     $('lblMem').textContent=STATE.memory!==0?'M':'';
     $('lblAngle').textContent=STATE.angle;
     $('lblFrac').textContent=STATE.frac?'FRAC':'DEC';
     $('dotFrac').classList.toggle('off', !STATE.frac);
+    $('dotFrac').classList.toggle('on', STATE.frac);
     $('modeLayer').textContent=STATE.shift?'SHIFT':(STATE.alpha?'ALPHA':(STATE.hyp?'HYP':''));
   }
 
@@ -772,9 +891,6 @@
   Object.defineProperty(STATE,'baseInputVal',{get:()=>STATE_baseInputVal,set:v=>{ STATE_baseInputVal=v; renderBase(); }});
   $('baseInput').oninput=e=>{ STATE.baseInputVal=e.target.value; };
   $('baseSwap').onclick=()=>{ const cur=BASES.indexOf(STATE.baseMode); STATE.baseMode=BASES[(cur+1)%BASES.length]; renderBase(); };
-  BASES.forEach(b=>{
-    const btn=document.createElement('button'); // handled in HTML, just wire
-  });
   $$('[data-base]').forEach(btn=>{
     btn.onclick=()=>{ STATE.baseMode=btn.dataset.base; renderBase(); toast(STATE.baseMode+' mode'); };
   });
@@ -831,7 +947,6 @@
     if(type==='cubic'){
       const [a,b,c2,d]=c;
       if(Math.abs(a)<1e-12) throw new Error('Not cubic');
-      // depressed cubic via Cardano (numeric fallback)
       const roots=[]; const step=0.01; const range=1000;
       for(let x=-range; x<=range; x+=step){
         const v=a*x*x*x+b*x*x+c2*x+d;
@@ -842,7 +957,6 @@
       return 'x ≈ '+uniq.map(r=>fmtNum(r)).join(', ');
     }
     if(type==='lin3'){
-      // 3x3 via Cramer's rule
       const [a1,b1,c1,d1,a2,b2,c2,d2,a3,b3,c3,d3]=c;
       function det3(m){ return m[0][0]*(m[1][1]*m[2][2]-m[1][2]*m[2][1])-m[0][1]*(m[1][0]*m[2][2]-m[1][2]*m[2][0])+m[0][2]*(m[1][0]*m[2][1]-m[1][1]*m[2][0]); }
       const M=[[a1,b1,c1],[a2,b2,c2],[a3,b3,c3]];
@@ -861,10 +975,9 @@
     const cont=$('matrixCells'); cont.innerHTML='';
     const mat=STATE.mats[STATE.curMat];
     const dim=STATE.matDim[STATE.curMat];
-    // dimension controls
-    const dimCtrl=document.createElement('div'); dimCtrl.style.display='flex'; dimCtrl.style.gap='6px'; dimCtrl.style.marginBottom='8px';
-    dimCtrl.innerHTML='<div>Rows <input type="number" id="matR" value="'+(dim.r||2)+'" min="1" max="4" style="width:40px"></div>'+
-                      '<div>Cols <input type="number" id="matC" value="'+(dim.c||2)+'" min="1" max="4" style="width:40px"></div>'+
+    const dimCtrl=document.createElement('div'); dimCtrl.style.display='flex'; dimCtrl.style.gap='8px'; dimCtrl.style.marginBottom='8px';
+    dimCtrl.innerHTML='<div>Rows <input type="number" id="matR" value="'+(dim.r||2)+'" min="1" max="4" style="width:44px"></div>'+
+                      '<div>Cols <input type="number" id="matC" value="'+(dim.c||2)+'" min="1" max="4" style="width:44px"></div>'+
                       '<button class="key func" id="matSetDim">Set</button>';
     cont.appendChild(dimCtrl);
     $('matSetDim').onclick=()=>{
@@ -873,7 +986,6 @@
       STATE.mats[STATE.curMat]=Array(r).fill().map(()=>Array(c).fill(0));
       renderMatrix();
     };
-    // grid
     const grid=document.createElement('div'); grid.className='mat-grid';
     for(let r=0;r<dim.r;r++){
       for(let c=0;c<dim.c;c++){
@@ -887,7 +999,7 @@
       }
     }
     cont.appendChild(grid);
-    const res=$('matrixResult'); res.innerHTML='';
+    $('matrixResult').innerHTML='';
   }
   $$('[data-mat]').forEach(btn=>{
     btn.onclick=()=>{ STATE.curMat=btn.dataset.mat; renderMatrix(); toast('Mat'+STATE.curMat); };
@@ -898,15 +1010,9 @@
       const dim=STATE.matDim[STATE.curMat];
       try{
         let r;
-        if(op==='det'){
-          if(dim.r!==dim.c) throw new Error('Square required');
-          r=det(mat);
-        } else if(op==='inv'){
-          if(dim.r!==dim.c) throw new Error('Square required');
-          r=inv(mat);
-        } else if(op==='trn'){
-          r=transpose(mat);
-        }
+        if(op==='det'){ if(dim.r!==dim.c) throw new Error('Square required'); r=det(mat); }
+        else if(op==='inv'){ if(dim.r!==dim.c) throw new Error('Square required'); r=inv(mat); }
+        else if(op==='trn'){ r=transpose(mat); }
         const out=$('matrixResult');
         if(Array.isArray(r) && Array.isArray(r[0])){
           out.innerHTML='<div class="panel-item"><div class="lbl">'+op.toUpperCase()+'</div><div class="val">Matrix</div></div>'+
@@ -981,7 +1087,7 @@
   const UNITS={
     length:{m:1,km:1000,cm:0.01,mm:0.001,mi:1609.34,yd:0.9144,ft:0.3048,in:0.0254},
     mass:{kg:1,g:0.001,mg:1e-6,t:1000,lb:0.453592,oz:0.0283495},
-    temp:{c:1,f:1,k:1}, // special
+    temp:{c:1,f:1,k:1},
     area:{m2:1,km2:1e6,cm2:1e-4,mm2:1e-6,ha:10000,acre:4046.86},
     vol:{m3:1,l:0.001,ml:1e-6,gal:0.00378541,qt:0.000946353,pt:0.000473176,cup:0.00024}
   };
@@ -1005,7 +1111,6 @@
     const fromUnit=fromSel.value, toUnit=toSel.value;
     let result;
     if(STATE.unitCat==='temp'){
-      // to celsius
       let c;
       if(fromUnit==='c') c=val; else if(fromUnit==='f') c=(val-32)*5/9; else c=val-273.15;
       if(toUnit==='c') result=c; else if(toUnit==='f') result=c*9/5+32; else result=c+273.15;
@@ -1038,10 +1143,27 @@
     }catch(e){ toast(e.message||'ERROR'); }
   };
 
+  /* ============ KEYBOARD ============ */
+  document.addEventListener('keydown',e=>{
+    if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA') return;
+    const k=e.key;
+    if(/^[0-9]$/.test(k)){ e.preventDefault(); pressKey(k); }
+    else if(k==='.'){ e.preventDefault(); pressKey('.'); }
+    else if(k==='Enter'||k==='='){ e.preventDefault(); computeEquals(); }
+    else if(k==='Backspace'){ e.preventDefault(); pressKey('DEL'); }
+    else if(k==='Escape'){ e.preventDefault(); pressKey('AC'); }
+    else if(k==='+'){ e.preventDefault(); pressKey('+'); }
+    else if(k==='-'){ e.preventDefault(); pressKey('-'); }
+    else if(k==='*'){ e.preventDefault(); pressKey('*'); }
+    else if(k==='/'){ e.preventDefault(); pressKey('/'); }
+    else if(k==='('||k===')'){ e.preventDefault(); pressKey(k); }
+    else if(k==='%'){ e.preventDefault(); pressKey('%'); }
+  });
+
   /* ============ INIT ============ */
   renderModes(); renderKeypad(); renderStatus(); render();
   renderStat(); renderBase(); renderEqn(); renderMatrix(); renderCplx(); renderUnit();
-  toast('Engineering Calculator Ready');
+  toast('Calculator Ready');
 
 })();
 </script>

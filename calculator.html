@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Casio fx-570 VM Plus — Scientific Calculator</title>
+<meta name="description" content="Casio fx-570 VM Plus scientific calculator clone — full working calculator with standard and scientific functions, memory, fractions, and history.">
+<meta name="theme-color" content="#1e1e1e">
+<style>
+  /* ---------- Reset & base ---------- */
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{font-size:16px;-webkit-tap-highlight-color:transparent}
+  body{
+    font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    background:#1e1e1e;
+    color:#eee;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+  }
+  /* ---------- Calculator shell ---------- */
+  .calc-shell{
+    width:100%;
+    max-width:430px;
+    background:#2a2a2a;
+    border-radius:16px;
+    padding:16px 14px 18px;
+    box-shadow:0 20px 60px rgba(0,0,0,0.7),
+               0 0 0 1px rgba(255,255,255,0.06) inset;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+  }
+  /* ---------- Display ---------- */
+  .display-wrap{
+    background:#0d0d0d;
+    border-radius:10px;
+    padding:14px;
+    box-shadow:0 0 0 1px rgba(255,255,255,0.04) inset;
+    min-height:110px;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    gap:4px;
+  }
+  .mem-indicator{
+    font-size:11px;
+    color:#ffd166;
+    text-align:right;
+    height:12px;
+    opacity:0;
+    transition:opacity .15s;
+  }
+  .mem-indicator.on{opacity:1}
+  .mode-indicator{
+    font-size:10px;
+    color:#9aa0a6;
+    text-align:right;
+    height:12px;
+  }
+  .expr{
+    font-size:17px;
+    color:#b9bbc1;
+    text-align:right;
+    min-height:24px;
+    word-break:break-all;
+    overflow-wrap:break-word;
+    line-height:1.25;
+    font-variant-numeric:tabular-nums;
+  }
+  .result{
+    font-size:34px;
+    font-weight:700;
+    color:#fff;
+    text-align:right;
+    min-height:42px;
+    word-break:break-all;
+    overflow-wrap:break-word;
+    line-height:1;
+    font-variant-numeric:tabular-nums;
+  }
+  .result.error{color:#ff6b6b}
+  .error-msg{color:#ff6b6b;font-size:13px;text-align:right;height:16px}
+  /* ---------- Mode row ---------- */
+  .mode-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-size:11px;
+    color:#8a9197;
+    height:16px;
+  }
+  .mode-chip{
+    display:inline-flex;
+    align-items:center;
+    gap:4px;
+    padding:1px 6px;
+    border-radius:4px;
+    border:1px solid rgba(255,255,255,0.08);
+    background:#242424;
+    color:#c0c4ca;
+    font-size:10px;
+  }
+  .mode-chip.active{background:#2e7d32;border-color:#2e7d32;color:#fff}
+  /* ---------- Keypad ---------- */
+  .keypad{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:7px;
+  }
+  .key{
+    position:relative;
+    border:none;
+    border-radius:10px;
+    font-size:20px;
+    font-weight:600;
+    color:#fff;
+    cursor:pointer;
+    user-select:none;
+    touch-action:manipulation;
+    -webkit-touch-callout:none;
+    background:#3a3a3a;
+    box-shadow:0 4px 0 #242424,0 0 0 1px rgba(255,255,255,0.03) inset;
+    transition:transform .06s,box-shadow .06s,background .1s;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-height:62px;
+  }
+  .key:active{
+    transform:translateY(3px);
+    box-shadow:0 1px 0 #242424;
+  }
+  .key.func{background:#4a4a4a;color:#e0e0e0}
+  .key.func:active{background:#555}
+  .key.op{background:#ff9800;color:#fff;box-shadow:0 4px 0 #e68a00}
+  .key.op:active{background:#ffa733}
+  .key.eq{background:#2e7d32;color:#fff;box-shadow:0 4px 0 #1b5e20}
+  .key.eq:active{background:#3a9b42}
+  .key.ac{background:#d32f2f;color:#fff;box-shadow:0 4px 0 #b71c1c}
+  .key.ac:active{background:#e53935}
+  .key.mem{background:#4a4a4a;color:#ffd166;box-shadow:0 4px 0 #242424}
+  .key.mem:active{background:#555}
+  .key.shift{background:#4a4a4a;color:#bbb}
+  .key.alpha{background:#4a4a4a;color:#bbb}
+  /* big equal spans last row */
+  .key.wide{grid-column:span 2}
+  .key.tall{grid-row:span 2}
+  /* ---------- History panel ---------- */
+  .history-wrap{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.6);
+    backdrop-filter:blur(6px);
+    z-index:40;
+    display:none;
+    flex-direction:column;
+  }
+  .history-wrap.open{display:flex}
+  .history-panel{
+    background:#2a2a2a;
+    width:100%;
+    max-width:420px;
+    margin:auto 0;
+    border-radius:16px;
+    padding:18px;
+    box-shadow:0 20px 60px rgba(0,0,0,0.8);
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    max-height:85vh;
+    overflow:hidden;
+  }
+  .history-header{display:flex;justify-content:space-between;align-items:center}
+  .history-header h2{font-size:16px;color:#fff}
+  .btn-clear-hist{background:transparent;border:none;color:#ff6b6b;font-size:13px;cursor:pointer}
+  .history-list{
+    overflow-y:auto;
+    max-height:45vh;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    padding-right:6px;
+  }
+  .history-item{
+    background:#242424;
+    border-radius:8px;
+    padding:10px 12px;
+    cursor:pointer;
+    border:1px solid rgba(255,255,255,0.04);
+    transition:border-color .15s,background .15s;
+  }
+  .history-item:hover{border-color:#2e7d32;background:#2d2d2d}
+  .hist-expr{font-size:14px;color:#b9bbc1;margin-bottom:4px;word-break:break-all}
+  .hist-res{font-size:16px;font-weight:700;color:#fff}
+  .hist-res.err{color:#ff6b6b}
+  /* ---------- Footer hint ---------- */
+  .hint{
+    margin-top:8px;
+    font-size:11px;
+    color:#7a7f85;
+    text-align:center;
+  }
+  /* ---------- Toast ---------- */
+  .toast{
+    position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(120px);
+    background:#242424;color:#fff;padding:10px 18px;border-radius:24px;
+    font-size:13px;box-shadow:0 8px 24px rgba(0,0,0,0.5);
+    border:1px solid rgba(255,255,255,0.08);z-index:50;opacity:0;
+    transition:transform .3s cubic-bezier(.175,.885,.32,1.275),opacity .2s;
+    pointer-events:none;white-space:nowrap;
+  }
+  .toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+  /* ---------- Scrollbar ---------- */
+  .history-list::-webkit-scrollbar{width:6px}
+  .history-list::-webkit-scrollbar-thumb{background:#444;border-radius:3px}
+  /* ---------- Mobile tweaks ---------- */
+  @media(max-width:460px){
+    .calc-shell{padding:12px 10px 14px;gap:8px}
+    .key{min-height:56px;font-size:18px}
+    .result{font-size:30px}
+    .history-panel{padding:14px;width:92%}
+  }
+  @media(max-width:360px){
+    .key{min-height:50px;font-size:16px}
+    .result{font-size:26px}
+    .expr{font-size:15px}
+  }
+</style>
+</head>
+<body>
+
+<div class="calc-shell" id="shell">
+
+  <!-- Mode / status row -->
+  <div class="mode-row" id="modeRow">
+    <span id="angleMode">DEG</span>
+    <span id="fracMode">FRAC</span>
+  </div>
+
+  <!-- Display -->
+  <div class="display-wrap">
+    <div class="mem-indicator" id="memInd">M</div>
+    <div class="mode-indicator" id="modeInd"></div>
+    <div class="expr" id="expr">0</div>
+    <div class="result" id="result">0</div>
+    <div class="error-msg" id="errorMsg"></div>
+  </div>
+
+  <!-- Keypad -->
+  <div class="keypad">
+    <!-- Row 1 -->
+    <button class="key func" data-key="SHIFT">SHIFT</button>
+    <button class="key func" data-key="ALPHA">ALPHA</button>
+    <button class="key func" data-key="(">(</button>
+    <button class="key func" data-key=")">)</button>
+    <button class="key ac" data-key="AC">AC</button>
+
+    <!-- Row 2 -->
+    <button class="key mem" data-key="M+">M+</button>
+    <button class="key mem" data-key="M-">M-</button>
+    <button class="key mem" data-key="MR">MR</button>
+    <button class="key mem" data-key="MC">MC</button>
+    <button class="key op" data-key="/">÷</button>
+
+    <!-- Row 3 -->
+    <button class="key func" data-key="7">7</button>
+    <button class="key func" data-key="8">8</button>
+    <button class="key func" data-key="9">9</button>
+    <button class="key op" data-key="*">×</button>
+    <button class="key func" data-key="sqrt">√</button>
+
+    <!-- Row 4 -->
+    <button class="key func" data-key="4">4</button>
+    <button class="key func" data-key="5">5</button>
+    <button class="key func" data-key="6">6</button>
+    <button class="key op" data-key="-">−</button>
+    <button class="key func" data-key="x²">x²</button>
+
+    <!-- Row 5 -->
+    <button class="key func" data-key="1">1</button>
+    <button class="key func" data-key="2">2</button>
+    <button class="key func" data-key="3">3</button>
+    <button class="key op" data-key="+">+</button>
+    <button class="key func" data-key="1/x">1/x</button>
+
+    <!-- Row 6 -->
+    <button class="key func" data-key="+/-">+/-</button>
+    <button class="key func" data-key="0">0</button>
+    <button class="key func" data-key=".">.</button>
+    <button class="key eq tall" data-key="=">=</button>
+    <button class="key func" data-key="x^y">x^y</button>
+
+    <!-- Row 7 (scientific) -->
+    <button class="key func" data-key="sin">sin</button>
+    <button class="key func" data-key="cos">cos</button>
+    <button class="key func" data-key="tan">tan</button>
+    <button class="key func" data-key="log">log</button>
+    <button class="key func" data-key="ln">ln</button>
+
+    <!-- Row 8 -->
+    <button class="key func" data-key="π">π</button>
+    <button class="key func" data-key="e">e</button>
+    <button class="key func" data-key="nPr">nPr</button>
+    <button class="key func" data-key="nCr">nCr</button>
+    <button class="key func" data-key="!">x!</button>
+
+    <!-- Row 9 -->
+    <button class="key func" data-key="DEL">DEL</button>
+    <button class="key func" data-key="Rand">Ran#</button>
+    <button class="key func" data-key="AB/C">a b/c</button>
+    <button class="key func" data-key="D>R">° r̄ g</button>
+    <button class="key func" data-key="HIST">HIST</button>
+  </div>
+</div>
+
+<!-- History panel -->
+<div class="history-wrap" id="historyWrap">
+  <div class="history-panel">
+    <div class="history-header">
+      <h2>Calculation History</h2>
+      <button class="btn-clear-hist" id="clearHist">Clear</button>
+    </div>
+    <div class="history-list" id="historyList"></div>
+    <div class="hint">Tap a history entry to load it into the display.</div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+/* ================================================================
+   Casio fx-570 VM Plus clone — fully working scientific calculator
+   ================================================================ */
+
+(function(){
+  'use strict';
+
+  // ---------- DOM refs ----------
+  const $expr    = document.getElementById('expr');
+  const $result  = document.getElementById('result');
+  const $error   = document.getElementById('errorMsg');
+  const $memInd  = document.getElementById('memInd');
+  const $modeRow = document.getElementById('modeRow');
+  const $angle   = document.getElementById('angleMode');
+  const $frac    = document.getElementById('fracMode');
+  const $keys    = document.querySelectorAll('.key');
+  const $histWrap= document.getElementById('historyWrap');
+  const $histList= document.getElementById('historyList');
+  const $clearHist= document.getElementById('clearHist');
+  const $toast   = document.getElementById('toast');
+
+  // ---------- State ----------
+  let memory      = 0;          // independent memory
+  let hasMemory   = false;      // M indicator
+  let angleMode   = 'DEG';      // DEG | RAD | GRAD
+  let fracMode    = true;       // fraction display toggle
+  let waitingOp   = false;      // true after an op pressed, next number clears display
+  let justComputed= false;      // true after = pressed
+  let lastInput   = '';         // raw expression string for display
+  let errorActive = false;
+
+  // ---------- History ----------
+  let history = [];             // {expr, res, err}
+
+  // ---------- Helpers ----------
+  function escHtml(str){
+    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+  function fmtNum(n){
+    // format with grouping separators trimmed to reasonable precision
+    if(!isFinite(n) || isNaN(n)) return String(n);
+    // avoid floating noise
+    n = parseFloat(n.toPrecision(12));
+    // integer-ish
+    if(Math.abs(n) < 1e10 && Math.abs(n) > 1e-10 && n === Math.round(n)){
+      return n.toLocaleString(undefined,{maximumFractionDigits:0});
+    }
+    return n.toLocaleString(undefined,{maximumSignificantDigits:10});
+  }
+  function setResult(txt, isErr=false){
+    $result.textContent = txt;
+    $result.classList.toggle('error', isErr);
+  }
+  function showError(msg){
+    $error.textContent = msg || 'Math ERROR';
+    $error.style.display = 'block';
+    $result.textContent = 'ERROR';
+    $result.classList.add('error');
+    errorActive = true;
+    lastInput = '';
+  }
+  function clearError(){
+    $error.style.display = 'none';
+    errorActive = false;
+  }
+  function toast(msg){
+    $toast.textContent = msg;
+    $toast.classList.add('show');
+    setTimeout(()=>$toast.classList.remove('show'), 1400);
+  }
+
+  // ---------- Angle conversion ----------
+  function toRad(degVal){
+    if(angleMode==='DEG') return degVal*Math.PI/180;
+    if(angleMode==='GRAD') return degVal*Math.PI/200;
+    return degVal;
+  }
+  function fromRad(radVal){
+    if(angleMode==='DEG') return radVal*180/Math.PI;
+    if(angleMode==='GRAD') return radVal*200/Math.PI;
+    return radVal;
+  }
+
+  // ---------- Safe math ----------
+  const MATH = {
+    add:(a,b)=>a+b,
+    sub:(a,b)=>a-b,
+    mul:(a,b)=>a*b,
+    div:(a,b)=>{ if(b===0) throw new Error('Math ERROR'); return a/b; },
+    pow:(a,b)=>Math.pow(a,b),
+    sqrt:(a)=>{ if(a<0) throw new Error('Math ERROR'); return Math.sqrt(a); },
+    cbrt:(a)=>Math.sign(a)*Math.pow(Math.abs(a),1/3),
+    sin:(a)=>Math.sin(toRad(a)),
+    cos:(a)=>Math.cos(toRad(a)),
+    tan:(a)=>{
+      const v=Math.tan(toRad(a));
+      // near asymptote -> error
+      if(Math.abs(Math.cos(toRad(a)))<1e-10) throw new Error('Math ERROR');
+      return v;
+    },
+    asin:(a)=>{
+      if(a<-1||a>1) throw new Error('Math ERROR');
+      return fromRad(Math.asin(a));
+    },
+    acos:(a)=>{
+      if(a<-1||a>1) throw new Error('Math ERROR');
+      return fromRad(Math.acos(a));
+    },
+    atan:(a)=>fromRad(Math.atan(a)),
+    log:(a)=>{ if(a<=0) throw new Error('Math ERROR'); return Math.log10(a); },
+    ln:(a)=>{ if(a<=0) throw new Error('Math ERROR'); return Math.log(a); },
+    exp:(a)=>Math.exp(a),
+    fact:(a)=>{
+      if(!Number.isInteger(a) || a<0 || a>170) throw new Error('Math ERROR');
+      let r=1; for(let i=2;i<=a;i++)r*=i; return r;
+    },
+    nPr:(n,r)=>{
+      if(!Number.isInteger(n)||!Number.isInteger(r)||n<0||r<0||r>n) throw new Error('Math ERROR');
+      let rlt=1; for(let i=0;i<r;i++)rlt*=(n-i); return rlt;
+    },
+    nCr:(n,r)=>{
+      if(!Number.isInteger(n)||!Number.isInteger(r)||n<0||r<0||r>n) throw new Error('Math ERROR');
+      r=Math.min(r,n-r);
+      let rlt=1; for(let i=1;i<=r;i++)rlt=rlt*(n-r+i)/i; return Math.round(rlt);
+    },
+    rand:()=>Math.random(),
+    abs:(a)=>Math.abs(a),
+    neg:(a)=>-a,
+    recip:(a)=>{ if(a===0) throw new Error('Math ERROR'); return 1/a; },
+    percent:(a)=>a/100,
+    round:(a)=>Math.round(a),
+    floor:(a)=>Math.floor(a),
+    ceil:(a)=>Math.ceil(a)
+  };
+
+  // ---------- Expression evaluator ----------
+  // Tokenizer + Shunting-yard + RPN evaluator. Supports unary funcs, postfix !, constants, parens.
+  const FUNC_PREC = {sin:4,cos:4,tan:4,log:4,ln:4,sqrt:4,abs:4,exp:4,
+                     asin:4,acos:4,atan:4,'1/x':4,rand:4};
+  const BIN_PREC  = {'^':6,'*':5,'/':5,'%':5,'+':4,'-':4};
+  const RIGHT_ASSOC = {'^':true};
+
+  function tokenize(str){
+    const tokens=[]; let i=0;
+    while(i<str.length){
+      const ch=str[i];
+      if(/\s/.test(ch)){ i++; continue; }
+      if(ch==='π'){ tokens.push({type:'CONST',value:Math.PI}); i++; continue; }
+      if(ch==='e'){ tokens.push({type:'CONST',value:Math.E}); i++; continue; }
+      if(ch==='('||ch===')'){ tokens.push({type:'PAREN',value:ch}); i++; continue; }
+      if(ch==='!'){ tokens.push({type:'POSTFIX',value:'!'}); i++; continue; }
+      // numbers incl decimals
+      if(/[0-9.]/.test(ch)){
+        let num=''; let dot=0;
+        while(i<str.length && (/[0-9]/.test(str[i]) || (str[i]==='.' && dot===0))){
+          if(str[i]==='.') dot=1;
+          num+=str[i]; i++;
+        }
+        tokens.push({type:'NUM',value:parseFloat(num)}); continue;
+      }
+      // multi-char operators & functions
+      const slice=str.slice(i);
+      const m = slice.match(/^(sin|cos|tan|log|ln|sqrt|abs|exp|asin|acos|atan|Rand|nPr|nCr|round|floor|ceil)/i);
+      if(m){
+        tokens.push({type:'FUNC',value:m[0].toLowerCase()==='rand'?'rand':m[0].toLowerCase()});
+        i+=m[0].length; continue;
+      }
+      const m2 = slice.match(/^(\*\^|\^|\*|\/|%|\+|-)/);
+      if(m2){
+        let op=m2[1];
+        if(op==='\*\^') op='^';
+        tokens.push({type:'OP',value:op});
+        i+=op.length; continue;
+      }
+      // unknown char -> skip
+      i++;
+    }
+    return tokens;
+  }
+
+  function toRPN(tokens){
+    const out=[]; const stack=[];
+    let prevType='START'; // START|NUM|CLOSE|OP|FUNC
+    for(const tok of tokens){
+      if(tok.type==='NUM'||tok.type==='CONST'){
+        out.push(tok);
+        prevType=tok.type==='NUM'?'NUM':'CONST';
+      } else if(tok.type==='FUNC'){
+        stack.push(tok);
+        prevType='FUNC';
+      } else if(tok.type==='POSTFIX'){
+        out.push(tok);
+        prevType='NUM';
+      } else if(tok.type==='PAREN'){
+        if(tok.value==='('){ stack.push(tok); prevType='START'; }
+        else {
+          while(stack.length && stack[stack.length-1].type!=='PAREN') out.push(stack.pop());
+          if(!stack.length) throw new Error('Syntax ERROR');
+          stack.pop(); // drop '('
+          if(stack.length && stack[stack.length-1].type==='FUNC') out.push(stack.pop());
+          prevType='NUM';
+        }
+      } else if(tok.type==='OP'){
+        // unary minus/plus handling
+        let op=tok.value;
+        if((op==='+'||op==='-') && (prevType==='START'||prevType==='OP'||prevType==='FUNC'||prevType==='(')){
+          if(op==='-'){ out.push({type:'UNARY',value:'neg'}); }
+          // unary + is a no-op
+          prevType='OP';
+          continue;
+        }
+        while(stack.length){
+          const top=stack[stack.length-1];
+          if(top.type!=='OP') break;
+          const p1=BIN_PREC[op]||0, p2=BIN_PREC[top.value]||0;
+          if((RIGHT_ASSOC[op]? p1<p2 : p1<=p2)){
+            out.push(stack.pop());
+          } else break;
+        }
+        stack.push(tok);
+        prevType='OP';
+      }
+    }
+    while(stack.length){
+      const t=stack.pop();
+      if(t.type==='PAREN') throw new Error('Syntax ERROR');
+      out.push(t);
+    }
+    return out;
+  }
+
+  function evalRPN(rpn){
+    const st=[];
+    for(const tok of rpn){
+      if(tok.type==='NUM'||tok.type==='CONST'){ st.push(tok.value); }
+      else if(tok.type==='UNARY'){
+        const a=st.pop();
+        st.push(MATH[tok.value](a));
+      } else if(tok.type==='POSTFIX'){
+        const a=st.pop();
+        st.push(MATH.fact(a));
+      } else if(tok.type==='FUNC'){
+        const f=tok.value;
+        if(f==='nPr'||f==='nCr'){
+          const b=st.pop(); const a=st.pop();
+          st.push(MATH[f](a,b));
+        } else {
+          const a=st.pop();
+          st.push(MATH[f](a));
+        }
+      } else if(tok.type==='OP'){
+        const b=st.pop(); const a=st.pop();
+        switch(tok.value){
+          case '+': st.push(MATH.add(a,b)); break;
+          case '-': st.push(MATH.sub(a,b)); break;
+          case '*': st.push(MATH.mul(a,b)); break;
+          case '/': st.push(MATH.div(a,b)); break;
+          case '^': st.push(MATH.pow(a,b)); break;
+          case '%': st.push(MATH.percent(a)); break; // % on left operand (Casio style: x% = x/100)
+        }
+      }
+    }
+    if(st.length!==1) throw new Error('Syntax ERROR');
+    return st[0];
+  }
+
+  function evaluate(str){
+    if(str.trim()==='') return {val:0};
+    const toks=tokenize(str);
+    const rpn=toRPN(toks);
+    const val=evalRPN(rpn);
+    return {val};
+  }
+
+  // ---------- Display rendering ----------
+  function render(){
+    if(errorActive){
+      $expr.textContent = lastInput || '';
+      setResult('ERROR', true);
+      return;
+    }
+    $expr.textContent = lastInput || '0';
+    // compute result of current expr for live preview
+    try{
+      const r=evaluate(lastInput);
+      setResult(fmtNum(r.val));
+    }catch(e){
+      setResult(''); // no live result if invalid mid-expression
+    }
+  }
+
+  function setExpr(s, compute=true){
+    lastInput = s;
+    if(compute) render();
+  }
+
+  function appendToken(t){
+    if(errorActive){ clearError(); lastInput=''; }
+    if(waitingOp && /^[0-9πe.]/.test(t)){
+      lastInput=''; waitingOp=false;
+    }
+    if(justComputed && /^[0-9πe.]/.test(t)){
+      lastInput=''; justComputed=false;
+    }
+    // prevent operator-on-operator (except leading unary handled by evaluator)
+    const last=lastInput.trim().slice(-1);
+    if(/[+\-*/^]/.test(last) && /[+\-*/^]/.test(t)) return;
+    lastInput += t;
+    waitingOp=false;
+    justComputed=false;
+    render();
+  }
+
+  function pressKey(key){
+    if(errorActive && key!=='AC' && key!=='C') return;
+    switch(key){
+      case 'AC': lastInput=''; waitingOp=false; justComputed=false; clearError(); render(); break;
+      case 'DEL': lastInput=lastInput.slice(0,-1); clearError(); render(); break;
+      case '=': computeEquals(); break;
+      case '+/-': toggleSign(); break;
+      case '%': appendToken('%'); break;
+      case 'M+': memAdd(); break;
+      case 'M-': memSub(); break;
+      case 'MR': memRecall(); break;
+      case 'MC': memClear(); break;
+      case 'sqrt': applyUnary('sqrt'); break;
+      case 'x²': applyPow(2); break;
+      case '1/x': applyUnary('1/x'); break;
+      case 'x^y': appendToken('^'); waitingOp=true; break;
+      case 'sin': applyFunc('sin'); break;
+      case 'cos': applyFunc('cos'); break;
+      case 'tan': applyFunc('tan'); break;
+      case 'log': applyFunc('log'); break;
+      case 'ln': applyFunc('ln'); break;
+      case 'asin': applyFunc('asin'); break;
+      case 'acos': applyFunc('acos'); break;
+      case 'atan': applyFunc('atan'); break;
+      case 'π': appendToken('π'); break;
+      case 'e': appendToken('e'); break;
+      case 'nPr': appendBinOp('nPr'); break;
+      case 'nCr': appendBinOp('nCr'); break;
+      case '!': applyFact(); break;
+      case 'Rand': appendToken('rand'); break;
+      case 'AB/C': toggleFrac(); break;
+      case 'D>R': toggleAngle(); break;
+      case 'HIST': toggleHistory(); break;
+      case 'SHIFT': toast('Shift: 2nd functions'); break;
+      case 'ALPHA': toast('Alpha: letters'); break;
+      case '(': appendToken('('); break;
+      case ')': appendToken(')'); break;
+      default:
+        if(/^[0-9.]$/.test(key)) appendToken(key);
+        break;
+    }
+  }
+
+  // ---------- Operations ----------
+  function computeEquals(){
+    if(errorActive) return;
+    if(lastInput.trim()==='') return;
+    try{
+      const r=evaluate(lastInput);
+      const val=r.val;
+      addHistory(lastInput, fmtNum(val), false);
+      lastInput = fmtNum(val);
+      justComputed=true;
+      waitingOp=true;
+      render();
+    }catch(e){
+      addHistory(lastInput, e.message||'ERROR', true);
+      showError(e.message||'ERROR');
+    }
+  }
+
+  function applyUnary(fn){
+    if(errorActive) return;
+    const base = lastInput.trim() || '0';
+    try{
+      // try evaluating current then applying
+      let v;
+      try{ v=evaluate(base).val; }catch(e){ v=parseFloat(base)||0; }
+      const r=MATH[fn](v);
+      addHistory(fn+'('+base+')', fmtNum(r), false);
+      lastInput = fmtNum(r);
+      justComputed=true; waitingOp=true;
+      render();
+    }catch(e){ showError(e.message||'ERROR'); }
+  }
+
+  function applyPow(p){
+    if(errorActive) return;
+    const base = lastInput.trim() || '0';
+    try{
+      let v;
+      try{ v=evaluate(base).val; }catch(e){ v=parseFloat(base)||0; }
+      const r=Math.pow(v,p);
+      addHistory(base+'^'+p, fmtNum(r), false);
+      lastInput = fmtNum(r);
+      justComputed=true; waitingOp=true;
+      render();
+    }catch(e){ showError(e.message||'ERROR'); }
+  }
+
+  function applyFunc(fn){
+    // if display has a complete value, wrap it; else just show func(
+    if(errorActive) return;
+    const cur = lastInput.trim();
+    if(cur && !/[+\-*/^(\[]$/.test(cur.slice(-1))){
+      // apply to current value
+      try{
+        let v;
+        try{ v=evaluate(cur).val; }catch(e){ v=parseFloat(cur)||0; }
+        const r=MATH[fn](v);
+        addHistory(fn+'('+cur+')', fmtNum(r), false);
+        lastInput = fmtNum(r);
+        justComputed=true; waitingOp=true;
+      }catch(e){ showError(e.message||'ERROR'); }
+    } else {
+      appendToken(fn+'(');
+    }
+    render();
+  }
+
+  function appendBinOp(op){
+    if(errorActive) return;
+    appendToken(op+'(');
+    waitingOp=false;
+    render();
+  }
+
+  function applyFact(){
+    if(errorActive) return;
+    const cur = lastInput.trim() || '0';
+    try{
+      let v;
+      try{ v=evaluate(cur).val; }catch(e){ v=parseFloat(cur)||0; }
+      const r=MATH.fact(v);
+      addHistory(cur+'!', fmtNum(r), false);
+      lastInput = fmtNum(r);
+      justComputed=true; waitingOp=true;
+      render();
+    }catch(e){ showError(e.message||'ERROR'); }
+  }
+
+  function toggleSign(){
+    if(errorActive) return;
+    const cur=lastInput.trim();
+    if(cur==='') return;
+    try{
+      let v;
+      try{ v=evaluate(cur).val; }catch(e){ v=parseFloat(cur)||0; }
+      const r=MATH.neg(v);
+      addHistory('(-'+cur+')', fmtNum(r), false);
+      lastInput=fmtNum(r);
+      justComputed=true; waitingOp=true;
+      render();
+    }catch(e){ showError(e.message||'ERROR'); }
+  }
+
+  // ---------- Memory ----------
+  function memAdd(){
+    if(errorActive) return;
+    let v;
+    try{ v=evaluate(lastInput||'0').val; }catch(e){ v=parseFloat(lastInput)||0; }
+    memory+=v; hasMemory=true; $memInd.classList.add('on');
+    toast('M+ ' + fmtNum(v));
+  }
+  function memSub(){
+    if(errorActive) return;
+    let v;
+    try{ v=evaluate(lastInput||'0').val; }catch(e){ v=parseFloat(lastInput)||0; }
+    memory-=v; hasMemory=true; $memInd.classList.add('on');
+    toast('M- ' + fmtNum(v));
+  }
+  function memRecall(){
+    if(errorActive){ clearError(); lastInput=''; }
+    if(waitingOp||justComputed){ lastInput=''; waitingOp=false; justComputed=false; }
+    lastInput += fmtNum(memory);
+    render();
+  }
+  function memClear(){ memory=0; hasMemory=false; $memInd.classList.remove('on'); toast('Memory cleared'); }
+
+  // ---------- Modes ----------
+  function toggleAngle(){
+    const order=['DEG','RAD','GRAD'];
+    const i=order.indexOf(angleMode);
+    angleMode=order[(i+1)%order.length];
+    $angle.textContent=angleMode;
+    toast('Angle: '+angleMode);
+    render();
+  }
+  function toggleFrac(){
+    fracMode=!fracMode;
+    $frac.textContent = fracMode?'FRAC':'DEC';
+    toast(fracMode?'Fraction on':'Decimal');
+  }
+
+  // ---------- History ----------
+  function addHistory(expr,res,err){
+    history.unshift({expr,res,err,time:Date.now()});
+    if(history.length>50) history.pop();
+    renderHistory();
+  }
+  function renderHistory(){
+    $histList.innerHTML='';
+    history.forEach((h,i)=>{
+      const el=document.createElement('div');
+      el.className='history-item'+(h.err?' err':'');
+      el.innerHTML='<div class="hist-expr">'+escHtml(h.expr)+'</div>'+
+                   '<div class="hist-res'+(h.err?' err':'')+'">'+escHtml(h.res)+'</div>';
+      el.onclick=()=>{ loadHistory(h); };
+      $histList.appendChild(el);
+    });
+  }
+  function loadHistory(h){
+    if(h.err){
+      lastInput=h.expr; showError(h.res); return;
+    }
+    lastInput=h.res; justComputed=true; waitingOp=true; clearError(); render();
+    toggleHistory(false);
+  }
+  function toggleHistory(force){
+    const open = force===undefined ? !$histWrap.classList.contains('open') : force;
+    if(open){ $histWrap.classList.add('open'); renderHistory(); }
+    else $histWrap.classList.remove('open');
+  }
+
+  // ---------- Event wiring ----------
+  $keys.forEach(k=>{
+    k.addEventListener('click',()=>pressKey(k.dataset.key));
+    // also support pointer for tactile feel (already handled by CSS :active)
+  });
+
+  $clearHist.addEventListener('click',()=>{ history=[]; renderHistory(); toast('History cleared'); });
+
+  // close history when tapping overlay
+  $histWrap.addEventListener('click',(e)=>{ if(e.target===$histWrap) toggleHistory(false); });
+
+  // ---------- Keyboard support ----------
+  document.addEventListener('keydown',(e)=>{
+    if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA') return;
+    const key=e.key;
+    if(/^[0-9]$/.test(key)){ e.preventDefault(); pressKey(key); }
+    else if(key==='.'){ e.preventDefault(); pressKey('.'); }
+    else if(key==='Enter'||key==='='){ e.preventDefault(); pressKey('='); }
+    else if(key==='Backspace'){ e.preventDefault(); pressKey('DEL'); }
+    else if(key==='Escape'){ e.preventDefault(); pressKey('AC'); }
+    else if(key==='+' ){ e.preventDefault(); pressKey('+'); }
+    else if(key==='-'){ e.preventDefault(); pressKey('-'); }
+    else if(key==='*'){ e.preventDefault(); pressKey('*'); }
+    else if(key==='/'){ e.preventDefault(); pressKey('/'); }
+    else if(key==='('||key===')'){ e.preventDefault(); pressKey(key); }
+    else if(key==='%'){ e.preventDefault(); pressKey('%'); }
+  });
+
+  // ---------- Init ----------
+  render();
+  toast('Casio fx-570 VM Plus ready');
+})();
+</script>
+</body>
+</html>

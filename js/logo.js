@@ -1,58 +1,73 @@
 (function () {
   "use strict";
 
-  // Capture this script's URL at parse time (document.currentScript only
-  // exists while the script evaluates) and resolve the watermark path
-  // relative to it. That way the logo loads on production, GitHub Pages
-  // previews, sub-path mirrors and local files — not only when the site
-  // is served from the domain root.
-  var SCRIPT_SRC = (document.currentScript && document.currentScript.src) || "";
-  var WATERMARK_LOGO = SCRIPT_SRC
-    ? SCRIPT_SRC.replace(/\/js\/[^\/?]*(\?.*)?$/, "/Photos/watermark.png")
-    : "/Photos/watermark.png";
+  // Resolve the watermark image robustly relative to this script's own location.
+  // Photos/ is always a sibling of the js/ directory at the site root, so we go
+  // up one level from the script (…/js/logo.js → …/) and then into Photos/.
+  // Resolving against the script's own URL preserves the origin, host, port and
+  // any GitHub Pages sub-path automatically, so this works for the domain root,
+  // project sub-paths, local files and any other server configuration — without
+  // fragile string-munging of the URL.
+  function resolveWatermarkUrl() {
+    var src = document.currentScript && document.currentScript.src
+      ? document.currentScript.src
+      : "";
 
-  var injected = false;
+    if (src) {
+      try {
+        return new URL("../Photos/watermark.png", src).href;
+      } catch (err) {
+        // Fall through to the root-relative default below.
+      }
+    }
+
+    // Fallback when the script's URL isn't available (e.g. inlined or older
+    // browsers without document.currentScript). Root-relative matches the
+    // standard deployment layout.
+    return "/Photos/watermark.png";
+  }
+
+  var WATERMARK_LOGO = resolveWatermarkUrl();
+
+  var attached = false;
 
   function addWatermark() {
     // Never inject twice (some pages load this script more than once).
-    if (injected) return;
-    injected = true;
+    if (attached) return;
+    attached = true;
 
     var host = document.body || document.documentElement;
     if (!host) return;
 
     var wm = document.createElement("div");
-    wm.className = "watermark";
+    wm.className = "watermark no-lazy";
     wm.setAttribute("aria-hidden", "true");
+    wm.setAttribute("data-no-lazy", "true");
 
-    // Responsive tiled watermark: small tiles that fit phones and desktops
-    // alike instead of one fixed 600px image that got cropped on mobile.
-    // Fixed + pointer-events:none so it stays on screen while scrolling
-    // without ever blocking clicks.
+    // Full-page, non-interactive watermark layer: stays fixed while scrolling,
+    // tiles responsively, and never blocks clicks or text selection.
     wm.style.position = "fixed";
     wm.style.top = "0";
     wm.style.left = "0";
     wm.style.width = "100%";
     wm.style.height = "100%";
     wm.style.pointerEvents = "none";
-    wm.style.backgroundImage = "url(\"" + WATERMARK_LOGO + "\")";
+    wm.style.userSelect = "none";
+    wm.style.backgroundImage = "url('" + WATERMARK_LOGO + "')";
     wm.style.backgroundRepeat = "repeat";
     wm.style.backgroundPosition = "center center";
-    wm.style.backgroundSize = "min(200px, 42vmin)"; // shrinks on small screens
-    wm.style.opacity = "0.07"; // visible, but keeps notes readable
+    wm.style.backgroundSize = "min(200px, 42vmin)";
+    wm.style.opacity = "0.10"; // visible, but keeps page content readable
     wm.style.zIndex = "9999";
 
-    // Preload first: only attach the overlay once the PNG is confirmed to
-    // load, so a 404 or slow network never leaves a broken layer behind.
-    var probe = new Image();
-    probe.onload = function () {
-      if (!wm.parentNode) host.appendChild(wm);
-    };
-    probe.src = WATERMARK_LOGO;
+    // Attach the layer straight away. The browser loads the background image
+    // on its own, so a slow network or a 404 won't silently hide the watermark
+    // forever — it simply paints blank until (or unless) the image arrives.
+    host.appendChild(wm);
   }
 
-  // Cover both cases: script in <head>/defer (DOM still loading) and
-  // script injected after the page already became interactive.
+  // Cover both cases: script in <head>/defer (DOM still loading) and script
+  // executed after the page is already interactive.
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", addWatermark);
   } else {

@@ -1,0 +1,27 @@
+.book-reader {
+    margin-block: 1.5rem;
+    overflow: hidden;
+    border: 1px solid var(--border-color, #d8dee8);
+    border-radius: 12px;
+}
+.book-reader h3 {
+    margin: 0;
+    padding: 1rem 1.25rem;
+}
+.book-reader iframe {
+    display: block;
+    width: 100%;
+    height: 75vh;
+    height: 75svh;
+    min-height: 400px;
+    max-height: 960px;
+    border: 0;
+    background: #f1f3f5;
+}
+.book-viewer-help {
+    font-size: .9rem;
+    line-height: 1.6;
+}
+@media (max-width: 600px) {
+    .book-reader iframe { min-height: 360px; }
+}

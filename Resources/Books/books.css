@@ -25,3 +25,13 @@
 @media (max-width: 600px) {
     .book-reader iframe { min-height: 360px; }
 }
+.book-close {
+    margin: 0 1.25rem 1rem;
+}
+#book-cards button, .book-close {
+    font: inherit;
+    cursor: pointer;
+}
+.book-reader {
+    scroll-margin-top: 6rem;
+}

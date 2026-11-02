@@ -1,13 +1,20 @@
 (() => {
     'use strict';
 
-    // Add books here using a Google Drive file ID, not pasted iframe HTML.
-    // Drive sharing settings, not this script, control file permissions.
+    // Add books using a supported provider and document ID, not pasted iframe HTML.
+    // Each provider, not this script, controls document access and permissions.
     const books = [
         {
             title: 'Engineering Drawing',
             description: 'Engineering Drawing reference book for civil engineering study and exam preparation.',
+            provider: 'drive',
             fileId: '1U_itdLrTr-4jDDdOUDdKYWlHG_1rm-II'
+        },
+        {
+            title: 'Soil Mechanics',
+            description: 'Soil Mechanics by Ram Krishna Poudel and Ramesh Neupane. Preview provided by Scribd; access may be limited.',
+            provider: 'scribd',
+            fileId: '735366439'
         }
     ];
     const cards = document.getElementById('book-cards');
@@ -22,6 +29,12 @@
 
     books.forEach((book) => {
         if (!/^[\w-]+$/.test(book.fileId)) return;
+        const previewUrl = book.provider === 'drive'
+            ? `https://drive.google.com/file/d/${encodeURIComponent(book.fileId)}/preview`
+            : book.provider === 'scribd' && /^\d+$/.test(book.fileId)
+                ? `https://www.scribd.com/embeds/${book.fileId}/content`
+                : null;
+        if (!previewUrl) return;
         const card = document.createElement('article');
         card.className = 'topic-card available';
         const top = document.createElement('div');
@@ -38,7 +51,7 @@
         button.type = 'button';
         button.className = 'notes-button';
         button.textContent = 'View book →';
-        button.setAttribute('aria-label', `View ${book.title} PDF`);
+        button.setAttribute('aria-label', `View ${book.title} preview`);
         button.setAttribute('aria-expanded', 'false');
         button.setAttribute('aria-controls', 'book-viewers');
         button.addEventListener('click', () => {
@@ -60,7 +73,7 @@
             });
             const frame = document.createElement('iframe');
             frame.title = `${book.title} — book preview`;
-            frame.src = `https://drive.google.com/file/d/${encodeURIComponent(book.fileId)}/preview`;
+            frame.src = previewUrl;
             // Do not grant downloads, popups, or top-level navigation.
             frame.setAttribute('sandbox', 'allow-scripts allow-same-origin');
             frame.referrerPolicy = 'no-referrer';

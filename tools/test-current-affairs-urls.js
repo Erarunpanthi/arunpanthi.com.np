@@ -183,7 +183,7 @@ assert.equal(reviewed[18].children[0].textContent, 'Explanation: ' + kartik.ques
 const notFound = fs.readFileSync(path.join(root, '404.html'), 'utf8');
 const fallbackScript = notFound.match(/<script>\s*([\s\S]*?)\s*<\/script>/);
 assert.ok(fallbackScript, '404 route fallback script exists');
-function routeFrom404(pathname, search = '', hash = '') {
+function routeFrom404(pathname, search = '', hash = '', runTimers = false) {
   let redirected;
   const window = {
     location: { pathname, search, hash, replace(url) { redirected = url; } }
@@ -191,7 +191,12 @@ function routeFrom404(pathname, search = '', hash = '') {
   const context = {
     window, URLSearchParams,
     document: { getElementById() { return null; }, querySelector() { return null; } },
-    setTimeout() { return 0; }, setInterval() { return 0; }, clearInterval() {}
+    setTimeout() { return 0; },
+    setInterval(fn) {
+      if (runTimers) for (let i = 0; i < 10; i++) fn();
+      return 1;
+    },
+    clearInterval() {}
   };
   vm.runInNewContext(fallbackScript[1], context, { filename: '404.html' });
   return redirected;
@@ -200,5 +205,12 @@ assert.equal(routeFrom404(examPath), '/Psc-preparation/Current-Affairs/exam.html
 assert.equal(routeFrom404(examPath + '/', '?reset=1', '#answers'),
   '/Psc-preparation/Current-Affairs/exam.html?reset=1&date=' + date + '#answers');
 assert.equal(routeFrom404('/unknown-route'), undefined);
+// Unknown routes show the final warning and divert to the homepage after the countdown.
+assert.match(notFound, /Final warning/i);
+assert.match(notFound, /banned from using this website/i);
+assert.match(notFound, /id="redirect-countdown"/);
+assert.equal(routeFrom404('/unknown-route', '', '', true), 'https://arunpanthi.com.np/');
+// The valid dated exam route must never be treated as a 404 / warning.
+assert.notEqual(routeFrom404(examPath, '', '', true), 'https://arunpanthi.com.np/');
 assert.ok(!fs.existsSync(path.join(base, 'exam', 'date=' + date)), 'No generated dated page/folder is required');
 console.log('Current Affairs exam URLs and single-template routing: OK');

@@ -6,9 +6,9 @@
     name="viewport"
     content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes"
   >
-  <meta name="description" content="404 - Page not found.">
+  <meta name="description" content="Page not found.">
   <meta name="robots" content="noindex, follow">
-  <title>404 • Page Not Found</title>
+  <title>Page Not Found</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/fontawesome/css/all.min.css?v=20260924">
@@ -22,24 +22,16 @@
       <div class="warning-banner" role="alert">
         <div class="warning-banner-icon" aria-hidden="true">⚠️</div>
         <div class="warning-banner-copy">
-          <h2 class="warning-title">Final warning</h2>
           <p class="warning-text">
             If you repeat this activity, you will be banned from using this website.
           </p>
         </div>
       </div>
 
-      <h1 class="error-code">404</h1>
       <p class="error-message">🚧 Oops! Route not found.</p>
       <p class="error-description">
-        The page you requested does not exist or has been moved.
-        You are being redirected to the homepage automatically.
+        Our engineers are looking into it. Thanks for your patience!
       </p>
-
-      <div class="countdown-box">
-        <span class="countdown-label">Redirecting to homepage in</span>
-        <span class="countdown" id="redirect-countdown" aria-hidden="true">10</span>
-      </div>
 
       <a href="https://arunpanthi.com.np/" class="home-link">
         <i class="fas fa-home"></i>
@@ -62,19 +54,9 @@
     </main>
   </div>
 
-  <noscript>
-    <p class="noscript-warning">
-      JavaScript is disabled, so the automatic redirect cannot run.
-      Please <a href="https://arunpanthi.com.np/">go to the homepage</a>.
-    </p>
-  </noscript>
-
   <script>
     (function () {
       "use strict";
-
-      var HOME_URL = "https://arunpanthi.com.np/";
-      var REDIRECT_SECONDS = 10;
 
       // Dated Current Affairs exam URLs are real routes. On static hosts the
       // 404 document is the fallback, so forward the date to the one exam
@@ -91,23 +73,6 @@
         return;
       }
 
-      // Unknown route: show the final warning, then divert to the homepage.
-      var countdownEl = document.getElementById("redirect-countdown");
-      var remaining = REDIRECT_SECONDS;
-      if (countdownEl) countdownEl.textContent = String(remaining);
-
-      var timer = setInterval(function () {
-        remaining -= 1;
-        if (countdownEl) {
-          countdownEl.textContent = String(remaining > 0 ? remaining : 0);
-        }
-        if (remaining <= 0) {
-          clearInterval(timer);
-          window.location.replace(HOME_URL);
-        }
-      }, 1000);
-
-      // Keep the existing 404 animation, but let it finish before the redirect.
       var car = document.getElementById("car");
       var sign = document.getElementById("sign404");
 

@@ -205,8 +205,8 @@ assert.equal(routeFrom404(examPath), '/Psc-preparation/Current-Affairs/exam.html
 assert.equal(routeFrom404(examPath + '/', '?reset=1', '#answers'),
   '/Psc-preparation/Current-Affairs/exam.html?reset=1&date=' + date + '#answers');
 assert.equal(routeFrom404('/unknown-route'), undefined);
-// The 404 page keeps the warning but no longer shows the 404 code or a timer.
-assert.match(notFound, /banned from using this website/i);
+// The 404 page no longer shows the warning, the 404 code, or a timer.
+assert.doesNotMatch(notFound, /banned from using this website/i);
 assert.doesNotMatch(notFound, /<h1 class="error-code">/);
 assert.doesNotMatch(notFound, /id="redirect-countdown"/);
 assert.doesNotMatch(notFound, /Redirecting to homepage in/);

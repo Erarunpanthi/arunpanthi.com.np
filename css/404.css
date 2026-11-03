@@ -122,13 +122,13 @@ body {
 }
 
 .error-code {
-  font-size: 8rem;
-  font-weight: 700;
+  font-size: 10rem;
+  font-weight: 800;
   line-height: 1;
-  color: var(--soft-red);
-  text-shadow: 6px 6px 0 #ffe3e3, 0 10px 25px rgba(255, 107, 107, 0.3);
+  color: #e63946;
+  text-shadow: 6px 6px 0 #ffe3e3, 0 10px 25px rgba(230, 57, 70, 0.35);
   margin-bottom: 8px;
-  letter-spacing: -4px;
+  letter-spacing: -6px;
 }
 
 .error-message {
@@ -339,7 +339,7 @@ body {
   }
   .warning-title { font-size: 1rem; }
   .warning-text { font-size: 0.9rem; }
-  .error-code { font-size: 5.8rem; }
+  .error-code { font-size: 7rem; letter-spacing: -4px; }
   .error-message { font-size: 1.5rem; }
   .error-description { font-size: 1rem; }
   .countdown-box { padding: 10px 14px; }

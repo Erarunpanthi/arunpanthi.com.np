@@ -1,0 +1,635 @@
+
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Time's up! — लोकसेवा २०८३ मिहिनेत ट्र्याकर</title>
+<style>
+  :root{
+    --bg:#0b1120; --bg2:#0f172a; --card:#151f38; --card2:#1a2747;
+    --line:#26334f; --txt:#e2e8f0; --mut:#8fa3c0; --dim:#5b6b87;
+    --acc:#38bdf8; --acc2:#818cf8; --grn:#34d399; --amb:#fbbf24; --red:#f87171;
+    --grad:linear-gradient(90deg,#38bdf8,#818cf8,#c084fc);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:radial-gradient(1200px 600px at 80% -10%,#1e2a4a 0%,var(--bg) 55%) fixed,var(--bg);
+    color:var(--txt);
+    font-family:'Noto Sans Devanagari','Mukta','Mangal','Kalimati','Segoe UI',system-ui,-apple-system,sans-serif;
+    line-height:1.55; min-height:100vh;
+  }
+  .wrap{max-width:1180px;margin:0 auto;padding:0 20px 60px}
+  .en{font-size:.72em;color:var(--mut);font-weight:400;letter-spacing:.02em}
+
+  /* ---------- header ---------- */
+  header{padding:44px 0 10px;text-align:center}
+  .logo{font-size:clamp(2.1rem,5vw,3.4rem);font-weight:800;letter-spacing:-.02em}
+  .logo .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .tagline{color:var(--mut);margin-top:6px;font-size:1.02rem}
+  .chips{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:18px}
+  .chip{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:5px 14px;font-size:.8rem;color:var(--mut)}
+  .chip b{color:var(--txt);font-weight:600}
+
+  /* ---------- sections ---------- */
+  section{margin-top:42px}
+  h2{font-size:1.35rem;font-weight:700;margin-bottom:4px;display:flex;align-items:center;gap:10px}
+  h2 .bar{width:5px;height:22px;border-radius:3px;background:var(--grad);display:inline-block}
+  .sub{color:var(--mut);font-size:.88rem;margin-bottom:18px}
+
+  /* ---------- hero ---------- */
+  .hero{
+    margin-top:34px;border:1px solid var(--line);border-radius:20px;padding:26px 28px;
+    background:linear-gradient(135deg,#182444 0%,#121b33 60%,#101828 100%);
+    display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:22px;align-items:center;position:relative;overflow:hidden;
+  }
+  .hero::after{content:"";position:absolute;inset:0;background:radial-gradient(500px 200px at 85% 0%,rgba(56,189,248,.12),transparent 70%);pointer-events:none}
+  .hero .verdict{font-size:1.6rem;font-weight:800;color:var(--amb)}
+  .hero .vsub{color:var(--mut);font-size:.88rem;margin-top:4px}
+  .hstat .n{font-size:1.75rem;font-weight:800}
+  .hstat .l{color:var(--mut);font-size:.82rem}
+  .hstat.red .n{color:var(--red)} .hstat.blue .n{color:var(--acc)}
+  @media(max-width:820px){.hero{grid-template-columns:1fr 1fr}.hero .verdict-box{grid-column:1/-1}}
+  @media(max-width:520px){.hero{grid-template-columns:1fr}}
+
+  /* ---------- kpi ---------- */
+  .kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+  @media(max-width:980px){.kpis{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:600px){.kpis{grid-template-columns:repeat(2,1fr)}}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 16px 14px;position:relative;overflow:hidden;transition:transform .15s,border-color .15s}
+  .kpi:hover{transform:translateY(-3px);border-color:#3b4d75}
+  .kpi .v{font-size:1.55rem;font-weight:800;letter-spacing:-.01em}
+  .kpi .k{color:var(--mut);font-size:.78rem;margin-top:2px}
+  .kpi .ico{position:absolute;top:12px;right:12px;font-size:1.05rem;opacity:.9}
+  .kpi::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--kc,var(--acc))}
+  .k-grn{--kc:var(--grn)} .k-amb{--kc:var(--amb)} .k-red{--kc:var(--red)}
+  .k-blu{--kc:var(--acc)} .k-pur{--kc:var(--acc2)} .k-cyn{--kc:#22d3ee}
+  .v.grn{color:var(--grn)} .v.amb{color:var(--amb)} .v.red{color:var(--red)} .v.blu{color:var(--acc)}
+
+  /* ---------- charts ---------- */
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:900px){.grid2{grid-template-columns:1fr}}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 18px 12px}
+  .panel h3{font-size:1rem;font-weight:700}
+  .panel .psub{color:var(--mut);font-size:.78rem;margin-bottom:8px}
+  .legend{display:flex;gap:14px;flex-wrap:wrap;margin:2px 0 8px;font-size:.75rem;color:var(--mut)}
+  .legend i{width:10px;height:10px;border-radius:3px;display:inline-block;margin-right:5px;vertical-align:-1px}
+  svg{display:block;width:100%;height:auto}
+  svg text{font-family:inherit}
+  #tooltip{
+    position:fixed;z-index:50;pointer-events:none;display:none;background:#0c1526f2;border:1px solid #33456b;
+    border-radius:10px;padding:9px 12px;font-size:.78rem;color:var(--txt);box-shadow:0 10px 30px #0009;max-width:280px;line-height:1.5
+  }
+  #tooltip b{color:var(--acc)}
+  #tooltip .tt-note{color:var(--amb)}
+
+  /* ---------- rates & excuses ---------- */
+  .split{display:grid;grid-template-columns:1.25fr .75fr;gap:16px}
+  @media(max-width:900px){.split{grid-template-columns:1fr}}
+  table.rates{width:100%;border-collapse:collapse;font-size:.86rem}
+  table.rates th{text-align:left;color:var(--mut);font-weight:600;font-size:.74rem;text-transform:uppercase;letter-spacing:.04em;padding:8px 10px;border-bottom:1px solid var(--line)}
+  table.rates td{padding:8px 10px;border-bottom:1px solid #1d2942}
+  table.rates tr:last-child td{border-bottom:none}
+  table.rates td:nth-child(2){color:var(--mut);font-size:.78rem}
+  table.rates td:last-child{text-align:right;font-weight:700;color:var(--grn);white-space:nowrap}
+  .ratenote{margin-top:10px;background:#101a33;border:1px dashed #2c3c60;border-radius:10px;padding:10px 12px;font-size:.78rem;color:var(--mut)}
+  .ratenote b{color:var(--txt)}
+  .exc{margin-bottom:16px}
+  .exc:last-child{margin-bottom:6px}
+  .exc .top{display:flex;justify-content:space-between;font-size:.85rem;margin-bottom:6px}
+  .exc .top .cnt{color:var(--mut);font-size:.78rem}
+  .track{height:10px;background:#0d1628;border:1px solid var(--line);border-radius:99px;overflow:hidden}
+  .track i{display:block;height:100%;border-radius:99px;background:var(--grad)}
+  .track.used i{background:linear-gradient(90deg,#f59e0b,#ef4444)}
+
+  /* ---------- log table ---------- */
+  .controls{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;align-items:center}
+  .controls input,.controls select{
+    background:var(--card);border:1px solid var(--line);color:var(--txt);border-radius:10px;
+    padding:9px 12px;font-size:.85rem;font-family:inherit;outline:none
+  }
+  .controls input{flex:1;min-width:200px}
+  .controls input:focus,.controls select:focus{border-color:var(--acc)}
+  .tblbox{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:auto;max-height:640px}
+  table.log{width:100%;border-collapse:collapse;font-size:.83rem;min-width:1080px}
+  table.log thead th{
+    position:sticky;top:0;background:#131d38;z-index:2;text-align:left;padding:11px 10px;font-size:.74rem;
+    color:var(--mut);text-transform:uppercase;letter-spacing:.03em;border-bottom:1px solid var(--line);white-space:nowrap
+  }
+  table.log th.sortable{cursor:pointer;user-select:none}
+  table.log th.sortable:hover{color:var(--txt)}
+  table.log th .arr{color:var(--acc);font-size:.7rem}
+  table.log td{padding:8px 10px;border-bottom:1px solid #1b2640;white-space:nowrap}
+  table.log tbody tr:hover{background:#1a2547}
+  td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+  .pos{color:var(--grn);font-weight:600}.neg{color:var(--red);font-weight:600}
+  .badge{display:inline-block;padding:2px 9px;border-radius:99px;font-size:.7rem;font-weight:600}
+  .b-hit{background:#0d3326;color:#6ee7b7;border:1px solid #14532d}
+  .b-miss{background:#3a2a10;color:#fcd34d;border:1px solid #713f12}
+  .b-none{background:#351d1d;color:#fca5a5;border:1px solid #7f1d1d}
+  .b-na{background:#1c2740;color:#94a3b8;border:1px solid #31405e}
+  .note-cell{white-space:normal;min-width:160px;max-width:260px;color:#c8d4e8;font-size:.8rem}
+  .pager{display:flex;gap:6px;justify-content:center;align-items:center;margin-top:14px;flex-wrap:wrap}
+  .pager button{background:var(--card);border:1px solid var(--line);color:var(--mut);border-radius:8px;padding:6px 12px;font-size:.8rem;cursor:pointer;font-family:inherit}
+  .pager button:hover:not(:disabled){border-color:var(--acc);color:var(--txt)}
+  .pager button.cur{background:var(--grad);color:#0b1120;border-color:transparent;font-weight:700}
+  .pager button:disabled{opacity:.35;cursor:default}
+  .pinfo{color:var(--dim);font-size:.76rem;text-align:center;margin-top:8px}
+
+  footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);color:var(--dim);font-size:.78rem;text-align:center}
+  footer b{color:var(--mut)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="logo">⏰ <span class="grad">Time's up!</span></div>
+    <div class="tagline">लोकसेवा २०८३ — मिहिनेत ट्र्याकर <span class="en">(Loksewa 2083 study-effort gamification dashboard)</span></div>
+    <div class="chips">
+      <span class="chip">📅 अवधि: <b id="chipPeriod"></b></span>
+      <span class="chip">🗓️ रेकर्ड: <b id="chipDays"></b> दिन</span>
+      <span class="chip">✍️ निर्माता: <b id="chipAuthor"></b></span>
+      <span class="chip">📂 स्रोत: <b>loksewa-2083.xlsx</b></span>
+    </div>
+  </header>
+
+  <!-- ================= HERO ================= -->
+  <div class="hero">
+    <div class="verdict-box">
+      <div class="vsub">कुल स्थिति <span class="en">· Overall status (रिपोर्ट सिट अनुसार)</span></div>
+      <div class="verdict" id="verdict"></div>
+      <div class="vsub" id="verdictSub"></div>
+    </div>
+    <div class="hstat red">
+      <div class="n" id="heroDeficit"></div>
+      <div class="l">जम्मा घाटा <span class="en">· deficit</span></div>
+    </div>
+    <div class="hstat blue">
+      <div class="n" id="heroRecover"></div>
+      <div class="l">घाटा काट्न आवश्यक दिन <span class="en">· days to recover</span></div>
+    </div>
+  </div>
+
+  <!-- ================= KPI ================= -->
+  <section>
+    <h2><span class="bar"></span>मुख्य तथ्याङ्क <span class="en">· Key figures</span></h2>
+    <div class="sub">रिपोर्ट सिटबाट झिकिएका साराङ्कित नतिजाहरू</div>
+    <div class="kpis" id="kpis"></div>
+  </section>
+
+  <!-- ================= CHARTS ================= -->
+  <section>
+    <h2><span class="bar"></span>चार्ट विश्लेषण <span class="en">· Charts</span></h2>
+    <div class="sub">दैनिक कमाइ, लक्ष्य र सञ्चित बचतको विश्लेषण — माउस लगेजाने बित्तिकै विवरण देखिन्छ</div>
+
+    <div class="grid2">
+      <div class="panel">
+        <h3>दिनहरूको वर्गीकरण <span class="en">· Days breakdown</span></h3>
+        <div class="psub">लक्ष्य पुगेको / नपुगेको / पढाइ नभएको दिन (कुल १२१ मूल्याङ्कन भएका दिन)</div>
+        <div id="chartDays"></div>
+      </div>
+      <div class="panel">
+        <h3>सामग्री प्रयोग <span class="en">· Supplies & time used</span></h3>
+        <div class="psub">१५० दिनमा जम्मा प्रयोग</div>
+        <div id="chartUsage"></div>
+      </div>
+    </div>
+
+    <div class="grid2" style="margin-top:16px">
+      <div class="panel">
+        <h3>दैनिक कमाइ वि. लक्ष्य <span class="en">· Daily earned vs target</span></h3>
+        <div class="legend">
+          <span><i style="background:#38bdf8"></i>जम्मा रकम (earned)</span>
+          <span><i style="background:#fbbf24"></i>लक्षित रकम (target)</span>
+        </div>
+        <div id="chartDaily"></div>
+      </div>
+      <div class="panel">
+        <h3>सञ्चित बचत / घाटा <span class="en">· Cumulative balance</span></h3>
+        <div class="legend">
+          <span><i style="background:#34d399"></i>बचत (+)</span>
+          <span><i style="background:#f87171"></i>घाटा (−)</span>
+        </div>
+        <div id="chartCum"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= RULES ================= -->
+  <section>
+    <h2><span class="bar"></span>कमाइ नियम र बाहाना खाता <span class="en">· Earning rules & excuse account</span></h2>
+    <div class="sub">हरेक सामग्री र समयको आफ्नै मूल्य — फर्मुला अनुसार</div>
+    <div class="split">
+      <div class="panel">
+        <h3>💰 मूल्य सूची <span class="en">· Rate card</span></h3>
+        <table class="rates" id="ratesTbl"></table>
+        <div class="ratenote">
+          <b>दैनिक लक्ष्य:</b> रु ०.२२ बाट सुरु भई हरेक दिन <b>+रु ०.१०</b> ले बढ्छ।
+          आजको घाटा भोलिको लक्ष्यमा <b>जोडिन्छ</b> (carry-over) — त्यसैले मिहिनेत छाड्नु महँगो पर्छ!
+        </div>
+      </div>
+      <div class="panel">
+        <h3>🎟️ बाहाना खाता <span class="en">· Excuse account</span></h3>
+        <div class="psub" style="margin-bottom:14px">सीमित पटक मात्र प्रयोग गर्न मिल्ने बहानाहरू</div>
+        <div id="excuses"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= LOG ================= -->
+  <section>
+    <h2><span class="bar"></span>दैनिक लग <span class="en">· Daily log (mainsheet)</span></h2>
+    <div class="sub">खोज्नुहोस्, फिल्टर गर्नुहोस् वा शीर्षकमा क्लिक गरी क्रमबद्ध गर्नुहोस्</div>
+    <div class="controls">
+      <input id="q" type="search" placeholder="🔍 खोज्नुहोस्… (दिन नं., मिति, टिप्पणी — जस्तै: SET, पोखरा, 2083/03)">
+      <select id="fStatus">
+        <option value="all">सबै स्थिति</option>
+        <option value="hit">✓ लक्ष्य पुगेको</option>
+        <option value="miss">✗ लक्ष्य नपुगेको</option>
+        <option value="none">○ पढाइ नभएको</option>
+        <option value="note">💬 टिप्पणी भएका</option>
+      </select>
+      <select id="perPage">
+        <option value="25">२५ पङ्क्ति</option>
+        <option value="50">५० पङ्क्ति</option>
+        <option value="150">सबै (१५०)</option>
+      </select>
+    </div>
+    <div class="tblbox">
+      <table class="log">
+        <thead>
+          <tr id="logHead"></tr>
+        </thead>
+        <tbody id="logBody"></tbody>
+      </table>
+    </div>
+    <div class="pager" id="pager"></div>
+    <div class="pinfo" id="pinfo"></div>
+  </section>
+
+  <footer>
+    यो ड्यासबोर्ड <b>loksewa-2083.xlsx</b> (mainsheet + Report) बाट स्वतः निर्मित हो ·
+    तथ्याङ्क स्रोत: <b id="fAuthor"></b> · अवधि <b id="fPeriod"></b><br>
+    सबै रकम नेपाली रुपैयाँ (रु) मा · मितिहरू विक्रम सम्बत् (माथि) र इसवी सम्बत् (तल) मा
+  </footer>
+</div>
+
+<div id="tooltip"></div>
+
+<script>
+const DATA = {"meta":{"title":"Time's up!","subtitle":"लोकसेवा २०८३ — मिहिनेत ट्र्याकर","author":"ER. Arun Panthi","bsStart":"2083/02/24","bsEnd":"2083/07/17","adStart":"2026-06-07","adEnd":"2026-11-03","totalDays":150},"report":{"daysHit":71,"amtHit":642.13,"daysMiss":39,"amtMiss":1661.79,"daysNoStudy":11,"overall":"मिहिनेत नपुगेको","deficit":268.57,"daysToRecover":74},"rates":[["पेन","Pen",5,"प्रति गोटा"],["कागज","Paper",0.2,"प्रति पाना"],["कापी","Copy",0.1,"प्रति पाना"],["सेट","Set",5,"प्रति सेट"],["ओ. सेट","OH Set",3,"प्रति सेट"],["समय","Study time",2.4,"प्रति घण्टा"],["MCQ","MCQ",0.25,"प्रति प्रश्न"],["Wake up","बिहानै उठ्दा",1,"प्रति दिन"],["Sleep","समयमै सुत्दा",1,"प्रति दिन"]],"excuses":[["चट्याङ","Emergency",1,3],["चाडबाड","Festival",0,10],["बिरामी","Sick",0,10]],"usage":{"pens":14.0,"paper":186.07,"kopi":41.51,"sets":16.0,"osets":107.0,"hours":276.32,"mcq":57.0,"earned":1203.92},"days":[{"day":1,"bs":"2083/02/24","ad":"2026-06-07","pen":0,"paper":1.5,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":0,"earned":0.3,"target":0.22,"balance":0.08,"note":"सुरु गरेको दिन","activity":true,"noStudy":false},{"day":2,"bs":"2083/02/25","ad":"2026-06-08","pen":0,"paper":0,"kopi":2.0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":0,"earned":0.2,"target":0.32,"balance":-0.12,"note":null,"activity":true,"noStudy":false},{"day":3,"bs":"2083/02/26","ad":"2026-06-09","pen":1.0,"paper":0,"kopi":1.0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":0,"earned":5.1,"target":0.54,"balance":4.56,"note":null,"activity":true,"noStudy":false},{"day":4,"bs":"2083/02/27","ad":"2026-06-10","pen":0,"paper":0,"kopi":0,"oset":1.0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":0,"earned":3.0,"target":0.52,"balance":2.48,"note":null,"activity":true,"noStudy":false},{"day":5,"bs":"2083/02/28","ad":"2026-06-11","pen":0,"paper":0,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":0,"earned":0.0,"target":0.62,"balance":-0.62,"note":"परिक्षा दिन पोखरा गएको","activity":false,"noStudy":true},{"day":6,"bs":"2083/02/29","ad":"2026-06-12","pen":0,"paper":0,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":0,"earned":0.0,"target":1.34,"balance":-1.34,"note":"परिक्षा दिन पोखरा गएको","activity":false,"noStudy":true},{"day":7,"bs":"2083/02/30","ad":"2026-06-13","pen":0,"paper":0,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":0,"earned":0.0,"target":2.16,"balance":-2.16,"note":"परिक्षा दिन पोखरा गएको","activity":false,"noStudy":true},{"day":8,"bs":"2083/02/31","ad":"2026-06-14","pen":0,"paper":0,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":0,"earned":0.0,"target":3.08,"balance":-3.08,"note":"परिक्षा दिन पोखरा गएको","activity":false,"noStudy":true},{"day":9,"bs":"2083/03/01","ad":"2026-06-15","pen":0,"paper":0,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":0,"earned":0.0,"target":4.1,"balance":-4.1,"note":"परिक्षा दिन पोखरा गएको","activity":false,"noStudy":true},{"day":10,"bs":"2083/03/02","ad":"2026-06-16","pen":0,"paper":1.5,"kopi":1.5,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":0,"earned":0.45,"target":5.22,"balance":-4.77,"note":null,"activity":true,"noStudy":false},{"day":11,"bs":"2083/03/03","ad":"2026-06-17","pen":0,"paper":0,"kopi":0,"oset":2.0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":0,"earned":6.0,"target":5.99,"balance":0.01,"note":null,"activity":true,"noStudy":false},{"day":12,"bs":"2083/03/04","ad":"2026-06-18","pen":0,"paper":0,"kopi":3.0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":0,"earned":0.3,"target":1.32,"balance":-1.02,"note":null,"activity":true,"noStudy":false},{"day":13,"bs":"2083/03/05","ad":"2026-06-19","pen":0,"paper":0,"kopi":2.0,"oset":2.0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":0,"earned":6.2,"target":2.44,"balance":3.76,"note":null,"activity":true,"noStudy":false},{"day":14,"bs":"2083/03/06","ad":"2026-06-20","pen":0,"paper":0,"kopi":0,"oset":2.0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":0,"earned":6.0,"target":1.52,"balance":4.48,"note":null,"activity":true,"noStudy":false},{"day":15,"bs":"2083/03/07","ad":"2026-06-21","pen":0,"paper":0,"kopi":1.0,"oset":1.0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":2.0,"earned":7.9,"target":1.62,"balance":6.28,"note":"समय थपेको दिन","activity":true,"noStudy":false},{"day":16,"bs":"2083/03/08","ad":"2026-06-22","pen":0,"paper":0,"kopi":3.0,"oset":1.0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":2.4,"earned":9.06,"target":1.72,"balance":7.34,"note":null,"activity":true,"noStudy":false},{"day":17,"bs":"2083/03/09","ad":"2026-06-23","pen":0,"paper":0,"kopi":3.0,"oset":2.0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":3.84,"earned":15.52,"target":1.82,"balance":13.7,"note":null,"activity":true,"noStudy":false},{"day":18,"bs":"2083/03/10","ad":"2026-06-24","pen":0,"paper":0,"kopi":0,"oset":4.0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":4.5,"earned":22.8,"target":1.92,"balance":20.88,"note":null,"activity":true,"noStudy":false},{"day":19,"bs":"2083/03/11","ad":"2026-06-25","pen":0,"paper":0,"kopi":3.5,"oset":3.0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":5.6,"earned":22.79,"target":2.02,"balance":20.77,"note":null,"activity":true,"noStudy":false},{"day":20,"bs":"2083/03/12","ad":"2026-06-26","pen":0,"paper":0,"kopi":4.0,"oset":2.0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":4.1,"earned":16.24,"target":2.12,"balance":14.12,"note":"सेटको कोदिगले समय गयो","activity":true,"noStudy":false},{"day":21,"bs":"2083/03/13","ad":"2026-06-27","pen":1.0,"paper":1.0,"kopi":2.0,"oset":3.0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":4.78,"earned":25.88,"target":2.37,"balance":23.51,"note":null,"activity":true,"noStudy":false},{"day":22,"bs":"2083/03/14","ad":"2026-06-28","pen":0,"paper":1.0,"kopi":3.0,"oset":2.0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":4.95,"earned":18.38,"target":2.32,"balance":16.06,"note":null,"activity":true,"noStudy":false},{"day":23,"bs":"2083/03/15","ad":"2026-06-29","pen":0,"paper":0,"kopi":3.0,"oset":2.0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":3.0,"earned":13.5,"target":2.42,"balance":11.08,"note":null,"activity":true,"noStudy":false},{"day":24,"bs":"2083/03/16","ad":"2026-06-30","pen":0,"paper":1.5,"kopi":3.5,"oset":2.0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":4.0,"earned":16.25,"target":2.72,"balance":13.54,"note":null,"activity":true,"noStudy":false},{"day":25,"bs":"2083/03/17","ad":"2026-07-01","pen":0,"paper":1.0,"kopi":3.0,"oset":2.0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":4.2,"earned":16.58,"target":2.62,"balance":13.96,"note":null,"activity":true,"noStudy":false},{"day":26,"bs":"2083/03/18","ad":"2026-07-02","pen":0,"paper":1.5,"kopi":3.0,"oset":2.0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":4.6,"earned":17.64,"target":2.72,"balance":14.92,"note":null,"activity":true,"noStudy":false},{"day":27,"bs":"2083/03/19","ad":"2026-07-03","pen":0,"paper":1.5,"kopi":0,"oset":3.0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":5.04,"earned":21.4,"target":2.82,"balance":18.58,"note":null,"activity":true,"noStudy":false},{"day":28,"bs":"2083/03/20","ad":"2026-07-04","pen":0,"paper":8.25,"kopi":0,"oset":1.0,"mcq":0,"wake":0,"sleep":0,"set":1.0,"time":6.5,"earned":25.25,"target":2.92,"balance":22.33,"note":"SET-1","activity":true,"noStudy":false},{"day":29,"bs":"2083/03/21","ad":"2026-07-05","pen":1.0,"paper":9.0,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":1.0,"time":5.0,"earned":23.8,"target":3.02,"balance":20.78,"note":"SET-3","activity":true,"noStudy":false},{"day":30,"bs":"2083/03/22","ad":"2026-07-06","pen":1.0,"paper":3.0,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":2.0,"earned":10.4,"target":3.27,"balance":7.13,"note":null,"activity":true,"noStudy":false},{"day":31,"bs":"2083/03/23","ad":"2026-07-07","pen":0,"paper":10.75,"kopi":0,"oset":1.0,"mcq":0,"wake":0,"sleep":0,"set":1.0,"time":7.0,"earned":26.95,"target":3.52,"balance":23.43,"note":"W09/SET-4","activity":true,"noStudy":false},{"day":32,"bs":"2083/03/24","ad":"2026-07-08","pen":1.0,"paper":11.25,"kopi":0,"oset":1.0,"mcq":0,"wake":0,"sleep":0,"set":1.0,"time":9.0,"earned":36.85,"target":3.32,"balance":33.53,"note":"SET-5","activity":true,"noStudy":false},{"day":33,"bs":"2083/03/25","ad":"2026-07-09","pen":1.0,"paper":8.0,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":1.0,"time":4.0,"earned":21.2,"target":3.42,"balance":17.78,"note":"SET-2","activity":true,"noStudy":false},{"day":34,"bs":"2083/03/26","ad":"2026-07-10","pen":0,"paper":7.5,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":1.0,"time":3.4,"earned":14.66,"target":4.02,"balance":10.64,"note":"SET-18","activity":true,"noStudy":false},{"day":35,"bs":"2083/03/27","ad":"2026-07-11","pen":0,"paper":0,"kopi":0,"oset":4.0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":5.4,"earned":24.96,"target":3.68,"balance":21.28,"note":"S09/Test 1.1-1-2-3","activity":true,"noStudy":false},{"day":36,"bs":"2083/03/28","ad":"2026-07-12","pen":1.0,"paper":11.0,"kopi":0,"oset":1.0,"mcq":0,"wake":0,"sleep":0,"set":1.0,"time":4.0,"earned":24.8,"target":3.72,"balance":21.08,"note":"Set-9/T 1.4","activity":true,"noStudy":false},{"day":37,"bs":"2083/03/29","ad":"2026-07-13","pen":0.0,"paper":0.0,"kopi":0.0,"oset":1.0,"mcq":0,"wake":0,"sleep":0,"set":0.0,"time":0.4,"earned":3.97,"target":3.96,"balance":0.01,"note":"IBX/Analogy","activity":true,"noStudy":false},{"day":38,"bs":"2083/03/30","ad":"2026-07-14","pen":1.0,"paper":0.0,"kopi":0.0,"oset":0.0,"mcq":11.0,"wake":0,"sleep":0,"set":0.0,"time":0.0,"earned":7.76,"target":4.28,"balance":3.48,"note":"IBX/Embedded Images","activity":true,"noStudy":false},{"day":39,"bs":"2083/03/31","ad":"2026-07-15","pen":0,"paper":0,"kopi":0,"oset":1.0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":1.5,"earned":6.6,"target":4.06,"balance":2.54,"note":"W10","activity":true,"noStudy":false},{"day":40,"bs":"2083/03/32","ad":"2026-07-16","pen":0,"paper":7.5,"kopi":0,"oset":0,"mcq":6.0,"wake":2.0,"sleep":0,"set":0,"time":0.13,"earned":5.32,"target":4.12,"balance":1.2,"note":"IBX/Dice","activity":true,"noStudy":false},{"day":41,"bs":"2083/04/01","ad":"2026-07-17","pen":0,"paper":9.0,"kopi":0.01,"oset":1.0,"mcq":0,"wake":0,"sleep":0,"set":1.0,"time":5.0,"earned":21.8,"target":4.36,"balance":17.44,"note":"Test/3.5-1//SET-6","activity":true,"noStudy":false},{"day":42,"bs":"2083/04/02","ad":"2026-07-18","pen":0,"paper":0.01,"kopi":0,"oset":2.0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":2.25,"earned":11.4,"target":4.32,"balance":7.08,"note":"S10","activity":true,"noStudy":false},{"day":43,"bs":"2083/04/03","ad":"2026-07-19","pen":0,"paper":0,"kopi":0,"oset":0,"mcq":12.0,"wake":0,"sleep":0,"set":0,"time":2.67,"earned":9.41,"target":4.7,"balance":4.71,"note":"IBX/FIGURE MATRIX","activity":true,"noStudy":false},{"day":44,"bs":"2083/04/04","ad":"2026-07-20","pen":0,"paper":12.3,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":1.0,"time":8.0,"earned":26.66,"target":4.52,"balance":22.14,"note":"set-11","activity":true,"noStudy":false},{"day":45,"bs":"2083/04/05","ad":"2026-07-21","pen":1.0,"paper":3.0,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":0,"earned":5.6,"target":4.62,"balance":0.98,"note":null,"activity":true,"noStudy":false},{"day":46,"bs":"2083/04/06","ad":"2026-07-22","pen":0,"paper":0.01,"kopi":0,"oset":1.0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":1.5,"earned":6.6,"target":5.52,"balance":1.08,"note":"W11","activity":true,"noStudy":false},{"day":47,"bs":"2083/04/07","ad":"2026-07-23","pen":0,"paper":6.5,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":1.0,"time":8.0,"earned":25.5,"target":4.82,"balance":20.68,"note":"set-15","activity":true,"noStudy":false},{"day":48,"bs":"2083/04/08","ad":"2026-07-24","pen":1.0,"paper":8.5,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":1.0,"time":4.5,"earned":22.5,"target":4.92,"balance":17.58,"note":"set-7","activity":true,"noStudy":false},{"day":49,"bs":"2083/04/09","ad":"2026-07-25","pen":0,"paper":0,"kopi":0,"oset":2.0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":2.25,"earned":11.4,"target":5.37,"balance":6.03,"note":"S11","activity":true,"noStudy":false},{"day":50,"bs":"2083/04/10","ad":"2026-07-26","pen":0,"paper":0,"kopi":0,"oset":1.0,"mcq":3.0,"wake":0,"sleep":0,"set":0,"time":2.0,"earned":8.55,"target":5.34,"balance":3.21,"note":null,"activity":true,"noStudy":false},{"day":51,"bs":"2083/04/11","ad":"2026-07-27","pen":0,"paper":0,"kopi":0,"oset":1.0,"mcq":1.0,"wake":0,"sleep":0,"set":0,"time":2.0,"earned":8.05,"target":5.25,"balance":2.81,"note":"sustainable development","activity":true,"noStudy":false},{"day":52,"bs":"2083/04/12","ad":"2026-07-28","pen":0,"paper":0,"kopi":0,"oset":2.0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":1.08,"earned":8.59,"target":5.32,"balance":3.27,"note":"sahara-set-25","activity":true,"noStudy":false},{"day":53,"bs":"2083/04/13","ad":"2026-07-29","pen":0,"paper":11.0,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":1.0,"time":8.0,"earned":26.4,"target":5.51,"balance":20.89,"note":"set-1-saw","activity":true,"noStudy":false},{"day":54,"bs":"2083/04/14","ad":"2026-07-30","pen":0,"paper":0,"kopi":0,"oset":1.0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":3.0,"earned":10.2,"target":5.52,"balance":4.68,"note":"मधेश प्रदेश GK/PM सेट-१","activity":true,"noStudy":false},{"day":55,"bs":"2083/04/15","ad":"2026-07-31","pen":0,"paper":0,"kopi":0,"oset":2.0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":1.33,"earned":9.2,"target":6.12,"balance":3.08,"note":"Triangle Counting","activity":true,"noStudy":false},{"day":56,"bs":"2083/04/16","ad":"2026-08-01","pen":0,"paper":0,"kopi":0,"oset":2.0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":1.5,"earned":9.6,"target":5.89,"balance":3.71,"note":"s12/SE06","activity":true,"noStudy":false},{"day":57,"bs":"2083/04/17","ad":"2026-08-02","pen":1.0,"paper":1.0,"kopi":0,"oset":0,"mcq":2.0,"wake":0,"sleep":0,"set":0,"time":0.8,"earned":7.62,"target":5.82,"balance":1.8,"note":null,"activity":true,"noStudy":false},{"day":58,"bs":"2083/04/18","ad":"2026-08-03","pen":1.0,"paper":0,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":3.2,"earned":12.68,"target":5.99,"balance":6.69,"note":null,"activity":true,"noStudy":false},{"day":59,"bs":"2083/04/19","ad":"2026-08-04","pen":0,"paper":2.0,"kopi":0,"oset":1.0,"mcq":2.0,"wake":0,"sleep":0,"set":0,"time":1.63,"earned":7.81,"target":6.02,"balance":1.79,"note":null,"activity":true,"noStudy":false},{"day":60,"bs":"2083/04/20","ad":"2026-08-05","pen":0,"paper":0,"kopi":0,"oset":1.0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":1.5,"earned":6.6,"target":6.28,"balance":0.32,"note":"w13","activity":true,"noStudy":false},{"day":61,"bs":"2083/04/21","ad":"2026-08-06","pen":0,"paper":1.0,"kopi":0,"oset":0,"mcq":2.0,"wake":0,"sleep":0,"set":0,"time":3.0,"earned":7.9,"target":6.23,"balance":1.67,"note":null,"activity":true,"noStudy":false},{"day":62,"bs":"2083/04/22","ad":"2026-08-07","pen":0,"paper":0,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":3.0,"earned":7.2,"target":6.32,"balance":0.88,"note":null,"activity":true,"noStudy":false},{"day":63,"bs":"2083/04/23","ad":"2026-08-08","pen":0,"paper":0,"kopi":0,"oset":1.0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":1.5,"earned":6.6,"target":6.42,"balance":0.18,"note":"s13","activity":true,"noStudy":false},{"day":64,"bs":"2083/04/24","ad":"2026-08-09","pen":0,"paper":1.0,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":3.0,"earned":7.4,"target":6.67,"balance":0.73,"note":null,"activity":true,"noStudy":false},{"day":65,"bs":"2083/04/25","ad":"2026-08-10","pen":0,"paper":1.0,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":3.0,"earned":7.4,"target":6.62,"balance":0.78,"note":null,"activity":true,"noStudy":false},{"day":66,"bs":"2083/04/26","ad":"2026-08-11","pen":0,"paper":1.0,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":3.0,"earned":7.4,"target":6.72,"balance":0.68,"note":null,"activity":true,"noStudy":false},{"day":67,"bs":"2083/04/27","ad":"2026-08-12","pen":0,"paper":0,"kopi":0,"oset":1.0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":1.6,"earned":6.84,"target":6.82,"balance":0.02,"note":"w14","activity":true,"noStudy":false},{"day":68,"bs":"2083/04/28","ad":"2026-08-13","pen":1.0,"paper":0,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":2.0,"earned":9.8,"target":7.06,"balance":2.74,"note":null,"activity":true,"noStudy":false},{"day":69,"bs":"2083/04/29","ad":"2026-08-14","pen":0,"paper":0,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":4.5,"earned":10.8,"target":7.02,"balance":3.78,"note":null,"activity":true,"noStudy":false},{"day":70,"bs":"2083/04/30","ad":"2026-08-15","pen":0,"paper":0,"kopi":0,"oset":1.0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":4.0,"earned":12.6,"target":7.12,"balance":5.48,"note":"S14","activity":true,"noStudy":false},{"day":71,"bs":"2083/04/31","ad":"2026-08-16","pen":0,"paper":0,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":0,"earned":0.0,"target":7.27,"balance":-7.27,"note":"परिक्षा दिन धनगडी गएको","activity":true,"noStudy":false},{"day":72,"bs":"2083/05/01","ad":"2026-08-17","pen":0,"paper":0,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":0,"earned":0.0,"target":14.99,"balance":-14.99,"note":"परिक्षा दिन धनगडी गएको","activity":false,"noStudy":true},{"day":73,"bs":"2083/05/02","ad":"2026-08-18","pen":0,"paper":0,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":0,"earned":0.0,"target":22.41,"balance":-22.41,"note":"परिक्षा दिन धनगडी गएको","activity":false,"noStudy":true},{"day":74,"bs":"2083/05/03","ad":"2026-08-19","pen":0,"paper":0,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":0,"earned":0.0,"target":29.93,"balance":-29.93,"note":"परिक्षा दिन धनगडी गएको","activity":false,"noStudy":true},{"day":75,"bs":"2083/05/04","ad":"2026-08-20","pen":0,"paper":0,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":0,"earned":0.0,"target":37.55,"balance":-37.55,"note":"परिक्षा दिन धनगडी गएको","activity":false,"noStudy":true},{"day":76,"bs":"2083/05/05","ad":"2026-08-21","pen":0,"paper":0,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":0,"earned":0.0,"target":45.27,"balance":-45.27,"note":"परिक्षा दिन धनगडी गएको","activity":false,"noStudy":true},{"day":77,"bs":"2083/05/06","ad":"2026-08-22","pen":0,"paper":0,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":0,"earned":0.0,"target":53.09,"balance":-53.09,"note":"परिक्षा दिन धनगडी गएको","activity":false,"noStudy":true},{"day":78,"bs":"2083/05/07","ad":"2026-08-23","pen":0,"paper":0,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":1.0,"time":8.0,"earned":24.2,"target":61.01,"balance":null,"note":"Set-2-BINI","activity":true,"noStudy":false},{"day":79,"bs":"2083/05/08","ad":"2026-08-24","pen":0,"paper":0,"kopi":0,"oset":1.0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":4.75,"earned":14.4,"target":8.02,"balance":6.38,"note":null,"activity":true,"noStudy":false},{"day":80,"bs":"2083/05/09","ad":"2026-08-25","pen":0,"paper":0,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":0,"earned":0.0,"target":8.45,"balance":-8.44,"note":null,"activity":true,"noStudy":false},{"day":81,"bs":"2083/05/10","ad":"2026-08-26","pen":0,"paper":0,"kopi":0,"oset":1.0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":1.5,"earned":6.6,"target":17.14,"balance":-10.54,"note":"W16","activity":true,"noStudy":false},{"day":82,"bs":"2083/05/11","ad":"2026-08-27","pen":0,"paper":0,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":0,"earned":0.0,"target":18.86,"balance":-18.86,"note":null,"activity":true,"noStudy":false},{"day":83,"bs":"2083/05/12","ad":"2026-08-28","pen":0,"paper":0,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":0,"earned":0.0,"target":27.43,"balance":-27.43,"note":null,"activity":true,"noStudy":false},{"day":84,"bs":"2083/05/13","ad":"2026-08-29","pen":0,"paper":0,"kopi":0,"oset":1.0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":1.5,"earned":6.6,"target":35.95,"balance":-29.35,"note":"S16","activity":true,"noStudy":false},{"day":85,"bs":"2083/05/14","ad":"2026-08-30","pen":0,"paper":0,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":0,"earned":0.0,"target":37.97,"balance":-37.96,"note":null,"activity":true,"noStudy":false},{"day":86,"bs":"2083/05/15","ad":"2026-08-31","pen":0,"paper":0,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":0,"earned":0.0,"target":46.83,"balance":-46.83,"note":null,"activity":true,"noStudy":false},{"day":87,"bs":"2083/05/16","ad":"2026-09-01","pen":0,"paper":0,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":0,"earned":0.0,"target":55.65,"balance":null,"note":null,"activity":true,"noStudy":false},{"day":88,"bs":"2083/05/17","ad":"2026-09-02","pen":0,"paper":10.0,"kopi":0,"oset":1.0,"mcq":0,"wake":0,"sleep":0,"set":1.0,"time":5.0,"earned":22.0,"target":8.92,"balance":13.08,"note":"W17/Set-10","activity":true,"noStudy":false},{"day":89,"bs":"2083/05/18","ad":"2026-09-03","pen":0,"paper":0,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":0,"earned":0.0,"target":9.02,"balance":-9.02,"note":null,"activity":true,"noStudy":false},{"day":90,"bs":"2083/05/19","ad":"2026-09-04","pen":0,"paper":0,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":0,"earned":0.0,"target":18.64,"balance":-18.64,"note":null,"activity":true,"noStudy":false},{"day":91,"bs":"2083/05/20","ad":"2026-09-05","pen":0,"paper":0,"kopi":0,"oset":2.0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":2.25,"earned":11.4,"target":27.86,"balance":-16.46,"note":"S17/SE11","activity":true,"noStudy":false},{"day":92,"bs":"2083/05/21","ad":"2026-09-06","pen":0,"paper":0,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":0,"earned":0.0,"target":25.78,"balance":-25.78,"note":null,"activity":true,"noStudy":false},{"day":93,"bs":"2083/05/22","ad":"2026-09-07","pen":0,"paper":0,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":0,"earned":0.0,"target":35.42,"balance":-35.42,"note":null,"activity":true,"noStudy":false},{"day":94,"bs":"2083/05/23","ad":"2026-09-08","pen":0,"paper":0,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":0,"earned":0.0,"target":44.94,"balance":-44.94,"note":null,"activity":true,"noStudy":false},{"day":95,"bs":"2083/05/24","ad":"2026-09-09","pen":0,"paper":0,"kopi":0,"oset":1.0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":1.5,"earned":6.6,"target":54.56,"balance":-47.96,"note":"W18","activity":true,"noStudy":false},{"day":96,"bs":"2083/05/25","ad":"2026-09-10","pen":0,"paper":0,"kopi":0,"oset":1.0,"mcq":1.0,"wake":0,"sleep":0,"set":0,"time":1.0,"earned":5.65,"target":57.68,"balance":-52.03,"note":"CAF","activity":true,"noStudy":false},{"day":97,"bs":"2083/05/26","ad":"2026-09-11","pen":0,"paper":0,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":0,"earned":0.0,"target":61.9,"balance":-61.89,"note":null,"activity":true,"noStudy":false},{"day":98,"bs":"2083/05/27","ad":"2026-09-12","pen":0,"paper":0,"kopi":0,"oset":2.0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":2.25,"earned":11.4,"target":71.91,"balance":-60.51,"note":"S18","activity":true,"noStudy":false},{"day":99,"bs":"2083/05/28","ad":"2026-09-13","pen":0,"paper":0,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":0,"earned":0.0,"target":70.53,"balance":-70.53,"note":null,"activity":true,"noStudy":false},{"day":100,"bs":"2083/05/29","ad":"2026-09-14","pen":0,"paper":0,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":0,"earned":0.0,"target":80.88,"balance":-80.88,"note":null,"activity":true,"noStudy":false},{"day":101,"bs":"2083/05/30","ad":"2026-09-15","pen":0,"paper":0,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":0,"earned":0.0,"target":91.1,"balance":null,"note":null,"activity":true,"noStudy":false},{"day":102,"bs":"2083/05/31","ad":"2026-09-16","pen":0,"paper":10.0,"kopi":0,"oset":1.0,"mcq":1.0,"wake":0,"sleep":0,"set":1.0,"time":9.5,"earned":33.05,"target":10.32,"balance":22.73,"note":"W19","activity":true,"noStudy":false},{"day":103,"bs":"2083/06/01","ad":"2026-09-17","pen":0,"paper":0,"kopi":0,"oset":2.0,"mcq":3.0,"wake":1.0,"sleep":0,"set":0,"time":5.5,"earned":20.95,"target":10.42,"balance":10.53,"note":"Structure","activity":true,"noStudy":false},{"day":104,"bs":"2083/06/02","ad":"2026-09-18","pen":0,"paper":4.0,"kopi":0,"oset":1.0,"mcq":3.0,"wake":1.0,"sleep":1.0,"set":0,"time":1.0,"earned":8.95,"target":10.92,"balance":-1.97,"note":"Construction materail","activity":true,"noStudy":false},{"day":105,"bs":"2083/06/03","ad":"2026-09-19","pen":0,"paper":4.0,"kopi":0,"oset":2.0,"mcq":2.0,"wake":1.0,"sleep":1.0,"set":0,"time":2.25,"earned":14.7,"target":13.04,"balance":1.66,"note":null,"activity":true,"noStudy":false},{"day":106,"bs":"2083/06/04","ad":"2026-09-20","pen":0,"paper":0,"kopi":0,"oset":1.0,"mcq":5.0,"wake":1.0,"sleep":1.0,"set":0,"time":1.17,"earned":9.05,"target":10.72,"balance":-1.67,"note":"Sub Engineer BCT Exam 01","activity":true,"noStudy":false},{"day":107,"bs":"2083/06/05","ad":"2026-09-21","pen":0,"paper":0,"kopi":0,"oset":1.0,"mcq":0,"wake":1.0,"sleep":1.0,"set":0,"time":1.0,"earned":7.4,"target":12.6,"balance":-5.2,"note":"BCT","activity":true,"noStudy":false},{"day":108,"bs":"2083/06/06","ad":"2026-09-22","pen":0,"paper":9.0,"kopi":0,"oset":1.0,"mcq":0,"wake":2.0,"sleep":0,"set":0,"time":9.0,"earned":28.4,"target":16.14,"balance":12.26,"note":"Foundation/set-14","activity":true,"noStudy":false},{"day":109,"bs":"2083/06/07","ad":"2026-09-23","pen":1.0,"paper":0,"kopi":0,"oset":1.0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":1.5,"earned":11.6,"target":11.02,"balance":0.58,"note":null,"activity":true,"noStudy":false},{"day":110,"bs":"2083/06/08","ad":"2026-09-24","pen":0,"paper":0,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":0,"earned":0.0,"target":11.87,"balance":-11.87,"note":null,"activity":true,"noStudy":false},{"day":111,"bs":"2083/06/09","ad":"2026-09-25","pen":0,"paper":0,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":0,"earned":0.0,"target":23.24,"balance":-23.24,"note":null,"activity":true,"noStudy":false},{"day":112,"bs":"2083/06/10","ad":"2026-09-26","pen":0,"paper":0,"kopi":0,"oset":2.0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":2.25,"earned":11.4,"target":34.56,"balance":-23.16,"note":null,"activity":true,"noStudy":false},{"day":113,"bs":"2083/06/11","ad":"2026-09-27","pen":0,"paper":0,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":0,"earned":0.0,"target":34.58,"balance":-34.57,"note":null,"activity":true,"noStudy":false},{"day":114,"bs":"2083/06/12","ad":"2026-09-28","pen":0,"paper":0,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":0,"earned":0.0,"target":46.32,"balance":-46.32,"note":null,"activity":true,"noStudy":false},{"day":115,"bs":"2083/06/13","ad":"2026-09-29","pen":0,"paper":0,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":0,"earned":0.0,"target":57.94,"balance":-57.94,"note":null,"activity":true,"noStudy":false},{"day":116,"bs":"2083/06/14","ad":"2026-09-30","pen":0,"paper":0,"kopi":0,"oset":1.0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":1.5,"earned":6.6,"target":69.66,"balance":-63.06,"note":null,"activity":true,"noStudy":false},{"day":117,"bs":"2083/06/15","ad":"2026-10-01","pen":0,"paper":0,"kopi":0,"oset":0,"mcq":1.0,"wake":0,"sleep":0,"set":0,"time":0,"earned":0.25,"target":74.88,"balance":-74.62,"note":null,"activity":true,"noStudy":false},{"day":118,"bs":"2083/06/16","ad":"2026-10-02","pen":0,"paper":0,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":0,"earned":0.0,"target":86.69,"balance":-86.69,"note":null,"activity":true,"noStudy":false},{"day":119,"bs":"2083/06/17","ad":"2026-10-03","pen":0,"paper":0,"kopi":0,"oset":2.0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":2.25,"earned":11.4,"target":98.71,"balance":-87.31,"note":null,"activity":true,"noStudy":false},{"day":120,"bs":"2083/06/18","ad":"2026-10-04","pen":0,"paper":0,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":0,"earned":0.0,"target":99.43,"balance":-99.43,"note":null,"activity":true,"noStudy":false},{"day":121,"bs":"2083/06/19","ad":"2026-10-05","pen":0,"paper":0,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":0,"earned":0.0,"target":111.87,"balance":-111.87,"note":null,"activity":true,"noStudy":false},{"day":122,"bs":"2083/06/20","ad":"2026-10-06","pen":0,"paper":0,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":0,"earned":0.0,"target":124.19,"balance":null,"note":null,"activity":true,"noStudy":false},{"day":123,"bs":"2083/06/21","ad":"2026-10-07","pen":0,"paper":0,"kopi":0,"oset":3.0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":2.83,"earned":15.79,"target":12.42,"balance":3.37,"note":null,"activity":true,"noStudy":false},{"day":124,"bs":"2083/06/22","ad":"2026-10-08","pen":0,"paper":0,"kopi":0,"oset":2.0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":2.0,"earned":10.8,"target":12.52,"balance":-1.72,"note":null,"activity":true,"noStudy":false},{"day":125,"bs":"2083/06/23","ad":"2026-10-09","pen":0,"paper":0,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":0,"earned":0.0,"target":14.42,"balance":null,"note":null,"activity":true,"noStudy":false},{"day":126,"bs":"2083/06/24","ad":"2026-10-10","pen":0,"paper":5.0,"kopi":0,"oset":1.0,"mcq":0,"wake":0,"sleep":0,"set":1.0,"time":5.5,"earned":22.2,"target":12.92,"balance":9.28,"note":null,"activity":true,"noStudy":false},{"day":127,"bs":"2083/06/25","ad":"2026-10-11","pen":0,"paper":0,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":0,"earned":0.0,"target":12.82,"balance":null,"note":null,"activity":true,"noStudy":false},{"day":128,"bs":"2083/06/26","ad":"2026-10-12","pen":0,"paper":0,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":0,"earned":0.0,"target":13.47,"balance":null,"note":null,"activity":true,"noStudy":false},{"day":129,"bs":"2083/06/27","ad":"2026-10-13","pen":0,"paper":0,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":0,"earned":0.0,"target":13.02,"balance":null,"note":null,"activity":true,"noStudy":false},{"day":130,"bs":"2083/06/28","ad":"2026-10-14","pen":0,"paper":0,"kopi":0,"oset":1.0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":1.5,"earned":6.6,"target":13.12,"balance":null,"note":null,"activity":true,"noStudy":false},{"day":131,"bs":"2083/06/29","ad":"2026-10-15","pen":0,"paper":0,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":0,"earned":0.0,"target":13.22,"balance":null,"note":null,"activity":true,"noStudy":false},{"day":132,"bs":"2083/06/30","ad":"2026-10-16","pen":0,"paper":0,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":0,"earned":0.0,"target":13.47,"balance":null,"note":null,"activity":true,"noStudy":false},{"day":133,"bs":"2083/06/31","ad":"2026-10-17","pen":0,"paper":0,"kopi":0,"oset":1.0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":1.5,"earned":6.6,"target":13.42,"balance":null,"note":null,"activity":true,"noStudy":false},{"day":134,"bs":"2083/07/01","ad":"2026-10-18","pen":0,"paper":0,"kopi":0,"oset":0,"mcq":1.0,"wake":1.0,"sleep":0,"set":0,"time":0,"earned":1.25,"target":13.52,"balance":null,"note":null,"activity":true,"noStudy":true},{"day":135,"bs":"2083/07/02","ad":"2026-10-19","pen":0,"paper":0,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":0,"earned":0.0,"target":13.77,"balance":null,"note":null,"activity":true,"noStudy":false},{"day":136,"bs":"2083/07/03","ad":"2026-10-20","pen":0,"paper":0,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":0,"earned":0.0,"target":13.72,"balance":null,"note":null,"activity":true,"noStudy":false},{"day":137,"bs":"2083/07/04","ad":"2026-10-21","pen":0,"paper":0,"kopi":0,"oset":1.0,"mcq":1.0,"wake":0,"sleep":0,"set":0,"time":1.5,"earned":6.85,"target":13.82,"balance":null,"note":null,"activity":true,"noStudy":false},{"day":138,"bs":"2083/07/05","ad":"2026-10-22","pen":0,"paper":0,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":0,"earned":0.0,"target":13.92,"balance":null,"note":null,"activity":true,"noStudy":false},{"day":139,"bs":"2083/07/06","ad":"2026-10-23","pen":0,"paper":0,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":0,"earned":0.0,"target":14.17,"balance":null,"note":null,"activity":true,"noStudy":false},{"day":140,"bs":"2083/07/07","ad":"2026-10-24","pen":0,"paper":0,"kopi":0,"oset":2.0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":2.25,"earned":11.4,"target":14.12,"balance":null,"note":null,"activity":true,"noStudy":false},{"day":141,"bs":"2083/07/08","ad":"2026-10-25","pen":0,"paper":0,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":0,"earned":0.0,"target":14.22,"balance":null,"note":null,"activity":true,"noStudy":false},{"day":142,"bs":"2083/07/09","ad":"2026-10-26","pen":0,"paper":0,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":0,"earned":0.0,"target":14.54,"balance":null,"note":null,"activity":true,"noStudy":false},{"day":143,"bs":"2083/07/10","ad":"2026-10-27","pen":0,"paper":0,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":0,"earned":0.0,"target":14.42,"balance":null,"note":null,"activity":true,"noStudy":false},{"day":144,"bs":"2083/07/11","ad":"2026-10-28","pen":0,"paper":0,"kopi":0,"oset":1.0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":1.5,"earned":6.6,"target":14.52,"balance":null,"note":null,"activity":true,"noStudy":false},{"day":145,"bs":"2083/07/12","ad":"2026-10-29","pen":0,"paper":0,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":0,"earned":0.0,"target":14.62,"balance":null,"note":null,"activity":true,"noStudy":false},{"day":146,"bs":"2083/07/13","ad":"2026-10-30","pen":0,"paper":0,"kopi":0,"oset":2.0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":0.67,"earned":7.6,"target":14.87,"balance":null,"note":null,"activity":true,"noStudy":false},{"day":147,"bs":"2083/07/14","ad":"2026-10-31","pen":0,"paper":0,"kopi":0,"oset":2.0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":2.25,"earned":11.4,"target":14.82,"balance":null,"note":null,"activity":true,"noStudy":false},{"day":148,"bs":"2083/07/15","ad":"2026-11-01","pen":0,"paper":0,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":0,"earned":0.0,"target":14.92,"balance":null,"note":null,"activity":true,"noStudy":false},{"day":149,"bs":"2083/07/16","ad":"2026-11-02","pen":0,"paper":0,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":0,"earned":0.0,"target":15.24,"balance":null,"note":null,"activity":true,"noStudy":false},{"day":150,"bs":"2083/07/17","ad":"2026-11-03","pen":0,"paper":0,"kopi":0,"oset":0,"mcq":0,"wake":0,"sleep":0,"set":0,"time":0,"earned":0.0,"target":15.12,"balance":null,"note":null,"activity":true,"noStudy":false}],"cum":[0.08,-0.04,4.52,7.0,6.38,5.04,2.88,-0.2,-4.3,-9.07,-9.06,-10.08,-6.32,-1.84,4.44,11.78,25.48,46.36,67.13,81.25,104.76,120.82,131.9,145.44,159.4,174.32,192.9,215.23,236.01,243.14,266.57,300.1,317.88,328.52,349.8,370.88,370.89,374.37,376.91,378.11,395.55,402.63,407.34,429.48,430.46,431.54,452.22,469.8,475.83,479.04,481.85,485.12,506.01,510.69,513.77,517.48,519.28,525.97,527.76,528.08,529.75,530.63,530.81,531.54,532.32,533.0,533.02,535.76,539.54,545.02,537.75,522.76,500.35,470.42,432.87,387.6,334.51,334.51,340.89,332.45,321.91,303.05,275.62,246.27,208.31,161.48,161.48,174.56,165.54,146.9,130.44,104.66,69.24,24.3,-23.66,-75.69,-137.58,-198.09,-268.62,-349.5,-349.5,-326.77,-316.24,-318.21,-316.55,-318.22,-323.42,-311.16,-310.58,-322.45,-345.69,-368.85,-403.42,-449.74,-507.68,-570.74,-645.36,-732.05,-819.36,-918.79,-1030.66,-1030.66,-1027.29,-1029.01,-1029.01,-1019.73,-1019.73,-1019.73,-1019.73,-1019.73,-1019.73,-1019.73,-1019.73,-1019.73,-1019.73,-1019.73,-1019.73,-1019.73,-1019.73,-1019.73,-1019.73,-1019.73,-1019.73,-1019.73,-1019.73,-1019.73,-1019.73,-1019.73,-1019.73,-1019.73]};
+
+/* ================= helpers ================= */
+const $=s=>document.querySelector(s);
+const NE=['०','१','२','३','४','५','६','७','८','९'];
+const toNe=n=>String(n).replace(/\d/g,d=>NE[d]);
+const nf=new Intl.NumberFormat('en-IN',{minimumFractionDigits:2,maximumFractionDigits:2});
+const nf1=new Intl.NumberFormat('en-IN',{maximumFractionDigits:1});
+const money=n=>'रु '+nf.format(n);
+const SVGNS='http://www.w3.org/2000/svg';
+function sv(tag,attrs,parent){const e=document.createElementNS(SVGNS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e;}
+const tip=$('#tooltip');
+function showTip(html,ev){tip.innerHTML=html;tip.style.display='block';moveTip(ev);}
+function moveTip(ev){
+  const w=tip.offsetWidth,h=tip.offsetHeight;
+  let x=ev.clientX+16,y=ev.clientY-h/2;
+  if(x+w>innerWidth-8)x=ev.clientX-w-16;
+  if(y<8)y=8; if(y+h>innerHeight-8)y=innerHeight-h-8;
+  tip.style.left=x+'px';tip.style.top=y+'px';
+}
+function hideTip(){tip.style.display='none';}
+
+/* day status per the workbook's own logic */
+function statusOf(d){
+  if(d.balance!==null&&d.balance>0)return 'hit';
+  const didSomething=(d.mcq>0||d.wake>0||d.sleep>0||d.time>0||!d.noStudy);
+  if(d.balance!==null&&d.balance<0)return didSomething?'miss':'none';
+  return 'na';
+}
+const STATUS={hit:['b-hit','✓ पुग्यो'],miss:['b-miss','✗ पुगेन'],none:['b-none','○ पढाइ भएन'],na:['b-na','—']};
+
+/* ================= header / hero / kpi ================= */
+$('#chipPeriod').textContent=DATA.meta.bsStart+' – '+DATA.meta.bsEnd;
+$('#chipDays').textContent=toNe(DATA.meta.totalDays);
+$('#chipAuthor').textContent=DATA.meta.author;
+$('#fAuthor').textContent=DATA.meta.author;
+$('#fPeriod').textContent=DATA.meta.bsStart+' – '+DATA.meta.bsEnd+' ('+DATA.meta.adStart+' → '+DATA.meta.adEnd+' AD)';
+
+const R=DATA.report;
+$('#verdict').textContent='⚠️ '+R.overall;
+$('#verdictSub').innerHTML='पहिलो १०० दिनको हिसाबमा — <b style="color:var(--txt)">'+money(R.deficit)+'</b> को घाटा अगाडि छ';
+$('#heroDeficit').textContent='− '+money(R.deficit).replace('रु ','रु ');
+$('#heroRecover').textContent='≈ '+toNe(R.daysToRecover)+' दिन';
+
+const kpis=[
+  {v:toNe(R.daysHit),k:'मिहिनेत पुगेको दिन · days hit',c:'k-grn',vc:'grn',i:'✅'},
+  {v:toNe(R.daysMiss),k:'मिहिनेत नपुगेको दिन · days missed',c:'k-amb',vc:'amb',i:'⚠️'},
+  {v:toNe(R.daysNoStudy),k:'नपढेको दिन · no-study days',c:'k-red',vc:'red',i:'📵'},
+  {v:money(DATA.usage.earned),k:'जम्मा कमाइ · total earned',c:'k-blu',vc:'blu',i:'💰'},
+  {v:money(R.amtHit),k:'पुगेको दिनको कमाइ · earned on hit days',c:'k-pur',vc:'',i:'📈'},
+  {v:money(R.amtMiss),k:'नपुगेको दिनको घाटा · shortfall on miss days',c:'k-cyn',vc:'red',i:'📉'},
+];
+$('#kpis').innerHTML=kpis.map(k=>
+  `<div class="kpi ${k.c}"><div class="ico">${k.i}</div><div class="v ${k.vc}">${k.v}</div><div class="k">${k.k}</div></div>`).join('');
+
+/* ================= chart 1: days bar ================= */
+function drawDaysBar(){
+  const host=$('#chartDays');host.innerHTML='';
+  const W=520,H=250,P={l:44,r:14,t:26,b:52};
+  const svg=sv('svg',{viewBox:`0 0 ${W} ${H}`,preserveAspectRatio:'xMidYMid meet'},host);
+  const items=[['पुगेको',R.daysHit,'#34d399','days hit'],
+               ['नपुगेको',R.daysMiss,'#fbbf24','days missed'],
+               ['नपढेको',R.daysNoStudy,'#f87171','no study']];
+  const max=Math.max(...items.map(i=>i[1]))*1.18;
+  const iw=(W-P.l-P.r)/items.length, bw=Math.min(84,iw*.5);
+  const y=v=>P.t+(H-P.t-P.b)*(1-v/max);
+  for(let g=0;g<=4;g++){
+    const val=max*g/4, yy=y(val);
+    sv('line',{x1:P.l,x2:W-P.r,y1:yy,y2:yy,stroke:'#22304e','stroke-width':1},svg);
+    sv('text',{x:P.l-8,y:yy+4,'text-anchor':'end',fill:'#5b6b87','font-size':11},svg).textContent=Math.round(val);
+  }
+  items.forEach((it,i)=>{
+    const cx=P.l+iw*i+iw/2, h=(H-P.b)-y(it[1]);
+    const r=sv('rect',{x:cx-bw/2,y:y(it[1]),width:bw,height:Math.max(h,2),rx:8,fill:it[2],opacity:.9},svg);
+    r.style.cursor='default';
+    r.addEventListener('mousemove',ev=>showTip(`<b>${it[0]}</b> (${it[3]})<br>दिन: <b>${it[1]}</b> · ${(it[1]/121*100).toFixed(1)}%`,ev));
+    r.addEventListener('mouseleave',hideTip);
+    sv('text',{x:cx,y:y(it[1])-8,'text-anchor':'middle',fill:'#e2e8f0','font-size':17,'font-weight':700},svg).textContent=toNe(it[1]);
+    sv('text',{x:cx,y:H-P.b+22,'text-anchor':'middle',fill:'#8fa3c0','font-size':12.5},svg).textContent=it[0];
+    sv('text',{x:cx,y:H-P.b+38,'text-anchor':'middle',fill:'#5b6b87','font-size':10},svg).textContent=it[3];
+  });
+}
+
+/* ================= chart 2: usage bars ================= */
+function drawUsage(){
+  const host=$('#chartUsage');host.innerHTML='';
+  const items=[
+    ['समय (घण्टा)',DATA.usage.hours,'hrs','#38bdf8'],
+    ['कागज (पाना)',DATA.usage.paper,'sheets','#818cf8'],
+    ['ओ. सेट',DATA.usage.osets,'pcs','#c084fc'],
+    ['MCQ (प्रश्न)',DATA.usage.mcq,'qs','#22d3ee'],
+    ['कापी (पाना)',DATA.usage.kopi,'pages','#34d399'],
+    ['सेट',DATA.usage.sets,'pcs','#fbbf24'],
+    ['पेन',DATA.usage.pens,'pcs','#f87171'],
+  ];
+  const W=520,rh=30,P={l:110,r:64,t:6,b:6};
+  const H=P.t+P.b+items.length*rh;
+  const svg=sv('svg',{viewBox:`0 0 ${W} ${H}`},host);
+  const max=Math.max(...items.map(i=>i[1]));
+  items.forEach((it,i)=>{
+    const yy=P.t+i*rh+4, bw=(W-P.l-P.r)*(it[1]/max);
+    sv('text',{x:P.l-10,y:yy+15,'text-anchor':'end',fill:'#8fa3c0','font-size':12},svg).textContent=it[0];
+    sv('rect',{x:P.l,y:yy,width:W-P.l-P.r,height:18,rx:6,fill:'#101a30'},svg);
+    const r=sv('rect',{x:P.l,y:yy,width:Math.max(bw,2),height:18,rx:6,fill:it[3],opacity:.85},svg);
+    r.addEventListener('mousemove',ev=>showTip(`<b>${it[0]}</b><br>जम्मा: <b>${nf1.format(it[1])}</b> ${it[2]}`,ev));
+    r.addEventListener('mouseleave',hideTip);
+    sv('text',{x:W-P.r+8,y:yy+14,fill:'#e2e8f0','font-size':12,'font-weight':700},svg).textContent=nf1.format(it[1]);
+  });
+}
+
+/* ================= chart 3: daily earned vs target ================= */
+function drawDaily(){
+  const host=$('#chartDaily');host.innerHTML='';
+  const D=DATA.days,W=560,H=280,P={l:46,r:12,t:12,b:34};
+  const svg=sv('svg',{viewBox:`0 0 ${W} ${H}`},host);
+  const maxE=Math.max(...D.map(d=>d.earned));
+  const maxT=Math.max(...D.map(d=>d.target===null?0:Math.min(d.target,maxE)));
+  const ymax=Math.ceil(Math.max(maxE,maxT)*1.08/5)*5;
+  const X=i=>P.l+(W-P.l-P.r)*(i/(D.length-1));
+  const Y=v=>P.t+(H-P.t-P.b)*(1-v/ymax);
+  for(let g=0;g<=4;g++){
+    const val=ymax*g/4,yy=Y(val);
+    sv('line',{x1:P.l,x2:W-P.r,y1:yy,y2:yy,stroke:'#22304e'},svg);
+    sv('text',{x:P.l-8,y:yy+4,'text-anchor':'end',fill:'#5b6b87','font-size':10.5},svg).textContent=nf1.format(val);
+  }
+  [0,Math.floor(D.length/2),D.length-1].forEach(i=>
+    sv('text',{x:X(i),y:H-10,'text-anchor':'middle',fill:'#5b6b87','font-size':10.5},svg)
+      .textContent=D[i].bs.slice(0,7));
+  const defs=sv('defs',{},svg);
+  const lg=sv('linearGradient',{id:'gEarn',x1:0,y1:0,x2:0,y2:1},defs);
+  sv('stop',{offset:'0%','stop-color':'#38bdf8','stop-opacity':.45},lg);
+  sv('stop',{offset:'100%','stop-color':'#38bdf8','stop-opacity':.03},lg);
+  const clip=sv('clipPath',{id:'clipD'},defs);sv('rect',{x:P.l,y:P.t-6,width:W-P.l-P.r,height:H-P.t-P.b+6},clip);
+  const g=sv('g',{'clip-path':'url(#clipD)'},svg);
+  let ea='',la='',ta='';
+  D.forEach((d,i)=>{
+    const x=X(i);
+    ea+=(i?'L':'M')+x.toFixed(1)+','+Y(d.earned).toFixed(1);
+    if(d.target!==null)ta+=(ta?'L':'M')+x.toFixed(1)+','+Y(d.target).toFixed(1);
+  });
+  la=ea+`L${X(D.length-1).toFixed(1)},${Y(0)}L${X(0).toFixed(1)},${Y(0)}Z`;
+  sv('path',{d:la,fill:'url(#gEarn)'},g);
+  sv('path',{d:ea,fill:'none',stroke:'#38bdf8','stroke-width':1.6},g);
+  sv('path',{d:ta,fill:'none',stroke:'#fbbf24','stroke-width':1.5,'stroke-dasharray':'5 4',opacity:.9},g);
+  /* hover */
+  const cross=sv('line',{y1:P.t,y2:H-P.b,stroke:'#4a5f8a','stroke-dasharray':'3 3',visibility:'hidden'},svg);
+  const cE=sv('circle',{r:4,fill:'#38bdf8',stroke:'#0b1120','stroke-width':2,visibility:'hidden'},svg);
+  const cT=sv('circle',{r:4,fill:'#fbbf24',stroke:'#0b1120','stroke-width':2,visibility:'hidden'},svg);
+  const ov=sv('rect',{x:P.l,y:P.t,width:W-P.l-P.r,height:H-P.t-P.b,fill:'transparent'},svg);
+  ov.style.cursor='crosshair';
+  function move(ev){
+    const box=svg.getBoundingClientRect();
+    const px=(ev.clientX-box.left)/box.width*W;
+    let i=Math.round((px-P.l)/(W-P.l-P.r)*(D.length-1));
+    i=Math.max(0,Math.min(D.length-1,i));
+    const d=D[i],x=X(i);
+    cross.setAttribute('x1',x);cross.setAttribute('x2',x);cross.setAttribute('visibility','visible');
+    cE.setAttribute('cx',x);cE.setAttribute('cy',Y(d.earned));cE.setAttribute('visibility','visible');
+    if(d.target!==null){cT.setAttribute('cx',x);cT.setAttribute('cy',Y(Math.min(d.target,ymax)));cT.setAttribute('visibility','visible');}
+    else cT.setAttribute('visibility','hidden');
+    const st=statusOf(d);
+    showTip(
+      `<b>दिन ${toNe(d.day)}</b> · ${d.bs} <span style="color:#5b6b87">(${d.ad})</span><br>`+
+      `जम्मा रकम: <b style="color:#38bdf8">${money(d.earned)}</b><br>`+
+      (d.target!==null?`लक्षित रकम: <b style="color:#fbbf24">${money(d.target)}</b><br>`:'')+
+      (d.balance!==null?`बाँकी: <b style="color:${d.balance>=0?'#34d399':'#f87171'}">${money(d.balance)}</b><br>`:'')+
+      `समय: ${nf1.format(d.time)} घण्टा · स्थिति: ${STATUS[st][1]}`+
+      (d.note?`<br><span class="tt-note">💬 ${d.note}</span>`:''),ev);
+  }
+  ov.addEventListener('mousemove',move);
+  ov.addEventListener('mouseleave',()=>{hideTip();cross.setAttribute('visibility','hidden');cE.setAttribute('visibility','hidden');cT.setAttribute('visibility','hidden');});
+}
+
+/* ================= chart 4: cumulative balance ================= */
+function drawCum(){
+  const host=$('#chartCum');host.innerHTML='';
+  const C=DATA.cum,W=560,H=280,P={l:56,r:12,t:12,b:34};
+  const svg=sv('svg',{viewBox:`0 0 ${W} ${H}`},host);
+  const ymin=Math.min(...C),ymax=Math.max(...C,10);
+  const pad=(ymax-ymin)*.06;
+  const lo=ymin-pad,hi=ymax+pad;
+  const X=i=>P.l+(W-P.l-P.r)*(i/(C.length-1));
+  const Y=v=>P.t+(H-P.t-P.b)*(1-(v-lo)/(hi-lo));
+  for(let g=0;g<=4;g++){
+    const val=lo+(hi-lo)*g/4,yy=Y(val);
+    sv('line',{x1:P.l,x2:W-P.r,y1:yy,y2:yy,stroke:'#22304e'},svg);
+    sv('text',{x:P.l-8,y:yy+4,'text-anchor':'end',fill:'#5b6b87','font-size':10.5},svg).textContent=nf1.format(val);
+  }
+  const D=DATA.days;
+  [0,Math.floor(D.length/2),D.length-1].forEach(i=>
+    sv('text',{x:X(i),y:H-10,'text-anchor':'middle',fill:'#5b6b87','font-size':10.5},svg).textContent=D[i].bs.slice(0,7));
+  const y0=Y(0);
+  sv('line',{x1:P.l,x2:W-P.r,y1:y0,y2:y0,stroke:'#4a5f8a','stroke-width':1.2,'stroke-dasharray':'4 4'},svg);
+  const defs=sv('defs',{},svg);
+  const lg=sv('linearGradient',{id:'gCum',x1:0,y1:0,x2:0,y2:1},defs);
+  sv('stop',{offset:'0%','stop-color':'#34d399','stop-opacity':.35},lg);
+  sv('stop',{offset:'100%','stop-color':'#f87171','stop-opacity':.28},lg);
+  let ln='',ar='';
+  C.forEach((v,i)=>{const x=X(i).toFixed(1),y=Y(v).toFixed(1);ln+=(i?'L':'M')+x+','+y;});
+  ar=ln+`L${X(C.length-1).toFixed(1)},${y0}L${X(0).toFixed(1)},${y0}Z`;
+  sv('path',{d:ar,fill:'url(#gCum)'},svg);
+  sv('path',{d:ln,fill:'none',stroke:'#a5b4fc','stroke-width':1.8},svg);
+  /* zero-cross annotation */
+  const last=C[C.length-1];
+  sv('circle',{cx:X(C.length-1),cy:Y(last),r:4.5,fill:last>=0?'#34d399':'#f87171',stroke:'#0b1120','stroke-width':2},svg);
+  sv('text',{x:X(C.length-1)-8,y:Y(last)-10,'text-anchor':'end',fill:last>=0?'#34d399':'#f87171','font-size':12,'font-weight':700},svg)
+    .textContent=(last>=0?'+':'−')+'रु '+nf1.format(Math.abs(last));
+  const cross=sv('line',{y1:P.t,y2:H-P.b,stroke:'#4a5f8a','stroke-dasharray':'3 3',visibility:'hidden'},svg);
+  const dot=sv('circle',{r:4,fill:'#a5b4fc',stroke:'#0b1120','stroke-width':2,visibility:'hidden'},svg);
+  const ov=sv('rect',{x:P.l,y:P.t,width:W-P.l-P.r,height:H-P.t-P.b,fill:'transparent'},svg);
+  ov.style.cursor='crosshair';
+  ov.addEventListener('mousemove',ev=>{
+    const box=svg.getBoundingClientRect();
+    const px=(ev.clientX-box.left)/box.width*W;
+    let i=Math.round((px-P.l)/(W-P.l-P.r)*(C.length-1));
+    i=Math.max(0,Math.min(C.length-1,i));
+    cross.setAttribute('x1',X(i));cross.setAttribute('x2',X(i));cross.setAttribute('visibility','visible');
+    dot.setAttribute('cx',X(i));dot.setAttribute('cy',Y(C[i]));dot.setAttribute('visibility','visible');
+    showTip(`<b>दिन ${toNe(D[i].day)}</b> · ${D[i].bs}<br>सञ्चित बाँकी: <b style="color:${C[i]>=0?'#34d399':'#f87171'}">${money(C[i])}</b>`,ev);
+  });
+  ov.addEventListener('mouseleave',()=>{hideTip();cross.setAttribute('visibility','hidden');dot.setAttribute('visibility','hidden');});
+}
+
+/* ================= rates & excuses ================= */
+$('#ratesTbl').innerHTML=
+  '<tr><th>सामान</th><th>Item</th><th style="text-align:right">दर</th></tr>'+
+  DATA.rates.map(r=>`<tr><td>${r[0]}${r[1]&&r[1]!==r[0]?` <span class="en">${r[1]}</span>`:''}</td><td>${r[3]}</td><td>${money(r[2])}</td></tr>`).join('');
+
+$('#excuses').innerHTML=DATA.excuses.map(e=>{
+  const used=e[2],total=e[3],pct=used/total*100;
+  return `<div class="exc">
+    <div class="top"><span>${e[0]} <span class="en">${e[1]}</span></span>
+    <span class="cnt">प्रयोग: <b style="color:${used>0?'var(--amb)':'var(--txt)'}">${toNe(used)}</b> / ${toNe(total)} · बाँकी ${toNe(total-used)}</span></div>
+    <div class="track ${used>0?'used':''}"><i style="width:${Math.max(pct,used>0?6:0)}%"></i></div>
+  </div>`;
+}).join('')+
+`<div class="ratenote" style="margin-top:16px">🎯 अहिलेसम्म <b>१</b> पटक मात्र बाहाना प्रयोग भएको छ — <b>२२ वटा बाँकी</b> छन्। मौसम साथी हो, बहाना होइन! ⛈️</div>`;
+
+/* ================= log table ================= */
+const COLS=[
+  {k:'day',t:'दिन',num:true,sort:true},
+  {k:'bs',t:'मिति (वि.सं.)',num:false,sort:true},
+  {k:'ad',t:'Date (AD)',num:false,sort:true},
+  {k:'pen',t:'पेन',num:true,sort:true},
+  {k:'paper',t:'कागज',num:true,sort:true},
+  {k:'kopi',t:'कापी',num:true,sort:true},
+  {k:'oset',t:'ओ.सेट',num:true,sort:true},
+  {k:'set',t:'सेट',num:true,sort:true},
+  {k:'mcq',t:'MCQ',num:true,sort:true},
+  {k:'time',t:'समय (घण्टा)',num:true,sort:true},
+  {k:'earned',t:'जम्मा रकम',num:true,sort:true},
+  {k:'target',t:'लक्षित रकम',num:true,sort:true},
+  {k:'balance',t:'बाँकी रकम',num:true,sort:true},
+  {k:'st',t:'स्थिति',num:false,sort:true},
+  {k:'note',t:'टिप्पणीहरू',num:false,sort:false},
+];
+const state={q:'',status:'all',sort:'day',dir:1,page:1,per:25};
+
+function headHTML(){
+  return COLS.map(c=>{
+    const arr=state.sort===c.k?(state.dir>0?' <span class="arr">▲</span>':' <span class="arr">▼</span>'):'';
+    return `<th class="${c.num?'num ':''}${c.sort?'sortable':''}" data-k="${c.k}">${c.t}${arr}</th>`;
+  }).join('');
+}
+function passes(d){
+  if(state.status==='hit'&&statusOf(d)!=='hit')return false;
+  if(state.status==='miss'&&statusOf(d)!=='miss')return false;
+  if(state.status==='none'&&statusOf(d)!=='none')return false;
+  if(state.status==='note'&&!d.note)return false;
+  if(state.q){
+    const q=state.q.toLowerCase();
+    const hay=(d.day+' '+d.bs+' '+d.ad+' '+(d.note||'')).toLowerCase();
+    if(!hay.includes(q))return false;
+  }
+  return true;
+}
+function fmtCell(d,c){
+  switch(c.k){
+    case 'day':return toNe(d.day);
+    case 'bs':return d.bs;
+    case 'ad':return `<span style="color:var(--dim)">${d.ad}</span>`;
+    case 'pen':case 'paper':case 'kopi':case 'oset':case 'set':case 'mcq':
+      return d[c.k]?nf1.format(d[c.k]):'<span style="color:#33405c">·</span>';
+    case 'time':return d.time?nf1.format(d.time):'<span style="color:#33405c">·</span>';
+    case 'earned':return `<b>${nf.format(d.earned)}</b>`;
+    case 'target':return d.target===null?'—':nf.format(d.target);
+    case 'balance':{
+      if(d.balance===null)return '<span style="color:var(--dim)">—</span>';
+      const cls=d.balance>=0?'pos':'neg';
+      return `<span class="${cls}">${d.balance>=0?'+':'−'}${nf.format(Math.abs(d.balance))}</span>`;
+    }
+    case 'st':{const s=statusOf(d);return `<span class="badge ${STATUS[s][0]}">${STATUS[s][1]}</span>`;}
+    case 'note':return d.note?`<span class="note-cell">${d.note}</span>`:'';
+  }
+}
+function renderTable(){
+  $('#logHead').innerHTML=headHTML();
+  let list=DATA.days.filter(passes);
+  const k=state.sort;
+  list.sort((a,b)=>{
+    let va,vb;
+    if(k==='st'){va=statusOf(a);vb=statusOf(b);}
+    else{va=a[k];vb=b[k];}
+    if(va===null||va===undefined)va=-Infinity;
+    if(vb===null||vb===undefined)vb=-Infinity;
+    if(typeof va==='string')return va.localeCompare(vb)*state.dir;
+    return (va-vb)*state.dir;
+  });
+  const pages=Math.max(1,Math.ceil(list.length/state.per));
+  if(state.page>pages)state.page=pages;
+  const slice=list.slice((state.page-1)*state.per,state.page*state.per);
+  $('#logBody').innerHTML=slice.length?slice.map(d=>
+    '<tr>'+COLS.map(c=>{
+      const num=c.num?' class="num"':'';
+      return `<td${num}>${fmtCell(d,c)}</td>`;
+    }).join('')+'</tr>').join('')
+    :'<tr><td colspan="15" style="text-align:center;padding:30px;color:var(--mut)">कुनै नतिजा भेटिएन · No matching rows</td></tr>';
+  /* pager */
+  let btns=[];
+  const add=(label,page,dis,cur)=>btns.push(`<button data-p="${page}" ${dis?'disabled':''} class="${cur?'cur':''}">${label}</button>`);
+  add('‹ अघिल्लो',state.page-1,state.page===1);
+  let ps=[],i;
+  for(i=1;i<=pages;i++){
+    if(i===1||i===pages||Math.abs(i-state.page)<=2)ps.push(i);
+    else if(ps[ps.length-1]!=='…')ps.push('…');
+  }
+  ps.forEach(p=>p==='…'?btns.push('<button disabled>…</button>'):add(toNe(p),p,false,p===state.page));
+  add('अर्को ›',state.page+1,state.page===pages);
+  $('#pager').innerHTML=btns.join('');
+  $('#pinfo').textContent=`कुल ${list.length} दिन · पृष्ठ ${state.page} / ${pages}`;
+}
+/* events */
+$('#q').addEventListener('input',e=>{state.q=e.target.value.trim();state.page=1;renderTable();});
+$('#fStatus').addEventListener('change',e=>{state.status=e.target.value;state.page=1;renderTable();});
+$('#perPage').addEventListener('change',e=>{state.per=+e.target.value;state.page=1;renderTable();});
+$('#logHead').addEventListener('click',e=>{
+  const th=e.target.closest('th');if(!th||!th.dataset.k)return;
+  const c=COLS.find(x=>x.k===th.dataset.k);if(!c.sort)return;
+  if(state.sort===c.k)state.dir*=-1;else{state.sort=c.k;state.dir=1;}
+  renderTable();
+});
+$('#pager').addEventListener('click',e=>{
+  const b=e.target.closest('button');if(!b||b.disabled)return;
+  state.page=+b.dataset.p;renderTable();
+});
+
+/* ================= draw all ================= */
+function drawAll(){drawDaysBar();drawUsage();drawDaily();drawCum();}
+drawAll();
+renderTable();
+let rt;addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(drawAll,200);});
+</script>
+</body>
+</html>

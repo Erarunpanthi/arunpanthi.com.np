@@ -205,12 +205,14 @@ assert.equal(routeFrom404(examPath), '/Psc-preparation/Current-Affairs/exam.html
 assert.equal(routeFrom404(examPath + '/', '?reset=1', '#answers'),
   '/Psc-preparation/Current-Affairs/exam.html?reset=1&date=' + date + '#answers');
 assert.equal(routeFrom404('/unknown-route'), undefined);
-// Unknown routes show the final warning and divert to the homepage after the countdown.
-assert.match(notFound, /Final warning/i);
-assert.match(notFound, /banned from using this website/i);
-assert.match(notFound, /id="redirect-countdown"/);
-assert.equal(routeFrom404('/unknown-route', '', '', true), 'https://arunpanthi.com.np/');
-// The valid dated exam route must never be treated as a 404 / warning.
-assert.notEqual(routeFrom404(examPath, '', '', true), 'https://arunpanthi.com.np/');
+// The 404 page no longer shows the warning, the 404 code, or a timer.
+assert.doesNotMatch(notFound, /banned from using this website/i);
+assert.doesNotMatch(notFound, /<h1 class="error-code">/);
+assert.doesNotMatch(notFound, /id="redirect-countdown"/);
+assert.doesNotMatch(notFound, /Redirecting to homepage in/);
+assert.equal(routeFrom404('/unknown-route', '', '', true), undefined);
+// The valid dated exam route still forwards to the exam template.
+assert.equal(routeFrom404(examPath, '', '', true),
+  '/Psc-preparation/Current-Affairs/exam.html?date=' + date);
 assert.ok(!fs.existsSync(path.join(base, 'exam', 'date=' + date)), 'No generated dated page/folder is required');
 console.log('Current Affairs exam URLs and single-template routing: OK');

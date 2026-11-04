@@ -11,10 +11,42 @@
             fileId: '1U_itdLrTr-4jDDdOUDdKYWlHG_1rm-II'
         },
         {
+            title: 'Construction Materials',
+            description: 'Construction Materials reference book for civil engineering study and exam preparation. Preview provided by Google Drive.',
+            provider: 'drive',
+            fileId: '1Mw2EgjDkZOI55toBpoKZ2jqOZw6JhPAp'
+        },
+        {
             title: 'Soil Mechanics',
             description: 'Soil Mechanics by Ram Krishna Poudel and Ramesh Neupane. Preview provided by Scribd; access may be limited.',
             provider: 'scribd',
             fileId: '735366439'
+        },
+        {
+            title: 'Transportation Engineering I',
+            subject: 'Transportation Engineering',
+            description: 'Transportation Engineering I by Anil Marasini. Preview provided by Scribd; access may be limited.',
+            provider: 'scribd',
+            fileId: '711947484'
+        },
+        {
+            title: 'Sanitary Engineering',
+            subject: 'Sanitation Engineering',
+            description: 'Sanitary Engineering by S. K. Neupane. Preview provided by Scribd; access may be limited.',
+            provider: 'scribd',
+            fileId: '636416506'
+        },
+        {
+            title: 'Engineering Mathematics II',
+            description: 'Engineering Mathematics II reference book for civil engineering study and exam preparation. Preview provided by Scribd; access may be limited.',
+            provider: 'scribd',
+            fileId: '696368210'
+        },
+        {
+            title: 'Engineering Mathematics III',
+            description: 'Engineering Mathematics III reference book for civil engineering study and exam preparation. Preview provided by Scribd; access may be limited.',
+            provider: 'scribd',
+            fileId: '640337306'
         }
     ];
     const cards = document.getElementById('book-cards');
@@ -113,9 +145,11 @@
         'Construction Management',
         'Design of Reinforced Cement Concrete Structures',
         'Sanitation Engineering',
-        'Airport Engineering'
+        'Airport Engineering',
+        'Engineering Mathematics II',
+        'Engineering Mathematics III'
     ];
-    const available = new Set(books.map((book) => book.title));
+    const available = new Set(books.map((book) => book.subject || book.title));
     subjects.forEach((subject, index) => {
         if (available.has(subject)) return;
         const card = document.createElement('article');

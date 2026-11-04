@@ -599,6 +599,29 @@
   text-underline-offset: 3px;
 }
 
+.syllabus-directory-card__link--button {
+  justify-content: center;
+  margin-top: auto;
+  padding: .7rem 1rem;
+  border: 0;
+  border-radius: 10px;
+  background: #17613f;
+  color: #fff;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(23, 97, 63, .25);
+}
+
+.syllabus-directory-card__link--button:hover {
+  background: #0e482e;
+  color: #fff;
+  text-decoration: none;
+}
+
+.syllabus-directory-card__link--button:focus-visible {
+  outline: 3px solid #98c9a3;
+  outline-offset: 3px;
+}
+
 .syllabus-page-note {
   margin-top: 1rem;
   color: #697a70 !important;

@@ -270,7 +270,7 @@
       <select id="perPage">
         <option value="25">२५ पङ्क्ति</option>
         <option value="50">५० पङ्क्ति</option>
-        <option value="150">सबै (१५०)</option>
+        <option value="100000">सबै दिन</option>
       </select>
       <span class="saveinfo" id="saveInfo" aria-live="polite"></span>
       <button class="ctrl-btn" id="btnCsv" type="button">⬇ CSV डाउनलोड</button>
@@ -702,7 +702,7 @@ function inputCell(d, c){
   const ad = esc(d.ad);
   if (c.txt) return `<input type="text" class="cell-in cell-note" data-ad="${ad}" data-k="note" value="${esc(d.note||'')}" placeholder="टिप्पणी लेख्नुहोस्" aria-label="टिप्पणी">`;
   if (c.chk) return `<input type="checkbox" class="cell-chk" data-ad="${ad}" data-k="${c.k}" ${d[c.k]?'checked':''} aria-label="${c.t}">`;
-  return `<input type="number" min="0" step="any" inputmode="decimal" class="cell-in" data-ad="${ad}" data-k="${c.k}" value="${d[c.k]?d[c.k]:''}" placeholder="0" aria-label="${c.t}">`;
+  return `<input type="number" min="0" step="any" inputmode="decimal" class="cell-in" data-ad="${ad}" data-k="${c.k}" value="${d[c.k]||0}" aria-label="${c.t}">`;
 }
 function rowHTML(d){
   return `<tr data-ad="${esc(d.ad)}"${d.ad===TODAY?' class="today"':''}>` + COLS.map(c => {

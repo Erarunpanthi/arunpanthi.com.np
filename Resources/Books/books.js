@@ -85,4 +85,53 @@
         card.append(top, title, description, button);
         cards.append(card);
     });
+
+    // Subjects without a previewable book yet are listed as coming soon.
+    const subjects = [
+        'Engineering Drawing',
+        'Construction Materials',
+        'Strength of Materials',
+        'Fluid Mechanics',
+        'Surveying',
+        'Engineering Geology',
+        'Building Construction and Drawings',
+        'Theory of Structures',
+        'Hydraulics',
+        'Soil Mechanics',
+        'Concrete Technology and Masonry Structures',
+        'Engineering Economics',
+        'Foundation Engineering',
+        'Transportation Engineering',
+        'Estimation and Valuation',
+        'Engineering Hydrology',
+        'Design of Steel and Timber Structures',
+        'Water Supply Engineering',
+        'Irrigation Engineering',
+        'Project Management',
+        'Engineering Professional Practices',
+        'Hydropower Engineering',
+        'Construction Management',
+        'Design of Reinforced Cement Concrete Structures',
+        'Sanitation Engineering',
+        'Airport Engineering'
+    ];
+    const available = new Set(books.map((book) => book.title));
+    subjects.forEach((subject, index) => {
+        if (available.has(subject)) return;
+        const card = document.createElement('article');
+        card.className = 'topic-card';
+        const top = document.createElement('div');
+        top.className = 'topic-top';
+        const number = document.createElement('span');
+        number.className = 'topic-number';
+        number.textContent = String(index + 1).padStart(2, '0');
+        top.append(number);
+        const title = document.createElement('h3');
+        title.textContent = subject;
+        const soon = document.createElement('span');
+        soon.className = 'coming-soon';
+        soon.textContent = 'Book coming soon';
+        card.append(top, title, soon);
+        cards.append(card);
+    });
 })();

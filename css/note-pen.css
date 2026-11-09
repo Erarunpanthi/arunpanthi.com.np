@@ -13,42 +13,44 @@
 .note-pen-layer.is-drawing { pointer-events: auto; touch-action: none; cursor: crosshair; }
 .note-pen-toolbar {
     position: fixed;
-    bottom: 18px;
-    left: 18px;
+    bottom: 12px;
+    left: 12px;
     z-index: 1000;
-    font: 14px/1.4 -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font: 13px/1.35 -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     color: #1f2937;
 }
 .note-pen-toolbar *, .note-pen-toolbar *::before, .note-pen-toolbar *::after { box-sizing: border-box; }
-.note-pen-toolbar button { font: inherit; cursor: pointer; }
+.note-pen-toolbar button { width: auto; font: inherit; cursor: pointer; }
 .note-pen-toggle {
-    display: inline-flex; align-items: center; gap: 7px;
-    border: 0; border-radius: 999px; padding: 10px 16px;
+    display: inline-flex; align-items: center; gap: 6px;
+    min-height: 40px; border: 0; border-radius: 999px; padding: 8px 14px;
     background: #246b38; color: white; font-weight: 700 !important;
     box-shadow: 0 4px 16px #0003;
 }
 .note-pen-panel {
-    width: min(310px, calc(100vw - 36px));
-    margin-bottom: 8px; padding: 14px;
-    border: 1px solid #d6e4da; border-radius: 14px;
+    width: min(248px, calc(100vw - 24px));
+    margin-bottom: 6px; padding: 10px;
+    border: 1px solid #d6e4da; border-radius: 12px;
     background: #fff; box-shadow: 0 8px 30px #0003;
 }
 .note-pen-panel[hidden] { display: none; }
-.note-pen-heading { font-weight: 700; margin-bottom: 8px; }
-.note-pen-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 10px; }
-.note-pen-label { font-weight: 600; min-width: 44px; }
-.note-pen-color {
-    width: 28px; height: 28px; padding: 0; border: 2px solid white;
+.note-pen-heading { font-weight: 700; margin-bottom: 4px; }
+.note-pen-row { display: flex; flex-wrap: wrap; align-items: center; gap: 5px; margin-top: 7px; }
+.note-pen-label { font-weight: 600; min-width: 40px; }
+.note-pen-toolbar .note-pen-color {
+    width: 30px; height: 30px; padding: 0; border: 2px solid white;
     border-radius: 50%; background: var(--pen-color); box-shadow: 0 0 0 1px #aab5ac;
 }
+.note-pen-toolbar .note-pen-color:hover { background: var(--pen-color); }
 .note-pen-color[aria-pressed="true"] { box-shadow: 0 0 0 2px #1f2937; }
 .note-pen-toolbar input[type="range"] { flex: 1; min-width: 80px; accent-color: #246b38; }
 .note-pen-action {
     border: 1px solid #ccd8cf; border-radius: 7px; background: #f7faf8;
-    color: #263b2d; padding: 6px 10px;
+    min-height: 36px; color: #263b2d; padding: 6px 10px;
 }
+.note-pen-toolbar .note-pen-action:hover { background: #eaf3ec; }
 .note-pen-action[aria-pressed="true"] { background: #dcefe0; border-color: #246b38; color: #174c29; }
 .note-pen-action:disabled { opacity: .45; cursor: not-allowed; }
 .note-pen-toolbar button:focus-visible, .note-pen-toolbar input:focus-visible { outline: 3px solid #74a7ef; outline-offset: 2px; }
-.note-pen-help { margin: 10px 0 0; color: #59665d; font-size: 12px; }
+.note-pen-help { margin: 7px 0 0; color: #59665d; font-size: 11px; line-height: 1.35; }
 @media print { .note-pen-toolbar, .note-pen-layer { display: none !important; } }

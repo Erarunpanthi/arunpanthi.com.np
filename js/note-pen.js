@@ -1,7 +1,7 @@
 /* Lightweight, non-destructive freehand annotations for individual note pages. */
 (function () {
   'use strict';
-  var surface = document.querySelector('.syllabus-wrapper');
+  var surface = document.querySelector('[data-note-pen-surface], .syllabus-wrapper');
   if (!surface) return;
 
   var svgNS = 'http://www.w3.org/2000/svg';

@@ -25,7 +25,7 @@
     '<div class="note-pen-row"><button type="button" class="note-pen-action" data-mode="pen" aria-pressed="true">Pen</button>' +
     '<button type="button" class="note-pen-action" data-mode="eraser" aria-pressed="false">Eraser</button>' +
     '<button type="button" class="note-pen-action" data-undo disabled>Undo</button></div>' +
-    '<p class="note-pen-help">Draw over the unchanged note with a mouse, pen or one finger. Scroll with the mouse wheel or two fingers. Eraser removes whole strokes. Close the tool to use links. Marks last until you leave or reload this page.</p></div>' +
+    '<p class="note-pen-help">Draw with a mouse, pen or one finger; scroll with the wheel or two fingers. Eraser removes strokes. Close to use links. Marks disappear when you leave or reload.</p></div>' +
     '<button type="button" class="note-pen-toggle" aria-expanded="false" aria-controls="note-pen-panel">✎ <span>Pen</span></button>';
   document.body.appendChild(toolbar);
 

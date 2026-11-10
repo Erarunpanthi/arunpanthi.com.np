@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exam Countdown Timer for PSC &amp; NEC License Practice | CivPrepMaster</title>
+    <title id="pageTitle">00:00:00</title>
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
         
     <style>
@@ -236,17 +236,7 @@
             .buttons button { padding: 8px 12px; font-size: 0.85em; }
             .control-buttons button { padding: 10px 14px; font-size: 1em; }
         }
-    
-        .timer-intro {
-            max-width: 680px;
-            margin: 0 auto 18px;
-            color: #4a5568;
-            font-size: 0.98rem;
-            line-height: 1.65;
-        }
     </style>
-    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-    <link rel="canonical" href="https://arunpanthi.com.np/Timer">
 </head>
 <body>
 
@@ -256,11 +246,7 @@
 
     
     <div class="container">
-        <h1>Exam Countdown Timer</h1>
-        <p class="timer-intro">A countdown timer that keeps running if you refresh or close the tab &mdash;
-        built for PSC Lok Sewa and NEC License practice papers, mock tests and revision sprints.
-        Press <strong>Start</strong>, pick a preset (25 minutes for a pomodoro, 45&ndash;90 minutes for a
-        full paper), and the clock survives a refresh or a locked phone.</p>
+        <h1>⏱️ Persistent Countdown</h1>
         <div class="timer-display" id="timer">00:00:00</div>
 
         
@@ -304,6 +290,7 @@
 
         // ---- DOM refs ----
         const timerEl = document.getElementById('timer');
+        const pageTitle = document.getElementById('pageTitle');
         const timeLeftSpan = document.getElementById('timeLeft');
         const timeRightSpan = document.getElementById('timeRight');
 
@@ -366,6 +353,7 @@
             const str =
                 `${String(hrs).padStart(2, '0')}:${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
             timerEl.textContent = str;
+            pageTitle.textContent = str;
 
             if (remaining <= 60) {
                 timerEl.style.color = '#dc3545';
@@ -480,6 +468,7 @@
                 saveState(newState);
                 if (timerEl.textContent !== '00:00:00') {
                     timerEl.textContent = '00:00:00';
+                    pageTitle.textContent = '00:00:00';
                 }
                 showMessage("⏰ Time's Up!", "Your countdown timer has completed.", 'success');
                 return;
@@ -650,6 +639,7 @@
             const state = getDefaultState();
             saveState(state);
             updateDisplayAndTitle(0);
+            pageTitle.textContent = '00:00:00';
             timerEl.style.color = '#333';
             showMessage('✕ Timer Cleared', 'Timer has been reset to zero.', 'info');
         }

@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="/assets/fontawesome/css/all.min.css?v=20260924">
 
   <link rel="stylesheet" href="/css/404.css">
+    <link rel="canonical" href="https://arunpanthi.com.np/404">
 </head>
 <body>
 
@@ -67,6 +68,10 @@
     })();
   </script>
 
-  <script src="js/layout.js"></script>
+  <!-- Consolidates the old noindex/duplicate URLs (e.g. /Home.html) onto the
+       single canonical page. Must load synchronously, before anything renders. -->
+  <script src="/js/legacy-redirects.js"></script>
+
+  <script src="/js/layout.js"></script>
 </body>
 </html>

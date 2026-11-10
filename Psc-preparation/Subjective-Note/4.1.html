@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="PSC highway engineering notes on the scope of NRS-2070 and the administrative and technical classification of roads in Nepal.">
+    <meta name="description" content="PSC highway engineering notes on NRS-2070, road classification, vehicle dimensions, design speeds, sight distances and hairpin bends.">
     <meta name="author" content="Arun Panthi">
     <meta name="robots" content="index, follow">
     <meta property="og:title" content="Highway Engineering: Nepal Road Standards | PSC Subjective Note">
@@ -21,6 +21,13 @@
     <style>
         .back-topics-btn { display: inline-block; background: #388e3c; color: #fff; padding: 8px 16px; font-weight: 600; border-radius: 8px; text-decoration: none; margin-top: 30px; }
         .back-topics-btn:hover { background: #2e7d32; color: #fff; }
+        .table-scroll { max-width: 100%; overflow-x: auto; }
+        .table-scroll table { min-width: 480px; }
+        .table-scroll caption { font-weight: 700; text-align: left; padding: 8px 0; }
+        .note-figure { margin: 20px 0; text-align: center; }
+        .note-figure img { width: 100%; max-width: 700px; height: auto; margin: 0 auto; }
+        .note-figure figcaption { margin-top: 8px; font-size: 14px; font-weight: 700; }
+        .formula { padding: 12px; margin: 12px 0; background: #f6fdf6; border-left: 3px solid #388e3c; overflow-x: auto; }
     </style>
 </head>
 <body>
@@ -79,10 +86,182 @@
             <p>Class IV roads are those with an ADT of less than 2,000 PCU in a 20-year perspective period.</p>
         </section>
 
+        <section>
+            <h2 class="section-title">Design Vehicle Dimensions and Axle Load</h2>
+            <p>The maximum dimensions of vehicles and the maximum single axle load considered for the design of roads in Nepal are as follows:</p>
+            <div class="table-scroll" role="region" aria-label="Maximum design vehicle dimensions and axle load" tabindex="0">
+                <table>
+                    <caption>Table 1: Maximum design vehicle dimensions and axle load</caption>
+                    <thead><tr><th scope="col">Parameter</th><th scope="col">Maximum value</th></tr></thead>
+                    <tbody>
+                        <tr><th scope="row">Width</th><td>2.50 m</td></tr>
+                        <tr><th scope="row">Height</th><td>4.75 m</td></tr>
+                        <tr><th scope="row">Length</th><td>18.00 m</td></tr>
+                        <tr><th scope="row">Single axle load</th><td>100 kN</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="table-scroll" role="region" aria-label="Vehicle types and equivalency factors" tabindex="0">
+                <table>
+                    <caption>Table 2: Vehicle types and equivalency factors</caption>
+                    <thead><tr><th scope="col">SN</th><th scope="col">Vehicle type</th><th scope="col">Equivalency factor</th></tr></thead>
+                    <tbody>
+                        <tr><td>1</td><td>Car, auto rickshaw, SUV, light van and pickup</td><td>1.0</td></tr>
+                        <tr><td>2</td><td>Light (mini) truck, tractor, rickshaw</td><td>1.5</td></tr>
+                        <tr><td>3</td><td>Truck, bus, minibus, tractor with trailer</td><td>3.0</td></tr>
+                        <tr><td>4</td><td>Bicycle, motorcycle</td><td>0.5</td></tr>
+                        <tr><td>5</td><td>Non-motorized carts</td><td>6</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">Design Speed</h2>
+            <p>The overall geometric design of a road is a function of design speed. Design speed is decided based on the importance of the road (road class) and the type of terrain. The design speeds to be adopted for various classes of roads are given below.</p>
+            <div class="table-scroll" role="region" aria-label="Design speeds by road class and terrain" tabindex="0">
+                <table>
+                    <caption>Table 3: Design speeds by road class and terrain (km/h)</caption>
+                    <thead><tr><th scope="col">Road class</th><th scope="col">Plain</th><th scope="col">Rolling</th><th scope="col">Mountainous</th><th scope="col">Steep</th></tr></thead>
+                    <tbody>
+                        <tr><th scope="row">I</th><td>120</td><td>100</td><td>80</td><td>60</td></tr>
+                        <tr><th scope="row">II</th><td>100</td><td>80</td><td>60</td><td>40</td></tr>
+                        <tr><th scope="row">III</th><td>80</td><td>60</td><td>40</td><td>30</td></tr>
+                        <tr><th scope="row">IV</th><td>60</td><td>40</td><td>30</td><td>20</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>Design speed should be the guiding criterion for geometric design of the road. In very difficult terrain and unavoidable circumstances, design speed can be reduced to 75% of the values given in Table 3.</p>
+        </section>
+
+        <section>
+            <h2 class="section-title">Stopping Distance</h2>
+            <p>Stopping distance is the distance ahead needed by a driver to bring a vehicle to a complete stop before meeting a stationary object in its path.</p>
+            <p>Stopping distances for various speeds are given below.</p>
+            <div class="table-scroll" role="region" aria-label="Stopping distances by speed" tabindex="0">
+                <table>
+                    <caption>Table 4: Stopping distances by speed</caption>
+                    <thead><tr><th scope="col">Speed (km/h)</th><th scope="col">Stopping distance (m)</th></tr></thead>
+                    <tbody>
+                        <tr><td>20</td><td>20</td></tr>
+                        <tr><td>30</td><td>30</td></tr>
+                        <tr><td>40</td><td>50</td></tr>
+                        <tr><td>60</td><td>80</td></tr>
+                        <tr><td>80</td><td>130</td></tr>
+                        <tr><td>100</td><td>190</td></tr>
+                        <tr><td>120</td><td>260</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">Overtaking Distance</h2>
+            <p>Overtaking distance is the minimum distance that should be available to the driver to overtake another vehicle safely. Overtaking distances for various design speeds are given below.</p>
+            <div class="table-scroll" role="region" aria-label="Minimum overtaking distances by speed" tabindex="0">
+                <table>
+                    <caption>Table 5: Minimum overtaking distances by speed</caption>
+                    <thead><tr><th scope="col">Speed (km/h)</th><th scope="col">Minimum overtaking distance (m)</th></tr></thead>
+                    <tbody>
+                        <tr><td>40</td><td>165</td></tr>
+                        <tr><td>60</td><td>300</td></tr>
+                        <tr><td>80</td><td>470</td></tr>
+                        <tr><td>100</td><td>640</td></tr>
+                        <tr><td>120</td><td>880</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">Hairpin Bends</h2>
+            <p>In hilly areas it may become difficult to avoid bends where the direction of the road reverses. Design criteria for such bends, commonly known as hairpin bends, are given below.</p>
+            <div class="table-scroll" role="region" aria-label="Hairpin bend design parameters" tabindex="0">
+                <table>
+                    <caption>Table 6: Hairpin bend design parameters</caption>
+                    <thead><tr><th scope="col">Parameter</th><th scope="col">Value</th></tr></thead>
+                    <tbody>
+                        <tr><th scope="row">Minimum design speed</th><td>20 km/h</td></tr>
+                        <tr><th scope="row">Minimum radius of curvature</th><td>15 m</td></tr>
+                        <tr><th scope="row">Minimum length of transition curve</th><td>15 m</td></tr>
+                        <tr><th scope="row">Maximum longitudinal gradient</th><td>4%</td></tr>
+                        <tr><th scope="row">Maximum superelevation</th><td>10%</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <ul>
+                <li>A minimum distance of 60 m should be provided between successive bends of consecutive hairpin bends.</li>
+                <li>At hairpin bends, it is preferable to pave the road to the full width of the roadway.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2 class="section-title">Set-Back Distance at Horizontal Curves</h2>
+            <p>Adequate sight distance should be available across the inside of horizontal curves. The set-back distance is the distance from the road centre line within which obstructions should be cleared to provide the required visibility.</p>
+            <figure class="note-figure">
+                <img src="/Psc-preparation/Subjective-Note/images/setback-distance.svg" alt="Schematic of a horizontal curve showing the road centre line, inside lane, line of sight, curve centre and distances R, n and m.">
+                <figcaption>Figure 1: Set-back distance at a horizontal curve</figcaption>
+            </figure>
+            <p>The minimum set-back distance is calculated as:</p>
+            <div class="formula">
+                <p><strong>m = R − (R − n) cos θ</strong></p>
+                <p><strong>θ = S / [2(R − n)]</strong> radians</p>
+            </div>
+            <p>Where:</p>
+            <ul>
+                <li><strong>m</strong> = minimum set-back distance to the sight obstruction, measured from the road centre line (m).</li>
+                <li><strong>R</strong> = radius at the road centre line (m).</li>
+                <li><strong>n</strong> = distance between the road centre line and the centre line of the inside lane (m).</li>
+                <li><strong>S</strong> = sight distance, measured along the road centre line (m).</li>
+                <li><strong>θ</strong> = angle in radians.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2 class="section-title">Maximum Longitudinal Gradients</h2>
+            <ul>
+                <li>Vehicle operating cost is directly related to the longitudinal gradient, so gradients should be kept as small as possible.</li>
+                <li>Gradients should be considered from the early stage of alignment fixing, as flattening them later can be difficult.</li>
+                <li>The maximum gradient depends on the dynamic characteristics of commercial trucks, design speed and the maximum allowable speed reduction while climbing.</li>
+            </ul>
+            <p>For a truck weight-to-power ratio of 120 kg/kW and a maximum speed reduction of 25 km/h below design speed, the maximum gradients are:</p>
+            <div class="table-scroll" role="region" aria-label="Maximum gradients by design speed" tabindex="0">
+                <table>
+                    <caption>Table 7: Maximum longitudinal gradients by design speed</caption>
+                    <thead><tr><th scope="col">Design speed (km/h)</th><th scope="col">Maximum gradient (%)</th></tr></thead>
+                    <tbody>
+                        <tr><td>20</td><td>12</td></tr>
+                        <tr><td>30</td><td>10</td></tr>
+                        <tr><td>40</td><td>9</td></tr>
+                        <tr><td>60</td><td>7</td></tr>
+                        <tr><td>80</td><td>6</td></tr>
+                        <tr><td>100</td><td>5</td></tr>
+                        <tr><td>120</td><td>4</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>The minimum longitudinal gradient for longitudinal drainage is <strong>0.5%</strong>.</p>
+        </section>
+
+        <section>
+            <h2 class="section-title">Grade Compensation</h2>
+            <ul>
+                <li>The maximum longitudinal gradient shall be eased by 0.5% for each rise of 500 m above mean sea level.</li>
+                <li>Due to the loss of tractive effort on curves, the gradient should be eased by the grade compensation calculated below.</li>
+                <li>It is not necessary to compensate grades below 4%.</li>
+            </ul>
+            <div class="formula">
+                <p><strong>Grade compensation (%) = (30 + R) / R</strong></p>
+                <p>Subject to a maximum of <strong>75 / R (%)</strong>, where <strong>R</strong> is the curve radius in metres.</p>
+            </div>
+        </section>
+
         <a href="/Psc-preparation/Subjective-Note/" class="back-topics-btn">Back to Topics</a>
     </main>
     <div id="social-section"></div>
     <div id="footer"></div>
+    <script src="/js/logo.js?v=20261101" defer></script>
     <script src="/js/layout.js?v=20260924" defer></script>
     <script src="/js/note-pen.js?v=20261109-4" defer></script>
 </body>

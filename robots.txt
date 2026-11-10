@@ -2,8 +2,5 @@ User-agent: *
 Allow: /
 Disallow: /admin/
 Disallow: /admin-server/
-# HTML fragments and tooling — not pages, they should never be crawled.
-Disallow: /partials/
-Disallow: /tools/
 
 Sitemap: https://arunpanthi.com.np/sitemap.xml

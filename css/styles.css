@@ -388,16 +388,6 @@ footer hr,
   display: none;
 }
 
-/* Secondary footer rows: study tools and hub links (crawl paths to every
-   indexable page, so no page is reachable only through the sitemap). */
-.footer-tools,
-.footer-links {
-  margin-top: 4px;
-  font-size: 13px;
-  line-height: 1.7;
-  opacity: .92;
-}
-
 /* Wrappers that receive the JS-injected header / social / footer partials.
    Keeping them full-width (and background-free) means the injected blocks always
    line up edge-to-edge with the hero, exactly like the static <header>/<footer>. */

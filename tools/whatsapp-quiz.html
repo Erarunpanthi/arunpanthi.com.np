@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, follow">
+  <title>Daily PSC quiz for WhatsApp | Arun Panthi</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #f4f8f5; color: #182b23; font: 16px/1.55 system-ui, sans-serif; }
+    main { max-width: 760px; margin: auto; padding: 32px 18px 64px; }
+    a { color: #12653f; }
+    .eyebrow { color: #216c48; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; font-size: .8rem; }
+    h1 { margin: .25em 0; font-size: clamp(1.8rem, 5vw, 2.6rem); line-height: 1.15; }
+    .lead { color: #4b6255; }
+    .panel { background: white; border: 1px solid #d5e3d9; border-radius: 16px; padding: 22px; margin-top: 20px; box-shadow: 0 5px 20px #173f2510; }
+    label { font-weight: 700; }
+    input { padding: 9px; border: 1px solid #9cb3a5; border-radius: 8px; font: inherit; max-width: 100%; }
+    .date-line { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+    .field { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; padding: 12px 0; border-bottom: 1px solid #e5eee7; }
+    .field p { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+    button, .channel { border: 0; border-radius: 8px; padding: 9px 14px; background: #176b45; color: white; font: inherit; font-weight: 650; cursor: pointer; text-decoration: none; display: inline-block; }
+    button:hover, .channel:hover { background: #0e5032; }
+    button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid #eda934; outline-offset: 2px; }
+    .copy { flex-shrink: 0; font-size: .88rem; }
+    .answer { background: #ecf8ef; border-radius: 10px; padding: 12px; margin-top: 18px; }
+    .steps { padding-left: 1.3em; }
+    .steps li { margin: .5em 0; }
+    #status { color: #655018; }
+    .source { font-size: .9rem; }
+  </style>
+</head>
+<body>
+<main>
+  <a href="/Psc-preparation/MCQ/">← PSC MCQs</a>
+  <p class="eyebrow">Manual publishing helper</p>
+  <h1>Daily PSC quiz for WhatsApp</h1>
+  <p class="lead">One question per day, ready to enter into your channel. This page does not post or schedule anything on WhatsApp.</p>
+  <div class="panel">
+    <div class="date-line"><label for="quiz-date">Quiz date</label><input id="quiz-date" type="date"></div>
+    <p class="source">The daily selection uses Nepal time and repeats after the available questions. Check the question and answer against the source before posting.</p>
+    <p id="status" role="status" aria-live="polite">Loading PSC questions…</p>
+    <div id="quiz" hidden>
+      <h2>Question and options</h2>
+      <div id="fields"></div>
+      <p class="answer"><strong>Correct answer:</strong> <span id="answer"></span></p>
+      <p class="source"><a id="source" target="_blank" rel="noopener">View source MCQ page ↗</a></p>
+    </div>
+  </div>
+  <section class="panel">
+    <h2>Post it in your channel</h2>
+    <ol class="steps">
+      <li>Open your channel in WhatsApp as an admin.</li>
+      <li>Choose <strong>Quiz</strong> from the attachment menu if available. Copy the question and each option separately, then mark the correct answer and publish.</li>
+      <li>If Quiz is unavailable, create a <strong>Poll</strong> instead and share the correct answer separately. A poll does not automatically mark answers as correct.</li>
+    </ol>
+    <a class="channel" href="https://whatsapp.com/channel/0029Vb94vlQKWEKj8VvNpP3M" target="_blank" rel="noopener">Open WhatsApp channel ↗</a>
+  </section>
+</main>
+<script src="/tools/whatsapp-quiz.js" defer></script>
+</body>
+</html>

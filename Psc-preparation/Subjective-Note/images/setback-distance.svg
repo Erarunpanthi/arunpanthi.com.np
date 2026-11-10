@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 460" role="img" aria-labelledby="title desc">
+  <title id="title">Set-back distance at a horizontal curve</title>
+  <desc id="desc">A schematic curved road, its centre line and inside lane, the line of sight between two points, the curve centre, and the distances R, n and m.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#333"/></marker>
+  </defs>
+  <rect width="700" height="460" rx="12" fill="#f9fcf9"/>
+  <!-- Curve centre at (460,230); road centre radius 260, inside lane radius 220. -->
+  <path d="M 223.6 45.3 A 300 300 0 0 0 223.6 414.7 L 318.2 340.8 A 180 180 0 0 1 318.2 119.2 Z" fill="#e4eae5" stroke="#819184" stroke-width="2"/>
+  <path d="M 255.1 70 A 260 260 0 0 0 255.1 390" fill="none" stroke="#24633b" stroke-width="3" stroke-dasharray="9 6"/>
+  <path d="M 286.6 94.5 A 220 220 0 0 0 286.6 365.5" fill="none" stroke="#326d96" stroke-width="3" stroke-dasharray="4 5"/>
+  <line x1="286.6" y1="94.5" x2="286.6" y2="365.5" stroke="#bc4337" stroke-width="3"/>
+  <circle cx="286.6" cy="94.5" r="5" fill="#bc4337"/><circle cx="286.6" cy="365.5" r="5" fill="#bc4337"/>
+  <line x1="460" y1="230" x2="255.1" y2="70" stroke="#444" stroke-width="2" stroke-dasharray="5 4"/>
+  <circle cx="460" cy="230" r="5" fill="#333"/>
+  <line x1="200" y1="230" x2="286.6" y2="230" stroke="#333" stroke-width="2" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+  <line x1="200" y1="258" x2="240" y2="258" stroke="#333" stroke-width="2" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+  <path d="M 408 230 A 52 52 0 0 1 419 198" fill="none" stroke="#333" stroke-width="2"/>
+  <g fill="#1e2e22" font-family="Arial, sans-serif" font-size="17">
+    <text x="157" y="34" fill="#24633b">Road centre line</text>
+    <text x="20" y="440" fill="#326d96">Inside-lane centre line</text>
+    <text x="302" y="86" fill="#bc4337">Line of sight</text>
+    <text x="340" y="140">R</text><text x="235" y="218">m</text><text x="216" y="282">n</text>
+    <text x="400" y="212">θ</text><text x="472" y="236">Curve centre</text>
+    <text x="390" y="426" font-size="14">Schematic; not to scale</text>
+  </g>
+</svg>

@@ -74,6 +74,7 @@
             }]
         }
     </script>
+    <link rel="stylesheet" href="/css/topic-navigation.css?v=20261110">
 </head>
 
 <body>
@@ -132,21 +133,15 @@
                     Note: In the full UN record, France — which is not listed here — was the second country to use the veto, on 26 June 1946 (the Spanish question). The Republic of China also cast a veto on 13 December 1955, before the UK. The United States cast its first veto on 17 March 1970.
                 </div>
             </div>
-
-            <div style="display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-top: 30px; padding-top: 20px; border-top: 2px solid #e0e0e0;">
-                <button onclick="location.href='/Psc-preparation/MCQ'"
-                    style="background:#388E3C; color:#fff; border:none; padding:8px 16px; font-weight:600; cursor:pointer; border-radius:8px;">
-                    ↑ Topics
-                </button>
-                <button onclick="location.href='/Psc-preparation/MCQ/1.8'"
-                    style="background:#388E3C; color:#fff; border:none; padding:8px 16px; font-weight:600; cursor:pointer; border-radius:8px;">
-                    Next Topic →
-                </button>
-            </div>
         </div>
     </section>
 
     <button class="top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to Top">↑</button>
+    <nav class="topic-navigation" aria-label="Available topic navigation">
+        <a class="topic-navigation-item" href="/Psc-preparation/MCQ/1.2" aria-label="Previous available topic: 1.2"><span>← Previous topic</span><span class="topic-label">Topic 1.2</span></a>
+        <a class="topic-navigation-item" href="/Psc-preparation/MCQ/">Back to Topics</a>
+        <a class="topic-navigation-item" href="/Psc-preparation/MCQ/1.8" aria-label="Next available topic: 1.8"><span>Next topic →</span><span class="topic-label">Topic 1.8</span></a>
+    </nav>
     <div id="social-section"></div>
     <div id="footer"></div>
     <script src="/js/logo.js?v=20261101" defer></script>

@@ -70,6 +70,7 @@
         }
     </script>
     <link rel="stylesheet" href="/css/note-pen.css?v=20261109-4">
+    <link rel="stylesheet" href="/css/topic-navigation.css?v=20261110">
 </head>
 <body>
     <div id="navbar"></div>
@@ -423,24 +424,12 @@
                 <li><a href="https://arunpanthi.com.np/Psc-preparation/">सम्पूर्ण PSC तयारी सामग्री</a></li>
             </ul>
         </div>
-
-        <div class="topic-pager" style="margin-top: 30px; padding-top: 20px; border-top: 2px solid #e0e0e0;">
-            <button onclick="location.href='/Psc-preparation/first-paper-notes/1.2'"
-                style="background:#388E3C; color:#fff; border:none; padding:8px 16px; font-weight:600; cursor:pointer; border-radius:8px;">
-                ← अघिल्लो नोट
-            </button>
-
-            <button onclick="location.href='/Psc-preparation/first-paper-notes/'"
-                style="background:#388E3C; color:#fff; border:none; padding:8px 16px; font-weight:600; cursor:pointer; border-radius:8px;">
-                ↑ सबै नोटहरू
-            </button>
-
-            <button onclick="location.href='/Psc-preparation/first-paper-notes/1.4'"
-                style="background:#388E3C; color:#fff; border:none; padding:8px 16px; font-weight:600; cursor:pointer; border-radius:8px;">
-                अर्को नोट →
-            </button>
-        </div>
     </main>
+    <nav class="topic-navigation" aria-label="Available topic navigation">
+        <a class="topic-navigation-item" href="/Psc-preparation/first-paper-notes/1.2" aria-label="Previous available topic: 1.2"><span>← Previous topic</span><span class="topic-label">Topic 1.2</span></a>
+        <a class="topic-navigation-item" href="/Psc-preparation/first-paper-notes/">Back to Topics</a>
+        <a class="topic-navigation-item" href="/Psc-preparation/first-paper-notes/1.8" aria-label="Next available topic: 1.8"><span>Next topic →</span><span class="topic-label">Topic 1.8</span></a>
+    </nav>
 
     <div id="social-section"></div>
 

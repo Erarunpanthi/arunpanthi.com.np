@@ -172,6 +172,7 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="/css/topic-navigation.css?v=20261110">
 </head>
 
 <body>
@@ -415,27 +416,14 @@
                 </article>
             </section>
         </div>
-               <div class="topic-pager" style="margin-top: 30px; padding-top: 20px; border-top: 2px solid #e0e0e0;">
-        <button onclick="location.href='/Psc-preparation/MCQ/2.13'" 
-            style="background:#388E3C; color:#fff; border:none; padding:8px 16px; font-weight:600; cursor:pointer; border-radius:8px;">
-        ← Previous Topic
-    </button>
-
-    <!-- सबै नोटहरू -->
-    <button onclick="location.href='/Psc-preparation/MCQ/'" 
-            style="background:#388E3C; color:#fff; border:none; padding:8px 16px; font-weight:600; cursor:pointer; border-radius:8px;">
-        ↑ Topics
-    </button>
-
-    <!-- पछिल्लो नोट -->
-    <button onclick="location.href='/Psc-preparation/MCQ/3.2'" 
-            style="background:#388E3C; color:#fff; border:none; padding:8px 16px; font-weight:600; cursor:pointer; border-radius:8px;">
-        Next Topic →
-    </button>
-</div>
     </main>
 
     <button class="top-btn" type="button" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" title="Back to Top" aria-label="Back to top">↑</button>
+    <nav class="topic-navigation" aria-label="Available topic navigation">
+        <a class="topic-navigation-item" href="/Psc-preparation/MCQ/2.11" aria-label="Previous available topic: 2.11"><span>← Previous topic</span><span class="topic-label">Topic 2.11</span></a>
+        <a class="topic-navigation-item" href="/Psc-preparation/MCQ/">Back to Topics</a>
+        <a class="topic-navigation-item" href="/Psc-preparation/MCQ/3.6" aria-label="Next available topic: 3.6"><span>Next topic →</span><span class="topic-label">Topic 3.6</span></a>
+    </nav>
     <div id="social-section"></div>
     <div id="footer"></div>
 

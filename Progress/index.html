@@ -167,7 +167,6 @@
       <span class="chip">🗓️ रेकर्ड: <b id="chipDays"></b> दिन</span>
       <span class="chip">📌 आज: <b id="chipToday"></b></span>
       <span class="chip">✍️ निर्माता: <b id="chipAuthor"></b></span>
-      <span class="chip">📂 स्रोत: <b>loksewa-2083.xlsx</b></span>
     </div>
   </header>
 
@@ -292,8 +291,7 @@
   </section>
 
   <footer>
-    यो ड्यासबोर्ड <b>loksewa-2083.xlsx</b> (mainsheet + Report) बाट स्वतः निर्मित हो ·
-    तथ्याङ्क स्रोत: <b id="fAuthor"></b> · अवधि <b id="fPeriod"></b><br>
+    अवधि <b id="fPeriod"></b><br>
     सबै रकम नेपाली रुपैयाँ (रु) मा · मितिहरू विक्रम सम्बत् (माथि) र इसवी सम्बत् (तल) मा
   </footer>
 </div>
@@ -337,7 +335,6 @@ const STATUS={hit:['b-hit','✓ पुग्यो'],miss:['b-miss','✗ पु�
 $('#chipPeriod').textContent=DATA.meta.bsStart+' – '+DATA.meta.bsEnd;
 $('#chipDays').textContent=toNe(DATA.meta.totalDays);
 $('#chipAuthor').textContent=DATA.meta.author;
-$('#fAuthor').textContent=DATA.meta.author;
 $('#fPeriod').textContent=DATA.meta.bsStart+' – '+DATA.meta.bsEnd+' ('+DATA.meta.adStart+' → '+DATA.meta.adEnd+' AD)';
 
 const R=DATA.report;

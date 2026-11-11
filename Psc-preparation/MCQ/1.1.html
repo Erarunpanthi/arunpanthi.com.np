@@ -82,6 +82,7 @@
             }]
         }
     </script>
+    <link rel="stylesheet" href="/css/topic-navigation.css?v=20261110">
 </head>
 
 <body>
@@ -136,6 +137,11 @@
    </div>
 </section>
 <button class="top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to Top">↑</button>
+    <nav class="topic-navigation" aria-label="Available topic navigation">
+        <span class="topic-navigation-item" aria-disabled="true"><span>← Previous topic</span><span class="topic-label">First topic</span></span>
+        <a class="topic-navigation-item" href="/Psc-preparation/MCQ/">Back to Topics</a>
+        <a class="topic-navigation-item" href="/Psc-preparation/MCQ/1.2" aria-label="Next available topic: 1.2"><span>Next topic →</span><span class="topic-label">Topic 1.2</span></a>
+    </nav>
     <div id="social-section"></div>
     <div id="footer"></div>
     <script src="/js/logo.js?v=20261101" defer></script>

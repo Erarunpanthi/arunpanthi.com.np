@@ -38,6 +38,18 @@ class Page(HTMLParser):
 
 
 class SharedScriptsTest(unittest.TestCase):
+    def test_mcq_topic_pages_have_pen_surface(self):
+        folder = ROOT / "Psc-preparation" / "MCQ"
+        self.assertFalse(Page(folder / "index.html").pen_surface)
+        for path in sorted(folder.glob("*.html")):
+            if path.name == "index.html":
+                continue
+            with self.subTest(page=path.name):
+                page = Page(path)
+                self.assertTrue(page.pen_surface)
+                self.assertIn(("/css/note-pen.css", "v=20261109-4"),
+                              [(style.path, style.query) for style in page.styles])
+
     def test_every_page_has_required_scripts_once(self):
         for section in SECTIONS:
             pages = sorted((ROOT / "Psc-preparation" / section).rglob("*.html"))

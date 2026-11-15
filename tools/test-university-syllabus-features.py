@@ -45,7 +45,8 @@ class SyllabusFeaturesTest(unittest.TestCase):
                 href = f"/Resources/Syllabus/{university}-syllabus"
                 links = [a for a in page.links if a.get("href") == href]
                 self.assertEqual(len(links), 1)
-                self.assertIn("syllabus-directory-card__link--button", links[0].get("class", "").split())
+                self.assertIn("cta-button", links[0].get("class", "").split())
+                self.assertTrue(links[0].get("aria-label"))
                 self.assertTrue((ROOT / f"{university}-syllabus.html").is_file())
 
     def test_individual_pages(self):

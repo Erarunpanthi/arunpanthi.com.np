@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 500" role="img" aria-labelledby="title desc" width="100%">
+  <title id="title">Compaction curve: dry density versus water content</title>
+  <desc id="desc">Graph of dry density against water content. The Standard Proctor curve peaks at about 15 percent water content and 1.81 grams per cubic centimetre. The Modified Proctor curve, obtained with greater compactive effort, peaks at about 11.5 percent water content and 1.95 grams per cubic centimetre. The zero air voids line for a specific gravity of 2.7 lies above and to the right of both curves.</desc>
+  <rect width="760" height="500" fill="#ffffff"/>
+
+  <!-- plot frame -->
+  <rect x="80" y="40" width="600" height="360" fill="#fbfdfb" stroke="#b9c9bb" stroke-width="1"/>
+
+  <!-- grid -->
+  <g stroke="#e2eae3" stroke-width="1">
+    <line x1="80" y1="130" x2="680" y2="130"/>
+    <line x1="80" y1="220" x2="680" y2="220"/>
+    <line x1="80" y1="310" x2="680" y2="310"/>
+  </g>
+  <g stroke="#e6ede7" stroke-width="1">
+    <line x1="200" y1="40" x2="200" y2="400"/>
+    <line x1="320" y1="40" x2="320" y2="400"/>
+    <line x1="440" y1="40" x2="440" y2="400"/>
+    <line x1="560" y1="40" x2="560" y2="400"/>
+  </g>
+
+  <!-- axes -->
+  <line x1="80" y1="400" x2="680" y2="400" stroke="#2e7d32" stroke-width="2"/>
+  <line x1="80" y1="40" x2="80" y2="400" stroke="#2e7d32" stroke-width="2"/>
+
+  <!-- y axis ticks -->
+  <g font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#33443a" text-anchor="end">
+    <text x="72" y="404">1.4</text>
+    <text x="72" y="314">1.6</text>
+    <text x="72" y="224">1.8</text>
+    <text x="72" y="134">2.0</text>
+    <text x="72" y="44">2.2</text>
+  </g>
+  <!-- x axis ticks -->
+  <g font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#33443a" text-anchor="middle">
+    <text x="80" y="418">8</text>
+    <text x="200" y="418">12</text>
+    <text x="320" y="418">16</text>
+    <text x="440" y="418">20</text>
+    <text x="560" y="418">24</text>
+    <text x="680" y="418">28</text>
+  </g>
+
+  <!-- axis titles -->
+  <text x="380" y="452" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="bold" fill="#1b5e20" text-anchor="middle">Water content, w (%)</text>
+  <text x="26" y="220" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="bold" fill="#1b5e20" text-anchor="middle" transform="rotate(-90 26 220)">Dry density, ρd (g/cm³)</text>
+
+  <!-- zero air voids line (G = 2.7) -->
+  <polyline fill="none" stroke="#c62828" stroke-width="2" stroke-dasharray="7 5"
+    points="200,112 290,165 380,212 470,255 560,293 650,328 680,338"/>
+
+  <!-- standard proctor curve -->
+  <polyline fill="none" stroke="#2e7d32" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"
+    points="110,301 155,270 200,247 245,229 290,216 335,225 380,243 425,265 470,297 515,333"/>
+
+  <!-- modified proctor curve -->
+  <polyline fill="none" stroke="#1565c0" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"
+    points="95,211 125,184 155,162 185,153 215,162 260,184 320,216 380,229 440,256"/>
+
+  <!-- standard peak guides -->
+  <line x1="290" y1="216" x2="290" y2="400" stroke="#2e7d32" stroke-width="1" stroke-dasharray="4 4"/>
+  <line x1="80" y1="216" x2="290" y2="216" stroke="#2e7d32" stroke-width="1" stroke-dasharray="4 4"/>
+  <circle cx="290" cy="216" r="4.5" fill="#2e7d32" stroke="#ffffff" stroke-width="1.5"/>
+
+  <!-- modified peak guides -->
+  <line x1="185" y1="153" x2="185" y2="400" stroke="#1565c0" stroke-width="1" stroke-dasharray="4 4"/>
+  <line x1="80" y1="153" x2="185" y2="153" stroke="#1565c0" stroke-width="1" stroke-dasharray="4 4"/>
+  <circle cx="185" cy="153" r="4.5" fill="#1565c0" stroke="#ffffff" stroke-width="1.5"/>
+
+  <!-- MDD callouts -->
+  <text x="88" y="210" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#1b5e20">MDD ≈ 1.81</text>
+  <text x="88" y="147" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#0d47a1">MDD ≈ 1.95</text>
+
+  <!-- OMC callouts under the x axis -->
+  <text x="185" y="434" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="bold" fill="#0d47a1" text-anchor="middle">OMC ≈ 11.5%</text>
+  <text x="290" y="434" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="bold" fill="#1b5e20" text-anchor="middle">OMC ≈ 15%</text>
+
+  <!-- dry side / wet side -->
+  <text x="185" y="388" font-family="Arial, Helvetica, sans-serif" font-size="11.5" font-style="italic" fill="#55665a" text-anchor="middle">← dry of optimum</text>
+  <text x="430" y="388" font-family="Arial, Helvetica, sans-serif" font-size="11.5" font-style="italic" fill="#55665a" text-anchor="middle">wet of optimum →</text>
+
+  <!-- legend -->
+  <rect x="458" y="48" width="216" height="94" fill="#ffffff" stroke="#c3d2c5" stroke-width="1" rx="4"/>
+  <g stroke-linecap="round">
+    <line x1="470" y1="70" x2="502" y2="70" stroke="#2e7d32" stroke-width="2.6"/>
+    <line x1="470" y1="96" x2="502" y2="96" stroke="#1565c0" stroke-width="2.6"/>
+    <line x1="470" y1="122" x2="502" y2="122" stroke="#c62828" stroke-width="2" stroke-dasharray="7 5"/>
+  </g>
+  <g font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#33443a">
+    <text x="510" y="74">Standard Proctor</text>
+    <text x="510" y="100">Modified Proctor</text>
+    <text x="510" y="126">Zero air voids (S = 100%)</text>
+  </g>
+</svg>

@@ -29,6 +29,16 @@
     <link rel="stylesheet" href="/Psc-preparation/Subjective-Note/subjective.css?v=20261101">
 
     <style>
+        .subjective-index .notes-button-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-top: auto;
+        }
+        .subjective-index .notes-button-group .notes-button { width: 100%; padding: 10px 11px; font-size: .8rem; }
+        @media (max-width: 380px) {
+            .subjective-index .notes-button-group { grid-template-columns: 1fr; }
+        }
         body {
             -webkit-user-select: none;
             -moz-user-select: none;
@@ -149,7 +159,7 @@
         <section class="syllabus-section" aria-labelledby="section-b">
             <header class="section-heading"><div><span class="section-letter">B</span><h2 id="section-b">Geotechnical Engineering</h2></div><p>25 marks</p></header>
             <div class="topic-grid">
-                <article class="topic-card available"><div class="topic-top"><span class="topic-number">2.1</span></div><h3>Soil Mechanics</h3><p>Compaction, OMC, Proctor tests, factors affecting compaction, field methods and compaction control.</p><a class="notes-button" href="/Psc-preparation/Subjective-Note/2.1">View notes <span aria-hidden="true">→</span></a></article>
+                <article class="topic-card available"><div class="topic-top"><span class="topic-number">2.1</span></div><h3>Soil Mechanics</h3><p>Compaction, OMC, Proctor tests, shear strength, failure criteria, Mohr’s circle and soil testing.</p><div class="notes-button-group"><a class="notes-button" href="/Psc-preparation/Subjective-Note/2.1">Compaction <span aria-hidden="true">→</span></a><a class="notes-button" href="/Psc-preparation/Subjective-Note/2.4">Shear Strength <span aria-hidden="true">→</span></a></div></article>
                 <article class="topic-card"><div class="topic-top"><span class="topic-number">2.2</span></div><h3>Foundation Engineering</h3><p>Types, earth pressure, bearing capacity, foundation design and settlement considerations.</p><span class="coming-soon">Notes coming soon</span></article>
                 <article class="topic-card"><div class="topic-top"><span class="topic-number">2.3</span></div><h3>Site Investigation and Soil Exploration</h3><p>Purpose, boring, in-situ tests, sampling, laboratory tests and reporting.</p><span class="coming-soon">Notes coming soon</span></article>
             </div>

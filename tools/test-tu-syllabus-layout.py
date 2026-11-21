@@ -14,9 +14,12 @@ class LayoutParser(HTMLParser):
         self.parents = {}
         self.hidden = set()
         self.links = []
+        self.content_no_lazy = False
 
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
+        if "syllabus-content" in attrs.get("class", "").split():
+            self.content_no_lazy = "data-no-lazy" in attrs
         if tag == "a" and any(item[1] == "table-of-contents" for item in self.stack):
             if attrs.get("href", "").startswith("#"):
                 self.links.append(attrs["href"][1:])
@@ -42,6 +45,9 @@ class LayoutTest(unittest.TestCase):
         page.feed(PAGE.read_text(encoding="utf-8"))
         self.assertEqual(page.errors, [])
         self.assertEqual(page.stack, [])
+        # Long semester sections must not be hidden by the lazy loader's
+        # intersection threshold, which they may never fit within the viewport.
+        self.assertTrue(page.content_no_lazy)
         self.assertTrue(page.links)
         for target in page.links:
             with self.subTest(target=target):

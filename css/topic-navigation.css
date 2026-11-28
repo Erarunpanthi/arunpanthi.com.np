@@ -1,0 +1,44 @@
+/* Navigation between available PSC note and MCQ pages. */
+.topic-navigation {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    width: min(800px, calc(100% - 24px));
+    margin: 30px auto;
+}
+.topic-navigation .topic-navigation-item {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    min-height: 64px;
+    padding: 10px 6px;
+    border-radius: 8px;
+    background: #2e7d32;
+    color: #fff;
+    font: 700 14px/1.3 -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    text-align: center;
+    text-decoration: none;
+}
+.topic-navigation a.topic-navigation-item:hover {
+    background: #1b5e20;
+    color: #fff;
+    text-decoration: none;
+}
+.topic-navigation a.topic-navigation-item:focus-visible {
+    outline: 3px solid #edaa29;
+    outline-offset: 3px;
+}
+.topic-navigation .topic-navigation-item[aria-disabled="true"] {
+    background: #e2e8e3;
+    color: #506154;
+    cursor: not-allowed;
+}
+.topic-navigation .topic-label { margin-top: 3px; font-size: 12px; font-weight: 400; }
+@media (max-width: 480px) {
+    .topic-navigation { gap: 6px; }
+    .topic-navigation .topic-navigation-item { font-size: 12px; }
+    .topic-navigation .topic-label { font-size: 11px; }
+}

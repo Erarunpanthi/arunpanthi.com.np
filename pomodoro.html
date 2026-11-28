@@ -1,0 +1,1409 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+  <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large">
+  <meta http-equiv="Content-Language" content="en">
+
+  <title>Pomodoro Timer — Focus Session | CivPrepMaster</title>
+  <meta name="description" content="Free Pomodoro timer for focused study sessions — civil engineering exam prep, PSC Loksewa and NEC License practice. Work in 25-minute focus sprints with short and long breaks.">
+  <meta name="keywords" content="Pomodoro timer, focus timer, study timer, civil engineering exam prep, PSC Loksewa, NEC License, break timer">
+
+  <link rel="canonical" href="https://arunpanthi.com.np/pomodoro">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="/Photos/logo.png">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+
+  <!-- Site theme (green & white) + icons -->
+  <link rel="stylesheet" href="/css/styles.css?v=20260924">
+  <link rel="stylesheet" href="/assets/fontawesome/css/all.min.css?v=20260924">
+  <link rel="stylesheet" href="/css/shared.css">
+
+  <!-- Pomodoro timer component styles (green & white) -->
+  <style>
+    :root{
+      --timer-bg:#ffffff;
+      --timer-surface:#ffffff;
+      --timer-surface-2:#f1f8e9;
+      --timer-text:#1b5e20;
+      --timer-text-secondary:#5a7a5a;
+      --accent:#2e7d32;
+      --accent-work:#2e7d32;
+      --accent-break:#4caf50;
+      --accent-long-break:#1b5e20;
+      --ring-bg:#e8f5e9;
+      --shadow:0 8px 32px rgba(27,94,32,0.14);
+      --radius:20px;
+      --transition:.3s cubic-bezier(.4,0,.2,1);
+      --btn-size:56px;
+      --btn-size-lg:68px;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{
+      font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;
+      color:var(--timer-text);
+      min-height:100vh;
+      -webkit-tap-highlight-color:transparent;
+      -webkit-font-smoothing:antialiased;
+    }
+    .container{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:2rem;
+      padding:2rem 1rem;
+      width:100%;
+      max-width:560px;
+      margin:0 auto;
+    }
+    .header{
+      display:flex;
+      align-items:center;
+      gap:.6rem;
+      opacity:.9;
+    }
+    .header .dot{
+      width:10px;height:10px;border-radius:50%;background:var(--accent-work);
+      box-shadow:0 0 12px var(--accent-work);
+      animation:pulse-dot 2s ease-in-out infinite
+    }
+    @keyframes pulse-dot{
+      0%,100%{box-shadow:0 0 8px var(--accent-work)}
+      50%{box-shadow:0 0 20px var(--accent-work),0 0 36px rgba(46,125,50,0.5)}
+    }
+    .header h1{
+      font-size:1.3rem;font-weight:600;letter-spacing:-.03em;color:var(--timer-text)
+    }
+    .timer-card{
+      background:var(--timer-surface);
+      border:1px solid rgba(27,94,32,0.10);
+      border-radius:var(--radius);
+      padding:2.5rem 2rem 2rem;
+      box-shadow:var(--shadow);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:1.8rem;
+      width:100%;
+      backdrop-filter:blur(10px);
+      transition:all var(--transition)
+    }
+    .ring-container{position:relative;width:260px;height:260px}
+    .ring-container svg{width:100%;height:100%;transform:rotate(-90deg)}
+    .ring-bg{fill:none;stroke:var(--ring-bg);stroke-width:6}
+    .ring-progress{fill:none;stroke:var(--accent);stroke-width:6;stroke-linecap:round;
+      transition:stroke-dashoffset .25s linear,stroke var(--transition)}
+    .ring-glow{fill:none;stroke:var(--accent);stroke-width:12;stroke-linecap:round;
+      opacity:.15;filter:blur(8px);transition:stroke-dashoffset .25s linear,stroke var(--transition)}
+    .timer-display{position:absolute;inset:0;display:flex;flex-direction:column;
+      align-items:center;justify-content:center;gap:.3rem}
+    .time{font-size:4.2rem;font-weight:700;letter-spacing:-.04em;font-variant-numeric:tabular-nums;
+      font-family:'SF Mono','JetBrains Mono','Fira Code','Consolas',monospace;
+      color:var(--timer-text);line-height:1;transition:color var(--transition)}
+    .time.paused{color:var(--timer-text-secondary);opacity:.7}
+    .time.auto-paused-indicator{animation:subtle-blink 2s ease-in-out infinite}
+    @keyframes subtle-blink{0%,100%{opacity:.7}50%{opacity:.4}}
+    .session-label{font-size:1rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;
+      color:var(--timer-text);transition:color var(--transition)}
+    .mode-tabs{display:flex;gap:.4rem;background:var(--timer-surface-2);border-radius:40px;padding:.35rem;
+      width:100%;max-width:380px;border:1px solid rgba(27,94,32,0.08)}
+    .mode-tab{flex:1;padding:.7rem .6rem;border-radius:40px;border:none;background:transparent;
+      color:var(--timer-text-secondary);cursor:pointer;font-size:.82rem;font-weight:500;
+      transition:all var(--transition);white-space:nowrap;font-family:inherit}
+    .mode-tab:hover{color:var(--timer-text);background:rgba(27,94,32,0.06)}
+    .mode-tab.active{background:var(--accent);color:#fff;font-weight:600;box-shadow:0 4px 16px rgba(27,94,32,0.25)}
+    .mode-tab.active[data-mode="work"]{background:var(--accent-work)}
+    .mode-tab.active[data-mode="short-break"]{background:var(--accent-break);color:#1a1a1a}
+    .mode-tab.active[data-mode="long-break"]{background:var(--accent-long-break);color:#fff}
+    .controls{display:flex;align-items:center;justify-content:center;gap:1rem}
+    .btn{min-width:44px;min-height:44px;border-radius:50%;border:none;cursor:pointer;
+      font-size:1.3rem;display:flex;align-items:center;justify-content:center;
+      transition:all var(--transition);font-family:inherit;outline:none;padding:0}
+    .btn-play{width:var(--btn-size-lg);height:var(--btn-size-lg);background:var(--accent);
+      color:#fff;font-size:1.6rem;box-shadow:0 8px 28px rgba(46,125,50,0.35)}
+    .btn-play:hover{transform:scale(1.06);box-shadow:0 12px 36px rgba(46,125,50,0.45)}
+    .btn-play:active{transform:scale(.96)}
+    .btn-play.running{background:#5a7a5a;box-shadow:0 4px 16px rgba(27,94,32,0.25);color:#fff}
+    .btn-play.running:hover{background:#6b8a6b}
+    .btn-secondary{width:var(--btn-size);height:var(--btn-size);background:var(--timer-surface-2);
+      color:var(--timer-text-secondary);font-size:1rem;border:1px solid rgba(27,94,32,0.12)}
+    .btn-secondary:hover{background:#dcedc8;color:var(--timer-text);border-color:rgba(27,94,32,0.25)}
+    .btn-secondary:active{transform:scale(.93)}
+    .btn-ghost,.btn-report{background:none;border:none;color:var(--timer-text-secondary);cursor:pointer;
+      font-size:.75rem;padding:.4rem .7rem;border-radius:12px;transition:all var(--transition);
+      white-space:nowrap;opacity:.7;font-family:inherit}
+    .btn-ghost:hover,.btn-report:hover{opacity:1;color:#2e7d32;background:rgba(46,125,50,0.08)}
+    .btn-report{background:rgba(27,94,32,0.03);margin-left:.2rem}
+    .session-info{display:flex;align-items:center;justify-content:center;gap:.8rem;font-size:.8rem;
+      color:var(--timer-text-secondary);letter-spacing:.02em;flex-wrap:wrap}
+    .session-dots{display:flex;gap:.4rem;align-items:center}
+    .session-dot{width:8px;height:8px;border-radius:50%;background:var(--ring-bg);transition:all var(--transition)}
+    .session-dot.completed{background:var(--accent-work);box-shadow:0 0 8px rgba(46,125,50,0.5)}
+    .session-dot.current{background:var(--accent-work);box-shadow:0 0 14px rgba(46,125,50,0.7);
+      animation:pulse-dot-sm 1.5s ease-in-out infinite}
+    @keyframes pulse-dot-sm{0%,100%{box-shadow:0 0 8px rgba(46,125,50,0.5)}50%{box-shadow:0 0 18px rgba(46,125,50,0.9)}}
+    .session-settings{display:flex;align-items:center;gap:.4rem;background:var(--timer-surface-2);
+      border-radius:20px;padding:.25rem .6rem;border:1px solid rgba(27,94,32,0.12)}
+    .session-settings label{font-size:.7rem;color:var(--timer-text-secondary);opacity:.8}
+    .session-input{width:44px;background:transparent;border:none;color:var(--timer-text);font-family:inherit;
+      font-size:.8rem;text-align:center;font-weight:600;outline:none;padding:.2rem}
+    .session-btn{background:none;border:none;color:var(--timer-text-secondary);cursor:pointer;font-size:1.2rem;
+      line-height:1;padding:.4rem;min-width:32px;min-height:32px;display:flex;align-items:center;
+      justify-content:center;transition:color var(--transition);border-radius:50%}
+    .session-btn:hover{color:var(--timer-text);background:rgba(27,94,32,0.08)}
+    .total-timer-section{display:flex;align-items:center;gap:.6rem;font-size:.75rem;
+      color:var(--timer-text-secondary);flex-wrap:wrap;justify-content:center;padding-top:.6rem;
+      margin-top:.2rem;border-top:1px solid rgba(27,94,32,0.10);width:100%}
+    .total-timer-item{display:flex;align-items:center;gap:.35rem;white-space:nowrap;
+      background:var(--timer-surface-2);padding:.35rem .7rem;border-radius:20px;
+      border:1px solid rgba(27,94,32,0.08);transition:all var(--transition)}
+    .total-timer-item .tt-icon{font-size:.85rem}
+    .total-timer-item .tt-value{font-weight:600;color:#5a7a5a;font-variant-numeric:tabular-nums;
+      font-family:'SF Mono','JetBrains Mono','Fira Code','Consolas',monospace}
+    .total-timer-item.focus-total .tt-icon{color:var(--accent-work)}
+    .total-timer-item.break-total .tt-icon{color:var(--accent-break)}
+    .total-timer-item.total-sum{background:rgba(27,94,32,0.05);border:1px solid rgba(27,94,32,0.12)}
+    .total-timer-item.total-sum .tt-value{color:var(--timer-text);font-weight:700}
+    .toast{position:fixed;top:2rem;left:50%;transform:translateX(-50%) translateY(-120px);
+      background:var(--timer-surface-2);color:var(--timer-text);padding:.9rem 1.6rem;border-radius:40px;
+      font-weight:500;font-size:.9rem;box-shadow:0 12px 40px rgba(27,94,32,0.15);
+      border:1px solid rgba(27,94,32,0.12);z-index:100;
+      transition:transform .4s cubic-bezier(.175,.885,.32,1.275);pointer-events:none;white-space:nowrap}
+    .toast.show{transform:translateX(-50%) translateY(0)}
+    .toast.break-toast{border-color:rgba(76,175,80,0.4);background:#e8f5e9}
+    .toast.warn-toast{border-color:rgba(230,81,0,0.4);background:#fffde7;color:#e65100}
+
+    .report-overlay{position:fixed;inset:0;background:rgba(27,94,32,0.75);backdrop-filter:blur(6px);
+      z-index:200;display:none;align-items:center;justify-content:center;padding:1.5rem}
+    .report-overlay.open{display:flex;animation:fadeIn .25s ease}
+    @keyframes fadeIn{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:scale(1)}}
+    .report-modal{background:var(--timer-bg);border:1px solid rgba(27,94,32,0.12);
+      border-radius:var(--radius);max-width:920px;width:100%;max-height:90vh;
+      padding:1.8rem 1.8rem 1.5rem;box-shadow:0 24px 64px rgba(27,94,32,0.2);
+      display:flex;flex-direction:column;overflow:hidden}
+    .report-header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;
+      gap:.8rem;margin-bottom:1.2rem}
+    .report-header h2{font-size:1.3rem;font-weight:600;color:var(--timer-text)}
+    .report-header h2 span{color:var(--accent-work)}
+    .report-actions{display:flex;gap:.5rem;align-items:center}
+    .report-actions button{background:var(--timer-surface-2);border:none;color:var(--timer-text-secondary);
+      padding:.4rem .9rem;border-radius:20px;font-size:.75rem;cursor:pointer;
+      transition:all var(--transition);font-family:inherit;border:1px solid rgba(27,94,32,0.12)}
+    .report-actions button:hover{background:#dcedc8;color:var(--timer-text);border-color:rgba(27,94,32,0.25)}
+    .report-actions .close-btn{background:transparent;font-size:1.3rem;padding:0 .6rem;border:none}
+    .report-actions .close-btn:hover{color:#2e7d32;background:transparent}
+    .report-scroll{overflow-y:auto;flex:1;padding-right:.2rem}
+    .report-scroll::-webkit-scrollbar{width:4px}
+    .report-scroll::-webkit-scrollbar-thumb{background:#b9d7b9;border-radius:4px}
+    .report-table-wrap{overflow-x:auto;margin-bottom:1.2rem;border-radius:12px;
+      border:1px solid rgba(27,94,32,0.10)}
+    .report-table{width:100%;border-collapse:collapse;font-size:.82rem;min-width:420px}
+    .report-table th{background:var(--timer-surface-2);color:var(--timer-text-secondary);font-weight:600;
+      text-transform:uppercase;letter-spacing:.04em;font-size:.68rem;padding:.7rem .9rem;
+      text-align:left;border-bottom:1px solid rgba(27,94,32,0.10);position:sticky;top:0;z-index:2}
+    .report-table td{padding:.6rem .9rem;border-bottom:1px solid rgba(27,94,32,0.06);
+      color:#5a7a5a;font-variant-numeric:tabular-nums}
+    .report-table tr:hover td{background:rgba(27,94,32,0.04)}
+    .report-table tr.today-row td{background:rgba(46,125,50,0.08)}
+    .report-table .total-row td{background:rgba(46,125,50,0.08);font-weight:600;color:var(--timer-text);
+      border-top:2px solid rgba(46,125,50,0.25)}
+    .report-table .focus-col{color:var(--accent-work)}
+    .report-table .break-col{color:var(--accent-break)}
+    .today-badge{display:inline-block;font-size:.58rem;background:var(--accent-work);color:#fff;
+      padding:.05rem .35rem;border-radius:6px;margin-left:.4rem;letter-spacing:.04em}
+    .report-chart-wrap{background:var(--timer-surface-2);border-radius:12px;padding:1rem .5rem .3rem;
+      border:1px solid rgba(27,94,32,0.08);margin-top:.2rem;overflow-x:auto}
+    .report-chart-wrap canvas{display:block;border-radius:6px}
+    .report-empty{text-align:center;padding:2.5rem 0;color:var(--timer-text-secondary)}
+    .report-empty .big-icon{font-size:2.8rem;display:block;margin-bottom:.8rem;opacity:.4}
+
+    @media(max-width:480px){
+      .container{padding:1rem;gap:1.5rem}
+      .timer-card{padding:1.8rem 1.2rem 1.5rem;gap:1.4rem;border-radius:16px}
+      .ring-container{width:210px;height:210px}
+      .time{font-size:3.2rem}
+      .btn-play{width:56px;height:56px;font-size:1.3rem}
+      .btn-secondary{width:44px;height:44px;font-size:.9rem}
+      .mode-tab{font-size:.7rem;padding:.55rem .35rem}
+      .total-timer-section{font-size:.68rem}
+      .btn-ghost,.btn-report{font-size:.65rem;padding:.3rem .5rem}
+      .report-modal{padding:1rem;max-height:95vh}
+      .report-table{font-size:.7rem;min-width:320px}
+    }
+  </style>
+
+  <!-- Structured Data: WebSite -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "CivPrepMaster",
+    "url": "https://arunpanthi.com.np",
+    "description": "Free Pomodoro timer and study tools for civil engineering exam preparation in Nepal."
+  }
+  </script>
+
+  <!-- Structured Data: Organization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "CivPrepMaster",
+    "url": "https://arunpanthi.com.np",
+    "logo": "/Photos/logo.png",
+    "sameAs": [
+      "https://www.facebook.com/arun.panthi27",
+      "https://www.tiktok.com/@er.arunpanthi",
+      "https://www.youtube.com/@erarunpanthi"
+    ]
+  }
+  </script>
+
+  <!-- Structured Data: Breadcrumb -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://arunpanthi.com.np/" },
+      { "@type": "ListItem", "position": 2, "name": "Pomodoro Timer", "item": "https://arunpanthi.com.np/pomodoro" }
+    ]
+  }
+  </script>
+</head>
+
+<body>
+  <a href="#main-content" class="skip-link" aria-label="Skip to main content">Skip to main content</a>
+  <div id="navbar"></div>
+
+  <main id="main-content" tabindex="-1">
+    <header class="hero">
+      <h1>Pomodoro Timer — Focus Session</h1>
+      <p>Stay focused while preparing for civil engineering exams. Work in 25-minute focus sprints with short and long breaks — built for TU, PU, KU, IOE, PSC Loksewa and NEC License study.</p>
+    </header>
+
+    <section class="section" id="pomodoro-section">
+      <div class="container">
+        <div class="header">
+          <div class="dot"></div>
+          <h1>Pomodoro</h1>
+        </div>
+
+        <div class="timer-card" id="timerCard">
+          <div class="ring-container">
+            <svg viewBox="0 0 260 260">
+              <circle class="ring-bg" cx="130" cy="130" r="120"/>
+              <circle class="ring-glow" cx="130" cy="130" r="120" stroke-dasharray="753.98" stroke-dashoffset="0" id="ringGlow"/>
+              <circle class="ring-progress" cx="130" cy="130" r="120" stroke-dasharray="753.98" stroke-dashoffset="0" id="ringProgress"/>
+            </svg>
+            <div class="timer-display">
+              <span class="time" id="timeDisplay">25:00</span>
+              <span class="session-label" id="sessionLabel">Focus</span>
+            </div>
+          </div>
+
+          <div class="mode-tabs" id="modeTabs">
+            <button class="mode-tab active" data-mode="work" data-duration="25">Focus</button>
+            <button class="mode-tab" data-mode="short-break" data-duration="5">Short Break</button>
+            <button class="mode-tab" data-mode="long-break" data-duration="15">Long Break</button>
+          </div>
+
+          <div class="controls">
+            <button class="btn btn-secondary" id="btnReset" title="Reset Timer" aria-label="Reset Timer">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+            </button>
+            <button class="btn btn-play" id="btnPlay" aria-label="Play/Pause">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" id="iconPlay"><polygon points="6,3 20,12 6,21"/></svg>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" id="iconPause" style="display:none;"><rect x="4" y="3" width="6" height="18" rx="1.5"/><rect x="14" y="3" width="6" height="18" rx="1.5"/></svg>
+            </button>
+            <button class="btn btn-secondary" id="btnSkip" title="Skip Session" aria-label="Skip Session">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 4 15 12 5 20 5 4"/><line x1="19" y1="5" x2="19" y2="19"/></svg>
+            </button>
+          </div>
+
+          <div class="session-info">
+            <span>Sessions</span>
+            <div class="session-dots" id="sessionDots"></div>
+            <span id="sessionCount">0 / 4</span>
+            <div class="session-settings">
+              <label for="sessionInput">🔁</label>
+              <button class="session-btn" id="sessionDecrement" aria-label="Decrease sessions">−</button>
+              <input type="number" id="sessionInput" class="session-input" value="4" min="1" max="500" step="1">
+              <button class="session-btn" id="sessionIncrement" aria-label="Increase sessions">+</button>
+            </div>
+          </div>
+
+          <div class="total-timer-section">
+            <span style="opacity:.6;font-size:.7rem;">Today</span>
+            <div class="total-timer-item focus-total"><span class="tt-icon">⏱</span><span>Focus</span><span class="tt-value" id="totalFocusDisplay">0m</span></div>
+            <div class="total-timer-item break-total"><span class="tt-icon">☕</span><span>Break</span><span class="tt-value" id="totalBreakDisplay">0m</span></div>
+            <div class="total-timer-item total-sum" title="Total combined time"><span class="tt-icon">⏳</span><span>Total</span><span class="tt-value" id="totalHoursValue">0.0h</span></div>
+            <button class="btn-ghost" id="totalTimerReset">↺ Reset Stats</button>
+            <button class="btn-report" id="btnReport">📊 Report</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div id="social-section"></div>
+  </main>
+
+  <!-- Toast notification -->
+  <div class="toast" id="toast"></div>
+
+  <!-- Report overlay -->
+  <div class="report-overlay" id="reportOverlay">
+    <div class="report-modal">
+      <div class="report-header">
+        <h2>📊 <span>Pomodoro</span> Daily Log</h2>
+        <div class="report-actions">
+          <button id="exportCsvBtn">⬇ CSV</button>
+          <button id="reportCloseBtn" class="close-btn" aria-label="Close">✕</button>
+        </div>
+      </div>
+      <div class="report-scroll" id="reportScroll">
+        <div id="reportContent"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="footer"></div>
+  <script src="/js/layout.js?v=20260924" defer></script>
+  <script src="/js/logo.js?v=20261101"></script>
+
+  <script>
+(function () {
+  'use strict';
+
+  /* ================================================================
+     CONFIG
+  ================================================================ */
+  const TICK_MS               = 250;
+  const INACTIVITY_WARN_MS    = 4 * 60 * 1000;   // 4 min hidden → warn
+  const INACTIVITY_FREEZE_MS  = 60 * 1000;       // +1 min hidden → freeze
+  const STATE_KEY             = 'pomodoro-timer-state';
+  const TOTALS_PREFIX         = 'pomodoro-totals-';
+
+  const MODES = {
+    work:          { label:'Focus',       duration:25*60, accent:'#2e7d32' },
+    'short-break': { label:'Short Break', duration: 5*60, accent:'#4caf50' },
+    'long-break':  { label:'Long Break',  duration:15*60, accent:'#1b5e20' }
+  };
+
+  const CIRCUMFERENCE = 2 * Math.PI * 120;
+
+  /* ================================================================
+     DOM
+  ================================================================ */
+  const $ = (id) => document.getElementById(id);
+  const timeDisplay      = $('timeDisplay');
+  const sessionLabel     = $('sessionLabel');
+  const ringProgress     = $('ringProgress');
+  const ringGlow         = $('ringGlow');
+  const btnPlay          = $('btnPlay');
+  const btnReset         = $('btnReset');
+  const btnSkip          = $('btnSkip');
+  const iconPlay         = $('iconPlay');
+  const iconPause        = $('iconPause');
+  const modeTabs         = $('modeTabs');
+  const sessionDotsCont  = $('sessionDots');
+  const sessionCount     = $('sessionCount');
+  const toastEl          = $('toast');
+  const sessionInput     = $('sessionInput');
+  const sessionDecrement = $('sessionDecrement');
+  const sessionIncrement = $('sessionIncrement');
+  const totalFocusDisp   = $('totalFocusDisplay');
+  const totalBreakDisp   = $('totalBreakDisplay');
+  const totalHoursValue  = $('totalHoursValue');
+  const totalTimerReset  = $('totalTimerReset');
+  const btnReport        = $('btnReport');
+  const reportOverlay    = $('reportOverlay');
+  const reportContent    = $('reportContent');
+  const reportCloseBtn   = $('reportCloseBtn');
+  const exportCsvBtn     = $('exportCsvBtn');
+
+  ringProgress.style.strokeDasharray = CIRCUMFERENCE;
+  ringGlow.style.strokeDasharray     = CIRCUMFERENCE;
+
+  /* ================================================================
+     STATE
+  ================================================================ */
+  let currentMode        = 'work';
+  let totalSeconds       = MODES.work.duration;
+  let remainingSeconds   = totalSeconds;
+  let isRunning          = false;
+  let endTime            = null;
+  let lastTickTime       = 0;
+  let tickerId           = null;
+  let lastStateSave      = 0;
+
+  let completedWorkSessions = 0;
+  let MAX_WORK_SESSIONS     = 4;
+  let pausedByFreeze        = false;
+
+  let totalFocusSeconds  = 0;
+  let totalBreakSeconds  = 0;
+  let currentDateKey     = todayKey();
+
+  let hiddenSince   = null;
+  let warningPlayed = false;
+
+  let audioCtx = null;
+  let wakeLockSentinel = null;
+
+  let pendingResumeEndTime = null;
+
+  /* ================================================================
+     DATE / STORAGE HELPERS
+  ================================================================ */
+  function todayKey() {
+    const d = new Date();
+    return d.getFullYear() + '-' +
+           String(d.getMonth() + 1).padStart(2, '0') + '-' +
+           String(d.getDate()).padStart(2, '0');
+  }
+  function totalsKey(dateStr) { return TOTALS_PREFIX + (dateStr || currentDateKey || todayKey()); }
+  function isDateKey(s) { return /^\d{4}-\d{2}-\d{2}$/.test(s); }
+
+  function loadTotals() {
+    try {
+      const raw = localStorage.getItem(totalsKey());
+      if (raw) {
+        const data = JSON.parse(raw) || {};
+        totalFocusSeconds = Math.max(0, parseInt(data.focus, 10) || 0);
+        totalBreakSeconds = Math.max(0, parseInt(data.break, 10) || 0);
+      } else {
+        totalFocusSeconds = 0;
+        totalBreakSeconds = 0;
+      }
+    } catch (e) {
+      totalFocusSeconds = 0;
+      totalBreakSeconds = 0;
+    }
+    saveTotals();
+  }
+
+  function saveTotals(dateStr) {
+    try {
+      localStorage.setItem(totalsKey(dateStr), JSON.stringify({
+        focus: totalFocusSeconds,
+        break: totalBreakSeconds,
+        updated: Date.now()
+      }));
+    } catch (e) {}
+  }
+
+  function checkDateRollover() {
+    const t = todayKey();
+    if (t === currentDateKey) return;
+    saveTotals(currentDateKey);
+    currentDateKey = t;
+    loadTotals();
+    updateTotalTimerDisplay();
+    showToast("New day — today's counters reset");
+  }
+
+  function resetTodayTotals() {
+    totalFocusSeconds = 0;
+    totalBreakSeconds = 0;
+    saveTotals();
+    updateTotalTimerDisplay();
+    showToast("Today's totals reset");
+  }
+
+  function saveState() {
+    try {
+      localStorage.setItem(STATE_KEY, JSON.stringify({
+        mode: currentMode,
+        totalSeconds: totalSeconds,
+        remainingSeconds: remainingSeconds,
+        isRunning: isRunning,
+        endTime: endTime,
+        completedWorkSessions: completedWorkSessions,
+        maxWorkSessions: MAX_WORK_SESSIONS,
+        pausedByFreeze: pausedByFreeze,
+        savedAt: Date.now()
+      }));
+    } catch (e) {}
+  }
+
+  function loadState() {
+    try {
+      const raw = localStorage.getItem(STATE_KEY);
+      if (!raw) return null;
+      return JSON.parse(raw);
+    } catch (e) { return null; }
+  }
+
+  function clearState() {
+    try { localStorage.removeItem(STATE_KEY); } catch (e) {}
+  }
+
+  /* ================================================================
+     FORMATTING
+  ================================================================ */
+  function formatTime(sec) {
+    const m = Math.floor(sec / 60), s = sec % 60;
+    return String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+  }
+  function formatMinutes(sec) { return Math.round(sec / 60) + 'm'; }
+  function formatHours(sec)   { return (sec / 3600).toFixed(1) + 'h'; }
+
+  /* ================================================================
+     UI
+  ================================================================ */
+  function updateTotalTimerDisplay() {
+    totalFocusDisp.textContent  = formatMinutes(totalFocusSeconds);
+    totalBreakDisp.textContent  = formatMinutes(totalBreakSeconds);
+    totalHoursValue.textContent = formatHours(totalFocusSeconds + totalBreakSeconds);
+  }
+
+  function updateTitle() {
+    const paused = (!isRunning && remainingSeconds < totalSeconds) ? ' ⏸' : '';
+    document.title = formatTime(remainingSeconds) + ' - ' + MODES[currentMode].label + paused;
+  }
+
+  function updateDisplay() {
+    timeDisplay.textContent = formatTime(remainingSeconds);
+    const fraction = totalSeconds > 0 ? remainingSeconds / totalSeconds : 1;
+    const offset = CIRCUMFERENCE * (1 - fraction);
+    ringProgress.style.strokeDashoffset = offset;
+    ringGlow.style.strokeDashoffset     = offset;
+
+    timeDisplay.classList.remove('paused', 'auto-paused-indicator');
+    if (!isRunning && remainingSeconds < totalSeconds) {
+      timeDisplay.classList.add(pausedByFreeze ? 'auto-paused-indicator' : 'paused');
+    }
+    updateTitle();
+    updateTotalTimerDisplay();
+  }
+
+  function setAccent(color) {
+    document.documentElement.style.setProperty('--accent', color);
+    ringProgress.style.stroke = color;
+    ringGlow.style.stroke     = color;
+    if (!isRunning) {
+      btnPlay.style.background = color;
+      btnPlay.style.boxShadow  = '0 8px 28px ' + color + '55';
+    }
+    const dot = document.querySelector('.header .dot');
+    if (dot) {
+      dot.style.background = color;
+      dot.style.boxShadow  = '0 0 12px ' + color;
+    }
+    document.querySelectorAll('.mode-tab').forEach(t => {
+      t.classList.toggle('active', t.dataset.mode === currentMode);
+    });
+  }
+
+  function renderSessionDots() {
+    sessionDotsCont.innerHTML = '';
+    for (let i = 0; i < MAX_WORK_SESSIONS; i++) {
+      const dot = document.createElement('span');
+      dot.className = 'session-dot';
+      if (i < completedWorkSessions) dot.classList.add('completed');
+      if (currentMode === 'work' && isRunning &&
+          i === completedWorkSessions && completedWorkSessions < MAX_WORK_SESSIONS) {
+        dot.classList.add('current');
+      }
+      sessionDotsCont.appendChild(dot);
+    }
+    sessionCount.textContent = completedWorkSessions + ' / ' + MAX_WORK_SESSIONS;
+  }
+
+  function updateSessionDots() {
+    if (sessionDotsCont.children.length !== MAX_WORK_SESSIONS) return renderSessionDots();
+    [...sessionDotsCont.children].forEach((dot, i) => {
+      dot.classList.remove('completed', 'current');
+      if (i < completedWorkSessions) dot.classList.add('completed');
+      if (currentMode === 'work' && isRunning &&
+          i === completedWorkSessions && completedWorkSessions < MAX_WORK_SESSIONS) {
+        dot.classList.add('current');
+      }
+    });
+    sessionCount.textContent = completedWorkSessions + ' / ' + MAX_WORK_SESSIONS;
+  }
+
+  function handleSessionCountChange(val) {
+    const parsed = parseInt(val, 10);
+    if (isNaN(parsed) || parsed < 1) MAX_WORK_SESSIONS = 1;
+    else if (parsed > 500) MAX_WORK_SESSIONS = 500;
+    else MAX_WORK_SESSIONS = parsed;
+    if (completedWorkSessions > MAX_WORK_SESSIONS) completedWorkSessions = MAX_WORK_SESSIONS;
+    sessionInput.value = MAX_WORK_SESSIONS;
+    renderSessionDots();
+    updateTitle();
+    saveState();
+  }
+
+  function showToast(msg, isBreak, isWarn) {
+    toastEl.textContent = msg;
+    toastEl.className = 'toast' + (isBreak ? ' break-toast' : '') + (isWarn ? ' warn-toast' : '');
+    void toastEl.offsetWidth;
+    toastEl.classList.add('show');
+    clearTimeout(toastEl._to);
+    toastEl._to = setTimeout(() => toastEl.classList.remove('show'), 2600);
+  }
+
+  /* ================================================================
+     AUDIO
+  ================================================================ */
+  function getAudioContext() {
+    if (!audioCtx) {
+      const AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) return null;
+      try { audioCtx = new AC(); } catch (e) { return null; }
+    }
+    if (audioCtx.state === 'suspended') audioCtx.resume().catch(() => {});
+    return audioCtx;
+  }
+
+  function playTone(freq, dur, type, vol, ramp) {
+    type = type || 'sine';
+    vol  = vol  == null ? 0.3 : vol;
+    ramp = ramp == null ? true : ramp;
+    try {
+      const ctx = getAudioContext(); if (!ctx) return;
+      const osc  = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = type;
+      osc.frequency.setValueAtTime(freq, ctx.currentTime);
+      gain.gain.setValueAtTime(vol, ctx.currentTime);
+      if (ramp) gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + dur);
+      else      gain.gain.setValueAtTime(0, ctx.currentTime + dur);
+      osc.connect(gain); gain.connect(ctx.destination);
+      osc.start(); osc.stop(ctx.currentTime + dur);
+    } catch (e) {}
+  }
+
+  function playStartSound() {
+    try {
+      const ctx = getAudioContext(); if (!ctx) return;
+      [523.25, 659.25, 783.99].forEach((f, i) => {
+        const osc = ctx.createOscillator(), gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(f, ctx.currentTime + i * 0.12);
+        gain.gain.setValueAtTime(0.25, ctx.currentTime + i * 0.12);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.12 + 0.35);
+        osc.connect(gain); gain.connect(ctx.destination);
+        osc.start(ctx.currentTime + i * 0.12);
+        osc.stop(ctx.currentTime + i * 0.12 + 0.4);
+      });
+      playTone(80, 0.5, 'sine', 0.2);
+    } catch (e) {}
+  }
+
+  function playEndSound() {
+    try {
+      const ctx = getAudioContext(); if (!ctx) return;
+      [880, 1046.5].forEach((f, i) => {
+        const osc = ctx.createOscillator(), gain = ctx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(f, ctx.currentTime + i * 0.18);
+        gain.gain.setValueAtTime(0.35, ctx.currentTime + i * 0.18);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.18 + 0.5);
+        osc.connect(gain); gain.connect(ctx.destination);
+        osc.start(ctx.currentTime + i * 0.18);
+        osc.stop(ctx.currentTime + i * 0.18 + 0.55);
+      });
+      setTimeout(() => playTone(1200, 0.6, 'sine', 0.2), 400);
+    } catch (e) {}
+  }
+
+  function playWarningSound() {
+    try {
+      const ctx = getAudioContext(); if (!ctx) return;
+      for (let i = 0; i < 3; i++) {
+        const t = ctx.currentTime + i * 0.42;
+        const osc = ctx.createOscillator(), gain = ctx.createGain();
+        osc.type = 'square';
+        osc.frequency.setValueAtTime(950, t);
+        gain.gain.setValueAtTime(0.0001, t);
+        gain.gain.exponentialRampToValueAtTime(0.28, t + 0.02);
+        gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.28);
+        osc.connect(gain); gain.connect(ctx.destination);
+        osc.start(t); osc.stop(t + 0.32);
+      }
+    } catch (e) {}
+  }
+
+  function playClickSound() { playTone(600, 0.08, 'sine', 0.15, false); }
+  function playSkipSound()  { playTone(400, 0.12, 'square', 0.08, false); }
+
+  /* ================================================================
+     WAKE LOCK
+  ================================================================ */
+  async function requestWakeLock() {
+    if (!('wakeLock' in navigator)) return;
+    if (wakeLockSentinel) return;
+    try {
+      wakeLockSentinel = await navigator.wakeLock.request('screen');
+      wakeLockSentinel.addEventListener('release', () => { wakeLockSentinel = null; });
+    } catch (e) { wakeLockSentinel = null; }
+  }
+  async function releaseWakeLock() {
+    if (!wakeLockSentinel) return;
+    const s = wakeLockSentinel; wakeLockSentinel = null;
+    try { await s.release(); } catch (e) {}
+  }
+
+  /* ================================================================
+     TIMER ENGINE (timestamp based)
+  ================================================================ */
+  function stopTicker() {
+    if (tickerId !== null) { clearInterval(tickerId); tickerId = null; }
+  }
+
+  function timerTick() {
+    if (!isRunning || endTime === null) return;
+
+    const now = Date.now();
+
+    const accounted = Math.min(now, endTime);
+    const elapsed = Math.floor((accounted - lastTickTime) / 1000);
+    if (elapsed > 0) {
+      lastTickTime += elapsed * 1000;
+      if (currentMode === 'work') totalFocusSeconds += elapsed;
+      else                        totalBreakSeconds += elapsed;
+      saveTotals();
+      checkDateRollover();
+    }
+
+    const newRemaining = Math.max(0, Math.ceil((endTime - now) / 1000));
+    if (newRemaining !== remainingSeconds) {
+      remainingSeconds = newRemaining;
+      updateDisplay();
+    }
+
+    if (now - lastStateSave > 1000) {
+      lastStateSave = now;
+      saveState();
+    }
+
+    if (now >= endTime) completeSession();
+  }
+
+  function startTimer(resumeEndTime) {
+    if (isRunning) return;
+    if (remainingSeconds <= 0) remainingSeconds = MODES[currentMode].duration;
+    totalSeconds = MODES[currentMode].duration;
+
+    pausedByFreeze = false;
+    timeDisplay.classList.remove('paused', 'auto-paused-indicator');
+    getAudioContext();
+
+    isRunning = true;
+    const now = Date.now();
+
+    if (resumeEndTime && resumeEndTime > now) {
+      endTime = resumeEndTime;
+    } else {
+      endTime = now + remainingSeconds * 1000;
+    }
+    lastTickTime = now;
+    remainingSeconds = Math.max(0, Math.ceil((endTime - now) / 1000));
+
+    if (document.visibilityState === 'hidden') {
+      hiddenSince = now; warningPlayed = false;
+    } else {
+      hiddenSince = null; warningPlayed = false;
+    }
+
+    iconPlay.style.display  = 'none';
+    iconPause.style.display = 'block';
+    btnPlay.classList.add('running');
+    btnPlay.style.background = '#5a7a5a';
+    btnPlay.style.boxShadow  = '0 4px 16px rgba(27,94,32,0.25)';
+
+    updateDisplay();
+    updateSessionDots();
+    playStartSound();
+    requestWakeLock();
+    saveState();
+
+    if (!resumeEndTime) {
+      showToast(MODES[currentMode].label + ' started · ' + formatTime(remainingSeconds),
+                currentMode !== 'work');
+    } else {
+      showToast('Resumed · ' + formatTime(remainingSeconds), currentMode !== 'work');
+    }
+
+    stopTicker();
+    tickerId = setInterval(timerTick, TICK_MS);
+  }
+
+  function pauseTimer(reason) {
+    if (!isRunning) return;
+
+    if (endTime !== null) {
+      remainingSeconds = Math.max(0, Math.ceil((endTime - Date.now()) / 1000));
+    }
+    isRunning = false;
+    endTime   = null;
+    stopTicker();
+
+    hiddenSince   = null;
+    warningPlayed = false;
+
+    iconPlay.style.display  = 'block';
+    iconPause.style.display = 'none';
+    btnPlay.classList.remove('running');
+    btnPlay.style.background = MODES[currentMode].accent;
+    btnPlay.style.boxShadow  = '0 8px 28px ' + MODES[currentMode].accent + '55';
+
+    if (reason === 'freeze') {
+      pausedByFreeze = true;
+      timeDisplay.classList.add('auto-paused-indicator');
+    } else {
+      pausedByFreeze = false;
+      timeDisplay.classList.add('paused');
+    }
+
+    updateDisplay();
+    updateSessionDots();
+    releaseWakeLock();
+    saveState();
+  }
+
+  function resetTimer() {
+    stopTicker();
+    isRunning      = false;
+    endTime        = null;
+    pausedByFreeze = false;
+    hiddenSince    = null;
+    warningPlayed  = false;
+
+    remainingSeconds = MODES[currentMode].duration;
+    totalSeconds     = remainingSeconds;
+
+    iconPlay.style.display  = 'block';
+    iconPause.style.display = 'none';
+    btnPlay.classList.remove('running');
+    btnPlay.style.background = MODES[currentMode].accent;
+    btnPlay.style.boxShadow  = '0 8px 28px ' + MODES[currentMode].accent + '55';
+
+    timeDisplay.classList.remove('paused', 'auto-paused-indicator');
+    updateDisplay();
+    updateSessionDots();
+    saveState();
+  }
+
+  function switchMode(mode) {
+    stopTicker();
+    isRunning      = false;
+    endTime        = null;
+    pausedByFreeze = false;
+    hiddenSince    = null;
+    warningPlayed  = false;
+
+    currentMode      = mode;
+    totalSeconds     = MODES[mode].duration;
+    remainingSeconds = totalSeconds;
+    sessionLabel.textContent = MODES[mode].label;
+
+    iconPlay.style.display  = 'block';
+    iconPause.style.display = 'none';
+    btnPlay.classList.remove('running');
+
+    setAccent(MODES[mode].accent);
+    updateDisplay();
+    updateSessionDots();
+    timeDisplay.classList.remove('paused', 'auto-paused-indicator');
+    saveState();
+  }
+
+  function completeSession() {
+    stopTicker();
+    isRunning = false;
+    endTime   = null;
+    const justFinishedMode = currentMode;
+    remainingSeconds = 0;
+    pausedByFreeze = false;
+
+    iconPlay.style.display  = 'block';
+    iconPause.style.display = 'none';
+    btnPlay.classList.remove('running');
+    btnPlay.style.background = MODES[currentMode].accent;
+    btnPlay.style.boxShadow  = '0 8px 28px ' + MODES[currentMode].accent + '55';
+
+    updateDisplay();
+    releaseWakeLock();
+    saveTotals();
+    saveState();
+    playEndSound();
+
+    if (justFinishedMode === 'work') {
+      completedWorkSessions++;
+      updateSessionDots();
+      showToast('🎉 Focus complete! Take a break.', true);
+      if (completedWorkSessions >= MAX_WORK_SESSIONS) {
+        completedWorkSessions = 0;
+        updateSessionDots();
+        switchMode('long-break');
+        showToast('Great work! Long break ☕', true);
+      } else {
+        switchMode('short-break');
+      }
+    } else {
+      showToast('Break over! Ready to focus?', false);
+      switchMode('work');
+      updateSessionDots();
+    }
+
+    const delay = justFinishedMode === 'work' ? 1500 : 1800;
+    const modeAtTimeout = currentMode;
+    setTimeout(() => {
+      if (!isRunning && !pausedByFreeze &&
+          currentMode === modeAtTimeout &&
+          remainingSeconds === MODES[currentMode].duration) {
+        startTimer();
+      }
+    }, delay);
+  }
+
+  function skipSession() {
+    playSkipSound();
+    stopTicker();
+    isRunning      = false;
+    endTime        = null;
+    pausedByFreeze = false;
+    hiddenSince    = null;
+    warningPlayed  = false;
+    remainingSeconds = 0;
+    updateDisplay();
+    saveTotals();
+
+    if (currentMode === 'work') {
+      completedWorkSessions++;
+      updateSessionDots();
+      showToast('Focus skipped · Take a break', true);
+      if (completedWorkSessions >= MAX_WORK_SESSIONS) {
+        completedWorkSessions = 0;
+        updateSessionDots();
+        switchMode('long-break');
+      } else {
+        switchMode('short-break');
+      }
+    } else {
+      showToast('Break skipped · Back to focus', false);
+      switchMode('work');
+    }
+    updateSessionDots();
+    timeDisplay.classList.remove('paused', 'auto-paused-indicator');
+    saveState();
+  }
+
+  /* ================================================================
+     VISIBILITY — 4 min warn, +1 min freeze, auto-resume on return
+  ================================================================ */
+  document.addEventListener('visibilitychange', async () => {
+    if (document.visibilityState === 'hidden') {
+      if (isRunning) {
+        hiddenSince   = Date.now();
+        warningPlayed = false;
+        saveState();
+      }
+      return;
+    }
+
+    const wasHidden = hiddenSince !== null;
+    const hiddenFor = wasHidden ? Date.now() - hiddenSince : 0;
+    hiddenSince   = null;
+    warningPlayed = false;
+
+    checkDateRollover();
+    updateTotalTimerDisplay();
+
+    if (isRunning) {
+      if (wasHidden && hiddenFor >= INACTIVITY_WARN_MS + INACTIVITY_FREEZE_MS) {
+        pauseTimer('freeze');
+        showToast('⏸ Timer was frozen while away — resuming automatically', false, true);
+        setTimeout(() => {
+          if (!isRunning && pausedByFreeze) startTimer();
+        }, 600);
+      } else {
+        timerTick();
+        if (!wakeLockSentinel) await requestWakeLock();
+      }
+    } else if (pausedByFreeze) {
+      showToast('▶ Auto-resuming frozen session', false, true);
+      startTimer();
+    }
+
+    if (reportOverlay.classList.contains('open')) buildReport();
+  });
+
+  /* ================================================================
+     WARNING TIMER
+  ================================================================ */
+  setInterval(() => {
+    if (!isRunning || hiddenSince === null) return;
+    const hiddenFor = Date.now() - hiddenSince;
+
+    if (!warningPlayed && hiddenFor >= INACTIVITY_WARN_MS) {
+      warningPlayed = true;
+      playWarningSound();
+      showToast('⚠️ Still there? Timer freezes in 1 minute', false, true);
+    }
+
+    if (hiddenFor >= INACTIVITY_WARN_MS + INACTIVITY_FREEZE_MS) {
+      hiddenSince = null;
+      warningPlayed = false;
+      pauseTimer('freeze');
+      saveState();
+    }
+  }, 1000);
+
+  /* ================================================================
+     REPORT
+  ================================================================ */
+  function collectHistory() {
+    const today = todayKey();
+    const list = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (!key || !key.startsWith(TOTALS_PREFIX)) continue;
+      const dateStr = key.slice(TOTALS_PREFIX.length);
+      if (!isDateKey(dateStr)) continue;
+      try {
+        const data = JSON.parse(localStorage.getItem(key)) || {};
+        const focusSec = Math.max(0, parseInt(data.focus, 10) || 0);
+        const breakSec = Math.max(0, parseInt(data.break, 10) || 0);
+        const totalSec = focusSec + breakSec;
+        if (totalSec > 0 || dateStr === today) {
+          list.push({ dateStr, focusSec, breakSec, totalSec });
+        }
+      } catch (e) {}
+    }
+    list.sort((a, b) => a.dateStr.localeCompare(b.dateStr));
+    return list;
+  }
+
+  function drawChart(canvas, labels, focusData, breakData) {
+    const ctx = canvas.getContext('2d');
+    const dpr = window.devicePixelRatio || 1;
+    const cssH = 200;
+    const cssW = Math.max(800, labels.length * 44);
+    canvas.width  = cssW * dpr;
+    canvas.height = cssH * dpr;
+    canvas.style.width  = cssW + 'px';
+    canvas.style.height = cssH + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    const W = cssW, H = cssH;
+    const pad = { top: 22, bottom: 34, left: 44, right: 16 };
+    const chartW = W - pad.left - pad.right;
+    const chartH = H - pad.top - pad.bottom;
+    const maxVal = Math.max(0.5, ...focusData, ...breakData);
+    const barGap = 6;
+    const groupW = Math.max(4, (chartW - (labels.length - 1) * barGap) / labels.length);
+    const barW   = Math.max(2, groupW * 0.38);
+
+    ctx.clearRect(0, 0, W, H);
+
+    ctx.strokeStyle = 'rgba(27,94,32,0.08)';
+    ctx.lineWidth = 1;
+    for (let i = 0; i <= 4; i++) {
+      const y = pad.top + chartH - (i / 4) * chartH;
+      ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+      ctx.fillStyle = 'rgba(27,94,32,0.35)';
+      ctx.font = '10px sans-serif';
+      ctx.textAlign = 'right';
+      ctx.fillText((maxVal * (i / 4)).toFixed(1) + 'h', pad.left - 6, y + 3);
+    }
+
+    labels.forEach((label, i) => {
+      const x = pad.left + i * (groupW + barGap) + groupW / 2;
+
+      const fH = (focusData[i] / maxVal) * chartH;
+      const fX = x - barW - 1;
+      const fY = pad.top + chartH - fH;
+      ctx.fillStyle = '#2e7d32';
+      ctx.fillRect(fX, fY, barW, fH);
+      if (focusData[i] > 0.05 && barW > 12) {
+        ctx.fillStyle = 'rgba(255,255,255,0.85)';
+        ctx.font = '9px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(focusData[i].toFixed(1), fX + barW / 2, fY - 4);
+      }
+
+      const bH = (breakData[i] / maxVal) * chartH;
+      const bX = x + 1;
+      const bY = pad.top + chartH - bH;
+      ctx.fillStyle = '#4caf50';
+      ctx.fillRect(bX, bY, barW, bH);
+      if (breakData[i] > 0.05 && barW > 12) {
+        ctx.fillStyle = 'rgba(255,255,255,0.85)';
+        ctx.font = '9px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(breakData[i].toFixed(1), bX + barW / 2, bY - 4);
+      }
+
+      ctx.fillStyle = 'rgba(27,94,32,0.65)';
+      ctx.font = '10px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText(label, x, H - 8);
+    });
+
+    ctx.font = '10px sans-serif';
+    ctx.fillStyle = '#2e7d32';
+    ctx.fillRect(W - 130, 8, 12, 10);
+    ctx.fillStyle = 'rgba(27,94,32,0.85)';
+    ctx.textAlign = 'left';
+    ctx.fillText('Focus', W - 114, 17);
+    ctx.fillStyle = '#4caf50';
+    ctx.fillRect(W - 68, 8, 12, 10);
+    ctx.fillStyle = 'rgba(27,94,32,0.85)';
+    ctx.fillText('Break', W - 52, 17);
+  }
+
+  function buildReport() {
+    const today = todayKey();
+    const history = collectHistory();
+
+    if (history.length === 0) {
+      reportContent.innerHTML =
+        '<div class="report-empty"><span class="big-icon">📭</span>' +
+        '<p>No data recorded yet.<br>Start using the timer to build your log!</p></div>';
+      return;
+    }
+
+    let totalFocusAll = 0, totalBreakAll = 0;
+    const rows = history.map((entry) => {
+      totalFocusAll += entry.focusSec;
+      totalBreakAll += entry.breakSec;
+      const p = entry.dateStr.split('-').map(Number);
+      const adDate = new Date(p[0], p[1] - 1, p[2]);
+      const displayDate = adDate.toLocaleDateString('en-US', {
+        weekday: 'short', month: 'short', day: 'numeric', year: 'numeric'
+      });
+      return {
+        dateStr: entry.dateStr, displayDate,
+        isToday: entry.dateStr === today,
+        focusSec: entry.focusSec, breakSec: entry.breakSec, totalSec: entry.totalSec
+      };
+    });
+
+    let html = '<div class="report-table-wrap"><table class="report-table">' +
+      '<thead><tr><th>#</th><th>Date</th>' +
+      '<th style="text-align:right;">Focus (hr)</th>' +
+      '<th style="text-align:right;">Break (hr)</th>' +
+      '<th style="text-align:right;">Total (hr)</th></tr></thead><tbody>';
+
+    rows.forEach((r, i) => {
+      html += '<tr class="' + (r.isToday ? 'today-row' : '') + '">' +
+        '<td>' + (i + 1) + '</td>' +
+        '<td>' + r.displayDate + (r.isToday ? '<span class="today-badge">TODAY</span>' : '') + '</td>' +
+        '<td class="focus-col" style="text-align:right;">' + (r.focusSec / 3600).toFixed(1) + '</td>' +
+        '<td class="break-col" style="text-align:right;">' + (r.breakSec / 3600).toFixed(1) + '</td>' +
+        '<td style="text-align:right;font-weight:500;">' + (r.totalSec / 3600).toFixed(1) + '</td>' +
+        '</tr>';
+    });
+
+    html += '<tr class="total-row">' +
+      '<td colspan="2" style="font-weight:600;">📊 Grand Total (' + rows.length +
+      ' day' + (rows.length > 1 ? 's' : '') + ')</td>' +
+      '<td class="focus-col" style="text-align:right;font-weight:600;">' + (totalFocusAll / 3600).toFixed(1) + '</td>' +
+      '<td class="break-col" style="text-align:right;font-weight:600;">' + (totalBreakAll / 3600).toFixed(1) + '</td>' +
+      '<td style="text-align:right;font-weight:700;">' + ((totalFocusAll + totalBreakAll) / 3600).toFixed(1) + '</td>' +
+      '</tr></tbody></table></div>';
+
+    html += '<div class="report-chart-wrap"><canvas id="reportChart"></canvas></div>';
+    reportContent.innerHTML = html;
+
+    const canvas = document.getElementById('reportChart');
+    if (canvas) {
+      const labels    = rows.map(r => { const p = r.dateStr.split('-'); return p[1] + '/' + p[2]; });
+      const focusData = rows.map(r => +(r.focusSec / 3600).toFixed(2));
+      const breakData = rows.map(r => +(r.breakSec / 3600).toFixed(2));
+      drawChart(canvas, labels, focusData, breakData);
+    }
+  }
+
+  function openReport() {
+    buildReport();
+    reportOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeReport() {
+    reportOverlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  /* ================================================================
+     EVENT WIRING
+  ================================================================ */
+  btnPlay.addEventListener('click', () => {
+    playClickSound();
+    if (isRunning) pauseTimer('manual');
+    else           startTimer();
+  });
+
+  btnReset.addEventListener('click', () => {
+    playClickSound(); resetTimer(); showToast('Timer reset');
+  });
+
+  btnSkip.addEventListener('click', skipSession);
+
+  modeTabs.addEventListener('click', (e) => {
+    const tab = e.target.closest('.mode-tab');
+    if (!tab) return;
+    if (tab.dataset.mode === currentMode && !isRunning &&
+        remainingSeconds === MODES[currentMode].duration) return;
+    playClickSound();
+    switchMode(tab.dataset.mode);
+    showToast('Switched to ' + MODES[tab.dataset.mode].label.toLowerCase());
+  });
+
+  sessionInput.addEventListener('input', e => handleSessionCountChange(e.target.value));
+  sessionInput.addEventListener('blur', () => { sessionInput.value = MAX_WORK_SESSIONS; });
+  sessionDecrement.addEventListener('click', () => {
+    if (MAX_WORK_SESSIONS > 1) handleSessionCountChange(MAX_WORK_SESSIONS - 1);
+  });
+  sessionIncrement.addEventListener('click', () => {
+    if (MAX_WORK_SESSIONS < 500) handleSessionCountChange(MAX_WORK_SESSIONS + 1);
+  });
+  totalTimerReset.addEventListener('click', resetTodayTotals);
+
+  btnReport.addEventListener('click', openReport);
+  reportCloseBtn.addEventListener('click', closeReport);
+  reportOverlay.addEventListener('click', (e) => {
+    if (e.target === reportOverlay) closeReport();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    if (reportOverlay.classList.contains('open')) {
+      if (e.key === 'Escape') closeReport();
+      return;
+    }
+    switch (e.code) {
+      case 'Space':
+        e.preventDefault();
+        if (isRunning) pauseTimer('manual'); else startTimer();
+        break;
+      case 'KeyR':
+        if (!e.ctrlKey && !e.metaKey) { e.preventDefault(); resetTimer(); }
+        break;
+      case 'KeyS':
+        if (!e.ctrlKey && !e.metaKey) { e.preventDefault(); skipSession(); }
+        break;
+      case 'Digit1': e.preventDefault(); switchMode('work');        break;
+      case 'Digit2': e.preventDefault(); switchMode('short-break'); break;
+      case 'Digit3': e.preventDefault(); switchMode('long-break');  break;
+    }
+  });
+
+  exportCsvBtn.addEventListener('click', () => {
+    const history = collectHistory()
+      .map(r => ({
+        date:  r.dateStr,
+        focus: (r.focusSec / 3600).toFixed(2),
+        brk:   (r.breakSec / 3600).toFixed(2),
+        total: (r.totalSec / 3600).toFixed(2)
+      }))
+      .sort((a, b) => a.date.localeCompare(b.date));
+
+    if (history.length === 0) { showToast('No data to export'); return; }
+
+    let csv = 'Date,Focus (hr),Break (hr),Total (hr)\n';
+    history.forEach(r => { csv += r.date + ',' + r.focus + ',' + r.brk + ',' + r.total + '\n'; });
+
+    const tf = history.reduce((s, r) => s + parseFloat(r.focus), 0);
+    const tb = history.reduce((s, r) => s + parseFloat(r.brk), 0);
+    csv += 'Grand Total,' + tf.toFixed(2) + ',' + tb.toFixed(2) + ',' + (tf + tb).toFixed(2) + '\n';
+
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'pomodoro-log-' + todayKey() + '.csv';
+    link.click();
+    setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+    showToast('CSV exported 📥');
+  });
+
+  window.addEventListener('beforeunload', saveState);
+  window.addEventListener('pagehide', saveState);
+
+  /* ================================================================
+     INIT — restore everything from localStorage
+  ================================================================ */
+  (function init() {
+    loadTotals();
+
+    const state = loadState();
+    if (state && state.mode && MODES[state.mode]) {
+      currentMode = state.mode;
+      MAX_WORK_SESSIONS     = Math.max(1, Math.min(500, state.maxWorkSessions || 4));
+      completedWorkSessions = Math.max(0, Math.min(MAX_WORK_SESSIONS, state.completedWorkSessions || 0));
+      totalSeconds = MODES[currentMode].duration;
+
+      if (state.isRunning && state.endTime) {
+        const now = Date.now();
+        const effectiveEnd = Math.min(now, state.endTime);
+        const capMs = INACTIVITY_WARN_MS + INACTIVITY_FREEZE_MS;
+        const elapsedMs = Math.max(0, Math.min(effectiveEnd - (state.savedAt || now), capMs));
+        const elapsedSec = Math.floor(elapsedMs / 1000);
+        if (elapsedSec > 0) {
+          if (currentMode === 'work') totalFocusSeconds += elapsedSec;
+          else                        totalBreakSeconds += elapsedSec;
+          saveTotals();
+        }
+
+        const remaining = Math.ceil((state.endTime - now) / 1000);
+        if (remaining > 0) {
+          remainingSeconds = remaining;
+          pendingResumeEndTime = state.endTime;
+        } else {
+          remainingSeconds = MODES[currentMode].duration;
+          pausedByFreeze = true;
+          setTimeout(() => showToast('⏸ Session expired while away — timer reset', false, true), 400);
+        }
+      } else {
+        remainingSeconds = Math.max(0, Math.min(totalSeconds, state.remainingSeconds != null
+          ? state.remainingSeconds
+          : totalSeconds));
+        pausedByFreeze = !!state.pausedByFreeze;
+        if (remainingSeconds <= 0) remainingSeconds = totalSeconds;
+      }
+    }
+
+    sessionLabel.textContent = MODES[currentMode].label;
+    sessionInput.value = MAX_WORK_SESSIONS;
+    setAccent(MODES[currentMode].accent);
+    renderSessionDots();
+    updateDisplay();
+    updateSessionDots();
+    updateTotalTimerDisplay();
+
+    if (pendingResumeEndTime) {
+      if (document.visibilityState === 'visible') {
+        startTimer(pendingResumeEndTime);
+      } else {
+        isRunning = false;
+        endTime = null;
+        remainingSeconds = Math.max(0, Math.ceil((pendingResumeEndTime - Date.now()) / 1000));
+        updateDisplay();
+        const oneShot = () => {
+          document.removeEventListener('visibilitychange', oneShot);
+          if (document.visibilityState === 'visible' && pendingResumeEndTime) {
+            startTimer(pendingResumeEndTime);
+            pendingResumeEndTime = null;
+          }
+        };
+        document.addEventListener('visibilitychange', oneShot);
+      }
+      pendingResumeEndTime = null;
+    } else if (pausedByFreeze) {
+      timeDisplay.classList.add('auto-paused-indicator');
+    }
+
+    setInterval(() => { checkDateRollover(); }, 30 * 1000);
+  })();
+})();
+  </script>
+</body>
+</html>

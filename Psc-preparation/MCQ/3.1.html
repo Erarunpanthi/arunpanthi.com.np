@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Practice Structural Analysis MCQs for PSC and Engineering License Exams in Nepal. Topics include influence lines, conjugate beams, static indeterminacy, displacement methods, arches and virtual work." />
+    <meta name="keywords" content="Structural Analysis MCQ, Influence Line Diagram, Muller Breslau Principle, Static Indeterminacy, Displacement Method, Two Hinged Arch, PSC Preparation, Engineering License Exam Nepal" />
+    <meta name="author" content="Arun Panthi" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://arunpanthi.com.np/Psc-preparation/MCQ/3.1" />
+
+    <meta property="og:title" content="Structural Analysis MCQ | PSC &amp; Engineering License Exam Nepal" />
+    <meta property="og:description" content="Topic-wise Structural Analysis multiple-choice questions covering influence lines, indeterminacy, displacement methods, arches and virtual work." />
+    <meta property="og:url" content="https://arunpanthi.com.np/Psc-preparation/MCQ/3.1.html" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <title>Structural Analysis MCQ | PSC &amp; Engineering License Exam Nepal</title>
+
+    <link rel="stylesheet" href="/css/styles.css?v=20260924" />
+    <link rel="stylesheet" href="/css/Mcq.css?v=20260924" />
+    <link rel="stylesheet" href="/assets/fontawesome/css/all.min.css?v=20260924" />
+
+    <style>
+        .page-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .page-header h1 {
+            color: #1a3a5c;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-header p {
+            color: #4b5563;
+            margin: 0;
+        }
+
+        .topic-nav {
+            background: #f0f7ff;
+            border: 1px solid #c9def2;
+            border-radius: 10px;
+            padding: 1rem 1.25rem;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .topic-nav strong {
+            color: #1a3a5c;
+        }
+
+        .topic-nav ul {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem 1.25rem;
+            list-style: none;
+            margin: 0.75rem 0 0;
+            padding: 0;
+        }
+
+        .topic-nav li {
+            background: transparent;
+            box-shadow: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .topic-nav a {
+            color: #2d6a9f;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .topic-nav a:hover,
+        .topic-nav a:focus {
+            color: #1a3a5c;
+            text-decoration: underline;
+        }
+
+        .topic-section {
+            margin: 2rem 0;
+            scroll-margin-top: 1rem;
+        }
+
+        .topic-heading {
+            align-items: center;
+            border-bottom: 2px dashed #cbd5e1;
+            color: #1a3a5c;
+            display: flex;
+            gap: 0.65rem;
+            margin: 0 0 1rem;
+            padding-bottom: 0.6rem;
+        }
+
+        .topic-heading i {
+            color: #2e7d32;
+        }
+
+        .card + .card {
+            margin-top: 1.25rem;
+        }
+
+        .question-label {
+            color: #2e7d32;
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .question-text {
+            margin-top: 0;
+        }
+
+        .mcq-options {
+            background: #f8fafc;
+            border-left: 4px solid #e2e8f0;
+            border-radius: 8px;
+            color: #374151;
+            line-height: 1.7;
+            margin: 0 0 1.2rem;
+            padding: 0.8rem 1rem 0.8rem 2.75rem;
+        }
+
+        .mcq-options li {
+            background: transparent;
+            box-shadow: none;
+            margin: 0;
+            padding: 0.2rem 0;
+            text-align: left;
+        }
+
+        .mcq-options li:hover {
+            transform: none;
+        }
+
+        .answer strong {
+            color: #1b5e20;
+        }
+
+        .formula {
+            background: #eef6ee;
+            border-radius: 4px;
+            color: #1b5e20;
+            font-family: Georgia, serif;
+            padding: 0.1rem 0.35rem;
+            white-space: nowrap;
+        }
+
+        .featured-card {
+            border-top-color: #2d6a9f;
+        }
+
+        .featured-card .question-label {
+            color: #2d6a9f;
+        }
+
+        @media (max-width: 600px) {
+            .topic-nav ul {
+                display: block;
+            }
+
+            .topic-nav li {
+                margin-bottom: 0.45rem;
+            }
+
+            .topic-heading {
+                font-size: 1.25rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="/css/topic-navigation.css?v=20261110">
+    <link rel="stylesheet" href="/css/note-pen.css?v=20261109-4">
+</head>
+
+<body>
+    <div id="navbar"></div>
+
+    <div data-note-pen-surface>
+    <main id="top">
+        <div class="container">
+            
+                <h2>Structural Analysis MCQ</h2>
+                                    <nav class="topic-nav" aria-label="Structural Analysis topics">
+                <strong><i class="fas fa-list" aria-hidden="true"></i> Browse by topic</strong>
+                <ul>
+                    <li><a href="#slope-deflection">Slope Deflection</a></li>
+                    <li><a href="#moving-loads">Moving Loads &amp; Influence Lines</a></li>
+                    <li><a href="#conjugate-beam">Conjugate Beam</a></li>
+                    <li><a href="#indeterminacy">Static Indeterminacy</a></li>
+                    <li><a href="#displacement">Displacement &amp; Degrees of Freedom</a></li>
+                    <li><a href="#arches">Two-Hinged Arches</a></li>
+                    <li><a href="#virtual-work">Virtual Work</a></li>
+                </ul>
+            </nav>
+
+            <section class="topic-section" id="slope-deflection" aria-labelledby="slope-deflection-heading">
+                <h2 class="topic-heading" id="slope-deflection-heading">
+                    <i class="fas fa-arrows-rotate" aria-hidden="true"></i> Slope Deflection Method
+                </h2>
+
+                <article class="card featured-card">
+                    <span class="question-label">Featured question</span>
+                    <p class="question-text">
+                        <strong>While using slope deflection method, in which direction is moment taken as positive?</strong>
+                    </p>
+                    <ol class="mcq-options" type="A">
+                        <li>Clockwise</li>
+                        <li>Anti-clockwise</li>
+                        <li>Depends upon case</li>
+                        <li>Depends upon loading</li>
+                    </ol>
+                    <div class="options">
+                        <button class="nav-btn" type="button">Show Answer</button>
+                    </div>
+                    <div class="answer">
+                        <strong>A. Clockwise</strong><br /><br />
+                        Clockwise moments are taken as positive while using the slope deflection method. It is a displacement method used for analysing statically indeterminate beams and frames.
+                    </div>
+                </article>
+            </section>
+
+            <section class="topic-section" id="moving-loads" aria-labelledby="moving-loads-heading">
+                <h2 class="topic-heading" id="moving-loads-heading">
+                    <i class="fas fa-train" aria-hidden="true"></i> Moving Loads and Influence Lines
+                </h2>
+
+                <article class="card">
+                    <span class="question-label">MCQ 1</span>
+                    <p class="question-text"><strong>The maximum bending moment due to a train of wheel loads on a simply supported girder ____________.</strong></p>
+                    <ol class="mcq-options" type="A">
+                        <li>Always occurs under a wheel load</li>
+                        <li>Never occurs under a wheel load</li>
+                        <li>Always occurs at centre of span</li>
+                        <li>None</li>
+                    </ol>
+                    <div class="options"><button class="nav-btn" type="button">Show Answer</button></div>
+                    <div class="answer"><strong>A. Always occurs under a wheel load</strong></div>
+                </article>
+
+                <article class="card">
+                    <span class="question-label">MCQ 2</span>
+                    <p class="question-text"><strong>Muller-Breslau principle is used mainly to draw:</strong></p>
+                    <ol class="mcq-options" type="A">
+                        <li>Bending moment diagrams</li>
+                        <li>Shear force diagrams</li>
+                        <li>Deflected shape only</li>
+                        <li>Influence line diagrams</li>
+                    </ol>
+                    <div class="options"><button class="nav-btn" type="button">Show Answer</button></div>
+                    <div class="answer"><strong>D. Influence line diagrams</strong></div>
+                </article>
+            </section>
+
+            <section class="topic-section" id="conjugate-beam" aria-labelledby="conjugate-beam-heading">
+                <h2 class="topic-heading" id="conjugate-beam-heading">
+                    <i class="fas fa-ruler-combined" aria-hidden="true"></i> Conjugate Beam Method
+                </h2>
+
+                <article class="card">
+                    <span class="question-label">MCQ 3</span>
+                    <p class="question-text"><strong>The fixed support in a real beam becomes in the conjugate beam a __________.</strong></p>
+                    <ol class="mcq-options" type="A">
+                        <li>Hinged support</li>
+                        <li>Roller support</li>
+                        <li>Fixed support</li>
+                        <li>Free end</li>
+                    </ol>
+                    <div class="options"><button class="nav-btn" type="button">Show Answer</button></div>
+                    <div class="answer"><strong>D. Free end</strong></div>
+                </article>
+            </section>
+
+            <section class="topic-section" id="indeterminacy" aria-labelledby="indeterminacy-heading">
+                <h2 class="topic-heading" id="indeterminacy-heading">
+                    <i class="fas fa-sitemap" aria-hidden="true"></i> Static Indeterminacy
+                </h2>
+
+                <article class="card">
+                    <span class="question-label">MCQ 4</span>
+                    <p class="question-text"><strong>Degree of static indeterminacy of a rigid-jointed plane frame having 15 members, 3 reaction components and 14 joints is:</strong></p>
+                    <ol class="mcq-options" type="A">
+                        <li>3</li>
+                        <li>2</li>
+                        <li>6</li>
+                        <li>8</li>
+                    </ol>
+                    <div class="options"><button class="nav-btn" type="button">Show Answer</button></div>
+                    <div class="answer">
+                        <strong>C. 6</strong><br /><br />
+                        For a rigid-jointed plane frame, the degree of static indeterminacy is <span class="formula">3m + r − 3j</span>. Therefore, <span class="formula">3(15) + 3 − 3(14) = 6</span>.
+                    </div>
+                </article>
+
+                <article class="card">
+                    <span class="question-label">MCQ 5</span>
+                    <p class="question-text"><strong>If there are <em>m</em> unknown member forces, <em>r</em> unknown reaction components and <em>j</em> number of joints, then the degree of static indeterminacy of a pin-jointed plane frame is given by:</strong></p>
+                    <ol class="mcq-options" type="A">
+                        <li><em>m − r + 2j</em></li>
+                        <li><em>m + r − 2j</em></li>
+                        <li><em>m + r + 2j</em></li>
+                        <li><em>m + r − 3j</em></li>
+                    </ol>
+                    <div class="options"><button class="nav-btn" type="button">Show Answer</button></div>
+                    <div class="answer"><strong>B. m + r − 2j</strong></div>
+                </article>
+            </section>
+
+            <section class="topic-section" id="displacement" aria-labelledby="displacement-heading">
+                <h2 class="topic-heading" id="displacement-heading">
+                    <i class="fas fa-up-down-left-right" aria-hidden="true"></i> Displacement Methods and Degrees of Freedom
+                </h2>
+
+                <article class="card">
+                    <span class="question-label">MCQ 6</span>
+                    <p class="question-text"><strong>In the displacement method of structural analysis, the basic unknowns are ____________.</strong></p>
+                    <ol class="mcq-options" type="A">
+                        <li>Force</li>
+                        <li>Displacements</li>
+                        <li>Displacements and forces</li>
+                        <li>None</li>
+                    </ol>
+                    <div class="options"><button class="nav-btn" type="button">Show Answer</button></div>
+                    <div class="answer"><strong>B. Displacements</strong></div>
+                </article>
+
+                <article class="card">
+                    <span class="question-label">MCQ 7</span>
+                    <p class="question-text"><strong>Independent displacement components at each joint of a rigid-jointed plane frame are ____________.</strong></p>
+                    <ol class="mcq-options" type="A">
+                        <li>Two linear movements and one rotation</li>
+                        <li>Three linear movements</li>
+                        <li>One linear movement and two rotations</li>
+                        <li>Three rotations</li>
+                    </ol>
+                    <div class="options"><button class="nav-btn" type="button">Show Answer</button></div>
+                    <div class="answer"><strong>A. Two linear movements and one rotation</strong></div>
+                </article>
+
+                <article class="card">
+                    <span class="question-label">MCQ 8</span>
+                    <p class="question-text"><strong>The number of unknown internal forces in each member of a rigid-jointed plane frame is ____________.</strong></p>
+                    <ol class="mcq-options" type="A">
+                        <li>2</li>
+                        <li>1</li>
+                        <li>3</li>
+                        <li>6</li>
+                    </ol>
+                    <div class="options"><button class="nav-btn" type="button">Show Answer</button></div>
+                    <div class="answer"><strong>C. 3</strong></div>
+                </article>
+
+                <article class="card">
+                    <span class="question-label">MCQ 9</span>
+                    <p class="question-text"><strong>The number of independent displacement components at each joint of a rigid-jointed space frame is ____________.</strong></p>
+                    <ol class="mcq-options" type="A">
+                        <li>1</li>
+                        <li>3</li>
+                        <li>2</li>
+                        <li>6</li>
+                    </ol>
+                    <div class="options"><button class="nav-btn" type="button">Show Answer</button></div>
+                    <div class="answer"><strong>D. 6</strong></div>
+                </article>
+            </section>
+
+            <section class="topic-section" id="arches" aria-labelledby="arches-heading">
+                <h2 class="topic-heading" id="arches-heading">
+                    <i class="fas fa-archway" aria-hidden="true"></i> Two-Hinged Arches
+                </h2>
+
+                <article class="card">
+                    <span class="question-label">MCQ 10</span>
+                    <p class="question-text"><strong>For a two-hinged arch, if one of the supports settles down vertically, then the horizontal thrust ____________.</strong></p>
+                    <ol class="mcq-options" type="A">
+                        <li>Is decreased</li>
+                        <li>Remains unchanged</li>
+                        <li>Is increased</li>
+                        <li>Becomes zero</li>
+                    </ol>
+                    <div class="options"><button class="nav-btn" type="button">Show Answer</button></div>
+                    <div class="answer"><strong>B. Remains unchanged</strong></div>
+                </article>
+
+                <article class="card">
+                    <span class="question-label">MCQ 11</span>
+                    <p class="question-text"><strong>For a symmetrical two-hinged parabolic arch, if one of the supports settles horizontally, then the horizontal thrust ____________.</strong></p>
+                    <ol class="mcq-options" type="A">
+                        <li>Remains unchanged</li>
+                        <li>Is decreased</li>
+                        <li>Is increased</li>
+                        <li>Becomes zero</li>
+                    </ol>
+                    <div class="options"><button class="nav-btn" type="button">Show Answer</button></div>
+                    <div class="answer"><strong>B. Is decreased</strong></div>
+                </article>
+            </section>
+
+            <section class="topic-section" id="virtual-work" aria-labelledby="virtual-work-heading">
+                <h2 class="topic-heading" id="virtual-work-heading">
+                    <i class="fas fa-scale-balanced" aria-hidden="true"></i> Principle of Virtual Work
+                </h2>
+
+                <article class="card">
+                    <span class="question-label">MCQ 12</span>
+                    <p class="question-text"><strong>The principle of virtual work can be applied to an elastic system by considering the virtual work of ____________.</strong></p>
+                    <ol class="mcq-options" type="A">
+                        <li>External forces only</li>
+                        <li>Internal forces only</li>
+                        <li>Internal as well as external forces</li>
+                        <li>None</li>
+                    </ol>
+                    <div class="options"><button class="nav-btn" type="button">Show Answer</button></div>
+                    <div class="answer"><strong>C. Internal as well as external forces</strong></div>
+                </article>
+            </section>
+        </div>
+    </main>
+
+    <button class="top-btn" type="button" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" title="Back to Top" aria-label="Back to top">↑</button>
+    <section aria-label="Additional questions"><div class="container">
+            <div class="card">
+                <p style="font-weight: normal; font-style: normal;">
+                    Plastic hinge behaves like a<br>
+                    A. friction mechanical hinge except that there is always a fixed moment constraint<br>
+                    B. frictionless mechanical hinge except that there is no fixed moment constraint<br>
+                    C. friction mechanical hinge except that there is no fixed moment constraint<br>
+                    D. frictionless mechanical hinge except that there is always a fixed moment constraint
+                </p>
+                <div class="options"><button class="nav-btn">Show Answer</button></div>
+                <div class="answer" style="font-weight: normal; font-style: normal;">D. frictionless mechanical hinge except that there is always a fixed moment constraint</div>
+            </div>
+            <div class="card">
+                <p style="font-weight: normal; font-style: normal;">
+                    The strain energy stored in a spring when subjected to maximum load without suffering permanent distortion is known as<br>
+                    A. impact energy<br>
+                    B. proof resilience<br>
+                    C. proof stress<br>
+                    D. modulus of resilience
+                </p>
+                <div class="options"><button class="nav-btn">Show Answer</button></div>
+                <div class="answer" style="font-weight: normal; font-style: normal;">B. proof resilience</div>
+            </div>
+            <div class="card">
+                <p style="font-weight: normal; font-style: normal;">
+                    A support over which a real beam is continuous will correspond to<br>
+                    A. an internal hinge in the conjugate beam<br>
+                    B. a hinged support in the conjugate beam<br>
+                    C. a fixed support in the conjugate beam<br>
+                    D. a discontiunity in the conjugate beam
+                </p>
+                <div class="options"><button class="nav-btn">Show Answer</button></div>
+                <div class="answer" style="font-weight: normal; font-style: normal;">A. an internal hinge in the conjugate beam</div>
+            </div>
+            <div class="card">
+                <p style="font-weight: normal; font-style: normal;">
+                    In the simultaneous equation derived from slope deflection method the matrix formed by the coefficeinet of various rotation will have<br>
+                    A. all elements equal<br>
+                    B. all element xero<br>
+                    C. all element along the diagonal zero<br>
+                    D. diagonal symmetry with the diagonal elemnt predominant in that respective equations
+                </p>
+                <div class="options"><button class="nav-btn">Show Answer</button></div>
+                <div class="answer" style="font-weight: normal; font-style: normal;">D. diagonal symmetry with the diagonal elemnt predominant in that respective equations</div>
+            </div>
+            <div class="card">
+                <p style="font-weight: normal; font-style: normal;">
+                    A three hinged girder is used to siffen a caple of suspension bridge. The bending moment in the girder due to dead load will be<br>
+                    A. maximum at mid span<br>
+                    B. maximum at quarter span<br>
+                    C. maximum at one eight span<br>
+                    D. zero over the entire span.
+                </p>
+                <div class="options"><button class="nav-btn">Show Answer</button></div>
+                <div class="answer" style="font-weight: normal; font-style: normal;">D. zero over the entire span.</div>
+            </div>
+    </div></section>
+    <section aria-label="Additional questions"><div class="container">
+            <div class="card">
+                <p style="font-weight: normal; font-style: normal;">
+                    The extremities of any diameter on Mohr&#x27;s circle represent<br>
+                    A. principal stresses<br>
+                    B. normal stresses on plane at 45°<br>
+                    C. shear stresses on plane at 45°<br>
+                    D. normal and shear stresses on plane
+                </p>
+                <div class="options"><button class="nav-btn">Show Answer</button></div>
+                <div class="answer" style="font-weight: normal; font-style: normal;">B. normal stresses on plane at 45°</div>
+            </div>
+            <div class="card">
+                <p style="font-weight: normal; font-style: normal;">
+                    If there are &#x27;m&#x27; unknown forces &#x27;r&#x27; unknown reaction components, and &#x27;j&#x27; number of joints, then the degree of static indeterminacy of a pin-jointed plane frame is given by<br>
+                    A. m + r - 3j<br>
+                    B. m + r - 3j<br>
+                    C. m + r + 2j<br>
+                    D. m + r - 2j
+                </p>
+                <div class="options"><button class="nav-btn">Show Answer</button></div>
+                <div class="answer" style="font-weight: normal; font-style: normal;">D. m + r - 2j</div>
+            </div>
+            <div class="card">
+                <p style="font-weight: normal; font-style: normal;">
+                    Allowable stress in steel is less than<br>
+                    A. permissible stress<br>
+                    B. working stress<br>
+                    C. yield stress<br>
+                    D. none of the above
+                </p>
+                <div class="options"><button class="nav-btn">Show Answer</button></div>
+                <div class="answer" style="font-weight: normal; font-style: normal;">C. yield stress</div>
+            </div>
+            <div class="card">
+                <p style="font-weight: normal; font-style: normal;">
+                    The value of Poisson&#x27;s ratio is always<br>
+                    A. less than one<br>
+                    B. greater than one<br>
+                    C. equal to one<br>
+                    D. none of the above
+                </p>
+                <div class="options"><button class="nav-btn">Show Answer</button></div>
+                <div class="answer" style="font-weight: normal; font-style: normal;">A. less than one</div>
+            </div>
+            <div class="card">
+                <p style="font-weight: normal; font-style: normal;">
+                    A beam is said to be of uniform strength, of<br>
+                    A. B.M. is same throughout the beam<br>
+                    B. deflection is same throughout the beam<br>
+                    C. bending stress is same through the beam<br>
+                    D. shear stress is same throughout the beam
+                </p>
+                <div class="options"><button class="nav-btn">Show Answer</button></div>
+                <div class="answer" style="font-weight: normal; font-style: normal;">C. bending stress is same through the beam</div>
+            </div>
+    </div></section>
+    <section aria-label="Additional questions"><div class="container">
+            <div class="card">
+                <p style="font-weight: normal; font-style: normal;">
+                    Which of the following is true abount Kinematic theorem?<br>
+                    A. It represents lower limit to true ultimate load<br>
+                    B. It represent plastic load<br>
+                    C. It has small factor of safety<br>
+                    D. It satisfies equilibrium and yield condition
+                </p>
+                <div class="options"><button class="nav-btn">Show Answer</button></div>
+                <div class="answer" style="font-weight: normal; font-style: normal;">C. It has small factor of safety</div>
+            </div>
+            <div class="card">
+                <p style="font-weight: normal; font-style: normal;">
+                    The locus of reaction of two hinged semi-circular arch is<br>
+                    A. straight line<br>
+                    B. parabola<br>
+                    C. circle<br>
+                    D. hyperbola
+                </p>
+                <div class="options"><button class="nav-btn">Show Answer</button></div>
+                <div class="answer" style="font-weight: normal; font-style: normal;">A. straight line</div>
+            </div>
+            <div class="card">
+                <p style="font-weight: normal; font-style: normal;">
+                    A multi span continuous beam is simply supported at the two ends. One of the intermediate supports sinks with respect to other supports. Due to this settlemet, the bending moment will get modified at<br>
+                    A. only the two supports adjacent to that sinked support<br>
+                    B. only the supports that sinks<br>
+                    C. all the supports<br>
+                    D. all the supports except the two end supports.
+                </p>
+                <div class="options"><button class="nav-btn">Show Answer</button></div>
+                <div class="answer" style="font-weight: normal; font-style: normal;">D. all the supports except the two end supports.</div>
+            </div>
+            <div class="card">
+                <p style="font-weight: normal; font-style: normal;">
+                    When a single load W move ober a simply supported beam, The maximum B.M. at a section will occur when the load is placed<br>
+                    A. over the section<br>
+                    B. at the center of span<br>
+                    C. over the nearer support<br>
+                    D. none of above
+                </p>
+                <div class="options"><button class="nav-btn">Show Answer</button></div>
+                <div class="answer" style="font-weight: normal; font-style: normal;">A. over the section</div>
+            </div>
+            <div class="card">
+                <p style="font-weight: normal; font-style: normal;">
+                    When a bar is subjected to change in tempertaure and its deformation is prevented, the stress induced in the bar is<br>
+                    A. tensile stress<br>
+                    B. compressive stress<br>
+                    C. shear stress<br>
+                    D. thermal stress
+                </p>
+                <div class="options"><button class="nav-btn">Show Answer</button></div>
+                <div class="answer" style="font-weight: normal; font-style: normal;">D. thermal stress</div>
+            </div>
+            <div class="card">
+                <p style="font-weight: normal; font-style: normal;">
+                    A beam is said to have been subjected to pure bending when<br>
+                    A. SF is maximum<br>
+                    B. the load is applied as udl through out the section<br>
+                    C. SF in a length is zero<br>
+                    D. the load applied at the mid span section only
+                </p>
+                <div class="options"><button class="nav-btn">Show Answer</button></div>
+                <div class="answer" style="font-weight: normal; font-style: normal;">C. SF in a length is zero</div>
+            </div>
+            <div class="card">
+                <p style="font-weight: normal; font-style: normal;">
+                    In a shaft subjected to pure torsion cracks, thr cracks will start<br>
+                    A. at the center of cross section<br>
+                    B. on the pheriphery<br>
+                    C. throught out he cross section simultaneously<br>
+                    D. none of above
+                </p>
+                <div class="options"><button class="nav-btn">Show Answer</button></div>
+                <div class="answer" style="font-weight: normal; font-style: normal;">B. on the pheriphery</div>
+            </div>
+            <div class="card">
+                <p style="font-weight: normal; font-style: normal;">
+                    For two hinged parabolic arch, if one of the support settle horizontally thrust<br>
+                    A. increases<br>
+                    B. decreases<br>
+                    C. remained unchanged<br>
+                    D. becomes zero
+                </p>
+                <div class="options"><button class="nav-btn">Show Answer</button></div>
+                <div class="answer" style="font-weight: normal; font-style: normal;">B. decreases</div>
+            </div>
+            <div class="card">
+                <p style="font-weight: normal; font-style: normal;">
+                    The load on a spring per unit deflection is called<br>
+                    A. stiffness<br>
+                    B. proof resilience<br>
+                    C. proof stress<br>
+                    D. proof load
+                </p>
+                <div class="options"><button class="nav-btn">Show Answer</button></div>
+                <div class="answer" style="font-weight: normal; font-style: normal;">A. stiffness</div>
+            </div>
+    </div></section>
+    <section aria-label="Additional questions"><div class="container">
+            <div class="card">
+                <p style="font-weight: normal; font-style: normal;">
+                    In a simply supported beam of span L carrying a uniformly distributed load w per unit length, the maximum bending moment occurs at<br>
+                    A. L/4 from either support<br>
+                    B. mid-span<br>
+                    C. the supports<br>
+                    D. both quarter points
+                </p>
+                <div class="options"><button class="nav-btn">Show Answer</button></div>
+                <div class="answer" style="font-weight: normal; font-style: normal;">B. mid-span</div>
+            </div>
+            <div class="card">
+                <p style="font-weight: normal; font-style: normal;">
+                    In a two-hinged arch, the horizontal thrust is<br>
+                    A. statically determinate<br>
+                    B. statically indeterminate to the first degree<br>
+                    C. statically indeterminate to the second degree<br>
+                    D. always zero
+                </p>
+                <div class="options"><button class="nav-btn">Show Answer</button></div>
+                <div class="answer" style="font-weight: normal; font-style: normal;">B. statically indeterminate to the first degree</div>
+            </div>
+            <div class="card">
+                <p style="font-weight: normal; font-style: normal;">
+                    The slope at the fixed support of a cantilever beam carrying a point load at its free end is<br>
+                    A. zero<br>
+                    B. maximum<br>
+                    C. WL^2/2EI<br>
+                    D. WL^3/3EI
+                </p>
+                <div class="options"><button class="nav-btn">Show Answer</button></div>
+                <div class="answer" style="font-weight: normal; font-style: normal;">A. zero</div>
+            </div>
+            <div class="card">
+                <p style="font-weight: normal; font-style: normal;">
+                    For a simply supported beam carrying a central point load, the maximum deflection occurs at<br>
+                    A. the supports<br>
+                    B. quarter span<br>
+                    C. mid-span<br>
+                    D. it does not occur
+                </p>
+                <div class="options"><button class="nav-btn">Show Answer</button></div>
+                <div class="answer" style="font-weight: normal; font-style: normal;">C. mid-span</div>
+            </div>
+            <div class="card">
+                <p style="font-weight: normal; font-style: normal;">
+                    The degree of static indeterminacy of a pin-jointed plane truss having m members, r reactions and j joints is given by<br>
+                    A. m + r - 2j<br>
+                    B. m + r - 3j<br>
+                    C. 3m - r - j<br>
+                    D. 2j - r - m
+                </p>
+                <div class="options"><button class="nav-btn">Show Answer</button></div>
+                <div class="answer" style="font-weight: normal; font-style: normal;">A. m + r - 2j</div>
+            </div>
+            <div class="card">
+                <p style="font-weight: normal; font-style: normal;">
+                    The ends of continuous beam should be:<br>
+                    A. rolled<br>
+                    B. hinged<br>
+                    C. cantilever<br>
+                    D. all of the above
+                </p>
+                <div class="options"><button class="nav-btn">Show Answer</button></div>
+                <div class="answer" style="font-weight: normal; font-style: normal;">B. hinged</div>
+            </div>
+            <div class="card">
+                <p style="font-weight: normal; font-style: normal;">
+                    If a thin walled hollow square and circular section have same thickness and area is subjected to same torque, then:<br>
+                    A. square section is stronger than circular section<br>
+                    B. circular section is stronger than square-section<br>
+                    C. both square and circular section have same strength<br>
+                    D. cannot be judged by given data
+                </p>
+                <div class="options"><button class="nav-btn">Show Answer</button></div>
+                <div class="answer" style="font-weight: normal; font-style: normal;">B. circular section is stronger than square-section</div>
+            </div>
+            <div class="card">
+                <p style="font-weight: normal; font-style: normal;">
+                    Area of influence line diagram for fixed end moment of fixed beam of span L is:<br>
+                    A. L²/24<br>
+                    B. L²/12<br>
+                    C. L²/8<br>
+                    D. L²/16
+                </p>
+                <div class="options"><button class="nav-btn">Show Answer</button></div>
+                <div class="answer" style="font-weight: normal; font-style: normal;">B. L²/12</div>
+            </div>
+            <div class="card">
+                <p style="font-weight: normal; font-style: normal;">
+                    Unequal settlement in the supports of a statically indeterminate structure develop:<br>
+                    A. member forces<br>
+                    B. reactions from supports<br>
+                    C. no reactions<br>
+                    D. strains in some members
+                </p>
+                <div class="options"><button class="nav-btn">Show Answer</button></div>
+                <div class="answer" style="font-weight: normal; font-style: normal;">B. reactions from supports</div>
+            </div>
+            <div class="card">
+                <p style="font-weight: normal; font-style: normal;">
+                    In approximate analysis of building frames under lateral loads, the point of contra flexure in columns is assumed at:<br>
+                    A. storey height/2<br>
+                    B. storey height/3<br>
+                    C. storey height/10<br>
+                    D. storey height/2
+                </p>
+                <div class="options"><button class="nav-btn">Show Answer</button></div>
+                <div class="answer" style="font-weight: normal; font-style: normal;">A. storey height/2</div>
+            </div>
+            <div class="card">
+                <p style="font-weight: normal; font-style: normal;">
+                    Castiglione&#x27;s theorems are valid for:<br>
+                    A. elastic structure<br>
+                    B. truss<br>
+                    C. beam<br>
+                    D. linear structure
+                </p>
+                <div class="options"><button class="nav-btn">Show Answer</button></div>
+                <div class="answer" style="font-weight: normal; font-style: normal;">A. elastic structure</div>
+            </div>
+            <div class="card">
+                <p style="font-weight: normal; font-style: normal;">
+                    The moment of inertia, of a triangular section with base of 4 cm and a depth of 9 cm, along its centroidal axis is equal to:<br>
+                    A. 36 cm^4<br>
+                    B. 81 cm^4<br>
+                    C. 9 cm^4<br>
+                    D. 4 cm^4
+                </p>
+                <div class="options"><button class="nav-btn">Show Answer</button></div>
+                <div class="answer" style="font-weight: normal; font-style: normal;">B. 81 cm^4</div>
+            </div>
+            <div class="card">
+                <p style="font-weight: normal; font-style: normal;">
+                    A cantilever subjected to a uniformly distributed load of intensity w/m is propped by a rigid prop to the same level of free support. The reaction at the prop is<br>
+                    A. 3wl/8<br>
+                    B. wl/2<br>
+                    C. wl<br>
+                    D. 5wl/8
+                </p>
+                <div class="options"><button class="nav-btn">Show Answer</button></div>
+                <div class="answer" style="font-weight: normal; font-style: normal;">A. 3wl/8</div>
+            </div>
+            <div class="card">
+                <p style="font-weight: normal; font-style: normal;">
+                    As the elastic limit reaches, tensile strain<br>
+                    A. increases more rapidly<br>
+                    B. decreases more rapidly<br>
+                    C. increases in proportion to the stress<br>
+                    D. decreases in proportion to the stress
+                </p>
+                <div class="options"><button class="nav-btn">Show Answer</button></div>
+                <div class="answer" style="font-weight: normal; font-style: normal;">A. increases more rapidly</div>
+            </div>
+            <div class="card">
+                <p style="font-weight: normal; font-style: normal;">
+                    A beam is completely analyzed, when<br>
+                    A. support reactions are calculated<br>
+                    B. shear and moment diagrams are found<br>
+                    C. moment of inertia is uniform throughout the length<br>
+                    D. none of the above
+                </p>
+                <div class="options"><button class="nav-btn">Show Answer</button></div>
+                <div class="answer" style="font-weight: normal; font-style: normal;">B. shear and moment diagrams are found</div>
+            </div>
+    </div></section>
+    <section aria-label="Additional questions"><div class="container">
+            <div class="card">
+                <p style="font-weight: normal; font-style: normal;">
+                    For a simply supported beam carrying a uniformly distributed load w over the entire span L, the maximum shear force occurs at:<br>
+                    A. mid-span<br>
+                    B. the supports<br>
+                    C. L/4 from either support<br>
+                    D. it is zero throughout
+                </p>
+                <div class="options"><button class="nav-btn">Show Answer</button></div>
+                <div class="answer" style="font-weight: normal; font-style: normal;">B. the supports</div>
+            </div>
+            <div class="card">
+                <p style="font-weight: normal; font-style: normal;">
+                    The degree of static indeterminacy of a rigid-jointed plane frame having m members, j joints and r reactions is given by:<br>
+                    A. 3m + r - 3j<br>
+                    B. m + r - 2j<br>
+                    C. 3m - r - j<br>
+                    D. r - 3j
+                </p>
+                <div class="options"><button class="nav-btn">Show Answer</button></div>
+                <div class="answer" style="font-weight: normal; font-style: normal;">A. 3m + r - 3j</div>
+            </div>
+            <div class="card">
+                <p style="font-weight: normal; font-style: normal;">
+                    In a fixed beam of span L carrying a central point load W, the fixing moment at each support is:<br>
+                    A. WL/8<br>
+                    B. WL/4<br>
+                    C. WL/6<br>
+                    D. WL/12
+                </p>
+                <div class="options"><button class="nav-btn">Show Answer</button></div>
+                <div class="answer" style="font-weight: normal; font-style: normal;">A. WL/8</div>
+            </div>
+            <div class="card">
+                <p style="font-weight: normal; font-style: normal;">
+                    The unit load method in structural analysis is primarily used to determine:<br>
+                    A. support reactions only<br>
+                    B. deflection at a point in a structure<br>
+                    C. bending moment only<br>
+                    D. shear force only
+                </p>
+                <div class="options"><button class="nav-btn">Show Answer</button></div>
+                <div class="answer" style="font-weight: normal; font-style: normal;">B. deflection at a point in a structure</div>
+            </div>
+            <div class="card">
+                <p style="font-weight: normal; font-style: normal;">
+                    For a column with both ends fixed, the effective length in terms of its actual length L is:<br>
+                    A. L<br>
+                    B. 2L<br>
+                    C. L/2<br>
+                    D. 0.7L
+                </p>
+                <div class="options"><button class="nav-btn">Show Answer</button></div>
+                <div class="answer" style="font-weight: normal; font-style: normal;">C. L/2</div>
+            </div>
+    </div></section>
+    <section aria-label="Additional questions"><div class="container">
+            <div class="card">
+                <p style="font-weight: normal; font-style: normal;">
+                    The stiffness (displacement) method of structural analysis is primarily based on:<br>
+                    A. virtual work principle only<br>
+                    B. energy methods only<br>
+                    C. compatibility equations only<br>
+                    D. equilibrium equations
+                </p>
+                <div class="options"><button class="nav-btn">Show Answer</button></div>
+                <div class="answer" style="font-weight: normal; font-style: normal;">D. equilibrium equations</div>
+            </div>
+            <div class="card">
+                <p style="font-weight: normal; font-style: normal;">
+                    A structure is termed &#x27;statically unstable&#x27; when the number of reaction components is:<br>
+                    A. equal to the number of independent equilibrium equations<br>
+                    B. unrelated to the equilibrium equations<br>
+                    C. less than the number of independent equilibrium equations<br>
+                    D. greater than the number of independent equilibrium equations
+                </p>
+                <div class="options"><button class="nav-btn">Show Answer</button></div>
+                <div class="answer" style="font-weight: normal; font-style: normal;">C. less than the number of independent equilibrium equations</div>
+            </div>
+            <div class="card">
+                <p style="font-weight: normal; font-style: normal;">
+                    The &#x27;kern&#x27; (core) of a section is the zone within which an eccentric compressive load produces:<br>
+                    A. torsional stress<br>
+                    B. maximum tensile stress<br>
+                    C. no tensile stress anywhere in the section<br>
+                    D. pure shear stress
+                </p>
+                <div class="options"><button class="nav-btn">Show Answer</button></div>
+                <div class="answer" style="font-weight: normal; font-style: normal;">C. no tensile stress anywhere in the section</div>
+            </div>
+            <div class="card">
+                <p style="font-weight: normal; font-style: normal;">
+                    For resisting torsion efficiently, which cross-sectional shape is most effective?<br>
+                    A. solid circular section<br>
+                    B. closed thin-walled tubular section<br>
+                    C. open thin-walled section<br>
+                    D. solid square section
+                </p>
+                <div class="options"><button class="nav-btn">Show Answer</button></div>
+                <div class="answer" style="font-weight: normal; font-style: normal;">B. closed thin-walled tubular section</div>
+            </div>
+            <div class="card">
+                <p style="font-weight: normal; font-style: normal;">
+                    In a two-hinged parabolic arch, the horizontal thrust (H) at the supports, treated as the single redundant, is generally determined by applying:<br>
+                    A. the fully plastic moment condition at the crown<br>
+                    B. the condition that the horizontal displacement at one hinge is zero, using strain energy (<br>
+                    C. equilibrium equations alone, without any compatibility condition<br>
+                    D. an arbitrarily assumed value of support settlement
+                </p>
+                <div class="options"><button class="nav-btn">Show Answer</button></div>
+                <div class="answer" style="font-weight: normal; font-style: normal;">B. the condition that the horizontal displacement at one hinge is zero, using strain energy (</div>
+            </div>
+            <div class="card">
+                <p style="font-weight: normal; font-style: normal;">
+                    In a propped cantilever beam subjected to u.d.l throughout the span, the point of contraflexure will occur at<br>
+                    A. l/2<br>
+                    B. l/4 from the propped end<br>
+                    C. l/4 from the fixed end<br>
+                    D. propped end
+                </p>
+                <div class="options"><button class="nav-btn">Show Answer</button></div>
+                <div class="answer" style="font-weight: normal; font-style: normal;">C. l/4 from the fixed end</div>
+            </div>
+            <div class="card">
+                <p style="font-weight: normal; font-style: normal;">
+                    The rise of a parabolic arch at quarter points is equal to<br>
+                    A. 1/3 times the rise of crown<br>
+                    B. 1/4 times the rise of crown<br>
+                    C. 1/2 times the rise of crown<br>
+                    D. 3/4 times the rise of crown
+                </p>
+                <div class="options"><button class="nav-btn">Show Answer</button></div>
+                <div class="answer" style="font-weight: normal; font-style: normal;">D. 3/4 times the rise of crown</div>
+            </div>
+            <div class="card">
+                <p style="font-weight: normal; font-style: normal;">
+                    Which of the following is infinity at the point of formation of plastic hinge?<br>
+                    A. Deflection<br>
+                    B. Slope<br>
+                    C. Curvature<br>
+                    D. Radius
+                </p>
+                <div class="options"><button class="nav-btn">Show Answer</button></div>
+                <div class="answer" style="font-weight: normal; font-style: normal;">C. Curvature</div>
+            </div>
+            <div class="card">
+                <p style="font-weight: normal; font-style: normal;">
+                    A simply supported beam is traversed by a series of concentrated loads. The maximum B.M. at a section will occure when that load act on this section which<br>
+                    A. when moved from one side of the section to another, the difference between the average loading on the two sides changes its sign<br>
+                    B. is the heaviest of all load<br>
+                    C. is the first load<br>
+                    D. none of the above
+                </p>
+                <div class="options"><button class="nav-btn">Show Answer</button></div>
+                <div class="answer" style="font-weight: normal; font-style: normal;">A. when moved from one side of the section to another, the difference between the average loading on the two sides changes its sign</div>
+            </div>
+            <div class="card">
+                <p style="font-weight: normal; font-style: normal;">
+                    In a shaft, the shear stress is not directly proportional to<br>
+                    A. radius of shaft<br>
+                    B. angle of twist<br>
+                    C. length of shaft<br>
+                    D. modulus of rigidity
+                </p>
+                <div class="options"><button class="nav-btn">Show Answer</button></div>
+                <div class="answer" style="font-weight: normal; font-style: normal;">C. length of shaft</div>
+            </div>
+    </div></section>
+    </div>
+    <nav class="topic-navigation" aria-label="Available topic navigation">
+        <a class="topic-navigation-item" href="/Psc-preparation/MCQ/2.11" aria-label="Previous available topic: 2.11"><span>← Previous topic</span><span class="topic-label">Topic 2.11</span></a>
+        <a class="topic-navigation-item" href="/Psc-preparation/MCQ/">Back to Topics</a>
+        <a class="topic-navigation-item" href="/Psc-preparation/MCQ/3.2" aria-label="Next available topic: 3.2"><span>Next topic →</span><span class="topic-label">Topic 3.2</span></a>
+    </nav>
+    <div id="social-section"></div>
+    <div id="footer"></div>
+
+    <script src="/js/logo.js?v=20261101" defer></script>
+    <script src="/js/layout.js?v=20260924" defer></script>
+    <script src="/js/lazy-load.js" defer></script>
+    <script src="/js/text-protect.js" defer></script>
+    <script src="/js/mcq-script.js?v=20260924" defer></script>
+    <script src="/js/note-pen.js?v=20261109-4" defer></script>
+</body>
+</html>
